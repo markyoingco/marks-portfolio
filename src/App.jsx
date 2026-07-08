@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useMemo, useCallback, memo } from 'react'
 import './App.css'
 
 // Minimal inline SVG icons (no external package needed).
@@ -51,7 +51,7 @@ const SCREENS = ['home', 'about', 'portfolio', 'testimonials', 'blog', 'contact'
 const ABOUT_PANEL_COUNT = 6
 const ABOUT_BEYOND_WORK_INDEX = 5
 
-function AboutImageFrame({ src, alt = '', fit = 'cover' }) {
+function AboutImageFrame({ src, alt = '' }) {
   const [hasImage, setHasImage] = useState(true)
 
   if (!hasImage) {
@@ -62,13 +62,8 @@ function AboutImageFrame({ src, alt = '', fit = 'cover' }) {
     )
   }
 
-  const frameClass =
-    fit === 'contain'
-      ? 'about-image-frame about-image-frame--contain'
-      : 'about-image-frame'
-
   return (
-    <div className={frameClass}>
+    <div className="about-image-frame">
       <img src={src} alt={alt} onError={() => setHasImage(false)} />
     </div>
   )
@@ -231,7 +226,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
             <section className="about__panel">
               <div className="about__panel-stack">
                 <div className="about__card about__card--welcome">
-                  <AboutImageFrame src="/welcome-photo.jpg" alt="Mark Yoingco graduation" />
+                  <AboutImageFrame src="/images/about/welcome-photo.jpg" alt="Mark Yoingco graduation" />
                   <div className="about__welcome-text">
                     <h2 className="about__heading">Welcome to My Personal Site</h2>
                     <div className="about__copy">
@@ -276,7 +271,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
             <section className="about__panel">
               <div className="about__card about__card--education">
                 <EducationDiplomaFrame
-                  src="/education-photo.jpg"
+                  src="/images/about/education-photo.jpg"
                   alt="Marquette University diploma"
                 />
                 <div className="about__welcome-text">
@@ -360,7 +355,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
             <section className="about__panel">
               <div className="about__panel-stack">
                 <div className="about__card about__card--welcome">
-                  <AboutImageFrame src="/beyond-work-photo.jpg" alt="Beyond Work" />
+                  <AboutImageFrame src="/images/about/beyond-work-photo.jpg" alt="Beyond Work" />
                   <div className="about__welcome-text">
                     <h2 className="about__heading">Beyond Work</h2>
                     <div className="about__copy">
@@ -374,14 +369,15 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
                       <p className="about__body">
                         I&apos;m drawn to growth, ambition, purpose, and becoming
                         the best version of myself. Outside the gym, I enjoy hiking,
-                        reading, listening to music, taking pictures, trying new
-                        food, and traveling whenever I can.
+                        reading, listening to music, trying new food, traveling,
+                        visiting museums, and taking pictures.
                       </p>
                       <p className="about__body">
                         Photography is one of the ways I like to tell a story.
-                        Whether it is a city, a view, a trip, or a small moment, I
-                        like capturing places and memories in a way that feels
-                        personal.
+                        Museums, cities, views, trips, and small moments all give
+                        me something to capture. I like taking pictures because
+                        they can hold a memory, a feeling, or a place without
+                        needing too much explanation.
                       </p>
                       <p className="about__closing">
                         You can see more of my travel and lifestyle photos on the
@@ -442,40 +438,101 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
   )
 }
 
-function BlogPhoto({ src, index }) {
+const BlogPhoto = memo(function BlogPhoto({ src, location }) {
   const [hasImage, setHasImage] = useState(true)
 
-  if (!hasImage) {
-    return (
-      <div className="blog-photo blog-photo--placeholder">
-        <span>Photo Coming Soon</span>
-      </div>
-    )
-  }
+  const handleImageError = useCallback(() => {
+    console.warn(`Blog image failed to load: ${src}`)
+    setHasImage(false)
+  }, [src])
 
   return (
-    <div className="blog-photo">
-      <img
-        src={src}
-        alt={`Travel photo ${index}`}
-        onError={() => setHasImage(false)}
-      />
-    </div>
+    <article className="blog-photo">
+      <div className="blog-photo__media">
+        {hasImage ? (
+          <img
+            src={src}
+            alt={location}
+            width={800}
+            height={1000}
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
+            onError={handleImageError}
+          />
+        ) : (
+          <div className="blog-photo__fallback">
+            <span>Photo Coming Soon</span>
+          </div>
+        )}
+      </div>
+      <p className="blog-photo__location">{location}</p>
+    </article>
   )
-}
+})
+
+const BLOG_PHOTOS_BATCH = 6
 
 const BLOG_PHOTOS = [
-  '/blog-photo-1.jpg',
-  '/blog-photo-2.jpg',
-  '/blog-photo-3.jpg',
-  '/blog-photo-4.jpg',
-  '/blog-photo-5.jpg',
-  '/blog-photo-6.jpg',
+  { order: 54, location: "Don Toliver", src: "/images/blog-optimized/54 Don Toliver.jpg" },
+  { order: 53, location: "Summerfest", src: "/images/blog-optimized/53 Summerfest.jpg" },
+  { order: 52, location: "More Kobe", src: "/images/blog-optimized/52 More Kobe.jpg" },
+  { order: 51, location: "Graduation", src: "/images/blog-optimized/51 Graduation.jpg" },
+  { order: 50, location: "Graduation", src: "/images/blog-optimized/50 Graduation.jpg" },
+  { order: 49, location: "Getty Center, CA", src: "/images/blog-optimized/49 Getty Center, CA.jpg" },
+  { order: 48, location: "Getty Center, CA", src: "/images/blog-optimized/48 Getty Center, CA.jpg" },
+  { order: 47, location: "Getty Center, CA", src: "/images/blog-optimized/47 Getty Center, CA.jpg" },
+  { order: 46, location: "Getty Center, CA", src: "/images/blog-optimized/46 Getty Center, CA.jpg" },
+  { order: 45, location: "Griffith Observatory, CA", src: "/images/blog-optimized/45 Griffith Observatory, CA.jpg" },
+  { order: 44, location: "San Diego", src: "/images/blog-optimized/44 San Diego.jpg" },
+  { order: 43, location: "Pine Cove, CA", src: "/images/blog-optimized/43 Pine Cove, CA.jpg" },
+  { order: 42, location: "Alpine Valley, WI", src: "/images/blog-optimized/42 Alpine Valley, WI.jpg" },
+  { order: 41, location: "Nashville", src: "/images/blog-optimized/41 Nashville.jpg" },
+  { order: 40, location: "Kobe", src: "/images/blog-optimized/40 Kobe.jpg" },
+  { order: 39, location: "Social Candy, Milwaukee", src: "/images/blog-optimized/39 Social Candy, Milwaukee.jpg" },
+  { order: 38, location: "Colosseum, Italy", src: "/images/blog-optimized/38 Colosseum, Italy.jpg" },
+  { order: 37, location: "Colosseum, Italy", src: "/images/blog-optimized/37 Colosseum, Italy.jpg" },
+  { order: 36, location: "Rome, Italy", src: "/images/blog-optimized/36 Rome, Italy.jpg" },
+  { order: 35, location: "Rome, Italy", src: "/images/blog-optimized/35 Rome, Italy.jpg" },
+  { order: 34, location: "Rome, Italy", src: "/images/blog-optimized/34 Rome, Italy.jpg" },
+  { order: 32, location: "Rome, Italy", src: "/images/blog-optimized/32 Rome, Italy.jpg" },
+  { order: 31, location: "Trevi Fountain, Italy", src: "/images/blog-optimized/31 Trevi Fountain, Italy.jpg" },
+  { order: 30, location: "Vittoriano, Italy", src: "/images/blog-optimized/30 Vittoriano, Italy.jpg" },
+  { order: 29, location: "Atrani, Italy", src: "/images/blog-optimized/29 Atrani, Italy.jpg" },
+  { order: 28, location: "Positano, Italy", src: "/images/blog-optimized/28 Positano, Italy.jpg" },
+  { order: 27, location: "Porto Di Amalfi, Italy", src: "/images/blog-optimized/27 Porto Di Amalfi, Italy.jpg" },
+  { order: 26, location: "Atrani, Italy", src: "/images/blog-optimized/26 Atrani, Italy.jpg" },
+  { order: 25.5, location: "Atrani, Italy", src: "/images/blog-optimized/25.5 Atrani, Italy.jpg" },
+  { order: 25, location: "Atrani, Italy", src: "/images/blog-optimized/25 Atrani, Italy.jpg" },
+  { order: 24, location: "Atrani, Italy", src: "/images/blog-optimized/24 Atrani, Italy.jpg" },
+  { order: 23, location: "Fam", src: "/images/blog-optimized/23 Fam.jpg" },
+  { order: 22, location: "Kensington, London", src: "/images/blog-optimized/22 Kensington, London.jpg" },
+  { order: 21, location: "City Of Westminster, London", src: "/images/blog-optimized/21 City Of Westminster, London.jpg" },
+  { order: 20, location: "Tower Hamlets, London", src: "/images/blog-optimized/20 Tower Hamlets, London.jpg" },
+  { order: 19, location: "Soho, London", src: "/images/blog-optimized/19 Soho, London.jpg" },
+  { order: 18, location: "Gymshark, London", src: "/images/blog-optimized/18 Gymshark, London.jpg" },
+  { order: 17, location: "Gymshark, London", src: "/images/blog-optimized/17 Gymshark, London.jpg" },
+  { order: 16, location: "London", src: "/images/blog-optimized/16 London.jpg" },
+  { order: 15, location: "London", src: "/images/blog-optimized/15 London.jpg" },
+  { order: 14, location: "London", src: "/images/blog-optimized/14 London.jpg" },
+  { order: 13, location: "Ryse", src: "/images/blog-optimized/13 Ryse.jpg" },
+  { order: 12, location: "Lake Louise, Canada", src: "/images/blog-optimized/12 Lake Louise, Canada.jpg" },
+  { order: 11, location: "Lake Louise, Canada", src: "/images/blog-optimized/11 Lake Louise, Canada.jpg" },
+  { order: 10, location: "Lake Louise Canada", src: "/images/blog-optimized/10 Lake Louise Canada.jpg" },
+  { order: 9, location: "Lake Louise, Canada", src: "/images/blog-optimized/9 Lake Louise, Canada.jpg" },
+  { order: 8, location: "✞", src: "/images/blog-optimized/8 ✞.jpg" },
+  { order: 7, location: "1st Meet, 1st Place", src: "/images/blog-optimized/7 1st Meet, 1st Place.jpg" },
+  { order: 6, location: "La Jolla Shores", src: "/images/blog-optimized/6 La Jolla Shores.jpg" },
+  { order: 5, location: "San Clemente", src: "/images/blog-optimized/5 San Clemente.jpg" },
+  { order: 4, location: "Cactus Jack", src: "/images/blog-optimized/4 Cactus Jack.jpg" },
+  { order: 3, location: "Chicago", src: "/images/blog-optimized/3 Chicago.jpg" },
+  { order: 2, location: "Las Vegas", src: "/images/blog-optimized/2 Las Vegas.jpg" },
+  { order: 1, location: "Hawaii", src: "/images/blog-optimized/1 Hawaii.jpg" },
 ]
 
 const TESTIMONIALS = [
   {
-    image: '/testimonials/testimonial-1.jpg',
+    image: '/images/testimonials/testimonial-1.jpg',
     quote:
       'Mark is one of my best friends who I\'ve known since our days of middle school basketball. He boasts a plethora of outstanding qualities that have stood out since our first practice together. He is one of the most dedicated and reliable individuals I know, applying no less than his absolute best to any team he is apart of. His perseverance and professionalism through school, life challenges, and the workplace proceeds his reputation as a respectful, hard working, and disciplined person with extensive work and projects to show for it. He\'s truly a valuable asset to have as a part of any team, and an even better friend.',
     name: 'Maxwell Zeisler',
@@ -549,22 +606,46 @@ function TestimonialsSection() {
 }
 
 function BlogSection() {
+  const blogRef = useRef(null)
+  const photoCount = BLOG_PHOTOS.length
+  const [visibleCount, setVisibleCount] = useState(() =>
+    Math.min(BLOG_PHOTOS_BATCH, photoCount),
+  )
+  const safeVisibleCount = Math.min(visibleCount, photoCount)
+  const visiblePhotos = useMemo(
+    () => BLOG_PHOTOS.slice(0, safeVisibleCount),
+    [safeVisibleCount],
+  )
+  const hasMorePhotos = safeVisibleCount < photoCount
+  const canShowLess = safeVisibleCount > BLOG_PHOTOS_BATCH
+
+  const handleLoadMore = useCallback(() => {
+    setVisibleCount((count) =>
+      Math.min(count + BLOG_PHOTOS_BATCH, photoCount),
+    )
+  }, [photoCount])
+
+  const handleShowLess = useCallback(() => {
+    setVisibleCount(BLOG_PHOTOS_BATCH)
+    blogRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   return (
-    <div className="blog">
+    <div className="blog" ref={blogRef}>
       <div className="blog__inner">
         <header className="blog__intro">
           <h1 className="blog__title">Caught in Motion</h1>
           <p className="blog__body">
-            Every picture has a story behind it. Some are from places I have
-            been, some are from moments I wanted to remember, and some are just
-            scenes that caught my eye. I like photos that feel real, cinematic,
-            and personal - the kind that say something without having to explain
-            too much.
+            Every picture has a story behind it. Some come from places I have
+            visited, some come from moments I wanted to remember, and some are
+            just scenes I had to keep. I like photos that feel real, cinematic,
+            and personal - the kind that say enough without needing too much
+            explanation.
           </p>
           <p className="blog__body">
-            Outside of work, I use photography as a way to capture travel,
-            lifestyle, growth, and the moments that keep me moving. This section
-            is a small look into that side of me.
+            Outside of work, photography is how I capture travel, lifestyle,
+            growth, museums, and the moments that keep me moving. This is a small
+            look into that side of me.
           </p>
           <p className="blog__body">
             For more pictures, check out my VSCO.
@@ -581,13 +662,44 @@ function BlogSection() {
             </svg>
             <span>VSCO</span>
           </a>
+          <p className="blog__credit">
+            All photography featured across this site was personally captured by
+            me from my own camera roll.
+          </p>
         </header>
 
         <div className="blog__grid">
-          {BLOG_PHOTOS.map((src, index) => (
-            <BlogPhoto key={src} src={src} index={index + 1} />
+          {visiblePhotos.map((photo) => (
+            <BlogPhoto
+              key={photo.src}
+              src={photo.src}
+              location={photo.location}
+            />
           ))}
         </div>
+
+        {(hasMorePhotos || canShowLess) && (
+          <div className="blog__actions">
+            {hasMorePhotos && (
+              <button
+                type="button"
+                className="about__action-btn blog__load-more"
+                onClick={handleLoadMore}
+              >
+                Load More
+              </button>
+            )}
+            {canShowLess && (
+              <button
+                type="button"
+                className="about__action-btn blog__show-less"
+                onClick={handleShowLess}
+              >
+                Show Less
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
@@ -728,7 +840,7 @@ function App() {
 
             <a
               className="resume-box"
-              href="/Mark_Yoingco_Resume.pdf"
+              href="/documents/Mark_Yoingco_Resume.pdf"
               download="Mark_Yoingco_Resume.pdf"
             >
               <span className="resume-box__label">Resume</span>
@@ -753,8 +865,12 @@ function App() {
         {activeScreen === 'blog' && <BlogSection />}
       </main>
 
-      {/* Fixed bottom-center social icons (on every screen) */}
-      <div className="socials">
+      {/* Fixed bottom-center social icons (hidden on Blog to avoid gallery overlap) */}
+      <div
+        className={
+          activeScreen === 'blog' ? 'socials socials--hidden' : 'socials'
+        }
+      >
         {SOCIALS.map((social) => (
           <a
             key={social.label}
