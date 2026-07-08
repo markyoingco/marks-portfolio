@@ -1,36 +1,75 @@
-# Mark Yoingco Portfolio
+# Mark Yoingco Portfolio Website
 
-A personal portfolio website for Mark Yoingco, a recent Computer Science graduate from Marquette University.
+A personal portfolio website built with React, Vite, JavaScript, and CSS to showcase my background, resume, software projects, photography, testimonials, and contact information.
 
-## Overview
+## Purpose
 
-This site is being built to showcase my resume, projects, technical skills, background, and contact links in a clean dark cinematic portfolio style.
+This project is my personal brand and proof page. It is designed to help recruiters, professors, and collaborators quickly understand who I am, what I have built, and where to find my work.
 
-## Tech Stack
+## Built With
 
 - React
 - Vite
 - JavaScript
 - CSS
-- Git/GitHub
+- Git
+- GitHub
 
-## Current Features
-
-- Dark cinematic homepage
-- Fixed background image
-- Top navigation
-- Resume download button
-- Social links for GitHub, LinkedIn, Email, and Instagram
-- About section foundation with internal slide navigation
-
-## Planned Sections
+## Sections
 
 - Home
 - About
 - Portfolio
+- Testimonials
 - Blog
 - Contact
 
+## Current Features
+
+- Dark cinematic design
+- Fixed background image
+- Resume download button
+- Top navigation
+- Fixed social links
+- About carousel with internal slide navigation
+- Portfolio category tabs
+- Project cards with future screenshot support
+- Testimonials section
+- Photography gallery using optimized images
+- Contact form placeholder
+
+## Portfolio Categories
+
+- Personal Build
+- Senior Design Capstones
+- Software Design and Analysis
+- Systems Programming
+- Programming Computer Games
+- Data Science and Machine Learning
+- Creative Leadership
+- Service
+
+## Local Setup
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
 ## Status
 
-Work in progress.
+Currently in progress. I am refining the Portfolio section, organizing project proof, improving GitHub documentation, and preparing the site for deployment.
+
+## Future Improvements
+
+- Add real project screenshots
+- Add GitHub links for projects that can be shared publicly
+- Add demo or proof links when available
+- Connect the contact form later
+- Deploy the finished portfolio site
