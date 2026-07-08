@@ -1,16 +1,36 @@
-# React + Vite
+# Mark Yoingco Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio website for Mark Yoingco, a recent Computer Science graduate from Marquette University.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This site is being built to showcase my resume, projects, technical skills, background, and contact links in a clean dark cinematic portfolio style.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- JavaScript
+- CSS
+- Git/GitHub
 
-## Expanding the ESLint configuration
+## Current Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Dark cinematic homepage
+- Fixed background image
+- Top navigation
+- Resume download button
+- Social links for GitHub, LinkedIn, Email, and Instagram
+- About section foundation with internal slide navigation
+
+## Planned Sections
+
+- Home
+- About
+- Portfolio
+- Blog
+- Contact
+
+## Status
+
+Work in progress.
