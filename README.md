@@ -67,9 +67,4 @@ npm run build
 Currently in progress. I am refining the Portfolio section, organizing project proof, improving GitHub documentation, and preparing the site for deployment.
 
 ## Future Improvements
-
-- Add real project screenshots
-- Add GitHub links for projects that can be shared publicly
-- Add demo or proof links when available
-- Connect the contact form later
 - Deploy the finished portfolio site
