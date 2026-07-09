@@ -54,10 +54,6 @@ The site presents my resume, background, testimonials, photography, and project 
 - Creative Leadership
 - Service
 
-## Public Assets
-
-Key public assets include portfolio imagery, testimonial photos, blog photos, brand assets, and the downloadable resume PDF.
-
 ## Development
 
 ```bash
