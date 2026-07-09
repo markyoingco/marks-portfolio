@@ -512,12 +512,25 @@
   margin-top: 6px;
 }
 
+.contact__submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .contact__notice {
   margin: 4px 0 0;
   font-size: 11px;
   line-height: 1.55;
   text-align: center;
   color: rgba(255, 255, 255, 0.65);
+}
+
+.contact__notice--success {
+  color: rgba(190, 255, 210, 0.9);
+}
+
+.contact__notice--error {
+  color: rgba(255, 170, 170, 0.92);
 }
 
 .contact__links {

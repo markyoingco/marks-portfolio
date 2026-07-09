@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# DreamHost contact form credentials
+public/api/config.php

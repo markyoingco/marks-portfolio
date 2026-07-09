@@ -1329,14 +1329,80 @@ function BlogSection() {
 }
 
 function ContactSection() {
+  const [formStatus, setFormStatus] = useState('idle')
   const [formMessage, setFormMessage] = useState('')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    setFormMessage(
-      'Contact form connection coming soon. Please use email or socials for now.',
-    )
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const firstName = formData.get('firstName')?.toString().trim() ?? ''
+    const lastName = formData.get('lastName')?.toString().trim() ?? ''
+    const email = formData.get('email')?.toString().trim() ?? ''
+    const phone = formData.get('phone')?.toString().trim() ?? ''
+    const message = formData.get('message')?.toString().trim() ?? ''
+
+    if (!firstName || !lastName || !email || !message) {
+      setFormStatus('error')
+      setFormMessage('Please fill in all required fields.')
+      return
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setFormStatus('error')
+      setFormMessage('Please enter a valid email address.')
+      return
+    }
+
+    setFormStatus('submitting')
+    setFormMessage('')
+
+    try {
+      const response = await fetch('/api/contact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          phone,
+          message,
+        }),
+      })
+
+      const data = await response.json().catch(() => null)
+
+      if (response.ok && data?.success) {
+        setFormStatus('success')
+        setFormMessage(
+          data.message || 'Thank you! Your message has been sent successfully.',
+        )
+        form.reset()
+        return
+      }
+
+      setFormStatus('error')
+      setFormMessage(
+        data?.message ||
+          'Something went wrong. Please try again or email me directly.',
+      )
+    } catch {
+      setFormStatus('error')
+      setFormMessage(
+        'Unable to send your message right now. Please try again or email me directly.',
+      )
+    }
   }
+
+  const noticeClassName =
+    formStatus === 'success'
+      ? 'contact__notice contact__notice--success'
+      : formStatus === 'error'
+        ? 'contact__notice contact__notice--error'
+        : 'contact__notice'
 
   return (
     <div className="contact">
@@ -1378,17 +1444,25 @@ function ContactSection() {
             <textarea name="message" rows={5} required />
           </label>
 
-          {/* Captcha placeholder - connect real reCAPTCHA or form service later */}
-          <div className="contact__captcha" aria-label="Captcha placeholder">
-            <div className="contact__captcha-box" aria-hidden="true" />
+          {/* Visual placeholder only. Real CAPTCHA can be added later. */}
+          <div
+            className="contact__captcha"
+            aria-hidden="true"
+            role="presentation"
+          >
+            <div className="contact__captcha-box" />
             <span className="contact__captcha-text">I&apos;m not a robot</span>
           </div>
 
-          <button type="submit" className="about__action-btn contact__submit">
-            Submit
+          <button
+            type="submit"
+            className="about__action-btn contact__submit"
+            disabled={formStatus === 'submitting'}
+          >
+            {formStatus === 'submitting' ? 'Submitting...' : 'Submit'}
           </button>
 
-          {formMessage && <p className="contact__notice">{formMessage}</p>}
+          {formMessage && <p className={noticeClassName}>{formMessage}</p>}
         </form>
 
         <div className="contact__links">
