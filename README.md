@@ -8,7 +8,7 @@ Live site: https://markyoingco.com
 
 This project is my personal brand and proof page. It is designed to help recruiters, professors, and collaborators quickly understand who I am, what I have built, and where to find my work.
 
-The site showcases my resume, background, testimonials, photography, and contact links in a dark cinematic portfolio style.
+The site presents my resume, background, testimonials, photography, and project experience in a dark cinematic portfolio style.
 
 ## Built With
 
@@ -39,9 +39,9 @@ The site showcases my resume, background, testimonials, photography, and contact
 - Portfolio category tabs
 - Project cards with screenshot and link support
 - Testimonials section
-- Blog / travel photo section with optimized images
+- Blog and travel photo section with optimized images
 - Contact form placeholder
-- Static deployment on DreamHost with custom domain
+- Static deployment on DreamHost with a custom domain
 
 ## Portfolio Categories
 
@@ -56,21 +56,10 @@ The site showcases my resume, background, testimonials, photography, and contact
 
 ## Public Assets
 
-```text
-public/
-  images/
-    background.jpg
-    about/
-      welcome-photo.jpg
-      education-photo.jpg
-      beyond-work-photo.jpg
-    testimonials/
-      testimonial-1.jpg
-    blog/
-      blog-photo-1.jpg through blog-photo-6.jpg
-  documents/
-    Mark_Yoingco_Resume.pdf
-  brand/
-    my-logo.png
-    my-logo-original.png
-  icons.svg
+Key public assets include portfolio imagery, testimonial photos, blog photos, brand assets, and the downloadable resume PDF.
+
+## Development
+
+```bash
+npm install
+npm run dev
