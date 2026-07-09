@@ -480,33 +480,6 @@
   line-height: 1.55;
 }
 
-.contact__captcha {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 14px;
-  margin: 6px auto 2px;
-  padding: 14px 20px;
-  width: min(340px, 100%);
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 2px;
-}
-
-.contact__captcha-box {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: 1px;
-}
-
-.contact__captcha-text {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.82);
-}
-
 .contact__submit {
   align-self: center;
   margin-top: 6px;
@@ -2008,11 +1981,6 @@
 
   .contact__form {
     gap: 16px;
-  }
-
-  .contact__captcha {
-    margin-top: 8px;
-    margin-bottom: 12px;
   }
 
   .contact__submit {

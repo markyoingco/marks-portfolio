@@ -1444,16 +1444,6 @@ function ContactSection() {
             <textarea name="message" rows={5} required />
           </label>
 
-          {/* Visual placeholder only. Real CAPTCHA can be added later. */}
-          <div
-            className="contact__captcha"
-            aria-hidden="true"
-            role="presentation"
-          >
-            <div className="contact__captcha-box" />
-            <span className="contact__captcha-text">I&apos;m not a robot</span>
-          </div>
-
           <button
             type="submit"
             className="about__action-btn contact__submit"
