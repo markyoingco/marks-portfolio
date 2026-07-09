@@ -216,7 +216,16 @@ function AboutPlaceholderCard({ title, hint }) {
 function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
   const viewportRef = useRef(null)
 
+  const panelClassName = (index) =>
+    index === panel ? 'about__panel is-active' : 'about__panel'
+
   useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 900px)').matches
+    if (isMobile) {
+      document.querySelector('.screen[data-screen="about"]')?.scrollTo(0, 0)
+      return
+    }
+
     const panels = viewportRef.current?.querySelectorAll('.about__panel')
     if (!panels) return
     panels.forEach((el, index) => {
@@ -232,10 +241,10 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
         <div className="about__viewport" ref={viewportRef}>
           <div
             className="about__track"
-            style={{ transform: `translateY(-${panel * 100}%)` }}
+            style={{ '--about-panel-index': panel }}
           >
             {/* 1 - Welcome */}
-            <section className="about__panel">
+            <section className={panelClassName(0)}>
               <div className="about__panel-stack">
                 <div className="about__card about__card--welcome">
                   <AboutImageFrame src="/images/about/welcome-photo.jpg" alt="Mark Yoingco graduation" />
@@ -280,7 +289,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
             </section>
 
             {/* 2 - Education */}
-            <section className="about__panel">
+            <section className={panelClassName(1)}>
               <div className="about__card about__card--education">
                 <EducationDiplomaFrame
                   src="/images/about/education-photo.jpg"
@@ -314,7 +323,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
             </section>
 
             {/* 3 - Experience */}
-            <section className="about__panel">
+            <section className={panelClassName(2)}>
               <div className="about__card about__card--center about__card--experience">
                 <h2 className="about__heading">Experience</h2>
                 <p className="about__experience-intro">
@@ -337,7 +346,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
             </section>
 
             {/* 4 - Skills */}
-            <section className="about__panel">
+            <section className={panelClassName(3)}>
               <div className="about__card about__card--center about__card--skills">
                 <h2 className="about__heading">Skills</h2>
                 <div className="skills-grid">
@@ -356,7 +365,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
             </section>
 
             {/* 5 - Certificates */}
-            <section className="about__panel">
+            <section className={panelClassName(4)}>
               <AboutPlaceholderCard
                 title="Certificates"
                 hint="In Progress..."
@@ -364,7 +373,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
             </section>
 
             {/* 6 - Beyond Work */}
-            <section className="about__panel">
+            <section className={panelClassName(5)}>
               <div className="about__panel-stack">
                 <div className="about__card about__card--welcome">
                   <AboutImageFrame src="/images/about/beyond-work-photo.jpg" alt="Beyond Work" />
@@ -380,16 +389,15 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
                       </p>
                       <p className="about__body">
                         I&apos;m drawn to growth, ambition, purpose, and becoming
-                        the best version of myself. Outside the gym, I enjoy hiking,
-                        reading, listening to music, trying new food, traveling,
-                        visiting museums, and taking pictures.
+                        the best version of myself. Outside the gym, I stay inspired
+                        through hiking, reading, music, travel, and places that give
+                        me a new way to see life.
                       </p>
                       <p className="about__body">
-                        Photography is one of the ways I like to tell a story.
-                        Museums, cities, views, trips, and small moments all give
-                        me something to capture. I like taking pictures because
-                        they can hold a memory, a feeling, or a place without
-                        needing too much explanation.
+                        Photography is how I keep the story with me. Cities, views,
+                        trips, and small moments all give me something worth
+                        capturing. Every picture holds a memory, a feeling, or a
+                        place that still means something.
                       </p>
                       <p className="about__closing">
                         You can see more of my travel and lifestyle photos on the
@@ -571,6 +579,7 @@ const PORTFOLIO_SECTIONS = [
         image: '/images/portfolio/personal-website.png',
         imageFit: 'cover',
         imagePosition: 'center center',
+        website: 'https://github.com/markyoingco/marks-portfolio',
         github: '',
         demo: '',
         proof: '',
@@ -1259,14 +1268,11 @@ function BlogSection() {
           <p className="blog__body">
             Every picture has a story behind it. Some come from places I have
             visited, some come from moments I wanted to remember, and some are
-            just scenes I had to keep. I like photos that feel real, cinematic,
-            and personal - the kind that say enough without needing too much
-            explanation.
+            scenes that felt too real not to keep.
           </p>
           <p className="blog__body">
             Outside of work, photography is how I capture travel, lifestyle,
-            growth, museums, and the moments that keep me moving. This is a small
-            look into that side of me.
+            growth, and the parts of life that feel cinematic and personal.
           </p>
           <p className="blog__body">
             For more pictures, check out my VSCO.
@@ -1283,10 +1289,6 @@ function BlogSection() {
             </svg>
             <span>VSCO</span>
           </a>
-          <p className="blog__credit">
-            All photography featured across this site was personally captured by
-            me from my own camera roll.
-          </p>
         </header>
 
         <div className="blog__grid">
@@ -1390,28 +1392,17 @@ function ContactSection() {
         </form>
 
         <div className="contact__links">
-          <a href="mailto:markyoingco23@gmail.com">Email</a>
-          <a
-            href="https://www.linkedin.com/in/mark-yoingco"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="https://github.com/markyoingco"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://www.instagram.com/markyoingco/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram
-          </a>
+          {SOCIALS.map((social) => (
+            <a
+              key={social.label}
+              href={social.href}
+              {...(social.external
+                ? { target: '_blank', rel: 'noopener noreferrer' }
+                : {})}
+            >
+              {social.label}
+            </a>
+          ))}
         </div>
       </div>
     </div>
@@ -1421,6 +1412,7 @@ function ContactSection() {
 function App() {
   const [activeScreen, setActiveScreen] = useState('home')
   const [aboutPanel, setAboutPanel] = useState(0)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const nextAboutPanel = () => {
     setAboutPanel((p) => (p + 1) % ABOUT_PANEL_COUNT)
@@ -1430,10 +1422,33 @@ function App() {
     setAboutPanel((p) => (p - 1 + ABOUT_PANEL_COUNT) % ABOUT_PANEL_COUNT)
   }
 
+  const goToScreen = (screen) => {
+    setActiveScreen(screen)
+    setMenuOpen(false)
+  }
+
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [activeScreen])
+
+  useEffect(() => {
+    if (!menuOpen) return undefined
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen])
+
   useEffect(() => {
     requestAnimationFrame(() => {
+      document.querySelector('.screen')?.scrollTo(0, 0)
       document
-        .querySelectorAll('.testimonials, .blog, .portfolio-panel, .contact__card')
+        .querySelectorAll('.portfolio-panel, .contact__card')
         .forEach((el) => {
           el.scrollTop = 0
         })
@@ -1441,18 +1456,67 @@ function App() {
   }, [activeScreen])
 
   return (
-    <>
+    <div className={menuOpen ? 'app-shell app-shell--menu-open' : 'app-shell'}>
       {/* Fixed full-screen background image + dark overlay (on every screen) */}
       <div className="background" aria-hidden="true" />
 
-      {/* Fixed top-center navigation (state-based, no scrolling) */}
-      <nav className="nav">
+      {/* Mobile hamburger header (tablet/phone only via CSS) */}
+      <header className="nav-mobile">
+        <button
+          type="button"
+          className="nav-mobile__toggle"
+          aria-label="Open menu"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(true)}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17" x2="20" y2="17" />
+          </svg>
+        </button>
+      </header>
+
+      {menuOpen && (
+        <div className="nav-overlay" role="dialog" aria-modal="true" aria-label="Site menu">
+          <button
+            type="button"
+            className="nav-overlay__close"
+            aria-label="Close menu"
+            onClick={() => setMenuOpen(false)}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+              <line x1="6" y1="6" x2="18" y2="18" />
+              <line x1="18" y1="6" x2="6" y2="18" />
+            </svg>
+          </button>
+          <nav className="nav-overlay__nav">
+            {SCREENS.map((name) => (
+              <button
+                key={name}
+                type="button"
+                className={
+                  activeScreen === name
+                    ? 'nav-overlay__link is-active'
+                    : 'nav-overlay__link'
+                }
+                onClick={() => goToScreen(name)}
+              >
+                {name}
+              </button>
+            ))}
+          </nav>
+        </div>
+      )}
+
+      {/* Fixed top-center navigation - desktop only via CSS */}
+      <nav className="nav nav--desktop">
         {SCREENS.map((name) => (
           <button
             key={name}
             type="button"
             className={activeScreen === name ? 'nav__link is-active' : 'nav__link'}
-            onClick={() => setActiveScreen(name)}
+            onClick={() => goToScreen(name)}
           >
             {name}
           </button>
@@ -1471,8 +1535,8 @@ function App() {
 
             <a
               className="resume-box"
-              href="/documents/MarkYoingco_Resume_2026.pdf"
-              download="MarkYoingco_Resume_2026.pdf"
+              href="/documents/MarkYoingco_PortfolioResume_2026.pdf"
+              download="MarkYoingco_PortfolioResume_2026.pdf"
             >
               <span className="resume-box__label">Resume</span>
             </a>
@@ -1496,32 +1560,34 @@ function App() {
         {activeScreen === 'testimonials' && <TestimonialsSection />}
 
         {activeScreen === 'blog' && <BlogSection />}
-      </main>
 
-      {/* Fixed bottom-center social icons (hidden on Blog and Portfolio) */}
-      <div
-        className={
-          activeScreen === 'blog' || activeScreen === 'portfolio'
-            ? 'socials socials--hidden'
-            : 'socials'
-        }
-      >
-        {SOCIALS.map((social) => (
-          <a
-            key={social.label}
-            href={social.href}
-            aria-label={social.label}
-            {...(social.external
-              ? { target: '_blank', rel: 'noopener noreferrer' }
-              : {})}
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              {social.icon}
-            </svg>
-          </a>
-        ))}
-      </div>
-    </>
+        {/* Social icons: in scroll flow on mobile, fixed on desktop via CSS */}
+        <div
+          className={
+            activeScreen === 'blog' ||
+            activeScreen === 'portfolio' ||
+            activeScreen === 'contact'
+              ? 'socials socials--hidden'
+              : 'socials'
+          }
+        >
+          {SOCIALS.map((social) => (
+            <a
+              key={social.label}
+              href={social.href}
+              aria-label={social.label}
+              {...(social.external
+                ? { target: '_blank', rel: 'noopener noreferrer' }
+                : {})}
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                {social.icon}
+              </svg>
+            </a>
+          ))}
+        </div>
+      </main>
+    </div>
   )
 }
 

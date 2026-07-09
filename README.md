@@ -59,3 +59,5 @@ The site presents my resume, background, testimonials, photography, and project 
 ```bash
 npm install
 npm run dev
+
+```
