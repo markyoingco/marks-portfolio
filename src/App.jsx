@@ -530,6 +530,615 @@ const BLOG_PHOTOS = [
   { order: 1, location: "Hawaii", src: "/images/blog-optimized/1 Hawaii.jpg" },
 ]
 
+const PORTFOLIO_TABS = [
+  { label: 'Personal', title: 'Personal Build' },
+  { label: 'Capstones', title: 'Senior Design Capstones' },
+  { label: 'Systems', title: 'Systems Programming' },
+  { label: 'Software Design', title: 'Software Design and Analysis' },
+  { label: 'Games', title: 'Programming Computer Games' },
+  { label: 'Data', title: 'Data Science and Machine Learning' },
+  { label: 'Merch', title: 'Creative Leadership' },
+  { label: 'Service', title: 'Service' },
+]
+
+const PORTFOLIO_SECTIONS = [
+  {
+    title: 'Personal Build',
+    description:
+      'Independent projects built to represent my work, background, and personal brand.',
+    layout: 'standard',
+    items: [
+      {
+        title: 'Personal Portfolio Website',
+        subtitle: 'Personal Build',
+        description:
+          'Personal portfolio website built to showcase software projects, technical experience, service work, merchandise design, and professional background.',
+        role: '',
+        impact: '',
+        tech: ['React', 'Vite', 'JavaScript', 'CSS'],
+        image: '/images/portfolio/personal-website.png',
+        imageFit: 'cover',
+        imagePosition: 'center center',
+        github: '',
+        demo: '',
+        proof: '',
+      },
+    ],
+  },
+  {
+    title: 'Senior Design Capstones',
+    description:
+      'Team-based capstone projects focused on real users, full-stack systems, testing, and project delivery.',
+    layout: 'standard',
+    items: [
+      {
+        title: 'Abacus Senior Design Capstone',
+        subtitle: 'Senior Design Capstone',
+        description:
+          'Senior design web platform contribution focused on Eagle Division features, including chat box interfaces, textbox submission workflows, and frontend updates for student interaction.',
+        role: '',
+        impact: '',
+        tech: ['React', 'TypeScript', 'Flask', 'MySQL', 'Docker', 'Git'],
+        image: '/images/portfolio/abacus.png',
+        imageFit: 'contain',
+        imagePosition: 'center center',
+        website: 'https://github.com/musyslab/Abacus',
+        github: '',
+        demo: '',
+        proof: '',
+      },
+      {
+        title: 'TA-Bot / MAAT Senior Design Capstone',
+        subtitle: 'Senior Design Capstone',
+        description:
+          'Senior design chatbot platform contribution supporting course help workflows, student assistance, and TA/admin tooling through a full-stack web application.',
+        role: '',
+        impact: '',
+        tech: ['React', 'TypeScript', 'Flask', 'MySQL', 'Docker', 'Git'],
+        image: '/images/portfolio/tabot.png',
+        imageFit: 'contain',
+        imagePosition: 'center center',
+        website: 'https://github.com/musyslab/MAAT',
+        github: '',
+        demo: '',
+        proof: '',
+      },
+    ],
+  },
+  {
+    title: 'Software Design and Analysis',
+    description:
+      'Projects focused on software architecture, interface design, real-time interaction, and system behavior.',
+    layout: 'standard',
+    items: [
+      {
+        title: 'Finch Robot Web Controller',
+        subtitle: 'Software Design and Analysis',
+        description:
+          'Team robotics project for controlling BirdBrain Finch 2.0 robots through browser pages, room codes, multiplayer lobbies, and real-time controller screens. Contributed heavily to frontend controller screens, UI planning, setup documentation, and Flask-based interaction flow.',
+        role: '',
+        impact: '',
+        tech: [
+          'Python',
+          'Flask',
+          'JavaScript',
+          'HTML',
+          'CSS',
+          'Socket.IO',
+          'BirdBrain Finch',
+          'BlueBird Connector',
+        ],
+        image: '/images/portfolio/finch-controller.png',
+        imageFit: 'cover',
+        imagePosition: 'center center',
+        website: 'https://github.com/markyoingco/BirdVroomVroom',
+        github: '',
+        demo: '',
+        proof: '',
+      },
+    ],
+  },
+  {
+    title: 'Systems Programming',
+    description:
+      'Lower-level programming work focused on C, UNIX, Linux, memory, files, and operating system concepts.',
+    layout: 'standard',
+    items: [
+      {
+        title: 'Operating Systems C Projects',
+        subtitle: 'Systems Programming',
+        description:
+          'Public portfolio documentation for Operating Systems coursework in C, covering UNIX/Linux development, process control, memory, file systems, and systems-level debugging. Original course repositories may require access.',
+        role: '',
+        impact: '',
+        tech: ['C', 'UNIX', 'Linux', 'WSL', 'Git'],
+        image: '/images/portfolio/operating-systems-c.svg',
+        imageFit: 'contain',
+        website: 'https://github.com/markyoingco/operating-systems-c-projects',
+        secondaryLinks: [
+          {
+            label: 'Shared course repo',
+            url: 'https://github.com/Marquette-Operating-Systems-Course/XINU26-ayazdani1-myoingco',
+          },
+          {
+            label: 'Solo course repo',
+            url: 'https://github.com/Marquette-Operating-Systems-Course/XINU26-myoingco-SOLO',
+          },
+        ],
+        github: '',
+        demo: '',
+        proof: '',
+      },
+    ],
+  },
+  {
+    title: 'Programming Computer Games',
+    description:
+      'Game development projects focused on Unity, C#, physics, collisions, scoring, enemies, and gameplay systems.',
+    layout: 'standard',
+    items: [
+      {
+        title: 'Space SHMUP',
+        subtitle: 'Programming Computer Games',
+        description:
+          'Unity 2D arcade shooter inspired by classic space shooters, built with player movement, projectile firing, enemy behavior, collision handling, scoring, and game-state logic.',
+        tech: [
+          'Unity',
+          'C#',
+          '2D Physics',
+          'Game Objects',
+          'Prefabs',
+          'Collision Detection',
+        ],
+        image: '/images/portfolio/space-shmup.png',
+        imageFit: 'cover',
+        imagePosition: 'center center',
+        website: 'https://github.com/markyoingco/space-shmup-unity',
+        github: '',
+        demo: '',
+        proof: '',
+      },
+      {
+        title: 'Mission Demolition',
+        subtitle: 'Programming Computer Games',
+        description:
+          'Unity physics-based projectile game focused on aiming, launching, collisions, structural targets, and scene-based gameplay logic.',
+        tech: [
+          'Unity',
+          'C#',
+          'Physics',
+          'Colliders',
+          'Rigidbody',
+          'Scene Management',
+        ],
+        image: '/images/portfolio/mission-demolition.png',
+        imageFit: 'cover',
+        imagePosition: 'center center',
+        website: 'https://github.com/markyoingco/mission-demolition-unity',
+        github: '',
+        demo: '',
+        proof: '',
+      },
+      {
+        title: 'Apple Picker',
+        subtitle: 'Programming Computer Games',
+        description:
+          'Unity arcade-style game built with falling objects, basket controls, score tracking, high score persistence, lives, collision detection, and scene restart behavior.',
+        tech: [
+          'Unity',
+          'C#',
+          'Prefabs',
+          'Collision Detection',
+          'UI',
+          'PlayerPrefs',
+        ],
+        image: '/images/portfolio/apple-picker.png',
+        imageFit: 'cover',
+        imagePosition: 'center center',
+        website: 'https://github.com/markyoingco/apple-picker-unity',
+        github: '',
+        demo: '',
+        proof: '',
+      },
+    ],
+  },
+  {
+    title: 'Data Science and Machine Learning',
+    description:
+      'Data-focused projects involving cleaning, analysis, visualization, prediction, and interpretation.',
+    layout: 'standard',
+    items: [
+      {
+        title: 'Marquette Basketball Predictor 2023-24',
+        subtitle: 'Machine Learning / Data Mining',
+        description:
+          'Machine learning project using Marquette basketball game data, Random Forest feature importance, and Logistic Regression to predict wins and losses.',
+        role: '',
+        impact: '',
+        tech: [
+          'Python',
+          'Pandas',
+          'Scikit-learn',
+          'Matplotlib',
+          'Machine Learning',
+          'Logistic Regression',
+          'Random Forest',
+        ],
+        image: '/images/portfolio/featureimportancechart.png',
+        imageFit: 'cover',
+        imagePosition: 'center center',
+        website:
+          'https://github.com/markyoingco/marquette-basketball-predictor-2024',
+        github: '',
+        demo: '',
+        proof: '',
+      },
+      {
+        title: 'Sleep Efficiency Analysis',
+        subtitle: 'Data Analysis / Machine Learning',
+        description:
+          'Analyzed Kaggle sleep efficiency data with cleaning, visualization, VIF checks, and linear regression to explore factors related to sleep quality.',
+        role: '',
+        impact: '',
+        tech: [
+          'Python',
+          'Pandas',
+          'Seaborn',
+          'Matplotlib',
+          'Scikit-learn',
+          'Statsmodels',
+          'Linear Regression',
+          'Data Visualization',
+        ],
+        image: '/images/portfolio/linear-regression-predictions.png',
+        imageFit: 'cover',
+        imagePosition: 'center center',
+        website: 'https://github.com/markyoingco/sleep-efficiency-analysis',
+        github: '',
+        demo: '',
+        proof: '',
+      },
+    ],
+  },
+  {
+    title: 'Creative Leadership',
+    description:
+      'Design and leadership work connected to merchandise, branding, organizations, and campus involvement.',
+    layout: 'compact',
+    items: [
+      {
+        title: 'Sigma Chi Merchandise',
+        subtitle: 'Creative Leadership',
+        description:
+          'Merchandise design proof, including hoodies, t-shirts, and polos created as Merchandise Chair.',
+        role: '',
+        impact: '',
+        tech: [],
+        images: [
+          '/images/portfolio/merch/sigma-chi-merch-01.png',
+          '/images/portfolio/merch/sigma-chi-merch-02.jpg',
+          '/images/portfolio/merch/sigma-chi-merch-03.png',
+          '/images/portfolio/merch/sigma-chi-merch-04.png',
+          '/images/portfolio/merch/sigma-chi-merch-05.png',
+        ],
+        github: '',
+        demo: '',
+        proof: '',
+      },
+    ],
+  },
+  {
+    title: 'Service',
+    description:
+      'Volunteer and service experiences that show teamwork, community involvement, and contribution beyond classwork.',
+    layout: 'compact',
+    items: [
+      {
+        title: 'Feed My Starving Children',
+        subtitle: 'Service',
+        description:
+          'Volunteer experience supporting food packing and service work focused on helping communities through organized group effort.',
+        role: '',
+        impact: '',
+        tech: [],
+        image: '/images/portfolio/service/FMSC.png',
+        imageFit: 'contain',
+        website: 'https://www.fmsc.org/locations/libertyville-il',
+        github: '',
+        demo: '',
+        proof: '',
+      },
+    ],
+  },
+]
+
+function PortfolioImage({
+  src,
+  alt,
+  imageFit = 'cover',
+  imagePosition = 'center center',
+}) {
+  const [hasImage, setHasImage] = useState(true)
+
+  if (!src || !hasImage) {
+    return (
+      <div className="portfolio-card__media portfolio-card__media--placeholder">
+        <span>Image Coming Soon</span>
+      </div>
+    )
+  }
+
+  const mediaClass =
+    imageFit === 'contain'
+      ? 'portfolio-card__media portfolio-card__media--contain'
+      : 'portfolio-card__media'
+
+  return (
+    <div className={mediaClass}>
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        style={{ objectPosition: imagePosition }}
+        onError={() => setHasImage(false)}
+      />
+    </div>
+  )
+}
+
+function PortfolioImageGrid({ images, alt }) {
+  const [failedIndexes, setFailedIndexes] = useState(() => new Set())
+
+  const handleError = (index) => {
+    setFailedIndexes((prev) => {
+      if (prev.has(index)) {
+        return prev
+      }
+      const next = new Set(prev)
+      next.add(index)
+      return next
+    })
+  }
+
+  const visibleCount = images.length - failedIndexes.size
+
+  if (visibleCount === 0) {
+    return (
+      <div className="portfolio-card__media portfolio-card__media--placeholder">
+        <span>Image Coming Soon</span>
+      </div>
+    )
+  }
+
+  const gridClass =
+    images.length === 5
+      ? 'portfolio-card__media-grid portfolio-card__media-grid--5'
+      : 'portfolio-card__media-grid'
+
+  return (
+    <div className="portfolio-card__media portfolio-card__media--grid">
+      <div className={gridClass}>
+        {images.map((src, index) => (
+          <div key={src} className="portfolio-card__media-cell">
+            {!failedIndexes.has(index) ? (
+              <img
+                src={src}
+                alt={`${alt} ${index + 1}`}
+                loading="lazy"
+                decoding="async"
+                onError={() => handleError(index)}
+              />
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function PortfolioCardMedia({ item }) {
+  const images = Array.isArray(item.images)
+    ? item.images.filter((src) => Boolean(src))
+    : []
+
+  if (images.length > 1) {
+    return <PortfolioImageGrid images={images} alt={item.title} />
+  }
+
+  if (images.length === 1) {
+    return (
+      <PortfolioImage
+        src={images[0]}
+        alt={item.title}
+        imageFit={item.imageFit}
+        imagePosition={item.imagePosition}
+      />
+    )
+  }
+
+  return (
+    <PortfolioImage
+      src={item.image}
+      alt={item.title}
+      imageFit={item.imageFit}
+      imagePosition={item.imagePosition}
+    />
+  )
+}
+
+function PortfolioCard({ item }) {
+  const hasLinks = item.github || item.demo || item.proof
+  const hasMeta = item.role || item.impact
+  const hasTech = item.tech && item.tech.length > 0
+
+  return (
+    <article className="portfolio-card">
+      <PortfolioCardMedia item={item} />
+      <div className="portfolio-card__body">
+        <h3 className="portfolio-card__title">
+          {item.website ? (
+            <a
+              className="portfolio-card__title-link"
+              href={item.website}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {item.title}
+            </a>
+          ) : (
+            item.title
+          )}
+        </h3>
+        {item.subtitle && (
+          <p className="portfolio-card__subtitle">{item.subtitle}</p>
+        )}
+        {item.description && (
+          <p className="portfolio-card__description">{item.description}</p>
+        )}
+        {item.secondaryLinks && item.secondaryLinks.length > 0 && (
+          <p className="portfolio-card__secondary-links">
+            Also:{' '}
+            {item.secondaryLinks.map((link, index) => (
+              <span key={link.url}>
+                {index > 0 && ', '}
+                <a
+                  className="portfolio-card__secondary-link"
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label}
+                </a>
+              </span>
+            ))}
+          </p>
+        )}
+        {hasMeta && (
+          <div className="portfolio-card__meta">
+            {item.role && <p className="portfolio-card__role">{item.role}</p>}
+            {item.impact && (
+              <p className="portfolio-card__impact">{item.impact}</p>
+            )}
+          </div>
+        )}
+        {hasTech && (
+          <ul className="portfolio-card__tech">
+            {item.tech.map((tag) => (
+              <li key={tag} className="portfolio-tech-pill">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )}
+        {hasLinks && (
+          <div className="portfolio-card__actions">
+            {item.github && (
+              <a
+                className="about__action-btn portfolio-card__btn"
+                href={item.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+            )}
+            {item.demo && (
+              <a
+                className="about__action-btn portfolio-card__btn"
+                href={item.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Demo
+              </a>
+            )}
+            {item.proof && (
+              <a
+                className="about__action-btn portfolio-card__btn"
+                href={item.proof}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Proof
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    </article>
+  )
+}
+
+function PortfolioSection() {
+  const [activePortfolioCategory, setActivePortfolioCategory] =
+    useState('Personal Build')
+
+  const selectedSection = PORTFOLIO_SECTIONS.find(
+    (section) => section.title === activePortfolioCategory,
+  )
+
+  if (!selectedSection) {
+    return null
+  }
+
+  const itemCount = selectedSection.items.length
+  const panelClass =
+    selectedSection.layout === 'compact'
+      ? 'portfolio-panel portfolio-panel--compact'
+      : 'portfolio-panel'
+
+  return (
+    <div className="portfolio">
+      <div className="portfolio__inner">
+        <header className="portfolio__header">
+          <h1 className="portfolio__title">Portfolio</h1>
+          <p className="portfolio__intro">
+            A collection of software projects, capstone work, class projects,
+            creative leadership, and service experiences that show what I have
+            built, contributed to, and learned through computer science, design,
+            teamwork, and real problem solving.
+          </p>
+        </header>
+
+        <nav className="portfolio-tabs" aria-label="Portfolio categories">
+          {PORTFOLIO_TABS.map((tab) => (
+            <button
+              key={tab.title}
+              type="button"
+              className={
+                activePortfolioCategory === tab.title
+                  ? 'portfolio-tab is-active'
+                  : 'portfolio-tab'
+              }
+              onClick={() => setActivePortfolioCategory(tab.title)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </nav>
+
+        <section className={panelClass} aria-label={selectedSection.title}>
+          <div className="portfolio-panel__header">
+            <h2 className="portfolio-panel__title">{selectedSection.title}</h2>
+            <p className="portfolio-panel__description">
+              {selectedSection.description}
+            </p>
+          </div>
+          <div className="portfolio-panel__rule" aria-hidden="true" />
+          <div
+            className={`portfolio-card-grid portfolio-card-grid--count-${Math.min(itemCount, 3)}`}
+          >
+            {selectedSection.items.map((item) => (
+              <PortfolioCard key={item.title} item={item} />
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  )
+}
+
 const TESTIMONIALS = [
   {
     image: '/images/testimonials/testimonial-1.jpg',
@@ -840,8 +1449,8 @@ function App() {
 
             <a
               className="resume-box"
-              href="/documents/Mark_Yoingco_Resume.pdf"
-              download="Mark_Yoingco_Resume.pdf"
+              href="/documents/MarkYoingco_Resume_2026.pdf"
+              download="MarkYoingco_Resume_2026.pdf"
             >
               <span className="resume-box__label">Resume</span>
             </a>
@@ -858,6 +1467,8 @@ function App() {
           />
         )}
 
+        {activeScreen === 'portfolio' && <PortfolioSection />}
+
         {activeScreen === 'contact' && <ContactSection />}
 
         {activeScreen === 'testimonials' && <TestimonialsSection />}
@@ -865,10 +1476,12 @@ function App() {
         {activeScreen === 'blog' && <BlogSection />}
       </main>
 
-      {/* Fixed bottom-center social icons (hidden on Blog to avoid gallery overlap) */}
+      {/* Fixed bottom-center social icons (hidden on Blog and Portfolio) */}
       <div
         className={
-          activeScreen === 'blog' ? 'socials socials--hidden' : 'socials'
+          activeScreen === 'blog' || activeScreen === 'portfolio'
+            ? 'socials socials--hidden'
+            : 'socials'
         }
       >
         {SOCIALS.map((social) => (

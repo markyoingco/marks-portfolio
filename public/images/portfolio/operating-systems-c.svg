@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Operating Systems C Projects terminal preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#141414"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <rect x="24" y="24" width="592" height="312" rx="4" fill="#0d0d0d" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+
+  <rect x="24" y="24" width="592" height="36" rx="4" fill="#111111"/>
+  <rect x="24" y="48" width="592" height="12" fill="#111111"/>
+  <circle cx="48" cy="42" r="5" fill="rgba(255,255,255,0.18)"/>
+  <circle cx="68" cy="42" r="5" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="88" cy="42" r="5" fill="rgba(255,255,255,0.08)"/>
+
+  <text x="320" y="44" fill="rgba(255,255,255,0.42)" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" letter-spacing="2.5" text-anchor="middle">C / UNIX / XINU / SYSTEMS</text>
+
+  <line x1="40" y1="72" x2="600" y2="72" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+  <text x="48" y="104" fill="rgba(107, 196, 107, 0.45)" font-family="Consolas, Monaco, monospace" font-size="13">$</text>
+  <text x="68" y="104" fill="rgba(126, 207, 126, 0.88)" font-family="Consolas, Monaco, monospace" font-size="13">gcc main.c</text>
+
+  <text x="48" y="136" fill="rgba(107, 196, 107, 0.45)" font-family="Consolas, Monaco, monospace" font-size="13">$</text>
+  <text x="68" y="136" fill="rgba(126, 207, 126, 0.88)" font-family="Consolas, Monaco, monospace" font-size="13">./xinu</text>
+
+  <text x="68" y="176" fill="rgba(107, 196, 107, 0.68)" font-family="Consolas, Monaco, monospace" font-size="12">process control</text>
+  <text x="68" y="204" fill="rgba(107, 196, 107, 0.68)" font-family="Consolas, Monaco, monospace" font-size="12">memory</text>
+  <text x="68" y="232" fill="rgba(107, 196, 107, 0.68)" font-family="Consolas, Monaco, monospace" font-size="12">file systems</text>
+
+  <rect x="68" y="268" width="10" height="16" fill="rgba(126, 207, 126, 0.75)"/>
+
+  <text x="320" y="318" fill="rgba(255,255,255,0.22)" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" letter-spacing="3" text-anchor="middle">OPERATING SYSTEMS C</text>
+</svg>
