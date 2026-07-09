@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo, useCallback, memo } from 'react'
+import { useState, useRef, useMemo, useCallback, memo, useEffect } from 'react'
 import './App.css'
 
 // Minimal inline SVG icons (no external package needed).
@@ -214,10 +214,22 @@ function AboutPlaceholderCard({ title, hint }) {
 }
 
 function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
+  const viewportRef = useRef(null)
+
+  useEffect(() => {
+    const panels = viewportRef.current?.querySelectorAll('.about__panel')
+    if (!panels) return
+    panels.forEach((el, index) => {
+      if (index === panel) {
+        el.scrollTop = 0
+      }
+    })
+  }, [panel])
+
   return (
     <div className="about">
       <div className="about__center">
-        <div className="about__viewport">
+        <div className="about__viewport" ref={viewportRef}>
           <div
             className="about__track"
             style={{ transform: `translateY(-${panel * 100}%)` }}
@@ -1417,6 +1429,16 @@ function App() {
   const prevAboutPanel = () => {
     setAboutPanel((p) => (p - 1 + ABOUT_PANEL_COUNT) % ABOUT_PANEL_COUNT)
   }
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      document
+        .querySelectorAll('.testimonials, .blog, .portfolio-panel, .contact__card')
+        .forEach((el) => {
+          el.scrollTop = 0
+        })
+    })
+  }, [activeScreen])
 
   return (
     <>

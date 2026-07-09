@@ -31,6 +31,14 @@ body {
   background: #000;
 }
 
+@media (max-width: 900px) {
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+}
+
 a,
 a:visited {
   color: inherit;
