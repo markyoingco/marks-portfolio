@@ -46,26 +46,61 @@ const SOCIALS = [
 ]
 
 // Screen keys drive the top nav and the active screen state.
-const SCREENS = ['home', 'about', 'portfolio', 'testimonials', 'blog', 'contact']
+const SCREENS = ['home', 'about', 'portfolio', 'testimonials', 'travel', 'contact']
 
 const ABOUT_PANEL_COUNT = 6
 const ABOUT_BEYOND_WORK_INDEX = 5
 
-function AboutImageFrame({ src, alt = '' }) {
-  const [hasImage, setHasImage] = useState(true)
+function ThemeImageFrame({
+  srcDark,
+  srcLight,
+  alt = '',
+  frameClassName,
+  placeholderClassName,
+  placeholderLabel = 'Image Coming Soon',
+}) {
+  const [darkFailed, setDarkFailed] = useState(false)
+  const [lightFailed, setLightFailed] = useState(false)
 
-  if (!hasImage) {
+  if (darkFailed && lightFailed) {
     return (
-      <div className="about-image-frame about-image-frame--placeholder">
-        <span className="about-image-frame__label">Image Coming Soon</span>
+      <div className={placeholderClassName ?? `${frameClassName} ${frameClassName}--placeholder`}>
+        <span className="about-image-frame__label">{placeholderLabel}</span>
       </div>
     )
   }
 
   return (
-    <div className="about-image-frame">
-      <img src={src} alt={alt} onError={() => setHasImage(false)} />
+    <div className={frameClassName}>
+      {!darkFailed ? (
+        <img
+          className="theme-image theme-image--dark"
+          src={srcDark}
+          alt={alt}
+          onError={() => setDarkFailed(true)}
+        />
+      ) : null}
+      {!lightFailed ? (
+        <img
+          className="theme-image theme-image--light"
+          src={srcLight}
+          alt={alt}
+          onError={() => setLightFailed(true)}
+        />
+      ) : null}
     </div>
+  )
+}
+
+function AboutImageFrame({ srcDark, srcLight, alt = '' }) {
+  return (
+    <ThemeImageFrame
+      srcDark={srcDark}
+      srcLight={srcLight}
+      alt={alt}
+      frameClassName="about-image-frame"
+      placeholderClassName="about-image-frame about-image-frame--placeholder"
+    />
   )
 }
 
@@ -213,7 +248,7 @@ function AboutPlaceholderCard({ title, hint }) {
   )
 }
 
-function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
+function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
   const viewportRef = useRef(null)
 
   const panelClassName = (index) =>
@@ -247,7 +282,11 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
             <section className={panelClassName(0)}>
               <div className="about__panel-stack">
                 <div className="about__card about__card--welcome">
-                  <AboutImageFrame src="/images/about/welcome-photo.jpg" alt="Mark Yoingco graduation" />
+                  <AboutImageFrame
+                    srcDark="/images/about/welcome-photo.jpg"
+                    srcLight="/images/about/welcome-photo-color.jpg"
+                    alt="Mark Yoingco graduation"
+                  />
                   <div className="about__welcome-text">
                     <h2 className="about__heading">Welcome to My Personal Site</h2>
                     <div className="about__copy">
@@ -376,7 +415,11 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
             <section className={panelClassName(5)}>
               <div className="about__panel-stack">
                 <div className="about__card about__card--welcome">
-                  <AboutImageFrame src="/images/about/beyond-work-photo.jpg" alt="Beyond Work" />
+                  <AboutImageFrame
+                    srcDark="/images/about/beyond-work-photo.jpg"
+                    srcLight="/images/about/beyond-work-photo-color.jpg"
+                    alt="Beyond Work"
+                  />
                   <div className="about__welcome-text">
                     <h2 className="about__heading">Beyond Work</h2>
                     <div className="about__copy">
@@ -400,8 +443,8 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
                         place that still means something.
                       </p>
                       <p className="about__closing">
-                        You can see more of my travel and lifestyle photos on the
-                        blog.
+                        You can see more of my travel and lifestyle photos in
+                        Travel.
                       </p>
                     </div>
                   </div>
@@ -409,7 +452,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToBlog }) {
                 <button
                   type="button"
                   className="about__action-btn"
-                  onClick={onGoToBlog}
+                  onClick={onGoToTravel}
                 >
                   Travel Pics
                 </button>
@@ -1091,12 +1134,9 @@ function PortfolioCard({ item }) {
   )
 }
 
-function PortfolioSection() {
-  const [activePortfolioCategory, setActivePortfolioCategory] =
-    useState('Personal Build')
-
+function PortfolioSection({ activeCategory, onCategoryChange }) {
   const selectedSection = PORTFOLIO_SECTIONS.find(
-    (section) => section.title === activePortfolioCategory,
+    (section) => section.title === activeCategory,
   )
 
   if (!selectedSection) {
@@ -1128,11 +1168,11 @@ function PortfolioSection() {
               key={tab.title}
               type="button"
               className={
-                activePortfolioCategory === tab.title
+                activeCategory === tab.title
                   ? 'portfolio-tab is-active'
                   : 'portfolio-tab'
               }
-              onClick={() => setActivePortfolioCategory(tab.title)}
+              onClick={() => onCategoryChange(tab.title)}
             >
               {tab.label}
             </button>
@@ -1162,7 +1202,8 @@ function PortfolioSection() {
 
 const TESTIMONIALS = [
   {
-    image: '/images/testimonials/testimonial-1.jpg',
+    imageDark: '/images/testimonials/testimonial-1.jpg',
+    imageLight: '/images/testimonials/testimonial-1color.jpg',
     quote:
       'Mark is one of my best friends who I\'ve known since our days of middle school basketball. He boasts a plethora of outstanding qualities that have stood out since our first practice together. He is one of the most dedicated and reliable individuals I know, applying no less than his absolute best to any team he is apart of. His perseverance and professionalism through school, life challenges, and the workplace proceeds his reputation as a respectful, hard working, and disciplined person with extensive work and projects to show for it. He\'s truly a valuable asset to have as a part of any team, and an even better friend.',
     name: 'Maxwell Zeisler',
@@ -1171,21 +1212,16 @@ const TESTIMONIALS = [
   },
 ]
 
-function TestimonialHeadshot({ src, alt = '' }) {
-  const [hasImage, setHasImage] = useState(true)
-
-  if (!hasImage) {
-    return (
-      <div className="testimonial-headshot testimonial-headshot--placeholder">
-        <span className="testimonial-headshot__label">Photo Coming Soon</span>
-      </div>
-    )
-  }
-
+function TestimonialHeadshot({ srcDark, srcLight, alt = '' }) {
   return (
-    <div className="testimonial-headshot">
-      <img src={src} alt={alt} onError={() => setHasImage(false)} />
-    </div>
+    <ThemeImageFrame
+      srcDark={srcDark}
+      srcLight={srcLight}
+      alt={alt}
+      frameClassName="testimonial-headshot"
+      placeholderClassName="testimonial-headshot testimonial-headshot--placeholder"
+      placeholderLabel="Photo Coming Soon"
+    />
   )
 }
 
@@ -1205,7 +1241,11 @@ function TestimonialsSection() {
             <div className="testimonials__rule" aria-hidden="true" />
             <article className="testimonial-feature">
               <div className="testimonial-feature__media">
-                <TestimonialHeadshot src={item.image} alt={item.name} />
+                <TestimonialHeadshot
+                  srcDark={item.imageDark}
+                  srcLight={item.imageLight}
+                  alt={item.name}
+                />
               </div>
               <div className="testimonial-feature__content">
                 <blockquote className="testimonial-feature__quote">
@@ -1473,22 +1513,34 @@ function ContactSection() {
   )
 }
 
-function PortfolioApp() {
-  const [activeScreen, setActiveScreen] = useState('home')
-  const [aboutPanel, setAboutPanel] = useState(0)
+function PortfolioApp({ webpage, onWebpageNavigate, onReturnToMainMenu }) {
+  const { screen: activeScreen, aboutPanel, portfolioCategory } = webpage
   const [menuOpen, setMenuOpen] = useState(false)
 
   const nextAboutPanel = () => {
-    setAboutPanel((p) => (p + 1) % ABOUT_PANEL_COUNT)
+    onWebpageNavigate({
+      aboutPanel: (aboutPanel + 1) % ABOUT_PANEL_COUNT,
+    })
   }
 
   const prevAboutPanel = () => {
-    setAboutPanel((p) => (p - 1 + ABOUT_PANEL_COUNT) % ABOUT_PANEL_COUNT)
+    onWebpageNavigate({
+      aboutPanel: (aboutPanel - 1 + ABOUT_PANEL_COUNT) % ABOUT_PANEL_COUNT,
+    })
   }
 
   const goToScreen = (screen) => {
-    setActiveScreen(screen)
+    onWebpageNavigate({ screen })
     setMenuOpen(false)
+  }
+
+  const goToAboutPanel = (panel) => {
+    onWebpageNavigate({ aboutPanel: panel })
+  }
+
+  const handleReturnToMainMenu = () => {
+    setMenuOpen(false)
+    onReturnToMainMenu?.()
   }
 
   useEffect(() => {
@@ -1521,9 +1573,6 @@ function PortfolioApp() {
 
   return (
     <div className={menuOpen ? 'app-shell app-shell--menu-open' : 'app-shell'}>
-      {/* Fixed full-screen background image + dark overlay (on every screen) */}
-      <div className="background" aria-hidden="true" />
-
       {/* Mobile hamburger header (tablet/phone only via CSS) */}
       <header className="nav-mobile">
         <button
@@ -1569,6 +1618,14 @@ function PortfolioApp() {
                 {name}
               </button>
             ))}
+            <div className="nav-overlay__divider" aria-hidden="true" />
+            <button
+              type="button"
+              className="nav-overlay__link nav-overlay__link--menu"
+              onClick={handleReturnToMainMenu}
+            >
+              Main Menu
+            </button>
           </nav>
         </div>
       )}
@@ -1585,6 +1642,13 @@ function PortfolioApp() {
             {name}
           </button>
         ))}
+        <button
+          type="button"
+          className="nav__link nav__link--menu"
+          onClick={handleReturnToMainMenu}
+        >
+          Main Menu
+        </button>
       </nav>
 
       {/* Single full-screen viewport; only the active screen shows */}
@@ -1612,23 +1676,30 @@ function PortfolioApp() {
             panel={aboutPanel}
             onNext={nextAboutPanel}
             onPrev={prevAboutPanel}
-            onGoTo={setAboutPanel}
-            onGoToBlog={() => setActiveScreen('blog')}
+            onGoTo={goToAboutPanel}
+            onGoToTravel={() => goToScreen('travel')}
           />
         )}
 
-        {activeScreen === 'portfolio' && <PortfolioSection />}
+        {activeScreen === 'portfolio' && (
+          <PortfolioSection
+            activeCategory={portfolioCategory}
+            onCategoryChange={(category) =>
+              onWebpageNavigate({ portfolioCategory: category })
+            }
+          />
+        )}
 
         {activeScreen === 'contact' && <ContactSection />}
 
         {activeScreen === 'testimonials' && <TestimonialsSection />}
 
-        {activeScreen === 'blog' && <BlogSection />}
+        {activeScreen === 'travel' && <BlogSection />}
 
         {/* Social icons: in scroll flow on mobile, fixed on desktop via CSS */}
         <div
           className={
-            activeScreen === 'blog' ||
+            activeScreen === 'travel' ||
             activeScreen === 'portfolio' ||
             activeScreen === 'contact'
               ? 'socials socials--hidden'

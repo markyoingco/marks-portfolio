@@ -1,62 +1,231 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import PortfolioApp from './PortfolioApp'
 import TerminalLanding from './TerminalLanding'
+import ThemeToggle from './ThemeToggle'
+import {
+  buildPathFromSnapshot,
+  cloneSnapshot,
+  createInitialSnapshot,
+  createModePickerSnapshot,
+  getRouteFromHash,
+  snapshotsEqual,
+  syncSessionFromSnapshot,
+} from './appNavigation'
+import { applyTheme, getStoredTheme, persistTheme, THEMES } from './theme'
 import './TerminalLanding.css'
 
-function getRouteFromLocation() {
-  const hash = window.location.hash.replace(/^#/, '').trim().toLowerCase()
-
-  if (hash === 'webpage') {
-    return 'webpage'
-  }
-
-  return 'terminal'
+function GlobalBackButton({ onClick }) {
+  return (
+    <button
+      type="button"
+      className="app-back-btn"
+      aria-label="Go back"
+      title="Go back"
+      onClick={onClick}
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </button>
+  )
 }
 
-function buildPath(route) {
-  if (route === 'terminal') {
-    return `${window.location.pathname}${window.location.search}`
-  }
-
-  return `${window.location.pathname}${window.location.search}#${route}`
+function GlobalMenuButton({ onClick }) {
+  return (
+    <button
+      type="button"
+      className="app-menu-btn"
+      aria-label="Main menu"
+      title="Main menu"
+      onClick={onClick}
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1" />
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1" />
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1" />
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1" />
+      </svg>
+    </button>
+  )
 }
 
 export default function App() {
-  const [route, setRoute] = useState(getRouteFromLocation)
-
-  const navigate = useCallback((nextRoute) => {
-    window.history.pushState({ route: nextRoute }, '', buildPath(nextRoute))
-    setRoute(nextRoute)
-  }, [])
+  const [snapshot, setSnapshot] = useState(createInitialSnapshot)
+  const [theme, setTheme] = useState(getStoredTheme)
+  const historyStackRef = useRef([])
+  const skipPopRef = useRef(false)
 
   useEffect(() => {
-    const syncRoute = () => {
-      setRoute(getRouteFromLocation())
-    }
+    applyTheme(theme)
+    persistTheme(theme)
+  }, [theme])
 
-    window.addEventListener('popstate', syncRoute)
-    window.addEventListener('hashchange', syncRoute)
-
-    return () => {
-      window.removeEventListener('popstate', syncRoute)
-      window.removeEventListener('hashchange', syncRoute)
-    }
+  const toggleTheme = useCallback(() => {
+    setTheme((current) =>
+      current === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK,
+    )
   }, [])
 
-  if (route === 'webpage') {
-    return (
-      <div className="portfolio-route">
-        <button
-          type="button"
-          className="terminal-return-btn"
-          onClick={() => navigate('terminal')}
-        >
-          Back to Terminal
-        </button>
-        <PortfolioApp key="portfolio" />
-      </div>
-    )
-  }
+  const pushHistoryState = useCallback((nextSnapshot, { replace = false } = {}) => {
+    const url = buildPathFromSnapshot(nextSnapshot)
+    const state = { appNav: cloneSnapshot(nextSnapshot) }
 
-  return <TerminalLanding onEnterWebpage={() => navigate('webpage')} />
+    if (replace) {
+      window.history.replaceState(state, '', url)
+      return
+    }
+
+    skipPopRef.current = true
+    window.history.pushState(state, '', url)
+  }, [])
+
+  const navigateTo = useCallback(
+    (getNextSnapshot, { recordHistory = true, replace = false } = {}) => {
+      setSnapshot((current) => {
+        const next =
+          typeof getNextSnapshot === 'function'
+            ? getNextSnapshot(cloneSnapshot(current))
+            : cloneSnapshot(getNextSnapshot)
+
+        if (!snapshotsEqual(current, next)) {
+          if (recordHistory) {
+            historyStackRef.current.push(cloneSnapshot(current))
+          }
+
+          syncSessionFromSnapshot(next)
+          pushHistoryState(next, { replace })
+        } else if (replace) {
+          pushHistoryState(next, { replace: true })
+        }
+
+        return next
+      })
+    },
+    [pushHistoryState],
+  )
+
+  const returnToMainMenu = useCallback(() => {
+    navigateTo((current) => createModePickerSnapshot(current))
+  }, [navigateTo])
+
+  const goBack = useCallback(() => {
+    const previous = historyStackRef.current.pop()
+
+    if (!previous) {
+      navigateTo((current) => {
+        if (current.terminal.showModePicker) {
+          return current
+        }
+
+        return createModePickerSnapshot(current)
+      }, { recordHistory: false })
+      return
+    }
+
+    navigateTo(previous, { recordHistory: false })
+  }, [navigateTo])
+
+  useEffect(() => {
+    const initial = createInitialSnapshot()
+    historyStackRef.current = []
+    setSnapshot(initial)
+    pushHistoryState(initial, { replace: true })
+
+    const onPopState = (event) => {
+      if (skipPopRef.current) {
+        skipPopRef.current = false
+        return
+      }
+
+      if (event.state?.appNav) {
+        if (historyStackRef.current.length > 0) {
+          historyStackRef.current.pop()
+        }
+
+        const restored = cloneSnapshot(event.state.appNav)
+        syncSessionFromSnapshot(restored)
+        setSnapshot(restored)
+        return
+      }
+
+      const route = getRouteFromHash()
+      setSnapshot((current) => {
+        const next = cloneSnapshot(current)
+        next.route = route
+        syncSessionFromSnapshot(next)
+        return next
+      })
+    }
+
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [pushHistoryState])
+
+  const navigateWebpage = useCallback(
+    (webpagePartial, options) => {
+      navigateTo(
+        (current) => ({
+          ...current,
+          route: 'webpage',
+          webpage: { ...current.webpage, ...webpagePartial },
+        }),
+        options,
+      )
+    },
+    [navigateTo],
+  )
+
+  const navigateTerminal = useCallback(
+    (terminalPartial, options) => {
+      navigateTo(
+        (current) => ({
+          ...current,
+          route: 'terminal',
+          terminal: { ...current.terminal, ...terminalPartial },
+        }),
+        options,
+      )
+    },
+    [navigateTo],
+  )
+
+  const enterWebpageMode = useCallback(() => {
+    navigateTo((current) => ({
+      ...current,
+      route: 'webpage',
+      terminal: {
+        ...current.terminal,
+        showModePicker: false,
+        showMarkGpt: false,
+      },
+    }))
+  }, [navigateTo])
+
+  return (
+    <>
+      <div className="background" aria-hidden="true" />
+      <ThemeToggle theme={theme} onToggle={toggleTheme} />
+      <GlobalBackButton onClick={goBack} />
+      <GlobalMenuButton onClick={returnToMainMenu} />
+
+      {snapshot.route === 'webpage' ? (
+        <div className="portfolio-route">
+          <PortfolioApp
+            webpage={snapshot.webpage}
+            onWebpageNavigate={navigateWebpage}
+            onReturnToMainMenu={returnToMainMenu}
+            key="portfolio"
+          />
+        </div>
+      ) : (
+        <TerminalLanding
+          terminal={snapshot.terminal}
+          onTerminalNavigate={navigateTerminal}
+          onEnterWebpage={enterWebpageMode}
+          onAppGoBack={goBack}
+          onReturnToMainMenu={returnToMainMenu}
+        />
+      )}
+    </>
+  )
 }

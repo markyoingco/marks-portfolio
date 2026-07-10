@@ -5,6 +5,19 @@
     <link rel="icon" type="image/png" href="/brand/my-logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Mark Yoingco - Portfolio</title>
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem('portfolio-theme')
+          document.documentElement.setAttribute(
+            'data-theme',
+            theme === 'light' || theme === 'dark' ? theme : 'dark',
+          )
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark')
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
