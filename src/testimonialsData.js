@@ -1,8 +1,13 @@
-export const TESTIMONIALS_SUBTITLE =
-  'Words from people I have worked with, learned from, or built alongside.'
+export const TESTIMONIALS_TITLE = 'Testimonials'
+
+export const TESTIMONIALS_COMING_SOON_LEAD = 'More perspectives are on the way.'
+
+export const TESTIMONIALS_COMING_SOON_DETAIL =
+  'Testimonials from people I have worked with, learned from, and built alongside will be added here soon.'
 
 export const TESTIMONIALS = [
   {
+    published: false,
     imageDark: '/images/testimonials/testimonial-1.jpg',
     imageLight: '/images/testimonials/testimonial-1color.jpg',
     quote:
@@ -12,6 +17,10 @@ export const TESTIMONIALS = [
     linkedin: 'https://www.linkedin.com/in/maxwell-zeisler123',
   },
 ]
+
+export function getPublishedTestimonials() {
+  return TESTIMONIALS.filter((item) => item.published === true)
+}
 
 export const TESTIMONIALS_WEBPAGE_FILE = 'testimonials.webpage'
 export const TESTIMONIAL_TXT_FILE = 'testimonial.txt'

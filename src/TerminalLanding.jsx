@@ -479,10 +479,12 @@ function TerminalLanding({
   const [terminalHelpOpen, setTerminalHelpOpen] = useState(false)
   const [contactForm, setContactForm] = useState(createInitialContactFormState)
   const terminalOutputRef = useRef(null)
+  const terminalCardRef = useRef(null)
   const inputRef = useRef(null)
   const terminalStateRef = useRef('')
   const mobileInputActivatedRef = useRef(false)
   const [isMobileViewport, setIsMobileViewport] = useState(() => isMobileTerminalViewport())
+  const [inputFocused, setInputFocused] = useState(false)
 
   const helpOpen = mode === MODES.HELP
   const isTerminalPortfolio = mode === MODES.TERMINAL_PORTFOLIO
@@ -527,6 +529,7 @@ function TerminalLanding({
       setTerminalHelpOpen(false)
       setContactForm(createInitialContactFormState())
       mobileInputActivatedRef.current = false
+      setInputFocused(false)
     }
   }, [mode, showMarkGpt])
 
@@ -542,6 +545,9 @@ function TerminalLanding({
     if (isMobileViewport) {
       requestAnimationFrame(() => {
         window.scrollTo(0, 0)
+        document.documentElement.scrollLeft = 0
+        document.body.scrollLeft = 0
+        terminalCardRef.current?.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'instant' })
       })
     }
   }, [isTerminalPortfolio, showModePicker, showMarkGpt, isMobileViewport, mode])
@@ -1133,9 +1139,37 @@ function TerminalLanding({
     !terminalHelpOpen &&
     !contactForm.active
 
+  const showMobileTapHint =
+    isMobileViewport &&
+    !inputFocused &&
+    !contactForm.active &&
+    !showModePicker &&
+    !showMarkGpt &&
+    input === ''
+
   const handleTerminalInputFocus = () => {
     mobileInputActivatedRef.current = true
+    setInputFocused(true)
   }
+
+  const handleTerminalInputBlur = () => {
+    setInputFocused(false)
+  }
+
+  const handleComposerActivate = (event) => {
+    event.stopPropagation()
+    mobileInputActivatedRef.current = true
+    setInputFocused(true)
+    inputRef.current?.focus()
+  }
+
+  const terminalCardClassName = showModePicker
+    ? 'terminal-card terminal-card--portfolio terminal-card--behind'
+    : isTerminalPortfolio
+      ? `terminal-card terminal-card--portfolio${
+          isMobileViewport && history.length === 0 ? ' terminal-card--mobile-intro' : ''
+        }`
+      : 'terminal-card'
 
   return (
     <div
@@ -1190,15 +1224,7 @@ function TerminalLanding({
           </div>
       ) : (
       <div className="terminal-stage">
-      <div
-        className={
-          showModePicker
-            ? 'terminal-card terminal-card--portfolio terminal-card--behind'
-            : isTerminalPortfolio
-              ? 'terminal-card terminal-card--portfolio'
-              : 'terminal-card'
-        }
-      >
+      <div className={terminalCardClassName} ref={terminalCardRef}>
         <header className="terminal-card__titlebar">
           <div className="terminal-card__titlebar-start">
             <div className="terminal-card__dots" aria-hidden="true">
@@ -1213,6 +1239,11 @@ function TerminalLanding({
           {isTerminalPortfolio ? (
             <span className="terminal-card__label terminal-card__label--compact">
               {compactTitleLabel}
+            </span>
+          ) : null}
+          {isTerminalPortfolio ? (
+            <span className="terminal-card__label terminal-card__label--compact-short">
+              TERMINAL
             </span>
           ) : null}
           {isTerminalPortfolio ? (
@@ -1270,7 +1301,11 @@ function TerminalLanding({
             ))}
           </div>
 
-          <div className="terminal-composer">
+          <div
+            className="terminal-composer"
+            onClick={handleComposerActivate}
+            role="presentation"
+          >
             <form className="terminal-input-row" onSubmit={handleSubmit}>
               <span
                 className={
@@ -1279,6 +1314,11 @@ function TerminalLanding({
               >
                 {activeInputPrompt}
               </span>
+              {showMobileTapHint ? (
+                <span className="terminal-input-tap-hint" aria-hidden="true">
+                  Tap here to type...
+                </span>
+              ) : null}
               <input
                 id="terminal-input"
                 ref={inputRef}
@@ -1287,6 +1327,7 @@ function TerminalLanding({
                 value={input}
                 onChange={handleInputChange}
                 onFocus={handleTerminalInputFocus}
+                onBlur={handleTerminalInputBlur}
                 onKeyDown={handleKeyDown}
                 autoComplete="off"
                 autoCorrect="off"
@@ -1416,11 +1457,10 @@ function TerminalLanding({
           </div>
         </footer>
         ) : null}
-      </div>
 
       {showModePicker && !showMarkGpt ? (
         <div
-          className="mode-picker-layer"
+          className="mode-picker-backdrop"
           role="dialog"
           aria-modal="true"
           aria-labelledby="mode-picker-title"
@@ -1463,6 +1503,7 @@ function TerminalLanding({
           </div>
         </div>
       ) : null}
+      </div>
       </div>
       )}
 

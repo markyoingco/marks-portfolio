@@ -160,6 +160,12 @@
 
 /* Tablet / phone — align with global app chrome (back/menu/hamburger row) */
 @media (max-width: 900px) {
+  .app-global-chrome .theme-toggle {
+    top: auto;
+    right: auto;
+    max-width: none;
+  }
+
   .theme-toggle {
     top: calc(env(safe-area-inset-top, 0px) + 10px);
     right: calc(env(safe-area-inset-right, 0px) + 14px);
@@ -167,7 +173,7 @@
     min-height: 44px;
     padding: 8px 12px 8px 14px;
     max-width: calc(
-      100vw - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px) - 124px
+      100% - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px) - 124px
     );
     --switch-width: 48px;
     --switch-height: 28px;
@@ -200,7 +206,7 @@
     gap: 9px;
     padding: 8px 10px 8px 12px;
     max-width: calc(
-      100vw - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px) - 118px
+      100% - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px) - 118px
     );
   }
 
@@ -222,7 +228,7 @@
     gap: 8px;
     padding: 8px 10px;
     max-width: calc(
-      100vw - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px) - 112px
+      100% - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px) - 112px
     );
     --switch-width: 46px;
     --switch-height: 28px;

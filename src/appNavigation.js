@@ -3,7 +3,7 @@ export const MODE_PICKER_DISMISSED_KEY = 'terminal-mode-picker-dismissed'
 export const DEFAULT_WEBPAGE = {
   screen: 'home',
   aboutPanel: 0,
-  portfolioCategory: 'Personal Build',
+  portfolioCategory: 'Portfolio Platform',
 }
 
 export const DEFAULT_TERMINAL = {
@@ -79,6 +79,20 @@ export function createFreshTerminalEntry(snapshot) {
     terminal: {
       showModePicker: false,
       showMarkGpt: false,
+      mode: DEFAULT_TERMINAL.mode,
+      portfolioPath: [],
+    },
+  }
+}
+
+export function createMarkGptEntry(snapshot) {
+  return {
+    ...cloneSnapshot(snapshot),
+    route: 'terminal',
+    entryKey: (snapshot.entryKey ?? 0) + 1,
+    terminal: {
+      showModePicker: false,
+      showMarkGpt: true,
       mode: DEFAULT_TERMINAL.mode,
       portfolioPath: [],
     },

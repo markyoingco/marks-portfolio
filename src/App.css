@@ -756,7 +756,13 @@
 }
 
 .portfolio-card-grid--count-3 {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+.portfolio-card-grid--platform {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .portfolio-card {
@@ -770,7 +776,7 @@
 }
 
 .portfolio-card__media {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: var(--portfolio-media-ratio, 16 / 9);
   width: 100%;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.4);
@@ -778,7 +784,7 @@
 }
 
 .portfolio-panel--compact .portfolio-card__media {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: var(--portfolio-media-ratio, 4 / 3);
 }
 
 .portfolio-card__media img {
@@ -798,6 +804,15 @@
 }
 
 .portfolio-card__media--contain img {
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.portfolio-card__media--object-contain img {
   object-fit: contain;
   object-position: center;
   width: 100%;
@@ -880,15 +895,18 @@
 
 .portfolio-card__media--placeholder {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   padding: 12px;
   box-sizing: border-box;
   background: rgba(0, 0, 0, 0.62);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.portfolio-card__media--placeholder span {
+.portfolio-card__media--placeholder span,
+.portfolio-card__placeholder-line {
   font-family: 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
   font-size: 9px;
   font-weight: 700;
@@ -896,6 +914,11 @@
   text-transform: uppercase;
   text-align: center;
   color: rgba(255, 255, 255, 0.52);
+}
+
+.portfolio-card__placeholder-line + .portfolio-card__placeholder-line {
+  letter-spacing: 1.6px;
+  color: rgba(255, 255, 255, 0.42);
 }
 
 .portfolio-card__body {
@@ -921,6 +944,16 @@
   letter-spacing: 0.9px;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.56);
+  overflow-wrap: anywhere;
+}
+
+.portfolio-card__status {
+  margin: -4px 0 10px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(130, 235, 175, 0.82);
 }
 
 .portfolio-card__description {
@@ -993,7 +1026,8 @@
 }
 
 .portfolio-card__btn {
-  padding: 6px 14px;
+  min-height: 44px;
+  padding: 8px 14px;
   font-size: 9px;
   letter-spacing: 1.8px;
 }
@@ -1049,6 +1083,32 @@
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.72);
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
+.testimonials--coming-soon {
+  min-height: min(100%, calc(100dvh - var(--layout-nav-clearance, 72px)));
+}
+
+.testimonials__header--coming-soon {
+  margin-bottom: 0;
+  max-width: min(520px, 100%);
+}
+
+.testimonials__coming-soon-lead {
+  margin: 0 0 14px;
+  font-size: clamp(14px, 2.2vw, 16px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+.testimonials__coming-soon-detail {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.56);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+  overflow-wrap: anywhere;
 }
 
 .testimonials__block {
@@ -2126,6 +2186,14 @@
     overflow-wrap: anywhere;
   }
 
+  .testimonials__header--coming-soon {
+    margin-bottom: 0;
+  }
+
+  .testimonials__coming-soon-detail {
+    overflow-wrap: anywhere;
+  }
+
   .blog {
     height: auto;
     contain: none;
@@ -2397,7 +2465,7 @@
   }
 
   .portfolio-card__btn {
-    min-height: 40px;
+    min-height: 44px;
     padding: 8px 14px;
   }
 
@@ -2433,6 +2501,41 @@
     margin-top: 28px;
     min-height: 44px;
     padding: 12px 24px;
+  }
+
+  .contact__field input,
+  .contact__field textarea {
+    font-size: 16px;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .portfolio-route,
+  .about__card,
+  .portfolio-card,
+  .portfolio__inner,
+  .portfolio-panel,
+  .portfolio-tabs,
+  .testimonials__inner,
+  .testimonial-feature,
+  .blog__inner,
+  .blog__grid,
+  .blog-card,
+  .nav-mobile,
+  .nav-overlay__panel {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .portfolio-card__media img,
+  .portfolio-card__media-cell img,
+  .blog-card__media img,
+  .blog-card img {
+    max-width: 100%;
+    height: auto;
   }
 }
 

@@ -80,8 +80,9 @@ export const TERMINAL_FOLDER_SLUGS = new Set([
   'travel',
 ])
 
-export const RESUME_PDF_PATH = '/documents/MarkYoingco_PortfolioResume_2026.pdf'
-export const RESUME_PDF_FILENAME = 'MarkYoingco_PortfolioResume_2026.pdf'
+import { RESUME_PDF_FILENAME, RESUME_PDF_PATH } from './resumeDocument'
+
+export { RESUME_PDF_FILENAME, RESUME_PDF_PATH }
 export { VSCO_GALLERY_URL }
 
 export const RESUME_FOLDER_FILES = ['summary.txt', 'resume.pdf']

@@ -8,6 +8,7 @@ import {
   createFreshTerminalEntry,
   createFreshWebpageEntry,
   createInitialSnapshot,
+  createMarkGptEntry,
   createModePickerSnapshot,
   DEFAULT_WEBPAGE,
   getRouteFromHash,
@@ -249,15 +250,23 @@ export default function App() {
     navigateTo((current) => createFreshTerminalEntry(current))
   }, [navigateTo])
 
+  const enterMarkGpt = useCallback(() => {
+    navigateTo((current) => createMarkGptEntry(current))
+  }, [navigateTo])
+
   return (
     <>
       <div className="app-background" aria-hidden="true">
         <div className="background background--dark" />
         <div className="background background--light" />
       </div>
-      <ThemeToggle theme={theme} onToggle={toggleTheme} />
-      <GlobalBackButton onClick={goBack} />
-      <GlobalMenuButton onClick={returnToMainMenu} />
+      <header className="app-global-chrome" aria-label="Site controls">
+        <div className="app-global-chrome__left">
+          <GlobalBackButton onClick={goBack} />
+          <GlobalMenuButton onClick={returnToMainMenu} />
+        </div>
+        <ThemeToggle theme={theme} onToggle={toggleTheme} />
+      </header>
 
       {snapshot.route === 'webpage' ? (
         <div className="portfolio-route">
@@ -266,6 +275,8 @@ export default function App() {
             webpage={snapshot.webpage}
             onWebpageNavigate={navigateWebpage}
             onReturnToMainMenu={returnToMainMenu}
+            onEnterTerminal={enterTerminalFresh}
+            onEnterMarkGpt={enterMarkGpt}
           />
         </div>
       ) : (

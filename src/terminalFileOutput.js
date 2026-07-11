@@ -115,12 +115,12 @@ export function buildResumeSummaryCatOutput() {
     blankLine(),
     sectionLine('FEATURED PROJECTS'),
     blankLine(),
-    projectLine('01', 'Personal React/Vite Portfolio Website'),
+    projectLine('01', 'Personal Portfolio Platform'),
     bulletLine(
-      'Built and deployed a personal portfolio showcasing projects, resume, testimonials, travel/photos, and contact information.',
+      'Multi-mode portfolio with cinematic Webpage mode, interactive Terminal mode, responsive desktop and mobile layouts, dark/light themes, shared project content, and a PHP/MySQL contact backend on DreamHost.',
     ),
     bulletLine(
-      'Added responsive navigation, dark/light theme mode, terminal portfolio mode, DreamHost deployment, and PHP/MySQL contact form backend.',
+      'MarkGPT portfolio assistant is currently in development.',
     ),
     blankLine(),
     projectLine('02', 'Abacus Senior Design Capstone'),

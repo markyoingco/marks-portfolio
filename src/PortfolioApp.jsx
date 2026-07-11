@@ -1,6 +1,16 @@
 import { useState, useRef, useMemo, useCallback, memo, useEffect } from 'react'
-import { TESTIMONIALS, TESTIMONIALS_SUBTITLE } from './testimonialsData'
+import {
+  getPublishedTestimonials,
+  TESTIMONIALS_COMING_SOON_DETAIL,
+  TESTIMONIALS_COMING_SOON_LEAD,
+  TESTIMONIALS_TITLE,
+} from './testimonialsData'
 import { BLOG_PHOTOS, BLOG_PHOTOS_BATCH } from './blogPhotosData'
+import {
+  buildPortfolioPlatformWebpageItems,
+  PORTFOLIO_PLATFORM_SECTION,
+} from './portfolioPlatformData'
+import { RESUME_PDF_FILENAME, RESUME_PDF_PATH } from './resumeDocument'
 import './App.css'
 
 // Minimal inline SVG icons (no external package needed).
@@ -183,15 +193,8 @@ const EXPERIENCE_JOBS = [
       'Helped keep chapter operations organized and safe while also leading creative merchandise ideas that represented the fraternity\'s identity, legacy, and campus presence.',
   },
   {
-    title: 'Teriyaki Madness',
-    org: 'Gurnee, IL',
-    date: 'Summer 2025',
-    description:
-      'Supported front-of-house and back-of-house operations by preparing food, taking customer orders, cleaning work areas, and assisting with opening and closing procedures.',
-  },
-  {
     title: 'Hollister',
-    org: 'Gurnee, IL',
+    org: 'Hollister Co.',
     date: 'Summer 2025',
     description:
       'Supported retail operations by opening and closing the store, operating the register, assisting customers, restocking merchandise, unpacking inventory shipments, and organizing sales floor items.',
@@ -560,7 +563,7 @@ const BlogPhoto = memo(function BlogPhoto({ src, location }) {
 })
 
 const PORTFOLIO_TABS = [
-  { label: 'Personal', title: 'Personal Build' },
+  { label: 'Personal', title: 'Portfolio Platform' },
   { label: 'Capstones', title: 'Senior Design Capstones' },
   { label: 'Systems', title: 'Systems Programming' },
   { label: 'Software Design', title: 'Software Design and Analysis' },
@@ -572,28 +575,10 @@ const PORTFOLIO_TABS = [
 
 const PORTFOLIO_SECTIONS = [
   {
-    title: 'Personal Build',
-    description:
-      'Independent projects built to represent my work, background, and personal brand.',
-    layout: 'standard',
-    items: [
-      {
-        title: 'Personal Portfolio Website',
-        subtitle: 'Personal Build',
-        description:
-          'Personal portfolio website built to showcase software projects, technical experience, service work, merchandise design, and professional background.',
-        role: '',
-        impact: '',
-        tech: ['React', 'Vite', 'JavaScript', 'CSS'],
-        image: '/images/portfolio/personal-website.png',
-        imageFit: 'cover',
-        imagePosition: 'center center',
-        website: 'https://github.com/markyoingco/marks-portfolio',
-        github: '',
-        demo: '',
-        proof: '',
-      },
-    ],
+    title: PORTFOLIO_PLATFORM_SECTION.title,
+    description: PORTFOLIO_PLATFORM_SECTION.description,
+    layout: 'platform',
+    items: buildPortfolioPlatformWebpageItems(),
   },
   {
     title: 'Senior Design Capstones',
@@ -887,24 +872,49 @@ function PortfolioImage({
   alt,
   imageFit = 'cover',
   imagePosition = 'center center',
+  imageAspectRatio = '',
+  placeholderLines = null,
 }) {
   const [hasImage, setHasImage] = useState(true)
 
   if (!src || !hasImage) {
+    const lines =
+      Array.isArray(placeholderLines) && placeholderLines.length > 0
+        ? placeholderLines
+        : ['Image Coming Soon']
+
     return (
-      <div className="portfolio-card__media portfolio-card__media--placeholder">
-        <span>Image Coming Soon</span>
+      <div
+        className="portfolio-card__media portfolio-card__media--placeholder"
+        style={
+          imageAspectRatio
+            ? { '--portfolio-media-ratio': imageAspectRatio }
+            : undefined
+        }
+      >
+        {lines.map((line) => (
+          <span key={line} className="portfolio-card__placeholder-line">
+            {line}
+          </span>
+        ))}
       </div>
     )
   }
 
+  const hasMatchedAspectRatio = Boolean(imageAspectRatio)
   const mediaClass =
-    imageFit === 'contain'
+    imageFit === 'contain' && !hasMatchedAspectRatio
       ? 'portfolio-card__media portfolio-card__media--contain'
-      : 'portfolio-card__media'
+      : imageFit === 'contain'
+        ? 'portfolio-card__media portfolio-card__media--object-contain'
+        : 'portfolio-card__media'
+
+  const mediaStyle = {
+    ...(imageAspectRatio ? { '--portfolio-media-ratio': imageAspectRatio } : {}),
+  }
 
   return (
-    <div className={mediaClass}>
+    <div className={mediaClass} style={mediaStyle}>
       <img
         src={src}
         alt={alt}
@@ -976,13 +986,16 @@ function PortfolioCardMedia({ item }) {
     return <PortfolioImageGrid images={images} alt={item.title} />
   }
 
+  const imageAlt = item.imageAlt || item.title
+
   if (images.length === 1) {
     return (
       <PortfolioImage
         src={images[0]}
-        alt={item.title}
+        alt={imageAlt}
         imageFit={item.imageFit}
         imagePosition={item.imagePosition}
+        imageAspectRatio={item.imageAspectRatio}
       />
     )
   }
@@ -990,17 +1003,20 @@ function PortfolioCardMedia({ item }) {
   return (
     <PortfolioImage
       src={item.image}
-      alt={item.title}
+      alt={imageAlt}
       imageFit={item.imageFit}
       imagePosition={item.imagePosition}
+      imageAspectRatio={item.imageAspectRatio}
+      placeholderLines={item.placeholderLines}
     />
   )
 }
 
-function PortfolioCard({ item }) {
+function PortfolioCard({ item, onModeAction }) {
   const hasLinks = item.github || item.demo || item.proof
   const hasMeta = item.role || item.impact
   const hasTech = item.tech && item.tech.length > 0
+  const hasModeAction = Boolean(item.modeAction?.mode && onModeAction)
 
   return (
     <article className="portfolio-card">
@@ -1022,6 +1038,9 @@ function PortfolioCard({ item }) {
         </h3>
         {item.subtitle && (
           <p className="portfolio-card__subtitle">{item.subtitle}</p>
+        )}
+        {item.status && (
+          <p className="portfolio-card__status">{item.status}</p>
         )}
         {item.description && (
           <p className="portfolio-card__description">{item.description}</p>
@@ -1061,8 +1080,17 @@ function PortfolioCard({ item }) {
             ))}
           </ul>
         )}
-        {hasLinks && (
+        {(hasLinks || hasModeAction) && (
           <div className="portfolio-card__actions">
+            {hasModeAction && (
+              <button
+                type="button"
+                className="about__action-btn portfolio-card__btn"
+                onClick={() => onModeAction(item.modeAction.mode)}
+              >
+                {item.modeAction.label}
+              </button>
+            )}
             {item.github && (
               <a
                 className="about__action-btn portfolio-card__btn"
@@ -1100,9 +1128,11 @@ function PortfolioCard({ item }) {
   )
 }
 
-function PortfolioSection({ activeCategory, onCategoryChange }) {
+function PortfolioSection({ activeCategory, onCategoryChange, onModeAction }) {
+  const resolvedCategory =
+    activeCategory === 'Personal Build' ? PORTFOLIO_PLATFORM_SECTION.title : activeCategory
   const selectedSection = PORTFOLIO_SECTIONS.find(
-    (section) => section.title === activeCategory,
+    (section) => section.title === resolvedCategory,
   )
 
   if (!selectedSection) {
@@ -1113,7 +1143,9 @@ function PortfolioSection({ activeCategory, onCategoryChange }) {
   const panelClass =
     selectedSection.layout === 'compact'
       ? 'portfolio-panel portfolio-panel--compact'
-      : 'portfolio-panel'
+      : selectedSection.layout === 'platform'
+        ? 'portfolio-panel portfolio-panel--platform'
+        : 'portfolio-panel'
 
   return (
     <div className="portfolio">
@@ -1134,7 +1166,7 @@ function PortfolioSection({ activeCategory, onCategoryChange }) {
               key={tab.title}
               type="button"
               className={
-                activeCategory === tab.title
+                resolvedCategory === tab.title
                   ? 'portfolio-tab is-active'
                   : 'portfolio-tab'
               }
@@ -1154,10 +1186,16 @@ function PortfolioSection({ activeCategory, onCategoryChange }) {
           </div>
           <div className="portfolio-panel__rule" aria-hidden="true" />
           <div
-            className={`portfolio-card-grid portfolio-card-grid--count-${Math.min(itemCount, 3)}`}
+            className={`portfolio-card-grid portfolio-card-grid--count-${Math.min(itemCount, 3)}${
+              selectedSection.layout === 'platform' ? ' portfolio-card-grid--platform' : ''
+            }`}
           >
             {selectedSection.items.map((item) => (
-              <PortfolioCard key={item.title} item={item} />
+              <PortfolioCard
+                key={item.title}
+                item={item}
+                onModeAction={onModeAction}
+              />
             ))}
           </div>
         </section>
@@ -1180,15 +1218,27 @@ function TestimonialHeadshot({ srcDark, srcLight, alt = '' }) {
 }
 
 function TestimonialsSection() {
+  const publishedTestimonials = getPublishedTestimonials()
+  const isComingSoon = publishedTestimonials.length === 0
+
   return (
-    <div className="testimonials">
+    <div className={`testimonials${isComingSoon ? ' testimonials--coming-soon' : ''}`}>
       <div className="testimonials__inner">
-        <header className="testimonials__header">
-          <h1 className="testimonials__title">Testimonials</h1>
-          <p className="testimonials__subtitle">{TESTIMONIALS_SUBTITLE}</p>
+        <header
+          className={`testimonials__header${
+            isComingSoon ? ' testimonials__header--coming-soon' : ''
+          }`}
+        >
+          <h1 className="testimonials__title">{TESTIMONIALS_TITLE}</h1>
+          {isComingSoon ? (
+            <>
+              <p className="testimonials__coming-soon-lead">{TESTIMONIALS_COMING_SOON_LEAD}</p>
+              <p className="testimonials__coming-soon-detail">{TESTIMONIALS_COMING_SOON_DETAIL}</p>
+            </>
+          ) : null}
         </header>
 
-        {TESTIMONIALS.map((item) => (
+        {publishedTestimonials.map((item) => (
           <div key={item.name} className="testimonials__block">
             <div className="testimonials__rule" aria-hidden="true" />
             <article className="testimonial-feature">
@@ -1465,7 +1515,13 @@ function ContactSection() {
   )
 }
 
-function PortfolioApp({ webpage, onWebpageNavigate, onReturnToMainMenu }) {
+function PortfolioApp({
+  webpage,
+  onWebpageNavigate,
+  onReturnToMainMenu,
+  onEnterTerminal,
+  onEnterMarkGpt,
+}) {
   const { screen: activeScreen, aboutPanel, portfolioCategory } = webpage
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -1494,6 +1550,20 @@ function PortfolioApp({ webpage, onWebpageNavigate, onReturnToMainMenu }) {
     setMenuOpen(false)
     onReturnToMainMenu?.()
   }
+
+  const handleModeAction = useCallback(
+    (mode) => {
+      if (mode === 'terminal') {
+        onEnterTerminal?.()
+        return
+      }
+
+      if (mode === 'markgpt') {
+        onEnterMarkGpt?.()
+      }
+    },
+    [onEnterTerminal, onEnterMarkGpt],
+  )
 
   useEffect(() => {
     setMenuOpen(false)
@@ -1627,8 +1697,8 @@ function PortfolioApp({ webpage, onWebpageNavigate, onReturnToMainMenu }) {
 
             <a
               className="resume-box"
-              href="/documents/MarkYoingco_PortfolioResume_2026.pdf"
-              download="MarkYoingco_PortfolioResume_2026.pdf"
+              href={RESUME_PDF_PATH}
+              download={RESUME_PDF_FILENAME}
             >
               <span className="resume-box__label">Resume</span>
             </a>
@@ -1651,6 +1721,7 @@ function PortfolioApp({ webpage, onWebpageNavigate, onReturnToMainMenu }) {
             onCategoryChange={(category) =>
               onWebpageNavigate({ portfolioCategory: category })
             }
+            onModeAction={handleModeAction}
           />
         )}
 

@@ -6,6 +6,11 @@ import {
   textLine,
   titleLine,
 } from './terminalFileOutput'
+import {
+  buildMarkaiTxtCatOutput,
+  buildPortfolioSiteTxtCatOutput,
+  buildTerminalTxtCatOutput,
+} from './portfolioPlatformData'
 
 function buildProjectFileContent({
   title,
@@ -30,21 +35,6 @@ function buildProjectFileContent({
   }
 
   return content
-}
-
-export function buildPortfolioSiteTxtCatOutput() {
-  return buildFileCatOutput(
-    'portfolio-site.txt',
-    buildProjectFileContent({
-      title: 'PERSONAL PORTFOLIO WEBSITE',
-      category: 'Personal Build',
-      summary:
-        'Personal portfolio website built to showcase software projects, technical experience, resume work, merchandise design, service work, and personal background.',
-      roleFocus:
-        'Built with React, Vite, JavaScript, and CSS. Includes webpage mode, terminal portfolio mode, dark/light theme support, responsive navigation, DreamHost deployment, and PHP/MySQL contact backend.',
-      stack: 'React · Vite · JavaScript · CSS · PHP · MySQL · DreamHost',
-    }),
-  )
 }
 
 export function buildAbacusTxtCatOutput() {
@@ -214,6 +204,8 @@ export function buildFeedMyStarvingChildrenTxtCatOutput() {
 
 export const PORTFOLIO_TXT_CAT_BUILDERS = {
   'portfolio-site.txt': buildPortfolioSiteTxtCatOutput,
+  'terminal.txt': buildTerminalTxtCatOutput,
+  'markai.txt': buildMarkaiTxtCatOutput,
   'abacus.txt': buildAbacusTxtCatOutput,
   'maat.txt': buildMaatTxtCatOutput,
   'operating-systems-c.txt': buildOperatingSystemsCTxtCatOutput,

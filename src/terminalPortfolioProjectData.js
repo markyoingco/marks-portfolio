@@ -36,6 +36,8 @@ export function getPortfolioCategoryAliasEnterLines(alias, resolved) {
 export const PORTFOLIO_CATEGORY_FILES = {
   'site-build': [
     'portfolio-site.txt',
+    'terminal.txt',
+    'markai.txt',
     'portfolio-site.github',
     'portfolio-site.webpage',
   ],
@@ -317,7 +319,7 @@ export const PORTFOLIO_WEBPAGE_LINKS = {
   'data.webpage': 'Data Science and Machine Learning',
   'merch.webpage': 'Creative Leadership',
   'service.webpage': 'Service',
-  'portfolio-site.webpage': 'Personal Build',
+  'portfolio-site.webpage': 'Portfolio Platform',
 }
 
 export const PORTFOLIO_ROOT_UNKNOWN_COMMAND_HINT =
