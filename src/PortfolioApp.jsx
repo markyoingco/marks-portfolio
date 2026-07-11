@@ -54,6 +54,7 @@ const ABOUT_PANEL_COUNT = 6
 const ABOUT_BEYOND_WORK_INDEX = 5
 
 function ThemeImageFrame({
+  src,
   srcDark,
   srcLight,
   alt = '',
@@ -61,8 +62,30 @@ function ThemeImageFrame({
   placeholderClassName,
   placeholderLabel = 'Image Coming Soon',
 }) {
+  const [sharedFailed, setSharedFailed] = useState(false)
   const [darkFailed, setDarkFailed] = useState(false)
   const [lightFailed, setLightFailed] = useState(false)
+
+  if (src) {
+    if (sharedFailed) {
+      return (
+        <div className={placeholderClassName ?? `${frameClassName} ${frameClassName}--placeholder`}>
+          <span className="about-image-frame__label">{placeholderLabel}</span>
+        </div>
+      )
+    }
+
+    return (
+      <div className={frameClassName}>
+        <img
+          className="theme-image theme-image--shared"
+          src={src}
+          alt={alt}
+          onError={() => setSharedFailed(true)}
+        />
+      </div>
+    )
+  }
 
   if (darkFailed && lightFailed) {
     return (
@@ -94,13 +117,14 @@ function ThemeImageFrame({
   )
 }
 
-function AboutImageFrame({ srcDark, srcLight, alt = '', variant }) {
+function AboutImageFrame({ src, srcDark, srcLight, alt = '', variant }) {
   const frameClassName = variant
     ? `about-image-frame about-image-frame--${variant}`
     : 'about-image-frame'
 
   return (
     <ThemeImageFrame
+      src={src}
       srcDark={srcDark}
       srcLight={srcLight}
       alt={alt}
@@ -284,8 +308,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
                 <div className="about__card about__card--welcome">
                   <AboutImageFrame
                     variant="welcome"
-                    srcDark="/images/about/welcome-photo.jpg"
-                    srcLight="/images/about/welcome-photo-color.jpg"
+                    src="/images/about/welcome-photo-color.jpg"
                     alt="Mark Yoingco graduation"
                   />
                   <div className="about__welcome-text">

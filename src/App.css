@@ -1488,8 +1488,19 @@
   pointer-events: none;
 }
 
+.about-image-frame .theme-image--shared {
+  opacity: 1;
+  filter: grayscale(100%) contrast(1.05) brightness(0.85);
+  transition: filter 0.42s ease;
+}
+
+[data-theme='light'] .about-image-frame .theme-image--shared {
+  filter: none;
+}
+
 /* Welcome slide only — shared framing for dark/light pair */
-.about-image-frame--welcome .theme-image {
+.about-image-frame--welcome .theme-image,
+.about-image-frame--welcome .theme-image--shared {
   object-position: 55% center;
 }
 
@@ -1515,6 +1526,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .about-image-frame .theme-image,
+  .about-image-frame .theme-image--shared,
   .education-image-frame .theme-image,
   .testimonial-headshot .theme-image {
     transition-duration: 0.01ms !important;
@@ -2302,7 +2314,8 @@
     object-position: center center;
   }
 
-  .about-image-frame--welcome .theme-image {
+  .about-image-frame--welcome .theme-image,
+  .about-image-frame--welcome .theme-image--shared {
     object-position: 55% center;
   }
 

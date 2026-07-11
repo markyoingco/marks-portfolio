@@ -65,6 +65,7 @@ import TerminalContactFormBlock from './TerminalContactFormBlock'
 import { isFileCatOutput, TERMINAL_SCROLL_MODE } from './terminalFileOutput'
 import TerminalFileBlock from './TerminalFileBlock'
 import { resolveTerminalAutocomplete } from './terminalAutocomplete'
+import { isMobileTerminalViewport, MOBILE_TERMINAL_MEDIA_QUERY } from './terminalMobile'
 import './TerminalLanding.css'
 const MODES = {
   LANDING: 'landing',
@@ -90,6 +91,9 @@ const TERMINAL_TIP =
 
 const TERMINAL_ROOT_BEGINNER_HINT =
   'New here? Type cd [category] and press Enter. Example: cd resume'
+
+const TERMINAL_ROOT_MOBILE_HINT =
+  'Mobile tip: Tap Help to browse commands, or tap the prompt to type.'
 
 function TerminalHelpCommandList({ commands, onCommandClick }) {
   return (
@@ -477,6 +481,8 @@ function TerminalLanding({
   const terminalOutputRef = useRef(null)
   const inputRef = useRef(null)
   const terminalStateRef = useRef('')
+  const mobileInputActivatedRef = useRef(false)
+  const [isMobileViewport, setIsMobileViewport] = useState(() => isMobileTerminalViewport())
 
   const helpOpen = mode === MODES.HELP
   const isTerminalPortfolio = mode === MODES.TERMINAL_PORTFOLIO
@@ -484,6 +490,24 @@ function TerminalLanding({
   const activeInputPrompt = contactForm.active ? CONTACT_FORM_INPUT_PROMPT : prompt
   const contextHint = getContextHint(mode, portfolioPath, history, contactForm.active)
   const helpPanel = getTerminalHelpPanel(portfolioPath)
+
+  const focusTerminalInput = ({ force = false } = {}) => {
+    if (isMobileViewport && !force && !mobileInputActivatedRef.current && !contactForm.active) {
+      return
+    }
+
+    inputRef.current?.focus()
+  }
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(MOBILE_TERMINAL_MEDIA_QUERY)
+    const syncMobileViewport = () => setIsMobileViewport(mediaQuery.matches)
+
+    syncMobileViewport()
+    mediaQuery.addEventListener('change', syncMobileViewport)
+
+    return () => mediaQuery.removeEventListener('change', syncMobileViewport)
+  }, [])
 
   useEffect(() => {
     if (!isContactFolder(portfolioPath)) {
@@ -502,8 +526,25 @@ function TerminalLanding({
       setHistoryIndex(-1)
       setTerminalHelpOpen(false)
       setContactForm(createInitialContactFormState())
+      mobileInputActivatedRef.current = false
     }
   }, [mode, showMarkGpt])
+
+  useEffect(() => {
+    if (!isTerminalPortfolio || showModePicker || showMarkGpt) {
+      return
+    }
+
+    if (terminalOutputRef.current) {
+      terminalOutputRef.current.scrollTop = 0
+    }
+
+    if (isMobileViewport) {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0)
+      })
+    }
+  }, [isTerminalPortfolio, showModePicker, showMarkGpt, isMobileViewport, mode])
 
   useEffect(() => {
     const container = terminalOutputRef.current
@@ -535,9 +576,13 @@ function TerminalLanding({
     }
 
     if (!showMarkGpt) {
+      if (isMobileViewport && !mobileInputActivatedRef.current && !contactForm.active) {
+        return
+      }
+
       inputRef.current?.focus()
     }
-  }, [mode, portfolioPath, showMarkGpt, showModePicker])
+  }, [mode, portfolioPath, showMarkGpt, showModePicker, isMobileViewport, contactForm.active])
 
   useEffect(() => {
     if (contactForm.active) {
@@ -702,7 +747,7 @@ function TerminalLanding({
       terminalOutputRef.current.scrollTop = 0
     }
 
-    inputRef.current?.focus()
+    focusTerminalInput()
   }
 
   const resetTerminal = (event) => {
@@ -967,11 +1012,13 @@ function TerminalLanding({
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    mobileInputActivatedRef.current = true
     runCommand(input, { recordHistory: true })
     setInput('')
   }
 
   const handleChipClick = (command) => {
+    mobileInputActivatedRef.current = true
     runCommand(command, { recordHistory: true })
   }
 
@@ -1077,12 +1124,25 @@ function TerminalLanding({
       ? 'Mark Yoingco Terminal Portfolio'
       : "Mark Yoingco's Portfolio Terminal"
 
+  const compactTitleLabel = 'Terminal Portfolio'
+
+  const showRootMobileHint =
+    isMobileViewport &&
+    isTerminalPortfolio &&
+    portfolioPath.length === 0 &&
+    !terminalHelpOpen &&
+    !contactForm.active
+
+  const handleTerminalInputFocus = () => {
+    mobileInputActivatedRef.current = true
+  }
+
   return (
     <div
       className="terminal-shell"
       onClick={() => {
         if (!showModePicker && !showMarkGpt) {
-          inputRef.current?.focus()
+          focusTerminalInput()
         }
       }}
     >
@@ -1146,36 +1206,43 @@ function TerminalLanding({
               <span className="terminal-card__dot" />
               <span className="terminal-card__dot" />
             </div>
-            {isTerminalPortfolio ? (
-              <div className="terminal-utils" onClick={(event) => event.stopPropagation()}>
-                <button
-                  type="button"
-                  className="terminal-utils__btn"
-                  onClick={handleTerminalMainMenu}
-                >
-                  Main Menu
-                </button>
-                <button
-                  type="button"
-                  className="terminal-utils__btn terminal-utils__btn--help"
-                  aria-pressed={terminalHelpOpen}
-                  onClick={handleHelpClick}
-                >
-                  Help
-                </button>
-                <button
-                  type="button"
-                  className="terminal-utils__btn terminal-utils__btn--icon"
-                  aria-label="Reset terminal"
-                  title="Reset terminal"
-                  onClick={resetTerminal}
-                >
-                  ↻
-                </button>
-              </div>
-            ) : null}
           </div>
-          <span className="terminal-card__label">{titleLabel}</span>
+          <span className="terminal-card__label terminal-card__label--full">
+            {titleLabel}
+          </span>
+          {isTerminalPortfolio ? (
+            <span className="terminal-card__label terminal-card__label--compact">
+              {compactTitleLabel}
+            </span>
+          ) : null}
+          {isTerminalPortfolio ? (
+            <div className="terminal-utils" onClick={(event) => event.stopPropagation()}>
+              <button
+                type="button"
+                className="terminal-utils__btn"
+                onClick={handleTerminalMainMenu}
+              >
+                Main Menu
+              </button>
+              <button
+                type="button"
+                className="terminal-utils__btn terminal-utils__btn--help"
+                aria-pressed={terminalHelpOpen}
+                onClick={handleHelpClick}
+              >
+                Help
+              </button>
+              <button
+                type="button"
+                className="terminal-utils__btn terminal-utils__btn--icon"
+                aria-label="Reset terminal"
+                title="Reset terminal"
+                onClick={resetTerminal}
+              >
+                ↻
+              </button>
+            </div>
+          ) : null}
         </header>
 
         <div className="terminal-output">
@@ -1219,6 +1286,7 @@ function TerminalLanding({
                 type="text"
                 value={input}
                 onChange={handleInputChange}
+                onFocus={handleTerminalInputFocus}
                 onKeyDown={handleKeyDown}
                 autoComplete="off"
                 autoCorrect="off"
@@ -1239,6 +1307,9 @@ function TerminalLanding({
             >
               {contextHint}
             </p>
+            {showRootMobileHint ? (
+              <p className="terminal-mobile-hint">{TERMINAL_ROOT_MOBILE_HINT}</p>
+            ) : null}
             {isTerminalPortfolio && !contactForm.active && portfolioPath.length === 0 && !terminalHelpOpen ? (
               <>
                 <p className="terminal-beginner-hint">{TERMINAL_ROOT_BEGINNER_HINT}</p>
