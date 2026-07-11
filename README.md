@@ -1,63 +1,129 @@
-# Mark Yoingco Portfolio Website
+# Mark Yoingco Portfolio Platform
 
-A personal portfolio website built with React, Vite, JavaScript, and CSS to showcase my background, resume, software projects, photography, testimonials, and contact information.
+A multi-mode personal portfolio built with React, Vite, JavaScript, CSS, PHP, and MySQL.
 
-Live site: https://markyoingco.com
+The platform combines a cinematic webpage, an interactive command-line terminal portfolio, and a MarkGPT portfolio assistant currently in development.
+
+**Live site:** https://markyoingco.com
 
 ## Purpose
 
-This project is my personal brand and proof page. It is designed to help recruiters, professors, and collaborators quickly understand who I am, what I have built, and where to find my work.
+This platform serves as my personal brand, technical proof page, and central place for recruiters, professors, and collaborators to explore my background and work.
 
-The site presents my resume, background, testimonials, photography, and project experience in a dark cinematic portfolio style.
+It presents my:
+
+- Resume
+- Software projects
+- Technical skills
+- Education
+- Work experience
+- Testimonials
+- Travel photography
+- Leadership and involvement
+- Contact information
+
+## Portfolio Modes
+
+### Webpage
+
+A cinematic visual portfolio with responsive navigation, project cards, photography, testimonials, contact workflows, and dark/light themes.
+
+### Terminal
+
+An interactive command-line portfolio where visitors can explore content through terminal-style commands.
+
+Supported functionality includes:
+
+- `cd` folder navigation
+- `ls` file and folder listings
+- `cat` readable text files
+- `open` webpage, GitHub, LinkedIn, and external links
+- Resume PDF opening and downloading
+- Nested project and testimonial folders
+- Context-aware Help panels
+- Tab autocomplete
+- Command history
+- Editable command input
+- Terminal-based contact submissions
+- Responsive desktop and mobile layouts
+
+### MarkGPT
+
+A portfolio assistant currently in development.
+
+The planned experience will provide a conversational way to explore my resume, projects, experience, technical background, and goals.
+
+MarkGPT is not yet connected to a completed AI backend.
 
 ## Built With
+
+### Frontend
 
 - React
 - Vite
 - JavaScript
 - CSS
+
+### Backend
+
+- PHP
+- MySQL
+- JSON API requests
+
+### Tools and Deployment
+
 - Git
 - GitHub
 - DreamHost
+- Figma
+- Responsive and manual testing
 
-## Sections
+## Webpage Sections
 
 - Home
 - About
 - Portfolio
 - Testimonials
-- Blog
+- Travel
 - Contact
-
-## Current Features
-
-- Dark cinematic homepage with fixed background image
-- Responsive mobile layout with hamburger navigation
-- Resume download button
-- Social links for GitHub, LinkedIn, Email, and Instagram
-- About section with internal slide navigation
-- Portfolio category tabs
-- Project cards with screenshot and link support
-- Testimonials section
-- Blog and travel photo section with optimized images
-- Contact form placeholder
-- Static deployment on DreamHost with a custom domain
 
 ## Portfolio Categories
 
-- Personal Build
+- Portfolio Platform
 - Senior Design Capstones
-- Software Design and Analysis
 - Systems Programming
+- Software Design and Analysis
 - Programming Computer Games
 - Data Science and Machine Learning
 - Creative Leadership
 - Service
 
-## Development
+## Current Features
 
-```bash
-npm install
-npm run dev
+- Cinematic dark-first visual design
+- Dark and light theme switching
+- Saved theme preference
+- Responsive desktop, tablet, and mobile layouts
+- Multi-mode navigation
+- Interactive terminal portfolio
+- Mobile-safe terminal input and navigation
+- Shared project, testimonial, and travel data
+- Resume PDF viewing and downloading
+- Project GitHub and webpage links
+- Nested terminal project folders
+- Testimonial person folders
+- Travel photography and VSCO integration
+- PHP/MySQL contact form
+- Terminal `message.form` contact workflow
+- DreamHost deployment with a custom domain
 
-```
+## Terminal Structure
+
+```text
+terminal
+├── resume
+├── personal
+├── portfolio
+├── testimonials
+├── travel
+└── contact
