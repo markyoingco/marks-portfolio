@@ -5,17 +5,24 @@ export const THEMES = {
   LIGHT: 'light',
 }
 
+/** First-time default — cinematic dark portfolio; not system preference. */
+export const DEFAULT_THEME = THEMES.DARK
+
+function isValidTheme(value) {
+  return value === THEMES.LIGHT || value === THEMES.DARK
+}
+
 export function getStoredTheme() {
   try {
     const stored = localStorage.getItem(THEME_STORAGE_KEY)
-    if (stored === THEMES.LIGHT || stored === THEMES.DARK) {
+    if (isValidTheme(stored)) {
       return stored
     }
   } catch {
     // localStorage may be unavailable
   }
 
-  return THEMES.DARK
+  return DEFAULT_THEME
 }
 
 export function applyTheme(theme) {
@@ -23,6 +30,10 @@ export function applyTheme(theme) {
 }
 
 export function persistTheme(theme) {
+  if (!isValidTheme(theme)) {
+    return
+  }
+
   try {
     localStorage.setItem(THEME_STORAGE_KEY, theme)
   } catch {

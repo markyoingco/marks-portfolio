@@ -5,8 +5,11 @@ import ThemeToggle from './ThemeToggle'
 import {
   buildPathFromSnapshot,
   cloneSnapshot,
+  createFreshTerminalEntry,
+  createFreshWebpageEntry,
   createInitialSnapshot,
   createModePickerSnapshot,
+  DEFAULT_WEBPAGE,
   getRouteFromHash,
   snapshotsEqual,
   syncSessionFromSnapshot,
@@ -57,13 +60,14 @@ export default function App() {
 
   useEffect(() => {
     applyTheme(theme)
-    persistTheme(theme)
   }, [theme])
 
   const toggleTheme = useCallback(() => {
-    setTheme((current) =>
-      current === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK,
-    )
+    setTheme((current) => {
+      const next = current === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK
+      persistTheme(next)
+      return next
+    })
   }, [])
 
   const pushHistoryState = useCallback((nextSnapshot, { replace = false } = {}) => {
@@ -181,7 +185,13 @@ export default function App() {
         (current) => ({
           ...current,
           route: 'terminal',
-          terminal: { ...current.terminal, ...terminalPartial },
+          terminal: {
+            ...current.terminal,
+            ...terminalPartial,
+            ...(Array.isArray(terminalPartial.portfolioPath)
+              ? { portfolioPath: [...terminalPartial.portfolioPath] }
+              : {}),
+          },
         }),
         options,
       )
@@ -190,20 +200,61 @@ export default function App() {
   )
 
   const enterWebpageMode = useCallback(() => {
-    navigateTo((current) => ({
-      ...current,
-      route: 'webpage',
-      terminal: {
-        ...current.terminal,
-        showModePicker: false,
-        showMarkGpt: false,
-      },
-    }))
+    navigateTo((current) => createFreshWebpageEntry(current))
+  }, [navigateTo])
+
+  const enterWebpagePortfolio = useCallback(
+    (portfolioCategory) => {
+      navigateTo((current) => ({
+        ...cloneSnapshot(current),
+        route: 'webpage',
+        entryKey: (current.entryKey ?? 0) + 1,
+        webpage: {
+          screen: 'portfolio',
+          aboutPanel: 0,
+          portfolioCategory,
+        },
+        terminal: {
+          ...current.terminal,
+          showModePicker: false,
+          showMarkGpt: false,
+        },
+      }))
+    },
+    [navigateTo],
+  )
+
+  const enterWebpageScreen = useCallback(
+    (screen) => {
+      navigateTo((current) => ({
+        ...cloneSnapshot(current),
+        route: 'webpage',
+        entryKey: (current.entryKey ?? 0) + 1,
+        webpage: {
+          screen,
+          aboutPanel: 0,
+          portfolioCategory: DEFAULT_WEBPAGE.portfolioCategory,
+        },
+        terminal: {
+          ...current.terminal,
+          showModePicker: false,
+          showMarkGpt: false,
+        },
+      }))
+    },
+    [navigateTo],
+  )
+
+  const enterTerminalFresh = useCallback(() => {
+    navigateTo((current) => createFreshTerminalEntry(current))
   }, [navigateTo])
 
   return (
     <>
-      <div className="background" aria-hidden="true" />
+      <div className="app-background" aria-hidden="true">
+        <div className="background background--dark" />
+        <div className="background background--light" />
+      </div>
       <ThemeToggle theme={theme} onToggle={toggleTheme} />
       <GlobalBackButton onClick={goBack} />
       <GlobalMenuButton onClick={returnToMainMenu} />
@@ -211,17 +262,21 @@ export default function App() {
       {snapshot.route === 'webpage' ? (
         <div className="portfolio-route">
           <PortfolioApp
+            key={`webpage-${snapshot.entryKey}`}
             webpage={snapshot.webpage}
             onWebpageNavigate={navigateWebpage}
             onReturnToMainMenu={returnToMainMenu}
-            key="portfolio"
           />
         </div>
       ) : (
         <TerminalLanding
+          key={`terminal-${snapshot.entryKey}`}
           terminal={snapshot.terminal}
           onTerminalNavigate={navigateTerminal}
           onEnterWebpage={enterWebpageMode}
+          onEnterWebpagePortfolio={enterWebpagePortfolio}
+          onEnterWebpageScreen={enterWebpageScreen}
+          onEnterTerminalFresh={enterTerminalFresh}
           onAppGoBack={goBack}
           onReturnToMainMenu={returnToMainMenu}
         />

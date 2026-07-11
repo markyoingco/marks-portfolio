@@ -1,13 +1,15 @@
 :root,
-[data-theme='dark'] {
+[data-theme='dark'],
+[data-theme='light'] {
   color-scheme: dark;
+}
 
+:root,
+[data-theme='dark'] {
   --text: #b8bcc4;
   --text-h: #f4f5f7;
   --text-dim: #7c8088;
 
-  --app-page-bg: #0a0a0a;
-  --app-bg-image: url('/images/background.jpg');
   --app-bg-overlay: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.38) 0%,
@@ -44,14 +46,10 @@
 }
 
 [data-theme='light'] {
-  color-scheme: light;
-
   --text: #e8e4df;
   --text-h: #fffaf5;
   --text-dim: #c4bdb4;
 
-  --app-page-bg: #14110f;
-  --app-bg-image: url('/images/background-light.jpg');
   --app-bg-overlay: linear-gradient(
     180deg,
     rgba(18, 14, 12, 0.4) 0%,
@@ -83,6 +81,7 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 html,

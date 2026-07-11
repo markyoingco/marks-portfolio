@@ -1,4 +1,6 @@
 import { useState, useRef, useMemo, useCallback, memo, useEffect } from 'react'
+import { TESTIMONIALS, TESTIMONIALS_SUBTITLE } from './testimonialsData'
+import { BLOG_PHOTOS, BLOG_PHOTOS_BATCH } from './blogPhotosData'
 import './App.css'
 
 // Minimal inline SVG icons (no external package needed).
@@ -92,33 +94,31 @@ function ThemeImageFrame({
   )
 }
 
-function AboutImageFrame({ srcDark, srcLight, alt = '' }) {
+function AboutImageFrame({ srcDark, srcLight, alt = '', variant }) {
+  const frameClassName = variant
+    ? `about-image-frame about-image-frame--${variant}`
+    : 'about-image-frame'
+
   return (
     <ThemeImageFrame
       srcDark={srcDark}
       srcLight={srcLight}
       alt={alt}
-      frameClassName="about-image-frame"
+      frameClassName={frameClassName}
       placeholderClassName="about-image-frame about-image-frame--placeholder"
     />
   )
 }
 
-function EducationDiplomaFrame({ src, alt = '' }) {
-  const [hasImage, setHasImage] = useState(true)
-
-  if (!hasImage) {
-    return (
-      <div className="education-image-frame education-image-frame--placeholder">
-        <span className="about-image-frame__label">Image Coming Soon</span>
-      </div>
-    )
-  }
-
+function EducationImageFrame({ srcDark, srcLight, alt = '' }) {
   return (
-    <div className="education-image-frame">
-      <img src={src} alt={alt} onError={() => setHasImage(false)} />
-    </div>
+    <ThemeImageFrame
+      srcDark={srcDark}
+      srcLight={srcLight}
+      alt={alt}
+      frameClassName="education-image-frame"
+      placeholderClassName="education-image-frame education-image-frame--placeholder"
+    />
   )
 }
 
@@ -283,6 +283,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
               <div className="about__panel-stack">
                 <div className="about__card about__card--welcome">
                   <AboutImageFrame
+                    variant="welcome"
                     srcDark="/images/about/welcome-photo.jpg"
                     srcLight="/images/about/welcome-photo-color.jpg"
                     alt="Mark Yoingco graduation"
@@ -330,8 +331,9 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
             {/* 2 - Education */}
             <section className={panelClassName(1)}>
               <div className="about__card about__card--education">
-                <EducationDiplomaFrame
-                  src="/images/about/education-photo.jpg"
+                <EducationImageFrame
+                  srcDark="/images/about/education-photo.jpg"
+                  srcLight="/images/about/education-photo-color.jpg"
                   alt="Marquette University diploma"
                 />
                 <div className="about__welcome-text">
@@ -533,65 +535,6 @@ const BlogPhoto = memo(function BlogPhoto({ src, location }) {
     </article>
   )
 })
-
-const BLOG_PHOTOS_BATCH = 6
-
-const BLOG_PHOTOS = [
-  { order: 54, location: "Don Toliver", src: "/images/blog-optimized/54 Don Toliver.jpg" },
-  { order: 53, location: "Summerfest", src: "/images/blog-optimized/53 Summerfest.jpg" },
-  { order: 52, location: "More Kobe", src: "/images/blog-optimized/52 More Kobe.jpg" },
-  { order: 51, location: "Graduation", src: "/images/blog-optimized/51 Graduation.jpg" },
-  { order: 50, location: "Graduation", src: "/images/blog-optimized/50 Graduation.jpg" },
-  { order: 49, location: "Getty Center, CA", src: "/images/blog-optimized/49 Getty Center, CA.jpg" },
-  { order: 48, location: "Getty Center, CA", src: "/images/blog-optimized/48 Getty Center, CA.jpg" },
-  { order: 47, location: "Getty Center, CA", src: "/images/blog-optimized/47 Getty Center, CA.jpg" },
-  { order: 46, location: "Getty Center, CA", src: "/images/blog-optimized/46 Getty Center, CA.jpg" },
-  { order: 45, location: "Griffith Observatory, CA", src: "/images/blog-optimized/45 Griffith Observatory, CA.jpg" },
-  { order: 44, location: "San Diego", src: "/images/blog-optimized/44 San Diego.jpg" },
-  { order: 43, location: "Pine Cove, CA", src: "/images/blog-optimized/43 Pine Cove, CA.jpg" },
-  { order: 42, location: "Alpine Valley, WI", src: "/images/blog-optimized/42 Alpine Valley, WI.jpg" },
-  { order: 41, location: "Nashville", src: "/images/blog-optimized/41 Nashville.jpg" },
-  { order: 40, location: "Kobe", src: "/images/blog-optimized/40 Kobe.jpg" },
-  { order: 39, location: "Social Candy, Milwaukee", src: "/images/blog-optimized/39 Social Candy, Milwaukee.jpg" },
-  { order: 38, location: "Colosseum, Italy", src: "/images/blog-optimized/38 Colosseum, Italy.jpg" },
-  { order: 37, location: "Colosseum, Italy", src: "/images/blog-optimized/37 Colosseum, Italy.jpg" },
-  { order: 36, location: "Rome, Italy", src: "/images/blog-optimized/36 Rome, Italy.jpg" },
-  { order: 35, location: "Rome, Italy", src: "/images/blog-optimized/35 Rome, Italy.jpg" },
-  { order: 34, location: "Rome, Italy", src: "/images/blog-optimized/34 Rome, Italy.jpg" },
-  { order: 32, location: "Rome, Italy", src: "/images/blog-optimized/32 Rome, Italy.jpg" },
-  { order: 31, location: "Trevi Fountain, Italy", src: "/images/blog-optimized/31 Trevi Fountain, Italy.jpg" },
-  { order: 30, location: "Vittoriano, Italy", src: "/images/blog-optimized/30 Vittoriano, Italy.jpg" },
-  { order: 29, location: "Atrani, Italy", src: "/images/blog-optimized/29 Atrani, Italy.jpg" },
-  { order: 28, location: "Positano, Italy", src: "/images/blog-optimized/28 Positano, Italy.jpg" },
-  { order: 27, location: "Porto Di Amalfi, Italy", src: "/images/blog-optimized/27 Porto Di Amalfi, Italy.jpg" },
-  { order: 26, location: "Atrani, Italy", src: "/images/blog-optimized/26 Atrani, Italy.jpg" },
-  { order: 25.5, location: "Atrani, Italy", src: "/images/blog-optimized/25.5 Atrani, Italy.jpg" },
-  { order: 25, location: "Atrani, Italy", src: "/images/blog-optimized/25 Atrani, Italy.jpg" },
-  { order: 24, location: "Atrani, Italy", src: "/images/blog-optimized/24 Atrani, Italy.jpg" },
-  { order: 23, location: "Fam", src: "/images/blog-optimized/23 Fam.jpg" },
-  { order: 22, location: "Kensington, London", src: "/images/blog-optimized/22 Kensington, London.jpg" },
-  { order: 21, location: "City Of Westminster, London", src: "/images/blog-optimized/21 City Of Westminster, London.jpg" },
-  { order: 20, location: "Tower Hamlets, London", src: "/images/blog-optimized/20 Tower Hamlets, London.jpg" },
-  { order: 19, location: "Soho, London", src: "/images/blog-optimized/19 Soho, London.jpg" },
-  { order: 18, location: "Gymshark, London", src: "/images/blog-optimized/18 Gymshark, London.jpg" },
-  { order: 17, location: "Gymshark, London", src: "/images/blog-optimized/17 Gymshark, London.jpg" },
-  { order: 16, location: "London", src: "/images/blog-optimized/16 London.jpg" },
-  { order: 15, location: "London", src: "/images/blog-optimized/15 London.jpg" },
-  { order: 14, location: "London", src: "/images/blog-optimized/14 London.jpg" },
-  { order: 13, location: "Ryse", src: "/images/blog-optimized/13 Ryse.jpg" },
-  { order: 12, location: "Lake Louise, Canada", src: "/images/blog-optimized/12 Lake Louise, Canada.jpg" },
-  { order: 11, location: "Lake Louise, Canada", src: "/images/blog-optimized/11 Lake Louise, Canada.jpg" },
-  { order: 10, location: "Lake Louise Canada", src: "/images/blog-optimized/10 Lake Louise Canada.jpg" },
-  { order: 9, location: "Lake Louise, Canada", src: "/images/blog-optimized/9 Lake Louise, Canada.jpg" },
-  { order: 8, location: "✞", src: "/images/blog-optimized/8 ✞.jpg" },
-  { order: 7, location: "1st Meet, 1st Place", src: "/images/blog-optimized/7 1st Meet, 1st Place.jpg" },
-  { order: 6, location: "La Jolla Shores", src: "/images/blog-optimized/6 La Jolla Shores.jpg" },
-  { order: 5, location: "San Clemente", src: "/images/blog-optimized/5 San Clemente.jpg" },
-  { order: 4, location: "Cactus Jack", src: "/images/blog-optimized/4 Cactus Jack.jpg" },
-  { order: 3, location: "Chicago", src: "/images/blog-optimized/3 Chicago.jpg" },
-  { order: 2, location: "Las Vegas", src: "/images/blog-optimized/2 Las Vegas.jpg" },
-  { order: 1, location: "Hawaii", src: "/images/blog-optimized/1 Hawaii.jpg" },
-]
 
 const PORTFOLIO_TABS = [
   { label: 'Personal', title: 'Personal Build' },
@@ -1200,18 +1143,6 @@ function PortfolioSection({ activeCategory, onCategoryChange }) {
   )
 }
 
-const TESTIMONIALS = [
-  {
-    imageDark: '/images/testimonials/testimonial-1.jpg',
-    imageLight: '/images/testimonials/testimonial-1color.jpg',
-    quote:
-      'Mark is one of my best friends who I\'ve known since our days of middle school basketball. He boasts a plethora of outstanding qualities that have stood out since our first practice together. He is one of the most dedicated and reliable individuals I know, applying no less than his absolute best to any team he is apart of. His perseverance and professionalism through school, life challenges, and the workplace proceeds his reputation as a respectful, hard working, and disciplined person with extensive work and projects to show for it. He\'s truly a valuable asset to have as a part of any team, and an even better friend.',
-    name: 'Maxwell Zeisler',
-    role: 'Accounting Student and Audit Intern @ Advisent',
-    linkedin: 'https://www.linkedin.com/in/maxwell-zeisler123',
-  },
-]
-
 function TestimonialHeadshot({ srcDark, srcLight, alt = '' }) {
   return (
     <ThemeImageFrame
@@ -1231,9 +1162,7 @@ function TestimonialsSection() {
       <div className="testimonials__inner">
         <header className="testimonials__header">
           <h1 className="testimonials__title">Testimonials</h1>
-          <p className="testimonials__subtitle">
-            Words from people I have worked with, learned from, or built alongside.
-          </p>
+          <p className="testimonials__subtitle">{TESTIMONIALS_SUBTITLE}</p>
         </header>
 
         {TESTIMONIALS.map((item) => (
@@ -1559,6 +1488,18 @@ function PortfolioApp({ webpage, onWebpageNavigate, onReturnToMainMenu }) {
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [menuOpen])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    requestAnimationFrame(() => {
+      document.querySelector('.screen')?.scrollTo(0, 0)
+      document
+        .querySelectorAll('.portfolio-panel, .contact__card')
+        .forEach((el) => {
+          el.scrollTop = 0
+        })
+    })
+  }, [])
 
   useEffect(() => {
     requestAnimationFrame(() => {

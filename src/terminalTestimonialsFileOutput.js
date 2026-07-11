@@ -1,0 +1,40 @@
+import {
+  blankLine,
+  buildFileCatOutput,
+  sectionLine,
+  textLine,
+} from './terminalFileOutput'
+import {
+  TESTIMONIAL_LINKEDIN_FILE,
+  TESTIMONIAL_TXT_FILE,
+  TESTIMONIALS_WEBPAGE_FILE,
+} from './testimonialsData'
+
+export function buildTestimonialTxtCatOutput(item) {
+  if (!item) {
+    return buildFileCatOutput(TESTIMONIAL_TXT_FILE, [textLine('Testimonial not found.')])
+  }
+
+  const content = [
+    sectionLine('TESTIMONIAL'),
+    blankLine(),
+    sectionLine('QUOTE'),
+    textLine(item.quote),
+    blankLine(),
+    sectionLine('FROM'),
+    textLine(item.name),
+    blankLine(),
+    sectionLine('ROLE'),
+    textLine(item.role),
+    blankLine(),
+    sectionLine('LINKS'),
+  ]
+
+  if (item.linkedin) {
+    content.push(textLine(`LinkedIn: open ${TESTIMONIAL_LINKEDIN_FILE}`))
+  }
+
+  content.push(textLine(`Webpage: open ${TESTIMONIALS_WEBPAGE_FILE}`))
+
+  return buildFileCatOutput(TESTIMONIAL_TXT_FILE, content)
+}

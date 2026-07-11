@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/brand/my-logo.png" />
@@ -7,14 +7,15 @@
     <title>Mark Yoingco - Portfolio</title>
     <script>
       (function () {
+        var DEFAULT_THEME = 'dark'
         try {
-          var theme = localStorage.getItem('portfolio-theme')
+          var stored = localStorage.getItem('portfolio-theme')
           document.documentElement.setAttribute(
             'data-theme',
-            theme === 'light' || theme === 'dark' ? theme : 'dark',
+            stored === 'light' || stored === 'dark' ? stored : DEFAULT_THEME,
           )
         } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'dark')
+          document.documentElement.setAttribute('data-theme', DEFAULT_THEME)
         }
       })()
     </script>

@@ -2,20 +2,57 @@
    Fixed full-screen background image
    Sits behind everything. Statue/center subject stays centered.
 ------------------------------------------------------------------- */
-.background {
+.app-background {
   position: fixed;
   inset: 0;
   z-index: 0;
   min-height: 100svh;
-  background-color: var(--app-page-bg);
-  background-image: var(--app-bg-image);
+  pointer-events: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.app-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--app-bg-overlay);
+  transition: background 0.42s ease;
+  pointer-events: none;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  pointer-events: none;
+  transition: opacity 0.42s ease;
+  will-change: opacity;
+}
+
+.background--dark {
+  z-index: 0;
+  background-color: #0a0a0a;
+  background-image: url('/images/background.jpg');
+  opacity: 1;
+}
+
+.background--light {
+  z-index: 1;
+  background-color: #14110f;
+  background-image: url('/images/background-light.jpg');
+  opacity: 0;
+}
+
+[data-theme='light'] .background--dark {
+  opacity: 0;
+}
+
+[data-theme='light'] .background--light {
+  opacity: 1;
 }
 
 @media (max-width: 900px) {
@@ -25,18 +62,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .background,
+  .app-background::after {
+    transition-duration: 0.01ms !important;
+  }
+
   .background {
     background-attachment: scroll;
   }
-}
-
-/* Dark overlay so white/gray content stays readable.
-   Balanced so the statue/image stays clearly visible (not pure black). */
-.background::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--app-bg-overlay);
 }
 
 /* ----------------------------------------------------------------
@@ -1059,10 +1092,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  transition:
-    opacity 0.42s ease,
-    filter 0.42s ease;
+  object-position: center center;
+  transition: opacity 0.42s ease;
+  pointer-events: none;
 }
 
 .testimonial-headshot .theme-image--dark {
@@ -1337,6 +1369,7 @@
 
 /* Landscape diploma frame - Education slide only */
 .education-image-frame {
+  position: relative;
   width: min(400px, 100%);
   aspect-ratio: 16 / 10;
   flex-shrink: 0;
@@ -1347,15 +1380,38 @@
   background: rgba(0, 0, 0, 0.4);
 }
 
-.education-image-frame img {
+.education-image-frame .theme-image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center;
-  filter: grayscale(100%) contrast(1.05) brightness(0.85);
   display: block;
   padding: 6px;
   box-sizing: border-box;
+  transition: opacity 0.42s ease;
+  pointer-events: none;
+}
+
+.education-image-frame .theme-image--dark {
+  opacity: 1;
+  filter: grayscale(100%) contrast(1.05) brightness(0.85);
+  z-index: 1;
+}
+
+.education-image-frame .theme-image--light {
+  opacity: 0;
+  filter: none;
+  z-index: 2;
+}
+
+[data-theme='light'] .education-image-frame .theme-image--dark {
+  opacity: 0;
+}
+
+[data-theme='light'] .education-image-frame .theme-image--light {
+  opacity: 1;
 }
 
 .education-image-frame--placeholder {
@@ -1426,11 +1482,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
   display: block;
-  transition:
-    opacity 0.42s ease,
-    filter 0.42s ease;
+  transition: opacity 0.42s ease;
+  pointer-events: none;
+}
+
+/* Welcome slide only — shared framing for dark/light pair */
+.about-image-frame--welcome .theme-image {
+  object-position: 55% center;
 }
 
 .about-image-frame .theme-image--dark {
@@ -1455,6 +1515,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .about-image-frame .theme-image,
+  .education-image-frame .theme-image,
   .testimonial-headshot .theme-image {
     transition-duration: 0.01ms !important;
   }
@@ -2224,25 +2285,25 @@
   }
 
   .about-image-frame {
-    display: grid;
     width: min(300px, 100%);
     max-width: 100%;
     max-height: none;
-    height: auto;
-    aspect-ratio: auto;
-    overflow: visible;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
     margin: 0 auto;
   }
 
   .about-image-frame .theme-image {
-    position: relative;
-    grid-area: 1 / 1;
-    inset: auto;
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: auto;
-    max-height: none;
-    object-fit: contain;
-    object-position: top center;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .about-image-frame--welcome .theme-image {
+    object-position: 55% center;
   }
 
   .education-image-frame,

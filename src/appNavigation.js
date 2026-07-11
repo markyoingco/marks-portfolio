@@ -9,13 +9,14 @@ export const DEFAULT_WEBPAGE = {
 export const DEFAULT_TERMINAL = {
   showModePicker: true,
   showMarkGpt: false,
-  mode: 'landing',
+  mode: 'terminal-portfolio',
   portfolioPath: [],
 }
 
 export function cloneSnapshot(snapshot) {
   return {
     route: snapshot.route,
+    entryKey: snapshot.entryKey ?? 0,
     terminal: {
       ...snapshot.terminal,
       portfolioPath: [...snapshot.terminal.portfolioPath],
@@ -34,6 +35,7 @@ export function createInitialSnapshot() {
 
   return {
     route: getRouteFromHash(),
+    entryKey: 0,
     terminal: {
       ...DEFAULT_TERMINAL,
       showModePicker,
@@ -49,7 +51,35 @@ export function createModePickerSnapshot(snapshot) {
     terminal: {
       showModePicker: true,
       showMarkGpt: false,
-      mode: 'landing',
+      mode: 'terminal-portfolio',
+      portfolioPath: [],
+    },
+  }
+}
+
+export function createFreshWebpageEntry(snapshot) {
+  return {
+    ...cloneSnapshot(snapshot),
+    route: 'webpage',
+    entryKey: (snapshot.entryKey ?? 0) + 1,
+    webpage: { ...DEFAULT_WEBPAGE },
+    terminal: {
+      ...snapshot.terminal,
+      showModePicker: false,
+      showMarkGpt: false,
+    },
+  }
+}
+
+export function createFreshTerminalEntry(snapshot) {
+  return {
+    ...cloneSnapshot(snapshot),
+    route: 'terminal',
+    entryKey: (snapshot.entryKey ?? 0) + 1,
+    terminal: {
+      showModePicker: false,
+      showMarkGpt: false,
+      mode: DEFAULT_TERMINAL.mode,
       portfolioPath: [],
     },
   }
