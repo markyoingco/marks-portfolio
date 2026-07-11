@@ -1,10 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/brand/my-logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Mark Yoingco - Portfolio</title>
+    <script>
+      (function () {
+        var DEFAULT_THEME = 'dark'
+        try {
+          var stored = localStorage.getItem('portfolio-theme')
+          document.documentElement.setAttribute(
+            'data-theme',
+            stored === 'light' || stored === 'dark' ? stored : DEFAULT_THEME,
+          )
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', DEFAULT_THEME)
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
