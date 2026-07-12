@@ -370,8 +370,10 @@ const SKILLS_GROUPS = [
 function AboutPlaceholderCard({ title, hint }) {
   return (
     <div className="about__card about__card--center">
-      <h2 className="about__heading">{title}</h2>
-      <p className="about__hint">{hint}</p>
+      <div className="about__card-scroll">
+        <h2 className="about__heading">{title}</h2>
+        <p className="about__hint">{hint}</p>
+      </div>
     </div>
   )
 }
@@ -379,6 +381,7 @@ function AboutPlaceholderCard({ title, hint }) {
 function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
   const viewportRef = useRef(null)
   const slideTimerRef = useRef(null)
+  const scrollResetTimerRef = useRef(null)
   const skipSlideLockRef = useRef(true)
   const [openExperienceId, setOpenExperienceId] = useState(null)
   const [navLocked, setNavLocked] = useState(false)
@@ -404,6 +407,24 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
     [panel, openExperienceId],
   )
 
+  const resetActivePanelScroll = useCallback(() => {
+    const activePanel = viewportRef.current?.querySelector('.about__panel.is-active')
+    if (!activePanel) return
+
+    activePanel.scrollTop = 0
+
+    activePanel
+      .querySelectorAll('.about__card-scroll, .about__experience-scroll')
+      .forEach((el) => {
+        el.scrollTop = 0
+      })
+
+    const isMobile = window.matchMedia('(max-width: 900px)').matches
+    if (isMobile) {
+      document.querySelector('.screen[data-screen="about"]')?.scrollTo(0, 0)
+    }
+  }, [])
+
   useEffect(() => {
     if (panel !== ABOUT_EXPERIENCE_PANEL) {
       setOpenExperienceId(null)
@@ -413,6 +434,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
   useEffect(() => {
     if (skipSlideLockRef.current) {
       skipSlideLockRef.current = false
+      resetActivePanelScroll()
       return undefined
     }
 
@@ -422,6 +444,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
 
     if (prefersReducedMotion) {
       setNavLocked(false)
+      resetActivePanelScroll()
       return undefined
     }
 
@@ -430,34 +453,26 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
       setNavLocked(false)
     }, ABOUT_SLIDE_MS)
 
+    if (scrollResetTimerRef.current !== null) {
+      clearTimeout(scrollResetTimerRef.current)
+    }
+
+    scrollResetTimerRef.current = window.setTimeout(() => {
+      resetActivePanelScroll()
+      scrollResetTimerRef.current = null
+    }, ABOUT_SLIDE_MS)
+
     return () => {
       if (slideTimerRef.current !== null) {
         clearTimeout(slideTimerRef.current)
         slideTimerRef.current = null
       }
-    }
-  }, [panel])
-
-  useEffect(() => {
-    const isMobile = window.matchMedia('(max-width: 900px)').matches
-    const screen = document.querySelector('.screen[data-screen="about"]')
-
-    if (isMobile) {
-      screen?.scrollTo(0, 0)
-      return undefined
-    }
-
-    const panels = viewportRef.current?.querySelectorAll('.about__panel')
-    if (!panels) return undefined
-
-    panels.forEach((el, index) => {
-      if (index === panel) {
-        el.scrollTop = 0
+      if (scrollResetTimerRef.current !== null) {
+        clearTimeout(scrollResetTimerRef.current)
+        scrollResetTimerRef.current = null
       }
-    })
-
-    return undefined
-  }, [panel])
+    }
+  }, [panel, resetActivePanelScroll])
 
   return (
     <div className="about">
@@ -470,38 +485,40 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
             <section className={panelClassName(0)} aria-hidden={panel !== 0}>
               <div className="about__panel-stack">
                 <div className="about__card about__card--welcome">
-                  <AboutImageFrame
-                    variant="welcome"
-                    src="/images/about/welcome-photo-color.jpg"
-                    alt="Mark Yoingco graduation"
-                  />
-                  <div className="about__welcome-text">
-                    <h2 className="about__heading">Welcome to My Personal Site</h2>
-                    <div className="about__copy">
-                      <p className="about__body">
-                        Hello, my name is Mark Yoingco. I&apos;m a recent Computer
-                        Science graduate from Marquette University and an
-                        entry-level software developer focused on full-stack
-                        applications, developer tools, data-oriented systems,
-                        and practical software projects.
-                      </p>
-                      <p className="about__body">
-                        My background includes hands-on experience with
-                        React/Vite, Flask, MySQL, Socket.IO, Docker, Unity/C#,
-                        C/UNIX programming, testing, and debugging through
-                        academic projects, solo work, and two senior design
-                        capstones.
-                      </p>
-                      <p className="about__body">
-                        I enjoy building systems that are useful, organized, and
-                        grounded in real problems - whether that means supporting
-                        live competition platforms, improving grading tools,
-                        connecting web apps to robotics, or creating interactive
-                        software experiences.
-                      </p>
-                      <p className="about__closing">
-                        To get to know me beyond the resume, click below.
-                      </p>
+                  <div className="about__card-scroll">
+                    <AboutImageFrame
+                      variant="welcome"
+                      src="/images/about/welcome-photo-color.jpg"
+                      alt="Mark Yoingco graduation"
+                    />
+                    <div className="about__welcome-text">
+                      <h2 className="about__heading">Welcome to My Personal Site</h2>
+                      <div className="about__copy">
+                        <p className="about__body">
+                          Hello, my name is Mark Yoingco. I&apos;m a recent Computer
+                          Science graduate from Marquette University and an
+                          entry-level software developer focused on full-stack
+                          applications, developer tools, data-oriented systems,
+                          and practical software projects.
+                        </p>
+                        <p className="about__body">
+                          My background includes hands-on experience with
+                          React/Vite, Flask, MySQL, Socket.IO, Docker, Unity/C#,
+                          C/UNIX programming, testing, and debugging through
+                          academic projects, solo work, and two senior design
+                          capstones.
+                        </p>
+                        <p className="about__body">
+                          I enjoy building systems that are useful, organized, and
+                          grounded in real problems - whether that means supporting
+                          live competition platforms, improving grading tools,
+                          connecting web apps to robotics, or creating interactive
+                          software experiences.
+                        </p>
+                        <p className="about__closing">
+                          To get to know me beyond the resume, click below.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -517,32 +534,34 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
 
             <section className={panelClassName(1)} aria-hidden={panel !== 1}>
               <div className="about__card about__card--education">
-                <EducationImageFrame
-                  srcDark="/images/about/education-photo.jpg"
-                  srcLight="/images/about/education-photo-color.jpg"
-                  alt="Marquette University diploma"
-                />
-                <div className="about__welcome-text">
-                  <h2 className="about__heading">Education</h2>
-                  <div className="about__copy">
-                    <h3 className="about__subheading">B.S. Computer Science</h3>
-                    <p className="about__meta-line">Marquette University</p>
-                    <p className="about__meta-line">Milwaukee, WI</p>
-                    <p className="about__meta-line">May 2026</p>
-                    <p className="about__body">
-                      Completed a Bachelor of Science in Computer Science with
-                      coursework across software development, systems,
-                      mathematics, data, and computer science fundamentals.
-                    </p>
-                    <div className="about__coursework">
-                      <p className="about__coursework-label">Relevant Coursework</p>
-                      <ul className="coursework-list">
-                        {EDUCATION_COURSEWORK.map((course) => (
-                          <li key={course} className="coursework-pill">
-                            {course}
-                          </li>
-                        ))}
-                      </ul>
+                <div className="about__card-scroll">
+                  <EducationImageFrame
+                    srcDark="/images/about/education-photo.jpg"
+                    srcLight="/images/about/education-photo-color.jpg"
+                    alt="Marquette University diploma"
+                  />
+                  <div className="about__welcome-text">
+                    <h2 className="about__heading">Education</h2>
+                    <div className="about__copy">
+                      <h3 className="about__subheading">B.S. Computer Science</h3>
+                      <p className="about__meta-line">Marquette University</p>
+                      <p className="about__meta-line">Milwaukee, WI</p>
+                      <p className="about__meta-line">May 2026</p>
+                      <p className="about__body">
+                        Completed a Bachelor of Science in Computer Science with
+                        coursework across software development, systems,
+                        mathematics, data, and computer science fundamentals.
+                      </p>
+                      <div className="about__coursework">
+                        <p className="about__coursework-label">Relevant Coursework</p>
+                        <ul className="coursework-list">
+                          {EDUCATION_COURSEWORK.map((course) => (
+                            <li key={course} className="coursework-pill">
+                              {course}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -570,18 +589,20 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
 
             <section className={panelClassName(3)} aria-hidden={panel !== 3}>
               <div className="about__card about__card--center about__card--skills">
-                <h2 className="about__heading">Skills</h2>
-                <div className="skills-grid">
-                  {SKILLS_GROUPS.map((group) => (
-                    <div key={group.title} className="skills-group">
-                      <h3 className="skills-group__title">{group.title}</h3>
-                      <ul className="skills-group__list">
-                        {group.items.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                <div className="about__card-scroll">
+                  <h2 className="about__heading">Skills</h2>
+                  <div className="skills-grid">
+                    {SKILLS_GROUPS.map((group) => (
+                      <div key={group.title} className="skills-group">
+                        <h3 className="skills-group__title">{group.title}</h3>
+                        <ul className="skills-group__list">
+                          {group.items.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </section>
@@ -596,37 +617,39 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
             <section className={panelClassName(5)} aria-hidden={panel !== 5}>
               <div className="about__panel-stack">
                 <div className="about__card about__card--welcome">
-                  <AboutImageFrame
-                    srcDark="/images/about/beyond-work-photo.jpg"
-                    srcLight="/images/about/beyond-work-photo-color.jpg"
-                    alt="Beyond Work"
-                  />
-                  <div className="about__welcome-text">
-                    <h2 className="about__heading">Beyond Work</h2>
-                    <div className="about__copy">
-                      <p className="about__body">
-                        Outside of technology, fitness has always been one of my
-                        biggest passions. I started with powerlifting and now spend
-                        much of my free time pursuing bodybuilding, building a
-                        healthier lifestyle, and staying disciplined through
-                        training.
-                      </p>
-                      <p className="about__body">
-                        I&apos;m drawn to growth, ambition, purpose, and becoming
-                        the best version of myself. Outside the gym, I stay inspired
-                        through hiking, reading, music, travel, and places that give
-                        me a new way to see life.
-                      </p>
-                      <p className="about__body">
-                        Photography is how I keep the story with me. Cities, views,
-                        trips, and small moments all give me something worth
-                        capturing. Every picture holds a memory, a feeling, or a
-                        place that still means something.
-                      </p>
-                      <p className="about__closing">
-                        You can see more of my travel and lifestyle photos in
-                        Travel.
-                      </p>
+                  <div className="about__card-scroll">
+                    <AboutImageFrame
+                      srcDark="/images/about/beyond-work-photo.jpg"
+                      srcLight="/images/about/beyond-work-photo-color.jpg"
+                      alt="Beyond Work"
+                    />
+                    <div className="about__welcome-text">
+                      <h2 className="about__heading">Beyond Work</h2>
+                      <div className="about__copy">
+                        <p className="about__body">
+                          Outside of technology, fitness has always been one of my
+                          biggest passions. I started with powerlifting and now spend
+                          much of my free time pursuing bodybuilding, building a
+                          healthier lifestyle, and staying disciplined through
+                          training.
+                        </p>
+                        <p className="about__body">
+                          I&apos;m drawn to growth, ambition, purpose, and becoming
+                          the best version of myself. Outside the gym, I stay inspired
+                          through hiking, reading, music, travel, and places that give
+                          me a new way to see life.
+                        </p>
+                        <p className="about__body">
+                          Photography is how I keep the story with me. Cities, views,
+                          trips, and small moments all give me something worth
+                          capturing. Every picture holds a memory, a feeling, or a
+                          place that still means something.
+                        </p>
+                        <p className="about__closing">
+                          You can see more of my travel and lifestyle photos in
+                          Travel.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
