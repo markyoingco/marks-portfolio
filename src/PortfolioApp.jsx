@@ -1,4 +1,11 @@
-import { useState, useRef, useMemo, useCallback, memo, useEffect } from 'react'
+import {
+  useState,
+  useRef,
+  useMemo,
+  useCallback,
+  memo,
+  useEffect,
+} from 'react'
 import {
   getPublishedTestimonials,
   TESTIMONIALS_COMING_SOON_DETAIL,
@@ -62,6 +69,8 @@ const SCREENS = ['home', 'about', 'portfolio', 'testimonials', 'travel', 'contac
 
 const ABOUT_PANEL_COUNT = 6
 const ABOUT_BEYOND_WORK_INDEX = 5
+const ABOUT_EXPERIENCE_PANEL = 2
+const ABOUT_SLIDE_MS = 550
 
 function ThemeImageFrame({
   src,
@@ -91,6 +100,9 @@ function ThemeImageFrame({
           className="theme-image theme-image--shared"
           src={src}
           alt={alt}
+          width={320}
+          height={400}
+          decoding="async"
           onError={() => setSharedFailed(true)}
         />
       </div>
@@ -112,6 +124,9 @@ function ThemeImageFrame({
           className="theme-image theme-image--dark"
           src={srcDark}
           alt={alt}
+          width={400}
+          height={250}
+          decoding="async"
           onError={() => setDarkFailed(true)}
         />
       ) : null}
@@ -120,6 +135,9 @@ function ThemeImageFrame({
           className="theme-image theme-image--light"
           src={srcLight}
           alt={alt}
+          width={400}
+          height={250}
+          decoding="async"
           onError={() => setLightFailed(true)}
         />
       ) : null}
@@ -172,6 +190,7 @@ const EDUCATION_COURSEWORK = [
 
 const EXPERIENCE_JOBS = [
   {
+    id: 'audio-visual-technician',
     title: 'Audio-Visual Technician',
     org: 'Marquette University',
     date: 'Feb 2025 - May 2026',
@@ -179,6 +198,7 @@ const EXPERIENCE_JOBS = [
       'Supported live campus events by setting up, operating, and troubleshooting laptops, projectors, microphones, speakers, lighting, wiring, remotes, presentation equipment, and sound systems for conferences, concerts, and productions.',
   },
   {
+    id: 'information-desk-specialist-manager',
     title: 'Information Desk Specialist Manager',
     org: 'Marquette University',
     date: 'Jan 2024 - May 2026',
@@ -186,6 +206,7 @@ const EXPERIENCE_JOBS = [
       'Managed front-desk and building operations by creating staff schedules, reviewing shifts and timesheets, running staff meetings, monitoring security cameras, coordinating room schedules, handling access requests, incidents, visitors, students, and staff communication.',
   },
   {
+    id: 'risk-manager-merchandise-chair',
     title: 'Risk Manager & Merchandise Chair',
     org: 'Sigma Chi - Marquette University',
     date: 'Leadership & Involvement',
@@ -193,6 +214,7 @@ const EXPERIENCE_JOBS = [
       'Helped keep chapter operations organized and safe while also leading creative merchandise ideas that represented the fraternity\'s identity, legacy, and campus presence.',
   },
   {
+    id: 'hollister',
     title: 'Hollister',
     org: 'Hollister Co.',
     date: 'Summer 2025',
@@ -200,6 +222,7 @@ const EXPERIENCE_JOBS = [
       'Supported retail operations by opening and closing the store, operating the register, assisting customers, restocking merchandise, unpacking inventory shipments, and organizing sales floor items.',
   },
   {
+    id: 'assistant-building-manager',
     title: 'Assistant Building Manager',
     org: 'Marquette University',
     date: 'Jun 2024 - Dec 2024',
@@ -207,6 +230,7 @@ const EXPERIENCE_JOBS = [
       'Coordinated room setups for events, managed building access, supported department communication through radio, and helped maintain smooth building operations during campus events and daily activities.',
   },
   {
+    id: 'chef-person-in-charge',
     title: 'Chef / Person in Charge',
     org: 'Panda Express - Gurnee, IL',
     date: 'May 2021 - Aug 2023',
@@ -214,6 +238,7 @@ const EXPERIENCE_JOBS = [
       'Supported kitchen operations, food preparation, service quality, cleaning, restocking, and shift leadership. Trained new employees and helped guide team members during high-volume shifts.',
   },
   {
+    id: 'assembly-line',
     title: 'Assembly Line',
     org: "Portillo's - Gurnee, IL",
     date: 'Oct 2020 - Apr 2021',
@@ -221,6 +246,82 @@ const EXPERIENCE_JOBS = [
       'Supported kitchen operations, food preparation, drive-thru workflow, opening and closing tasks, and customer service in a fast-paced restaurant environment.',
   },
 ]
+
+function ExperienceAccordion({ jobs, openExperienceId, onToggle }) {
+  const itemRefs = useRef({})
+
+  useEffect(() => {
+    if (!openExperienceId) return undefined
+
+    const item = itemRefs.current[openExperienceId]
+    if (!item) return undefined
+
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches
+
+    item.scrollIntoView({
+      block: 'nearest',
+      behavior: reducedMotion ? 'auto' : 'smooth',
+    })
+
+    return undefined
+  }, [openExperienceId])
+
+  return (
+    <div className="about__experience-scroll" aria-label="Experience roles">
+      <div className="experience-accordion">
+        {jobs.map((job) => {
+          const isOpen = openExperienceId === job.id
+          const triggerId = `experience-trigger-${job.id}`
+          const contentId = `experience-content-${job.id}`
+
+          return (
+            <div
+              key={job.id}
+              ref={(node) => {
+                itemRefs.current[job.id] = node
+              }}
+              className={`experience-accordion__item${isOpen ? ' is-open' : ''}`}
+            >
+            <h3 className="experience-accordion__heading">
+              <button
+                type="button"
+                id={triggerId}
+                className="experience-accordion__trigger"
+                aria-expanded={isOpen}
+                aria-controls={contentId}
+                onClick={() => onToggle(job.id)}
+              >
+                <span className="experience-accordion__trigger-main">
+                  <span className="experience-accordion__title">{job.title}</span>
+                  <span className="experience-accordion__org">{job.org}</span>
+                </span>
+                <span className="experience-accordion__icon" aria-hidden="true">
+                  {isOpen ? '−' : '+'}
+                </span>
+              </button>
+            </h3>
+            <div
+              id={contentId}
+              role="region"
+              aria-labelledby={triggerId}
+              aria-hidden={!isOpen}
+              inert={!isOpen}
+              className="experience-accordion__panel"
+            >
+              <div className="experience-accordion__panel-inner">
+                <p className="experience-accordion__date">{job.date}</p>
+                <p className="experience-accordion__desc">{job.description}</p>
+              </div>
+            </div>
+          </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
 
 const SKILLS_GROUPS = [
   {
@@ -277,24 +378,85 @@ function AboutPlaceholderCard({ title, hint }) {
 
 function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
   const viewportRef = useRef(null)
+  const slideTimerRef = useRef(null)
+  const skipSlideLockRef = useRef(true)
+  const [openExperienceId, setOpenExperienceId] = useState(null)
+  const [navLocked, setNavLocked] = useState(false)
 
   const panelClassName = (index) =>
     index === panel ? 'about__panel is-active' : 'about__panel'
 
+  const handleExperienceToggle = useCallback((id) => {
+    setOpenExperienceId((current) => (current === id ? null : id))
+  }, [])
+
+  const runAfterExperienceCollapse = useCallback(
+    (action) => {
+      if (panel === ABOUT_EXPERIENCE_PANEL && openExperienceId !== null) {
+        setOpenExperienceId(null)
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(action)
+        })
+        return
+      }
+      action()
+    },
+    [panel, openExperienceId],
+  )
+
+  useEffect(() => {
+    if (panel !== ABOUT_EXPERIENCE_PANEL) {
+      setOpenExperienceId(null)
+    }
+  }, [panel])
+
+  useEffect(() => {
+    if (skipSlideLockRef.current) {
+      skipSlideLockRef.current = false
+      return undefined
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches
+
+    if (prefersReducedMotion) {
+      setNavLocked(false)
+      return undefined
+    }
+
+    setNavLocked(true)
+    slideTimerRef.current = window.setTimeout(() => {
+      setNavLocked(false)
+    }, ABOUT_SLIDE_MS)
+
+    return () => {
+      if (slideTimerRef.current !== null) {
+        clearTimeout(slideTimerRef.current)
+        slideTimerRef.current = null
+      }
+    }
+  }, [panel])
+
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 900px)').matches
+    const screen = document.querySelector('.screen[data-screen="about"]')
+
     if (isMobile) {
-      document.querySelector('.screen[data-screen="about"]')?.scrollTo(0, 0)
-      return
+      screen?.scrollTo(0, 0)
+      return undefined
     }
 
     const panels = viewportRef.current?.querySelectorAll('.about__panel')
-    if (!panels) return
+    if (!panels) return undefined
+
     panels.forEach((el, index) => {
       if (index === panel) {
         el.scrollTop = 0
       }
     })
+
+    return undefined
   }, [panel])
 
   return (
@@ -305,8 +467,7 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
             className="about__track"
             style={{ '--about-panel-index': panel }}
           >
-            {/* 1 - Welcome */}
-            <section className={panelClassName(0)}>
+            <section className={panelClassName(0)} aria-hidden={panel !== 0}>
               <div className="about__panel-stack">
                 <div className="about__card about__card--welcome">
                   <AboutImageFrame
@@ -347,15 +508,14 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
                 <button
                   type="button"
                   className="about__action-btn"
-                  onClick={() => onGoTo(ABOUT_BEYOND_WORK_INDEX)}
+                  onClick={() => runAfterExperienceCollapse(() => onGoTo(ABOUT_BEYOND_WORK_INDEX))}
                 >
                   Learn More
                 </button>
               </div>
             </section>
 
-            {/* 2 - Education */}
-            <section className={panelClassName(1)}>
+            <section className={panelClassName(1)} aria-hidden={panel !== 1}>
               <div className="about__card about__card--education">
                 <EducationImageFrame
                   srcDark="/images/about/education-photo.jpg"
@@ -389,31 +549,26 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
               </div>
             </section>
 
-            {/* 3 - Experience */}
-            <section className={panelClassName(2)}>
+            <section className={panelClassName(2)} aria-hidden={panel !== 2}>
               <div className="about__card about__card--center about__card--experience">
-                <h2 className="about__heading">Experience</h2>
-                <p className="about__experience-intro">
-                  My experience spans campus technology, operations, leadership,
-                  and customer-facing roles - each strengthening my
-                  communication, troubleshooting, organization, and leadership
-                  skills.
-                </p>
-                <div className="about__experience-list">
-                  {EXPERIENCE_JOBS.map((job) => (
-                    <article key={job.title} className="experience-entry">
-                      <h3 className="experience-entry__title">{job.title}</h3>
-                      <p className="experience-entry__org">{job.org}</p>
-                      <p className="experience-entry__date">{job.date}</p>
-                      <p className="experience-entry__desc">{job.description}</p>
-                    </article>
-                  ))}
+                <div className="about__experience-header">
+                  <h2 className="about__heading">Experience</h2>
+                  <p className="about__experience-intro">
+                    My experience spans campus technology, operations, leadership,
+                    and customer-facing roles - each strengthening my
+                    communication, troubleshooting, organization, and leadership
+                    skills.
+                  </p>
                 </div>
+                <ExperienceAccordion
+                  jobs={EXPERIENCE_JOBS}
+                  openExperienceId={openExperienceId}
+                  onToggle={handleExperienceToggle}
+                />
               </div>
             </section>
 
-            {/* 4 - Skills */}
-            <section className={panelClassName(3)}>
+            <section className={panelClassName(3)} aria-hidden={panel !== 3}>
               <div className="about__card about__card--center about__card--skills">
                 <h2 className="about__heading">Skills</h2>
                 <div className="skills-grid">
@@ -431,16 +586,14 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
               </div>
             </section>
 
-            {/* 5 - Certificates */}
-            <section className={panelClassName(4)}>
+            <section className={panelClassName(4)} aria-hidden={panel !== 4}>
               <AboutPlaceholderCard
                 title="Certificates"
                 hint="In Progress..."
               />
             </section>
 
-            {/* 6 - Beyond Work */}
-            <section className={panelClassName(5)}>
+            <section className={panelClassName(5)} aria-hidden={panel !== 5}>
               <div className="about__panel-stack">
                 <div className="about__card about__card--welcome">
                   <AboutImageFrame
@@ -493,7 +646,8 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
           <button
             type="button"
             className="about__arrow"
-            onClick={onPrev}
+            onClick={() => runAfterExperienceCollapse(onPrev)}
+            disabled={navLocked}
             aria-label="Previous panel"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -507,7 +661,8 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
                 key={i}
                 type="button"
                 className={panel === i ? 'about__dot is-active' : 'about__dot'}
-                onClick={() => onGoTo(i)}
+                onClick={() => runAfterExperienceCollapse(() => onGoTo(i))}
+                disabled={navLocked}
                 aria-label={`Go to panel ${i + 1}`}
               />
             ))}
@@ -516,7 +671,8 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
           <button
             type="button"
             className="about__arrow"
-            onClick={onNext}
+            onClick={() => runAfterExperienceCollapse(onNext)}
+            disabled={navLocked}
             aria-label="Next panel"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">

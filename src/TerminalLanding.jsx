@@ -442,18 +442,20 @@ const MODE_PICKER_OPTIONS = [
   {
     id: 'webpage',
     title: 'Webpage',
-    description: 'Standard portfolio for resume, projects, and contact.',
+    description:
+      'Visual overview of my resume, projects, experience, photography, and contact information.',
   },
   {
     id: 'markgpt',
     title: 'MarkGPT',
     description:
-      'Coming soon — ask about Mark\'s resume, projects, goals, and background.',
+      'Coming soon — guided exploration of my resume, projects, background, goals, and experience.',
   },
   {
     id: 'terminal',
     title: 'Terminal',
-    description: 'Command-line portfolio with folders and commands.',
+    description:
+      'Deeper command-line exploration with personal files, mindset, goals, and detailed project context.',
   },
 ]
 
@@ -1483,6 +1485,8 @@ function TerminalLanding({
               </h2>
               <p id="mode-picker-subtitle" className="mode-picker__subtitle">
                 Choose the version of Mark Yoingco&apos;s portfolio you&apos;d like to view.
+                <br />
+                Each mode reveals a different side of the portfolio.
               </p>
 
               <div className="mode-picker__options">

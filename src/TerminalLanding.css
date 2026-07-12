@@ -895,17 +895,29 @@
     --terminal-muted: rgba(255, 255, 255, 0.82);
     --terminal-hint: rgba(255, 255, 255, 0.52);
 
-    align-items: center;
+    align-items: stretch;
+    justify-content: flex-start;
+    box-sizing: border-box;
     padding:
       calc(env(safe-area-inset-top, 0px) + 56px)
       14px
       calc(env(safe-area-inset-bottom, 0px) + 24px);
   }
 
+  .terminal-stage {
+    flex: 1 1 auto;
+    align-self: stretch;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
   .terminal-card {
     width: 100%;
     max-width: 100%;
     min-width: 0;
+    box-sizing: border-box;
     height: min(
       430px,
       calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 80px)
@@ -1054,12 +1066,26 @@
 
   .terminal-chip-list {
     gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    max-width: 100%;
   }
 
   .terminal-chip {
     min-height: 44px;
     padding: 10px 14px;
     font-size: 11px;
+    max-width: 100%;
+    flex: 0 1 auto;
+  }
+
+  .terminal-help-panel__list--commands li {
+    flex: 0 1 auto;
+    max-width: 100%;
+  }
+
+  .terminal-help-panel__item {
+    max-width: 100%;
   }
 
   .terminal-footer-hint {
@@ -1073,6 +1099,10 @@
     width: 100%;
     max-width: 100%;
     min-width: 0;
+    align-items: stretch;
+    justify-content: flex-start;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     padding:
       calc(env(safe-area-inset-top, 0px) + 56px)
       12px
@@ -1081,7 +1111,8 @@
   }
 
   .terminal-stage {
-    flex-shrink: 1;
+    flex: 1 1 auto;
+    align-self: stretch;
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -1174,6 +1205,7 @@
   .terminal-history,
   .terminal-composer,
   .terminal-footer,
+  .terminal-actions,
   .terminal-input-row,
   .terminal-entry,
   .terminal-history-line,
@@ -1445,10 +1477,6 @@
 .terminal-stage {
   position: relative;
   z-index: 1;
-  flex: 0 0 auto;
-  width: auto;
-  max-width: none;
-  align-self: center;
 }
 
 .mode-picker-backdrop {
@@ -1600,6 +1628,13 @@
 }
 
 @media (min-width: 901px) {
+  .terminal-stage {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+    align-self: center;
+  }
+
   .mode-picker-backdrop {
     padding: 24px;
   }
