@@ -2,7 +2,7 @@
 
 A multi-mode personal portfolio built with React, Vite, JavaScript, CSS, PHP, and MySQL.
 
-The platform combines a cinematic webpage, an interactive command-line terminal portfolio, and a MarkGPT portfolio assistant currently in development.
+The platform combines a cinematic webpage, an interactive command-line terminal portfolio, and a MarkAI portfolio assistant currently in development.
 
 **Live site:** https://markyoingco.com
 
@@ -47,13 +47,13 @@ Supported functionality includes:
 - Terminal-based contact submissions
 - Responsive desktop and mobile layouts
 
-### MarkGPT
+### MarkAI
 
 A portfolio assistant currently in development.
 
 The planned experience will provide a conversational way to explore my resume, projects, experience, technical background, and goals.
 
-MarkGPT is not yet connected to a completed AI backend.
+MarkAI is not yet connected to a completed AI backend.
 
 ## Built With
 
