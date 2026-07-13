@@ -14,7 +14,7 @@ export function buildCaughtInMotionTxtCatOutput() {
     sectionLine('CAUGHT IN MOTION'),
     blankLine(),
     textLine(
-      'Every picture has a story behind it. Some come from places I have visited, some come from moments I wanted to remember, and some are scenes that felt too real not to keep.',
+      'Every picture has a story behind it. Some come from places I have visited, some from moments I wanted to remember, and some from scenes that felt too real not to keep.',
     ),
     blankLine(),
     textLine(
@@ -22,7 +22,11 @@ export function buildCaughtInMotionTxtCatOutput() {
     ),
     blankLine(),
     textLine(
-      'I like taking photos because it gives me a way to hold onto views, nights, cities, people, and small moments that feel bigger than they looked at the time.',
+      'I like using photography to hold onto the feeling of a place - city lights, quiet streets, water, mountains, museums, people, and small details that might otherwise disappear.',
+    ),
+    blankLine(),
+    textLine(
+      'The image matters, but so does the memory behind it. A picture can hold a feeling, a lesson, or a place that still means something long after the moment is gone.',
     ),
     blankLine(),
     textLine('For the full visual section, type open travel.webpage.'),

@@ -270,7 +270,7 @@ export async function submitTerminalContactMessage(data) {
         ok: true,
         lines: [
           'Message sent successfully.',
-          'Thank you — I’ll get back to you soon.',
+          'Thank you - I’ll get back to you soon.',
         ],
       }
     }

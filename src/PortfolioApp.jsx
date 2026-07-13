@@ -18,6 +18,7 @@ import {
   PORTFOLIO_PLATFORM_SECTION,
 } from './portfolioPlatformData'
 import { RESUME_PDF_FILENAME, RESUME_PDF_PATH } from './resumeDocument'
+import WebpageDesktopNotice from './WebpageDesktopNotice'
 import './App.css'
 
 // Minimal inline SVG icons (no external package needed).
@@ -495,28 +496,31 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
                       <h2 className="about__heading">Welcome to My Personal Site</h2>
                       <div className="about__copy">
                         <p className="about__body">
-                          Hello, my name is Mark Yoingco. I&apos;m a recent Computer
-                          Science graduate from Marquette University and an
-                          entry-level software developer focused on full-stack
-                          applications, developer tools, data-oriented systems,
-                          and practical software projects.
+                          Hello, my name is Mark Yoingco. I am a recent Computer
+                          Science graduate from Marquette University focused on
+                          software development, full-stack applications, developer
+                          tools, data-oriented systems, and practical technical
+                          work.
                         </p>
                         <p className="about__body">
-                          My background includes hands-on experience with
-                          React/Vite, Flask, MySQL, Socket.IO, Docker, Unity/C#,
-                          C/UNIX programming, testing, and debugging through
-                          academic projects, solo work, and two senior design
-                          capstones.
+                          My background includes building this portfolio platform
+                          as a solo project and contributing to Abacus, TA-Bot /
+                          MAAT, and the Finch Web Controller. Across those
+                          projects, I worked with React/Vite, Flask, MySQL,
+                          Socket.IO, Docker, Unity/C#, C/UNIX programming,
+                          testing, debugging, and team-based development.
                         </p>
                         <p className="about__body">
-                          I enjoy building systems that are useful, organized, and
-                          grounded in real problems - whether that means supporting
-                          live competition platforms, improving grading tools,
-                          connecting web apps to robotics, or creating interactive
-                          software experiences.
+                          I enjoy building software that is useful, organized,
+                          creative, and grounded in real problems - whether that
+                          means supporting live competition platforms, improving
+                          grading tools, connecting web applications to robotics,
+                          or creating interactive software experiences. I value
+                          ownership, clear communication, consistency, and asking
+                          the right questions before building.
                         </p>
                         <p className="about__closing">
-                          To get to know me beyond the resume, click below.
+                          To get to know me beyond the resume, continue below.
                         </p>
                       </div>
                     </div>
@@ -628,26 +632,30 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
                       <div className="about__copy">
                         <p className="about__body">
                           Outside of technology, fitness has always been one of my
-                          biggest passions. I started with powerlifting and now spend
-                          much of my free time pursuing bodybuilding, building a
-                          healthier lifestyle, and staying disciplined through
-                          training.
+                          biggest passions. I started training when I wanted
+                          change, and it taught me that consistency will always
+                          matter more than intensity.
                         </p>
                         <p className="about__body">
-                          I&apos;m drawn to growth, ambition, purpose, and becoming
-                          the best version of myself. Outside the gym, I stay inspired
-                          through hiking, reading, music, travel, and places that give
-                          me a new way to see life.
+                          Bodybuilding is both discipline and art. Structure,
+                          symmetry, control, patience, and attention to detail all
+                          matter, and that same mindset shapes how I approach my
+                          work and personal growth.
                         </p>
                         <p className="about__body">
-                          Photography is how I keep the story with me. Cities, views,
-                          trips, and small moments all give me something worth
-                          capturing. Every picture holds a memory, a feeling, or a
-                          place that still means something.
+                          Outside the gym, I stay inspired through hiking, reading,
+                          music, travel, and experiences that give me a new
+                          perspective on life.
+                        </p>
+                        <p className="about__body">
+                          Photography is how I keep the story with me. Cities,
+                          views, trips, and small moments all give me something
+                          worth capturing. Every picture holds a memory, a
+                          feeling, or a place that still means something.
                         </p>
                         <p className="about__closing">
-                          You can see more of my travel and lifestyle photos in
-                          Travel.
+                          You can see more of my travel and lifestyle photography
+                          in Travel.
                         </p>
                       </div>
                     </div>
@@ -1699,7 +1707,7 @@ function PortfolioApp({
   onWebpageNavigate,
   onReturnToMainMenu,
   onEnterTerminal,
-  onEnterMarkGpt,
+  onEnterMarkAi,
 }) {
   const { screen: activeScreen, aboutPanel, portfolioCategory } = webpage
   const [menuOpen, setMenuOpen] = useState(false)
@@ -1737,11 +1745,11 @@ function PortfolioApp({
         return
       }
 
-      if (mode === 'markgpt') {
-        onEnterMarkGpt?.()
+      if (mode === 'markai') {
+        onEnterMarkAi?.()
       }
     },
-    [onEnterTerminal, onEnterMarkGpt],
+    [onEnterTerminal, onEnterMarkAi],
   )
 
   useEffect(() => {
@@ -1786,6 +1794,7 @@ function PortfolioApp({
 
   return (
     <div className={menuOpen ? 'app-shell app-shell--menu-open' : 'app-shell'}>
+      <WebpageDesktopNotice />
       {/* Mobile hamburger header (tablet/phone only via CSS) */}
       <header className="nav-mobile">
         <button

@@ -8,7 +8,7 @@ import {
   createFreshTerminalEntry,
   createFreshWebpageEntry,
   createInitialSnapshot,
-  createMarkGptEntry,
+  createMarkAiEntry,
   createModePickerSnapshot,
   DEFAULT_WEBPAGE,
   getRouteFromHash,
@@ -218,7 +218,7 @@ export default function App() {
         terminal: {
           ...current.terminal,
           showModePicker: false,
-          showMarkGpt: false,
+          showMarkAi: false,
         },
       }))
     },
@@ -239,7 +239,7 @@ export default function App() {
         terminal: {
           ...current.terminal,
           showModePicker: false,
-          showMarkGpt: false,
+          showMarkAi: false,
         },
       }))
     },
@@ -250,8 +250,8 @@ export default function App() {
     navigateTo((current) => createFreshTerminalEntry(current))
   }, [navigateTo])
 
-  const enterMarkGpt = useCallback(() => {
-    navigateTo((current) => createMarkGptEntry(current))
+  const enterMarkAi = useCallback(() => {
+    navigateTo((current) => createMarkAiEntry(current))
   }, [navigateTo])
 
   return (
@@ -276,7 +276,7 @@ export default function App() {
             onWebpageNavigate={navigateWebpage}
             onReturnToMainMenu={returnToMainMenu}
             onEnterTerminal={enterTerminalFresh}
-            onEnterMarkGpt={enterMarkGpt}
+            onEnterMarkAi={enterMarkAi}
           />
         </div>
       ) : (

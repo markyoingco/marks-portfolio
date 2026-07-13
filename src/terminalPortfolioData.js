@@ -1022,7 +1022,6 @@ function parseNestedPortfolioProjectCommand(lower, portfolioPath) {
 
 export const MARKAI_CD_TARGETS = new Set([
   'markai',
-  'markgpt',
   'ai',
   'mark-ai',
   'my-ai',

@@ -8,7 +8,7 @@ export const DEFAULT_WEBPAGE = {
 
 export const DEFAULT_TERMINAL = {
   showModePicker: true,
-  showMarkGpt: false,
+  showMarkAi: false,
   mode: 'terminal-portfolio',
   portfolioPath: [],
 }
@@ -50,7 +50,7 @@ export function createModePickerSnapshot(snapshot) {
     route: 'terminal',
     terminal: {
       showModePicker: true,
-      showMarkGpt: false,
+      showMarkAi: false,
       mode: 'terminal-portfolio',
       portfolioPath: [],
     },
@@ -66,7 +66,7 @@ export function createFreshWebpageEntry(snapshot) {
     terminal: {
       ...snapshot.terminal,
       showModePicker: false,
-      showMarkGpt: false,
+      showMarkAi: false,
     },
   }
 }
@@ -78,21 +78,21 @@ export function createFreshTerminalEntry(snapshot) {
     entryKey: (snapshot.entryKey ?? 0) + 1,
     terminal: {
       showModePicker: false,
-      showMarkGpt: false,
+      showMarkAi: false,
       mode: DEFAULT_TERMINAL.mode,
       portfolioPath: [],
     },
   }
 }
 
-export function createMarkGptEntry(snapshot) {
+export function createMarkAiEntry(snapshot) {
   return {
     ...cloneSnapshot(snapshot),
     route: 'terminal',
     entryKey: (snapshot.entryKey ?? 0) + 1,
     terminal: {
       showModePicker: false,
-      showMarkGpt: true,
+      showMarkAi: true,
       mode: DEFAULT_TERMINAL.mode,
       portfolioPath: [],
     },

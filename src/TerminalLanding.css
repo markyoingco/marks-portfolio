@@ -1300,7 +1300,7 @@
     word-break: break-word;
   }
 
-  .markgpt-card {
+  .markai-card {
     width: calc(100% - 24px);
     max-width: calc(100% - 24px);
     min-width: 0;
@@ -1351,7 +1351,7 @@
     justify-content: flex-end;
   }
 
-  .markgpt-card {
+  .markai-card {
     width: calc(100% - 16px);
     max-width: calc(100% - 16px);
   }
@@ -1562,6 +1562,10 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
+.mode-picker__mobile-note {
+  display: none;
+}
+
 .mode-picker__options {
   display: flex;
   flex-direction: column;
@@ -1664,7 +1668,7 @@
     line-height: 1.45;
   }
 
-  .mode-picker__option[data-option='markgpt'] {
+  .mode-picker__option[data-option='markai'] {
     order: 1;
   }
 
@@ -1708,7 +1712,28 @@
   .mode-picker__subtitle {
     font-size: 13px;
     line-height: 1.55;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
+  }
+
+  .mode-picker__mobile-note {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    margin: 0 0 12px;
+    padding: 8px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.035);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.55);
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .mode-picker__options {
@@ -1792,7 +1817,7 @@
   }
 }
 
-.markgpt-card {
+.markai-card {
   position: relative;
   z-index: 1;
   display: flex;
@@ -1808,7 +1833,7 @@
   box-shadow: 0 18px 56px rgba(0, 0, 0, 0.62);
 }
 
-.markgpt-card__titlebar {
+.markai-card__titlebar {
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -1819,7 +1844,7 @@
   background: var(--app-surface-titlebar);
 }
 
-.markgpt-card__label {
+.markai-card__label {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1833,7 +1858,7 @@
   color: rgba(130, 235, 175, 0.88);
 }
 
-.markgpt-card__body {
+.markai-card__body {
   flex: 1;
   min-height: 0;
   display: flex;
@@ -1842,7 +1867,7 @@
   padding: 22px 24px 16px;
 }
 
-.markgpt-card__subtitle {
+.markai-card__subtitle {
   flex-shrink: 0;
   margin: 0 0 18px;
   font-family: var(--sans);
@@ -1853,7 +1878,7 @@
   color: rgba(255, 255, 255, 0.52);
 }
 
-.markgpt-messages {
+.markai-messages {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -1864,16 +1889,16 @@
   scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
 }
 
-.markgpt-messages::-webkit-scrollbar {
+.markai-messages::-webkit-scrollbar {
   width: 6px;
 }
 
-.markgpt-messages::-webkit-scrollbar-thumb {
+.markai-messages::-webkit-scrollbar-thumb {
   border-radius: 3px;
   background: rgba(255, 255, 255, 0.22);
 }
 
-.markgpt-message {
+.markai-message {
   max-width: 92%;
   padding: 14px 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1881,7 +1906,7 @@
   background: rgba(255, 255, 255, 0.03);
 }
 
-.markgpt-message__lead {
+.markai-message__lead {
   margin: 0 0 8px;
   font-family: var(--sans);
   font-size: 14px;
@@ -1890,7 +1915,7 @@
   color: rgba(255, 255, 255, 0.94);
 }
 
-.markgpt-message__body {
+.markai-message__body {
   margin: 0;
   font-family: var(--sans);
   font-size: 13px;
@@ -1899,14 +1924,14 @@
   color: rgba(255, 255, 255, 0.76);
 }
 
-.markgpt-card__footer {
+.markai-card__footer {
   flex-shrink: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 14px 20px 18px;
   background: rgba(0, 0, 0, 0.4);
 }
 
-.markgpt-input-wrap {
+.markai-input-wrap {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1917,7 +1942,7 @@
   background: rgba(255, 255, 255, 0.02);
 }
 
-.markgpt-input {
+.markai-input {
   flex: 1;
   min-width: 0;
   min-height: 44px;
@@ -1933,11 +1958,11 @@
   cursor: not-allowed;
 }
 
-.markgpt-input::placeholder {
+.markai-input::placeholder {
   color: rgba(255, 255, 255, 0.38);
 }
 
-.markgpt-input__badge {
+.markai-input__badge {
   flex-shrink: 0;
   padding: 4px 8px;
   border: 1px solid rgba(130, 235, 175, 0.28);
@@ -1952,7 +1977,7 @@
 }
 
 @media (max-width: 900px) {
-  .markgpt-card {
+  .markai-card {
     width: calc(100% - 28px);
     max-width: calc(100% - 28px);
     min-width: 0;
@@ -1969,43 +1994,43 @@
     background: rgba(10, 10, 10, 0.96);
   }
 
-  .markgpt-card__titlebar {
+  .markai-card__titlebar {
     padding: 12px 16px;
   }
 
-  .markgpt-card__body {
+  .markai-card__body {
     padding: 18px 16px 14px;
   }
 
-  .markgpt-card__subtitle {
+  .markai-card__subtitle {
     font-size: 11px;
     margin-bottom: 14px;
   }
 
-  .markgpt-message {
+  .markai-message {
     max-width: 100%;
     padding: 12px 14px;
   }
 
-  .markgpt-message__lead {
+  .markai-message__lead {
     font-size: 13px;
   }
 
-  .markgpt-message__body {
+  .markai-message__body {
     font-size: 12px;
     line-height: 1.55;
   }
 
-  .markgpt-card__footer {
+  .markai-card__footer {
     padding: 12px 16px calc(env(safe-area-inset-bottom, 0px) + 14px);
   }
 
-  .markgpt-input-wrap {
+  .markai-input-wrap {
     min-width: 0;
     max-width: 100%;
   }
 
-  .markgpt-input {
+  .markai-input {
     flex: 1 1 auto;
     width: 1%;
     min-width: 1ch;

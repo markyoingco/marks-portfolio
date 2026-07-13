@@ -5,7 +5,7 @@ export const THEMES = {
   LIGHT: 'light',
 }
 
-/** First-time default — cinematic dark portfolio; not system preference. */
+/** First-time default - cinematic dark portfolio; not system preference. */
 export const DEFAULT_THEME = THEMES.DARK
 
 function isValidTheme(value) {

@@ -158,7 +158,7 @@
   }
 }
 
-/* Tablet / phone — align with global app chrome (back/menu/hamburger row) */
+/* Tablet / phone - align with global app chrome (back/menu/hamburger row) */
 @media (max-width: 900px) {
   .app-global-chrome .theme-toggle {
     top: auto;

@@ -20,7 +20,7 @@ export const PORTFOLIO_PLATFORM_CARDS = [
     title: 'Personal Portfolio Platform',
     category: 'Web, Terminal & AI Experience',
     description:
-      'Responsive portfolio platform featuring a cinematic webpage, interactive command-line terminal, shared project content, dark/light themes, and a contact backend, with a MarkGPT portfolio assistant currently in development.',
+      'Responsive portfolio platform featuring a cinematic webpage, interactive command-line terminal, shared project content, dark/light themes, and a contact backend, with a MarkAI portfolio assistant currently in development.',
     tech: ['React', 'Vite', 'JavaScript', 'CSS', 'PHP', 'MySQL', 'DreamHost'],
     image: '/images/portfolio/personal-website.png',
     imageFit: 'cover',
@@ -42,15 +42,15 @@ export const PORTFOLIO_PLATFORM_CARDS = [
     modeAction: { label: 'Open Terminal', mode: 'terminal' },
   },
   {
-    id: 'markgpt',
-    title: 'MarkGPT Portfolio Assistant',
-    category: 'AI Experience — Coming Soon',
+    id: 'markai',
+    title: 'MarkAI Portfolio Assistant',
+    category: 'AI Experience - Coming Soon',
     description:
       'Portfolio assistant currently in development, designed to answer questions about Mark’s resume, software projects, goals, experience, and technical background using the platform’s shared content.',
     status: 'Coming Soon',
     tech: ['React', 'Shared Data', 'Coming Soon'],
-    placeholderLines: ['MarkGPT', 'Coming Soon'],
-    modeAction: { label: 'View Coming Soon', mode: 'markgpt' },
+    placeholderLines: ['MarkAI', 'Coming Soon'],
+    modeAction: { label: 'View Coming Soon', mode: 'markai' },
   },
 ]
 
@@ -92,9 +92,9 @@ export function buildPortfolioSiteTxtCatOutput() {
     ),
     blankLine(),
     sectionLine('MODES'),
-    bulletLine('Webpage — complete'),
-    bulletLine('Terminal — complete'),
-    bulletLine('MarkGPT — currently in development'),
+    bulletLine('Webpage - complete'),
+    bulletLine('Terminal - complete'),
+    bulletLine('MarkAI - currently in development'),
     blankLine(),
     sectionLine('PLATFORM FEATURES'),
     bulletLine('Responsive desktop and mobile layouts'),
@@ -152,14 +152,14 @@ export function buildTerminalTxtCatOutput() {
 
 export function buildMarkaiTxtCatOutput() {
   return buildFileCatOutput('markai.txt', [
-    titleLine('MARKGPT PORTFOLIO ASSISTANT'),
+    titleLine('MARKAI PORTFOLIO ASSISTANT'),
     blankLine(),
     sectionLine('STATUS'),
     textLine('Coming Soon'),
     blankLine(),
     sectionLine('SUMMARY'),
     textLine(
-      'MarkGPT is a portfolio assistant currently in development. It is planned to answer questions about Mark’s resume, projects, experience, goals, and technical background using the platform’s shared content.',
+      'MarkAI is a portfolio assistant currently in development. It is planned to answer questions about Mark’s resume, projects, experience, goals, and technical background using the platform’s shared content.',
     ),
     blankLine(),
     sectionLine('PLANNED PURPOSE'),

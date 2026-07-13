@@ -27,7 +27,7 @@ import {
   TERMINAL_CATEGORY_SLUGS,
 } from './terminalPortfolioData'
 
-const LANDING_COMMANDS = ['ls', 'back', 'cd webpage', 'cd terminal', 'cd markgpt', 'cd main']
+const LANDING_COMMANDS = ['ls', 'back', 'cd webpage', 'cd terminal', 'cd markai', 'cd main']
 
 const ROOT_COMMANDS = ['ls', 'clear', 'back', 'help', '?']
 
@@ -35,7 +35,6 @@ const ROOT_CD_TARGETS = [
   ...TERMINAL_CATEGORY_SLUGS,
   'webpage',
   'markai',
-  'markgpt',
   'main',
   'terminal',
 ]

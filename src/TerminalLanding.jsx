@@ -73,11 +73,11 @@ const MODES = {
   TERMINAL_PORTFOLIO: 'terminal-portfolio',
 }
 
-const LANDING_LS_LINES = ['webpage', 'terminal', 'markgpt']
+const LANDING_LS_LINES = ['webpage', 'terminal', 'markai']
 
 const LANDING_COMMAND_OPTIONS = [
   'cd webpage',
-  'cd markgpt',
+  'cd markai',
   'cd terminal',
   'cd main',
   'ls',
@@ -141,7 +141,7 @@ function getContextHint(mode, portfolioPath, history, contactFormActive) {
 
   const lastEntry = history[history.length - 1]
   if (lastEntry?.input.trim().toLowerCase() === 'ls') {
-    return '# Use cd webpage, cd markgpt, or cd terminal.'
+    return '# Use cd webpage, cd markai, or cd terminal.'
   }
 
   return '# Click the ? button or type ? then press Enter for commands. Type ls to view portfolio folders.'
@@ -218,7 +218,7 @@ function parseCommand(rawInput, { mode, portfolioPath }) {
     }
 
     if (MARKAI_CD_TARGETS.has(target)) {
-      return { type: 'enterMarkGpt' }
+      return { type: 'enterMarkAi' }
     }
 
     if (target === '..') {
@@ -446,10 +446,10 @@ const MODE_PICKER_OPTIONS = [
       'Visual overview of my resume, projects, experience, photography, and contact information.',
   },
   {
-    id: 'markgpt',
-    title: 'MarkGPT',
+    id: 'markai',
+    title: 'MarkAI',
     description:
-      'Coming soon — guided exploration of my resume, projects, background, goals, and experience.',
+      'Coming soon - guided exploration of my resume, projects, background, goals, and experience.',
   },
   {
     id: 'terminal',
@@ -470,7 +470,7 @@ function TerminalLanding({
   onReturnToMainMenu,
 }) {
   const showModePicker = terminal.showModePicker
-  const showMarkGpt = terminal.showMarkGpt
+  const showMarkAi = terminal.showMarkAi
   const mode = terminal.mode
   const portfolioPath = terminal.portfolioPath
 
@@ -520,7 +520,7 @@ function TerminalLanding({
   }, [portfolioPath])
 
   useEffect(() => {
-    const nextStateKey = [showMarkGpt, mode].join('|')
+    const nextStateKey = [showMarkAi, mode].join('|')
 
     if (terminalStateRef.current !== nextStateKey) {
       terminalStateRef.current = nextStateKey
@@ -533,10 +533,10 @@ function TerminalLanding({
       mobileInputActivatedRef.current = false
       setInputFocused(false)
     }
-  }, [mode, showMarkGpt])
+  }, [mode, showMarkAi])
 
   useEffect(() => {
-    if (!isTerminalPortfolio || showModePicker || showMarkGpt) {
+    if (!isTerminalPortfolio || showModePicker || showMarkAi) {
       return
     }
 
@@ -552,7 +552,7 @@ function TerminalLanding({
         terminalCardRef.current?.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'instant' })
       })
     }
-  }, [isTerminalPortfolio, showModePicker, showMarkGpt, isMobileViewport, mode])
+  }, [isTerminalPortfolio, showModePicker, showMarkAi, isMobileViewport, mode])
 
   useEffect(() => {
     const container = terminalOutputRef.current
@@ -583,14 +583,14 @@ function TerminalLanding({
       return
     }
 
-    if (!showMarkGpt) {
+    if (!showMarkAi) {
       if (isMobileViewport && !mobileInputActivatedRef.current && !contactForm.active) {
         return
       }
 
       inputRef.current?.focus()
     }
-  }, [mode, portfolioPath, showMarkGpt, showModePicker, isMobileViewport, contactForm.active])
+  }, [mode, portfolioPath, showMarkAi, showModePicker, isMobileViewport, contactForm.active])
 
   useEffect(() => {
     if (contactForm.active) {
@@ -598,10 +598,10 @@ function TerminalLanding({
     }
   }, [contactForm.active, contactForm.step])
 
-  const enterMarkGpt = () => {
+  const enterMarkAi = () => {
     onTerminalNavigate({
       showModePicker: false,
-      showMarkGpt: true,
+      showMarkAi: true,
       mode: MODES.LANDING,
       portfolioPath: [],
     })
@@ -615,8 +615,8 @@ function TerminalLanding({
     onEnterTerminalFresh()
   }
 
-  const handlePickMarkGpt = () => {
-    enterMarkGpt()
+  const handlePickMarkAi = () => {
+    enterMarkAi()
   }
 
   const handleModePick = (optionId) => {
@@ -630,8 +630,8 @@ function TerminalLanding({
       return
     }
 
-    if (optionId === 'markgpt') {
-      handlePickMarkGpt()
+    if (optionId === 'markai') {
+      handlePickMarkAi()
     }
   }
 
@@ -723,7 +723,7 @@ function TerminalLanding({
   const enterTerminalPortfolio = () => {
     onTerminalNavigate({
       showModePicker: false,
-      showMarkGpt: false,
+      showMarkAi: false,
       mode: MODES.TERMINAL_PORTFOLIO,
       portfolioPath: [],
     })
@@ -769,7 +769,7 @@ function TerminalLanding({
     onTerminalNavigate(
       {
         showModePicker: false,
-        showMarkGpt: false,
+        showMarkAi: false,
         mode: MODES.LANDING,
         portfolioPath: [],
       },
@@ -977,7 +977,7 @@ function TerminalLanding({
 
       onTerminalNavigate({
         showModePicker: false,
-        showMarkGpt: false,
+        showMarkAi: false,
         mode: MODES.LANDING,
         portfolioPath: [],
       })
@@ -1000,8 +1000,8 @@ function TerminalLanding({
       return
     }
 
-    if (result.type === 'enterMarkGpt') {
-      enterMarkGpt()
+    if (result.type === 'enterMarkAi') {
+      enterMarkAi()
       return
     }
 
@@ -1060,7 +1060,7 @@ function TerminalLanding({
     }
 
     if (event.key === 'Tab') {
-      if (showModePicker || showMarkGpt) {
+      if (showModePicker || showMarkAi) {
         return
       }
 
@@ -1146,7 +1146,7 @@ function TerminalLanding({
     !inputFocused &&
     !contactForm.active &&
     !showModePicker &&
-    !showMarkGpt &&
+    !showMarkAi &&
     input === ''
 
   const handleTerminalInputFocus = () => {
@@ -1177,29 +1177,29 @@ function TerminalLanding({
     <div
       className="terminal-shell"
       onClick={() => {
-        if (!showModePicker && !showMarkGpt) {
+        if (!showModePicker && !showMarkAi) {
           focusTerminalInput()
         }
       }}
     >
-      {showMarkGpt ? (
-          <div className="markgpt-card">
-            <header className="markgpt-card__titlebar">
+      {showMarkAi ? (
+          <div className="markai-card">
+            <header className="markai-card__titlebar">
               <div className="terminal-card__dots" aria-hidden="true">
                 <span className="terminal-card__dot" />
                 <span className="terminal-card__dot" />
                 <span className="terminal-card__dot" />
               </div>
-              <span className="markgpt-card__label">MarkGPT</span>
+              <span className="markai-card__label">MarkAI</span>
             </header>
 
-            <div className="markgpt-card__body">
-              <p className="markgpt-card__subtitle">AI portfolio assistant coming soon.</p>
+            <div className="markai-card__body">
+              <p className="markai-card__subtitle">AI portfolio assistant coming soon.</p>
 
-              <div className="markgpt-messages" role="log" aria-live="polite">
-                <div className="markgpt-message">
-                  <p className="markgpt-message__lead">MarkGPT is coming soon.</p>
-                  <p className="markgpt-message__body">
+              <div className="markai-messages" role="log" aria-live="polite">
+                <div className="markai-message">
+                  <p className="markai-message__lead">MarkAI is coming soon.</p>
+                  <p className="markai-message__body">
                     This will become an AI chatbox that answers questions about Mark&apos;s
                     resume, projects, goals, dreams, motivations, hobbies, work, and personality.
                   </p>
@@ -1207,18 +1207,18 @@ function TerminalLanding({
               </div>
             </div>
 
-            <footer className="markgpt-card__footer">
-              <label className="markgpt-input-wrap" htmlFor="markgpt-input">
+            <footer className="markai-card__footer">
+              <label className="markai-input-wrap" htmlFor="markai-input">
                 <input
-                  id="markgpt-input"
-                  className="markgpt-input"
+                  id="markai-input"
+                  className="markai-input"
                   type="text"
-                  placeholder="Ask MarkGPT anything about Mark..."
+                  placeholder="Ask MarkAI anything about Mark..."
                   disabled
                   aria-disabled="true"
-                  aria-describedby="markgpt-input-status"
+                  aria-describedby="markai-input-status"
                 />
-                <span id="markgpt-input-status" className="markgpt-input__badge">
+                <span id="markai-input-status" className="markai-input__badge">
                   Coming soon
                 </span>
               </label>
@@ -1460,7 +1460,7 @@ function TerminalLanding({
         </footer>
         ) : null}
 
-      {showModePicker && !showMarkGpt ? (
+      {showModePicker && !showMarkAi ? (
         <div
           className="mode-picker-backdrop"
           role="dialog"
@@ -1487,6 +1487,11 @@ function TerminalLanding({
                 Choose the version of Mark Yoingco&apos;s portfolio you&apos;d like to view.
                 <br />
                 Each mode reveals a different side of the portfolio.
+              </p>
+
+              <p className="mode-picker__mobile-note">
+                Best viewed on desktop or a larger screen. Mobile is supported with
+                simplified layouts.
               </p>
 
               <div className="mode-picker__options">

@@ -4,6 +4,7 @@ export const TRAVEL_PLACES = [
   'Chicago',
   'California',
   'Lake Louise, Canada',
+  'Manila, Philippines',
   'London',
   'Amalfi Coast, Italy',
   'Rome, Italy',
