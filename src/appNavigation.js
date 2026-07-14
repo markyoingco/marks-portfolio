@@ -4,6 +4,7 @@ export const DEFAULT_WEBPAGE = {
   screen: 'home',
   aboutPanel: 0,
   portfolioCategory: 'Portfolio Platform',
+  testimonialSlug: null,
 }
 
 export const DEFAULT_TERMINAL = {

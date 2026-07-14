@@ -24,6 +24,7 @@ import {
   getTestimonialsRootUnknownCommandHint,
   TESTIMONIAL_LINKEDIN_FILE,
   TESTIMONIAL_TXT_FILE,
+  TESTIMONIAL_WEBPAGE_FILE,
   TESTIMONIALS_WEBPAGE_FILE,
 } from './testimonialsData'
 
@@ -720,7 +721,57 @@ export function parseTestimonialsRootCommand(lower) {
   if (lower === `open ${TESTIMONIALS_WEBPAGE_FILE}`) {
     return {
       type: 'openTestimonialsWebpage',
+      testimonialSlug: null,
       lines: ['Opening testimonials.webpage...'],
+    }
+  }
+
+  const nestedMatch = lower.match(/^(cat|open|download)\s+([a-z0-9-]+)\/(.+)$/)
+  if (nestedMatch) {
+    const [, action, personSlug, fileName] = nestedMatch
+    const item = getTestimonialByPersonSlug(personSlug)
+
+    if (!item) {
+      return {
+        type: 'output',
+        lines: [TESTIMONIALS_ROOT_UNKNOWN_COMMAND_HINT],
+      }
+    }
+
+    if (action === 'cat' && fileName === TESTIMONIAL_TXT_FILE) {
+      return {
+        type: 'output',
+        output: buildTestimonialTxtCatOutput(item),
+        scrollMode: TERMINAL_SCROLL_MODE.COMMAND,
+      }
+    }
+
+    if (action === 'open' && fileName === TESTIMONIAL_LINKEDIN_FILE) {
+      if (item.linkedin) {
+        return {
+          type: 'openUrl',
+          url: item.linkedin,
+          lines: [`Opening ${personSlug}/${TESTIMONIAL_LINKEDIN_FILE}...`],
+        }
+      }
+
+      return {
+        type: 'output',
+        lines: ['LinkedIn link not connected yet.'],
+      }
+    }
+
+    if (action === 'open' && fileName === TESTIMONIAL_WEBPAGE_FILE) {
+      return {
+        type: 'openTestimonialsWebpage',
+        testimonialSlug: personSlug,
+        lines: [`Opening ${personSlug}/${TESTIMONIAL_WEBPAGE_FILE}...`],
+      }
+    }
+
+    return {
+      type: 'output',
+      lines: [TESTIMONIALS_ROOT_UNKNOWN_COMMAND_HINT],
     }
   }
 
@@ -752,10 +803,11 @@ export function parseTestimonialPersonCommand(lower, personSlug) {
     }
   }
 
-  if (lower === `open ${TESTIMONIALS_WEBPAGE_FILE}`) {
+  if (lower === `open ${TESTIMONIAL_WEBPAGE_FILE}`) {
     return {
       type: 'openTestimonialsWebpage',
-      lines: ['Opening testimonials.webpage...'],
+      testimonialSlug: personSlug,
+      lines: [`Opening ${TESTIMONIAL_WEBPAGE_FILE}...`],
     }
   }
 
@@ -782,6 +834,58 @@ export function parseTestimonialPersonCommand(lower, personSlug) {
   }
 
   return null
+}
+
+export function parseTestimonialsDeepOpenCommand(lower) {
+  const match = lower.match(
+    /^open\s+testimonials\/([a-z0-9-]+)\/([a-z0-9._-]+)$/,
+  )
+
+  if (!match) {
+    return null
+  }
+
+  const [, personSlug, fileName] = match
+  const item = getTestimonialByPersonSlug(personSlug)
+
+  if (!item) {
+    return {
+      type: 'output',
+      lines: [
+        `open : Cannot find path 'testimonials/${personSlug}/${fileName}' because it does not exist.`,
+      ],
+    }
+  }
+
+  if (fileName === TESTIMONIAL_WEBPAGE_FILE) {
+    return {
+      type: 'openTestimonialsWebpage',
+      testimonialSlug: personSlug,
+      lines: [`Opening testimonials/${personSlug}/${TESTIMONIAL_WEBPAGE_FILE}...`],
+    }
+  }
+
+  if (fileName === TESTIMONIAL_LINKEDIN_FILE) {
+    if (item.linkedin) {
+      return {
+        type: 'openUrl',
+        url: item.linkedin,
+        lines: [`Opening testimonials/${personSlug}/${TESTIMONIAL_LINKEDIN_FILE}...`],
+      }
+    }
+
+    return {
+      type: 'output',
+      lines: ['LinkedIn link not connected yet.'],
+    }
+  }
+
+  return {
+    type: 'output',
+    lines: [
+      `open : Cannot find path 'testimonials/${personSlug}/${fileName}' because it does not exist.`,
+    ],
+  }
 }
 
 export function parseTravelFileCommand(lower) {

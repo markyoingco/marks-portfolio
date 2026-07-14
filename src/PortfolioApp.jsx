@@ -7,9 +7,12 @@ import {
   useEffect,
 } from 'react'
 import {
-  getPublishedTestimonials,
-  TESTIMONIALS_COMING_SOON_DETAIL,
-  TESTIMONIALS_COMING_SOON_LEAD,
+  getPublishedTestimonialIndexBySlug,
+  getTestimonialDisplayTitle,
+  getWebpageTestimonialSlides,
+  isClosingTestimonialSlide,
+  TESTIMONIALS_FOOTER_NOTE,
+  TESTIMONIALS_SUBTITLE,
   TESTIMONIALS_TITLE,
 } from './testimonialsData'
 import { BLOG_PHOTOS, BLOG_PHOTOS_BATCH } from './blogPhotosData'
@@ -81,10 +84,12 @@ function ThemeImageFrame({
   frameClassName,
   placeholderClassName,
   placeholderLabel = 'Image Coming Soon',
+  imagePosition = 'center center',
 }) {
   const [sharedFailed, setSharedFailed] = useState(false)
   const [darkFailed, setDarkFailed] = useState(false)
   const [lightFailed, setLightFailed] = useState(false)
+  const positionStyle = { objectPosition: imagePosition }
 
   if (src) {
     if (sharedFailed) {
@@ -104,6 +109,7 @@ function ThemeImageFrame({
           width={320}
           height={400}
           decoding="async"
+          style={positionStyle}
           onError={() => setSharedFailed(true)}
         />
       </div>
@@ -126,8 +132,9 @@ function ThemeImageFrame({
           src={srcDark}
           alt={alt}
           width={400}
-          height={250}
+          height={500}
           decoding="async"
+          style={positionStyle}
           onError={() => setDarkFailed(true)}
         />
       ) : null}
@@ -137,8 +144,9 @@ function ThemeImageFrame({
           src={srcLight}
           alt={alt}
           width={400}
-          height={250}
+          height={500}
           decoding="async"
+          style={positionStyle}
           onError={() => setLightFailed(true)}
         />
       ) : null}
@@ -237,14 +245,6 @@ const EXPERIENCE_JOBS = [
     date: 'May 2021 - Aug 2023',
     description:
       'Supported kitchen operations, food preparation, service quality, cleaning, restocking, and shift leadership. Trained new employees and helped guide team members during high-volume shifts.',
-  },
-  {
-    id: 'assembly-line',
-    title: 'Assembly Line',
-    org: "Portillo's - Gurnee, IL",
-    date: 'Oct 2020 - Apr 2021',
-    description:
-      'Supported kitchen operations, food preparation, drive-thru workflow, opening and closing tasks, and customer service in a fast-paced restaurant environment.',
   },
 ]
 
@@ -1391,12 +1391,13 @@ function PortfolioSection({ activeCategory, onCategoryChange, onModeAction }) {
   )
 }
 
-function TestimonialHeadshot({ srcDark, srcLight, alt = '' }) {
+function TestimonialHeadshot({ srcDark, srcLight, alt = '', imagePosition = 'center center' }) {
   return (
     <ThemeImageFrame
       srcDark={srcDark}
       srcLight={srcLight}
       alt={alt}
+      imagePosition={imagePosition}
       frameClassName="testimonial-headshot"
       placeholderClassName="testimonial-headshot testimonial-headshot--placeholder"
       placeholderLabel="Photo Coming Soon"
@@ -1404,61 +1405,266 @@ function TestimonialHeadshot({ srcDark, srcLight, alt = '' }) {
   )
 }
 
-function TestimonialsSection() {
-  const publishedTestimonials = getPublishedTestimonials()
-  const isComingSoon = publishedTestimonials.length === 0
+function TestimonialsSection({ initialTestimonialSlug = null }) {
+  const slides = getWebpageTestimonialSlides()
+  const count = slides.length
+  const [index, setIndex] = useState(() =>
+    getPublishedTestimonialIndexBySlug(initialTestimonialSlug),
+  )
+  const [slideDirection, setSlideDirection] = useState('next')
+  const [animPhase, setAnimPhase] = useState('idle')
+  const quoteRef = useRef(null)
+  const transitionTimersRef = useRef([])
+  const isTransitioning = animPhase !== 'idle'
+  const prefersReducedMotion = useCallback(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) {
+      return false
+    }
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  }, [])
+
+  const clearTransitionTimers = useCallback(() => {
+    transitionTimersRef.current.forEach((timerId) => window.clearTimeout(timerId))
+    transitionTimersRef.current = []
+  }, [])
+
+  const queueTimeout = useCallback((fn, delay) => {
+    const timerId = window.setTimeout(fn, delay)
+    transitionTimersRef.current.push(timerId)
+    return timerId
+  }, [])
+
+  useEffect(() => () => clearTransitionTimers(), [clearTransitionTimers])
+
+  useEffect(() => {
+    if (quoteRef.current) {
+      quoteRef.current.scrollTop = 0
+    }
+  }, [index])
+
+  const goToIndex = useCallback(
+    (nextIndex, direction) => {
+      if (count === 0 || isTransitioning) {
+        return
+      }
+
+      const normalized = ((nextIndex % count) + count) % count
+      if (normalized === index) {
+        return
+      }
+
+      if (prefersReducedMotion()) {
+        setIndex(normalized)
+        setAnimPhase('idle')
+        setSlideDirection(direction)
+        return
+      }
+
+      setSlideDirection(direction)
+      setAnimPhase('out')
+
+      queueTimeout(() => {
+        setIndex(normalized)
+        setAnimPhase('in')
+
+        queueTimeout(() => {
+          setAnimPhase('idle')
+        }, 340)
+      }, 160)
+    },
+    [count, index, isTransitioning, prefersReducedMotion, queueTimeout],
+  )
+
+  const goPrev = useCallback(() => {
+    goToIndex(index - 1, 'prev')
+  }, [goToIndex, index])
+
+  const goNext = useCallback(() => {
+    goToIndex(index + 1, 'next')
+  }, [goToIndex, index])
+
+  useEffect(() => {
+    if (count === 0) return undefined
+
+    const onKeyDown = (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault()
+        goPrev()
+      }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault()
+        goNext()
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [count, goNext, goPrev])
+
+  const safeIndex = count === 0 ? 0 : ((index % count) + count) % count
+  const item = count > 0 ? slides[safeIndex] : null
+  const isClosing = isClosingTestimonialSlide(item)
+
+  if (!item) {
+    return (
+      <div className="testimonials">
+        <div className="testimonials__inner">
+          <header className="testimonials__header">
+            <h1 className="testimonials__title">{TESTIMONIALS_TITLE}</h1>
+            <p className="testimonials__subtitle">{TESTIMONIALS_SUBTITLE}</p>
+          </header>
+        </div>
+      </div>
+    )
+  }
+
+  const quoteParagraphs = !isClosing
+    ? String(item.quote)
+        .split(/\n\s*\n/)
+        .map((part) => part.trim())
+        .filter(Boolean)
+    : []
+
+  let featureAnimClass = isClosing
+    ? 'testimonial-feature testimonial-feature--closing'
+    : 'testimonial-feature'
+  if (animPhase === 'out') {
+    featureAnimClass +=
+      slideDirection === 'next'
+        ? ' testimonial-feature--out-left'
+        : ' testimonial-feature--out-right'
+  } else if (animPhase === 'in') {
+    featureAnimClass +=
+      slideDirection === 'next'
+        ? ' testimonial-feature--in-right'
+        : ' testimonial-feature--in-left'
+  }
 
   return (
-    <div className={`testimonials${isComingSoon ? ' testimonials--coming-soon' : ''}`}>
+    <div className="testimonials">
       <div className="testimonials__inner">
-        <header
-          className={`testimonials__header${
-            isComingSoon ? ' testimonials__header--coming-soon' : ''
-          }`}
-        >
+        <header className="testimonials__header">
           <h1 className="testimonials__title">{TESTIMONIALS_TITLE}</h1>
-          {isComingSoon ? (
-            <>
-              <p className="testimonials__coming-soon-lead">{TESTIMONIALS_COMING_SOON_LEAD}</p>
-              <p className="testimonials__coming-soon-detail">{TESTIMONIALS_COMING_SOON_DETAIL}</p>
-            </>
-          ) : null}
+          <p className="testimonials__subtitle">{TESTIMONIALS_SUBTITLE}</p>
         </header>
 
-        {publishedTestimonials.map((item) => (
-          <div key={item.name} className="testimonials__block">
-            <div className="testimonials__rule" aria-hidden="true" />
-            <article className="testimonial-feature">
-              <div className="testimonial-feature__media">
-                <TestimonialHeadshot
-                  srcDark={item.imageDark}
-                  srcLight={item.imageLight}
-                  alt={item.name}
-                />
+        <div className="testimonials__stage">
+          <div className="testimonials__block">
+            <div className="testimonials__card">
+              <div className="testimonials__viewport">
+                <article className={featureAnimClass} aria-live="polite">
+                  {isClosing ? (
+                    <div className="testimonial-closing">
+                      <h2 className="testimonial-closing__title">{item.title}</h2>
+                      <p className="testimonial-closing__message">{item.message}</p>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="testimonial-feature__media">
+                        <TestimonialHeadshot
+                          srcDark={item.imageDark}
+                          srcLight={item.imageLight}
+                          alt={item.imageAlt || `Portrait of ${item.name}`}
+                          imagePosition={item.imagePosition || 'center center'}
+                        />
+                      </div>
+                      <div className="testimonial-feature__content">
+                        <blockquote className="testimonial-feature__quote" ref={quoteRef}>
+                          {quoteParagraphs.map((paragraph, paragraphIndex) => (
+                            <p
+                              key={`${item.id}-quote-${paragraphIndex}`}
+                              className={
+                                paragraphIndex < quoteParagraphs.length - 1
+                                  ? 'testimonial-feature__quote-p'
+                                  : undefined
+                              }
+                            >
+                              {paragraphIndex === 0 ? <>&ldquo;{paragraph}</> : paragraph}
+                              {paragraphIndex === quoteParagraphs.length - 1 ? (
+                                <>&rdquo;</>
+                              ) : null}
+                            </p>
+                          ))}
+                        </blockquote>
+                        <div className="testimonial-feature__meta">
+                          {item.linkedin ? (
+                            <a
+                              href={item.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`Open ${item.name}'s LinkedIn profile`}
+                              className="testimonial-feature__name testimonial-name-link"
+                            >
+                              {item.name}
+                            </a>
+                          ) : (
+                            <p className="testimonial-feature__name">{item.name}</p>
+                          )}
+                          <p className="testimonial-feature__role">
+                            {getTestimonialDisplayTitle(item)}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </article>
               </div>
-              <div className="testimonial-feature__content">
-                <blockquote className="testimonial-feature__quote">
-                  &ldquo;{item.quote}&rdquo;
-                </blockquote>
-                {item.linkedin ? (
-                  <a
-                    href={item.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${item.name} LinkedIn`}
-                    className="testimonial-feature__name testimonial-name-link"
-                  >
-                    {item.name}
-                  </a>
-                ) : (
-                  <p className="testimonial-feature__name">{item.name}</p>
-                )}
-                <p className="testimonial-feature__role">{item.role}</p>
-              </div>
-            </article>
-            <div className="testimonials__rule" aria-hidden="true" />
+            </div>
           </div>
-        ))}
+
+          <div className="testimonials__ui">
+            <button
+              type="button"
+              className="testimonials__arrow"
+              onClick={goPrev}
+              aria-label="Previous testimonial"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <polyline points="15 6 9 12 15 18" />
+              </svg>
+            </button>
+
+            <div className="testimonials__dots" role="tablist" aria-label="Testimonials">
+              {slides.map((entry, entryIndex) => (
+                <button
+                  key={entry.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={entryIndex === safeIndex}
+                  className={
+                    entryIndex === safeIndex
+                      ? 'testimonials__dot is-active'
+                      : 'testimonials__dot'
+                  }
+                  onClick={() =>
+                    goToIndex(
+                      entryIndex,
+                      entryIndex > safeIndex ? 'next' : 'prev',
+                    )
+                  }
+                  aria-label={
+                    isClosingTestimonialSlide(entry)
+                      ? 'Show more perspectives closing slide'
+                      : `Show testimonial from ${entry.name}`
+                  }
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className="testimonials__arrow"
+              onClick={goNext}
+              aria-label="Next testimonial"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <polyline points="9 6 15 12 9 18" />
+              </svg>
+            </button>
+          </div>
+
+          <p className="testimonials__footer-note">{TESTIMONIALS_FOOTER_NOTE}</p>
+        </div>
       </div>
     </div>
   )
@@ -1709,7 +1915,7 @@ function PortfolioApp({
   onEnterTerminal,
   onEnterMarkAi,
 }) {
-  const { screen: activeScreen, aboutPanel, portfolioCategory } = webpage
+  const { screen: activeScreen, aboutPanel, portfolioCategory, testimonialSlug } = webpage
   const [menuOpen, setMenuOpen] = useState(false)
 
   const nextAboutPanel = () => {
@@ -1725,7 +1931,7 @@ function PortfolioApp({
   }
 
   const goToScreen = (screen) => {
-    onWebpageNavigate({ screen })
+    onWebpageNavigate({ screen, testimonialSlug: null })
     setMenuOpen(false)
   }
 
@@ -1915,7 +2121,9 @@ function PortfolioApp({
 
         {activeScreen === 'contact' && <ContactSection />}
 
-        {activeScreen === 'testimonials' && <TestimonialsSection />}
+        {activeScreen === 'testimonials' && (
+          <TestimonialsSection initialTestimonialSlug={testimonialSlug} />
+        )}
 
         {activeScreen === 'travel' && <BlogSection />}
 

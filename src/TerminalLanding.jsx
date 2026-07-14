@@ -35,6 +35,7 @@ import {
   parseResumeFileCommand,
   parseTestimonialsRootCommand,
   parseTestimonialPersonCommand,
+  parseTestimonialsDeepOpenCommand,
   parseTravelFileCommand,
   CONTACT_UNKNOWN_COMMAND_HINT,
   PERSONAL_UNKNOWN_COMMAND_HINT,
@@ -339,6 +340,13 @@ function parseCommand(rawInput, { mode, portfolioPath }) {
     return {
       type: 'output',
       lines: [`cd : Cannot find path '${input.slice(3).trim()}' because it does not exist.`],
+    }
+  }
+
+  if (mode === MODES.TERMINAL_PORTFOLIO && portfolioPath.length === 0) {
+    const deepTestimonialsResult = parseTestimonialsDeepOpenCommand(lower)
+    if (deepTestimonialsResult) {
+      return deepTestimonialsResult
     }
   }
 
@@ -941,7 +949,9 @@ function TerminalLanding({
 
     if (result.type === 'openTestimonialsWebpage') {
       appendEntry(trimmed, result.lines ?? [], currentPrompt)
-      onEnterWebpageScreen('testimonials')
+      onEnterWebpageScreen('testimonials', {
+        testimonialSlug: result.testimonialSlug ?? null,
+      })
       return
     }
 

@@ -1,20 +1,66 @@
 export const TESTIMONIALS_TITLE = 'Testimonials'
 
-export const TESTIMONIALS_COMING_SOON_LEAD = 'More perspectives are on the way.'
+export const TESTIMONIALS_SUBTITLE =
+  'Testimonials from people I have worked with, learned from, and built alongside.'
 
-export const TESTIMONIALS_COMING_SOON_DETAIL =
-  'Testimonials from people I have worked with, learned from, and built alongside will be added here soon.'
+export const TESTIMONIALS_FOOTER_NOTE = 'More perspectives are on the way.'
+
+export const MORE_PERSPECTIVES_SLIDE = {
+  id: 'more-perspectives',
+  type: 'closing',
+  title: 'More Perspectives Are on the Way',
+  message:
+    'Additional testimonials from people I have worked with, learned from, and built alongside will be added as the work continues.',
+}
 
 export const TESTIMONIALS = [
   {
-    published: false,
-    imageDark: '/images/testimonials/testimonial-1.jpg',
-    imageLight: '/images/testimonials/testimonial-1color.jpg',
+    id: 'nathan-garcia',
+    published: true,
+    name: 'Nathan Garcia',
+    role: 'IT Supply Chain Intern',
+    organization: 'Zebra Technologies',
+    displayTitle: 'IT Supply Chain Intern @ Zebra Technologies',
+    relationship: 'Longtime friend and former Panda Express coworker',
+    quote:
+      'I have known Mark Yoingco for about eight years after meeting him through high school and mutual friends. What has kept us close is our similar outlook on life, especially our shared belief in hard work, setting goals, and constantly working toward success. Mark is one of the most determined, focused, and loyal people I know. No matter the situation or circumstances, he is always willing to help, and his loyalty is the quality I admire most about him.\n\nMark has also shown me firsthand that hard work pays off. Throughout the years, he has competed in basketball, track, powerlifting, and bodybuilding, and he has approached each sport with the same discipline and commitment. As someone who is currently pursuing bodybuilding, he continues to push me through his advice, encouragement, and willingness to lend a helping hand. His ability to put his head down, stay focused, and grind toward his goals is what separates him from many others.\n\nProfessionally, Mark has developed a diverse skill set through his computer science projects and classwork. Since I work in IT, I understand the effort required in the technology field and have a great deal of respect for his work, just as he respects mine. I also worked with Mark at Panda Express in high school, where I saw his leadership skills, professionalism, and eagerness to learn and grow in his role. I have recommended him to former managers because I trust his work ethic and know the type of person he is. Mark would be a valuable addition to any team because he is dependable, hardworking, and always committed to improving.',
+    linkedin: 'https://www.linkedin.com/in/nathanmgarcia5758/',
+    imageDark: '/images/testimonials/NateBW.jpg',
+    imageLight: '/images/testimonials/Natecolor.jpg',
+    imageAlt: 'Portrait of Nathan Garcia',
+    imagePosition: 'center center',
+  },
+  {
+    id: 'jarenz-masiclat',
+    published: true,
+    name: 'Jarenz Masiclat',
+    role: 'Investment Associate',
+    organization: 'Northern Trust',
+    displayTitle: 'Investment Associate @ Northern Trust',
+    relationship:
+      'Longtime friend, fraternity mentor, and Filipino Student Organization mentor',
+    quote:
+      'I have known Mark Yoingco since he was a freshman in college while I was a sophomore, and over the years we have built a close friendship. Mark is my fraternity little as well as my Filipino Student Organization little, and watching him grow into the person he is today has been something I have genuinely admired. From the beginning, what stood out most about Mark was his drive to continuously improve himself. Whether it was in the classroom, the gym, or through his relationships with others, he has always approached every challenge with discipline, humility, and a strong work ethic.\n\nPersonally, Mark has pushed me to become a better version of myself through lifting, his friendship, and the example he sets every day. His dedication to fitness is inspiring, but what impresses me even more is how that same level of commitment carries over into his academics, personal hobbies, leadership, and the way he invests in the people around him. He is someone who consistently follows through on his goals and encourages others to do the same.\n\nOne of Mark\'s greatest strengths is his personality. His presence is felt in every room he enters, and his charisma has a unique ability to bring people together and positively influence those around him. He is approachable, genuine, and naturally builds meaningful relationships. At the same time, he possesses analytical and critical thinking skills that are well beyond his years. Whether we are discussing complex topics or collaborating on projects, I have always been impressed by his ability to think through problems thoughtfully and arrive at practical, well-reasoned solutions.\n\nAs an Investment Associate at Northern Trust, I work in an environment where analytical thinking, professionalism, accountability, and continuous learning are essential. These are many of the same qualities I see in Mark. He approaches challenges with curiosity, remains composed under pressure, and is always looking for opportunities to grow both personally and professionally. His willingness to accept feedback and constantly improve makes him someone who will continue to develop into an exceptional leader.\n\nAbove all, Mark is someone I trust completely. He is dependable, hardworking, and genuinely cares about the success of the people around him. His integrity, leadership potential, and relentless work ethic make him an outstanding individual and someone I have no doubt will make a meaningful impact wherever his career takes him. I am confident that any organization would be fortunate to have Mark as part of its team.',
+    linkedin: 'https://www.linkedin.com/in/jarenz-masiclat10',
+    imageDark: '/images/testimonials/JarenzBW.jpg',
+    imageLight: '/images/testimonials/Jarenzcolor.png',
+    imageAlt: 'Portrait of Jarenz Masiclat',
+    imagePosition: 'center center',
+  },
+  {
+    id: 'maxwell-zeisler',
+    published: true,
+    name: 'Maxwell Zeisler',
+    role: 'Audit Intern',
+    organization: 'Advisent, LLC',
+    displayTitle: 'Audit Intern @ Advisent, LLC',
     quote:
       "Mark is one of my best friends who I've known since our days of middle school basketball. He boasts a plethora of outstanding qualities that have stood out since our first practice together. He is one of the most dedicated and reliable individuals I know, applying no less than his absolute best to any team he is apart of. His perseverance and professionalism through school, life challenges, and the workplace proceeds his reputation as a respectful, hard working, and disciplined person with extensive work and projects to show for it. He's truly a valuable asset to have as a part of any team, and an even better friend.",
-    name: 'Maxwell Zeisler',
-    role: 'Accounting Student and Audit Intern @ Advisent',
-    linkedin: 'https://www.linkedin.com/in/maxwell-zeisler123',
+    linkedin: 'https://www.linkedin.com/in/maxwell-zeisler123/',
+    imageDark: '/images/testimonials/testimonial-1.jpg',
+    imageLight: '/images/testimonials/testimonial-1color.jpg',
+    imageAlt: 'Portrait of Maxwell Zeisler',
+    imagePosition: 'center center',
   },
 ]
 
@@ -22,16 +68,59 @@ export function getPublishedTestimonials() {
   return TESTIMONIALS.filter((item) => item.published === true)
 }
 
+export function getWebpageTestimonialSlides() {
+  return [
+    ...getPublishedTestimonials().map((item) => ({
+      ...item,
+      type: 'person',
+    })),
+    MORE_PERSPECTIVES_SLIDE,
+  ]
+}
+
+export function isClosingTestimonialSlide(slide) {
+  return slide?.type === 'closing'
+}
+
 export const TESTIMONIALS_WEBPAGE_FILE = 'testimonials.webpage'
+export const TESTIMONIAL_WEBPAGE_FILE = 'testimonial.webpage'
 export const TESTIMONIAL_TXT_FILE = 'testimonial.txt'
 export const TESTIMONIAL_LINKEDIN_FILE = 'linkedin.link'
 
-export function getTestimonialPersonSlug(name) {
-  if (!name || typeof name !== 'string') {
+export function getPublishedTestimonialIndexBySlug(slug) {
+  if (!slug) {
+    return 0
+  }
+
+  const published = getPublishedTestimonials()
+  const index = published.findIndex(
+    (item) => getTestimonialPersonSlug(item) === slug,
+  )
+
+  return index >= 0 ? index : 0
+}
+
+export function buildTestimonialsWebpageDestination(testimonialSlug = null) {
+  return {
+    mode: 'webpage',
+    section: 'testimonials',
+    testimonialSlug: testimonialSlug || null,
+  }
+}
+
+export function getTestimonialPersonSlug(itemOrName) {
+  if (itemOrName && typeof itemOrName === 'object') {
+    if (itemOrName.id) {
+      return itemOrName.id
+    }
+    return getTestimonialPersonSlug(itemOrName.name)
+  }
+
+  if (!itemOrName || typeof itemOrName !== 'string') {
     return ''
   }
 
-  return name
+  return itemOrName
     .trim()
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
@@ -39,13 +128,13 @@ export function getTestimonialPersonSlug(name) {
 }
 
 export function getTestimonialPersonSlugs() {
-  return TESTIMONIALS.filter((item) => item?.name).map((item) =>
-    getTestimonialPersonSlug(item.name),
-  )
+  return getPublishedTestimonials().map((item) => getTestimonialPersonSlug(item))
 }
 
 export function getTestimonialByPersonSlug(slug) {
-  return TESTIMONIALS.find((item) => getTestimonialPersonSlug(item.name) === slug) ?? null
+  return (
+    TESTIMONIALS.find((item) => getTestimonialPersonSlug(item) === slug) ?? null
+  )
 }
 
 export function getTestimonialsRootLsLines() {
@@ -63,7 +152,21 @@ export function getTestimonialPersonFolderFiles(item) {
     files.push(TESTIMONIAL_LINKEDIN_FILE)
   }
 
+  files.push(TESTIMONIAL_WEBPAGE_FILE)
+
   return files
+}
+
+export function getTestimonialPersonOpenWebpageTargets() {
+  return getTestimonialPersonSlugs().map(
+    (slug) => `${slug}/${TESTIMONIAL_WEBPAGE_FILE}`,
+  )
+}
+
+export function getTestimonialDeepOpenWebpageTargets() {
+  return getTestimonialPersonSlugs().map(
+    (slug) => `testimonials/${slug}/${TESTIMONIAL_WEBPAGE_FILE}`,
+  )
 }
 
 export function getTestimonialsRootUnknownCommandHint() {
@@ -76,7 +179,7 @@ export function getTestimonialsRootUnknownCommandHint() {
 
 export function getTestimonialPersonUnknownCommandHint(personSlug) {
   const item = getTestimonialByPersonSlug(personSlug)
-  const openExamples = [`open ${TESTIMONIALS_WEBPAGE_FILE}`]
+  const openExamples = [`open ${TESTIMONIAL_WEBPAGE_FILE}`]
 
   if (item?.linkedin) {
     openExamples.unshift(`open ${TESTIMONIAL_LINKEDIN_FILE}`)
@@ -117,8 +220,8 @@ export function getTestimonialPersonHelpCommands(personSlug) {
   }
 
   commands.push({
-    command: `open ${TESTIMONIALS_WEBPAGE_FILE}`,
-    description: 'open testimonials page',
+    command: `open ${TESTIMONIAL_WEBPAGE_FILE}`,
+    description: 'open this testimonial on the webpage',
   })
   commands.push({ command: 'cd ..' })
   commands.push({ command: 'clear' })
@@ -128,4 +231,20 @@ export function getTestimonialPersonHelpCommands(personSlug) {
 
 export function getTestimonialPersonEnterLines(slug) {
   return [`Opening ${slug}...`, 'Type ls to view testimonial files.']
+}
+
+export function getTestimonialDisplayTitle(item) {
+  if (!item) {
+    return ''
+  }
+
+  if (item.displayTitle) {
+    return item.displayTitle
+  }
+
+  if (item.organization) {
+    return `${item.role} @ ${item.organization}`
+  }
+
+  return item.role ?? ''
 }

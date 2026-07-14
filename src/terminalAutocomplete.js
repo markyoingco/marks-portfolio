@@ -6,7 +6,9 @@ import {
 } from './terminalPortfolioProjectData'
 import {
   getTestimonialByPersonSlug,
+  getTestimonialDeepOpenWebpageTargets,
   getTestimonialPersonFolderFiles,
+  getTestimonialPersonOpenWebpageTargets,
   getTestimonialPersonSlugs,
   TESTIMONIALS_WEBPAGE_FILE,
 } from './testimonialsData'
@@ -91,7 +93,7 @@ export function getTerminalAutocompleteCandidates({
       commands: ROOT_COMMANDS,
       cdTargets: ROOT_CD_TARGETS,
       catTargets: [],
-      openTargets: [],
+      openTargets: getTestimonialDeepOpenWebpageTargets(),
       downloadTargets: [],
     }
   }
@@ -123,16 +125,12 @@ export function getTerminalAutocompleteCandidates({
   if (isTestimonialPersonFolder(portfolioPath)) {
     const item = getTestimonialByPersonSlug(portfolioPath[1])
     const files = item ? getTestimonialPersonFolderFiles(item) : []
-    const { catTargets, openTargets, downloadTargets } = filesToActionTargets(files)
-    const openTargetsWithWebpage = [...new Set([...openTargets, TESTIMONIALS_WEBPAGE_FILE])]
 
     return {
       commands: FOLDER_COMMANDS,
       cdTargets: ['..'],
-      catTargets,
-      openTargets: openTargetsWithWebpage,
-      downloadTargets,
-      singleCatTargetFallback: catTargets.length === 1,
+      ...filesToActionTargets(files),
+      singleCatTargetFallback: files.filter((file) => file.endsWith('.txt')).length === 1,
     }
   }
 
@@ -141,7 +139,7 @@ export function getTerminalAutocompleteCandidates({
       commands: FOLDER_COMMANDS,
       cdTargets: ['..', ...getTestimonialPersonSlugs()],
       catTargets: [],
-      openTargets: [TESTIMONIALS_WEBPAGE_FILE],
+      openTargets: [TESTIMONIALS_WEBPAGE_FILE, ...getTestimonialPersonOpenWebpageTargets()],
       downloadTargets: [],
     }
   }

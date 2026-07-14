@@ -211,8 +211,8 @@ export default function App() {
         route: 'webpage',
         entryKey: (current.entryKey ?? 0) + 1,
         webpage: {
+          ...DEFAULT_WEBPAGE,
           screen: 'portfolio',
-          aboutPanel: 0,
           portfolioCategory,
         },
         terminal: {
@@ -226,15 +226,15 @@ export default function App() {
   )
 
   const enterWebpageScreen = useCallback(
-    (screen) => {
+    (screen, webpageExtras = {}) => {
       navigateTo((current) => ({
         ...cloneSnapshot(current),
         route: 'webpage',
         entryKey: (current.entryKey ?? 0) + 1,
         webpage: {
+          ...DEFAULT_WEBPAGE,
           screen,
-          aboutPanel: 0,
-          portfolioCategory: DEFAULT_WEBPAGE.portfolioCategory,
+          ...webpageExtras,
         },
         terminal: {
           ...current.terminal,
