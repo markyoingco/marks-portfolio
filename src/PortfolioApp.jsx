@@ -10,6 +10,7 @@ import {
   getPublishedTestimonialIndexBySlug,
   getTestimonialDisplayTitle,
   getWebpageTestimonialSlides,
+  hasTestimonialPortrait,
   isClosingTestimonialSlide,
   TESTIMONIALS_FOOTER_NOTE,
   TESTIMONIALS_SUBTITLE,
@@ -85,19 +86,23 @@ function ThemeImageFrame({
   placeholderClassName,
   placeholderLabel = 'Image Coming Soon',
   imagePosition = 'center center',
+  width = 400,
+  height = 500,
+  loading = 'eager',
 }) {
   const [sharedFailed, setSharedFailed] = useState(false)
   const [darkFailed, setDarkFailed] = useState(false)
   const [lightFailed, setLightFailed] = useState(false)
   const positionStyle = { objectPosition: imagePosition }
+  const placeholder = (
+    <div className={placeholderClassName ?? `${frameClassName} ${frameClassName}--placeholder`}>
+      <span className="about-image-frame__label">{placeholderLabel}</span>
+    </div>
+  )
 
   if (src) {
     if (sharedFailed) {
-      return (
-        <div className={placeholderClassName ?? `${frameClassName} ${frameClassName}--placeholder`}>
-          <span className="about-image-frame__label">{placeholderLabel}</span>
-        </div>
-      )
+      return placeholder
     }
 
     return (
@@ -106,8 +111,9 @@ function ThemeImageFrame({
           className="theme-image theme-image--shared"
           src={src}
           alt={alt}
-          width={320}
-          height={400}
+          width={width}
+          height={height}
+          loading={loading}
           decoding="async"
           style={positionStyle}
           onError={() => setSharedFailed(true)}
@@ -116,35 +122,37 @@ function ThemeImageFrame({
     )
   }
 
+  if (!srcDark && !srcLight) {
+    return placeholder
+  }
+
   if (darkFailed && lightFailed) {
-    return (
-      <div className={placeholderClassName ?? `${frameClassName} ${frameClassName}--placeholder`}>
-        <span className="about-image-frame__label">{placeholderLabel}</span>
-      </div>
-    )
+    return placeholder
   }
 
   return (
     <div className={frameClassName}>
-      {!darkFailed ? (
+      {!darkFailed && srcDark ? (
         <img
           className="theme-image theme-image--dark"
           src={srcDark}
           alt={alt}
-          width={400}
-          height={500}
+          width={width}
+          height={height}
+          loading={loading}
           decoding="async"
           style={positionStyle}
           onError={() => setDarkFailed(true)}
         />
       ) : null}
-      {!lightFailed ? (
+      {!lightFailed && srcLight ? (
         <img
           className="theme-image theme-image--light"
           src={srcLight}
           alt={alt}
-          width={400}
-          height={500}
+          width={width}
+          height={height}
+          loading={loading}
           decoding="async"
           style={positionStyle}
           onError={() => setLightFailed(true)}
@@ -379,7 +387,14 @@ function AboutPlaceholderCard({ title, hint }) {
   )
 }
 
-function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
+function AboutSection({
+  panel,
+  onNext,
+  onPrev,
+  onGoTo,
+  onGoToTravel,
+  onEnterTerminalPersonal,
+}) {
   const viewportRef = useRef(null)
   const slideTimerRef = useRef(null)
   const scrollResetTimerRef = useRef(null)
@@ -656,6 +671,18 @@ function AboutSection({ panel, onNext, onPrev, onGoTo, onGoToTravel }) {
                         <p className="about__closing">
                           You can see more of my travel and lifestyle photography
                           in Travel.
+                        </p>
+                        <p className="about__closing">
+                          You can also explore my mindset and goals through{' '}
+                          <button
+                            type="button"
+                            className="about__inline-link"
+                            onClick={() => onEnterTerminalPersonal?.()}
+                            aria-label="Open Terminal to explore Personal Archive"
+                          >
+                            Personal Archive in Terminal
+                          </button>
+                          .
                         </p>
                       </div>
                     </div>
@@ -1401,6 +1428,9 @@ function TestimonialHeadshot({ srcDark, srcLight, alt = '', imagePosition = 'cen
       frameClassName="testimonial-headshot"
       placeholderClassName="testimonial-headshot testimonial-headshot--placeholder"
       placeholderLabel="Photo Coming Soon"
+      width={848}
+      height={1060}
+      loading="eager"
     />
   )
 }
@@ -1504,6 +1534,7 @@ function TestimonialsSection({ initialTestimonialSlug = null }) {
   const safeIndex = count === 0 ? 0 : ((index % count) + count) % count
   const item = count > 0 ? slides[safeIndex] : null
   const isClosing = isClosingTestimonialSlide(item)
+  const hasPortrait = hasTestimonialPortrait(item)
 
   if (!item) {
     return (
@@ -1527,7 +1558,9 @@ function TestimonialsSection({ initialTestimonialSlug = null }) {
 
   let featureAnimClass = isClosing
     ? 'testimonial-feature testimonial-feature--closing'
-    : 'testimonial-feature'
+    : hasPortrait
+      ? 'testimonial-feature'
+      : 'testimonial-feature testimonial-feature--without-portrait'
   if (animPhase === 'out') {
     featureAnimClass +=
       slideDirection === 'next'
@@ -1560,14 +1593,16 @@ function TestimonialsSection({ initialTestimonialSlug = null }) {
                     </div>
                   ) : (
                     <>
-                      <div className="testimonial-feature__media">
-                        <TestimonialHeadshot
-                          srcDark={item.imageDark}
-                          srcLight={item.imageLight}
-                          alt={item.imageAlt || `Portrait of ${item.name}`}
-                          imagePosition={item.imagePosition || 'center center'}
-                        />
-                      </div>
+                      {hasPortrait ? (
+                        <div className="testimonial-feature__media">
+                          <TestimonialHeadshot
+                            srcDark={item.imageDark}
+                            srcLight={item.imageLight}
+                            alt={item.imageAlt || `Portrait of ${item.name}`}
+                            imagePosition={item.imagePosition || 'center center'}
+                          />
+                        </div>
+                      ) : null}
                       <div className="testimonial-feature__content">
                         <blockquote className="testimonial-feature__quote" ref={quoteRef}>
                           {quoteParagraphs.map((paragraph, paragraphIndex) => (
@@ -1913,6 +1948,7 @@ function PortfolioApp({
   onWebpageNavigate,
   onReturnToMainMenu,
   onEnterTerminal,
+  onEnterTerminalPersonal,
   onEnterMarkAi,
 }) {
   const { screen: activeScreen, aboutPanel, portfolioCategory, testimonialSlug } = webpage
@@ -2106,6 +2142,7 @@ function PortfolioApp({
             onPrev={prevAboutPanel}
             onGoTo={goToAboutPanel}
             onGoToTravel={() => goToScreen('travel')}
+            onEnterTerminalPersonal={onEnterTerminalPersonal}
           />
         )}
 

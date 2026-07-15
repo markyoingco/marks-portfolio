@@ -308,6 +308,18 @@ export function getTerminalEnterFolderLines(slug) {
   return getTerminalCategoryPlaceholderLines(slug)
 }
 
+/** Resolve a root-level `cd [slug]` the same way the Terminal parser does. */
+export function resolveRootFolderEnter(slug) {
+  if (!isTerminalFolderSlug(slug)) {
+    return null
+  }
+
+  return {
+    path: [slug],
+    lines: getTerminalEnterFolderLines(slug),
+  }
+}
+
 export function getAlreadyInFolderLines(folderSlug) {
   if (folderSlug === 'resume') {
     return ['Already in resume.', 'Type ls to view resume files.']

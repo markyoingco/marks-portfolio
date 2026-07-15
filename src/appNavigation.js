@@ -1,3 +1,5 @@
+import { resolveRootFolderEnter } from './terminalPortfolioData'
+
 export const MODE_PICKER_DISMISSED_KEY = 'terminal-mode-picker-dismissed'
 
 export const DEFAULT_WEBPAGE = {
@@ -12,6 +14,39 @@ export const DEFAULT_TERMINAL = {
   showMarkAi: false,
   mode: 'terminal-portfolio',
   portfolioPath: [],
+  bootHistory: null,
+}
+
+function cloneBootHistory(bootHistory) {
+  if (!Array.isArray(bootHistory)) {
+    return null
+  }
+
+  return bootHistory.map((entry) => ({
+    ...entry,
+    output: Array.isArray(entry.output) ? [...entry.output] : entry.output,
+  }))
+}
+
+function buildRootFolderBootHistory(folderSlug) {
+  const enter = resolveRootFolderEnter(folderSlug)
+  if (!enter) {
+    return null
+  }
+
+  const destinationPrompt = `PS C:\\Users\\visitor\\terminal\\${enter.path.join('\\')}> `
+
+  return {
+    portfolioPath: [...enter.path],
+    bootHistory: [
+      {
+        input: `cd ${folderSlug}`,
+        output: [...enter.lines],
+        prompt: destinationPrompt,
+        formMode: false,
+      },
+    ],
+  }
 }
 
 export function cloneSnapshot(snapshot) {
@@ -21,6 +56,7 @@ export function cloneSnapshot(snapshot) {
     terminal: {
       ...snapshot.terminal,
       portfolioPath: [...snapshot.terminal.portfolioPath],
+      bootHistory: cloneBootHistory(snapshot.terminal.bootHistory),
     },
     webpage: { ...snapshot.webpage },
   }
@@ -54,6 +90,7 @@ export function createModePickerSnapshot(snapshot) {
       showMarkAi: false,
       mode: 'terminal-portfolio',
       portfolioPath: [],
+      bootHistory: null,
     },
   }
 }
@@ -68,11 +105,17 @@ export function createFreshWebpageEntry(snapshot) {
       ...snapshot.terminal,
       showModePicker: false,
       showMarkAi: false,
+      bootHistory: null,
     },
   }
 }
 
-export function createFreshTerminalEntry(snapshot) {
+export function createFreshTerminalEntry(snapshot, options = {}) {
+  const boot =
+    typeof options.enterRootFolder === 'string'
+      ? buildRootFolderBootHistory(options.enterRootFolder)
+      : null
+
   return {
     ...cloneSnapshot(snapshot),
     route: 'terminal',
@@ -81,7 +124,8 @@ export function createFreshTerminalEntry(snapshot) {
       showModePicker: false,
       showMarkAi: false,
       mode: DEFAULT_TERMINAL.mode,
-      portfolioPath: [],
+      portfolioPath: boot ? boot.portfolioPath : [],
+      bootHistory: boot ? boot.bootHistory : null,
     },
   }
 }
@@ -96,6 +140,7 @@ export function createMarkAiEntry(snapshot) {
       showMarkAi: true,
       mode: DEFAULT_TERMINAL.mode,
       portfolioPath: [],
+      bootHistory: null,
     },
   }
 }

@@ -1270,6 +1270,8 @@
 }
 
 .testimonials__card {
+  position: relative;
+  isolation: isolate;
   width: 100%;
   max-width: 100%;
   min-width: 0;
@@ -1278,14 +1280,25 @@
   min-height: 476px;
   max-height: 476px;
   padding: 28px 32px;
-  background: rgba(0, 0, 0, 0.42);
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
 }
 
+.testimonials__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+
 .testimonials__viewport {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 420px;
   min-height: 420px;
@@ -1303,7 +1316,7 @@
 
 .testimonial-feature {
   display: grid;
-  grid-template-columns: 200px minmax(0, 1fr);
+  grid-template-columns: 212px minmax(0, 1fr);
   column-gap: clamp(24px, 4vw, 48px);
   align-items: start;
   box-sizing: border-box;
@@ -1313,6 +1326,7 @@
   max-height: 420px;
   padding: 0;
   min-width: 0;
+  transform: none;
 }
 
 .testimonial-feature--closing {
@@ -1321,19 +1335,35 @@
   justify-content: center;
 }
 
+.testimonial-feature--without-portrait {
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: 0;
+}
+
+.testimonial-feature--without-portrait .testimonial-feature__content {
+  width: 100%;
+  max-width: 100%;
+}
+
+.testimonial-feature--without-portrait .testimonial-feature__quote {
+  max-height: clamp(280px, 42vh, 380px);
+}
+
 .testimonial-feature__media {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 200px;
+  width: 212px;
   flex-shrink: 0;
 }
 
 .testimonial-headshot {
   position: relative;
-  width: 200px;
-  max-width: 200px;
-  height: auto;
+  isolation: isolate;
+  width: 212px;
+  max-width: 212px;
+  height: 265px;
+  max-height: 265px;
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -1350,6 +1380,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center center;
+  image-rendering: auto;
   transition: opacity 0.42s ease;
   pointer-events: none;
 }
@@ -1618,6 +1649,13 @@
 
 .testimonial-feature--in-left {
   animation: testimonials-slide-in-left 0.34s ease-in-out both;
+}
+
+.testimonial-feature:not(.testimonial-feature--out-left):not(
+    .testimonial-feature--out-right
+  ):not(.testimonial-feature--in-right):not(.testimonial-feature--in-left) {
+  transform: none;
+  opacity: 1;
 }
 
 @keyframes testimonials-slide-out-left {
@@ -2069,6 +2107,40 @@
   line-height: 1.55;
   color: rgba(255, 255, 255, 0.62);
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+}
+
+.about__inline-link {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  text-decoration: none;
+  text-shadow: inherit;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.about__inline-link:hover {
+  color: rgba(255, 255, 255, 0.82);
+  border-bottom-color: rgba(255, 255, 255, 0.65);
+}
+
+.about__inline-link:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.about__inline-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 2px;
 }
 
 .about__subheading {
@@ -2737,13 +2809,33 @@
     display: flex;
   }
 
+  .testimonial-feature--without-portrait {
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    text-align: left;
+  }
+
+  .testimonial-feature--without-portrait .testimonial-feature__content {
+    align-items: flex-start;
+  }
+
+  .testimonial-feature--without-portrait .testimonial-feature__meta {
+    align-items: flex-start;
+  }
+
+  .testimonial-feature--without-portrait .testimonial-feature__quote {
+    max-height: clamp(240px, 38vh, 340px);
+  }
+
   .testimonial-feature__media {
-    width: 148px;
+    width: 156px;
   }
 
   .testimonial-headshot {
-    width: 148px;
-    max-width: 148px;
+    width: 156px;
+    max-width: 156px;
+    height: 195px;
+    max-height: 195px;
     margin: 0 auto;
   }
 

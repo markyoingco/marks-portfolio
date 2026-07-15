@@ -482,7 +482,9 @@ function TerminalLanding({
   const mode = terminal.mode
   const portfolioPath = terminal.portfolioPath
 
-  const [history, setHistory] = useState([])
+  const [history, setHistory] = useState(() =>
+    Array.isArray(terminal.bootHistory) ? [...terminal.bootHistory] : [],
+  )
   const [input, setInput] = useState('')
   const [inputHistory, setInputHistory] = useState([])
   const [historyIndex, setHistoryIndex] = useState(-1)
@@ -491,7 +493,7 @@ function TerminalLanding({
   const terminalOutputRef = useRef(null)
   const terminalCardRef = useRef(null)
   const inputRef = useRef(null)
-  const terminalStateRef = useRef('')
+  const terminalStateRef = useRef([showMarkAi, mode].join('|'))
   const mobileInputActivatedRef = useRef(false)
   const [isMobileViewport, setIsMobileViewport] = useState(() => isMobileTerminalViewport())
   const [inputFocused, setInputFocused] = useState(false)

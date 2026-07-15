@@ -31,6 +31,40 @@ export const TESTIMONIALS = [
     imagePosition: 'center center',
   },
   {
+    id: 'andrew-wochner',
+    published: true,
+    name: 'Andrew Wochner',
+    role: 'Cardiac ICU Registered Nurse',
+    organization: "Ascension Columbia St. Mary's Hospital",
+    displayTitle:
+      "Cardiac ICU Registered Nurse @ Ascension Columbia St. Mary's Hospital",
+    relationship: 'College friend from Marquette University',
+    quote:
+      'Mark is one of the most down to earth people I know. My life drastically changed when I met Mark at Marquette University. Even though he is younger than me, he has the maturity level of a grown adult and has taught me so many important life lessons. I\u2019ll never forget about all the talks we had in college about life experiences, moving up in the world, and being on top of ourselves. His discipline and work ethic is extremely admirable and he will never back down from a challenge. I know his quality traits will take him far in life & I wouldn\u2019t be where I am today without him',
+    linkedin: 'https://www.linkedin.com/in/andrew-wochner/',
+    imageDark: '/images/testimonials/AndrewBW.jpg',
+    imageLight: '/images/testimonials/AndrewColor.jpg',
+    imageAlt: 'Portrait of Andrew Wochner',
+    imagePosition: 'center center',
+  },
+  {
+    id: 'jorge-torres',
+    published: true,
+    name: 'Jorge Torres',
+    role: 'Staff Validation Engineer',
+    organization: 'Performance Validation',
+    displayTitle: 'Staff Validation Engineer @ Performance Validation',
+    relationship:
+      'Former Marquette University coworker and fellow student manager',
+    quote:
+      'I\'ve known Mark since my junior year of college, and in that time I\'ve come to know him as someone who takes the time to fully understand every task before diving in, no matter how big or small. He never settles for surface-level work - whether he\'s reviewing code and software comments or testing and documenting a project\'s performance, he holds himself to a high standard of accuracy and thoroughness.\n\nMark is one of the hardest-working individuals I\'ve had the pleasure of working with. He approaches every project with genuine curiosity, taking the time to ask the right questions and dig into the "why" behind a problem rather than just executing tasks on the surface. That mindset consistently translates into higher-quality, more reliable work.\n\nI had the opportunity to work alongside Mark as a Student Manager, which gave me a front-row seat to his work ethic and attention to detail. He was consistently reliable, communicated clearly about progress and roadblocks, and took genuine ownership of the quality of his output. Watching him grow and take on more responsibility over that time was genuinely impressive.\n\nProfessionally, Mark is an outstanding individual who would be an asset to any team he\'s a part of, thanks to his incredibly diverse skill set and unwavering dedication to doing things right.',
+    linkedin: 'https://www.linkedin.com/in/jorge-torres-1q2w/',
+    imageDark: '/images/testimonials/JorgeBW.jpg',
+    imageLight: '/images/testimonials/JorgeColor.jpg',
+    imageAlt: 'Portrait of Jorge Torres',
+    imagePosition: 'center center',
+  },
+  {
     id: 'jarenz-masiclat',
     published: true,
     name: 'Jarenz Masiclat',
@@ -80,6 +114,14 @@ export function getWebpageTestimonialSlides() {
 
 export function isClosingTestimonialSlide(slide) {
   return slide?.type === 'closing'
+}
+
+export function hasTestimonialPortrait(item) {
+  if (!item || isClosingTestimonialSlide(item)) {
+    return false
+  }
+
+  return Boolean(item.imageDark || item.imageLight || item.image)
 }
 
 export const TESTIMONIALS_WEBPAGE_FILE = 'testimonials.webpage'
