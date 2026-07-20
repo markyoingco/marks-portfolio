@@ -96,6 +96,21 @@ export const TESTIMONIALS = [
     imageAlt: 'Portrait of Maxwell Zeisler',
     imagePosition: 'center center',
   },
+  {
+    id: 'elizabeth-anderson',
+    published: true,
+    name: 'Elizabeth Anderson',
+    role: 'Data Analyst Intern',
+    organization: 'ComEd',
+    displayTitle: 'Data Analyst Intern @ ComEd',
+    quote:
+      "I've known Mark for about five years, and there are a few of his qualities that I've found admirable and that have only become stronger as we've grown up. The first is discipline, with his commitment to strength training reflecting his conditioning and his ability to handle challenges through consistency, which I believe can be applied beyond the gym. Secondly, his leadership and mentorship have shaped aspects of my mindset, demonstrating the mental resilience and strength of character he brings to both his work and his everyday life. Lastly, his positive energy and genuine enthusiasm naturally inspire those around him, and I am confident they will continue to serve him well wherever he decides to go. I strongly believe that with his drive and work ethic, he will thrive anywhere he goes, and I am so proud to call him my friend.",
+    linkedin: 'https://www.linkedin.com/in/elizabeth-anderson-7b26472a2/',
+    imageDark: '/images/testimonials/EllieBW.jpg',
+    imageLight: '/images/testimonials/EllieColor.png',
+    imageAlt: 'Portrait of Elizabeth Anderson',
+    imagePosition: 'center center',
+  },
 ]
 
 export function getPublishedTestimonials() {
