@@ -100,6 +100,12 @@ function ThemeImageFrame({
     </div>
   )
 
+  useEffect(() => {
+    setSharedFailed(false)
+    setDarkFailed(false)
+    setLightFailed(false)
+  }, [src, srcDark, srcLight])
+
   if (src) {
     if (sharedFailed) {
       return placeholder
@@ -108,6 +114,7 @@ function ThemeImageFrame({
     return (
       <div className={frameClassName}>
         <img
+          key={src}
           className="theme-image theme-image--shared"
           src={src}
           alt={alt}
@@ -134,6 +141,7 @@ function ThemeImageFrame({
     <div className={frameClassName}>
       {!darkFailed && srcDark ? (
         <img
+          key={srcDark}
           className="theme-image theme-image--dark"
           src={srcDark}
           alt={alt}
@@ -147,6 +155,7 @@ function ThemeImageFrame({
       ) : null}
       {!lightFailed && srcLight ? (
         <img
+          key={srcLight}
           className="theme-image theme-image--light"
           src={srcLight}
           alt={alt}
@@ -1596,6 +1605,7 @@ function TestimonialsSection({ initialTestimonialSlug = null }) {
                       {hasPortrait ? (
                         <div className="testimonial-feature__media">
                           <TestimonialHeadshot
+                            key={`${item.id}-${item.imageDark}-${item.imageLight}`}
                             srcDark={item.imageDark}
                             srcLight={item.imageLight}
                             alt={item.imageAlt || `Portrait of ${item.name}`}
