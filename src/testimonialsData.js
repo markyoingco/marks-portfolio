@@ -14,40 +14,7 @@ export const MORE_PERSPECTIVES_SLIDE = {
 }
 
 export const TESTIMONIALS = [
-  {
-    id: 'nathan-garcia',
-    published: true,
-    name: 'Nathan Garcia',
-    role: 'IT Supply Chain Intern',
-    organization: 'Zebra Technologies',
-    displayTitle: 'IT Supply Chain Intern @ Zebra Technologies',
-    relationship: 'Longtime friend and former Panda Express coworker',
-    quote:
-      'I have known Mark Yoingco for about eight years after meeting him through high school and mutual friends. What has kept us close is our similar outlook on life, especially our shared belief in hard work, setting goals, and constantly working toward success. Mark is one of the most determined, focused, and loyal people I know. No matter the situation or circumstances, he is always willing to help, and his loyalty is the quality I admire most about him.\n\nMark has also shown me firsthand that hard work pays off. Throughout the years, he has competed in basketball, track, powerlifting, and bodybuilding, and he has approached each sport with the same discipline and commitment. As someone who is currently pursuing bodybuilding, he continues to push me through his advice, encouragement, and willingness to lend a helping hand. His ability to put his head down, stay focused, and grind toward his goals is what separates him from many others.\n\nProfessionally, Mark has developed a diverse skill set through his computer science projects and classwork. Since I work in IT, I understand the effort required in the technology field and have a great deal of respect for his work, just as he respects mine. I also worked with Mark at Panda Express in high school, where I saw his leadership skills, professionalism, and eagerness to learn and grow in his role. I have recommended him to former managers because I trust his work ethic and know the type of person he is. Mark would be a valuable addition to any team because he is dependable, hardworking, and always committed to improving.',
-    linkedin: 'https://www.linkedin.com/in/nathanmgarcia5758/',
-    imageDark: '/images/testimonials/NateBW.jpg',
-    imageLight: '/images/testimonials/Natecolor.jpg',
-    imageAlt: 'Portrait of Nathan Garcia',
-    imagePosition: 'center center',
-  },
-  {
-    id: 'andrew-wochner',
-    published: true,
-    name: 'Andrew Wochner',
-    role: 'Cardiac ICU Registered Nurse',
-    organization: "Ascension Columbia St. Mary's Hospital",
-    displayTitle:
-      "Cardiac ICU Registered Nurse @ Ascension Columbia St. Mary's Hospital",
-    relationship: 'College friend from Marquette University',
-    quote:
-      'Mark is one of the most down to earth people I know. My life drastically changed when I met Mark at Marquette University. Even though he is younger than me, he has the maturity level of a grown adult and has taught me so many important life lessons. I\u2019ll never forget about all the talks we had in college about life experiences, moving up in the world, and being on top of ourselves. His discipline and work ethic is extremely admirable and he will never back down from a challenge. I know his quality traits will take him far in life & I wouldn\u2019t be where I am today without him',
-    linkedin: 'https://www.linkedin.com/in/andrew-wochner/',
-    imageDark: '/images/testimonials/AndrewBW.jpg',
-    imageLight: '/images/testimonials/AndrewColor.jpg',
-    imageAlt: 'Portrait of Andrew Wochner',
-    imagePosition: 'center center',
-  },
-  {
+{
     id: 'jorge-torres',
     published: true,
     name: 'Jorge Torres',
@@ -64,7 +31,23 @@ export const TESTIMONIALS = [
     imageAlt: 'Portrait of Jorge Torres',
     imagePosition: 'center center',
   },
-  {
+{
+    id: 'nathan-garcia',
+    published: true,
+    name: 'Nathan Garcia',
+    role: 'IT Supply Chain Intern',
+    organization: 'Zebra Technologies',
+    displayTitle: 'IT Supply Chain Intern @ Zebra Technologies',
+    relationship: 'Longtime friend and former Panda Express coworker',
+    quote:
+      'I have known Mark Yoingco for about eight years after meeting him through high school and mutual friends. What has kept us close is our similar outlook on life, especially our shared belief in hard work, setting goals, and constantly working toward success. Mark is one of the most determined, focused, and loyal people I know. No matter the situation or circumstances, he is always willing to help, and his loyalty is the quality I admire most about him.\n\nMark has also shown me firsthand that hard work pays off. Throughout the years, he has competed in basketball, track, powerlifting, and bodybuilding, and he has approached each sport with the same discipline and commitment. As someone who is currently pursuing bodybuilding, he continues to push me through his advice, encouragement, and willingness to lend a helping hand. His ability to put his head down, stay focused, and grind toward his goals is what separates him from many others.\n\nProfessionally, Mark has developed a diverse skill set through his computer science projects and classwork. Since I work in IT, I understand the effort required in the technology field and have a great deal of respect for his work, just as he respects mine. I also worked with Mark at Panda Express in high school, where I saw his leadership skills, professionalism, and eagerness to learn and grow in his role. I have recommended him to former managers because I trust his work ethic and know the type of person he is. Mark would be a valuable addition to any team because he is dependable, hardworking, and always committed to improving.',
+    linkedin: 'https://www.linkedin.com/in/nathanmgarcia5758/',
+    imageDark: '/images/testimonials/NateBW.jpg',
+    imageLight: '/images/testimonials/Natecolor.jpg',
+    imageAlt: 'Portrait of Nathan Garcia',
+    imagePosition: 'center center',
+  },
+{
     id: 'jarenz-masiclat',
     published: true,
     name: 'Jarenz Masiclat',
@@ -81,7 +64,22 @@ export const TESTIMONIALS = [
     imageAlt: 'Portrait of Jarenz Masiclat',
     imagePosition: 'center center',
   },
-  {
+{
+    id: 'elizabeth-anderson',
+    published: true,
+    name: 'Elizabeth Anderson',
+    role: 'Data Analyst Intern',
+    organization: 'ComEd',
+    displayTitle: 'Data Analyst Intern @ ComEd',
+    quote:
+      "I've known Mark for about five years, and there are a few of his qualities that I've found admirable and that have only become stronger as we've grown up. The first is discipline, with his commitment to strength training reflecting his conditioning and his ability to handle challenges through consistency, which I believe can be applied beyond the gym. Secondly, his leadership and mentorship have shaped aspects of my mindset, demonstrating the mental resilience and strength of character he brings to both his work and his everyday life. Lastly, his positive energy and genuine enthusiasm naturally inspire those around him, and I am confident they will continue to serve him well wherever he decides to go. I strongly believe that with his drive and work ethic, he will thrive anywhere he goes, and I am so proud to call him my friend.",
+    linkedin: 'https://www.linkedin.com/in/elizabeth-anderson-7b26472a2/',
+    imageDark: '/images/testimonials/EllieBW.jpg',
+    imageLight: '/images/testimonials/EllieColor.png',
+    imageAlt: 'Portrait of Elizabeth Anderson',
+    imagePosition: 'center center',
+  },
+{
     id: 'maxwell-zeisler',
     published: true,
     name: 'Maxwell Zeisler',
@@ -96,19 +94,21 @@ export const TESTIMONIALS = [
     imageAlt: 'Portrait of Maxwell Zeisler',
     imagePosition: 'center center',
   },
-  {
-    id: 'elizabeth-anderson',
+{
+    id: 'andrew-wochner',
     published: true,
-    name: 'Elizabeth Anderson',
-    role: 'Data Analyst Intern',
-    organization: 'ComEd',
-    displayTitle: 'Data Analyst Intern @ ComEd',
+    name: 'Andrew Wochner',
+    role: 'Cardiac ICU Registered Nurse',
+    organization: "Ascension Columbia St. Mary's Hospital",
+    displayTitle:
+      "Cardiac ICU Registered Nurse @ Ascension Columbia St. Mary's Hospital",
+    relationship: 'College friend from Marquette University',
     quote:
-      "I've known Mark for about five years, and there are a few of his qualities that I've found admirable and that have only become stronger as we've grown up. The first is discipline, with his commitment to strength training reflecting his conditioning and his ability to handle challenges through consistency, which I believe can be applied beyond the gym. Secondly, his leadership and mentorship have shaped aspects of my mindset, demonstrating the mental resilience and strength of character he brings to both his work and his everyday life. Lastly, his positive energy and genuine enthusiasm naturally inspire those around him, and I am confident they will continue to serve him well wherever he decides to go. I strongly believe that with his drive and work ethic, he will thrive anywhere he goes, and I am so proud to call him my friend.",
-    linkedin: 'https://www.linkedin.com/in/elizabeth-anderson-7b26472a2/',
-    imageDark: '/images/testimonials/EllieBW.jpg',
-    imageLight: '/images/testimonials/EllieColor.png',
-    imageAlt: 'Portrait of Elizabeth Anderson',
+      'Mark is one of the most down to earth people I know. My life drastically changed when I met Mark at Marquette University. Even though he is younger than me, he has the maturity level of a grown adult and has taught me so many important life lessons. I\u2019ll never forget about all the talks we had in college about life experiences, moving up in the world, and being on top of ourselves. His discipline and work ethic is extremely admirable and he will never back down from a challenge. I know his quality traits will take him far in life & I wouldn\u2019t be where I am today without him',
+    linkedin: 'https://www.linkedin.com/in/andrew-wochner/',
+    imageDark: '/images/testimonials/AndrewBW.jpg',
+    imageLight: '/images/testimonials/AndrewColor.jpg',
+    imageAlt: 'Portrait of Andrew Wochner',
     imagePosition: 'center center',
   },
 ]
