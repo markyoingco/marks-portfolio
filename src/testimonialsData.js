@@ -14,6 +14,21 @@ export const MORE_PERSPECTIVES_SLIDE = {
 }
 
 export const TESTIMONIALS = [
+  {
+    id: 'farzeen-harunani',
+    published: true,
+    name: 'Farzeen Harunani',
+    role: 'Professor of Computer Science',
+    organization: 'Marquette University',
+    displayTitle: 'Professor of Computer Science @ Marquette University',
+    quote:
+      'The first time I met Mark Yoingco one-on-one was when he came into my office seeking research and career advice. It was the second week of his senior year, and he was enrolled in the capstone class with me. He wanted to know which year-long project would be the most beneficial to him, longterm. This, in itself, showed a rare level of initiative.\n\nHe took three classes with me, and impressed me with his unflappable demeanor and dedication to getting the job done. No matter how tight the deadlines might be, Mark does not ever let on if he is stressed. He is eager to learn, to improve, and to commit to every endeavor with a smile.',
+    linkedin: 'https://www.linkedin.com/in/farzeenharunani/',
+    imageDark: '/images/testimonials/FarzeenBW.JPG',
+    imageLight: '/images/testimonials/Farzeencolor.jpg',
+    imageAlt: 'Portrait of Farzeen Harunani',
+    imagePosition: 'center center',
+  },
 {
     id: 'jorge-torres',
     published: true,
