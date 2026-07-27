@@ -16,14 +16,14 @@ import {
   CONTACT_FOLDER_FILES,
   isNestedPortfolioProjectFolder,
   isContactFolder,
-  isPersonalFolder,
+  isProfileFolder,
   isPortfolioCategoryFolder,
   isPortfolioRoot,
   isResumeFolder,
   isTestimonialsFolder,
   isTestimonialPersonFolder,
   isTravelFolder,
-  PERSONAL_FOLDER_FILES,
+  PROFILE_FOLDER_FILES,
   RESUME_FOLDER_FILES,
   TRAVEL_FOLDER_FILES,
   TERMINAL_CATEGORY_SLUGS,
@@ -114,11 +114,11 @@ export function getTerminalAutocompleteCandidates({
     }
   }
 
-  if (isPersonalFolder(portfolioPath)) {
+  if (isProfileFolder(portfolioPath)) {
     return {
       commands: FOLDER_COMMANDS,
       cdTargets: ['..'],
-      ...filesToActionTargets(PERSONAL_FOLDER_FILES),
+      ...filesToActionTargets(PROFILE_FOLDER_FILES),
     }
   }
 

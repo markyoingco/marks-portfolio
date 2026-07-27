@@ -402,7 +402,7 @@ function AboutSection({
   onPrev,
   onGoTo,
   onGoToTravel,
-  onEnterTerminalPersonal,
+  onEnterTerminalProfile,
 }) {
   const viewportRef = useRef(null)
   const slideTimerRef = useRef(null)
@@ -517,7 +517,7 @@ function AboutSection({
                       alt="Mark Yoingco graduation"
                     />
                     <div className="about__welcome-text">
-                      <h2 className="about__heading">Welcome to My Personal Site</h2>
+                      <h2 className="about__heading">Welcome to My Portfolio</h2>
                       <div className="about__copy">
                         <p className="about__body">
                           Hello, my name is Mark Yoingco. I am a recent Computer
@@ -536,15 +536,13 @@ function AboutSection({
                         </p>
                         <p className="about__body">
                           I enjoy building software that is useful, organized,
-                          creative, and grounded in real problems - whether that
-                          means supporting live competition platforms, improving
-                          grading tools, connecting web applications to robotics,
-                          or creating interactive software experiences. I value
+                          creative, and grounded in real problems. I value
                           ownership, clear communication, consistency, and asking
                           the right questions before building.
                         </p>
                         <p className="about__closing">
-                          To get to know me beyond the resume, continue below.
+                          To learn more about my background, experience, and
+                          interests, continue below.
                         </p>
                       </div>
                     </div>
@@ -655,41 +653,41 @@ function AboutSection({
                       <h2 className="about__heading">Beyond Work</h2>
                       <div className="about__copy">
                         <p className="about__body">
-                          Outside of technology, fitness has always been one of my
-                          biggest passions. I started training when I wanted
-                          change, and it taught me that consistency will always
-                          matter more than intensity.
+                          Outside of technology, fitness has remained one of my
+                          strongest interests. Training has taught me consistency,
+                          patience, attention to detail, and the value of progress
+                          earned over time.
                         </p>
                         <p className="about__body">
-                          Bodybuilding is both discipline and art. Structure,
-                          symmetry, control, patience, and attention to detail all
-                          matter, and that same mindset shapes how I approach my
-                          work and personal growth.
+                          Bodybuilding combines discipline and creativity.
+                          Structure, symmetry, and control matter, and that
+                          attention to detail also influences how I approach design
+                          and technical work.
                         </p>
                         <p className="about__body">
-                          Outside the gym, I stay inspired through hiking, reading,
-                          music, travel, and experiences that give me a new
-                          perspective on life.
-                        </p>
-                        <p className="about__body">
-                          Photography is how I keep the story with me. Cities,
-                          views, trips, and small moments all give me something
-                          worth capturing. Every picture holds a memory, a
-                          feeling, or a place that still means something.
+                          I also enjoy hiking, reading, music, travel, and
+                          photography. Photography gives me a way to document
+                          cities, landscapes, and meaningful moments through clean
+                          composition and a darker cinematic style.
                         </p>
                         <p className="about__closing">
-                          You can see more of my travel and lifestyle photography
-                          in Travel.
-                        </p>
-                        <p className="about__closing">
-                          You can also explore my mindset and goals through{' '}
+                          Explore more of my photography in{' '}
                           <button
                             type="button"
                             className="about__inline-link"
-                            onClick={() => onEnterTerminalPersonal?.()}
-                            aria-label="Open Terminal to explore Personal Archive"
+                            onClick={onGoToTravel}
+                            aria-label="Open Travel photography"
                           >
-                            Personal Archive in Terminal
+                            Travel
+                          </button>
+                          , or view my professional background through{' '}
+                          <button
+                            type="button"
+                            className="about__inline-link"
+                            onClick={() => onEnterTerminalProfile?.()}
+                            aria-label="Open Terminal to explore my professional profile"
+                          >
+                            Profile in Terminal
                           </button>
                           .
                         </p>
@@ -1958,7 +1956,7 @@ function PortfolioApp({
   onWebpageNavigate,
   onReturnToMainMenu,
   onEnterTerminal,
-  onEnterTerminalPersonal,
+  onEnterTerminalProfile,
   onEnterMarkAi,
 }) {
   const { screen: activeScreen, aboutPanel, portfolioCategory, testimonialSlug } = webpage
@@ -2152,7 +2150,7 @@ function PortfolioApp({
             onPrev={prevAboutPanel}
             onGoTo={goToAboutPanel}
             onGoToTravel={() => goToScreen('travel')}
-            onEnterTerminalPersonal={onEnterTerminalPersonal}
+            onEnterTerminalProfile={onEnterTerminalProfile}
           />
         )}
 

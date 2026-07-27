@@ -23,7 +23,7 @@ import {
   PORTFOLIO_ROOT_UNKNOWN_COMMAND_HINT,
   getTerminalPortfolioLsLines,
   isContactFolder,
-  isPersonalFolder,
+  isProfileFolder,
   isResumeFolder,
   isTestimonialsFolder,
   isTestimonialPersonFolder,
@@ -31,14 +31,14 @@ import {
   isTerminalFolderSlug,
   MARKAI_CD_TARGETS,
   parseContactFileCommand,
-  parsePersonalFileCommand,
+  parseProfileFileCommand,
   parseResumeFileCommand,
   parseTestimonialsRootCommand,
   parseTestimonialPersonCommand,
   parseTestimonialsDeepOpenCommand,
   parseTravelFileCommand,
   CONTACT_UNKNOWN_COMMAND_HINT,
-  PERSONAL_UNKNOWN_COMMAND_HINT,
+  PROFILE_UNKNOWN_COMMAND_HINT,
   TESTIMONIALS_ROOT_UNKNOWN_COMMAND_HINT,
   TRAVEL_UNKNOWN_COMMAND_HINT,
   RESUME_PDF_FILENAME,
@@ -374,15 +374,15 @@ function parseCommand(rawInput, { mode, portfolioPath }) {
     }
   }
 
-  if (mode === MODES.TERMINAL_PORTFOLIO && isPersonalFolder(portfolioPath)) {
-    const personalResult = parsePersonalFileCommand(lower)
-    if (personalResult) {
-      return personalResult
+  if (mode === MODES.TERMINAL_PORTFOLIO && isProfileFolder(portfolioPath)) {
+    const profileResult = parseProfileFileCommand(lower)
+    if (profileResult) {
+      return profileResult
     }
 
     return {
       type: 'output',
-      lines: [PERSONAL_UNKNOWN_COMMAND_HINT],
+      lines: [PROFILE_UNKNOWN_COMMAND_HINT],
     }
   }
 
@@ -457,13 +457,13 @@ const MODE_PICKER_OPTIONS = [
     id: 'markai',
     title: 'MarkAI',
     description:
-      'Coming soon - guided exploration of my resume, projects, background, goals, and experience.',
+      'Coming soon — AI-guided exploration of my resume, projects, skills, experience, and professional background.',
   },
   {
     id: 'terminal',
     title: 'Terminal',
     description:
-      'Deeper command-line exploration with personal files, mindset, goals, and detailed project context.',
+      'Deeper command-line exploration of my professional profile, projects, skills, and technical experience.',
   },
 ]
 
@@ -1212,8 +1212,9 @@ function TerminalLanding({
                 <div className="markai-message">
                   <p className="markai-message__lead">MarkAI is coming soon.</p>
                   <p className="markai-message__body">
-                    This will become an AI chatbox that answers questions about Mark&apos;s
-                    resume, projects, goals, dreams, motivations, hobbies, work, and personality.
+                    This will become an AI portfolio assistant that answers questions about
+                    Mark&apos;s resume, projects, skills, experience, career direction, and
+                    professional background.
                   </p>
                 </div>
               </div>

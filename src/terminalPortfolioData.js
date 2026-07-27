@@ -5,11 +5,11 @@ import {
 } from './terminalFileOutput'
 import {
   buildAboutTxtCatOutput,
-  buildBeyondWorkTxtCatOutput,
-  buildGoalsTxtCatOutput,
-  buildMindsetTxtCatOutput,
+  buildCareerGoalsTxtCatOutput,
+  buildInterestsTxtCatOutput,
+  buildWorkStyleTxtCatOutput,
   VSCO_GALLERY_URL,
-} from './terminalPersonalFileOutput'
+} from './terminalProfileFileOutput'
 import { buildTestimonialTxtCatOutput } from './terminalTestimonialsFileOutput'
 import { buildCaughtInMotionTxtCatOutput, buildPlacesTxtCatOutput, TRAVEL_PLACES_FILE, TRAVEL_WEBPAGE_FILE } from './terminalTravelFileOutput'
 import {
@@ -65,7 +65,7 @@ export {
 
 export const TERMINAL_CATEGORY_SLUGS = [
   'resume',
-  'personal',
+  'profile',
   'portfolio',
   'testimonials',
   'travel',
@@ -75,7 +75,7 @@ export const TERMINAL_CATEGORY_SLUGS = [
 export const TERMINAL_FOLDER_SLUGS = new Set([
   'resume',
   'contact',
-  'personal',
+  'profile',
   'portfolio',
   'testimonials',
   'travel',
@@ -88,11 +88,11 @@ export { VSCO_GALLERY_URL }
 
 export const RESUME_FOLDER_FILES = ['summary.txt', 'resume.pdf']
 export const CONTACT_FOLDER_FILES = ['contact.txt', 'message.form']
-export const PERSONAL_FOLDER_FILES = [
+export const PROFILE_FOLDER_FILES = [
   'about.txt',
-  'mindset.txt',
-  'goals.txt',
-  'beyond-work.txt',
+  'work-style.txt',
+  'career-goals.txt',
+  'interests.txt',
   'vsco.link',
 ]
 export const TRAVEL_FOLDER_FILES = ['caught-in-motion.txt', TRAVEL_PLACES_FILE, TRAVEL_WEBPAGE_FILE, 'vsco.link']
@@ -103,8 +103,8 @@ export const RESUME_UNKNOWN_COMMAND_HINT =
 export const CONTACT_UNKNOWN_COMMAND_HINT =
   'Command not found in contact. Try: ls, cat contact.txt, open message.form, cd .., or clear.'
 
-export const PERSONAL_UNKNOWN_COMMAND_HINT =
-  'Command not found in personal. Try: ls, cat about.txt, cat mindset.txt, cat goals.txt, cat beyond-work.txt, open vsco.link, cd .., or clear.'
+export const PROFILE_UNKNOWN_COMMAND_HINT =
+  'Command not found in profile. Try: ls, cat about.txt, cat work-style.txt, cat career-goals.txt, cat interests.txt, open vsco.link, cd .., or clear.'
 
 export const TESTIMONIALS_ROOT_UNKNOWN_COMMAND_HINT = getTestimonialsRootUnknownCommandHint()
 
@@ -114,7 +114,7 @@ export const TRAVEL_UNKNOWN_COMMAND_HINT =
 export const TERMINAL_ROOT_HELP_COMMANDS = [
   { command: 'ls' },
   { command: 'cd resume' },
-  { command: 'cd personal' },
+  { command: 'cd profile' },
   { command: 'cd portfolio' },
   { command: 'cd testimonials' },
   { command: 'cd travel' },
@@ -140,12 +140,12 @@ export const TERMINAL_CONTACT_HELP_COMMANDS = [
   { command: 'clear' },
 ]
 
-export const TERMINAL_PERSONAL_HELP_COMMANDS = [
+export const TERMINAL_PROFILE_HELP_COMMANDS = [
   { command: 'ls' },
-  { command: 'cat about.txt', description: 'read personal intro' },
-  { command: 'cat mindset.txt', description: 'read mindset' },
-  { command: 'cat goals.txt', description: 'read current goals' },
-  { command: 'cat beyond-work.txt', description: 'read beyond-work interests' },
+  { command: 'cat about.txt', description: 'read profile intro' },
+  { command: 'cat work-style.txt', description: 'read work style' },
+  { command: 'cat career-goals.txt', description: 'read career goals' },
+  { command: 'cat interests.txt', description: 'read interests' },
   { command: 'open vsco.link', description: 'open VSCO' },
   { command: 'cd ..' },
   { command: 'clear' },
@@ -183,11 +183,11 @@ export function getTerminalHelpPanel(portfolioPath) {
     }
   }
 
-  if (isPersonalFolder(portfolioPath)) {
+  if (isProfileFolder(portfolioPath)) {
     return {
       listingHeading: 'Files',
-      listingItems: PERSONAL_FOLDER_FILES,
-      commands: TERMINAL_PERSONAL_HELP_COMMANDS,
+      listingItems: PROFILE_FOLDER_FILES,
+      commands: TERMINAL_PROFILE_HELP_COMMANDS,
     }
   }
 
@@ -289,8 +289,8 @@ export function getTerminalEnterFolderLines(slug) {
     return ['Opening contact...', 'Type ls to view contact files.']
   }
 
-  if (slug === 'personal') {
-    return ['Opening personal...', 'Type ls to view personal files.']
+  if (slug === 'profile') {
+    return ['Opening profile...', 'Type ls to view profile files.']
   }
 
   if (slug === 'portfolio') {
@@ -329,8 +329,8 @@ export function getAlreadyInFolderLines(folderSlug) {
     return ['Already in contact.', 'Type ls to view contact files.']
   }
 
-  if (folderSlug === 'personal') {
-    return ['Already in personal.', 'Type ls to view personal files.']
+  if (folderSlug === 'profile') {
+    return ['Already in profile.', 'Type ls to view profile files.']
   }
 
   if (folderSlug === 'portfolio') {
@@ -369,8 +369,8 @@ export function getTerminalPortfolioLsLines(portfolioPath) {
     return CONTACT_FOLDER_FILES
   }
 
-  if (isPersonalFolder(portfolioPath)) {
-    return PERSONAL_FOLDER_FILES
+  if (isProfileFolder(portfolioPath)) {
+    return PROFILE_FOLDER_FILES
   }
 
   if (isTestimonialsFolder(portfolioPath)) {
@@ -515,8 +515,8 @@ export function isContactFolder(portfolioPath) {
   return portfolioPath.length === 1 && portfolioPath[0] === 'contact'
 }
 
-export function isPersonalFolder(portfolioPath) {
-  return portfolioPath.length === 1 && portfolioPath[0] === 'personal'
+export function isProfileFolder(portfolioPath) {
+  return portfolioPath.length === 1 && portfolioPath[0] === 'profile'
 }
 
 export function isTestimonialsFolder(portfolioPath) {
@@ -672,7 +672,7 @@ export function parseContactFileCommand(lower) {
   return null
 }
 
-export function parsePersonalFileCommand(lower) {
+export function parseProfileFileCommand(lower) {
   if (lower === 'cat about.txt') {
     return {
       type: 'output',
@@ -681,26 +681,26 @@ export function parsePersonalFileCommand(lower) {
     }
   }
 
-  if (lower === 'cat mindset.txt') {
+  if (lower === 'cat work-style.txt') {
     return {
       type: 'output',
-      output: buildMindsetTxtCatOutput(),
+      output: buildWorkStyleTxtCatOutput(),
       scrollMode: TERMINAL_SCROLL_MODE.COMMAND,
     }
   }
 
-  if (lower === 'cat goals.txt') {
+  if (lower === 'cat career-goals.txt') {
     return {
       type: 'output',
-      output: buildGoalsTxtCatOutput(),
+      output: buildCareerGoalsTxtCatOutput(),
       scrollMode: TERMINAL_SCROLL_MODE.COMMAND,
     }
   }
 
-  if (lower === 'cat beyond-work.txt') {
+  if (lower === 'cat interests.txt') {
     return {
       type: 'output',
-      output: buildBeyondWorkTxtCatOutput(),
+      output: buildInterestsTxtCatOutput(),
       scrollMode: TERMINAL_SCROLL_MODE.COMMAND,
     }
   }
@@ -722,7 +722,7 @@ export function parsePersonalFileCommand(lower) {
   if (lower.startsWith('cat ') || lower.startsWith('open ') || lower.startsWith('download ')) {
     return {
       type: 'output',
-      lines: [PERSONAL_UNKNOWN_COMMAND_HINT],
+      lines: [PROFILE_UNKNOWN_COMMAND_HINT],
     }
   }
 

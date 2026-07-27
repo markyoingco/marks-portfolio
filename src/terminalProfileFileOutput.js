@@ -13,115 +13,74 @@ export function buildAboutTxtCatOutput() {
     sectionLine('ABOUT'),
     blankLine(),
     textLine(
-      "I'm Mark Yoingco, a recent Computer Science graduate from Marquette University building toward a career in software development and technology.",
+      "I'm Mark Yoingco, a Computer Science graduate from Marquette University building toward a career in software development and technology.",
     ),
     blankLine(),
     textLine(
-      'My background includes hands-on work across this portfolio platform, Abacus, TA-Bot / MAAT, and the Finch Web Controller. Those projects taught me more than code: communication, teamwork, consistency, ownership, and the importance of asking the right questions before building.',
+      'My experience includes full-stack development, systems programming, developer tools, data projects, robotics, and two senior design capstones. My strongest work includes this portfolio platform, Abacus, TA-Bot / MAAT, and the Finch Web Controller.',
     ),
     blankLine(),
     textLine(
-      "I'm drawn to software that is useful, organized, creative, and grounded in real problems - systems that solve problems, connect people, or make something easier to understand or use.",
-    ),
-    blankLine(),
-    textLine(
-      'My path has taught me to keep building, learn what I need, and improve the work until it can speak for itself.',
-    ),
-    blankLine(),
-    textLine(
-      'This portfolio brings that work together and shows the range I continue to build.',
+      'I enjoy turning ideas into useful, organized products. I learn by building, ask the right questions, and keep improving the work until the result speaks for itself.',
     ),
   ])
 }
 
-export function buildMindsetTxtCatOutput() {
-  return buildFileCatOutput('mindset.txt', [
-    sectionLine('MINDSET'),
-    blankLine(),
-    textLine('Consistency over intensity.'),
-    textLine('Control the response.'),
-    textLine('Strength without direction is only potential.'),
+export function buildWorkStyleTxtCatOutput() {
+  return buildFileCatOutput('work-style.txt', [
+    sectionLine('WORK STYLE'),
     blankLine(),
     textLine(
-      "I'm working to become the best version of myself, not only in technology, but in how I move, train, think, and handle pressure.",
+      'I value consistency over noise, ownership over excuses, and progress over talking.',
     ),
     blankLine(),
     textLine(
-      'The goal is not to look busy. The goal is to build something real. Progress is made through repetition, quiet decisions, and the days when motivation is not enough.',
+      'I work best when expectations are clear, details are documented, and the team communicates honestly. I know when to lead, when to listen, and when to step back so the work can move forward.',
     ),
     blankLine(),
     textLine(
-      'Setbacks taught me perspective. Training taught me discipline. Software taught me patience. Team projects taught me communication, ownership, and when to lead or step back.',
-    ),
-    blankLine(),
-    textLine(
-      'The standard is simple: keep moving, learn from the setback, and respond with more control than before.',
-    ),
-    blankLine(),
-    textLine(
-      'Achilles represents intensity and ambition to me. The lesson is to keep that strength guided by discipline instead of impulse.',
+      'I care about clean systems, useful software, and finishing what I start.',
     ),
   ])
 }
 
-export function buildGoalsTxtCatOutput() {
-  return buildFileCatOutput('goals.txt', [
-    sectionLine('GOALS'),
+export function buildCareerGoalsTxtCatOutput() {
+  return buildFileCatOutput('career-goals.txt', [
+    sectionLine('CAREER GOALS'),
     blankLine(),
-    sectionLine('CURRENT MISSION'),
+    sectionLine('CURRENT FOCUS'),
     textLine(
-      'Earn a full-time technology role where I can contribute, keep learning, and build toward greater responsibility.',
+      'Earn a full-time technology role where I can contribute, keep learning, and build strong professional experience.',
     ),
     blankLine(),
-    sectionLine('SHORT TERM'),
-    bulletLine('Keep applying with a stronger resume, LinkedIn, GitHub, and portfolio'),
-    bulletLine('Continue developing MarkAI and improving the portfolio platform'),
-    bulletLine(
-      'Build projects that show ownership, design, systems thinking, and real problem solving',
-    ),
-    bulletLine('Strengthen technical confidence through repetition and practice'),
+    sectionLine('AREAS OF INTEREST'),
+    bulletLine('Software development'),
+    bulletLine('Full-stack web development'),
+    bulletLine('Developer tools'),
+    bulletLine('Data-oriented systems'),
+    bulletLine('Technical support and systems roles'),
     blankLine(),
-    sectionLine('LONG TERM'),
-    bulletLine('Build a career with stability, freedom, and momentum'),
-    bulletLine('Move closer to the city and life I actually want'),
-    bulletLine(
-      'Keep becoming sharper physically, mentally, financially, and professionally',
-    ),
-    bulletLine('Create the independence to make decisions from confidence instead of pressure'),
-    bulletLine('Keep building my career, body, environment, and future with intention'),
-    blankLine(),
+    sectionLine('LONG-TERM DIRECTION'),
     textLine(
-      'The dream is not only a job. It is direction, freedom, and a life that feels earned.',
+      'Take on greater technical ownership, solve real problems, and build a stable career with room to grow.',
     ),
   ])
 }
 
-export function buildBeyondWorkTxtCatOutput() {
-  return buildFileCatOutput('beyond-work.txt', [
-    sectionLine('BEYOND WORK'),
-    blankLine(),
-    textLine('Outside of technology, fitness is one of the strongest parts of my life.'),
+export function buildInterestsTxtCatOutput() {
+  return buildFileCatOutput('interests.txt', [
+    sectionLine('INTERESTS'),
     blankLine(),
     textLine(
-      'I began training because I wanted change. Over time, it taught me discipline, patience, consistency, and how much progress can come from work repeated in silence.',
+      'Outside of technology, fitness is one of my strongest interests. It has taught me consistency, patience, attention to detail, and the value of progress earned over time.',
     ),
     blankLine(),
     textLine(
-      'Bodybuilding feels like both training and art. Structure, symmetry, control, and attention to detail matter, which is also why I am drawn to clean design, organized spaces, strong visuals, and work that feels intentional.',
+      'I also enjoy photography, travel, music, reading, and hiking. Photography gives me a way to document places, people, and moments through clean composition and a darker cinematic style.',
     ),
     blankLine(),
     textLine(
-      'I have always found Greek mythology interesting, especially Achilles. His story carries strength, intensity, loyalty, and consequence. What stays with me is the idea that strength means more when it has direction.',
+      "I'm interested in Greek mythology and sculpture, especially stories about ambition, discipline, strength, and consequence. Use open vsco.link to view more of my photography.",
     ),
-    blankLine(),
-    textLine(
-      'Travel, music, reading, and photography give me another way to see and remember life. I am drawn to cities, water, mountains, museums, streets, and small moments that make life feel cinematic. I like capturing scenes that hold a memory or feeling that words cannot always explain.',
-    ),
-    blankLine(),
-    textLine(
-      'That perspective matters to me. I want my work, my body, my environment, and my future to feel like they were built with intention.',
-    ),
-    blankLine(),
-    textLine('For more of the visual side, type open vsco.link.'),
   ])
 }
