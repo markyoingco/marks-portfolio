@@ -14,7 +14,7 @@ export const MORE_PERSPECTIVES_SLIDE = {
 }
 
 export const TESTIMONIALS = [
-  {
+{
     id: 'farzeen-harunani',
     published: true,
     name: 'Farzeen Harunani',
@@ -44,6 +44,22 @@ export const TESTIMONIALS = [
     imageDark: '/images/testimonials/JorgeBW.jpg',
     imageLight: '/images/testimonials/JorgeColor.jpg',
     imageAlt: 'Portrait of Jorge Torres',
+    imagePosition: 'center center',
+  },
+{
+    id: 'zack-kohlwey',
+    published: true,
+    name: 'Zack Kohlwey',
+    role: 'Assistant Director, Alumni Memorial Union',
+    organization: 'Marquette University',
+    displayTitle:
+      'Assistant Director, Alumni Memorial Union @ Marquette University',
+    quote:
+      'I have known Mark for two and a half years, and I was his supervisor at Marquette University. I have had the opportunity to observe Mark\u2019s dedication, work ethic, and values driven decision making firsthand. He respects all individuals and has the ability to form true relationships and friendships with a wide range of people and thinks of the staff as a team.\n\nI hired Mark as a University Information Specialist at the student union\u2019s Information Desk. Not even a year into working, I promoted Mark to Student Manager. His integrity and ambition stood out to me, and that is what ultimately led me to promote him. He understood how his choices and decisions at the desk made an impact on others as this role was the initial interaction that someone had with the university as they walked into the building or called. Mark definitely embraced challenges as learning moments for personal growth, and he exceled at being a role model and leader by example.',
+    linkedin: 'https://www.linkedin.com/in/zack-kohlwey-m-ed-44789445/',
+    imageDark: '/images/testimonials/zackbw.JPG',
+    imageLight: '/images/testimonials/zackcolor.jpg',
+    imageAlt: 'Portrait of Zack Kohlwey',
     imagePosition: 'center center',
   },
 {
