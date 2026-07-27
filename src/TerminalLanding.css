@@ -68,6 +68,8 @@
   padding: 12px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: var(--app-surface-titlebar);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .terminal-card__titlebar-start {
@@ -147,6 +149,8 @@
   flex-shrink: 0;
   align-items: center;
   gap: 6px;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .terminal-card__dot {
@@ -227,10 +231,20 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.65;
+  cursor: text;
+  user-select: text;
+  -webkit-user-select: text;
+  -webkit-touch-callout: default;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+}
+
+.terminal-history::selection,
+.terminal-history *::selection {
+  background: rgba(130, 235, 175, 0.28);
+  color: rgba(245, 245, 245, 0.98);
 }
 
 .terminal-history::-webkit-scrollbar {
@@ -729,6 +743,8 @@
   max-width: 100%;
   cursor: pointer;
   touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
   transition:
     border-color 0.2s ease,
     background 0.2s ease;
@@ -1585,6 +1601,8 @@
   background: rgba(255, 255, 255, 0.015);
   text-align: left;
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
   touch-action: manipulation;
   transition:
     border-color 0.2s ease,

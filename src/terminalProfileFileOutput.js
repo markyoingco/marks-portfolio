@@ -80,7 +80,7 @@ export function buildInterestsTxtCatOutput() {
     ),
     blankLine(),
     textLine(
-      "I'm interested in Greek mythology and sculpture, especially stories about ambition, discipline, strength, and consequence. Use open vsco.link to view more of my photography.",
+      "I'm interested in Greek mythology and sculpture, especially stories about ambition, discipline, strength, and consequence. Open vsco.link to view more of my photography.",
     ),
   ])
 }

@@ -36,7 +36,6 @@ export const PORTFOLIO_PLATFORM_CARDS = [
     tech: ['React', 'JavaScript', 'CSS', 'REST API', 'PHP'],
     image: '/images/portfolio/terminal-image.png',
     imageAlt: 'Interactive terminal portfolio showing command-line navigation',
-    imageAspectRatio: '11 / 8',
     imageFit: 'contain',
     imagePosition: 'center center',
     modeAction: { label: 'Open Terminal', mode: 'terminal' },

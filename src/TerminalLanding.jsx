@@ -1189,9 +1189,15 @@ function TerminalLanding({
     <div
       className="terminal-shell"
       onClick={() => {
-        if (!showModePicker && !showMarkAi) {
-          focusTerminalInput()
+        if (showModePicker || showMarkAi) {
+          return
         }
+
+        if ((window.getSelection?.()?.toString() ?? '').length > 0) {
+          return
+        }
+
+        focusTerminalInput()
       }}
     >
       {showMarkAi ? (

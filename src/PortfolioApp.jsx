@@ -536,13 +536,15 @@ function AboutSection({
                         </p>
                         <p className="about__body">
                           I enjoy building software that is useful, organized,
-                          creative, and grounded in real problems. I value
+                          creative, and grounded in real problems—whether that
+                          means supporting live competition platforms, improving
+                          grading tools, connecting web applications to robotics,
+                          or creating interactive software experiences. I value
                           ownership, clear communication, consistency, and asking
                           the right questions before building.
                         </p>
                         <p className="about__closing">
-                          To learn more about my background, experience, and
-                          interests, continue below.
+                          To get to know me beyond the resume, continue below.
                         </p>
                       </div>
                     </div>
@@ -671,7 +673,7 @@ function AboutSection({
                           composition and a darker cinematic style.
                         </p>
                         <p className="about__closing">
-                          Explore more of my photography in{' '}
+                          View more of my travel and lifestyle photography in{' '}
                           <button
                             type="button"
                             className="about__inline-link"
@@ -680,7 +682,10 @@ function AboutSection({
                           >
                             Travel
                           </button>
-                          , or view my professional background through{' '}
+                          .
+                        </p>
+                        <p className="about__closing">
+                          For a deeper look at my background and work, open{' '}
                           <button
                             type="button"
                             className="about__inline-link"
