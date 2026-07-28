@@ -1,0 +1,469 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "work-av-technician-marquette",
+      "category": "work-experience",
+      "recordType": "employment",
+      "title": "Audio-Visual Technician",
+      "publicText": "Mark worked as an Audio-Visual Technician at Marquette University from February 2025 to May 2026, supporting live campus events by setting up, operating, and troubleshooting laptops, projectors, microphones, speakers, lighting, wiring, remotes, presentation equipment, and sound systems.",
+      "shortText": "Marquette Audio-Visual Technician, February 2025 – May 2026.",
+      "aliases": [
+        "AV Technician",
+        "Audio Visual Technician",
+        "audiovisual technician"
+      ],
+      "keywords": [
+        "audiovisual",
+        "technical support",
+        "troubleshooting",
+        "campus events",
+        "equipment",
+        "communication"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage EXPERIENCE_JOBS Audio-Visual Technician entry",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports title, Marquette University employer, February 2025 to May 2026 dates, and equipment setup/operation/troubleshooting duties."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume WORK EXPERIENCE lists Audio-Visual Technician",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports title, Marquette University, and February 2025 to May 2026 dates."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js"
+      ],
+      "relatedRecordIds": [],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "technical support experience",
+        "troubleshooting experience",
+        "campus employment",
+        "live-event responsibility",
+        "user support"
+      ],
+      "prohibitedUses": [
+        "describe as software engineering employment",
+        "claim network administration",
+        "claim cybersecurity work",
+        "claim systems administration",
+        "claim software development duties",
+        "claim enterprise IT ownership"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Paid campus employment. Technical-support relevance comes from equipment setup, operation, and troubleshooting. This was not software-engineering employment."
+    },
+    {
+      "id": "work-info-desk-manager-marquette",
+      "category": "work-experience",
+      "recordType": "employment",
+      "title": "Information Desk Specialist Manager",
+      "publicText": "Mark worked as an Information Desk Specialist Manager at Marquette University from January 2024 to May 2026, managing front-desk and building operations including staff schedules, shift and timesheet review, staff meetings, security-camera monitoring, room scheduling, access requests, incident handling, and communication with visitors, students, and staff.",
+      "shortText": "Marquette Information Desk Specialist Manager, January 2024 – May 2026.",
+      "aliases": [
+        "Information Desk Specialist Manager"
+      ],
+      "keywords": [
+        "operations",
+        "scheduling",
+        "customer service",
+        "leadership",
+        "communication",
+        "campus",
+        "front desk",
+        "building operations"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage EXPERIENCE_JOBS Information Desk Specialist Manager entry",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports canonical title, Marquette University employer, January 2024 to May 2026 dates, and documented front-desk and building-operations duties."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume WORK EXPERIENCE lists Information Desk Specialist Manager",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports title, Marquette University, and January 2024 to May 2026 dates."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/testimonialsData.js"
+      ],
+      "relatedRecordIds": [],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "operations experience",
+        "scheduling experience",
+        "customer-facing work",
+        "campus leadership",
+        "communication",
+        "responsibility",
+        "full work history"
+      ],
+      "prohibitedUses": [
+        "describe as software engineering employment",
+        "claim technical software duties",
+        "state promotion details before testimonial policy approval",
+        "replace the canonical title with Information Desk Manager",
+        "replace the canonical title with Student Manager",
+        "replace the canonical title with University Information Specialist",
+        "present Information Desk Manager, Student Manager, or University Information Specialist as Mark's official title",
+        "invent supervision counts",
+        "invent security authority beyond documented duties"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Mark selected Information Desk Specialist Manager as the title for all public references. Do not shorten or substitute the title. Do not use Information Desk Manager. Do not use Student Manager. Do not use University Information Specialist. Any future promotion context requires a separately approved testimonial record."
+    },
+    {
+      "id": "work-assistant-building-manager-marquette",
+      "category": "work-experience",
+      "recordType": "employment",
+      "title": "Assistant Building Manager",
+      "publicText": "Mark worked as an Assistant Building Manager at Marquette University from June 2024 to December 2024, coordinating room setups for events, managing building access, communicating with departments by radio, and supporting building operations during campus events and daily activities.",
+      "shortText": "Marquette Assistant Building Manager, June 2024 – December 2024.",
+      "aliases": [
+        "Assistant Building Manager"
+      ],
+      "keywords": [
+        "facilities",
+        "building operations",
+        "campus events",
+        "room setup",
+        "access",
+        "radio communication"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage EXPERIENCE_JOBS Assistant Building Manager entry",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports title, Marquette University employer, June 2024 to December 2024 dates, and room setup, access, radio communication, and building-operations duties."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx"
+      ],
+      "relatedRecordIds": [
+        "work-info-desk-manager-marquette"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "full work history",
+        "campus operations",
+        "event operations",
+        "facility responsibility",
+        "communication"
+      ],
+      "prohibitedUses": [
+        "claim undocumented staff supervision",
+        "claim software engineering duties",
+        "claim primary security authority",
+        "merge automatically with Information Desk employment"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Separate paid campus role. Chronologically overlaps with Information Desk employment. Use when relevant to full work history or operations experience."
+    },
+    {
+      "id": "work-hollister-retail",
+      "category": "work-experience",
+      "recordType": "employment",
+      "title": "Hollister",
+      "publicText": "Mark worked at Hollister Co. during Summer 2025, supporting retail operations through opening and closing duties, register transactions, customer assistance, restocking, shipment processing, and sales-floor organization.",
+      "shortText": "Hollister Co. retail experience during Summer 2025.",
+      "aliases": [
+        "Hollister",
+        "Hollister Co."
+      ],
+      "keywords": [
+        "retail",
+        "customer service",
+        "register",
+        "inventory",
+        "teamwork",
+        "store operations"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage EXPERIENCE_JOBS Hollister entry",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Hollister Co. employer, Summer 2025 date, and retail operations duties. Source title is only Hollister."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx"
+      ],
+      "relatedRecordIds": [],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "full work history",
+        "retail experience",
+        "customer service",
+        "teamwork",
+        "communication",
+        "nontechnical employment"
+      ],
+      "prohibitedUses": [
+        "invent an exact associate or manager title",
+        "describe as technical employment",
+        "make it a primary software qualification",
+        "imply management responsibilities without evidence"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Current source title is only Hollister. Use primarily for full work-history, retail, customer-service, or teamwork questions. Do not prioritize it over stronger technical or campus experience in recruiter answers."
+    },
+    {
+      "id": "work-panda-express-pic",
+      "category": "work-experience",
+      "recordType": "employment",
+      "title": "Chef / Person in Charge",
+      "publicText": "Mark worked as Chef / Person in Charge at Panda Express in Gurnee, Illinois, from May 2021 to August 2023, supporting kitchen operations, food preparation, service quality, cleaning, restocking, shift leadership, employee training, and team guidance during high-volume shifts.",
+      "shortText": "Panda Express Chef / Person in Charge, May 2021 – August 2023.",
+      "aliases": [
+        "Panda Express",
+        "Person in Charge",
+        "PIC",
+        "Chef"
+      ],
+      "keywords": [
+        "food service",
+        "leadership",
+        "training",
+        "operations",
+        "teamwork",
+        "high-volume shifts",
+        "customer service"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage EXPERIENCE_JOBS Chef / Person in Charge entry",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports combined title, Panda Express Gurnee IL employer, May 2021 to August 2023 dates, and kitchen operations, training, and shift-leadership duties."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/testimonialsData.js"
+      ],
+      "relatedRecordIds": [],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "leadership experience",
+        "employee training",
+        "operations experience",
+        "teamwork",
+        "responsibility",
+        "full work history"
+      ],
+      "prohibitedUses": [
+        "describe as technical employment",
+        "describe as software employment",
+        "invent separate dated promotion stages",
+        "claim management authority beyond Person in Charge duties",
+        "claim responsibilities not present in the source"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "One combined title record. Paid food-service employment. Transferable value includes operations, training, teamwork, and responsibility. Do not present it as technology experience."
+    },
+    {
+      "id": "leadership-sigma-chi-risk-merchandise",
+      "category": "leadership",
+      "recordType": "leadership-role",
+      "title": "Risk Manager & Merchandise Chair",
+      "publicText": "Mark served as Risk Manager and Merchandise Chair for Sigma Chi at Marquette University from January 2023 to May 2026, helping keep chapter operations organized and safe while leading merchandise ideas and design work for the chapter.",
+      "shortText": "Sigma Chi Risk Manager & Merchandise Chair, January 2023 – May 2026.",
+      "aliases": [
+        "Sigma Chi leadership",
+        "Risk Manager",
+        "Merchandise Chair",
+        "Risk Manager and Merchandise Chair"
+      ],
+      "keywords": [
+        "leadership",
+        "fraternity",
+        "risk",
+        "safety",
+        "operations",
+        "merchandise",
+        "design",
+        "creative leadership"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage EXPERIENCE_JOBS Sigma Chi Risk Manager & Merchandise Chair entry",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports combined role title, Sigma Chi Marquette organization, and chapter operations/safety plus merchandise creative responsibilities. Source date label is Leadership & Involvement rather than calendar dates."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal LEADERSHIP lists Sigma Chi Risk Manager & Merchandise Chair",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports combined Sigma Chi Risk Manager & Merchandise Chair listing."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Creative Leadership Sigma Chi Merchandise section",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports merchandise design work connected to Merchandise Chair."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmed Sigma Chi combined role dates",
+          "claimScope": "Mark confirmed January 2023 to May 2026 for the combined Risk Manager & Merchandise Chair role.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioFileOutput.js"
+      ],
+      "relatedRecordIds": [],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "student leadership",
+        "campus involvement",
+        "risk responsibility",
+        "creative leadership",
+        "organization experience"
+      ],
+      "prohibitedUses": [
+        "treat as paid employment",
+        "claim national fraternity office",
+        "claim authority over all chapter operations",
+        "invent disciplinary or incident details",
+        "invent additional officer titles"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Combined record selected by Mark. Dates explicitly confirmed by Mark: January 2023 – May 2026. Merchandise design may receive a separate creative-contribution record in a later phase. Do not duplicate this as employment."
+    },
+    {
+      "id": "membership-bayanihan-bso",
+      "category": "leadership",
+      "recordType": "organization-membership",
+      "title": "Bayanihan Student Organization (BSO)",
+      "publicText": "Mark was a member of Bayanihan Student Organization (BSO), Marquette University’s Filipino student organization, from August 2022 to May 2026.",
+      "shortText": "Bayanihan Student Organization member, August 2022 – May 2026.",
+      "aliases": [
+        "BSO",
+        "Bayanihan",
+        "Bayanihan Student Organization",
+        "Filipino Student Organization",
+        "Marquette Filipino Student Organization"
+      ],
+      "keywords": [
+        "student organization",
+        "Filipino student organization",
+        "campus involvement",
+        "membership",
+        "BSO",
+        "Bayanihan"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal LEADERSHIP lists Bayanihan Student Organization",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports Bayanihan Student Organization listing under leadership and involvement. Does not prove officer role or dates."
+        },
+        {
+          "kind": "testimonial",
+          "label": "Jarenz testimonial references Filipino Student Organization",
+          "sourcePath": "src/testimonialsData.js",
+          "testimonialId": "jarenz-masiclat",
+          "claimScope": "Supports that Filipino Student Organization wording appears in a published testimonial relationship/context. Does not alone prove organizational identity or membership dates."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmed BSO identity, membership-only status, and dates",
+          "claimScope": "Mark confirmed Bayanihan Student Organization is BSO, Marquette University's Filipino student organization; membership only; August 2022 to May 2026.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/terminalFileOutput.js",
+        "src/testimonialsData.js"
+      ],
+      "relatedRecordIds": [],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "campus involvement",
+        "student organizations",
+        "full involvement history",
+        "approved personal background questions"
+      ],
+      "prohibitedUses": [
+        "claim officer role",
+        "claim leadership title",
+        "claim mentor or kuya role",
+        "treat as paid employment",
+        "infer responsibilities not documented",
+        "infer political views",
+        "infer private personal attributes beyond the approved organization fact",
+        "merge with unrelated organizations"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Mark explicitly confirmed that Bayanihan Student Organization is BSO, Marquette University’s Filipino student organization. Mark explicitly confirmed membership only. Dates explicitly confirmed by Mark: August 2022 – May 2026. This is organization membership, not an officer or leadership role. Category leadership is used because the current schema has no separate organization-membership category."
+    }
+  ]
+}
