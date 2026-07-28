@@ -1,0 +1,827 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "skill-javascript",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "JavaScript",
+      "publicText": "Mark has used JavaScript in his Personal Portfolio Platform, the Finch robot web controller project, and other frontend project work.",
+      "shortText": "Used in the portfolio, Finch, and other frontend project work.",
+      "aliases": ["JS", "JavaScript"],
+      "keywords": ["javascript", "js", "frontend", "web"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "README lists JavaScript in the portfolio stack",
+          "sourcePath": "README.md",
+          "claimScope": "Supports JavaScript use in the Personal Portfolio Platform."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage skills list and Finch project tech stack",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports JavaScript listing and Finch controller tech including JavaScript."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume core stack lists TypeScript / JavaScript",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports JavaScript as a listed language on the Terminal resume."
+        }
+      ],
+      "sourceFiles": [
+        "README.md",
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioFileOutput.js",
+        "markai-knowledge/records/projects.json"
+      ],
+      "projectIds": [
+        "project-portfolio-platform"
+      ],
+      "relatedRecordIds": [
+        "skill-typescript",
+        "skill-html-css",
+        "skill-react"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Which languages has Mark used?",
+        "Does Mark know JavaScript?",
+        "What frontend languages appear in Mark's projects?"
+      ],
+      "prohibitedUses": [
+        "claim expert-level mastery",
+        "claim JavaScript professional employment",
+        "rank Mark against other developers"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Finch evidence is via PortfolioApp.jsx and terminalPortfolioFileOutput.js only. project-finch does not exist yet. Capstone association is through React/TypeScript project stacks; do not claim every capstone file is JavaScript."
+    },
+    {
+      "id": "skill-typescript",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "TypeScript",
+      "publicText": "Mark has used TypeScript in his Abacus and TA-Bot / MAAT senior capstone projects.",
+      "shortText": "Used in Abacus and TA-Bot / MAAT capstone work.",
+      "aliases": ["TS", "TypeScript"],
+      "keywords": ["typescript", "ts", "javascript", "frontend"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Abacus and MAAT webpage tech stacks list TypeScript",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports TypeScript as a listed technology for Abacus and MAAT.",
+          "doesNotProve": ["All capstone code was TypeScript"]
+        },
+        {
+          "kind": "derived-summary",
+          "label": "Approved project records list TypeScript for Abacus and MAAT",
+          "sourcePath": "markai-knowledge/records/projects.json",
+          "claimScope": "Supports TypeScript association with project-abacus and project-maat."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "markai-knowledge/records/projects.json"
+      ],
+      "projectIds": ["project-abacus", "project-maat"],
+      "relatedRecordIds": ["skill-javascript"],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know TypeScript?",
+        "What languages were used in the capstones?"
+      ],
+      "prohibitedUses": [
+        "claim all capstone code was TypeScript",
+        "claim expert-level mastery",
+        "claim TypeScript professional employment"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Do not claim every Abacus or MAAT file is TypeScript. Stack listing supports use, not sole-language ownership."
+    },
+    {
+      "id": "skill-python",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Python",
+      "publicText": "Mark has used Python in data-analysis coursework, the Finch robot controller project, and Flask-based project environments.",
+      "shortText": "Used for data analysis, Flask projects, and Finch robot work.",
+      "aliases": ["Python"],
+      "keywords": ["python", "flask", "data-analysis", "backend"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage skills list and Finch, basketball, and sleep project tech stacks",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Python use in Finch and data-analysis project descriptions."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume and Finch/data project file output list Python",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports Python as a listed language and Finch stack language."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal Finch and data project file descriptions",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports Python in Finch and data-project stack wording."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioFileOutput.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": ["skill-flask"],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know Python?",
+        "What languages appear in Mark's data or Finch work?"
+      ],
+      "prohibitedUses": [
+        "claim production Python employment",
+        "claim expert-level mastery",
+        "reference future project IDs that do not exist yet"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "No projectIds yet for Finch or data projects. Capstone Flask environments support Python indirectly; keep publicText focused on data, Finch, and Flask environments."
+    },
+    {
+      "id": "skill-sql",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "SQL",
+      "publicText": "Mark has used SQL in database-backed project work, including his senior capstones and portfolio contact system.",
+      "shortText": "Used in database-backed capstone and portfolio projects.",
+      "aliases": ["SQL", "relational databases"],
+      "keywords": ["sql", "database", "mysql", "relational"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage skills list includes SQL; capstone stacks include MySQL",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports SQL as a listed language and database-backed project context."
+        },
+        {
+          "kind": "repo-source",
+          "label": "README documents PHP/MySQL contact backend",
+          "sourcePath": "README.md",
+          "claimScope": "Supports database-backed portfolio contact system context for SQL use."
+        },
+        {
+          "kind": "derived-summary",
+          "label": "Approved project records include MySQL in portfolio and capstone stacks",
+          "sourcePath": "markai-knowledge/records/projects.json",
+          "claimScope": "Supports SQL use through MySQL-backed project stacks."
+        }
+      ],
+      "sourceFiles": [
+        "README.md",
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "markai-knowledge/records/projects.json"
+      ],
+      "projectIds": [
+        "project-portfolio-platform",
+        "project-abacus",
+        "project-maat"
+      ],
+      "relatedRecordIds": ["skill-mysql"],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know SQL?",
+        "Has Mark worked with databases?"
+      ],
+      "prohibitedUses": [
+        "imply database-administration employment",
+        "expose database credentials or configuration",
+        "claim expert-level mastery"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "SQL evidence is through listed skills and MySQL-backed project stacks, not DBA work."
+    },
+    {
+      "id": "skill-c",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "C",
+      "publicText": "Mark has used C in Operating Systems coursework focused on UNIX/Linux and systems-level programming concepts.",
+      "shortText": "Used in Operating Systems and UNIX/Linux coursework.",
+      "aliases": ["C", "C programming"],
+      "keywords": ["c", "systems", "unix", "linux", "operating-systems"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Operating Systems C Projects webpage description and tech stack",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports C use in Operating Systems coursework with UNIX/Linux context."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal OS project and resume stack wording",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports C / UNIX / Linux coursework framing."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume lists C and Operating Systems C Projects",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports C as a listed language and OS coursework project."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioFileOutput.js",
+        "src/terminalPortfolioProjectData.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know C?",
+        "What systems programming experience does Mark have?"
+      ],
+      "prohibitedUses": [
+        "claim production kernel-development experience",
+        "invent exact kernel features",
+        "reference a future OS project ID"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "project-operating-systems-c does not exist yet. Keep claims to coursework topics documented in portfolio sources."
+    },
+    {
+      "id": "skill-csharp",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "C#",
+      "publicText": "Mark has used C# in Unity coursework projects including Space SHMUP, Apple Picker, and Mission Demolition.",
+      "shortText": "Used across three Unity coursework projects.",
+      "aliases": ["C#", "C Sharp"],
+      "keywords": ["csharp", "c#", "unity", "game-development"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Unity project tech stacks list C#",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports C# use in Space SHMUP, Mission Demolition, and Apple Picker."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal Unity project file descriptions list C#",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports C# in Unity coursework project stacks."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume lists C# and Space SHMUP",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports C# as a listed language and Unity gameplay systems wording."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioFileOutput.js",
+        "src/terminalPortfolioProjectData.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": ["skill-unity"],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know C#?",
+        "What languages were used in Mark's Unity projects?"
+      ],
+      "prohibitedUses": [
+        "imply commercial game-development employment",
+        "claim professional game-studio experience",
+        "reference future Unity project IDs"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Unity project knowledge records do not exist yet. Evidence is source-file based only."
+    },
+    {
+      "id": "skill-html-css",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "HTML and CSS",
+      "publicText": "Mark has used HTML and CSS for responsive portfolio interfaces, Finch controller screens, and other frontend project work.",
+      "shortText": "Used for responsive portfolio and project interfaces.",
+      "aliases": ["HTML", "CSS", "HTML/CSS", "frontend styling"],
+      "keywords": ["html", "css", "frontend", "styling", "responsive"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "README lists CSS in the portfolio stack",
+          "sourcePath": "README.md",
+          "claimScope": "Supports CSS use in the Personal Portfolio Platform."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage skills list and Finch tech stack include HTML and CSS",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports HTML/CSS listing and Finch controller HTML/CSS use."
+        },
+        {
+          "kind": "derived-summary",
+          "label": "Approved portfolio project record includes CSS",
+          "sourcePath": "markai-knowledge/records/projects.json",
+          "claimScope": "Supports CSS association with project-portfolio-platform."
+        }
+      ],
+      "sourceFiles": [
+        "README.md",
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioFileOutput.js",
+        "markai-knowledge/records/projects.json"
+      ],
+      "projectIds": ["project-portfolio-platform"],
+      "relatedRecordIds": ["skill-javascript"],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know HTML and CSS?",
+        "What frontend styling technologies has Mark used?"
+      ],
+      "prohibitedUses": [
+        "claim professional design specialization",
+        "claim expert-level mastery",
+        "claim UI/UX employment"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Finch HTML/CSS evidence is source-file based; no Finch project ID yet."
+    },
+    {
+      "id": "skill-react",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "React",
+      "publicText": "Mark has used React in his deployed Personal Portfolio Platform and in the Abacus and TA-Bot / MAAT senior capstone projects.",
+      "shortText": "Used in the deployed portfolio and both senior capstones.",
+      "aliases": ["React", "React.js"],
+      "keywords": ["react", "frontend", "javascript", "ui"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "README documents React portfolio stack",
+          "sourcePath": "README.md",
+          "claimScope": "Supports React use in the deployed Personal Portfolio Platform."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage skills and Abacus/MAAT tech stacks list React",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports React for portfolio and both senior capstones."
+        },
+        {
+          "kind": "derived-summary",
+          "label": "Approved project records list React for portfolio, Abacus, and MAAT",
+          "sourcePath": "markai-knowledge/records/projects.json",
+          "claimScope": "Supports React association with the three existing project records."
+        }
+      ],
+      "sourceFiles": [
+        "README.md",
+        "src/PortfolioApp.jsx",
+        "src/portfolioPlatformData.js",
+        "src/terminalFileOutput.js",
+        "markai-knowledge/records/projects.json"
+      ],
+      "projectIds": [
+        "project-portfolio-platform",
+        "project-abacus",
+        "project-maat"
+      ],
+      "relatedRecordIds": ["skill-javascript", "skill-vite"],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know React?",
+        "What frontend frameworks has Mark used?"
+      ],
+      "prohibitedUses": [
+        "call Mark a React expert",
+        "claim sole ownership of capstone React codebases",
+        "claim React professional employment"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Deployed portfolio evidence is strongest. Capstone React use is team-project context."
+    },
+    {
+      "id": "skill-vite",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Vite",
+      "publicText": "Mark uses Vite to develop and build his deployed Personal Portfolio Platform.",
+      "shortText": "Used to develop and build the portfolio application.",
+      "aliases": ["Vite"],
+      "keywords": ["vite", "build-tool", "frontend", "react"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "README documents Vite in the portfolio stack",
+          "sourcePath": "README.md",
+          "claimScope": "Supports Vite for developing and building the portfolio."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage skills list includes Vite",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Vite as a listed technology."
+        },
+        {
+          "kind": "derived-summary",
+          "label": "Approved portfolio project record lists Vite",
+          "sourcePath": "markai-knowledge/records/projects.json",
+          "claimScope": "Supports Vite association with project-portfolio-platform."
+        }
+      ],
+      "sourceFiles": [
+        "README.md",
+        "src/PortfolioApp.jsx",
+        "src/portfolioPlatformData.js",
+        "markai-knowledge/records/projects.json"
+      ],
+      "projectIds": ["project-portfolio-platform"],
+      "relatedRecordIds": ["skill-react"],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "What build tools does Mark use?",
+        "Does the portfolio use Vite?"
+      ],
+      "prohibitedUses": [
+        "claim broad Vite specialization beyond the portfolio",
+        "claim Vite professional employment",
+        "claim expert-level mastery"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Scope limited to the Personal Portfolio Platform."
+    },
+    {
+      "id": "skill-flask",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Flask",
+      "publicText": "Mark has used Flask in senior capstone and Finch robot-controller project environments.",
+      "shortText": "Used in capstone and Finch backend environments.",
+      "aliases": ["Flask", "Python Flask"],
+      "keywords": ["flask", "python", "backend", "web"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Abacus, MAAT, and Finch webpage stacks include Flask",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Flask in capstone and Finch project environments.",
+          "doesNotProve": ["Sole backend ownership"]
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal Finch project describes Flask/Socket.IO interaction flow",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports Flask use in Finch robot-controller work."
+        },
+        {
+          "kind": "derived-summary",
+          "label": "Approved Abacus and MAAT project records list Flask",
+          "sourcePath": "markai-knowledge/records/projects.json",
+          "claimScope": "Supports Flask association with project-abacus and project-maat."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioFileOutput.js",
+        "markai-knowledge/records/projects.json"
+      ],
+      "projectIds": ["project-abacus", "project-maat"],
+      "relatedRecordIds": ["skill-python"],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know Flask?",
+        "What backend frameworks appear in Mark's projects?"
+      ],
+      "prohibitedUses": [
+        "claim sole backend ownership",
+        "claim Flask professional employment",
+        "reference a future Finch project ID"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Finch Flask evidence is source-file based only. Capstone Flask use is team-environment context."
+    },
+    {
+      "id": "skill-mysql",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "MySQL",
+      "publicText": "Mark has used MySQL in his portfolio contact backend and senior capstone project stacks.",
+      "shortText": "Used in the portfolio backend and senior capstone stacks.",
+      "aliases": ["MySQL", "relational database"],
+      "keywords": ["mysql", "sql", "database", "backend"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "README documents PHP/MySQL contact backend",
+          "sourcePath": "README.md",
+          "claimScope": "Supports MySQL in the portfolio contact backend."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage skills and Abacus/MAAT tech stacks list MySQL",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports MySQL in skills list and capstone stacks."
+        },
+        {
+          "kind": "derived-summary",
+          "label": "Approved project records list MySQL for portfolio, Abacus, and MAAT",
+          "sourcePath": "markai-knowledge/records/projects.json",
+          "claimScope": "Supports MySQL association with the three existing project records."
+        }
+      ],
+      "sourceFiles": [
+        "README.md",
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "markai-knowledge/records/projects.json",
+        "public/api/contact.php"
+      ],
+      "projectIds": [
+        "project-portfolio-platform",
+        "project-abacus",
+        "project-maat"
+      ],
+      "relatedRecordIds": ["skill-sql"],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know MySQL?",
+        "What databases has Mark used?"
+      ],
+      "prohibitedUses": [
+        "expose database credentials or configuration",
+        "imply database-administration employment",
+        "claim expert-level mastery"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Contact backend path public/api/contact.php is evidence of MySQL-backed contact work; do not surface secrets."
+    },
+    {
+      "id": "skill-docker",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Docker",
+      "publicText": "Mark has used Docker in his Abacus and TA-Bot / MAAT capstone development environments.",
+      "shortText": "Used in senior capstone development environments.",
+      "aliases": ["Docker", "containers"],
+      "keywords": ["docker", "containers", "development-environment"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Abacus and MAAT webpage tech stacks list Docker",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Docker in Abacus and MAAT development environments."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume and MAAT wording reference Docker Compose testing workflows",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports Docker-related capstone development/testing environment use.",
+          "doesNotProve": ["DevOps or infrastructure-engineering employment"]
+        },
+        {
+          "kind": "derived-summary",
+          "label": "Approved Abacus and MAAT project records list Docker",
+          "sourcePath": "markai-knowledge/records/projects.json",
+          "claimScope": "Supports Docker association with project-abacus and project-maat."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "markai-knowledge/records/projects.json",
+        "markai-knowledge/records/contributions.json"
+      ],
+      "projectIds": ["project-abacus", "project-maat"],
+      "relatedRecordIds": [],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know Docker?",
+        "What development environments were used in the capstones?"
+      ],
+      "prohibitedUses": [
+        "claim DevOps or infrastructure-engineering employment",
+        "claim expert-level mastery",
+        "claim production container orchestration ownership"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Docker Compose is deferred to a later skills pass. Keep this record scoped to Docker in capstone environments."
+    },
+    {
+      "id": "skill-git-github",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Git and GitHub",
+      "publicText": "Mark uses Git and GitHub to manage, document, and publish his portfolio, capstone work, systems coursework, Unity projects, and data projects.",
+      "shortText": "Used for version control and project documentation across the portfolio.",
+      "aliases": ["Git", "GitHub", "version control"],
+      "keywords": ["git", "github", "version-control", "repositories"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage skills list includes Git / GitHub; project cards link repositories",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Git/GitHub use across listed projects."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal portfolio GitHub link map for project repositories",
+          "sourcePath": "src/terminalPortfolioProjectData.js",
+          "claimScope": "Supports GitHub publication of portfolio, OS, Finch, Unity, and data projects."
+        },
+        {
+          "kind": "derived-summary",
+          "label": "Approved project records include Git/GitHub associations",
+          "sourcePath": "markai-knowledge/records/projects.json",
+          "claimScope": "Supports Git/GitHub for existing approved project records."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioProjectData.js",
+        "markai-knowledge/records/projects.json",
+        "markai-knowledge/links/trusted-links.json"
+      ],
+      "projectIds": [
+        "project-portfolio-platform",
+        "project-abacus",
+        "project-maat"
+      ],
+      "relatedRecordIds": [],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark use Git?",
+        "Where are Mark's project repositories?"
+      ],
+      "prohibitedUses": [
+        "claim enterprise Git administration",
+        "invent arbitrary repository URLs",
+        "claim expert-level mastery"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "linkIds left empty for this skills pass; navigation/trusted-link records can surface specific repos later."
+    },
+    {
+      "id": "skill-unity",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Unity",
+      "publicText": "Mark has used Unity with C# in coursework projects including Space SHMUP, Apple Picker, and Mission Demolition.",
+      "shortText": "Used with C# across three coursework game projects.",
+      "aliases": ["Unity", "Unity Engine"],
+      "keywords": ["unity", "game-development", "csharp", "coursework"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Programming Computer Games section lists three Unity projects",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Unity use in Space SHMUP, Apple Picker, and Mission Demolition coursework."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal Unity project file descriptions",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports Unity coursework project framing."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume lists Unity and Space SHMUP",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports Unity as a listed technology and featured game project."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioFileOutput.js",
+        "src/terminalPortfolioProjectData.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": ["skill-csharp"],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know Unity?",
+        "Has Mark built game projects?"
+      ],
+      "prohibitedUses": [
+        "imply commercial game development",
+        "claim professional game-studio experience",
+        "claim advanced engine specialization",
+        "reference future Unity project IDs"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Three separate Unity project records are planned later. Keep this skill scoped to coursework evidence."
+    }
+  ]
+}
