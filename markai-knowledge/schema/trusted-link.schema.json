@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://markyoingco.com/schemas/markai-trusted-link.schema.json",
+  "title": "MarkAI Trusted Links",
+  "description": "Registry of server-approved destinations. MarkAI must never invent arbitrary URLs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "links"],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/trustedLink"
+      }
+    }
+  },
+  "$defs": {
+    "kebabId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "trustedLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "href",
+        "type",
+        "public",
+        "enabled",
+        "allowedContexts",
+        "external",
+        "opensNewTab",
+        "disclosure"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/kebabId" },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "pattern": "^[^<>]*$"
+        },
+        "href": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "portfolio-home",
+            "webpage-section",
+            "markai-route",
+            "terminal-path",
+            "resume",
+            "github-profile",
+            "github-repo",
+            "linkedin",
+            "contact-section",
+            "email",
+            "vsco",
+            "other-approved"
+          ]
+        },
+        "public": { "type": "boolean" },
+        "enabled": { "type": "boolean" },
+        "allowedContexts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "answer",
+              "navigation",
+              "contact",
+              "projects",
+              "authoring-only"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "external": { "type": "boolean" },
+        "opensNewTab": { "type": "boolean" },
+        "disclosure": {
+          "type": "string",
+          "enum": ["always", "contact-only", "disabled"]
+        },
+        "relatedRecordIds": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/kebabId" }
+        },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

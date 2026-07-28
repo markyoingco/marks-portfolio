@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "1.0.0",
+  "links": [
+    {
+      "id": "link-portfolio-home",
+      "label": "Portfolio home",
+      "href": "https://markyoingco.com",
+      "type": "portfolio-home",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "contact"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "profile-mark-yoingco",
+        "project-portfolio-platform"
+      ],
+      "notes": "Exact URL from Terminal contact links and portfolio project data."
+    },
+    {
+      "id": "link-resume-pdf",
+      "label": "Resume PDF",
+      "href": "/documents/MarkPort_TechResume_2026.pdf",
+      "type": "resume",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "contact"
+      ],
+      "external": false,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "profile-mark-yoingco",
+        "education-marquette-bs-computer-science"
+      ],
+      "notes": "Exact path from src/resumeDocument.js RESUME_PDF_PATH."
+    },
+    {
+      "id": "link-github-profile",
+      "label": "GitHub profile",
+      "href": "https://github.com/markyoingco",
+      "type": "github-profile",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "contact",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "profile-mark-yoingco"
+      ],
+      "notes": "Exact URL from PortfolioApp social links and Terminal contact links."
+    },
+    {
+      "id": "link-linkedin",
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/mark-yoingco",
+      "type": "linkedin",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "contact"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "profile-mark-yoingco",
+        "career-direction-first-full-time-tech-role"
+      ],
+      "notes": "Exact URL from PortfolioApp social links and Terminal contact links."
+    },
+    {
+      "id": "link-contact-section",
+      "label": "Contact section",
+      "href": "https://markyoingco.com",
+      "type": "contact-section",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "contact"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "career-direction-first-full-time-tech-role"
+      ],
+      "notes": "Webpage Contact is a screen in the SPA (PortfolioApp SCREENS includes contact). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer directing visitors to Contact rather than raw email."
+    },
+    {
+      "id": "link-github-portfolio",
+      "label": "marks-portfolio repository",
+      "href": "https://github.com/markyoingco/marks-portfolio",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects",
+        "navigation"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-portfolio-platform"
+      ],
+      "notes": "Exact URL from src/portfolioPlatformData.js and terminalPortfolioProjectData.js."
+    },
+    {
+      "id": "link-github-abacus",
+      "label": "Abacus repository",
+      "href": "https://github.com/musyslab/Abacus",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-abacus"
+      ],
+      "notes": "Exact URL from PortfolioApp and terminalPortfolioProjectData.js. Commit URLs intentionally omitted."
+    },
+    {
+      "id": "link-github-maat",
+      "label": "MAAT repository",
+      "href": "https://github.com/musyslab/MAAT",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-maat"
+      ],
+      "notes": "Exact URL from PortfolioApp and terminalPortfolioProjectData.js. Commit URLs intentionally omitted."
+    },
+    {
+      "id": "link-vsco",
+      "label": "VSCO gallery",
+      "href": "https://vsco.co/markyoingco/gallery",
+      "type": "vsco",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "notes": "Exact URL from src/terminalProfileFileOutput.js VSCO_GALLERY_URL and PortfolioApp Travel section."
+    },
+    {
+      "id": "link-markai-route",
+      "label": "MarkAI route",
+      "href": "https://markyoingco.com/#markai",
+      "type": "markai-route",
+      "public": true,
+      "enabled": false,
+      "allowedContexts": [
+        "authoring-only"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "disabled",
+      "relatedRecordIds": [
+        "project-portfolio-platform"
+      ],
+      "notes": "#markai is not implemented yet. Href is provisional only and must stay disabled until routing ships."
+    },
+    {
+      "id": "link-email",
+      "label": "Email",
+      "href": "mailto:markyoingco23@gmail.com",
+      "type": "email",
+      "public": true,
+      "enabled": false,
+      "allowedContexts": [
+        "authoring-only"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "disabled",
+      "notes": "Exact mailto from PortfolioApp and Terminal contact links. Disabled for MarkAI answers until Mark explicitly approves raw email disclosure. Prefer link-contact-section, LinkedIn, GitHub, and resume."
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://markyoingco.com/schemas/markai-knowledge.schema.json",
+  "title": "MarkAI Knowledge Records",
+  "description": "Authoring schema for Mark-approved MarkAI knowledge records. Cross-record referential integrity is enforced separately.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "records"],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/knowledgeRecord"
+      }
+    }
+  },
+  "$defs": {
+    "kebabId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "plainText": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^<>]*$"
+    },
+    "isoDate": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "visibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["answerable", "exportPublic", "modelVisible"],
+      "properties": {
+        "answerable": { "type": "boolean" },
+        "exportPublic": { "type": "boolean" },
+        "modelVisible": { "type": "boolean" }
+      }
+    },
+    "evidenceItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "label"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "repo-source",
+            "portfolio-text",
+            "resume-document",
+            "git-commit",
+            "code-file",
+            "github-repo",
+            "testimonial",
+            "mark-approved",
+            "external-public",
+            "derived-summary"
+          ]
+        },
+        "label": { "$ref": "#/$defs/plainText" },
+        "sourcePath": { "type": "string", "minLength": 1 },
+        "commitHash": {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{7,40}$"
+        },
+        "affectedFiles": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "claimScope": { "type": "string", "minLength": 1 },
+        "doesNotProve": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "testimonialId": { "$ref": "#/$defs/kebabId" },
+        "markApprovedOn": { "$ref": "#/$defs/isoDate" },
+        "urlLinkId": { "$ref": "#/$defs/kebabId" }
+      }
+    },
+    "knowledgeRecord": {
+      "type": "object",
+      "required": [
+        "id",
+        "category",
+        "recordType",
+        "title",
+        "publicText",
+        "status",
+        "visibility",
+        "reviewedByMark"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/kebabId" },
+        "category": {
+          "type": "string",
+          "enum": [
+            "profile",
+            "education",
+            "skills",
+            "work-experience",
+            "leadership",
+            "projects",
+            "project-contributions",
+            "testimonials",
+            "career-direction",
+            "work-style",
+            "public-interests",
+            "navigation",
+            "contact",
+            "privacy-boundaries"
+          ]
+        },
+        "recordType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "title": {
+          "allOf": [
+            { "$ref": "#/$defs/plainText" },
+            { "maxLength": 120 }
+          ]
+        },
+        "publicText": { "$ref": "#/$defs/plainText" },
+        "shortText": {
+          "type": "string",
+          "maxLength": 280,
+          "pattern": "^[^<>]*$"
+        },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "approved-summary",
+            "needs-review",
+            "unsupported",
+            "excluded"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidenceItem" }
+        },
+        "supportsRecordIds": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/kebabId" }
+        },
+        "sourceFiles": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "relatedRecordIds": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/kebabId" }
+        },
+        "projectIds": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/kebabId" }
+        },
+        "linkIds": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/kebabId" },
+          "description": "Trusted link registry IDs only. Never raw URLs."
+        },
+        "visibility": { "$ref": "#/$defs/visibility" },
+        "answerUses": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "prohibitedUses": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "reviewedByMark": { "type": "boolean" },
+        "lastReviewed": { "$ref": "#/$defs/isoDate" },
+        "notes": { "type": "string" },
+        "projectType": { "type": "string" },
+        "teamOrIndividual": { "type": "string" },
+        "technologies": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "currentStatus": { "type": "string" },
+        "overstatementGuards": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "portfolioLocation": { "type": "string" },
+        "summary": { "type": "string" },
+        "projectId": { "$ref": "#/$defs/kebabId" },
+        "contributionType": { "type": "string" },
+        "exactContribution": { "type": "string" },
+        "teamContext": { "type": "string" },
+        "claimScope": { "type": "string" },
+        "commitHashes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{7,40}$"
+          }
+        },
+        "affectedFiles": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "safeSummary": { "type": "string" },
+        "prohibitedOverstatement": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "fullName": { "type": "string" },
+        "preferredName": { "type": "string" },
+        "identityVoice": { "type": "string" },
+        "headline": { "type": "string" },
+        "careerStatus": { "type": "string" },
+        "institution": { "type": "string" },
+        "degree": { "type": "string" },
+        "field": { "type": "string" },
+        "graduation": { "type": "string" },
+        "location": { "type": "string" },
+        "horizon": { "type": "string" },
+        "targetDirections": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
