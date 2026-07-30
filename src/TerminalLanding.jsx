@@ -48,6 +48,7 @@ import {
   VSCO_GALLERY_URL,
 } from './terminalPortfolioData'
 import MarkAIChat from './markai/MarkAIChat'
+import { parsePublicOpenAliasCommand } from './publicOpenAliases'
 import {
   buildContactFormConfirmErrorOutput,
   buildContactFormErrorOutput,
@@ -169,6 +170,13 @@ function parseCommand(rawInput, { mode, portfolioPath }) {
       return { type: 'clearOutput' }
     }
     return { type: 'output', lines: ['Terminal cleared.'] }
+  }
+
+  if (mode === MODES.TERMINAL_PORTFOLIO) {
+    const publicOpenAlias = parsePublicOpenAliasCommand(lower)
+    if (publicOpenAlias) {
+      return publicOpenAlias
+    }
   }
 
   if (lower === 'ls') {
@@ -961,6 +969,18 @@ function TerminalLanding({
     if (result.type === 'openTravelWebpage') {
       appendEntry(trimmed, result.lines ?? [], currentPrompt)
       onEnterWebpageScreen('travel')
+      return
+    }
+
+    if (result.type === 'openWebpageScreen') {
+      appendEntry(trimmed, result.lines ?? [], currentPrompt)
+      onEnterWebpageScreen(result.screen || 'home')
+      return
+    }
+
+    if (result.type === 'openMarkAi') {
+      appendEntry(trimmed, result.lines ?? [], currentPrompt)
+      handlePickMarkAi()
       return
     }
 

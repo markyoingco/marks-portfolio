@@ -6,9 +6,9 @@ const MAX_QUESTION_CHARS = 2000
 const CHAR_COUNT_VISIBLE_AT = 1600
 const MAX_HISTORY_MESSAGES = 10
 const INITIAL_GREETING =
-  'Ask me anything about Mark—his work, projects, background, interests, goals, or experience.'
+  'Ask about Mark’s projects, experience, skills, interests, goals, or background.'
 const MARKAI_FOOTNOTE =
-  'Responses are based on Mark’s approved portfolio information.'
+  'Answers are grounded in Mark’s approved portfolio information.'
 const ERROR_MESSAGE = 'Something went wrong. Please try again.'
 
 function createGreetingMessage(id) {
@@ -107,6 +107,7 @@ export default function MarkAIChat() {
   const abortControllerRef = useRef(null)
   const timeoutIdsRef = useRef([])
   const inputRef = useRef(null)
+  const conversationRef = useRef(null)
   const conversationEndRef = useRef(null)
   const isMountedRef = useRef(true)
 
@@ -124,6 +125,10 @@ export default function MarkAIChat() {
   const trimmedInput = inputValue.trim()
   const canSubmit = trimmedInput.length > 0 && !isLoading
   const showCharCount = inputValue.length >= CHAR_COUNT_VISIBLE_AT
+  const hasConversation =
+    messages.some((message) => message.role === 'user') ||
+    messages.some((message) => message.status === 'loading' || message.status === 'error')
+  const isEmptyState = !hasConversation
 
   useEffect(() => {
     isMountedRef.current = true
@@ -140,11 +145,20 @@ export default function MarkAIChat() {
   }, [])
 
   useEffect(() => {
+    if (isEmptyState) {
+      if (conversationRef.current) {
+        conversationRef.current.scrollTop = 0
+      }
+      return
+    }
+    const reduceMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
     conversationEndRef.current?.scrollIntoView({
-      behavior: 'smooth',
+      behavior: reduceMotion ? 'auto' : 'smooth',
       block: 'nearest',
     })
-  }, [messages, errorText, isLoading])
+  }, [messages, errorText, isLoading, isEmptyState])
 
   const trackTimeout = (callback, delayMs) => {
     const timeoutId = window.setTimeout(() => {
@@ -302,7 +316,14 @@ export default function MarkAIChat() {
         : ''
 
   return (
-    <section className="markai-card markai-preview" aria-labelledby="markai-preview-title">
+    <section
+      className={[
+        'markai-card',
+        'markai-preview',
+        isEmptyState ? 'markai-preview--empty' : 'markai-preview--active',
+      ].join(' ')}
+      aria-labelledby="markai-preview-title"
+    >
       <header className="markai-preview__header">
         <div className="markai-preview__brand">
           <h2 id="markai-preview-title" className="markai-preview__title">
@@ -319,8 +340,10 @@ export default function MarkAIChat() {
       </header>
 
       <div
+        ref={conversationRef}
         className="markai-preview__conversation"
         role="log"
+        aria-label="MarkAI conversation"
         aria-live="polite"
         aria-relevant="additions text"
         aria-busy={isLoading}

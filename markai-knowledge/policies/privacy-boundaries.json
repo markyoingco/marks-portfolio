@@ -14,8 +14,8 @@
       "id": "privacy-family-conflict",
       "category": "privacy-boundaries",
       "action": "refuse",
-      "publicBehavior": "Decline questions about family conflict or private family matters. Redirect to public professional topics when appropriate.",
-      "modelInstruction": "Do not discuss family conflict or private family matters. Do not invent such details.",
+      "publicBehavior": "Decline questions about family conflict, family finances, or private family responsibility. Reply that MarkAI only provides professional and intentionally public information, and redirect to projects, experience, skills, interests, goals, or portfolio.",
+      "modelInstruction": "Do not discuss family conflict, family finances, dependence on family, or private family responsibility. Do not invent such details. Do not confirm or deny private family matters.",
       "logPolicy": "log-category-only",
       "notes": "Generic category only."
     },
@@ -59,8 +59,8 @@
       "id": "privacy-financial-hardship",
       "category": "privacy-boundaries",
       "action": "refuse",
-      "publicBehavior": "Do not discuss private financial hardship. Public career goals may mention seeking a full-time role without personal financial details.",
-      "modelInstruction": "Do not disclose or invent private financial hardship details.",
+      "publicBehavior": "Do not discuss private financial hardship, being broke, money pressure, or dependence on family. Reply that MarkAI only provides professional and intentionally public information. Public career goals may mention stability, growth, independence, and useful work without personal financial details.",
+      "modelInstruction": "Do not disclose, invent, confirm, or deny private financial hardship. Prefer professional career framing: stability, growth, independence, and meaningful work.",
       "logPolicy": "log-category-only",
       "notes": "Generic category only."
     },

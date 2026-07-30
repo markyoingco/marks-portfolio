@@ -88,7 +88,7 @@
     {
       "id": "link-contact-section",
       "label": "Contact section",
-      "href": "https://markyoingco.com",
+      "href": "https://markyoingco.com/#contact",
       "type": "contact-section",
       "public": true,
       "enabled": true,
@@ -103,12 +103,12 @@
       "relatedRecordIds": [
         "career-direction-first-full-time-tech-role"
       ],
-      "notes": "Webpage Contact is a screen in the SPA (PortfolioApp SCREENS includes contact). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer directing visitors to Contact rather than raw email."
+      "notes": "Deep-links to Webpage Contact via #contact (SPA parseNavFromHash). Prefer Contact rather than raw email."
     },
     {
       "id": "link-testimonials-section",
       "label": "Testimonials section",
-      "href": "https://markyoingco.com",
+      "href": "https://markyoingco.com/#testimonials",
       "type": "webpage-section",
       "public": true,
       "enabled": true,
@@ -130,12 +130,33 @@
         "testimonial-maxwell-zeisler",
         "testimonial-andrew-wochner"
       ],
-      "notes": "Webpage Testimonials is a screen in the SPA (PortfolioApp SCREENS includes testimonials). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer this section link for general testimonial questions instead of dumping speaker LinkedIn profiles."
+      "notes": "Deep-links to Webpage Testimonials via #testimonials (SPA parseNavFromHash). Prefer this section link for general testimonial questions."
+    },
+    {
+      "id": "link-travel-section",
+      "label": "Travel section",
+      "href": "https://markyoingco.com/#travel",
+      "type": "webpage-section",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "travel-public-places-inventory",
+        "interest-travel-photography",
+        "personality-photography-travel-hobbies"
+      ],
+      "notes": "Deep-links to Webpage Travel via #travel (SPA parseNavFromHash). Prefer this section link and/or VSCO for travel photography questions."
     },
     {
       "id": "link-portfolio-section",
       "label": "Portfolio section",
-      "href": "https://markyoingco.com",
+      "href": "https://markyoingco.com/#portfolio",
       "type": "webpage-section",
       "public": true,
       "enabled": true,
@@ -161,7 +182,7 @@
         "project-sleep-efficiency-analysis",
         "project-marquette-basketball-predictor"
       ],
-      "notes": "Webpage Portfolio is a screen in the SPA (PortfolioApp SCREENS includes portfolio). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer this section link for broad project-inventory questions instead of dumping every project repository link."
+      "notes": "Deep-links to Webpage Portfolio via #portfolio (SPA parseNavFromHash). Prefer this section for broad project-inventory and no-repo project questions."
     },
     {
       "id": "link-github-portfolio",
@@ -235,19 +256,22 @@
       "external": true,
       "opensNewTab": true,
       "disclosure": "always",
+      "relatedRecordIds": [
+        "travel-public-places-inventory",
+        "interest-travel-photography",
+        "personality-photography-travel-hobbies"
+      ],
       "notes": "Exact URL from src/terminalProfileFileOutput.js VSCO_GALLERY_URL and PortfolioApp Travel section."
     },
     {
       "id": "link-markai-route",
-      "label": "MarkAI route",
-      "href": "https://markyoingco.com/#markai",
+      "label": "MarkAI",
+      "href": "https://markyoingco.com",
       "type": "markai-route",
       "public": true,
       "enabled": true,
       "allowedContexts": [
-        "answer",
-        "navigation",
-        "projects"
+        "navigation"
       ],
       "external": false,
       "opensNewTab": false,
@@ -257,7 +281,7 @@
         "project-markai",
         "navigation-portfolio-modes"
       ],
-      "notes": "MarkAI is live. Prefer describing the Main Menu or cd markai / open markai flow. Do not invent additional hashes."
+      "notes": "MarkAI opens in-app via Terminal open markai or the portfolio card Open MarkAI action. Do not use a dead #markai hash. Prefer not returning this link from MarkAI answers."
     },
     {
       "id": "link-email",
@@ -551,6 +575,23 @@
         "project-marquette-basketball-predictor"
       ],
       "notes": "Exact URL already displayed in PortfolioApp.jsx website field and terminalPortfolioProjectData.js. Team Data Mining project — do not imply sole ownership."
+    },
+    {
+      "id": "link-fmsc-libertyville",
+      "label": "Feed My Starving Children (Libertyville)",
+      "href": "https://www.fmsc.org/locations/libertyville-il",
+      "type": "external-org",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [],
+      "notes": "Public FMSC location page used by the Webpage Service card and Terminal fmsc.link. No private organization, member, schedule, or address details beyond this public page."
     }
   ]
 }

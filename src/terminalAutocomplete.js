@@ -28,6 +28,7 @@ import {
   TRAVEL_FOLDER_FILES,
   TERMINAL_CATEGORY_SLUGS,
 } from './terminalPortfolioData'
+import { PUBLIC_OPEN_ALIAS_KEYS } from './publicOpenAliases'
 
 const LANDING_COMMANDS = ['ls', 'back', 'cd webpage', 'cd terminal', 'cd markai', 'cd main']
 
@@ -93,7 +94,7 @@ export function getTerminalAutocompleteCandidates({
       commands: ROOT_COMMANDS,
       cdTargets: ROOT_CD_TARGETS,
       catTargets: [],
-      openTargets: getTestimonialDeepOpenWebpageTargets(),
+      openTargets: [...PUBLIC_OPEN_ALIAS_KEYS, ...getTestimonialDeepOpenWebpageTargets()],
       downloadTargets: [],
     }
   }

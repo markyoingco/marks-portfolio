@@ -1,0 +1,543 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "personality-builder-identity",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Builder identity and turning ideas into results",
+      "publicText": "Mark enjoys turning ideas into real, usable, organized, and visually strong results. He is motivated by the satisfaction of creating something that previously existed only as an idea. He likes building tools, interfaces, and experiences that are useful, easier to understand, or more engaging. Creativity matters to him, but he wants creativity supported by structure and working implementation. He prefers completed work and demonstrated results over only discussing ideas. He is motivated by turning ideas into working results and enjoys combining creativity, organization, and practical problem-solving to build something people can actually use. Do not claim every idea becomes a finished product.",
+      "shortText": "Mark is motivated by turning ideas into working results that combine creativity, organization, and practical usefulness.",
+      "aliases": [
+        "why does Mark build",
+        "builder",
+        "turning ideas into results",
+        "what drives Mark to create"
+      ],
+      "keywords": [
+        "build",
+        "builder",
+        "ideas",
+        "results",
+        "creativity",
+        "implementation",
+        "usable"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A personality addendum builder identity",
+          "claimScope": "Supports public-safe builder motivation only. Does not claim every idea is finished.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-synthesis.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-growth-and-values",
+        "interest-discipline-growth-controlled-strength"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "why does Mark build things",
+        "what drives Mark",
+        "why does Mark care about results"
+      ],
+      "prohibitedUses": [
+        "claim every idea becomes a product",
+        "journal disclosure",
+        "Webpage About export"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only. Prefer short answers for personal-interest mode."
+    },
+    {
+      "id": "personality-quiet-ambition-earned-confidence",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Quiet ambition, proof through action, and earned confidence",
+      "publicText": "Mark wants his actions and completed work to prove his intentions. He values consistency more than short periods of motivation and believes follow-through matters more than announcements. He prefers results over excessive talking or self-promotion, with a tone of quiet confidence, ownership, and consistency. He is ambitious but prefers building quietly rather than constantly announcing his plans, and wants the finished result to carry more weight than public attention. His ambition includes technical growth, physical development, professional independence, creativity, and a meaningful lifestyle built through useful work. He is drawn to serious, controlled, high-effort progress rather than loud presentation. Quiet ambition is an approved phrase. Mark wants confidence to come from preparation, experience, completed work, and continuing to learn. Compliments help, but he also wants demonstrated results. He is working toward making decisions with less hesitation while remaining open to correction. Do not claim Mark never doubts himself. Do not use unstoppable, warrior, dominant, feared, superior, destined for greatness, or built different. Do not invent private emotional origin stories.",
+      "shortText": "Quiet ambition and earned confidence: results over talking, consistency over noise, and confidence from preparation and follow-through.",
+      "aliases": [
+        "quiet ambition",
+        "quiet confidence",
+        "earned confidence",
+        "proof through action",
+        "results over talking"
+      ],
+      "keywords": [
+        "quiet ambition",
+        "quiet confidence",
+        "earned",
+        "follow-through",
+        "results",
+        "consistency"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A personality addendum quiet ambition",
+          "claimScope": "Supports quiet ambition, proof through action, and earned confidence without fake toughness or private insecurity detail.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-synthesis.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-discipline-and-control",
+        "personality-growth-and-values"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what gives Mark confidence",
+        "what does quiet confidence mean",
+        "why does Mark care about results",
+        "what is Mark’s mindset"
+      ],
+      "prohibitedUses": [
+        "claim Mark never doubts himself",
+        "unstoppable warrior dominant feared superior destined built different",
+        "private insecurity journal detail",
+        "slogans in every answer"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only. Do not make answers sound like slogans."
+    },
+    {
+      "id": "personality-controlled-intensity",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Controlled intensity and directed ambition",
+      "publicText": "Mark believes ambition becomes useful when it has direction. Strength without discipline can remain only potential. He wants patience, control, and consistency to direct his intensity. He prefers deliberate responses over rushed decisions. Controlled strength means having energy and ambition while remaining responsible for how they are used. To Mark, controlled strength means having ambition and intensity without letting them control the decision. Discipline gives that energy direction. Do not discuss anger, mental-health details, addiction, private conflict, self-sabotage, or emotional origin stories.",
+      "shortText": "Controlled intensity: ambition and energy directed by discipline, patience, and deliberate decisions.",
+      "aliases": [
+        "controlled intensity",
+        "controlled strength",
+        "intensity with direction"
+      ],
+      "keywords": [
+        "controlled intensity",
+        "discipline",
+        "direction",
+        "patience",
+        "ambition"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A personality addendum controlled intensity",
+          "claimScope": "Supports public-safe controlled-intensity framing only. Excludes anger, mental-health, addiction, and private conflict.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-synthesis.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-discipline-and-control",
+        "interest-discipline-growth-controlled-strength"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what does controlled intensity mean",
+        "what does controlled strength mean",
+        "how does Mark handle intensity"
+      ],
+      "prohibitedUses": [
+        "anger incidents",
+        "mental-health details",
+        "addiction",
+        "private conflict",
+        "self-sabotage narratives"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "Complements personality-discipline-and-control without replacing it."
+    },
+    {
+      "id": "personality-leadership-and-learning",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Leadership balance, humility, and learning",
+      "publicText": "Mark likes contributing ideas, helping people, and taking responsibility. He is willing to lead when he understands the work and can support the team. He also values knowing when to listen, learn, or let someone else lead. He believes teamwork requires communication, clear expectations, accountability, and respect for different strengths. He prefers leadership based on preparation and usefulness rather than title alone. His projects have taught him patience with software, systems, teammates, and himself. He understands that not knowing something is part of learning. He values asking the right questions and documenting details rather than pretending to understand everything. He has learned that technical ability grows through repetition, debugging, feedback, and working with other people. Different people, cultures, projects, and environments give him perspectives he would not gain alone. Do not claim Mark led projects unless a verified project record supports it. Do not call Mark an expert unless an approved skill record supports that level.",
+      "shortText": "Lead when prepared and useful; listen and step back when others should lead; learn through questions, repetition, and teamwork.",
+      "aliases": [
+        "leadership",
+        "comfortable leading",
+        "teamwork taught",
+        "how Mark learns",
+        "humility"
+      ],
+      "keywords": [
+        "leadership",
+        "teamwork",
+        "listen",
+        "learning",
+        "humility",
+        "accountability"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A personality addendum leadership and learning",
+          "claimScope": "Supports balanced leadership and learning themes without unsupported leadership rankings or expert claims.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-synthesis.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "work-style-practical-collaborative-growth",
+        "personality-growth-and-values"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "how does Mark view leadership",
+        "is Mark comfortable leading",
+        "how does Mark approach learning",
+        "what has teamwork taught him"
+      ],
+      "prohibitedUses": [
+        "unsupported leadership ranking",
+        "claim Mark led a project without verified record",
+        "expert claim without skill record",
+        "private teammate conflict"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only. Keep lead/listen/step-back balance explicit."
+    },
+    {
+      "id": "personality-earned-life-and-freedom",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Earned progress, freedom with structure, and connected goals",
+      "publicText": "To Mark, an earned life means building stability, independence, confidence, meaningful work, physical discipline, and experiences he can take genuine pride in. His goals are connected: career, fitness, confidence, environment, professional independence, creativity, and continued learning. A successful life is not only a title; it is knowing he built stability and followed through on what mattered. He wants greater independence with responsibility—flexibility supported by structure that still protects work, fitness, learning, creativity, and personal interests. Structure helps him keep progress while earning more options through consistency.",
+      "shortText": "An earned life of stability, independence, confidence, meaningful work, and physical discipline; freedom with structure and responsibility.",
+      "aliases": [
+        "earned life",
+        "what does freedom mean",
+        "future Mark wants",
+        "connected goals"
+      ],
+      "keywords": [
+        "earned life",
+        "freedom",
+        "structure",
+        "routine",
+        "independence",
+        "stability",
+        "career"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A professional personality privacy override",
+          "claimScope": "Supports earned-progress and freedom-with-structure themes without family support, financial hardship, or private emotional motives.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-synthesis.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-career-purpose",
+        "personality-quiet-ambition-earned-confidence"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what does an earned life mean to Mark",
+        "what kind of future does Mark want",
+        "what does freedom mean to Mark",
+        "what does success look like to Mark"
+      ],
+      "prohibitedUses": [
+        "exact daily schedule",
+        "family support framing",
+        "supporting family financially",
+        "financial hardship",
+        "money pressure",
+        "being broke",
+        "dependence on family",
+        "private emotional motives"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "Professional personality privacy override. No family-support or money-pressure framing. Forbidden themes belong only in prohibitedUses/policies, not publicText."
+    },
+    {
+      "id": "personality-city-and-perspective",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "City vision, exploration, and broader perspective",
+      "publicText": "Mark is interested in modern cities, architecture, technology, opportunity, and cinematic environments. His preferred environment feels organized, independent, creative, and visually strong. He likes the contrast between classical architecture or statues and modern technology. A city can represent ambition, opportunity, movement, and professional progress. His long-term location preferences may evolve, and he is drawn to larger cities and warmer environments when practical. Travel, museums, photography, reading, films, music, hiking, and meeting different people help him gain broader perspectives.",
+      "shortText": "Interest in modern cities, architecture, and cinematic environments; exploration and perspective without fixed destination promises.",
+      "aliases": [
+        "city life",
+        "why city",
+        "environment vision",
+        "new perspectives",
+        "exploration"
+      ],
+      "keywords": [
+        "city",
+        "architecture",
+        "environment",
+        "perspective",
+        "travel",
+        "exploration",
+        "cinematic"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A personality addendum city and perspective",
+          "claimScope": "Supports city-environment vision and perspective themes without precise location, relationship history, or political/religious inference.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-synthesis.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-aesthetic-environment",
+        "personality-photography-travel-hobbies"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what kind of environment does Mark want",
+        "why does he like city life",
+        "how does Mark gain new perspectives"
+      ],
+      "prohibitedUses": [
+        "promise one specific city",
+        "current address",
+        "precise location",
+        "exact financial goals",
+        "private housing fantasies as factual plans",
+        "private relationship history",
+        "political or religious inference"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "Deepens aesthetic and travel records without Webpage changes."
+    },
+    {
+      "id": "personality-remembered-for-substance",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Being remembered for substance",
+      "publicText": "Mark wants his identity to be connected to meaningful work and genuine progress. He wants people to remember what he built, how he worked, and what he followed through on. He does not want visibility without substance. Recognition matters most when it reflects something real that was created or earned. Do not frame this as a desire for fame. Do not claim Mark must become famous or historically important.",
+      "shortText": "Mark wants to be remembered for what he built and followed through on, not visibility without substance.",
+      "aliases": [
+        "remembered for",
+        "what should people remember",
+        "substance over visibility"
+      ],
+      "keywords": [
+        "remembered",
+        "substance",
+        "built",
+        "follow-through",
+        "recognition"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A personality addendum remembrance",
+          "claimScope": "Supports substance-over-visibility framing without fame claims.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-synthesis.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-builder-identity",
+        "personality-quiet-ambition-earned-confidence"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what does Mark want to be remembered for",
+        "what should people remember"
+      ],
+      "prohibitedUses": [
+        "fame claims",
+        "historically important claims",
+        "celebrity framing"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only. Keep answers short."
+    },
+    {
+      "id": "personality-evolving-identity",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Evolving identity and unfinished direction",
+      "publicText": "Mark does not view himself as a finished product. His strongest future self is defined less by one fixed image and more by discipline, confidence, responsibility, experience, and control. His goals may change as he learns and gains experience. He wants MarkAI to describe his direction without pretending every part of his future has already been decided. Mark sees himself as still evolving. The direction is clear—more discipline, responsibility, confidence, skill, and independence—even if the exact final version continues to change.",
+      "shortText": "Still evolving toward more discipline, responsibility, confidence, skill, and independence without a fixed finished identity.",
+      "aliases": [
+        "still evolving",
+        "finished becoming",
+        "type of person becoming",
+        "evolving identity"
+      ],
+      "keywords": [
+        "evolving",
+        "becoming",
+        "direction",
+        "unfinished",
+        "growth"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A personality addendum evolving identity",
+          "claimScope": "Supports evolving-identity framing without claiming a finished self or fixed destiny.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-synthesis.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-growth-and-values"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what type of person is he becoming",
+        "is Mark finished becoming who he wants to be",
+        "does Mark see himself as finished"
+      ],
+      "prohibitedUses": [
+        "fixed destiny claims",
+        "finished-product claims",
+        "private transformation journal detail"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "Prefer this over long motivational biographies for becoming questions."
+    },
+    {
+      "id": "personality-public-vibe",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Core public vibe summary",
+      "publicText": "Mark’s public style combines quiet confidence, disciplined ambition, creativity, and controlled strength. He prefers clean systems, cinematic presentation, direct communication, and results that show the work without needing exaggerated claims. Preferred concepts include quiet confidence, disciplined ambition, controlled strength, creativity, reflection, ownership, seriousness, consistency, cinematic visual identity, and results over talking. Do not overuse this record in technical answers.",
+      "shortText": "Quiet confidence, disciplined ambition, creativity, and controlled strength with cinematic seriousness and results over talking.",
+      "aliases": [
+        "Mark’s vibe",
+        "describe Mark’s vibe",
+        "public vibe",
+        "what makes Mark different"
+      ],
+      "keywords": [
+        "vibe",
+        "quiet confidence",
+        "disciplined ambition",
+        "controlled strength",
+        "cinematic",
+        "results"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A personality addendum public vibe",
+          "claimScope": "Supports concise public-vibe summary only. Avoid fake toughness and overuse in technical answers.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-synthesis.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-quiet-ambition-earned-confidence",
+        "personality-aesthetic-environment"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "how would you describe Mark’s vibe",
+        "what is Mark’s mindset",
+        "what makes Mark different"
+      ],
+      "prohibitedUses": [
+        "fake toughness",
+        "overuse in technical answers",
+        "exaggerated claims",
+        "unstoppable warrior language"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "Use for vibe/mindset personal questions; keep recruiter answers evidence-first."
+    }
+  ]
+}

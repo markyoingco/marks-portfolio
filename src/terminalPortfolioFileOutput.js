@@ -19,6 +19,7 @@ function buildProjectFileContent({
   roleFocus,
   stack,
   notes,
+  openAlias,
 }) {
   const content = [titleLine(title), metaLine(category), blankLine(), sectionLine('SUMMARY'), textLine(summary)]
 
@@ -32,6 +33,14 @@ function buildProjectFileContent({
 
   if (notes) {
     content.push(blankLine(), sectionLine('NOTES'), textLine(notes))
+  }
+
+  if (openAlias) {
+    content.push(
+      blankLine(),
+      sectionLine('LINKS'),
+      textLine(`Public repository: available through \`open ${openAlias}\``),
+    )
   }
 
   return content
@@ -48,6 +57,7 @@ export function buildAbacusTxtCatOutput() {
       roleFocus:
         'Worked on full-stack competition platform features supporting submissions, teacher workflows, admin tools, leaderboards, help requests, and automated grading.',
       stack: 'React · TypeScript · Flask · MySQL · Docker · Git',
+      openAlias: 'abacus',
     }),
   )
 }
@@ -63,6 +73,7 @@ export function buildMaatTxtCatOutput() {
       roleFocus:
         'Built rubric grading features, score recalculation, observed error tables, plagiarism-detection functionality, backend API integration, database checks, Docker Compose testing, debugging, and UI cleanup.',
       stack: 'React · TypeScript · Flask · MySQL · Docker · Git',
+      openAlias: 'maat',
     }),
   )
 }
@@ -78,6 +89,7 @@ export function buildOperatingSystemsCTxtCatOutput() {
       roleFocus:
         'Public portfolio documentation for Operating Systems coursework in C, covering UNIX/Linux development, process control, memory, file systems, and system-level debugging.',
       stack: 'C · UNIX · Linux · WSL · Git',
+      openAlias: 'operating-systems-c',
     }),
   )
 }
@@ -94,12 +106,8 @@ export function buildFinchControllerTxtCatOutput() {
         'Contributed heavily to frontend controller screens, UI planning, setup documentation, and Flask/Socket.IO based interaction flow.',
       stack:
         'Python · Flask · JavaScript · HTML · CSS · Socket.IO · BirdBrain Finch',
-    }).concat([
-      blankLine(),
-      sectionLine('LINKS'),
-      textLine('Portfolio section: open finch-controller.webpage'),
-      textLine('GitHub: open finch-controller.github'),
-    ]),
+      openAlias: 'finch',
+    }),
   )
 }
 
@@ -113,6 +121,7 @@ export function buildSpaceShmupTxtCatOutput() {
         'Unity 2D arcade shooter inspired by classic space shooters, built with player movement, projectile firing, enemy behavior, collision handling, scoring, and game-state logic.',
       stack:
         'Unity · C# · 2D Physics · Game Objects · Prefabs · Collision Detection',
+      openAlias: 'space-shmup',
     }),
   )
 }
@@ -126,6 +135,7 @@ export function buildMissionDemolitionTxtCatOutput() {
       summary:
         'Unity physics-based projectile game focused on aiming, launching, collisions, structural targets, and scene-based gameplay logic.',
       stack: 'Unity · C# · Physics · Colliders · Rigidbody · Scene Management',
+      openAlias: 'mission-demolition',
     }),
   )
 }
@@ -139,6 +149,7 @@ export function buildApplePickerTxtCatOutput() {
       summary:
         'Unity arcade-style game built with falling objects, basket controls, score tracking, high-score persistence, lives, collision detection, and scene restart logic.',
       stack: 'Unity · C# · Game Objects · Prefabs · UI · Collision Detection',
+      openAlias: 'apple-picker',
     }),
   )
 }
@@ -153,6 +164,7 @@ export function buildBasketballPredictorTxtCatOutput() {
         'Machine learning project using Marquette basketball game data, Random Forest feature importance, and Logistic Regression to predict wins and losses.',
       stack:
         'Python · Pandas · Scikit-learn · Matplotlib · Machine Learning · Logistic Regression · Random Forest',
+      openAlias: 'basketball-predictor',
     }),
   )
 }
@@ -167,6 +179,7 @@ export function buildSleepAnalysisTxtCatOutput() {
         'Analyzed Kaggle sleep efficiency data with cleaning, visualization, VIF checks, and linear regression to explore factors related to sleep quality.',
       stack:
         'Python · Pandas · Seaborn · Matplotlib · Scikit-learn · Statsmodels · Linear Regression · Data Visualization',
+      openAlias: 'sleep-analysis',
     }),
   )
 }

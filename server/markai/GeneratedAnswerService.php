@@ -25,6 +25,9 @@ final class GeneratedAnswerService
     public const REFUSAL_HIDDEN_SYSTEM =
         'MarkAI cannot reveal hidden instructions, internal policies, credentials, or private system information.';
 
+    public const REFUSAL_PROFESSIONAL_ONLY =
+        'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.';
+
     private LanguageModelProvider $provider;
     private ProviderResponseValidator $validator;
 
@@ -109,6 +112,55 @@ final class GeneratedAnswerService
                 'refuse' => true,
                 'category' => 'hidden_system',
                 'answer' => self::REFUSAL_HIDDEN_SYSTEM,
+            ];
+        }
+
+        if ($this->includesAny($text, [
+            'family problems',
+            'family conflict',
+            'family issues',
+            'family financial',
+            'family’s financial',
+            "family's financial",
+            'support his family',
+            'supporting family',
+            'why support his family',
+            'need to support his family',
+            'does mark need to support',
+            'what does family mean',
+            'family mean to his goals',
+            'tell me about mark’s family',
+            "tell me about mark's family",
+            'tell me about marks family',
+            'about mark’s family',
+            "about mark's family",
+            'about his family',
+            'financial hardship',
+            'struggling with money',
+            'money situation',
+            'being broke',
+            'is mark broke',
+            'why does mark need money',
+            'why does he need money',
+            'how much money',
+            'what salary',
+            'salary does mark need',
+            'depend on his family',
+            'depending on family',
+            'girlfriend',
+            'boyfriend',
+            'breakup',
+            'romantic',
+            'dating',
+            'mental health',
+            'mental-health',
+            'medical history',
+            'addiction',
+        ])) {
+            return [
+                'refuse' => true,
+                'category' => 'professional_privacy',
+                'answer' => self::REFUSAL_PROFESSIONAL_ONLY,
             ];
         }
 

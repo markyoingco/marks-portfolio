@@ -1,0 +1,330 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "interest-favorite-artists",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Favorite artists and music preferences",
+      "publicText": "Mark’s favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR. He enjoys rap, melodic hip-hop, and R&B, ranging from energetic and confident tracks to darker, atmospheric, reflective music. That preference fits the cinematic, high-contrast visual atmosphere used in his portfolio. Music is part of how Mark trains, reflects, travels, and stays connected to particular moments or moods. Do not invent favorite albums or songs, quote lyrics, claim Mark knows an artist personally, claim an artist endorses Mark, or imitate an artist’s style.",
+      "shortText": "Favorite artists: Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR; rap, melodic hip-hop, and R&B.",
+      "aliases": [
+        "favorite artists",
+        "favorite musicians",
+        "favorite rappers",
+        "music taste",
+        "Drake",
+        "Lil Baby",
+        "Tory Lanez",
+        "The Weeknd",
+        "Don Toliver",
+        "Travis Scott",
+        "PARTYNEXTDOOR"
+      ],
+      "keywords": [
+        "music",
+        "artists",
+        "rap",
+        "R&B",
+        "hip-hop",
+        "Drake",
+        "Lil Baby",
+        "The Weeknd",
+        "workout music"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A.1 music preferences",
+          "claimScope": "Supports the seven named favorite artists and high-level genre framing only. Excludes lyrics, albums, songs, personal artist relationships, and political inferences.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/interests-entertainment-lifestyle.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-music-reading-hiking",
+        "interest-creative-aesthetics-design"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "who are Mark’s favorite artists",
+        "what music does Mark listen to",
+        "what kind of music does Mark like",
+        "does Mark like Drake",
+        "does Mark listen to R&B",
+        "what music fits Mark’s visual style",
+        "what does Mark listen to while working out"
+      ],
+      "prohibitedUses": [
+        "quote song lyrics",
+        "invent favorite albums or songs",
+        "claim Mark knows an artist",
+        "claim artist endorsement",
+        "imitate an artist’s style",
+        "generate in the style of a living artist",
+        "infer political or personal beliefs from artists",
+        "add favorites to Webpage or Terminal"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only. Do not add artist lists to Webpage, Terminal, resume, or portfolio cards."
+    },
+    {
+      "id": "interest-favorite-films-television",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Favorite films, animated series, and superhero worlds",
+      "publicText": "Some of Mark’s favorite films are Creed, Creed II, The Batman, and Magazine Dreams. Regular Show is one of his favorite animated series and should not be classified as a movie. He also enjoys Marvel and DC movies, characters, and story worlds, including heroes, character arcs, visual design, and major film stories. He does not claim to have seen every release. He is drawn to stories involving ambition, transformation, discipline, pressure, identity, setbacks, sacrifice, and becoming stronger. Creed and Creed II connect to training, ambition, resilience, and earned progress. The Batman fits his preference for dark, cinematic, serious, high-contrast environments. Magazine Dreams connects to his interest in bodybuilding-centered character stories. Regular Show reflects a more relaxed and humorous side of his entertainment interests. If asked Marvel or DC, he enjoys both unless a stronger preference is later approved.",
+      "shortText": "Favorite films: Creed, Creed II, The Batman, Magazine Dreams. Favorite animated series: Regular Show. Enjoys both Marvel and DC story worlds.",
+      "aliases": [
+        "favorite movies",
+        "favorite films",
+        "favorite show",
+        "Creed",
+        "The Batman",
+        "Magazine Dreams",
+        "Regular Show",
+        "Marvel",
+        "DC"
+      ],
+      "keywords": [
+        "movies",
+        "films",
+        "television",
+        "Creed",
+        "Batman",
+        "Marvel",
+        "DC",
+        "Regular Show",
+        "superhero"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A.1 film and television preferences",
+          "claimScope": "Supports the listed films, Regular Show as a series, and broad Marvel/DC interest without claiming every title was watched or ranking them definitively.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/interests-entertainment-lifestyle.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-fitness-bodybuilding",
+        "interest-creative-aesthetics-design"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what are Mark’s favorite movies",
+        "what is Mark’s favorite show",
+        "does Mark like superhero movies",
+        "Marvel or DC",
+        "why does Mark like Creed",
+        "why does Mark like The Batman",
+        "what movies match Mark’s personality",
+        "what does Mark watch outside technology"
+      ],
+      "prohibitedUses": [
+        "classify Regular Show as a movie",
+        "describe Marvel or DC as one trilogy",
+        "claim a character is exactly like Mark",
+        "psychological analysis",
+        "quote scripts or copyrighted dialogue",
+        "invent definitive ranking",
+        "claim Mark watched every Marvel or DC title",
+        "claim comics are a major hobby",
+        "add favorites to Webpage or Terminal"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only. Keep connections light and grounded in approved interests."
+    },
+    {
+      "id": "interest-lifestyle-hobbies-expanded",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Lifestyle hobbies outside technology",
+      "publicText": "Mark’s life outside technology combines fitness, creativity, reflection, exploration, and time with people close to him. Approved public interests include bodybuilding, working out, reading, music, movies, cooking, museums, hiking, travel, photography, running, Greek mythology, classical statues and art, spending time with friends, family, and his dog, and experiencing new places and perspectives. He enjoys activities that help him improve, create, learn, recharge, or gain a different perspective. Cooking is a practical personal interest, not professional culinary experience. Museums connect to photography, classical art, architecture, statues, history, and visual storytelling. Reading and movies give him additional perspectives and ideas. Hiking and travel combine physical activity, exploration, scenery, and reflection.",
+      "shortText": "Hobbies include fitness, reading, music, movies, cooking, museums, hiking, travel, photography, mythology/art, friends, family, and time with his dog.",
+      "aliases": [
+        "hobbies",
+        "for fun",
+        "outside technology",
+        "cooking",
+        "dog",
+        "museums",
+        "friends and family"
+      ],
+      "keywords": [
+        "hobbies",
+        "cooking",
+        "museums",
+        "dog",
+        "friends",
+        "family",
+        "free time",
+        "lifestyle"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A.1 lifestyle and hobby expansion",
+          "claimScope": "Supports the expanded public hobby list and general friends/family/dog mentions without identifying details, schedules, or private stories.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/interests-entertainment-lifestyle.json",
+        "markai-knowledge/records/interests-navigation-contact.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-music-reading-hiking",
+        "interest-fitness-bodybuilding",
+        "interest-favorite-artists",
+        "interest-favorite-films-television"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what does Mark do for fun",
+        "what are Mark’s hobbies",
+        "what does Mark enjoy outside technology",
+        "does Mark like cooking",
+        "does Mark have a dog",
+        "does Mark enjoy museums",
+        "what does Mark do with friends and family",
+        "how does Mark gain new perspectives",
+        "what does Mark do when he is not coding"
+      ],
+      "prohibitedUses": [
+        "names of friends or family",
+        "dog name breed age or medical information",
+        "private family details",
+        "family support or financial motivation",
+        "career motivation from family facts",
+        "home address",
+        "private schedules",
+        "relationship history",
+        "exact travel schedules",
+        "professional cooking claims",
+        "professional photography employment claims",
+        "add private lifestyle details to Webpage or Terminal"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only expansion. For dog questions, say only that he enjoys spending time with his dog."
+    },
+    {
+      "id": "travel-public-places-inventory",
+      "category": "public-interests",
+      "recordType": "travel-inventory",
+      "title": "Public travel places shown in the portfolio",
+      "publicText": "Places intentionally shown in Mark’s public portfolio travel data include Hawaii, Las Vegas, Chicago, California, Lake Louise in Canada, Manila in the Philippines, London, the Amalfi Coast in Italy, Rome in Italy, Milwaukee, and Nashville. The Webpage Travel section and Terminal travel files present these public places and related travel photography. Travel helps Mark experience different environments, people, cultures, architecture, and ways of living. It gives him new perspectives and motivates greater freedom and independence. Cities connect to ambition, energy, architecture, and progress. Water and coastal environments connect to peace. Mountains and hiking connect to effort, challenge, and earning the view. Photography helps preserve the feeling and story of a place. Do not infer current residence, invent favorite destinations, invent trip companions, or expose itineraries, lodging, flights, or exact private schedules.",
+      "shortText": "Public portfolio travel places include Hawaii, Las Vegas, Chicago, California, Lake Louise, Manila, London, Amalfi Coast, Rome, Milwaukee, and Nashville.",
+      "aliases": [
+        "where has Mark traveled",
+        "travel places",
+        "Travel section",
+        "cities Mark visited"
+      ],
+      "keywords": [
+        "travel",
+        "Hawaii",
+        "London",
+        "Rome",
+        "Chicago",
+        "Milwaukee",
+        "photography",
+        "Travel section"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Canonical TRAVEL_PLACES list",
+          "sourcePath": "src/travelPlacesData.js",
+          "claimScope": "Supports only the exact public place names exported in TRAVEL_PLACES."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal travel file output",
+          "sourcePath": "src/terminalTravelFileOutput.js",
+          "claimScope": "Supports Terminal travel presentation of the same public travel content."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Public blog/travel photo gallery labels",
+          "sourcePath": "src/blogPhotosData.js",
+          "claimScope": "Supports that the Webpage Travel gallery displays intentionally public photo location labels; do not invent places beyond approved public sources."
+        }
+      ],
+      "sourceFiles": [
+        "src/travelPlacesData.js",
+        "src/terminalTravelFileOutput.js",
+        "src/blogPhotosData.js",
+        "src/PortfolioApp.jsx"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-travel-photography",
+        "personality-photography-travel-hobbies"
+      ],
+      "linkIds": [
+        "link-travel-section",
+        "link-vsco"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "where has Mark traveled",
+        "what places are shown in Mark’s portfolio",
+        "what does travel mean to Mark",
+        "why does Mark like traveling",
+        "what does Mark photograph while traveling",
+        "what kind of locations does Mark prefer",
+        "does Mark like cities beaches or mountains",
+        "what can I see in the Travel section",
+        "where can I view Mark’s photography",
+        "what did Mark learn from traveling",
+        "how does travel influence his goals"
+      ],
+      "prohibitedUses": [
+        "infer current location",
+        "infer locations from image pixels",
+        "expose hotel flight itinerary lodging or precise-location data",
+        "describe trip as solo family romantic or group unless explicitly public",
+        "invent favorite destinations",
+        "claim residence because of a visit",
+        "print internal link IDs"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "Canonical public place inventory is src/travelPlacesData.js TRAVEL_PLACES. Prefer link-travel-section and link-vsco when relevant."
+    }
+  ]
+}

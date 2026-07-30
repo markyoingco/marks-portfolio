@@ -119,6 +119,10 @@ export const TERMINAL_ROOT_HELP_COMMANDS = [
   { command: 'cd testimonials' },
   { command: 'cd travel' },
   { command: 'cd contact' },
+  {
+    command: 'open [item]',
+    description: 'open an approved public destination (github, linkedin, resume, travel, vsco, testimonials, contact, markai, portfolio, abacus, maat, finch, …)',
+  },
   { command: 'clear' },
   { command: 'back' },
 ]
@@ -448,7 +452,7 @@ export function getTerminalFolderHint(portfolioPath) {
   }
 
   if (isPortfolioRoot(portfolioPath)) {
-    return '# Type ls to view categories. Use cd [category] to open one.'
+    return '# Type ls to view categories. Use cd [category] to open one. Use open [item] for approved public links (github, resume, abacus, …). Private repositories are not available.'
   }
 
   const nestedCategoryConfig = getNestedPortfolioCategoryFromPath(portfolioPath)

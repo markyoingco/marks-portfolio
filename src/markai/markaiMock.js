@@ -20,51 +20,100 @@ const ANSWERS = {
   links:
     'Mark’s public portfolio links include his homepage, project contact section, GitHub, LinkedIn, résumé, and VSCO profile.',
   sensitive:
-    'I only share Mark’s approved public portfolio information. I can help with his projects, skills, experience, education, interests, or the portfolio Contact page.',
+    'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.',
   status:
     'MarkAI is live on markyoingco.com and actively maintained. It answers from Mark’s approved portfolio information using a PHP backend and Cloudflare Workers AI, with response validation, deterministic fallback answers, privacy protections, and anonymous usage limits. Future updates may include bug fixes, testing, design refinement, and approved knowledge expansion.',
   favoriteColor:
     'Mark’s favorite color is black. It fits the minimal, cinematic, high-contrast style he prefers across his portfolio and personal branding, along with clean, organized environments rather than loud or decorative presentation.',
   bodybuilding:
-    'Bodybuilding is Mark’s strongest personal passion outside technology. He views it as a craft built through symmetry, structure, patience, detail, and repetition, and his current focus is aesthetics, controlled movement, and quality progress. Lessons from training also shape how he approaches projects and professional development.',
+    'Bodybuilding interests Mark because it combines discipline, structure, symmetry, patience, and progress earned over time. It is a major interest outside technology and reinforces focus, consistency, and quality work habits that also support professional growth.',
   mythology:
-    'Mark connects with different Greek mythology figures for different reasons: Icarus for ambition, Achilles for intensity, and Heracles for discipline and endurance. He is drawn to themes like ambition, discipline, strength, consequence, and resilience, and he does not treat one figure as a permanent favorite or as religion.',
+    'Mark connects with Icarus, Achilles, and Heracles through themes such as ambition, intensity, discipline, consequence, and endurance. Greek mythology is a creative and symbolic interest connected to art and classical imagery, not a religion or a psychological profile.',
   mythologyIcarus:
-    'For Mark, Icarus connects to ambition, dreaming, risk, and the consequences of losing control. It is one symbolic interest among several mythological figures, not a permanent identity or religious claim.',
+    'For Mark, Icarus connects to ambition, risk, and the consequences of losing control. It is one symbolic interest among several mythological figures, not a permanent identity.',
   mythologyAchilles:
-    'For Mark, Achilles connects to intensity, strength, pride, drive, and human vulnerability. It represents one part of the mindset themes he finds meaningful, not a permanent favorite or complete identity.',
+    'For Mark, Achilles connects to intensity, strength, drive, and resilience. It represents one symbolic theme among several, not a permanent favorite.',
   mythologyHeracles:
-    'For Mark, Heracles connects to endurance, discipline, repeated trials, and becoming stronger through difficult work. It represents growth through challenging effort rather than a permanent favorite or religious claim.',
+    'For Mark, Heracles connects to endurance, discipline, repeated effort, and growth through challenging work. It is symbolic interest, not religion.',
   values:
-    'Mark values discipline, consistency, responsibility, ownership, ambition, resilience, patience, humility, learning, family support, financial independence, usefulness, creativity, personal growth, controlled confidence, and direct communication. He wants progress to come from repeatable actions rather than temporary intensity.',
+    'Mark values discipline, consistency, responsibility, ownership, ambition, resilience, patience, humility, learning, usefulness, creativity, personal growth, professional independence, controlled confidence, and direct communication. He wants progress to come from repeatable actions rather than temporary intensity.',
   personality:
-    'Mark comes across as ambitious, reflective, disciplined, and growth-oriented. He is detail-focused, direct, and practical, confident when prepared, and serious about improving both technically and personally without relying on loud or theatrical self-presentation.',
+    'Mark is a recent Computer Science graduate building toward a stable technology career. His work includes a personal portfolio platform, senior-design projects, systems coursework, robotics, data projects, and Unity projects. He works in a practical, collaborative, growth-oriented way. Outside technology, he values quiet confidence, disciplined ambition, creativity, and controlled strength.',
   discipline:
-    'Mark values consistency because motivation is temporary. Whether he is training, building software, or working toward a career, he wants progress to come from repeatable actions rather than temporary intensity, with actions proving intentions.',
+    'Mark values consistency because long-term progress depends on repeatable actions. He applies that mindset to training, software projects, and professional growth rather than relying only on short periods of motivation.',
   consistency:
     'Mark believes consistency is more dependable than temporary intensity. He values doing the work even when motivation is absent and sees repeated controlled effort as the path to progress.',
   controlledStrength:
-    'Mark is drawn to strength with direction. He believes strength without discipline can become wasted potential, and he prefers confidence that is earned, controlled, patient, and deliberate rather than loud or arrogant.',
+    'To Mark, controlled strength means having ambition and intensity without letting them control the decision. Discipline gives that energy direction through patience, consistency, and deliberate responses.',
   setbacks:
-    'Mark sees setbacks as lessons that can improve future decisions. He values rebuilding, learning, and continuing after difficult periods, and he wants to keep progressing instead of becoming too comfortable to grow.',
+    'Mark treats challenges as opportunities to improve future decisions. He values learning, adjusting, and continuing to make steady progress in his work and training.',
+  builderIdentity:
+    'Mark is motivated by turning ideas into working results. He enjoys combining creativity, organization, and practical problem-solving to build something people can actually use.',
+  quietAmbition:
+    'Mark’s ambition is quiet. He prefers building seriously and letting finished results carry more weight than constant announcements or loud self-promotion.',
+  earnedConfidence:
+    'Mark wants confidence to come from preparation, follow-through, experience, and continued learning. Compliments help, but demonstrated results matter. That does not mean he never questions himself.',
+  drives:
+    'Mark is driven by meaningful work, professional growth, independence, discipline, creativity, and the satisfaction of turning ideas into usable results.',
+  vibe:
+    'Mark’s public style combines quiet confidence, disciplined ambition, creativity, and controlled strength. He prefers clean systems, cinematic presentation, direct communication, and results that show the work without exaggerated claims.',
+  earnedLife:
+    'To Mark, an earned life means building stability, independence, responsibility, meaningful work, confidence, and structured freedom he can take genuine pride in.',
+  freedomStructure:
+    'For Mark, freedom is not the absence of responsibility. He wants greater independence inside a structure that still protects work, fitness, learning, creativity, and travel.',
+  leadershipBalance:
+    'Mark is willing to lead when he understands the work and can support the team, and he also values knowing when to listen, learn, or let someone else lead. He prefers preparation and usefulness over title alone.',
+  learningHumility:
+    'Mark treats not knowing something as part of learning. He values clear questions, documentation, repetition, debugging, feedback, and working with other people rather than pretending to understand everything.',
+  cityVision:
+    'Mark is interested in modern cities, architecture, technology, opportunity, and cinematic environments. Cities represent ambition, opportunity, and professional progress. His exact long-term location can still evolve.',
+  perspectiveExploration:
+    'Mark values new perspectives as much as new places. Travel, museums, photography, reading, films, music, hiking, and meeting different people help him stay ambitious while remaining grounded and open to learning.',
+  remembered:
+    'Mark wants to be remembered for what he built, how he worked, and what he followed through on. Visibility without substance is not the goal.',
+  becoming:
+    'Mark sees himself as still evolving. The direction is clear—more discipline, responsibility, confidence, skill, and independence—even if the exact final version continues to change.',
+  futureVision:
+    'Mark wants a growing technology career, an active and disciplined lifestyle, continued learning, creative interests, and greater independence.',
   hobbies:
-    'Outside technology, Mark’s public hobbies include bodybuilding and gym training, hiking, reading, music, travel, photography, running, Greek mythology, classical statues and art, museums, and exploring cities and landscapes.',
+    'Outside technology, Mark’s public hobbies include bodybuilding and working out, reading, music, movies, cooking, museums, hiking, travel, photography, running, Greek mythology, classical statues and art, spending time with friends, family, and his dog, and experiencing new places and perspectives.',
+  cooking:
+    'Cooking is a practical personal interest for Mark, not professional culinary experience. It is one of the ways he spends time outside technology.',
+  dog: 'Mark enjoys spending time with his dog.',
+  friendsFamily:
+    'Mark enjoys spending time with friends and family. He keeps those details general in public answers and does not share names, schedules, or private stories.',
+  museums:
+    'Mark enjoys museums, especially where they connect to photography, classical art, architecture, statues, history, and visual storytelling.',
   passion:
     'Mark is passionate about building useful software and about bodybuilding outside technology. In both areas he focuses on disciplined practice, steady improvement, and work he can stand behind.',
+  favoriteArtists:
+    'Mark’s favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR. His taste leans toward melodic rap, R&B, atmospheric production, and music that works for both training and reflection.',
+  favoriteArtistsWorkout:
+    'Mark’s broader music interests often fit training and personal reflection. His favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR, spanning energetic tracks and darker, atmospheric moods.',
+  favoriteFilms:
+    'Some of Mark’s favorite films are Creed, Creed II, The Batman, and Magazine Dreams. He also enjoys Marvel and DC stories, while Regular Show is one of his favorite animated series.',
+  favoriteFilmsMarvelDc:
+    'Mark enjoys both Marvel and DC movies, characters, and story worlds. That includes heroes, character arcs, visual design, and major film stories. He does not claim to have seen every release.',
+  favoriteFilmsCreed:
+    'Creed and Creed II connect naturally to Mark’s interest in training, ambition, resilience, and earned progress. They are among his favorite films alongside The Batman and Magazine Dreams.',
+  favoriteFilmsBatman:
+    'The Batman fits Mark’s preference for dark, cinematic, serious, high-contrast environments. It is one of his favorite films alongside Creed, Creed II, and Magazine Dreams.',
+  favoriteShow:
+    'Regular Show is one of Mark’s favorite animated series. It reflects a more relaxed and humorous side of his entertainment interests and is not classified as a movie.',
   careerGoals:
-    'Mark’s immediate goal is a stable technology role with room to grow, including software development, full-stack work, developer tools, data-oriented systems, and related entry-level paths. He wants meaningful work, financial independence, and the ability to support his family, and he is open to Milwaukee, Chicago, remote work, or other locations when the opportunity makes relocation practical.',
+    'Mark is working toward a stable technology career centered on meaningful work, continued learning, professional growth, and greater independence. He is open to software development, full-stack work, developer tools, data-oriented systems, technical support, and related entry-level paths, including Milwaukee, Chicago, remote work, or other locations when relocation is practical.',
   success:
-    'For Mark, long-term success means stability, confidence, meaningful work, independence, continued ambition, and excitement about what comes next. He wants to be proud of work he built usefully and followed through on, not money as his only motivation.',
+    'For Mark, success means career stability, professional growth, independence, meaningful work, physical discipline, and pride in earned progress. A title alone is not enough; he wants to know he built something useful and followed through.',
   familyGoals:
-    'Supporting his family is part of Mark’s public goals alongside building a stable technology career and becoming financially independent. He wants his work to create stability and meaningful progress he can stand behind.',
+    'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.',
   photography:
     'Mark uses photography to preserve feelings, places, views, memories, and important moments. He prefers cinematic, personal, dark, low-exposure, story-driven images of cities, architecture, landscapes, museums, and travel experiences.',
   travel:
-    'Travel helps Mark see different cultures, lifestyles, opportunities, and perspectives. Cities represent ambition and progress, oceans and islands represent peace, and mountains represent effort that earns the view, all motivating greater independence and freedom.',
+    'Travel helps Mark experience different environments, people, cultures, architecture, and ways of living. It gives him new perspectives and motivates greater freedom and independence. Cities connect to ambition and energy, coastal environments to peace, and mountains and hiking to effort that earns the view.',
+  travelPlaces:
+    'Places shown in Mark’s public portfolio travel content include Hawaii, Las Vegas, Chicago, California, Lake Louise in Canada, Manila in the Philippines, London, the Amalfi Coast in Italy, Rome in Italy, Milwaukee, and Nashville. The Travel section and VSCO gallery are the best places to view related photography.',
   environment:
     'Mark prefers clean, organized, minimal environments with a cinematic mix of classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional atmosphere and dislikes corny or overly decorative presentation.',
-  becoming:
-    'Mark is working to become more consistent, controlled, and capable over time. He wants confidence rooted in preparation and demonstrated work, with strength directed by discipline rather than temporary intensity.',
   collaboratorsAbacus:
     'The core student team for Abacus included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. Sam Mazzone supported the team separately as an advisor, software developer, and moral supporter.',
   collaboratorsMaat:
@@ -87,6 +136,10 @@ const ANSWERS = {
     "Mark’s approved public software projects include:\n\n- Portfolio & AI: Personal Portfolio Platform; MarkAI\n- Capstones: Abacus; TA-Bot / MAAT\n- Systems: Operating Systems C Projects\n- Robotics & Software Design: Finch Robot Web Controller\n- Games: Space SHMUP; Apple Picker; Mission Demolition\n- Data: Sleep Efficiency Analysis; Marquette Basketball Predictor\n\nThe portfolio platform and MarkAI are solo personal work. Abacus, MAAT, Finch, and the data projects were team or coursework collaborations.",
   fallback:
     'I can answer questions about Mark’s projects, skills, experience, education, interests, goals, testimonials, and contact options. Try asking a more specific question.',
+  fmsc:
+    'Mark has public volunteer service experience with Feed My Starving Children, shown in the Portfolio Service section. A public FMSC location page is available through the safe link below. MarkAI does not share private organization, member, schedule, or internal details.',
+  merchSigma:
+    'Sigma Chi merchandise design is shown in Mark’s Portfolio Merch section. It does not have a separate public software repository; the Portfolio section is the approved place to view it.',
 }
 
 function includesAny(text, phrases) {
@@ -108,9 +161,69 @@ function classifyQuestion(rawQuestion) {
       'private repository',
       'private repo',
       'relationship',
+      'girlfriend',
+      'boyfriend',
+      'breakup',
+      'romantic',
+      'dating',
+      'lonely',
+      'loneliness',
+      'sadness',
+      'depression',
+      'anxiety',
+      'mental health',
+      'mental-health',
+      'therapy',
       'medical',
-      'health',
+      'health history',
+      'diagnosis',
+      'lung',
       'finances',
+      'financial hardship',
+      'struggling with money',
+      'money situation',
+      'being broke',
+      'is mark broke',
+      'mark broke',
+      'why does mark need money',
+      'why does he need money',
+      'need money',
+      'how much money',
+      'what salary',
+      'salary does mark need',
+      'family financial',
+      'family’s financial',
+      "family's financial",
+      'addiction',
+      'substance',
+      'drugs',
+      'family problems',
+      'family conflict',
+      'family issues',
+      'tell me about mark’s family',
+      "tell me about mark's family",
+      'tell me about marks family',
+      'about mark’s family',
+      "about mark's family",
+      'about his family',
+      'home life',
+      'private struggle',
+      'emotional low',
+      'self-pity',
+      'precise location',
+      'home address',
+      'what does family mean',
+      'family mean to his goals',
+      'family mean to mark',
+      'support his family',
+      'supporting family',
+      'why support his family',
+      'why does he want to support',
+      'need to support his family',
+      'need to support family',
+      'does mark need to support',
+      'depend on his family',
+      'depending on family',
     ])
   ) {
     return {
@@ -139,6 +252,32 @@ function classifyQuestion(rawQuestion) {
     }
   }
 
+  if (includesAny(text, ['fmsc', 'feed my starving', 'starving children'])) {
+    return {
+      category: 'fmsc',
+      mode: 'casual',
+      answer: ANSWERS.fmsc,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
+      'sigma chi merch',
+      'sigma chi merchandise',
+      'merch design',
+      'about sigma chi merch',
+      'about sigma chi merchandise',
+    ])
+  ) {
+    return {
+      category: 'merchSigma',
+      mode: 'casual',
+      answer: ANSWERS.merchSigma,
+      answerStatus: 'answered',
+    }
+  }
+
   if (
     includesAny(text, [
       'all existing links',
@@ -147,6 +286,7 @@ function classifyQuestion(rawQuestion) {
       "show me mark's links",
       'show me marks links',
       'give me all links',
+      'give me every link',
       'give me his links',
       'mark’s links',
       "mark's links",
@@ -417,6 +557,214 @@ function classifyQuestion(rawQuestion) {
 
   if (
     includesAny(text, [
+      'what drives mark',
+      'what drives him',
+      'drives mark',
+      'what motivates mark',
+      'what motivates him',
+      'what motivates',
+    ])
+  ) {
+    return {
+      category: 'drives',
+      mode: 'casual',
+      answer: ANSWERS.drives,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
+      'describe mark’s vibe',
+      "describe mark's vibe",
+      'describe marks vibe',
+      'mark’s vibe',
+      "mark's vibe",
+      'marks vibe',
+      'what is mark’s vibe',
+      "what is mark's vibe",
+      'what is marks vibe',
+      'how would you describe mark’s vibe',
+      "how would you describe mark's vibe",
+      'what is mark’s mindset',
+      "what is mark's mindset",
+      'what is marks mindset',
+      'mark’s mindset',
+      "mark's mindset",
+      'what makes mark different',
+    ])
+  ) {
+    return {
+      category: 'vibe',
+      mode: 'casual',
+      answer: ANSWERS.vibe,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (includesAny(text, ['earned life', 'what does an earned life', 'what is an earned life', 'earned life mean'])) {
+    return {
+      category: 'earnedLife',
+      mode: 'casual',
+      answer: ANSWERS.earnedLife,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
+      'what gives mark confidence',
+      'gives mark confidence',
+      'earned confidence',
+      'quiet confidence',
+      'what does quiet confidence',
+      'quiet ambition',
+      'what does quiet ambition',
+    ])
+  ) {
+    let answer = ANSWERS.earnedConfidence
+    if (includesAny(text, ['quiet ambition'])) answer = ANSWERS.quietAmbition
+    else if (includesAny(text, ['quiet confidence'])) answer = ANSWERS.vibe
+    return {
+      category: 'earnedConfidence',
+      mode: 'casual',
+      answer,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
+      'why does mark build',
+      'why mark build',
+      'why does mark care about results',
+      'care about results',
+      'turning ideas into',
+    ])
+  ) {
+    return {
+      category: 'builderIdentity',
+      mode: 'casual',
+      answer: ANSWERS.builderIdentity,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
+      'how does mark view leadership',
+      'how does mark lead',
+      'comfortable leading',
+      'is mark comfortable leading',
+      'mark lead',
+      'approach learning',
+      'how does mark approach learning',
+      'what has teamwork taught',
+      'teamwork taught',
+    ])
+  ) {
+    const answer = includesAny(text, ['learning', 'teamwork taught', 'taught'])
+      ? ANSWERS.learningHumility
+      : ANSWERS.leadershipBalance
+    return {
+      category: 'leadershipBalance',
+      mode: 'casual',
+      answer,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (includesAny(text, ['what does freedom mean', 'freedom mean to mark', 'freedom mean to him'])) {
+    return {
+      category: 'freedomStructure',
+      mode: 'casual',
+      answer: ANSWERS.freedomStructure,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
+      'why city life',
+      'why does he like city',
+      'why does mark like city',
+      'like city life',
+      'city life',
+      'drawn to cities',
+      'modern city',
+    ])
+  ) {
+    return {
+      category: 'cityVision',
+      mode: 'casual',
+      answer: ANSWERS.cityVision,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (includesAny(text, ['new perspectives', 'gain new perspectives', 'perspective and exploration'])) {
+    return {
+      category: 'perspectiveExploration',
+      mode: 'casual',
+      answer: ANSWERS.perspectiveExploration,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
+      'want to be remembered',
+      'should people remember',
+      'what should people remember',
+      'remembered for',
+    ])
+  ) {
+    return {
+      category: 'remembered',
+      mode: 'casual',
+      answer: ANSWERS.remembered,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
+      'finished becoming',
+      'still evolving',
+      'finished product',
+      'person is he becoming',
+      'type of person is he becoming',
+      'what type of person is he becoming',
+      'person is mark trying to become',
+      'what type of person is mark trying to become',
+    ])
+  ) {
+    return {
+      category: 'becoming',
+      mode: 'casual',
+      answer: ANSWERS.becoming,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
+      'what kind of future',
+      'kind of future does mark',
+      'future does mark want',
+      'future does he want',
+    ])
+  ) {
+    return {
+      category: 'futureVision',
+      mode: 'casual',
+      answer: ANSWERS.futureVision,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
       'describe mark’s personality',
       "describe mark's personality",
       'describe marks personality',
@@ -425,17 +773,12 @@ function classifyQuestion(rawQuestion) {
       'marks personality',
       'what kind of person is mark',
       'type of person is mark',
-      'what type of person is mark trying',
-      'person is mark trying to become',
     ])
   ) {
-    const answer = includesAny(text, ['trying to become', 'become'])
-      ? ANSWERS.becoming
-      : ANSWERS.personality
     return {
       category: 'personality',
       mode: 'casual',
-      answer,
+      answer: ANSWERS.personality,
       answerStatus: 'answered',
     }
   }
@@ -447,35 +790,19 @@ function classifyQuestion(rawQuestion) {
       'what does consistency mean',
       'consistency mean to',
       'controlled strength',
+      'controlled intensity',
       'how does mark handle setbacks',
       'handle setbacks',
     ])
   ) {
     let answer = ANSWERS.discipline
     if (includesAny(text, ['consistency'])) answer = ANSWERS.consistency
-    else if (includesAny(text, ['controlled strength'])) answer = ANSWERS.controlledStrength
+    else if (includesAny(text, ['controlled strength', 'controlled intensity'])) answer = ANSWERS.controlledStrength
     else if (includesAny(text, ['setback'])) answer = ANSWERS.setbacks
     return {
       category: 'discipline',
       mode: 'casual',
       answer,
-      answerStatus: 'answered',
-    }
-  }
-
-  if (
-    includesAny(text, [
-      'what does family mean',
-      'family mean to his goals',
-      'family mean to mark',
-      'support his family',
-      'supporting family',
-    ])
-  ) {
-    return {
-      category: 'familyGoals',
-      mode: 'casual',
-      answer: ANSWERS.familyGoals,
       answerStatus: 'answered',
     }
   }
@@ -490,11 +817,185 @@ function classifyQuestion(rawQuestion) {
       'career goals',
       'what does success mean',
       'success mean to mark',
+      'success look like',
     ])
   ) {
     const answer = includesAny(text, ['success']) ? ANSWERS.success : ANSWERS.careerGoals
     return {
       category: 'careerGoals',
+      mode: 'casual',
+      answer,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
+      'favorite artists',
+      'favourite artists',
+      'favorite artist',
+      'favourite artist',
+      'favorite musician',
+      'favourite musician',
+      'favorite rappers',
+      'favourite rappers',
+      'favorite r&b',
+      'favourite r&b',
+      'what music',
+      'music does mark',
+      'kind of music',
+      'does mark like music',
+      'does mark listen',
+      'listen to',
+      'drake',
+      'lil baby',
+      'tory lanez',
+      'the weeknd',
+      'don toliver',
+      'travis scott',
+      'partynextdoor',
+      'party next door',
+      'r&b',
+      'hip-hop',
+      'hip hop',
+      'workout music',
+      'music fits',
+      'music while',
+    ]) ||
+    (includesAny(text, ['music', 'rapper', 'rappers', 'artist', 'artists']) &&
+      includesAny(text, [
+        'favorite',
+        'favourite',
+        'like',
+        'listen',
+        'taste',
+        'workout',
+        'working out',
+        'train',
+        'visual',
+      ]))
+  ) {
+    const answer = includesAny(text, ['workout', 'working out', 'train'])
+      ? ANSWERS.favoriteArtistsWorkout
+      : ANSWERS.favoriteArtists
+    return {
+      category: 'favoriteArtists',
+      mode: 'casual',
+      answer,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
+      'favorite movies',
+      'favourite movies',
+      'favorite movie',
+      'favourite movie',
+      'favorite films',
+      'favourite films',
+      'favorite film',
+      'favourite film',
+      'favorite show',
+      'favourite show',
+      'creed',
+      'the batman',
+      'magazine dreams',
+      'regular show',
+      'marvel or dc',
+      'dc or marvel',
+      'superhero movies',
+      'superhero movie',
+      'does mark like marvel',
+      'does mark like dc',
+      'like superhero',
+    ]) ||
+    (includesAny(text, ['marvel', 'dc']) &&
+      includesAny(text, ['movie', 'movies', 'film', 'films', 'or', 'superhero', 'like']))
+  ) {
+    let answer = ANSWERS.favoriteFilms
+    if (includesAny(text, ['regular show', 'favorite show', 'favourite show'])) {
+      answer = ANSWERS.favoriteShow
+    } else if (
+      includesAny(text, ['marvel or dc', 'dc or marvel', 'superhero']) ||
+      (includesAny(text, ['marvel', 'dc']) &&
+        !includesAny(text, ['creed', 'batman', 'magazine', 'regular']))
+    ) {
+      answer = ANSWERS.favoriteFilmsMarvelDc
+    } else if (includesAny(text, ['creed'])) {
+      answer = ANSWERS.favoriteFilmsCreed
+    } else if (includesAny(text, ['batman'])) {
+      answer = ANSWERS.favoriteFilmsBatman
+    }
+    return {
+      category: 'favoriteFilms',
+      mode: 'casual',
+      answer,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (
+    includesAny(text, [
+      'where has mark traveled',
+      'where has mark travelled',
+      'cities he has visited',
+      'cities mark has visited',
+      'places are shown',
+      'travel places',
+      'photography trips',
+      'travel section',
+      'travel photos',
+      'see his travel',
+      'view mark’s photography',
+      "view mark's photography",
+      'where can i see his travel',
+      'where can i view mark',
+      'what is in the travel',
+      'what can i see in the travel',
+    ]) ||
+    text === 'travel' ||
+    (/\btravel\b/.test(text) &&
+      includesAny(text, [
+        'where',
+        'places',
+        'cities',
+        'visited',
+        'section',
+        'photos',
+        'photography',
+        'trips',
+        'locations',
+        'prefer',
+        'beaches',
+        'mountains',
+        'learned',
+        'influence',
+        'why does mark like',
+      ]))
+  ) {
+    let answer = ANSWERS.travelPlaces
+    if (
+      includesAny(text, [
+        'mean',
+        'why does mark like traveling',
+        'why travel',
+        'influence',
+        'learned',
+        'prefer',
+        'beaches',
+        'mountains',
+      ])
+    ) {
+      answer = ANSWERS.travel
+    } else if (
+      includesAny(text, ['photograph', 'photography', 'photos']) &&
+      !includesAny(text, ['travel section', 'where has', 'places', 'traveled', 'travelled', 'visited'])
+    ) {
+      answer = ANSWERS.photography
+    }
+    return {
+      category: 'travelPlaces',
       mode: 'casual',
       answer,
       answerStatus: 'answered',
@@ -531,13 +1032,38 @@ function classifyQuestion(rawQuestion) {
       'visual style',
       'why does mark like black',
       'why black',
+      'for fun',
+      'outside of technology',
+      'outside technology',
+      'not coding',
+      'free time',
+      'does mark cook',
+      'like cooking',
+      'cooking',
+      'museums',
+      'museum',
+      'have a dog',
+      'his dog',
+      'friends and family',
+      'with friends',
+      'with family',
+      'spend his free time',
+      'spends his free time',
+      'new perspectives',
     ])
   ) {
-    const answer = includesAny(text, ['passionate'])
-      ? ANSWERS.passion
-      : includesAny(text, ['visual style', 'like black', 'why black'])
-        ? ANSWERS.favoriteColor
-        : ANSWERS.hobbies
+    let answer = ANSWERS.hobbies
+    if (includesAny(text, ['passionate'])) answer = ANSWERS.passion
+    else if (includesAny(text, ['visual style', 'like black', 'why black'])) answer = ANSWERS.favoriteColor
+    else if (includesAny(text, ['cook'])) answer = ANSWERS.cooking
+    else if (includesAny(text, ['dog'])) answer = ANSWERS.dog
+    else if (includesAny(text, ['museum'])) answer = ANSWERS.museums
+    else if (
+      includesAny(text, ['friends', 'family']) &&
+      !includesAny(text, ['support', 'goals', 'mean to'])
+    ) {
+      answer = ANSWERS.friendsFamily
+    }
     return {
       category: 'hobbies',
       mode: 'casual',
@@ -658,6 +1184,11 @@ function classifyQuestion(rawQuestion) {
       'gym taught',
       'bodybuilding mean',
       'what does bodybuilding',
+      'why does mark work out',
+      'why does mark workout',
+      'why work out',
+      'why workout',
+      'why does mark train',
     ])
   ) {
     return {
@@ -698,7 +1229,6 @@ function classifyQuestion(rawQuestion) {
       'what are mark’s values',
       "what are mark's values",
       'what are marks values',
-      'what motivates',
       'long-term goals',
       'long term goals',
       'what does success',

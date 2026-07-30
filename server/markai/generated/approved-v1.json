@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0.0",
-  "sourceDigest": "bf348954d1668d90c518a19f38c9310cdfda6ce17a9f6d6af390ffd7199cfdc9",
+  "sourceDigest": "7bb2afd73f69c220e609024dee9d1526f24b24da1690f8206c206c51a30c8f1c",
   "counts": {
-    "records": 103,
+    "records": 116,
     "skills": 26,
-    "trustedLinks": 28,
-    "enabledTrustedLinks": 27,
+    "trustedLinks": 30,
+    "enabledTrustedLinks": 29,
     "privacyRules": 14,
     "voiceRules": 7,
     "linkContactRules": 8
@@ -1332,6 +1332,239 @@
       "notes": "No constructed commit URL. Presentation refinement only."
     },
     {
+      "id": "interest-favorite-artists",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Favorite artists and music preferences",
+      "publicText": "Mark’s favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR. He enjoys rap, melodic hip-hop, and R&B, ranging from energetic and confident tracks to darker, atmospheric, reflective music. That preference fits the cinematic, high-contrast visual atmosphere used in his portfolio. Music is part of how Mark trains, reflects, travels, and stays connected to particular moments or moods. Do not invent favorite albums or songs, quote lyrics, claim Mark knows an artist personally, claim an artist endorses Mark, or imitate an artist’s style.",
+      "shortText": "Favorite artists: Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR; rap, melodic hip-hop, and R&B.",
+      "aliases": [
+        "favorite artists",
+        "favorite musicians",
+        "favorite rappers",
+        "music taste",
+        "Drake",
+        "Lil Baby",
+        "Tory Lanez",
+        "The Weeknd",
+        "Don Toliver",
+        "Travis Scott",
+        "PARTYNEXTDOOR"
+      ],
+      "keywords": [
+        "music",
+        "artists",
+        "rap",
+        "R&B",
+        "hip-hop",
+        "Drake",
+        "Lil Baby",
+        "The Weeknd",
+        "workout music"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-music-reading-hiking",
+        "interest-creative-aesthetics-design"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "who are Mark’s favorite artists",
+        "what music does Mark listen to",
+        "what kind of music does Mark like",
+        "does Mark like Drake",
+        "does Mark listen to R&B",
+        "what music fits Mark’s visual style",
+        "what does Mark listen to while working out"
+      ],
+      "prohibitedUses": [
+        "quote song lyrics",
+        "invent favorite albums or songs",
+        "claim Mark knows an artist",
+        "claim artist endorsement",
+        "imitate an artist’s style",
+        "generate in the style of a living artist",
+        "infer political or personal beliefs from artists",
+        "add favorites to Webpage or Terminal"
+      ],
+      "notes": "MarkAI-only. Do not add artist lists to Webpage, Terminal, resume, or portfolio cards."
+    },
+    {
+      "id": "interest-favorite-films-television",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Favorite films, animated series, and superhero worlds",
+      "publicText": "Some of Mark’s favorite films are Creed, Creed II, The Batman, and Magazine Dreams. Regular Show is one of his favorite animated series and should not be classified as a movie. He also enjoys Marvel and DC movies, characters, and story worlds, including heroes, character arcs, visual design, and major film stories. He does not claim to have seen every release. He is drawn to stories involving ambition, transformation, discipline, pressure, identity, setbacks, sacrifice, and becoming stronger. Creed and Creed II connect to training, ambition, resilience, and earned progress. The Batman fits his preference for dark, cinematic, serious, high-contrast environments. Magazine Dreams connects to his interest in bodybuilding-centered character stories. Regular Show reflects a more relaxed and humorous side of his entertainment interests. If asked Marvel or DC, he enjoys both unless a stronger preference is later approved.",
+      "shortText": "Favorite films: Creed, Creed II, The Batman, Magazine Dreams. Favorite animated series: Regular Show. Enjoys both Marvel and DC story worlds.",
+      "aliases": [
+        "favorite movies",
+        "favorite films",
+        "favorite show",
+        "Creed",
+        "The Batman",
+        "Magazine Dreams",
+        "Regular Show",
+        "Marvel",
+        "DC"
+      ],
+      "keywords": [
+        "movies",
+        "films",
+        "television",
+        "Creed",
+        "Batman",
+        "Marvel",
+        "DC",
+        "Regular Show",
+        "superhero"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-fitness-bodybuilding",
+        "interest-creative-aesthetics-design"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "what are Mark’s favorite movies",
+        "what is Mark’s favorite show",
+        "does Mark like superhero movies",
+        "Marvel or DC",
+        "why does Mark like Creed",
+        "why does Mark like The Batman",
+        "what movies match Mark’s personality",
+        "what does Mark watch outside technology"
+      ],
+      "prohibitedUses": [
+        "classify Regular Show as a movie",
+        "describe Marvel or DC as one trilogy",
+        "claim a character is exactly like Mark",
+        "psychological analysis",
+        "quote scripts or copyrighted dialogue",
+        "invent definitive ranking",
+        "claim Mark watched every Marvel or DC title",
+        "claim comics are a major hobby",
+        "add favorites to Webpage or Terminal"
+      ],
+      "notes": "MarkAI-only. Keep connections light and grounded in approved interests."
+    },
+    {
+      "id": "interest-lifestyle-hobbies-expanded",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Lifestyle hobbies outside technology",
+      "publicText": "Mark’s life outside technology combines fitness, creativity, reflection, exploration, and time with people close to him. Approved public interests include bodybuilding, working out, reading, music, movies, cooking, museums, hiking, travel, photography, running, Greek mythology, classical statues and art, spending time with friends, family, and his dog, and experiencing new places and perspectives. He enjoys activities that help him improve, create, learn, recharge, or gain a different perspective. Cooking is a practical personal interest, not professional culinary experience. Museums connect to photography, classical art, architecture, statues, history, and visual storytelling. Reading and movies give him additional perspectives and ideas. Hiking and travel combine physical activity, exploration, scenery, and reflection.",
+      "shortText": "Hobbies include fitness, reading, music, movies, cooking, museums, hiking, travel, photography, mythology/art, friends, family, and time with his dog.",
+      "aliases": [
+        "hobbies",
+        "for fun",
+        "outside technology",
+        "cooking",
+        "dog",
+        "museums",
+        "friends and family"
+      ],
+      "keywords": [
+        "hobbies",
+        "cooking",
+        "museums",
+        "dog",
+        "friends",
+        "family",
+        "free time",
+        "lifestyle"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-music-reading-hiking",
+        "interest-fitness-bodybuilding",
+        "interest-favorite-artists",
+        "interest-favorite-films-television"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "what does Mark do for fun",
+        "what are Mark’s hobbies",
+        "what does Mark enjoy outside technology",
+        "does Mark like cooking",
+        "does Mark have a dog",
+        "does Mark enjoy museums",
+        "what does Mark do with friends and family",
+        "how does Mark gain new perspectives",
+        "what does Mark do when he is not coding"
+      ],
+      "prohibitedUses": [
+        "names of friends or family",
+        "dog name breed age or medical information",
+        "private family details",
+        "family support or financial motivation",
+        "career motivation from family facts",
+        "home address",
+        "private schedules",
+        "relationship history",
+        "exact travel schedules",
+        "professional cooking claims",
+        "professional photography employment claims",
+        "add private lifestyle details to Webpage or Terminal"
+      ],
+      "notes": "MarkAI-only expansion. For dog questions, say only that he enjoys spending time with his dog."
+    },
+    {
+      "id": "travel-public-places-inventory",
+      "category": "public-interests",
+      "recordType": "travel-inventory",
+      "title": "Public travel places shown in the portfolio",
+      "publicText": "Places intentionally shown in Mark’s public portfolio travel data include Hawaii, Las Vegas, Chicago, California, Lake Louise in Canada, Manila in the Philippines, London, the Amalfi Coast in Italy, Rome in Italy, Milwaukee, and Nashville. The Webpage Travel section and Terminal travel files present these public places and related travel photography. Travel helps Mark experience different environments, people, cultures, architecture, and ways of living. It gives him new perspectives and motivates greater freedom and independence. Cities connect to ambition, energy, architecture, and progress. Water and coastal environments connect to peace. Mountains and hiking connect to effort, challenge, and earning the view. Photography helps preserve the feeling and story of a place. Do not infer current residence, invent favorite destinations, invent trip companions, or expose itineraries, lodging, flights, or exact private schedules.",
+      "shortText": "Public portfolio travel places include Hawaii, Las Vegas, Chicago, California, Lake Louise, Manila, London, Amalfi Coast, Rome, Milwaukee, and Nashville.",
+      "aliases": [
+        "where has Mark traveled",
+        "travel places",
+        "Travel section",
+        "cities Mark visited"
+      ],
+      "keywords": [
+        "travel",
+        "Hawaii",
+        "London",
+        "Rome",
+        "Chicago",
+        "Milwaukee",
+        "photography",
+        "Travel section"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-travel-photography",
+        "personality-photography-travel-hobbies"
+      ],
+      "linkIds": [
+        "link-travel-section",
+        "link-vsco"
+      ],
+      "answerUses": [
+        "where has Mark traveled",
+        "what places are shown in Mark’s portfolio",
+        "what does travel mean to Mark",
+        "why does Mark like traveling",
+        "what does Mark photograph while traveling",
+        "what kind of locations does Mark prefer",
+        "does Mark like cities beaches or mountains",
+        "what can I see in the Travel section",
+        "where can I view Mark’s photography",
+        "what did Mark learn from traveling",
+        "how does travel influence his goals"
+      ],
+      "prohibitedUses": [
+        "infer current location",
+        "infer locations from image pixels",
+        "expose hotel flight itinerary lodging or precise-location data",
+        "describe trip as solo family romantic or group unless explicitly public",
+        "invent favorite destinations",
+        "claim residence because of a visit",
+        "print internal link IDs"
+      ],
+      "notes": "Canonical public place inventory is src/travelPlacesData.js TRAVEL_PLACES. Prefer link-travel-section and link-vsco when relevant."
+    },
+    {
       "id": "interest-fitness-bodybuilding",
       "category": "public-interests",
       "recordType": "public-interest",
@@ -1600,7 +1833,7 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Discipline, Growth, and Controlled Strength",
-      "publicText": "Mark is drawn to discipline, growth, controlled strength, responsibility, ownership, resilience, and action over talk. He believes consistency lasts longer than intensity, progress requires discomfort, and ambition needs direction. Public goals include building a stable career, becoming financially independent, supporting family, continuing to improve technically and personally, and creating useful work. Fitness taught him patience and control, while software projects taught him communication, humility, ownership, and how to turn ideas into useful experiences. He aims to come across as confident without sounding arrogant, and prefers direct practical communication over empty motivational language.",
+      "publicText": "Mark is drawn to discipline, growth, controlled strength, responsibility, ownership, resilience, and action over talk. He believes consistency lasts longer than intensity, steady progress beats temporary intensity, and ambition needs direction. Public goals include building a stable career, growing professionally, becoming more independent, continuing to improve technically, and creating useful work. Fitness reinforces patience and control, while software projects reinforce communication, humility, ownership, and turning ideas into useful experiences. He aims to come across as confident without sounding arrogant, and prefers direct practical communication over empty motivational language.",
       "shortText": "Public values centered on discipline, ownership, resilience, useful work, stable growth, and controlled confidence.",
       "aliases": [
         "mindset",
@@ -1754,7 +1987,7 @@
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Discipline, consistency, and controlled strength",
-      "publicText": "Mark believes consistency is more dependable than temporary intensity. He values doing the work even when motivation is absent and wants actions to prove intentions rather than relying only on words. He sees discomfort as a necessary part of growth and believes progress comes from repeated controlled effort. He wants to become better at controlling his actions, emotions, and responses. He is drawn to strength with direction and believes strength without discipline can become wasted potential. He values control, patience, structure, and deliberate action, and prefers confidence that is earned and controlled rather than loud or arrogant. He focuses on what he can control, values accountability for his work and responses, and wants confidence to come from preparation and demonstrated work.",
+      "publicText": "Mark believes consistency is more dependable than temporary intensity. He values doing the work even when motivation is absent and wants actions to prove intentions rather than relying only on words. He sees challenge as a normal part of growth and believes progress comes from repeated controlled effort. He values control, patience, structure, and deliberate action, and prefers confidence that is earned and controlled rather than loud or theatrical. He focuses on what he can control, values accountability for his work, and wants confidence to come from preparation and demonstrated work.",
       "shortText": "Consistency over temporary intensity; controlled effort, earned confidence, accountability, and strength with direction.",
       "aliases": [
         "discipline",
@@ -1802,8 +2035,8 @@
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Growth, values, and public personality framing",
-      "publicText": "Mark sees setbacks as lessons that can improve future decisions. He wants to become steadily better through consistent work, does not view himself as finished, and expects his goals to evolve. He values rebuilding, learning, and continuing after difficult periods, and wants to avoid becoming so comfortable that he stops progressing. Approved public values include discipline, consistency, responsibility, ownership, ambition, resilience, patience, humility, learning, family support, financial independence, usefulness, creativity, personal growth, controlled confidence, and direct communication. Safe public personality framing includes ambitious, reflective, disciplined, growth-oriented, creative, detail-focused, willing to rebuild, comfortable spending time alone, motivated by meaningful progress, direct and practical, confident when prepared, interested in multiple perspectives, and serious about improving technically and personally. These are public-facing themes, not medical or psychological assessments.",
-      "shortText": "Growth through consistent work; public values of discipline, ownership, resilience, family support, and controlled confidence.",
+      "publicText": "Mark treats challenges as opportunities to improve future decisions. He wants to become steadily better through consistent work, does not view himself as finished, and expects his goals to evolve as he gains experience. Approved public values include discipline, consistency, responsibility, ownership, ambition, resilience, patience, humility, learning, usefulness, creativity, personal growth, professional independence, controlled confidence, and direct communication. Safe public personality framing includes ambitious, reflective, disciplined, growth-oriented, creative, detail-focused, practical, collaborative when needed, confident when prepared, interested in multiple perspectives, and serious about improving technically and professionally. These are public-facing professional themes, not medical or psychological assessments.",
+      "shortText": "Growth through consistent work; public values of discipline, ownership, resilience, independence, and controlled confidence.",
       "aliases": [
         "growth",
         "values",
@@ -1850,8 +2083,8 @@
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Bodybuilding meaning and training lessons",
-      "publicText": "Bodybuilding is Mark’s strongest personal passion outside technology. He views bodybuilding as an art built through symmetry, structure, patience, detail, and repetition. Training has taught him discipline, consistency, patience, self-awareness, and what his body and mindset can handle in a public-safe sense. His current fitness focus is aesthetics, controlled movement, quality repetitions, and deliberate progress rather than only maximum strength. He believes lessons from training can apply to projects, routines, and professional development, and fitness is part of the identity and environment he is working to build. Do not include physical measurements, medical history, drugs, supplements, or private body-image statements.",
-      "shortText": "Bodybuilding as disciplined craft: symmetry, structure, patience, quality repetitions, and lessons that transfer to professional work.",
+      "publicText": "Bodybuilding interests Mark because it combines discipline, structure, symmetry, patience, and progress earned over time. It is a major interest outside technology and an artistic, structured discipline that reinforces focus and consistency. Lessons from training—patience, quality repetitions, and deliberate progress—can apply to projects and professional development. Do not discuss why he originally began training, loneliness, appearance insecurity, health conditions, exact physique goals, body measurements, or private emotional motivations.",
+      "shortText": "Bodybuilding as disciplined craft: structure, symmetry, patience, consistency, and transferable professional habits.",
       "aliases": [
         "bodybuilding meaning",
         "gym taught",
@@ -1894,8 +2127,8 @@
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Greek mythology figure connections",
-      "publicText": "Mark is interested in Achilles, Icarus, Heracles, Greek statues, and classical art. He is drawn to stories involving ambition, discipline, strength, sacrifice, consequence, resilience, limitation, and transformation. Mark does not need one permanent favorite figure; different figures may represent different parts of his current mindset and future growth. A safe concise framing is that Mark connects with different figures for different reasons: Icarus for ambition, Achilles for intensity, and Heracles for discipline and endurance. Icarus connects to ambition, dreaming, risk, and the consequences of losing control. Achilles connects to intensity, strength, pride, drive, and human vulnerability. Heracles connects to endurance, discipline, repeated trials, and becoming stronger through difficult work. Mythology is a creative and symbolic interest, not Mark’s religion.",
-      "shortText": "Icarus for ambition, Achilles for intensity, and Heracles for discipline and endurance; no permanent single favorite.",
+      "publicText": "Mark connects with Icarus, Achilles, and Heracles through themes such as ambition, intensity, discipline, consequence, and endurance. Greek mythology is a creative interest connected to art, symbolism, classical statues, and storytelling. Different figures can illustrate different themes; Mark does not treat one figure as a permanent favorite or as religion. Do not use mythology to profile Mark privately or claim that a figure represents anger, trauma, failure, or private identity.",
+      "shortText": "Icarus, Achilles, and Heracles through ambition, intensity, discipline, consequence, and endurance; creative symbolism only.",
       "aliases": [
         "Icarus",
         "Achilles",
@@ -1938,24 +2171,24 @@
       "id": "personality-career-purpose",
       "category": "public-interests",
       "recordType": "personality-theme",
-      "title": "Career purpose, success, and family support",
-      "publicText": "Mark’s immediate goal is to secure a stable role in technology. He is open to software development, full-stack work, developer tools, data-oriented systems, technical support, and other suitable entry-level technology roles. He wants a role that creates stability and provides a path for continued growth. He wants to become financially independent and support his family. He wants his career to prove to himself that he can create something meaningful. He is open to Milwaukee, Chicago, remote work, and other locations when the opportunity and compensation make relocation practical. Long-term success means stability, confidence, meaningful work, independence, continued ambition, and excitement about what comes next. He wants work that makes him proud because he built something useful and followed through. Money is not his only motivation.",
-      "shortText": "Stable technology role with growth, independence, meaningful work, and family support; open to Milwaukee, Chicago, remote, or practical relocation.",
+      "title": "Career purpose, success, and professional independence",
+      "publicText": "Mark is working toward a stable technology career centered on meaningful work, continued learning, professional growth, and greater independence. He is open to software development, full-stack work, developer tools, data-oriented systems, technical support, and other suitable entry-level technology roles. He wants a role that creates stability and a sustainable path for technical development and useful work. He is open to Milwaukee, Chicago, remote work, and other locations when the opportunity makes relocation practical. Long-term success means career stability, professional independence, meaningful work, continued ambition, and pride in work he built usefully and followed through on.",
+      "shortText": "Stable technology role centered on meaningful work, continued learning, professional growth, and independence; open to Milwaukee, Chicago, remote, or practical relocation.",
       "aliases": [
         "career goals",
         "success",
-        "family support",
         "why technology career",
-        "purpose"
+        "purpose",
+        "professional independence"
       ],
       "keywords": [
         "career",
         "goals",
         "success",
-        "family",
         "independence",
         "stability",
         "meaningful work",
+        "growth",
         "milwaukee",
         "chicago",
         "remote"
@@ -1973,17 +2206,21 @@
         "what are Mark’s goals",
         "what does success mean to Mark",
         "why does Mark want a technology career",
-        "what does family mean to his goals",
         "career motivation"
       ],
       "prohibitedUses": [
-        "financial desperation",
-        "private family conflict",
+        "family support goals",
+        "supporting family financially",
+        "financial desperation or hardship",
+        "money pressure",
+        "being broke",
+        "dependence on family",
         "money as only motivation",
         "unsupported salary claims",
-        "precise private location"
+        "precise private location",
+        "private emotional career motives"
       ],
-      "notes": "MarkAI-only depth layered on career-direction-first-full-time-tech-role. Keep family support high-level and public-safe."
+      "notes": "MarkAI-only. Professional personality privacy override: no family-support or money-pressure framing. Forbidden themes belong only in prohibitedUses/policies, not publicText."
     },
     {
       "id": "personality-aesthetic-environment",
@@ -2068,6 +2305,373 @@
         "infer current residence from photos"
       ],
       "notes": "MarkAI-only depth. VSCO may be offered only when photography is relevant."
+    },
+    {
+      "id": "personality-builder-identity",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Builder identity and turning ideas into results",
+      "publicText": "Mark enjoys turning ideas into real, usable, organized, and visually strong results. He is motivated by the satisfaction of creating something that previously existed only as an idea. He likes building tools, interfaces, and experiences that are useful, easier to understand, or more engaging. Creativity matters to him, but he wants creativity supported by structure and working implementation. He prefers completed work and demonstrated results over only discussing ideas. He is motivated by turning ideas into working results and enjoys combining creativity, organization, and practical problem-solving to build something people can actually use. Do not claim every idea becomes a finished product.",
+      "shortText": "Mark is motivated by turning ideas into working results that combine creativity, organization, and practical usefulness.",
+      "aliases": [
+        "why does Mark build",
+        "builder",
+        "turning ideas into results",
+        "what drives Mark to create"
+      ],
+      "keywords": [
+        "build",
+        "builder",
+        "ideas",
+        "results",
+        "creativity",
+        "implementation",
+        "usable"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-growth-and-values",
+        "interest-discipline-growth-controlled-strength"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "why does Mark build things",
+        "what drives Mark",
+        "why does Mark care about results"
+      ],
+      "prohibitedUses": [
+        "claim every idea becomes a product",
+        "journal disclosure",
+        "Webpage About export"
+      ],
+      "notes": "MarkAI-only. Prefer short answers for personal-interest mode."
+    },
+    {
+      "id": "personality-quiet-ambition-earned-confidence",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Quiet ambition, proof through action, and earned confidence",
+      "publicText": "Mark wants his actions and completed work to prove his intentions. He values consistency more than short periods of motivation and believes follow-through matters more than announcements. He prefers results over excessive talking or self-promotion, with a tone of quiet confidence, ownership, and consistency. He is ambitious but prefers building quietly rather than constantly announcing his plans, and wants the finished result to carry more weight than public attention. His ambition includes technical growth, physical development, professional independence, creativity, and a meaningful lifestyle built through useful work. He is drawn to serious, controlled, high-effort progress rather than loud presentation. Quiet ambition is an approved phrase. Mark wants confidence to come from preparation, experience, completed work, and continuing to learn. Compliments help, but he also wants demonstrated results. He is working toward making decisions with less hesitation while remaining open to correction. Do not claim Mark never doubts himself. Do not use unstoppable, warrior, dominant, feared, superior, destined for greatness, or built different. Do not invent private emotional origin stories.",
+      "shortText": "Quiet ambition and earned confidence: results over talking, consistency over noise, and confidence from preparation and follow-through.",
+      "aliases": [
+        "quiet ambition",
+        "quiet confidence",
+        "earned confidence",
+        "proof through action",
+        "results over talking"
+      ],
+      "keywords": [
+        "quiet ambition",
+        "quiet confidence",
+        "earned",
+        "follow-through",
+        "results",
+        "consistency"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-discipline-and-control",
+        "personality-growth-and-values"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "what gives Mark confidence",
+        "what does quiet confidence mean",
+        "why does Mark care about results",
+        "what is Mark’s mindset"
+      ],
+      "prohibitedUses": [
+        "claim Mark never doubts himself",
+        "unstoppable warrior dominant feared superior destined built different",
+        "private insecurity journal detail",
+        "slogans in every answer"
+      ],
+      "notes": "MarkAI-only. Do not make answers sound like slogans."
+    },
+    {
+      "id": "personality-controlled-intensity",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Controlled intensity and directed ambition",
+      "publicText": "Mark believes ambition becomes useful when it has direction. Strength without discipline can remain only potential. He wants patience, control, and consistency to direct his intensity. He prefers deliberate responses over rushed decisions. Controlled strength means having energy and ambition while remaining responsible for how they are used. To Mark, controlled strength means having ambition and intensity without letting them control the decision. Discipline gives that energy direction. Do not discuss anger, mental-health details, addiction, private conflict, self-sabotage, or emotional origin stories.",
+      "shortText": "Controlled intensity: ambition and energy directed by discipline, patience, and deliberate decisions.",
+      "aliases": [
+        "controlled intensity",
+        "controlled strength",
+        "intensity with direction"
+      ],
+      "keywords": [
+        "controlled intensity",
+        "discipline",
+        "direction",
+        "patience",
+        "ambition"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-discipline-and-control",
+        "interest-discipline-growth-controlled-strength"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "what does controlled intensity mean",
+        "what does controlled strength mean",
+        "how does Mark handle intensity"
+      ],
+      "prohibitedUses": [
+        "anger incidents",
+        "mental-health details",
+        "addiction",
+        "private conflict",
+        "self-sabotage narratives"
+      ],
+      "notes": "Complements personality-discipline-and-control without replacing it."
+    },
+    {
+      "id": "personality-leadership-and-learning",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Leadership balance, humility, and learning",
+      "publicText": "Mark likes contributing ideas, helping people, and taking responsibility. He is willing to lead when he understands the work and can support the team. He also values knowing when to listen, learn, or let someone else lead. He believes teamwork requires communication, clear expectations, accountability, and respect for different strengths. He prefers leadership based on preparation and usefulness rather than title alone. His projects have taught him patience with software, systems, teammates, and himself. He understands that not knowing something is part of learning. He values asking the right questions and documenting details rather than pretending to understand everything. He has learned that technical ability grows through repetition, debugging, feedback, and working with other people. Different people, cultures, projects, and environments give him perspectives he would not gain alone. Do not claim Mark led projects unless a verified project record supports it. Do not call Mark an expert unless an approved skill record supports that level.",
+      "shortText": "Lead when prepared and useful; listen and step back when others should lead; learn through questions, repetition, and teamwork.",
+      "aliases": [
+        "leadership",
+        "comfortable leading",
+        "teamwork taught",
+        "how Mark learns",
+        "humility"
+      ],
+      "keywords": [
+        "leadership",
+        "teamwork",
+        "listen",
+        "learning",
+        "humility",
+        "accountability"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "work-style-practical-collaborative-growth",
+        "personality-growth-and-values"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "how does Mark view leadership",
+        "is Mark comfortable leading",
+        "how does Mark approach learning",
+        "what has teamwork taught him"
+      ],
+      "prohibitedUses": [
+        "unsupported leadership ranking",
+        "claim Mark led a project without verified record",
+        "expert claim without skill record",
+        "private teammate conflict"
+      ],
+      "notes": "MarkAI-only. Keep lead/listen/step-back balance explicit."
+    },
+    {
+      "id": "personality-earned-life-and-freedom",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Earned progress, freedom with structure, and connected goals",
+      "publicText": "To Mark, an earned life means building stability, independence, confidence, meaningful work, physical discipline, and experiences he can take genuine pride in. His goals are connected: career, fitness, confidence, environment, professional independence, creativity, and continued learning. A successful life is not only a title; it is knowing he built stability and followed through on what mattered. He wants greater independence with responsibility—flexibility supported by structure that still protects work, fitness, learning, creativity, and personal interests. Structure helps him keep progress while earning more options through consistency.",
+      "shortText": "An earned life of stability, independence, confidence, meaningful work, and physical discipline; freedom with structure and responsibility.",
+      "aliases": [
+        "earned life",
+        "what does freedom mean",
+        "future Mark wants",
+        "connected goals"
+      ],
+      "keywords": [
+        "earned life",
+        "freedom",
+        "structure",
+        "routine",
+        "independence",
+        "stability",
+        "career"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-career-purpose",
+        "personality-quiet-ambition-earned-confidence"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "what does an earned life mean to Mark",
+        "what kind of future does Mark want",
+        "what does freedom mean to Mark",
+        "what does success look like to Mark"
+      ],
+      "prohibitedUses": [
+        "exact daily schedule",
+        "family support framing",
+        "supporting family financially",
+        "financial hardship",
+        "money pressure",
+        "being broke",
+        "dependence on family",
+        "private emotional motives"
+      ],
+      "notes": "Professional personality privacy override. No family-support or money-pressure framing. Forbidden themes belong only in prohibitedUses/policies, not publicText."
+    },
+    {
+      "id": "personality-city-and-perspective",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "City vision, exploration, and broader perspective",
+      "publicText": "Mark is interested in modern cities, architecture, technology, opportunity, and cinematic environments. His preferred environment feels organized, independent, creative, and visually strong. He likes the contrast between classical architecture or statues and modern technology. A city can represent ambition, opportunity, movement, and professional progress. His long-term location preferences may evolve, and he is drawn to larger cities and warmer environments when practical. Travel, museums, photography, reading, films, music, hiking, and meeting different people help him gain broader perspectives.",
+      "shortText": "Interest in modern cities, architecture, and cinematic environments; exploration and perspective without fixed destination promises.",
+      "aliases": [
+        "city life",
+        "why city",
+        "environment vision",
+        "new perspectives",
+        "exploration"
+      ],
+      "keywords": [
+        "city",
+        "architecture",
+        "environment",
+        "perspective",
+        "travel",
+        "exploration",
+        "cinematic"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-aesthetic-environment",
+        "personality-photography-travel-hobbies"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "what kind of environment does Mark want",
+        "why does he like city life",
+        "how does Mark gain new perspectives"
+      ],
+      "prohibitedUses": [
+        "promise one specific city",
+        "current address",
+        "precise location",
+        "exact financial goals",
+        "private housing fantasies as factual plans",
+        "private relationship history",
+        "political or religious inference"
+      ],
+      "notes": "Deepens aesthetic and travel records without Webpage changes."
+    },
+    {
+      "id": "personality-remembered-for-substance",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Being remembered for substance",
+      "publicText": "Mark wants his identity to be connected to meaningful work and genuine progress. He wants people to remember what he built, how he worked, and what he followed through on. He does not want visibility without substance. Recognition matters most when it reflects something real that was created or earned. Do not frame this as a desire for fame. Do not claim Mark must become famous or historically important.",
+      "shortText": "Mark wants to be remembered for what he built and followed through on, not visibility without substance.",
+      "aliases": [
+        "remembered for",
+        "what should people remember",
+        "substance over visibility"
+      ],
+      "keywords": [
+        "remembered",
+        "substance",
+        "built",
+        "follow-through",
+        "recognition"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-builder-identity",
+        "personality-quiet-ambition-earned-confidence"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "what does Mark want to be remembered for",
+        "what should people remember"
+      ],
+      "prohibitedUses": [
+        "fame claims",
+        "historically important claims",
+        "celebrity framing"
+      ],
+      "notes": "MarkAI-only. Keep answers short."
+    },
+    {
+      "id": "personality-evolving-identity",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Evolving identity and unfinished direction",
+      "publicText": "Mark does not view himself as a finished product. His strongest future self is defined less by one fixed image and more by discipline, confidence, responsibility, experience, and control. His goals may change as he learns and gains experience. He wants MarkAI to describe his direction without pretending every part of his future has already been decided. Mark sees himself as still evolving. The direction is clear—more discipline, responsibility, confidence, skill, and independence—even if the exact final version continues to change.",
+      "shortText": "Still evolving toward more discipline, responsibility, confidence, skill, and independence without a fixed finished identity.",
+      "aliases": [
+        "still evolving",
+        "finished becoming",
+        "type of person becoming",
+        "evolving identity"
+      ],
+      "keywords": [
+        "evolving",
+        "becoming",
+        "direction",
+        "unfinished",
+        "growth"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-growth-and-values"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "what type of person is he becoming",
+        "is Mark finished becoming who he wants to be",
+        "does Mark see himself as finished"
+      ],
+      "prohibitedUses": [
+        "fixed destiny claims",
+        "finished-product claims",
+        "private transformation journal detail"
+      ],
+      "notes": "Prefer this over long motivational biographies for becoming questions."
+    },
+    {
+      "id": "personality-public-vibe",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Core public vibe summary",
+      "publicText": "Mark’s public style combines quiet confidence, disciplined ambition, creativity, and controlled strength. He prefers clean systems, cinematic presentation, direct communication, and results that show the work without needing exaggerated claims. Preferred concepts include quiet confidence, disciplined ambition, controlled strength, creativity, reflection, ownership, seriousness, consistency, cinematic visual identity, and results over talking. Do not overuse this record in technical answers.",
+      "shortText": "Quiet confidence, disciplined ambition, creativity, and controlled strength with cinematic seriousness and results over talking.",
+      "aliases": [
+        "Mark’s vibe",
+        "describe Mark’s vibe",
+        "public vibe",
+        "what makes Mark different"
+      ],
+      "keywords": [
+        "vibe",
+        "quiet confidence",
+        "disciplined ambition",
+        "controlled strength",
+        "cinematic",
+        "results"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-quiet-ambition-earned-confidence",
+        "personality-aesthetic-environment"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "how would you describe Mark’s vibe",
+        "what is Mark’s mindset",
+        "what makes Mark different"
+      ],
+      "prohibitedUses": [
+        "fake toughness",
+        "overuse in technical answers",
+        "exaggerated claims",
+        "unstoppable warrior language"
+      ],
+      "notes": "Use for vibe/mindset personal questions; keep recruiter answers evidence-first."
     },
     {
       "id": "profile-mark-yoingco",
@@ -4770,8 +5374,8 @@
         "category": "privacy-boundaries",
         "action": "refuse",
         "purpose": "privacy-boundaries",
-        "publicBehavior": "Decline questions about family conflict or private family matters. Redirect to public professional topics when appropriate.",
-        "modelInstruction": "Do not discuss family conflict or private family matters. Do not invent such details.",
+        "publicBehavior": "Decline questions about family conflict, family finances, or private family responsibility. Reply that MarkAI only provides professional and intentionally public information, and redirect to projects, experience, skills, interests, goals, or portfolio.",
+        "modelInstruction": "Do not discuss family conflict, family finances, dependence on family, or private family responsibility. Do not invent such details. Do not confirm or deny private family matters.",
         "logPolicy": "log-category-only",
         "notes": "Generic category only.",
         "enforcement": "model-and-server"
@@ -4825,8 +5429,8 @@
         "category": "privacy-boundaries",
         "action": "refuse",
         "purpose": "privacy-boundaries",
-        "publicBehavior": "Do not discuss private financial hardship. Public career goals may mention seeking a full-time role without personal financial details.",
-        "modelInstruction": "Do not disclose or invent private financial hardship details.",
+        "publicBehavior": "Do not discuss private financial hardship, being broke, money pressure, or dependence on family. Reply that MarkAI only provides professional and intentionally public information. Public career goals may mention stability, growth, independence, and useful work without personal financial details.",
+        "modelInstruction": "Do not disclose, invent, confirm, or deny private financial hardship. Prefer professional career framing: stability, growth, independence, and meaningful work.",
         "logPolicy": "log-category-only",
         "notes": "Generic category only.",
         "enforcement": "model-and-server"
@@ -5167,7 +5771,7 @@
     {
       "id": "link-contact-section",
       "label": "Contact section",
-      "href": "https://markyoingco.com",
+      "href": "https://markyoingco.com/#contact",
       "type": "contact-section",
       "public": true,
       "enabled": true,
@@ -5182,12 +5786,12 @@
       "relatedRecordIds": [
         "career-direction-first-full-time-tech-role"
       ],
-      "notes": "Webpage Contact is a screen in the SPA (PortfolioApp SCREENS includes contact). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer directing visitors to Contact rather than raw email."
+      "notes": "Deep-links to Webpage Contact via #contact (SPA parseNavFromHash). Prefer Contact rather than raw email."
     },
     {
       "id": "link-testimonials-section",
       "label": "Testimonials section",
-      "href": "https://markyoingco.com",
+      "href": "https://markyoingco.com/#testimonials",
       "type": "webpage-section",
       "public": true,
       "enabled": true,
@@ -5209,12 +5813,33 @@
         "testimonial-maxwell-zeisler",
         "testimonial-andrew-wochner"
       ],
-      "notes": "Webpage Testimonials is a screen in the SPA (PortfolioApp SCREENS includes testimonials). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer this section link for general testimonial questions instead of dumping speaker LinkedIn profiles."
+      "notes": "Deep-links to Webpage Testimonials via #testimonials (SPA parseNavFromHash). Prefer this section link for general testimonial questions."
+    },
+    {
+      "id": "link-travel-section",
+      "label": "Travel section",
+      "href": "https://markyoingco.com/#travel",
+      "type": "webpage-section",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "travel-public-places-inventory",
+        "interest-travel-photography",
+        "personality-photography-travel-hobbies"
+      ],
+      "notes": "Deep-links to Webpage Travel via #travel (SPA parseNavFromHash). Prefer this section link and/or VSCO for travel photography questions."
     },
     {
       "id": "link-portfolio-section",
       "label": "Portfolio section",
-      "href": "https://markyoingco.com",
+      "href": "https://markyoingco.com/#portfolio",
       "type": "webpage-section",
       "public": true,
       "enabled": true,
@@ -5240,7 +5865,7 @@
         "project-sleep-efficiency-analysis",
         "project-marquette-basketball-predictor"
       ],
-      "notes": "Webpage Portfolio is a screen in the SPA (PortfolioApp SCREENS includes portfolio). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer this section link for broad project-inventory questions instead of dumping every project repository link."
+      "notes": "Deep-links to Webpage Portfolio via #portfolio (SPA parseNavFromHash). Prefer this section for broad project-inventory and no-repo project questions."
     },
     {
       "id": "link-github-portfolio",
@@ -5314,19 +5939,22 @@
       "external": true,
       "opensNewTab": true,
       "disclosure": "always",
+      "relatedRecordIds": [
+        "travel-public-places-inventory",
+        "interest-travel-photography",
+        "personality-photography-travel-hobbies"
+      ],
       "notes": "Exact URL from src/terminalProfileFileOutput.js VSCO_GALLERY_URL and PortfolioApp Travel section."
     },
     {
       "id": "link-markai-route",
-      "label": "MarkAI route",
-      "href": "https://markyoingco.com/#markai",
+      "label": "MarkAI",
+      "href": "https://markyoingco.com",
       "type": "markai-route",
       "public": true,
       "enabled": true,
       "allowedContexts": [
-        "answer",
-        "navigation",
-        "projects"
+        "navigation"
       ],
       "external": false,
       "opensNewTab": false,
@@ -5336,7 +5964,7 @@
         "project-markai",
         "navigation-portfolio-modes"
       ],
-      "notes": "MarkAI is live. Prefer describing the Main Menu or cd markai / open markai flow. Do not invent additional hashes."
+      "notes": "MarkAI opens in-app via Terminal open markai or the portfolio card Open MarkAI action. Do not use a dead #markai hash. Prefer not returning this link from MarkAI answers."
     },
     {
       "id": "link-email",
@@ -5630,6 +6258,23 @@
         "project-marquette-basketball-predictor"
       ],
       "notes": "Exact URL already displayed in PortfolioApp.jsx website field and terminalPortfolioProjectData.js. Team Data Mining project — do not imply sole ownership."
+    },
+    {
+      "id": "link-fmsc-libertyville",
+      "label": "Feed My Starving Children (Libertyville)",
+      "href": "https://www.fmsc.org/locations/libertyville-il",
+      "type": "external-org",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [],
+      "notes": "Public FMSC location page used by the Webpage Service card and Terminal fmsc.link. No private organization, member, schedule, or address details beyond this public page."
     }
   ]
 }
