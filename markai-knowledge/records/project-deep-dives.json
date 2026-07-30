@@ -1,0 +1,923 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "project-detail-abacus-platform-purpose",
+      "category": "projects",
+      "recordType": "project-detail",
+      "title": "Abacus Platform Purpose and Competition Architecture",
+      "publicText": "Abacus is a full-stack competition-management platform used for the Wisconsin-Dairyland Programming Competition, a high-school programming competition hosted with CSTA Wisconsin-Dairyland and Marquette University ACM. The platform supports school and team registration; teacher, student, administrator, and judge workflows; help requests and communication; point leaderboards; student code submission; automated grading through Judge0; submission review; results management; Blue, Gold, and Eagle Divisions; and virtual and in-person competition workflows. Its architecture includes a React frontend with Vite, TypeScript and JavaScript, a Python backend API with REST-style endpoints, MySQL, Judge0 for compiling submitted code and running test cases, Docker, Docker Compose, WSL Ubuntu, and DBeaver. Mark’s team was initially assigned to TA-Bot / MAAT; after the previous Abacus team was unable to complete the competition platform, their professor asked them to take over Abacus because of their strong progress. The team continued completing MAAT while rebuilding, testing, stabilizing, and delivering Abacus within one semester rather than a traditional two-semester capstone timeline.",
+      "shortText": "Full-stack Wisconsin-Dairyland competition platform with registration, divisions, grading via Judge0, and React/Python/MySQL architecture. Delivered in one semester after Mark’s team also continued MAAT.",
+      "aliases": [
+        "Abacus platform",
+        "Wisconsin-Dairyland Programming Competition platform",
+        "Abacus competition system"
+      ],
+      "keywords": [
+        "abacus",
+        "wisconsin-dairyland",
+        "judge0",
+        "eagle",
+        "gold",
+        "blue",
+        "competition",
+        "capstone",
+        "team"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectType": "senior-design-capstone-detail",
+      "teamOrIndividual": "team",
+      "technologies": [
+        "React",
+        "Vite",
+        "TypeScript",
+        "JavaScript",
+        "Python",
+        "REST APIs",
+        "MySQL",
+        "Judge0",
+        "Docker",
+        "Docker Compose",
+        "WSL Ubuntu",
+        "DBeaver",
+        "Git"
+      ],
+      "projectIds": [
+        "project-abacus"
+      ],
+      "relatedRecordIds": [
+        "project-abacus",
+        "project-detail-abacus-live-competition-scale-stability",
+        "contribution-abacus-eagle-workflows",
+        "contribution-abacus-submission-grading-pipeline",
+        "contribution-abacus-testing-prioritization-delivery",
+        "contribution-abacus-database-merchandise-performance",
+        "contrib-abacus-eagle-core"
+      ],
+      "linkIds": [
+        "link-github-abacus"
+      ],
+      "answerUses": [
+        "abacus purpose",
+        "competition platform",
+        "architecture",
+        "capstone context",
+        "Judge0 grading context"
+      ],
+      "prohibitedUses": [
+        "claim Mark solely owned Abacus",
+        "claim Mark alone rebuilt Abacus",
+        "invent competition sponsors",
+        "invent divisions",
+        "claim Mark created Judge0",
+        "call Abacus Mark employer"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 Abacus platform packet approval",
+          "claimScope": "Supports Abacus competition-management purpose, hosted competition framing, supported workflows, architecture/tooling, Judge0 role, and one-semester takeover context.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Deep-dive complement to project-abacus. Team product context remains required."
+    },
+    {
+      "id": "project-detail-abacus-live-competition-scale-stability",
+      "category": "projects",
+      "recordType": "project-detail",
+      "title": "Abacus April 2026 Live Competition Scale and Stability",
+      "publicText": "The April 15, 2026 live competition used Abacus to support approximately 200–300 high-school students, teachers, judges, and administrators during the Wisconsin-Dairyland Programming Competition, a live event lasting approximately three hours. The team improved a platform that had previously struggled with server crashes, lag, system overload, and incomplete competition support. Mark approves the outcome statement that the April 15, 2026 competition ran without major server crashes, platform failures, critical bugs, or major lag. Mark also approves that this was the first completely successful Abacus iteration in recent years, that the team was recognized as the hardest-working senior capstone team, and that the team completed both MAAT and Abacus during one academic year. Mark and his team helped deliver one of the smoothest and most stable recent iterations of the competition platform.",
+      "shortText": "April 15, 2026 live Abacus event supported approximately 200–300 students, teachers, judges, and administrators and ran without major crashes, platform failures, critical bugs, or major lag.",
+      "aliases": [
+        "Abacus live competition",
+        "Abacus 200-300 participants",
+        "April 15 2026 Abacus event"
+      ],
+      "keywords": [
+        "abacus",
+        "april 15 2026",
+        "200-300",
+        "live competition",
+        "stability",
+        "wisconsin-dairyland"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectType": "senior-design-capstone-detail",
+      "teamOrIndividual": "team",
+      "projectIds": [
+        "project-abacus"
+      ],
+      "relatedRecordIds": [
+        "project-abacus",
+        "project-detail-abacus-platform-purpose"
+      ],
+      "linkIds": [
+        "link-github-abacus"
+      ],
+      "answerUses": [
+        "abacus scale",
+        "live competition outcome",
+        "stability",
+        "event stakeholders"
+      ],
+      "prohibitedUses": [
+        "claim 300 verified customers",
+        "claim 300 paying users",
+        "claim 300 daily active users",
+        "claim permanent platform adoption of 200-300 users",
+        "claim enterprise traffic",
+        "claim thousands of users",
+        "inflate beyond approximately 200-300",
+        "claim no minor issue occurred",
+        "claim formal third-party benchmarking"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 Abacus scale and stability approval",
+          "claimScope": "Supports approximately 200-300 high-school students, teachers, judges, and administrators for the April 15, 2026 live competition and the approved major-stability outcome wording.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Canonical Abacus event-scale statement. Use approximately 200-300 participants and event stakeholders wording only."
+    },
+    {
+      "id": "contribution-abacus-eagle-workflows",
+      "category": "project-contributions",
+      "recordType": "contribution",
+      "title": "Abacus Eagle Workflows and Competition Management Contributions",
+      "publicText": "Mark implemented and managed major Eagle Division functionality, including the Eagle Division homepage, student and teacher workflows, virtual and in-person competition support, student submission features, uploading, storing, reviewing, and evaluating student work, role-aware chat, inbox behavior, help-request communication, routing, persistence, frontend/backend integration, and UI debugging. He also contributed to competition features involving team registration, point leaderboards, Gold Division workflows, Eagle Division workflows, and admin-facing user, team, school, problem, submission, and result management. These are Mark’s verified contributions within the broader team Abacus product.",
+      "shortText": "Mark’s Eagle Division and competition-management contributions spanning workflows, chat/inbox, submissions, leaderboards, and admin management features.",
+      "aliases": [
+        "Abacus Eagle workflows",
+        "Eagle Division contribution",
+        "Abacus competition workflows"
+      ],
+      "keywords": [
+        "abacus",
+        "eagle",
+        "workflows",
+        "chat",
+        "inbox",
+        "leaderboards",
+        "registration",
+        "admin"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectIds": [
+        "project-abacus"
+      ],
+      "relatedRecordIds": [
+        "project-abacus",
+        "contrib-abacus-eagle-core",
+        "contrib-abacus-inbox-chat",
+        "project-detail-abacus-platform-purpose",
+        "contribution-abacus-submission-grading-pipeline"
+      ],
+      "linkIds": [
+        "link-github-abacus"
+      ],
+      "answerUses": [
+        "abacus contribution",
+        "eagle division",
+        "competition workflows",
+        "full-stack"
+      ],
+      "prohibitedUses": [
+        "claim Mark built all of Abacus",
+        "hide team ownership",
+        "claim sole authorship of every competition feature"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 Abacus Eagle workflows approval",
+          "claimScope": "Supports Mark’s verified Eagle and competition-management contribution scope.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Complements existing commit-scoped Abacus contribution records with broader Mark-approved workflow scope."
+    },
+    {
+      "id": "contribution-abacus-submission-grading-pipeline",
+      "category": "project-contributions",
+      "recordType": "contribution",
+      "title": "Abacus Student Submission and Grading Pipeline Contribution",
+      "publicText": "Mark contributed to the student-submission workflow through the React frontend, including the StudentSubmit.tsx flow. The workflow connected student code submission, React frontend behavior, the Python backend API, database persistence, and Judge0 grading for code compilation, test-case execution, and pass, fail, or error outcomes. Mark contributed to connecting the student-facing submission workflow to backend and grading services.",
+      "shortText": "Mark contributed to connecting the React student-submission workflow to backend persistence and Judge0 grading outcomes.",
+      "aliases": [
+        "Abacus StudentSubmit",
+        "Abacus grading pipeline",
+        "Abacus Judge0 workflow"
+      ],
+      "keywords": [
+        "abacus",
+        "submission",
+        "grading",
+        "judge0",
+        "StudentSubmit",
+        "react",
+        "python"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectIds": [
+        "project-abacus"
+      ],
+      "relatedRecordIds": [
+        "project-abacus",
+        "contribution-abacus-eagle-workflows",
+        "project-detail-abacus-platform-purpose"
+      ],
+      "linkIds": [
+        "link-github-abacus"
+      ],
+      "answerUses": [
+        "abacus submission",
+        "grading pipeline",
+        "Judge0 integration context"
+      ],
+      "prohibitedUses": [
+        "claim Mark independently created Judge0",
+        "claim Mark wrote every grading backend component",
+        "claim Mark solely owned the complete submission pipeline"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 Abacus submission/grading approval",
+          "claimScope": "Supports StudentSubmit.tsx workflow contribution and Judge0-connected grading outcomes without Judge0 authorship.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Judge0 is an integrated grading system, not created by Mark."
+    },
+    {
+      "id": "contribution-abacus-testing-prioritization-delivery",
+      "category": "project-contributions",
+      "recordType": "contribution",
+      "title": "Abacus Testing, Prioritization, and Delivery Contribution",
+      "publicText": "Mark supported testing and validation through Vite-based frontend validation, TypeScript checks, submission-workflow testing, manual end-to-end competition testing, registration testing, submission testing, leaderboard-update testing, help-request testing, division-page testing, debugging, deployment configuration, and documentation. He helped organize priorities through a Priority 0–3 task list that helped the team identify critical requirements, separate required work from optional work, remove unnecessary features, prioritize MVP functionality, focus on the April 10 deadline, and prepare for the April 15 live competition. Vite-based validation is not Vitest and should not be described as a formal automated unit-test suite.",
+      "shortText": "Mark supported Vite/TypeScript validation, manual end-to-end competition testing, debugging, documentation, and Priority 0–3 delivery planning for the April competition.",
+      "aliases": [
+        "Abacus testing",
+        "Abacus prioritization",
+        "Abacus delivery planning"
+      ],
+      "keywords": [
+        "abacus",
+        "testing",
+        "vite",
+        "typescript",
+        "priority",
+        "mvp",
+        "april 15"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectIds": [
+        "project-abacus"
+      ],
+      "relatedRecordIds": [
+        "project-abacus",
+        "project-detail-abacus-live-competition-scale-stability",
+        "skill-testing-validation",
+        "skill-debugging"
+      ],
+      "linkIds": [
+        "link-github-abacus"
+      ],
+      "answerUses": [
+        "abacus testing",
+        "delivery process",
+        "prioritization",
+        "validation"
+      ],
+      "prohibitedUses": [
+        "call Vite validation Vitest",
+        "claim formal automated unit testing suite",
+        "claim Mark alone delivered Abacus"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 Abacus testing/prioritization approval",
+          "claimScope": "Supports validation, manual E2E testing, Priority 0-3 planning, and Vite-vs-Vitest boundary.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Preserve Vite workflow validation versus Vitest distinction."
+    },
+    {
+      "id": "contribution-abacus-database-merchandise-performance",
+      "category": "project-contributions",
+      "recordType": "contribution",
+      "title": "Abacus Database, Merchandise, and Performance Planning Contribution",
+      "publicText": "Mark contributed to database-backed teacher and team workflow improvements. One specific enhancement persisted team merchandise information, including shirt size, shirt quantity, backend repository logic, MySQL persistence, and DBeaver verification. Performance and reliability planning also included research into Locust-based user simulations for high-traffic workflows such as login, submissions, and competition traffic. Mark researched Locust-based load-simulation approaches and translated the findings into performance and stability considerations. This does not establish a completed formal Locust benchmark or exact load-test results.",
+      "shortText": "Mark contributed merchandise persistence in MySQL/DBeaver-backed workflows and researched Locust-based load-simulation approaches for competition traffic.",
+      "aliases": [
+        "Abacus merchandise",
+        "Abacus Locust research",
+        "Abacus database workflows"
+      ],
+      "keywords": [
+        "abacus",
+        "mysql",
+        "dbeaver",
+        "merchandise",
+        "locust",
+        "performance"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectIds": [
+        "project-abacus"
+      ],
+      "relatedRecordIds": [
+        "project-abacus",
+        "skill-dbeaver",
+        "skill-mysql"
+      ],
+      "linkIds": [
+        "link-github-abacus"
+      ],
+      "answerUses": [
+        "abacus database",
+        "merchandise persistence",
+        "performance planning"
+      ],
+      "prohibitedUses": [
+        "claim completed formal Locust benchmark",
+        "claim exact load-test results",
+        "claim production performance metrics",
+        "claim Mark created Locust"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 Abacus database/merchandise/performance approval",
+          "claimScope": "Supports merchandise persistence work and cautious Locust research wording.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Locust work is research and planning, not a published formal benchmark."
+    },
+    {
+      "id": "project-detail-maat-platform-purpose",
+      "category": "projects",
+      "recordType": "project-detail",
+      "title": "MAAT Platform Purpose and Evaluation Architecture",
+      "publicText": "TA-Bot, now known as MAAT, is an automated homework-evaluation platform used by Marquette University Computer Science professors and teaching assistants. The platform supports programming-assignment submission, instructor-configured test cases, expected inputs and outputs, automated execution, passed and failed test feedback, grading rubrics, observed errors, score calculation, plagiarism-analysis workflows, and instructor and teaching-assistant grading interfaces. Technologies include React, JavaScript, Node.js, REST APIs, MySQL, Docker, Docker Compose, Git, GitHub, WSL Ubuntu, DBeaver, and AST-based analysis.",
+      "shortText": "MAAT is an automated homework-evaluation platform for Marquette CS instructors and TAs, covering submission, rubrics, observed errors, scoring, and plagiarism-analysis workflows.",
+      "aliases": [
+        "TA-Bot",
+        "MAAT platform",
+        "automated homework evaluation"
+      ],
+      "keywords": [
+        "maat",
+        "ta-bot",
+        "grading",
+        "rubrics",
+        "plagiarism",
+        "docker",
+        "react"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectType": "senior-design-capstone-detail",
+      "teamOrIndividual": "team",
+      "technologies": [
+        "React",
+        "JavaScript",
+        "Node.js",
+        "REST APIs",
+        "MySQL",
+        "Docker",
+        "Docker Compose",
+        "Git",
+        "GitHub",
+        "WSL Ubuntu",
+        "DBeaver",
+        "AST-based analysis"
+      ],
+      "projectIds": [
+        "project-maat"
+      ],
+      "relatedRecordIds": [
+        "project-maat",
+        "contribution-maat-rubric-observed-errors",
+        "contribution-maat-plagiarism-analysis-workflows",
+        "project-detail-maat-adoption-maintainability",
+        "contrib-maat-grading-ui",
+        "contrib-maat-plagiarism-ui"
+      ],
+      "linkIds": [
+        "link-github-maat"
+      ],
+      "answerUses": [
+        "maat purpose",
+        "homework evaluation",
+        "grading platform"
+      ],
+      "prohibitedUses": [
+        "claim Mark solely built MAAT",
+        "claim Mark owned every backend service",
+        "claim Mark invented automated grading as a concept"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 MAAT platform packet approval",
+          "claimScope": "Supports MAAT/TA-Bot purpose, supported workflows, and listed technologies.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Deep-dive complement to project-maat."
+    },
+    {
+      "id": "contribution-maat-rubric-observed-errors",
+      "category": "project-contributions",
+      "recordType": "contribution",
+      "title": "MAAT Rubric and Observed-Error Grading Interface Contribution",
+      "publicText": "Mark implemented and improved grading-interface features involving rubric editing, rubric save functionality, updated grading pages, observed-error tables, rendering rows from observed errors, error-point calculations, error categories, line-referenced feedback, score recalculation, student-roster updates, grading-output presentation, interface cleanup, removal of unnecessary buttons, grading-workflow usability, and bug fixes. Mark contributed through React grading interfaces connected to backend APIs and database persistence.",
+      "shortText": "Mark improved MAAT React grading interfaces for rubrics, observed errors, score recalculation, roster updates, and usability cleanup.",
+      "aliases": [
+        "MAAT rubrics",
+        "MAAT observed errors",
+        "MAAT grading UI"
+      ],
+      "keywords": [
+        "maat",
+        "rubric",
+        "observed errors",
+        "grading",
+        "react",
+        "score"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectIds": [
+        "project-maat"
+      ],
+      "relatedRecordIds": [
+        "project-maat",
+        "contrib-maat-grading-ui",
+        "project-detail-maat-platform-purpose"
+      ],
+      "linkIds": [
+        "link-github-maat"
+      ],
+      "answerUses": [
+        "maat contribution",
+        "grading UI",
+        "rubrics",
+        "observed errors"
+      ],
+      "prohibitedUses": [
+        "claim Mark alone built MAAT",
+        "claim Mark owned every grading backend component"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 MAAT rubric/observed-error approval",
+          "claimScope": "Supports Mark’s grading-interface contribution scope.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Complements existing MAAT grading contribution records."
+    },
+    {
+      "id": "contribution-maat-plagiarism-analysis-workflows",
+      "category": "project-contributions",
+      "recordType": "contribution",
+      "title": "MAAT Plagiarism-Analysis Workflow Contribution",
+      "publicText": "Mark contributed to plagiarism-analysis functionality involving comparison of student submissions, similarity percentages, threshold calculations, AST-based analysis workflows, warning indicators, red-line visual warnings, detailed comparison windows, grading-interface integration, and presenting suspicious similarity to instructors. Mark contributed to plagiarism-detection and similarity-analysis workflows. He did not independently invent the complete plagiarism algorithm, solely author all AST analysis, alone build MAAT plagiarism detection, or own the entire backend plagiarism system.",
+      "shortText": "Mark contributed to MAAT plagiarism-detection and similarity-analysis workflows, including thresholds, warnings, and instructor-facing comparison presentation.",
+      "aliases": [
+        "MAAT plagiarism",
+        "MAAT similarity analysis",
+        "MAAT AST workflows"
+      ],
+      "keywords": [
+        "maat",
+        "plagiarism",
+        "similarity",
+        "ast",
+        "threshold",
+        "warnings"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectIds": [
+        "project-maat"
+      ],
+      "relatedRecordIds": [
+        "project-maat",
+        "contrib-maat-plagiarism-ui",
+        "contrib-maat-similarity-refinement",
+        "project-detail-maat-platform-purpose"
+      ],
+      "linkIds": [
+        "link-github-maat"
+      ],
+      "answerUses": [
+        "maat plagiarism",
+        "similarity analysis",
+        "instructor workflows"
+      ],
+      "prohibitedUses": [
+        "claim Mark independently invented the complete plagiarism algorithm",
+        "claim Mark solely authored all AST analysis",
+        "claim Mark alone built MAAT plagiarism detection",
+        "claim Mark owned the entire backend plagiarism system"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 MAAT plagiarism workflow approval",
+          "claimScope": "Supports contribution to plagiarism-detection and similarity-analysis workflows with ownership boundaries.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Preserve algorithm-ownership boundary."
+    },
+    {
+      "id": "project-detail-maat-adoption-maintainability",
+      "category": "projects",
+      "recordType": "project-detail",
+      "title": "MAAT Adoption and Maintainability",
+      "publicText": "Mark reports that the MAAT platform was accepted for use beyond Marquette by additional Milwaukee-area computer-science programs, including programs associated with University of Wisconsin–Milwaukee and Milwaukee School of Engineering. The team also worked on Docker Compose testing, DBeaver database checks, prioritized issue tracking, admin grading UX cleanup, architecture documentation, verification and validation documentation, and long-term maintainability.",
+      "shortText": "Mark reports MAAT was accepted for use by additional Milwaukee-area CS programs including UWM and MSOE, with team work on maintainability and documentation.",
+      "aliases": [
+        "MAAT adoption",
+        "MAAT UWM MSOE",
+        "MAAT maintainability"
+      ],
+      "keywords": [
+        "maat",
+        "uwm",
+        "msoe",
+        "adoption",
+        "maintainability",
+        "documentation"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectType": "senior-design-capstone-detail",
+      "teamOrIndividual": "team",
+      "projectIds": [
+        "project-maat"
+      ],
+      "relatedRecordIds": [
+        "project-maat",
+        "project-detail-maat-platform-purpose"
+      ],
+      "linkIds": [
+        "link-github-maat"
+      ],
+      "answerUses": [
+        "maat adoption",
+        "maintainability",
+        "documentation"
+      ],
+      "prohibitedUses": [
+        "invent exact number of institutions",
+        "claim licensing agreements",
+        "claim commercial sales",
+        "claim university-wide adoption",
+        "claim current production usage beyond approved statement"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 MAAT adoption/maintainability approval",
+          "claimScope": "Supports Mark-reported acceptance beyond Marquette by UWM and MSOE-associated programs and maintainability work.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Use cautious Mark-reported adoption wording only."
+    },
+    {
+      "id": "project-detail-finch-platform-multiplayer-architecture",
+      "category": "projects",
+      "recordType": "project-detail",
+      "title": "Finch Platform Multiplayer and Real-Time Architecture",
+      "publicText": "Finch Web Controller, originally called BirdFighting / BirdVroomVroom, was a COSC 3810 Software Design and Analysis team project that created a browser-based control platform for BirdBrain Finch 2.0 robots. Architecture and tools included Python, Flask, Flask-SocketIO, React, Vite, JavaScript, HTML, CSS, Socket.IO, BirdBrain Finch 2.0, the BirdBrain Python library, BlueBird Connector, Bluetooth robot connectivity, localhost development, python app.py, REST routes, WebSocket-style real-time events, Git, and GitHub. Features included a home screen, single-player and multiplayer modes, room creation, six-character join codes, player identity tracking, lobby ready-up, live player counts, per-player controller screens, keyboard and button input, frontend-to-backend Socket.IO events, Finch motor commands, and the robot communication workflow. Finch is a team coursework project, and the public repository is a fork because the original repository was not owned by Mark.",
+      "shortText": "Team Finch Web Controller coursework platform for BirdBrain Finch 2.0 with Flask-SocketIO multiplayer rooms, lobbies, and real-time controller screens.",
+      "aliases": [
+        "BirdFighting",
+        "BirdVroomVroom",
+        "Finch multiplayer architecture"
+      ],
+      "keywords": [
+        "finch",
+        "socket.io",
+        "flask",
+        "multiplayer",
+        "room code",
+        "birdbrain",
+        "team"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectType": "coursework-project-detail",
+      "teamOrIndividual": "team",
+      "technologies": [
+        "Python",
+        "Flask",
+        "Flask-SocketIO",
+        "React",
+        "Vite",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Socket.IO",
+        "BirdBrain Finch 2.0",
+        "BlueBird Connector",
+        "Git",
+        "GitHub"
+      ],
+      "projectIds": [
+        "project-finch-web-controller"
+      ],
+      "relatedRecordIds": [
+        "project-finch-web-controller",
+        "contribution-finch-frontend-controller",
+        "contribution-finch-design-documentation-multirobot",
+        "skill-socket-io"
+      ],
+      "linkIds": [
+        "link-github-finch"
+      ],
+      "answerUses": [
+        "finch architecture",
+        "multiplayer",
+        "socket.io",
+        "robotics coursework"
+      ],
+      "prohibitedUses": [
+        "claim Mark built the entire Finch system",
+        "claim Mark solely owned the repository",
+        "claim professional software employment",
+        "claim commercial deployment"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 Finch platform architecture approval",
+          "claimScope": "Supports Finch architecture, multiplayer features, tooling, and fork ownership disclosure.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Preserve team coursework and fork-status boundaries."
+    },
+    {
+      "id": "contribution-finch-design-documentation-multirobot",
+      "category": "project-contributions",
+      "recordType": "contribution",
+      "title": "Finch Design, Documentation, and Multi-Robot Architecture Contribution",
+      "publicText": "Mark contributed heavily to frontend development. His work included Figma mockups, UI sketches, pixel-art layouts, image and design creation, page layouts, controller-screen layouts, visual direction, implementation planning, installation documentation, class setup materials, project onboarding documentation, React/Vite pages, lobby flow, room-code pages, controller screens, Flask route fixes, backend communication planning, local server setup, localhost testing, hardware/software debugging, Systems Lab hosting preparation, and event-driven command structure. As an advanced assignment constraint, the team was challenged to support three Finch robots while other groups were required to support one. The code-level design included Finch A, Finch B, and Finch C, player-to-robot mappings, dedicated robot IDs, backend player state, and architecture for future simultaneous multi-robot control. Near the end of the course, the professor recognized that complete three-Finch integration was likely unrealistic within the remaining timeline. The team still completed the core browser controller, frontend and backend structure, lobby system, command flow, Figma mockups, documentation, and code-level multi-robot architecture. Do not claim complete production-ready three-robot deployment, fully completed simultaneous three-robot control, that Mark solely architected every component, or that Mark led the entire frontend.",
+      "shortText": "Mark contributed heavily to Finch frontend development, Figma/UI direction, documentation, and code-level multi-robot architecture without claiming completed three-robot deployment or frontend leadership.",
+      "aliases": [
+        "Finch Figma contribution",
+        "Finch multi-robot architecture",
+        "Finch documentation contribution"
+      ],
+      "keywords": [
+        "finch",
+        "figma",
+        "documentation",
+        "multi-robot",
+        "frontend",
+        "controller"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectIds": [
+        "project-finch-web-controller"
+      ],
+      "relatedRecordIds": [
+        "project-finch-web-controller",
+        "contribution-finch-frontend-controller",
+        "project-detail-finch-platform-multiplayer-architecture",
+        "skill-figma"
+      ],
+      "linkIds": [
+        "link-github-finch"
+      ],
+      "answerUses": [
+        "finch contribution",
+        "figma",
+        "documentation",
+        "multi-robot architecture"
+      ],
+      "prohibitedUses": [
+        "use led frontend development",
+        "claim complete production-ready three-robot deployment",
+        "claim simultaneous three-robot control was fully completed",
+        "claim Mark solely architected every component",
+        "claim Mark led the entire frontend"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 Finch design/documentation/multi-robot approval",
+          "claimScope": "Supports contributed-heavily wording, design/documentation scope, and incomplete three-robot deployment boundary.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Use exactly contributed heavily to frontend development. Never use led frontend development."
+    },
+    {
+      "id": "project-detail-space-shmup-gameplay-architecture",
+      "category": "projects",
+      "recordType": "project-detail",
+      "title": "Space SHMUP Gameplay and Architecture Detail",
+      "publicText": "Space SHMUP is a Galaga-inspired vertical arcade space shooter built in Unity using C#. Gameplay includes player ship movement, rotation feedback, projectile combat, enemy spawning, collision detection, shield mechanics, power-ups, weapon upgrades, scene restart behavior, survival gameplay, and enemy waves. Architecture and programming concepts include Unity 2022.3 LTS, C#, MonoBehaviour, object-oriented programming, inheritance, polymorphism, delegates, events, the singleton pattern, component-based architecture, prefabs, Rigidbody physics, colliders, triggers, serialized fields, arrays, lists, dictionaries, Unity scene management, AnimationCurve, Bézier curves, randomization, parallax scrolling, debugging, and playtesting. The enemy system includes shared enemy base behavior with linear, sine-wave, interpolation, and Bézier-curve movement, plus a roaming boss enemy with layered destructible boss shields. The weapon system uses WeaponFireDelegate, fireEvent, subscriber-based weapon components, blaster and spread-shot projectiles, and data-driven weapon behavior. Supporting systems include weighted enemy spawning, random power-up drops, shield upgrades, reusable screen bounds, recursive damage routing, visual hit feedback, parallax backgrounds, and centralized game-state management.",
+      "shortText": "Unity/C# Galaga-inspired Space SHMUP with OOP combat systems, enemy movement patterns, delegate-based weapons, and supporting gameplay architecture.",
+      "aliases": [
+        "Space SHMUP detail",
+        "Galaga Unity project",
+        "Space SHMUP architecture"
+      ],
+      "keywords": [
+        "unity",
+        "c#",
+        "shmup",
+        "galaga",
+        "delegates",
+        "enemies",
+        "weapons",
+        "boss"
+      ],
+      "status": "verified",
+      "reviewedByMark": true,
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "lastReviewed": "2026-07-29",
+      "projectType": "coursework-project-detail",
+      "teamOrIndividual": "individual",
+      "technologies": [
+        "Unity",
+        "Unity 2022.3 LTS",
+        "C#",
+        "Rigidbody",
+        "Colliders",
+        "Prefabs",
+        "AnimationCurve"
+      ],
+      "projectIds": [
+        "project-space-shmup"
+      ],
+      "relatedRecordIds": [
+        "project-space-shmup",
+        "skill-unity",
+        "skill-csharp"
+      ],
+      "linkIds": [
+        "link-github-space-shmup"
+      ],
+      "answerUses": [
+        "space shmup",
+        "unity gameplay",
+        "game architecture",
+        "coursework"
+      ],
+      "prohibitedUses": [
+        "claim professional commercial game employment",
+        "claim online multiplayer",
+        "claim shipped commercial release",
+        "invent technologies not listed"
+      ],
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark Phase 1G.1 Space SHMUP packet approval",
+          "claimScope": "Supports gameplay systems, architecture concepts, enemy/weapon details, and coursework boundaries.",
+          "markApprovedOn": "2026-07-29"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-deep-dives.json"
+      ],
+      "notes": "Coursework Unity project detail. Not professional game-studio employment."
+    }
+  ]
+}

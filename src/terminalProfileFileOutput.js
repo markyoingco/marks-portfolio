@@ -17,7 +17,7 @@ export function buildAboutTxtCatOutput() {
     ),
     blankLine(),
     textLine(
-      'My experience includes full-stack development, systems programming, developer tools, data projects, robotics, and two senior design capstones. My strongest work includes this portfolio platform, Abacus, TA-Bot / MAAT, and the Finch Web Controller.',
+      'My experience includes full-stack development, systems programming, developer tools, data projects, robotics, and two senior design capstones. My strongest work includes this solo portfolio platform with Webpage, Terminal, and MarkAI experiences, plus Abacus, TA-Bot / MAAT, and the Finch Web Controller.',
     ),
     blankLine(),
     textLine(
@@ -62,7 +62,7 @@ export function buildCareerGoalsTxtCatOutput() {
     blankLine(),
     sectionLine('LONG-TERM DIRECTION'),
     textLine(
-      'Take on greater technical ownership, solve real problems, and build a stable career with room to grow.',
+      'Take on greater technical ownership, solve real problems, build a stable career with room to grow, keep improving personally and technically, and create useful work.',
     ),
   ])
 }
@@ -72,15 +72,19 @@ export function buildInterestsTxtCatOutput() {
     sectionLine('INTERESTS'),
     blankLine(),
     textLine(
-      'Outside of technology, fitness is one of my strongest interests. It has taught me consistency, patience, attention to detail, and the value of progress earned over time.',
+      'Outside of technology, fitness and bodybuilding are major interests. Training represents consistency, patience, detail, structure, and progress earned over time.',
     ),
     blankLine(),
     textLine(
-      'I also enjoy photography, travel, music, reading, and hiking. Photography gives me a way to document places, people, and moments through clean composition and a darker cinematic style.',
+      'I also enjoy photography, travel, music, reading, hiking, and running. Photography helps me document cities, landscapes, and meaningful moments in a personal cinematic style.',
     ),
     blankLine(),
     textLine(
-      "I'm interested in Greek mythology and sculpture, especially stories about ambition, discipline, strength, and consequence. Open vsco.link to view more of my photography.",
+      'My favorite color is black. I prefer minimal black, white, and gray palettes with clean, serious, high-contrast design.',
+    ),
+    blankLine(),
+    textLine(
+      "I'm interested in Greek mythology and classical statues for themes like ambition, discipline, strength, consequence, and resilience. Those visual ideas also influenced the cinematic direction of this portfolio. Open vsco.link to view more of my photography.",
     ),
   ])
 }

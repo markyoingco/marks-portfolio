@@ -1,0 +1,720 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "project-finch-web-controller",
+      "category": "projects",
+      "recordType": "project",
+      "title": "Finch Robot Web Controller",
+      "publicText": "The Finch Robot Web Controller was a Spring 2026 team coursework project for Software Design and Analysis that allowed users to control BirdBrain Finch 2.0 robots through browser interfaces, room codes, multiplayer lobbies, and real-time controller screens. The project used Python, Flask, JavaScript, HTML, CSS, Socket.IO, and Finch robotics tools. Mark’s individual work is documented in a separate contribution record.",
+      "shortText": "Spring 2026 team project for controlling Finch 2.0 robots through browser-based multiplayer controller screens.",
+      "aliases": [
+        "Finch Web Controller",
+        "Finch Robot Web Controller",
+        "BirdVroomVroom",
+        "BirdBrain Finch 2.0 Controller",
+        "Finch Web Robotics Control"
+      ],
+      "keywords": [
+        "finch",
+        "robotics",
+        "flask",
+        "socket.io",
+        "team",
+        "software design",
+        "birdvroomvroom",
+        "controller",
+        "multiplayer",
+        "flask-socketio",
+        "birdfighting"
+      ],
+      "status": "verified",
+      "projectType": "coursework project",
+      "teamOrIndividual": "team",
+      "technologies": [
+        "Python",
+        "Flask",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Socket.IO",
+        "BirdBrain Finch 2.0",
+        "React",
+        "Vite",
+        "Flask-SocketIO",
+        "BlueBird Connector",
+        "Git",
+        "GitHub"
+      ],
+      "currentStatus": "completed-coursework-team-project",
+      "portfolioLocation": "Software Design and Analysis portfolio section",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Finch Robot Web Controller project card",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports team robotics product framing, BirdBrain Finch 2.0 browser control features, listed technologies, and Software Design and Analysis course placement."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal Finch project summary",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports team project summary, controller features, and stack labels."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume Finch Web Controller listing",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports Finch Web Controller product description and repository naming context via BirdVroomVroom references elsewhere in portfolio sources."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation during Phase 1F-C.2 planning",
+          "claimScope": "Mark confirmed Spring 2026 dates, BirdVroomVroom repository name, and that the repository was forked because the original repository was not owned by Mark.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalPortfolioFileOutput.js",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioProjectData.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "contribution-finch-frontend-controller",
+        "project-detail-finch-platform-multiplayer-architecture",
+        "contribution-finch-design-documentation-multirobot"
+      ],
+      "linkIds": [
+        "link-github-finch"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "robotics project",
+        "team project experience",
+        "frontend and backend integration context",
+        "Socket.IO project context",
+        "Software Design and Analysis coursework"
+      ],
+      "prohibitedUses": [
+        "claim Mark built the entire project",
+        "claim Mark independently created all room-code functionality",
+        "claim Mark independently created all multiplayer functionality",
+        "claim Mark independently created every robot handler",
+        "claim professional software employment",
+        "call the project commercially deployed",
+        "describe Mark as sole repository owner",
+        "hide the fact that the repository was forked when repository ownership is relevant",
+        "use led frontend development"
+      ],
+      "overstatementGuards": [
+        "Mark built the entire Finch project",
+        "led frontend development",
+        "Mark owned the original repository"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-29",
+      "notes": "Team coursework project from Spring 2026. Repository name is BirdVroomVroom. Repository was forked because the original repository was not owned by Mark. Fork status does not erase Mark’s substantial contributions. Product features must remain separate from Mark’s individual contribution."
+    },
+    {
+      "id": "project-operating-systems-c",
+      "category": "projects",
+      "recordType": "project",
+      "title": "Operating Systems C Projects",
+      "publicText": "Operating Systems C Projects is an umbrella record for Mark’s Spring 2026 Operating Systems coursework in C, covering UNIX/Linux development, process control, memory, file systems, command-line development, and systems-level testing and debugging. The work included both solo and shared coursework, with public portfolio documentation kept separate from original course repositories that may require access.",
+      "shortText": "Spring 2026 Operating Systems coursework in C, UNIX/Linux, process control, memory, file systems, and debugging.",
+      "aliases": [
+        "Operating Systems C Projects",
+        "Operating Systems Projects",
+        "OS C Projects",
+        "Systems Programming Projects",
+        "XINU coursework"
+      ],
+      "keywords": [
+        "operating systems",
+        "c",
+        "unix",
+        "linux",
+        "wsl",
+        "xinu",
+        "systems programming",
+        "debugging"
+      ],
+      "status": "verified",
+      "projectType": "coursework collection",
+      "teamOrIndividual": "mixed solo and shared coursework",
+      "technologies": [
+        "C",
+        "UNIX",
+        "Linux",
+        "WSL",
+        "Git",
+        "GitHub",
+        "command-line tools"
+      ],
+      "currentStatus": "completed-coursework-collection",
+      "portfolioLocation": "Systems Programming portfolio section",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Operating Systems C Projects card",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports umbrella coursework framing, C/UNIX/Linux/WSL/Git stack, process control, memory, file systems, systems-level debugging, and that original course repositories may require access."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal Operating Systems C Projects summary",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports systems programming category framing and documented systems concepts."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume Operating Systems C Projects bullet",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports C/UNIX/Linux coursework covering process control, memory, file systems, system-level debugging, and command-line development."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation during Phase 1F-C.2 planning",
+          "claimScope": "Mark confirmed Spring 2026 dates and that the record should remain one umbrella project covering solo and shared coursework, with access-restricted course repositories kept hidden from public MarkAI answers.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalPortfolioFileOutput.js",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioProjectData.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [],
+      "linkIds": [
+        "link-github-os-c-docs"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "systems programming experience",
+        "C programming",
+        "UNIX and Linux coursework",
+        "operating-systems coursework",
+        "debugging experience",
+        "solo and shared coursework"
+      ],
+      "prohibitedUses": [
+        "invent assignment names",
+        "invent scheduler implementation",
+        "invent shell implementation",
+        "invent networking implementation",
+        "claim professional systems-engineering employment",
+        "expose private or shared course repository URLs",
+        "imply every topic was implemented as a complete operating system",
+        "claim ownership of teammates’ work"
+      ],
+      "overstatementGuards": [
+        "Mark built a complete operating system",
+        "private course repository URLs in public answers"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "This is one umbrella project record rather than one record per assignment. Course dates are Spring 2026. Public documentation may be linked later when relevant or requested. Shared and access-restricted course repositories must remain hidden. Distinguish solo work from shared coursework when details are available."
+    },
+    {
+      "id": "project-apple-picker",
+      "category": "projects",
+      "recordType": "project",
+      "title": "Apple Picker",
+      "publicText": "Apple Picker was an individual Unity and C# coursework project completed from January to February 2026. The arcade-style game used falling objects, movable baskets, scoring, high-score persistence, lives, restart behavior, collisions, prefabs, and scene logic.",
+      "shortText": "Individual Unity/C# arcade coursework project completed January–February 2026.",
+      "aliases": [
+        "Apple Picker",
+        "Apple Picker Unity"
+      ],
+      "keywords": [
+        "unity",
+        "c#",
+        "apple picker",
+        "arcade",
+        "coursework",
+        "playerprefs",
+        "prefabs"
+      ],
+      "status": "verified",
+      "projectType": "coursework project",
+      "teamOrIndividual": "individual",
+      "technologies": [
+        "Unity",
+        "C#",
+        "Unity physics",
+        "prefabs",
+        "PlayerPrefs"
+      ],
+      "currentStatus": "completed-coursework-project",
+      "portfolioLocation": "Programming Computer Games portfolio section",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Apple Picker project card",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Apple Picker as a Unity arcade-style game with falling objects, basket controls, scoring, high-score persistence, lives, collisions, and related tech labels including PlayerPrefs."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal Apple Picker summary",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports Apple Picker Unity/C# coursework framing and core gameplay systems."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation during Phase 1F-C.2 planning",
+          "claimScope": "Mark confirmed individual coursework classification and January–February 2026 dates.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalPortfolioFileOutput.js",
+        "src/terminalPortfolioProjectData.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [],
+      "linkIds": [
+        "link-github-apple-picker"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Unity experience",
+        "C# experience",
+        "individual coursework",
+        "game logic",
+        "scoring and persistence"
+      ],
+      "prohibitedUses": [
+        "call it a commercial release",
+        "claim publication to an app store",
+        "claim Mark created all third-party assets",
+        "claim all starter structures were original",
+        "describe it as professional game-development employment"
+      ],
+      "overstatementGuards": [
+        "commercial game release",
+        "app store publication"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Individual coursework project. Dates: January–February 2026. Course assignment or starter structure may be acknowledged. Mark implemented and completed the project as coursework."
+    },
+    {
+      "id": "project-mission-demolition",
+      "category": "projects",
+      "recordType": "project",
+      "title": "Mission Demolition",
+      "publicText": "Mission Demolition was an individual Unity and C# coursework project completed from February to March 2026. The physics-based projectile game involved aiming, launching projectiles, collision behavior, structural targets, scene logic, and gameplay progression.",
+      "shortText": "Individual Unity/C# physics coursework project completed February–March 2026.",
+      "aliases": [
+        "Mission Demolition",
+        "Mission Demolition Unity"
+      ],
+      "keywords": [
+        "unity",
+        "c#",
+        "mission demolition",
+        "physics",
+        "coursework",
+        "collisions",
+        "prefabs"
+      ],
+      "status": "verified",
+      "projectType": "coursework project",
+      "teamOrIndividual": "individual",
+      "technologies": [
+        "Unity",
+        "C#",
+        "Unity physics",
+        "collisions",
+        "prefabs",
+        "scene management"
+      ],
+      "currentStatus": "completed-coursework-project",
+      "portfolioLocation": "Programming Computer Games portfolio section",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Mission Demolition project card",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Mission Demolition as a Unity physics-based projectile game with aiming, launching, collisions, structural targets, and scene-based gameplay logic."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal Mission Demolition summary",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports Mission Demolition Unity/C# coursework framing and documented gameplay systems."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation during Phase 1F-C.2 planning",
+          "claimScope": "Mark confirmed individual coursework classification and February–March 2026 dates.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalPortfolioFileOutput.js",
+        "src/terminalPortfolioProjectData.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [],
+      "linkIds": [
+        "link-github-mission-demolition"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Unity experience",
+        "C# experience",
+        "physics-based gameplay",
+        "individual coursework",
+        "collision and scene logic"
+      ],
+      "prohibitedUses": [
+        "call it a commercial release",
+        "claim Mark created all third-party assets",
+        "claim every starter component was original",
+        "describe it as professional game-development employment",
+        "invent unsupported levels or mechanics"
+      ],
+      "overstatementGuards": [
+        "commercial game release",
+        "fully original game without coursework context"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Individual coursework project. Dates: February–March 2026. Course starter structure may be acknowledged."
+    },
+    {
+      "id": "project-space-shmup",
+      "category": "projects",
+      "recordType": "project",
+      "title": "Space SHMUP",
+      "publicText": "Space SHMUP was an individual Unity and C# coursework project completed from March to May 2026. The two-dimensional arcade shooter included player movement, projectiles, enemy spawning, collisions, scoring, shields, power-ups, boss gameplay, and game-state logic.",
+      "shortText": "Individual Unity/C# arcade shooter coursework project completed March–May 2026.",
+      "aliases": [
+        "Space SHMUP",
+        "Space SHMUP Unity",
+        "Space Shoot ’Em Up"
+      ],
+      "keywords": [
+        "unity",
+        "c#",
+        "space shmup",
+        "arcade shooter",
+        "coursework",
+        "boss",
+        "power-ups",
+        "galaga",
+        "delegates",
+        "bezier",
+        "parallax"
+      ],
+      "status": "verified",
+      "projectType": "coursework project",
+      "teamOrIndividual": "individual",
+      "technologies": [
+        "Unity",
+        "C#",
+        "Unity physics",
+        "prefabs",
+        "collisions",
+        "game-state logic",
+        "Unity 2022.3 LTS",
+        "Rigidbody",
+        "AnimationCurve"
+      ],
+      "currentStatus": "completed-coursework-project",
+      "portfolioLocation": "Programming Computer Games portfolio section",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Space SHMUP project card",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Space SHMUP as a Unity 2D arcade shooter with player movement, projectiles, enemy behavior, collisions, scoring, and game-state logic."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume Space SHMUP feature listing",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports additional documented gameplay systems including enemy spawning, shields, power-ups, restart logic, and boss behavior."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal Space SHMUP summary",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports Space SHMUP Unity/C# coursework framing."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation during Phase 1F-C.2 planning",
+          "claimScope": "Mark confirmed individual coursework classification, March–May 2026 dates, and that shields, power-ups, enemy spawning, and boss gameplay are approved to include.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioFileOutput.js",
+        "src/terminalPortfolioProjectData.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "project-detail-space-shmup-gameplay-architecture"
+      ],
+      "linkIds": [
+        "link-github-space-shmup"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Unity experience",
+        "C# experience",
+        "arcade-game systems",
+        "gameplay state",
+        "individual coursework"
+      ],
+      "prohibitedUses": [
+        "call it a commercial release",
+        "claim app-store or marketplace publication",
+        "claim Mark created all third-party assets",
+        "claim all starter structures were original",
+        "describe it as professional game-development employment",
+        "invent unsupported metrics or player adoption"
+      ],
+      "overstatementGuards": [
+        "commercial game release",
+        "player adoption metrics"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-29",
+      "notes": "Individual coursework project. Dates: March–May 2026. Course starter structure may be acknowledged. Mark confirmed shields, power-ups, enemy spawning, and boss gameplay."
+    },
+    {
+      "id": "project-sleep-efficiency-analysis",
+      "category": "projects",
+      "recordType": "project",
+      "title": "Sleep Efficiency Analysis",
+      "publicText": "Sleep Efficiency Analysis was a Fall 2024 team Data Science coursework project using a publicly available Kaggle sleep-efficiency dataset. The team performed data cleaning, visualization, variance inflation factor checks, and linear regression to explore relationships in the dataset.",
+      "shortText": "Fall 2024 team Data Science project using public Kaggle data, visualization, VIF checks, and linear regression.",
+      "aliases": [
+        "Sleep Analysis",
+        "Sleep Efficiency Analysis",
+        "Sleep Efficiency Project"
+      ],
+      "keywords": [
+        "sleep efficiency",
+        "data science",
+        "kaggle",
+        "python",
+        "regression",
+        "vif",
+        "visualization",
+        "team"
+      ],
+      "status": "verified",
+      "projectType": "coursework data-analysis project",
+      "teamOrIndividual": "team",
+      "technologies": [
+        "Python",
+        "Pandas",
+        "Seaborn",
+        "Matplotlib",
+        "Scikit-learn",
+        "Statsmodels",
+        "linear regression",
+        "VIF"
+      ],
+      "currentStatus": "completed-coursework-team-project",
+      "portfolioLocation": "Data Science and Machine Learning portfolio section",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Sleep Efficiency Analysis project card",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Kaggle sleep efficiency data framing and methods including cleaning, visualization, VIF checks, and linear regression."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal Sleep Efficiency Analysis summary",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports project methods and public Kaggle dataset framing."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation during Phase 1F-C.2 planning",
+          "claimScope": "Mark confirmed Fall 2024 dates, team coursework classification, and that the dataset was publicly available through Kaggle rather than personal health data.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalPortfolioFileOutput.js",
+        "src/terminalPortfolioProjectData.js",
+        "markai-knowledge/policies/privacy-boundaries.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [],
+      "linkIds": [
+        "link-github-sleep-efficiency"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "data-analysis experience",
+        "Data Science coursework",
+        "data cleaning",
+        "visualization",
+        "regression analysis",
+        "team project experience"
+      ],
+      "prohibitedUses": [
+        "imply the dataset contained Mark’s private health information",
+        "infer Mark’s health or sleeping habits",
+        "provide medical advice",
+        "claim medical diagnosis",
+        "claim causation from correlation",
+        "invent dataset size",
+        "invent statistical significance",
+        "invent model accuracy",
+        "invent conclusions not present in approved evidence",
+        "describe as professional health research"
+      ],
+      "overstatementGuards": [
+        "personal health dataset",
+        "medical advice",
+        "invented accuracy or significance"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Team project from Fall 2024. Dataset was publicly available through Kaggle. This was coursework, not personal health analysis. Specific conclusions may be added only when directly documented and separately reviewed. Until then, answer primarily with methods and project purpose."
+    },
+    {
+      "id": "project-marquette-basketball-predictor",
+      "category": "projects",
+      "recordType": "project",
+      "title": "Marquette Basketball Predictor 2023–24",
+      "publicText": "Marquette Basketball Predictor 2023–24 was a Spring 2025 team Data Mining coursework project that used Marquette basketball game data, Random Forest feature importance, and Logistic Regression to predict game wins and losses.",
+      "shortText": "Spring 2025 team Data Mining project predicting Marquette basketball wins and losses.",
+      "aliases": [
+        "Marquette Basketball Predictor",
+        "Basketball Predictor",
+        "Marquette Game Predictor",
+        "Marquette Basketball Predictor 2023-24"
+      ],
+      "keywords": [
+        "data mining",
+        "machine learning",
+        "basketball",
+        "logistic regression",
+        "random forest",
+        "marquette",
+        "team"
+      ],
+      "status": "verified",
+      "projectType": "coursework machine-learning project",
+      "teamOrIndividual": "team",
+      "technologies": [
+        "Python",
+        "Pandas",
+        "Scikit-learn",
+        "Matplotlib",
+        "Random Forest",
+        "Logistic Regression"
+      ],
+      "currentStatus": "completed-coursework-team-project",
+      "portfolioLocation": "Data Science and Machine Learning portfolio section",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Marquette Basketball Predictor project card",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Marquette basketball game-data project framing, Random Forest feature importance, Logistic Regression, and win/loss prediction purpose."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal Marquette Basketball Predictor summary",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports documented algorithms and prediction target without performance metrics."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation during Phase 1F-C.2 planning",
+          "claimScope": "Mark confirmed Spring 2025 dates, team Data Mining coursework classification, win/loss prediction target, and that repository links should remain omitted until separately verified and approved.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalPortfolioFileOutput.js",
+        "src/terminalPortfolioProjectData.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [],
+      "linkIds": [
+        "link-github-marquette-basketball-predictor"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "machine-learning coursework",
+        "Data Mining coursework",
+        "classification project",
+        "sports-data analysis",
+        "team project experience",
+        "feature importance",
+        "Logistic Regression"
+      ],
+      "prohibitedUses": [
+        "invent accuracy",
+        "invent precision",
+        "invent recall",
+        "invent F1 score",
+        "invent dataset size",
+        "claim production deployment",
+        "claim betting-system use",
+        "claim official Marquette Athletics affiliation",
+        "claim professional sports analytics employment",
+        "present predictions as gambling advice"
+      ],
+      "overstatementGuards": [
+        "invented model metrics",
+        "gambling or betting advice",
+        "official athletics affiliation"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Team Data Mining project from Spring 2025. Predicted Marquette game wins and losses. MarkAI may discuss the project without a public link. Repository visibility remains unspecified and must not be guessed. Omit repository links until separately verified and approved."
+    }
+  ]
+}

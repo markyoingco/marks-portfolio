@@ -2,7 +2,7 @@
 
 A multi-mode personal portfolio built with React, Vite, JavaScript, CSS, PHP, and MySQL.
 
-The platform combines a cinematic webpage, an interactive command-line terminal portfolio, and a MarkAI portfolio assistant currently in development.
+The platform combines a cinematic webpage, an interactive command-line terminal portfolio, and a live MarkAI portfolio assistant.
 
 **Live site:** https://markyoingco.com
 
@@ -49,11 +49,9 @@ Supported functionality includes:
 
 ### MarkAI
 
-A portfolio assistant currently in development.
+A live conversational portfolio assistant grounded in approved portfolio information.
 
-The planned experience will provide a conversational way to explore my resume, projects, experience, technical background, and goals.
-
-MarkAI is not yet connected to a completed AI backend.
+MarkAI uses a React/Vite interface, a private PHP backend, Cloudflare Workers AI, response validation, deterministic fallback answers, privacy protections, and anonymous usage limits.
 
 ## Built With
 

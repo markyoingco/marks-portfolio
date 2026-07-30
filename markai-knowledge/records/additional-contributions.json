@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "contribution-finch-frontend-controller",
+      "category": "project-contributions",
+      "recordType": "contribution",
+      "title": "Finch Frontend, Documentation, and Integration Contribution",
+      "projectId": "project-finch-web-controller",
+      "publicText": "On the Spring 2026 Finch Robot Web Controller team project, Mark contributed heavily to frontend development. He personally created the Figma mockups, defined the UI layouts and controller-screen direction, contributed to controller screens and frontend interaction flow, and served as documentation manager while contributing to most project documentation. He also created and contributed to GitHub and Finch-installation PowerPoint walkthroughs, taught during walkthroughs, participated in live class demonstrations, helped other students with installation and setup, connected frontend controls to Flask-SocketIO handlers, and contributed to some robot-handler and backend code.",
+      "shortText": "Contributed heavily to Finch frontend development, Figma/UI design, documentation, walkthroughs, demonstrations, student support, and frontend/backend integration.",
+      "aliases": [
+        "Finch frontend contribution",
+        "Finch controller contribution",
+        "BirdVroomVroom contribution",
+        "Finch documentation contribution"
+      ],
+      "keywords": [
+        "frontend",
+        "Figma",
+        "UI layouts",
+        "controller screens",
+        "documentation",
+        "documentation manager",
+        "PowerPoint",
+        "walkthroughs",
+        "demonstrations",
+        "student support",
+        "Socket.IO",
+        "Flask-SocketIO",
+        "integration",
+        "robot handlers",
+        "backend contribution"
+      ],
+      "status": "verified",
+      "contributionType": "frontend-documentation-integration",
+      "teamContext": "Team Software Design and Analysis coursework project. This record covers Mark’s confirmed individual contributions, not sole ownership of Finch.",
+      "claimScope": "Mark-confirmed individual contribution scope on the team Finch project",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Finch contribution summary",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports contributed-heavily frontend controller screens, UI planning, setup documentation, and Flask-based interaction flow wording."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal Finch contribution summary",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports contributed-heavily frontend wording and Flask/Socket.IO interaction-flow context."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume Finch contribution listing",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports Figma mockups, UI layouts, setup documentation, and Socket.IO communication structure as locally listed contribution themes. Stronger leadership wording from this source is not used."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation during Phase 1F-C.2 planning",
+          "claimScope": "Mark confirmed: contributed heavily to frontend development; personally created Figma mockups; defined UI layouts and controller-screen direction; documentation manager role and contribution to most documentation; GitHub and Finch-installation PowerPoint walkthroughs; taught during walkthroughs; live class demonstrations; student installation/setup support; frontend controls connected to Flask-SocketIO handlers; contributed to some robot-handler and backend code; Spring 2026; forked BirdVroomVroom repository context.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalPortfolioFileOutput.js",
+        "src/terminalFileOutput.js"
+      ],
+      "projectIds": [
+        "project-finch-web-controller"
+      ],
+      "relatedRecordIds": [
+        "project-finch-web-controller",
+        "contribution-finch-design-documentation-multirobot"
+      ],
+      "linkIds": [
+        "link-github-finch"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Finch individual contribution",
+        "frontend experience",
+        "UI and Figma experience",
+        "technical documentation",
+        "presentation and teaching experience",
+        "student support",
+        "frontend/backend integration",
+        "Socket.IO experience",
+        "team contribution"
+      ],
+      "prohibitedUses": [
+        "use led frontend development",
+        "claim sole authorship of the project",
+        "claim Mark created all multiplayer functionality",
+        "claim Mark created all room-code functionality",
+        "claim Mark wrote every robot handler",
+        "claim Mark owned the entire backend",
+        "claim Mark independently created every document",
+        "hide team ownership",
+        "describe coursework as professional software employment",
+        "imply the forked repository was originally created by Mark"
+      ],
+      "prohibitedOverstatement": [
+        "led frontend development",
+        "Mark built the entire Finch project",
+        "Mark wrote every robot handler",
+        "Mark owned the entire backend"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-29",
+      "notes": "Mark explicitly selected “contributed heavily to frontend development”. Do not replace that phrase with “led frontend development”. Mark personally confirmed the Figma, UI-layout, documentation-manager, walkthrough, demonstration, student-support, Flask-SocketIO integration, and partial robot-handler/backend contributions. Project remained a team effort. Repository fork status should be disclosed when repository ownership is relevant."
+    }
+  ]
+}

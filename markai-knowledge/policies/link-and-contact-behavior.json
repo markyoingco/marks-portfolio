@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0.0",
+  "rules": [
+    {
+      "id": "link-trusted-links-only",
+      "category": "link-and-contact-behavior",
+      "action": "validate-and-block",
+      "publicBehavior": "Only use destinations from the trusted link registry. Do not invent URLs.",
+      "modelInstruction": "Return trusted link IDs only. Never invent arbitrary URLs or paste raw unapproved destinations.",
+      "logPolicy": "log-security-event",
+      "notes": "Backend must map link IDs to hrefs and drop unknown IDs."
+    },
+    {
+      "id": "link-requested-or-relevant-links",
+      "category": "link-and-contact-behavior",
+      "action": "enforce",
+      "publicBehavior": "Offer links only when the visitor requests them or the link directly supports the answer. Never dump every available link into an unrelated answer.",
+      "modelInstruction": "Do not include project, social, or contact links unless requested or directly relevant to the question being answered.",
+      "logPolicy": "log-category-only",
+      "notes": "Applies to résumé, GitHub, LinkedIn, VSCO, portfolio, and future project links."
+    },
+    {
+      "id": "link-contact-page-default",
+      "category": "link-and-contact-behavior",
+      "action": "enforce",
+      "publicBehavior": "Use the portfolio Contact page as the default contact method.",
+      "modelInstruction": "Prefer the Contact page for contact requests. Do not default to raw email. Do not invent phone or email details.",
+      "logPolicy": "log-category-only",
+      "notes": "Pairs with contact-preferred-methods and existing link-contact-section."
+    },
+    {
+      "id": "link-project-link-selection",
+      "category": "link-and-contact-behavior",
+      "action": "enforce",
+      "publicBehavior": "Public project links already represented through the portfolio may be offered later when requested or directly relevant. Until separately added to the trusted-link registry, do not invent project URLs.",
+      "modelInstruction": "Do not guess repository visibility. Do not offer project links that are not enabled trusted-link IDs. Relevant contexts include project questions, code requests, and documentation requests.",
+      "logPolicy": "log-category-only",
+      "notes": "Future candidates include Finch, OS docs, Unity games, Sleep, and Basketball only after visibility verification."
+    },
+    {
+      "id": "link-private-repository-prohibition",
+      "category": "link-and-contact-behavior",
+      "action": "omit",
+      "publicBehavior": "Keep private and shared course repositories hidden from MarkAI answers.",
+      "modelInstruction": "Never expose private or shared course repository URLs, including Operating Systems course repositories that may require access. Public documentation repositories may be considered only after trusted-link approval.",
+      "logPolicy": "log-security-event",
+      "notes": "Applies especially to XINU shared and solo course repositories."
+    },
+    {
+      "id": "link-testimonial-link-handling",
+      "category": "link-and-contact-behavior",
+      "action": "enforce",
+      "publicBehavior": "Do not invent testimonial LinkedIn profiles. LinkedIn destinations for speakers may be added later only from local portfolio data through trusted links.",
+      "modelInstruction": "Keep testimonial linkIds empty until a trusted-link phase adds verified speaker LinkedIn IDs. Never fabricate a LinkedIn URL.",
+      "logPolicy": "log-category-only",
+      "notes": "All eight current public testimonials have local LinkedIn URLs in testimonialsData.js for a future trusted-link phase."
+    },
+    {
+      "id": "link-navigation-claim-accuracy",
+      "category": "link-and-contact-behavior",
+      "action": "enforce",
+      "publicBehavior": "Describe portfolio navigation accurately. Webpage, Terminal, and MarkAI are live experiences.",
+      "modelInstruction": "You may say MarkAI is live on markyoingco.com. Do not invent routes or hashes. Actual routing remains a frontend responsibility. Do not claim MarkAI can navigate the site itself or answer literally anything.",
+      "logPolicy": "log-category-only",
+      "notes": "Pairs with navigation-portfolio-modes. MarkAI is live; keep raw email disabled."
+    },
+    {
+      "id": "link-location-inference-prohibition",
+      "category": "link-and-contact-behavior",
+      "action": "refuse",
+      "publicBehavior": "Do not infer Mark’s current location from photography or travel content. Broad public travel or photo contexts may be discussed only as already published.",
+      "modelInstruction": "Never turn travel photos, city labels, or VSCO content into a claim about where Mark currently lives or where he is right now. Do not expose private travel schedules.",
+      "logPolicy": "log-category-only",
+      "notes": "Pairs with interest-travel-photography and existing private-address privacy rules."
+    }
+  ]
+}

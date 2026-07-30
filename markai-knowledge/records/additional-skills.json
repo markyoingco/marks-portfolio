@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "skill-java",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Java",
+      "publicText": "Mark has used Java in introductory programming and data structures coursework, including class exercises and smaller course projects. His current public portfolio does not identify one featured Java project, so MarkAI should describe Java as coursework experience rather than a portfolio specialization.",
+      "shortText": "Java experience through introductory programming, data structures, exercises, and smaller course projects.",
+      "aliases": [
+        "Java",
+        "Java programming"
+      ],
+      "keywords": [
+        "java",
+        "programming",
+        "data structures",
+        "coursework",
+        "introductory programming"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation that Java was used in introductory programming and data structures coursework",
+          "claimScope": "Supports Java use through introductory programming and data structures classes, including practice exercises and smaller course projects. Does not identify one featured public Java project.",
+          "doesNotProve": [
+            "A named featured Java portfolio project",
+            "Professional Java employment"
+          ],
+          "markApprovedOn": "2026-07-28"
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage skills list includes Java",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Java as a publicly listed language. Does not alone prove a featured Java project."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume languages list includes Java",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports Java as a listed language on the Terminal resume."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "markai-knowledge/records/profile-education-career.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "education-marquette-bs-computer-science"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know Java?",
+        "Has Mark used Java?",
+        "What programming languages has Mark learned in coursework?"
+      ],
+      "prohibitedUses": [
+        "confuse Java with JavaScript",
+        "invent a named Java project",
+        "claim professional Java employment",
+        "claim expert or advanced Java ability",
+        "invent Java frameworks",
+        "invent years of Java experience"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Coursework-level evidence is verified by Mark, but no single named public Java project is currently identified."
+    },
+    {
+      "id": "skill-r",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "R",
+      "publicText": "Mark used R in Statistical Methods mathematics coursework for data and statistics exercises. MarkAI should describe this as coursework experience and must not imply professional statistical analysis or claim that the Sleep Efficiency Analysis project used R.",
+      "shortText": "R experience through Statistical Methods coursework involving data and statistics.",
+      "aliases": [
+        "R",
+        "R programming",
+        "statistical computing in R"
+      ],
+      "keywords": [
+        "r",
+        "statistics",
+        "data",
+        "statistical methods",
+        "mathematics",
+        "coursework"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation that R was used in Statistical Methods mathematics coursework",
+          "claimScope": "Supports R use in a Statistical Methods math class for data and statistics exercises. Does not support Sleep Efficiency Analysis as an R project.",
+          "doesNotProve": [
+            "Sleep Efficiency Analysis used R",
+            "Professional statistical analysis employment"
+          ],
+          "markApprovedOn": "2026-07-28"
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage skills list includes R",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports R as a publicly listed language. Does not alone prove a featured R project."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume languages list includes R",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports R as a listed language on the Terminal resume."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "markai-knowledge/records/profile-education-career.json",
+        "markai-knowledge/records/additional-projects.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "education-marquette-bs-computer-science"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Has Mark used R?",
+        "Does Mark know R?",
+        "What statistics coursework tools has Mark used?"
+      ],
+      "prohibitedUses": [
+        "claim Sleep Efficiency Analysis used R",
+        "claim professional statistician experience",
+        "claim advanced statistical-modeling expertise",
+        "invent R packages",
+        "invent named R projects",
+        "claim expert or advanced R ability"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "The Sleep Efficiency Analysis record uses Python-related tooling and must remain separate from this R coursework record."
+    },
+    {
+      "id": "skill-socket-io",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Socket.IO",
+      "publicText": "Mark used Socket.IO and Flask-SocketIO on the Finch Robot Web Controller team coursework project, including connecting frontend controls to real-time handlers used by the browser controller and robot communication workflow.",
+      "shortText": "Socket.IO and Flask-SocketIO integration for real-time Finch controller communication.",
+      "aliases": [
+        "Socket.IO",
+        "Flask-SocketIO",
+        "real-time socket communication",
+        "realtime web events"
+      ],
+      "keywords": [
+        "socket.io",
+        "flask-socketio",
+        "realtime",
+        "events",
+        "controllers",
+        "finch",
+        "browser communication"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "derived-summary",
+          "label": "Approved Finch project record lists Socket.IO",
+          "sourcePath": "markai-knowledge/records/additional-projects.json",
+          "claimScope": "Supports Socket.IO as part of the Finch team coursework technology stack."
+        },
+        {
+          "kind": "derived-summary",
+          "label": "Approved Finch contribution record documents Flask-SocketIO integration",
+          "sourcePath": "markai-knowledge/records/additional-contributions.json",
+          "claimScope": "Supports Mark connecting frontend controls to Flask-SocketIO handlers while contributing heavily to frontend development."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage and Terminal Finch stacks list Socket.IO",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Socket.IO as publicly listed Finch technology."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation of Finch Flask-SocketIO frontend control integration",
+          "claimScope": "Supports frontend controls connected to Flask-SocketIO handlers in the Finch team coursework project.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalPortfolioFileOutput.js",
+        "src/terminalFileOutput.js",
+        "markai-knowledge/records/additional-projects.json",
+        "markai-knowledge/records/additional-contributions.json"
+      ],
+      "projectIds": [
+        "project-finch-web-controller"
+      ],
+      "relatedRecordIds": [
+        "project-finch-web-controller",
+        "contribution-finch-frontend-controller",
+        "skill-flask",
+        "skill-javascript"
+      ],
+      "linkIds": [
+        "link-github-finch"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "What real-time technologies has Mark worked with?",
+        "Has Mark used Socket.IO?",
+        "How did Finch handle browser and robot communication?"
+      ],
+      "prohibitedUses": [
+        "call Socket.IO REST",
+        "claim distributed-systems expertise",
+        "claim sole ownership of the Finch communication system",
+        "claim Mark led the entire frontend",
+        "claim professional real-time-systems employment",
+        "omit team-coursework context when ownership is relevant"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Finch is a team coursework project and the repository is a fork. Preserve all approved ownership and contribution boundaries."
+    },
+    {
+      "id": "skill-rest-apis",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "REST APIs and API Integration",
+      "publicText": "Mark has worked with REST-style HTTP APIs through Abacus Eagle messaging endpoints and frontend/backend integration, as well as the portfolio’s JSON contact-submission flow. He has used requests, responses, JSON payloads, validation, and backend integration in project work.",
+      "shortText": "REST-style API integration through Abacus messaging and the portfolio contact backend.",
+      "aliases": [
+        "REST APIs",
+        "REST",
+        "HTTP APIs",
+        "API integration",
+        "frontend backend integration",
+        "JSON APIs"
+      ],
+      "keywords": [
+        "rest",
+        "api",
+        "http",
+        "get",
+        "post",
+        "json",
+        "validation",
+        "backend",
+        "integration"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "derived-summary",
+          "label": "Approved Abacus Eagle contribution documents messaging GET/POST APIs",
+          "sourcePath": "markai-knowledge/records/contributions.json",
+          "claimScope": "Supports Eagle API blueprint registration, message GET/POST behavior, and frontend/backend integration."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Portfolio platform data describes REST-style JSON contact submission",
+          "sourcePath": "src/portfolioPlatformData.js",
+          "claimScope": "Supports REST-style JSON submission in the portfolio contact flow."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage and Terminal skills lists include REST APIs",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports REST APIs as a publicly listed technology."
+        },
+        {
+          "kind": "repo-source",
+          "label": "README documents PHP/MySQL contact backend",
+          "sourcePath": "README.md",
+          "claimScope": "Supports portfolio contact backend context for API-style submission work."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/portfolioPlatformData.js",
+        "src/terminalFileOutput.js",
+        "README.md",
+        "markai-knowledge/records/contributions.json",
+        "markai-knowledge/records/projects.json"
+      ],
+      "projectIds": [
+        "project-abacus",
+        "project-portfolio-platform"
+      ],
+      "relatedRecordIds": [
+        "project-abacus",
+        "contrib-abacus-eagle-core",
+        "project-portfolio-platform",
+        "skill-react",
+        "skill-flask"
+      ],
+      "linkIds": [
+        "link-github-abacus",
+        "link-github-portfolio"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Has Mark built APIs?",
+        "Has Mark worked with REST APIs?",
+        "What API integration experience does Mark have?"
+      ],
+      "prohibitedUses": [
+        "claim API architect experience",
+        "claim sole ownership of all Abacus APIs",
+        "call Socket.IO events REST endpoints",
+        "invent authentication systems",
+        "claim professional API engineering employment",
+        "claim unsupported endpoint ownership"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Socket.IO real-time events are not REST endpoints. Keep Finch Socket.IO evidence under skill-socket-io."
+    },
+    {
+      "id": "skill-dbeaver",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "DBeaver",
+      "publicText": "Mark used DBeaver as a database client while working with database information for the Abacus and TA-Bot / MAAT capstone projects. He used it to inspect and work with project database data alongside the projects’ MySQL-backed workflows.",
+      "shortText": "DBeaver database inspection and data work for Abacus and TA-Bot / MAAT.",
+      "aliases": [
+        "DBeaver",
+        "database client",
+        "SQL client",
+        "database inspection tool"
+      ],
+      "keywords": [
+        "dbeaver",
+        "mysql",
+        "database",
+        "sql",
+        "data inspection",
+        "abacus",
+        "maat",
+        "ta-bot"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation of DBeaver use on Abacus and MAAT",
+          "claimScope": "Supports DBeaver as a database client used to inspect and work with Abacus and TA-Bot / MAAT project database data alongside MySQL-backed workflows.",
+          "doesNotProve": [
+            "DBeaver is the database itself",
+            "Database-administrator employment"
+          ],
+          "markApprovedOn": "2026-07-28"
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage tools list includes DBeaver",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports DBeaver as a publicly listed tool."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume tools list includes DBeaver",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports DBeaver as a listed tool on the Terminal resume."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "markai-knowledge/records/projects.json",
+        "markai-knowledge/records/skills.json"
+      ],
+      "projectIds": [
+        "project-abacus",
+        "project-maat"
+      ],
+      "relatedRecordIds": [
+        "project-abacus",
+        "project-maat",
+        "skill-mysql",
+        "skill-sql"
+      ],
+      "linkIds": [
+        "link-github-abacus",
+        "link-github-maat"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Has Mark used DBeaver?",
+        "What database tools has Mark used?",
+        "How did Mark inspect capstone database data?"
+      ],
+      "prohibitedUses": [
+        "treat DBeaver as the database",
+        "claim DBeaver created MySQL",
+        "claim unsupported database-administrator experience",
+        "invent schema-ownership claims",
+        "claim professional DBA experience",
+        "invent advanced querying details"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "DBeaver is a database client tool. MySQL remains the database technology."
+    },
+    {
+      "id": "skill-docker-compose",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Docker Compose",
+      "publicText": "Mark used Docker Compose testing workflows in the TA-Bot / MAAT capstone development environment to work with and validate the project’s containerized services during development and debugging.",
+      "shortText": "Docker Compose workflows for MAAT development, testing, and debugging.",
+      "aliases": [
+        "Docker Compose",
+        "docker-compose",
+        "Compose",
+        "containerized development environment"
+      ],
+      "keywords": [
+        "docker compose",
+        "containers",
+        "maat",
+        "ta-bot",
+        "testing",
+        "development environment",
+        "debugging"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume and MAAT wording reference Docker Compose testing workflows",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports Docker Compose testing workflows in the MAAT/TA-Bot capstone environment."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal portfolio MAAT summary references Docker Compose testing",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports Docker Compose testing and debugging context for MAAT."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation of Docker Compose use in MAAT development and debugging",
+          "claimScope": "Supports Docker Compose workflows for working with and validating containerized MAAT services during development and debugging.",
+          "doesNotProve": [
+            "Professional DevOps employment",
+            "Production orchestration ownership"
+          ],
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioFileOutput.js",
+        "src/PortfolioApp.jsx",
+        "markai-knowledge/records/projects.json",
+        "markai-knowledge/records/skills.json"
+      ],
+      "projectIds": [
+        "project-maat"
+      ],
+      "relatedRecordIds": [
+        "project-maat",
+        "skill-docker",
+        "skill-debugging"
+      ],
+      "linkIds": [
+        "link-github-maat"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "What experience does Mark have with Docker Compose?",
+        "Has Mark used Docker Compose?",
+        "How were MAAT services validated locally?"
+      ],
+      "prohibitedUses": [
+        "claim professional DevOps employment",
+        "claim Kubernetes experience",
+        "claim production orchestration ownership",
+        "claim sole ownership of the MAAT environment",
+        "invent service counts",
+        "invent deployment infrastructure"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "No Compose configuration is stored in marks-portfolio. Evidence is Mark-approved project experience and current public portfolio wording."
+    },
+    {
+      "id": "skill-linux-wsl",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Linux and WSL",
+      "publicText": "Mark has used Linux and UNIX concepts in Operating Systems C coursework and used WSL as a development environment for work involving Operating Systems, Abacus, and TA-Bot / MAAT. His experience includes command-line development, project setup, testing, and systems-level debugging.",
+      "shortText": "Linux/UNIX coursework and WSL development use across Operating Systems, Abacus, and MAAT.",
+      "aliases": [
+        "Linux",
+        "UNIX",
+        "WSL",
+        "Windows Subsystem for Linux",
+        "Linux command line"
+      ],
+      "keywords": [
+        "linux",
+        "unix",
+        "wsl",
+        "shell",
+        "command line",
+        "operating systems",
+        "c",
+        "abacus",
+        "maat",
+        "debugging"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "derived-summary",
+          "label": "Approved Operating Systems C project lists Linux and WSL",
+          "sourcePath": "markai-knowledge/records/additional-projects.json",
+          "claimScope": "Supports Linux/UNIX coursework and WSL in the Operating Systems C project stack."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage OS project stack lists Linux and WSL",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Linux and WSL as publicly listed OS project technologies."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation of WSL use for Operating Systems, Abacus, and MAAT",
+          "claimScope": "Supports WSL as a development environment for Operating Systems, Abacus, and TA-Bot / MAAT work, including command-line development, setup, testing, and systems-level debugging context.",
+          "doesNotProve": [
+            "Linux system-administrator employment",
+            "Production server administration"
+          ],
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioFileOutput.js",
+        "markai-knowledge/records/additional-projects.json",
+        "markai-knowledge/records/projects.json",
+        "markai-knowledge/records/skills.json"
+      ],
+      "projectIds": [
+        "project-operating-systems-c",
+        "project-abacus",
+        "project-maat"
+      ],
+      "relatedRecordIds": [
+        "project-operating-systems-c",
+        "project-abacus",
+        "project-maat",
+        "skill-c",
+        "skill-debugging"
+      ],
+      "linkIds": [
+        "link-github-os-c-docs",
+        "link-github-abacus",
+        "link-github-maat"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know Linux?",
+        "Has Mark worked in WSL?",
+        "What command-line environments has Mark used?"
+      ],
+      "prohibitedUses": [
+        "claim Linux system-administrator experience",
+        "claim production server administration",
+        "claim DevOps employment",
+        "claim cloud-infrastructure experience",
+        "invent shell scripting expertise",
+        "imply WSL is a separate operating-system specialization"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Linux and WSL are intentionally combined to distinguish Linux/UNIX concepts from WSL as the Windows-hosted development environment."
+    },
+    {
+      "id": "skill-figma",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Figma",
+      "publicText": "Mark used Figma on the Finch Robot Web Controller team project to create mockups and define UI layouts and controller-screen direction while contributing heavily to frontend development.",
+      "shortText": "Figma mockups and UI direction for the Finch Robot Web Controller.",
+      "aliases": [
+        "Figma",
+        "interface mockups",
+        "UI mockups",
+        "design mockups"
+      ],
+      "keywords": [
+        "figma",
+        "ui",
+        "mockups",
+        "layouts",
+        "controller screens",
+        "finch",
+        "frontend"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "derived-summary",
+          "label": "Approved Finch contribution record documents Figma mockups and UI direction",
+          "sourcePath": "markai-knowledge/records/additional-contributions.json",
+          "claimScope": "Supports personally created Figma mockups and UI layout / controller-screen direction while contributing heavily to frontend development."
+        },
+        {
+          "kind": "repo-source",
+          "label": "README lists Figma",
+          "sourcePath": "README.md",
+          "claimScope": "Supports Figma as a publicly listed design tool."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage tools list includes Figma",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Figma as a publicly listed tool."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation of Finch Figma mockups and UI direction",
+          "claimScope": "Supports Figma mockups, UI layouts, and controller-screen direction on the Finch team coursework project.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "README.md",
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "markai-knowledge/records/additional-contributions.json",
+        "markai-knowledge/records/additional-projects.json"
+      ],
+      "projectIds": [
+        "project-finch-web-controller"
+      ],
+      "relatedRecordIds": [
+        "project-finch-web-controller",
+        "contribution-finch-frontend-controller",
+        "skill-html-css",
+        "skill-javascript"
+      ],
+      "linkIds": [
+        "link-github-finch"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Did Mark use Figma?",
+        "What design tools has Mark used?",
+        "How did Mark plan Finch controller screens?"
+      ],
+      "prohibitedUses": [
+        "claim professional UX designer experience",
+        "claim professional product designer experience",
+        "claim Mark led the entire frontend",
+        "claim sole ownership of Finch",
+        "invent usability research",
+        "invent design-system ownership",
+        "use led frontend development"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Use exactly “contributed heavily to frontend development”. Never use “led frontend development”."
+    },
+    {
+      "id": "skill-testing-validation",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Testing and Validation",
+      "publicText": "Mark has used manual feature testing and validation across Abacus and his Personal Portfolio Platform. For Abacus, he tested features through the project’s Vite-based development workflow before production release. For his portfolio, he has performed browser, responsive-layout, build, and manual interaction checks.",
+      "shortText": "Manual feature, browser, responsive, and build validation across Abacus and the portfolio.",
+      "aliases": [
+        "manual testing",
+        "software validation",
+        "feature testing",
+        "browser testing",
+        "responsive testing",
+        "build validation",
+        "Vite validation"
+      ],
+      "keywords": [
+        "testing",
+        "validation",
+        "manual testing",
+        "browser",
+        "responsive",
+        "vite",
+        "build",
+        "abacus",
+        "portfolio",
+        "production"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation of Abacus Vite-workflow feature testing and portfolio manual validation",
+          "claimScope": "Supports manual feature testing through Abacus’s Vite-based development workflow before production release, and browser, responsive-layout, build, and manual interaction checks on the Personal Portfolio Platform. Does not mean the Vitest framework.",
+          "doesNotProve": [
+            "Vitest usage",
+            "Automated unit-testing suites",
+            "Formal QA employment"
+          ],
+          "markApprovedOn": "2026-07-28"
+        },
+        {
+          "kind": "repo-source",
+          "label": "README documents responsive and manual testing",
+          "sourcePath": "README.md",
+          "claimScope": "Supports responsive and manual testing practices for the portfolio."
+        },
+        {
+          "kind": "repo-source",
+          "label": "package.json and vite.config.js show Vite build tooling without Vitest",
+          "sourcePath": "package.json",
+          "claimScope": "Supports Vite as a development/build tool and does not support Vitest automated testing claims.",
+          "doesNotProve": [
+            "Vitest is installed"
+          ]
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage tools list includes Vite Testing and Manual Testing",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports public listing of Vite Testing and Manual Testing as portfolio tool labels."
+        }
+      ],
+      "sourceFiles": [
+        "README.md",
+        "package.json",
+        "vite.config.js",
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "markai-knowledge/records/projects.json",
+        "markai-knowledge/records/skills.json"
+      ],
+      "projectIds": [
+        "project-abacus",
+        "project-portfolio-platform"
+      ],
+      "relatedRecordIds": [
+        "project-abacus",
+        "project-portfolio-platform",
+        "skill-vite",
+        "skill-debugging"
+      ],
+      "linkIds": [
+        "link-github-abacus",
+        "link-github-portfolio"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "How does Mark test his software?",
+        "Has Mark done manual testing?",
+        "What does Vite testing mean on Mark’s résumé?"
+      ],
+      "prohibitedUses": [
+        "call this Vitest",
+        "claim automated unit testing",
+        "claim automated integration testing",
+        "claim formal QA employment",
+        "invent test coverage",
+        "invent test suites",
+        "claim a successful Vite build is automated testing",
+        "claim testing alone guaranteed production quality"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "The résumé phrase “Vite testing” refers to using a Vite-based development workflow to test features and validate behavior before release. It does not mean the Vitest framework unless separately verified later."
+    },
+    {
+      "id": "skill-debugging",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Debugging",
+      "publicText": "Mark has applied software debugging across Abacus interface and integration work, Operating Systems systems-level coursework, MAAT development and testing workflows, and his portfolio’s browser and mobile behavior.",
+      "shortText": "UI, integration, systems, and browser debugging across projects and coursework.",
+      "aliases": [
+        "debugging",
+        "software debugging",
+        "troubleshooting",
+        "bug fixing",
+        "issue diagnosis"
+      ],
+      "keywords": [
+        "debugging",
+        "bugs",
+        "troubleshooting",
+        "ui",
+        "api",
+        "systems",
+        "browser",
+        "mobile",
+        "abacus",
+        "maat",
+        "operating systems",
+        "portfolio"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "derived-summary",
+          "label": "Approved Abacus project and contribution records include UI debugging",
+          "sourcePath": "markai-knowledge/records/projects.json",
+          "claimScope": "Supports UI debugging as part of Mark’s verified Abacus Eagle workflow."
+        },
+        {
+          "kind": "derived-summary",
+          "label": "Approved Operating Systems C project includes systems-level debugging",
+          "sourcePath": "markai-knowledge/records/additional-projects.json",
+          "claimScope": "Supports systems-level debugging in Operating Systems coursework."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal MAAT wording references debugging with Docker Compose testing",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports debugging within MAAT development and testing workflows."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation of portfolio browser and mobile debugging",
+          "claimScope": "Supports software debugging across Abacus, Operating Systems, MAAT, and portfolio browser/mobile behavior. Does not treat AV equipment troubleshooting as software debugging.",
+          "doesNotProve": [
+            "Expert debugger status",
+            "AV troubleshooting as software debugging"
+          ],
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/terminalPortfolioFileOutput.js",
+        "markai-knowledge/records/projects.json",
+        "markai-knowledge/records/contributions.json",
+        "markai-knowledge/records/additional-projects.json"
+      ],
+      "projectIds": [
+        "project-abacus",
+        "project-maat",
+        "project-operating-systems-c",
+        "project-portfolio-platform"
+      ],
+      "relatedRecordIds": [
+        "project-abacus",
+        "project-maat",
+        "project-operating-systems-c",
+        "project-portfolio-platform",
+        "skill-testing-validation",
+        "skill-c"
+      ],
+      "linkIds": [
+        "link-github-abacus",
+        "link-github-maat",
+        "link-github-os-c-docs",
+        "link-github-portfolio"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "What debugging experience does Mark have?",
+        "Has Mark debugged frontend and backend issues?",
+        "What systems debugging experience does Mark have?"
+      ],
+      "prohibitedUses": [
+        "claim expert debugger status",
+        "claim professional QA employment",
+        "treat AV equipment troubleshooting as software debugging",
+        "invent defects or incident metrics",
+        "claim sole responsibility for team-project fixes",
+        "claim unsupported production-incident ownership"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Keep debugging grounded in software projects and coursework. AV Technician troubleshooting remains separate employment evidence."
+    },
+    {
+      "id": "skill-php",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "PHP",
+      "publicText": "Mark used PHP to build and deploy the portfolio contact backend and the MarkAI public endpoint on DreamHost. PHP is part of his completed portfolio-platform server work rather than a separate coursework specialization.",
+      "shortText": "Used for the portfolio contact API and MarkAI PHP endpoint on DreamHost.",
+      "aliases": ["PHP"],
+      "keywords": ["php", "backend", "contact", "markai", "dreamhost"],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "Contact API",
+          "sourcePath": "public/api/contact.php",
+          "claimScope": "Supports PHP contact backend work."
+        },
+        {
+          "kind": "repo-source",
+          "label": "MarkAI endpoint",
+          "sourcePath": "public/api/markai.php",
+          "claimScope": "Supports PHP MarkAI endpoint work."
+        }
+      ],
+      "sourceFiles": [
+        "public/api/contact.php",
+        "public/api/markai.php",
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js"
+      ],
+      "projectIds": [
+        "project-portfolio-platform",
+        "project-markai"
+      ],
+      "relatedRecordIds": [
+        "project-markai"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Does Mark know PHP?",
+        "What backend languages has Mark used?"
+      ],
+      "prohibitedUses": [
+        "claim professional PHP employment",
+        "claim Laravel or WordPress specialization"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "Include because Mark built and deployed the contact and MarkAI server endpoints."
+    },
+    {
+      "id": "skill-cloudflare-workers-ai",
+      "category": "skills",
+      "recordType": "skill",
+      "title": "Cloudflare Workers AI",
+      "publicText": "Mark integrated Cloudflare Workers AI as the language-model provider for MarkAI. He configured HTTPS transport, selected the @cf/openai/gpt-oss-120b model, and combined provider calls with approved-knowledge grounding, response validation, deterministic fallback, and anonymous usage limits. This is platform/integration experience, not model training or AI research.",
+      "shortText": "Integrated Cloudflare Workers AI as MarkAI’s provider with validation, fallback, and usage limits.",
+      "aliases": [
+        "Cloudflare AI",
+        "Workers AI"
+      ],
+      "keywords": [
+        "cloudflare",
+        "workers ai",
+        "markai",
+        "llm",
+        "provider"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "Cloudflare provider implementation",
+          "sourcePath": "server/markai/CloudflareWorkersAiProvider.php",
+          "claimScope": "Supports Cloudflare Workers AI provider integration."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Live MarkAI deployment",
+          "claimScope": "Supports that MarkAI is live using Cloudflare Workers AI on markyoingco.com."
+        }
+      ],
+      "sourceFiles": [
+        "server/markai/CloudflareWorkersAiProvider.php",
+        "server/markai/ProviderConfiguration.php",
+        "src/PortfolioApp.jsx",
+        "markai-knowledge/records/projects.json"
+      ],
+      "projectIds": [
+        "project-markai"
+      ],
+      "relatedRecordIds": [
+        "project-markai",
+        "skill-php"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "What AI technologies has Mark used?",
+        "How does MarkAI use Cloudflare?"
+      ],
+      "prohibitedUses": [
+        "claim model training",
+        "claim fine-tuning",
+        "claim embeddings or vector databases",
+        "claim Mark created GPT-OSS",
+        "claim AI research"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "List as a technology/platform. Do not overstate into ML research."
+    }
+  ]
+}

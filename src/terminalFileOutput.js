@@ -102,47 +102,56 @@ export function buildResumeSummaryCatOutput() {
     sectionLine('CORE STACK'),
     stackLabelLine('Languages:'),
     stackValueLine(
-      'Python · Java · TypeScript / JavaScript · SQL · C · C# · HTML / CSS · R',
+      'Python · Java · TypeScript / JavaScript · SQL · C · C# · HTML / CSS · R · PHP',
     ),
     blankLine(),
     stackLabelLine('Technologies:'),
-    stackValueLine('React · Vite · Flask · Socket.IO · REST APIs · Unity'),
+    stackValueLine(
+      'React · Vite · Flask · Socket.IO · REST APIs · Unity · Judge0 · BirdBrain Finch 2.0 · Cloudflare Workers AI',
+    ),
     blankLine(),
     stackLabelLine('Tools & Testing:'),
     stackValueLine(
-      'MySQL · DBeaver · Docker · Docker Compose · Git / GitHub · Linux / WSL · Figma · Vite Testing · Manual Testing · Debugging',
+      'MySQL · DBeaver · Docker · Docker Compose · Git / GitHub · Linux / WSL · Figma · cURL / HTTPS · Vite build validation · API integration testing · Fixture testing · Manual testing · Debugging',
     ),
     blankLine(),
     sectionLine('FEATURED PROJECTS'),
     blankLine(),
-    projectLine('01', 'Personal Portfolio Platform'),
+    projectLine('01', 'Personal Portfolio Platform — React/Vite Web, Terminal & MarkAI Experience'),
+    metaLine('May 2026 – Present'),
     bulletLine(
-      'Multi-mode portfolio with cinematic Webpage mode, interactive Terminal mode, responsive desktop and mobile layouts, dark/light themes, shared project content, and a PHP/MySQL contact backend on DreamHost.',
+      'Built and deployed a responsive React/Vite platform with dark/light themes, shared project and travel data, resume access, and a PHP/MySQL contact backend hosted on DreamHost.',
     ),
     bulletLine(
-      'MarkAI portfolio assistant is currently in development.',
+      'Developed an interactive terminal portfolio with folder navigation, readable project files, contextual Help panels, Tab autocomplete, command history, editable input, and terminal contact submissions connected to the same API.',
+    ),
+    bulletLine(
+      'Designed and deployed MarkAI, a PHP and Cloudflare Workers AI portfolio assistant grounded in approved information, with prompt construction, generated-response validation, deterministic fallback answers, privacy protections, and anonymous rate limiting.',
     ),
     blankLine(),
     projectLine('02', 'Abacus Senior Design Capstone'),
     bulletLine(
-      'Full-stack programming competition platform supporting submissions, teacher workflows, admin tools, leaderboards, help requests, and automated grading.',
+      'Team senior-design web platform for the Wisconsin-Dairyland Programming Competition.',
     ),
     bulletLine(
-      'Built Eagle Division workflows and helped support a successful live competition run for 200-300+ users.',
+      'Connected frontend workflows with Python/Flask APIs, MySQL persistence, and Judge0-backed grading; the April 15, 2026 competition supported approximately 200–300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag.',
+    ),
+    bulletLine(
+      'Contributed Eagle messaging APIs, role-aware chat/inbox behavior, competition workflows, routing/persistence, frontend/backend integration, submission-system support, testing, and UI debugging.',
     ),
     blankLine(),
     projectLine('03', 'TA-Bot / MAAT Senior Design Capstone'),
-    bulletLine('Academic grading platform for professors and teaching assistants.'),
+    bulletLine('Team senior-capstone automated homework-evaluation/grading platform.'),
     bulletLine(
-      'Built rubric grading features, score recalculation, observed error tables, plagiarism-detection functionality, backend API integration, and Docker Compose testing workflows.',
+      'Contributed to rubric grading, grading-page workflows, score recalculation, line-referenced feedback, and plagiarism-analysis workflows, with validation through backend API integration, database checks, Docker Compose testing, debugging, and UI cleanup.',
     ),
     blankLine(),
     projectLine('04', 'Finch Web Controller'),
     bulletLine(
-      'Web robotics platform for controlling BirdBrain Finch 2.0 robots through browser pages, room codes, multiplayer lobbies, and real-time controller screens.',
+      'Team coursework project for browser-based Finch control using Flask-SocketIO/Socket.IO workflows.',
     ),
     bulletLine(
-      'Led frontend development, Figma mockups, UI layouts, setup documentation, and Socket.IO communication structure.',
+      'Contributed heavily to frontend development by building controller pages, creating Figma mockups and UI layouts, writing setup documentation, and supporting class onboarding through walkthroughs and demonstrations.',
     ),
     blankLine(),
     projectLine('05', 'Space SHMUP'),

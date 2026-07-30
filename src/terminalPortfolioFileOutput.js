@@ -76,7 +76,7 @@ export function buildOperatingSystemsCTxtCatOutput() {
       summary:
         'Lower-level programming work focused on C, UNIX, Linux, memory, files, process control, and operating system concepts.',
       roleFocus:
-        'Public portfolio documentation for Operating Systems coursework in C, covering UNIX/Linux development, process control, memory, file systems, and system-level debugging. Original course repositories may require access.',
+        'Public portfolio documentation for Operating Systems coursework in C, covering UNIX/Linux development, process control, memory, file systems, and system-level debugging.',
       stack: 'C · UNIX · Linux · WSL · Git',
     }),
   )

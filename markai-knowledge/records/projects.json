@@ -1,297 +1,442 @@
 {
-    "schemaVersion":  "1.0.0",
-    "records":  [
-                    {
-                        "id":  "project-portfolio-platform",
-                        "category":  "projects",
-                        "recordType":  "project",
-                        "title":  "Personal Portfolio Platform",
-                        "publicText":  "The Personal Portfolio Platform is Mark\u0027s individual project inside the marks-portfolio repository. It is a multi-mode portfolio built with React and Vite on the frontend, JavaScript and CSS, a PHP and MySQL contact backend, and DreamHost deployment. It includes a cinematic Webpage experience and an interactive Terminal experience. MarkAI is a third planned experience and is currently in development, not a completed AI product.",
-                        "shortText":  "Individual React/Vite portfolio with Webpage, Terminal, PHP/MySQL contact backend, and MarkAI in development.",
-                        "aliases":  [
-                                        "portfolio",
-                                        "marks-portfolio",
-                                        "personal portfolio",
-                                        "this website"
-                                    ],
-                        "keywords":  [
-                                         "portfolio",
-                                         "react",
-                                         "vite",
-                                         "php",
-                                         "mysql",
-                                         "dreamhost",
-                                         "terminal",
-                                         "webpage",
-                                         "markai"
-                                     ],
-                        "status":  "verified",
-                        "projectType":  "personal-portfolio-platform",
-                        "teamOrIndividual":  "individual",
-                        "technologies":  [
-                                             "React",
-                                             "Vite",
-                                             "JavaScript",
-                                             "CSS",
-                                             "PHP",
-                                             "MySQL",
-                                             "DreamHost",
-                                             "Git",
-                                             "GitHub"
-                                         ],
-                        "currentStatus":  "live-webpage-and-terminal-markai-in-development",
-                        "portfolioLocation":  "Portfolio Platform section and live site",
-                        "evidence":  [
-                                         {
-                                             "kind":  "repo-source",
-                                             "label":  "README platform overview",
-                                             "sourcePath":  "README.md",
-                                             "claimScope":  "Supports React, Vite, JavaScript, CSS, PHP, MySQL, DreamHost, Webpage, Terminal, and MarkAI in development."
-                                         },
-                                         {
-                                             "kind":  "repo-source",
-                                             "label":  "Portfolio platform mode data",
-                                             "sourcePath":  "src/portfolioPlatformData.js",
-                                             "claimScope":  "Supports multi-mode portfolio framing and MarkAI as currently in development."
-                                         },
-                                         {
-                                             "kind":  "github-repo",
-                                             "label":  "Public portfolio repository",
-                                             "urlLinkId":  "link-github-portfolio",
-                                             "claimScope":  "Public repository for this portfolio platform."
-                                         }
-                                     ],
-                        "sourceFiles":  [
-                                            "README.md",
-                                            "src/portfolioPlatformData.js",
-                                            "src/terminalFileOutput.js",
-                                            "public/api/contact.php"
-                                        ],
-                        "linkIds":  [
-                                        "link-portfolio-home",
-                                        "link-github-portfolio",
-                                        "link-resume-pdf"
-                                    ],
-                        "visibility":  {
-                                           "answerable":  true,
-                                           "exportPublic":  true,
-                                           "modelVisible":  true
-                                       },
-                        "answerUses":  [
-                                           "projects",
-                                           "full-stack",
-                                           "recruiter",
-                                           "compare"
-                                       ],
-                        "prohibitedUses":  [
-                                               "markai-complete",
-                                               "markai-functional-claim"
-                                           ],
-                        "overstatementGuards":  [
-                                                    "MarkAI is complete",
-                                                    "MarkAI is fully functional",
-                                                    "MarkAI is live as a finished assistant"
-                                                ],
-                        "reviewedByMark":  true,
-                        "notes":  "Draft for Mark review. Do not describe MarkAI as functional or complete.",
-                        "lastReviewed":  "2026-07-28"
-                    },
-                    {
-                        "id":  "project-abacus",
-                        "category":  "projects",
-                        "recordType":  "project",
-                        "title":  "Abacus Senior Design Capstone",
-                        "publicText":  "Abacus is a team senior design web platform. Mark\u0027s verified work centered on the Eagle Division full-stack workflow, including messaging APIs, role-aware student and staff chat, inbox behavior, instructions access, routing, persistence, and related UI debugging. Separate contribution records document the exact scope of his work.",
-                        "shortText":  "Team senior design capstone; Mark contributed Eagle Division messaging, role-aware chat, inbox, routing, persistence, and UI debugging.",
-                        "aliases":  [
-                                        "Abacus",
-                                        "Eagle Division",
-                                        "senior design Abacus"
-                                    ],
-                        "keywords":  [
-                                         "abacus",
-                                         "eagle",
-                                         "capstone",
-                                         "flask",
-                                         "react",
-                                         "messaging",
-                                         "team"
-                                     ],
-                        "status":  "approved-summary",
-                        "projectType":  "senior-design-capstone",
-                        "teamOrIndividual":  "team",
-                        "technologies":  [
-                                             "React",
-                                             "TypeScript",
-                                             "Flask",
-                                             "MySQL",
-                                             "Docker",
-                                             "Git"
-                                         ],
-                        "currentStatus":  "completed-team-capstone",
-                        "supportsRecordIds":  [
-                                                  "contrib-abacus-eagle-core",
-                                                  "contrib-abacus-instructions-routing",
-                                                  "contrib-abacus-inbox-chat",
-                                                  "contrib-abacus-dropdown-fixes"
-                                              ],
-                        "evidence":  [
-                                         {
-                                             "kind":  "derived-summary",
-                                             "label":  "Summary derived from commit-verified Abacus contribution records",
-                                             "claimScope":  "Project-level summary only. Individual verified behaviors live on contribution records.",
-                                             "doesNotProve":  [
-                                                                  "Mark built all of Abacus",
-                                                                  "Any specific live user count",
-                                                                  "Mark designed the entire platform"
-                                                              ]
-                                         },
-                                         {
-                                             "kind":  "repo-source",
-                                             "label":  "Portfolio and Terminal Abacus project framing",
-                                             "sourcePath":  "src/terminalPortfolioFileOutput.js",
-                                             "claimScope":  "Supports team senior design / Abacus framing and stack labels present in portfolio sources. Broader Terminal claim wording remains subject to contribution evidence.",
-                                             "doesNotProve":  [
-                                                                  "User-count claims appearing elsewhere in Terminal resume output"
-                                                              ]
-                                         }
-                                     ],
-                        "sourceFiles":  [
-                                            "src/terminalPortfolioFileOutput.js",
-                                            "src/PortfolioApp.jsx",
-                                            "src/terminalFileOutput.js"
-                                        ],
-                        "projectIds":  [
-                                           "project-abacus"
-                                       ],
-                        "linkIds":  [
-                                        "link-github-abacus"
-                                    ],
-                        "visibility":  {
-                                           "answerable":  true,
-                                           "exportPublic":  true,
-                                           "modelVisible":  true
-                                       },
-                        "answerUses":  [
-                                           "projects",
-                                           "full-stack",
-                                           "capstone",
-                                           "recruiter",
-                                           "compare"
-                                       ],
-                        "prohibitedUses":  [
-                                               "solo-credit",
-                                               "user-count",
-                                               "entire-platform-ownership"
-                                           ],
-                        "overstatementGuards":  [
-                                                    "built Abacus alone",
-                                                    "designed the entire platform",
-                                                    "specific live user counts",
-                                                    "supported N users",
-                                                    "sole author of Abacus"
-                                                ],
-                        "reviewedByMark":  true,
-                        "notes":  "Approved-summary candidate only. reviewedByMark false. Do not include unverified live-user-count claims from Terminal resume output. Canonical commit URLs not registered.",
-                        "lastReviewed":  "2026-07-28"
-                    },
-                    {
-                        "id":  "project-maat",
-                        "category":  "projects",
-                        "recordType":  "project",
-                        "title":  "TA-Bot / MAAT Senior Design Capstone",
-                        "publicText":  "TA-Bot / MAAT is a team senior design academic grading platform. Mark\u0027s verified work centered on administrator grading workflows and plagiarism-result interfaces, including saved observed errors, filtering, similarity display, sorting, pagination, comparison links, and related refinements. Separate contribution records document the exact scope of his work.",
-                        "shortText":  "Team senior design grading platform; Mark contributed administrator grading and plagiarism-result UI integrations.",
-                        "aliases":  [
-                                        "MAAT",
-                                        "TA-Bot",
-                                        "TA Bot",
-                                        "senior design MAAT"
-                                    ],
-                        "keywords":  [
-                                         "maat",
-                                         "ta-bot",
-                                         "grading",
-                                         "plagiarism",
-                                         "capstone",
-                                         "team"
-                                     ],
-                        "status":  "approved-summary",
-                        "projectType":  "senior-design-capstone",
-                        "teamOrIndividual":  "team",
-                        "technologies":  [
-                                             "React",
-                                             "TypeScript",
-                                             "Flask",
-                                             "MySQL",
-                                             "Docker",
-                                             "Git"
-                                         ],
-                        "currentStatus":  "completed-team-capstone",
-                        "supportsRecordIds":  [
-                                                  "contrib-maat-grading-ui",
-                                                  "contrib-maat-plagiarism-ui",
-                                                  "contrib-maat-similarity-refinement"
-                                              ],
-                        "evidence":  [
-                                         {
-                                             "kind":  "derived-summary",
-                                             "label":  "Summary derived from commit-verified MAAT contribution records",
-                                             "claimScope":  "Project-level summary only. Individual verified behaviors live on contribution records.",
-                                             "doesNotProve":  [
-                                                                  "Mark built all of MAAT",
-                                                                  "Mark created the plagiarism detector",
-                                                                  "Mark owned all grading functionality"
-                                                              ]
-                                         },
-                                         {
-                                             "kind":  "repo-source",
-                                             "label":  "Portfolio and Terminal MAAT project framing",
-                                             "sourcePath":  "src/terminalPortfolioFileOutput.js",
-                                             "claimScope":  "Supports team senior design / MAAT framing. Broader Terminal summary bullets remain subject to contribution evidence and separate review.",
-                                             "doesNotProve":  [
-                                                                  "Document Manager responsibility",
-                                                                  "Ownership of all backend plagiarism algorithms"
-                                                              ]
-                                         }
-                                     ],
-                        "sourceFiles":  [
-                                            "src/terminalPortfolioFileOutput.js",
-                                            "src/PortfolioApp.jsx",
-                                            "src/terminalFileOutput.js"
-                                        ],
-                        "projectIds":  [
-                                           "project-maat"
-                                       ],
-                        "linkIds":  [
-                                        "link-github-maat"
-                                    ],
-                        "visibility":  {
-                                           "answerable":  true,
-                                           "exportPublic":  true,
-                                           "modelVisible":  true
-                                       },
-                        "answerUses":  [
-                                           "projects",
-                                           "capstone",
-                                           "recruiter",
-                                           "compare"
-                                       ],
-                        "prohibitedUses":  [
-                                               "solo-credit",
-                                               "entire-platform-ownership",
-                                               "algorithm-ownership-without-evidence"
-                                           ],
-                        "overstatementGuards":  [
-                                                    "built MAAT alone",
-                                                    "built TA-Bot alone",
-                                                    "created the plagiarism detector",
-                                                    "owned all grading",
-                                                    "sole author of MAAT"
-                                                ],
-                        "reviewedByMark":  true,
-                        "notes":  "Approved-summary candidate only. Broader Terminal claims such as Document Manager responsibility need separate evidence before promotion to verified.",
-                        "lastReviewed":  "2026-07-28"
-                    }
-                ]
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "project-portfolio-platform",
+      "category": "projects",
+      "recordType": "project",
+      "title": "Personal Portfolio Platform",
+      "publicText": "The Personal Portfolio Platform is Mark's individual project inside the marks-portfolio repository. It is a multi-mode portfolio built with React and Vite on the frontend, JavaScript and CSS, a PHP and MySQL contact backend, and DreamHost deployment. It includes a cinematic Webpage experience, an interactive Terminal experience, and a live MarkAI conversational assistant grounded in approved portfolio information.",
+      "shortText": "Individual React/Vite portfolio with live Webpage, Terminal, MarkAI, and PHP/MySQL contact backend.",
+      "aliases": [
+        "portfolio",
+        "marks-portfolio",
+        "personal portfolio",
+        "this website"
+      ],
+      "keywords": [
+        "portfolio",
+        "react",
+        "vite",
+        "php",
+        "mysql",
+        "dreamhost",
+        "terminal",
+        "webpage",
+        "markai"
+      ],
+      "status": "verified",
+      "projectType": "personal-portfolio-platform",
+      "teamOrIndividual": "individual",
+      "technologies": [
+        "React",
+        "Vite",
+        "JavaScript",
+        "CSS",
+        "PHP",
+        "MySQL",
+        "DreamHost",
+        "Cloudflare Workers AI",
+        "Git",
+        "GitHub"
+      ],
+      "currentStatus": "live-webpage-terminal-and-markai",
+      "portfolioLocation": "Portfolio Platform section and live site",
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "README platform overview",
+          "sourcePath": "README.md",
+          "claimScope": "Supports React, Vite, JavaScript, CSS, PHP, MySQL, DreamHost, Webpage, Terminal, and live MarkAI."
+        },
+        {
+          "kind": "repo-source",
+          "label": "Portfolio platform mode data",
+          "sourcePath": "src/portfolioPlatformData.js",
+          "claimScope": "Supports multi-mode portfolio framing with live Webpage, Terminal, and MarkAI."
+        },
+        {
+          "kind": "github-repo",
+          "label": "Public portfolio repository",
+          "urlLinkId": "link-github-portfolio",
+          "claimScope": "Public repository for this portfolio platform."
+        }
+      ],
+      "sourceFiles": [
+        "README.md",
+        "src/portfolioPlatformData.js",
+        "src/terminalFileOutput.js",
+        "public/api/contact.php",
+        "public/api/markai.php"
+      ],
+      "linkIds": [
+        "link-portfolio-home",
+        "link-github-portfolio",
+        "link-resume-pdf"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "projects",
+        "full-stack",
+        "recruiter",
+        "compare"
+      ],
+      "prohibitedUses": [
+        "claim-mark-created-gpt-oss",
+        "expose-private-credentials",
+        "claim-owner-dashboard-exists"
+      ],
+      "overstatementGuards": [
+        "Mark created the GPT-OSS model",
+        "MarkAI trains proprietary models",
+        "MarkAI stores visitor questions or answers",
+        "MarkAI includes an owner question-history dashboard"
+      ],
+      "reviewedByMark": true,
+      "notes": "MarkAI is live on markyoingco.com as part of this solo portfolio platform.",
+      "lastReviewed": "2026-07-30"
+    },
+    {
+      "id": "project-markai",
+      "category": "projects",
+      "recordType": "project",
+      "title": "MarkAI Portfolio Assistant",
+      "publicText": "MarkAI is Mark’s live conversational portfolio assistant on markyoingco.com. It is part of Mark’s solo portfolio platform. The interface uses React and Vite. The public endpoint uses PHP. The language-model provider uses Cloudflare Workers AI with the selected model @cf/openai/gpt-oss-120b. Answers are grounded in approved portfolio information. PromptBuilder selects relevant approved context, ProviderResponseValidator checks generated answers, and deterministic fallback answers remain available when the provider is disabled, rate-limited, or unavailable. Provider calls use HTTPS with certificate and hostname verification, with no retries and no streaming. Private configuration remains outside the public web root. Anonymous session usage limits protect the public endpoint and store usage metadata only, not questions or answers. The initial live release does not include an owner question-history dashboard. MarkAI is live and actively maintained; it may continue receiving bug fixes, testing, design refinement, and approved knowledge expansion.",
+      "shortText": "Live, actively maintained React/Vite and PHP portfolio assistant using Cloudflare Workers AI, approved knowledge, validation, fallback, privacy protections, and rate limiting.",
+      "aliases": [
+        "MarkAI",
+        "portfolio assistant",
+        "Mark AI"
+      ],
+      "keywords": [
+        "markai",
+        "assistant",
+        "cloudflare",
+        "workers ai",
+        "php",
+        "react",
+        "vite",
+        "validation",
+        "rate limiting",
+        "privacy"
+      ],
+      "status": "verified",
+      "projectType": "portfolio-assistant",
+      "teamOrIndividual": "individual",
+      "technologies": [
+        "React",
+        "Vite",
+        "JavaScript",
+        "PHP",
+        "Cloudflare Workers AI",
+        "HTTPS",
+        "cURL"
+      ],
+      "currentStatus": "live-actively-maintained",
+      "portfolioLocation": "MarkAI mode on markyoingco.com",
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "Public MarkAI endpoint",
+          "sourcePath": "public/api/markai.php",
+          "claimScope": "Supports the public PHP endpoint and private sibling-server layout."
+        },
+        {
+          "kind": "repo-source",
+          "label": "MarkAI interface",
+          "sourcePath": "src/markai/MarkAIChat.jsx",
+          "claimScope": "Supports the React conversational interface."
+        },
+        {
+          "kind": "repo-source",
+          "label": "Approved knowledge export",
+          "sourcePath": "server/markai/generated/approved-v1.json",
+          "claimScope": "Supports approved-information grounding."
+        }
+      ],
+      "sourceFiles": [
+        "public/api/markai.php",
+        "src/markai/MarkAIChat.jsx",
+        "src/portfolioPlatformData.js",
+        "server/markai/PromptBuilder.php",
+        "server/markai/ProviderResponseValidator.php",
+        "server/markai/FileUsageLimiter.php",
+        "server/markai/CloudflareWorkersAiProvider.php"
+      ],
+      "linkIds": [
+        "link-portfolio-home",
+        "link-github-portfolio"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what-is-markai",
+        "is-markai-live",
+        "how-markai-works",
+        "markai-privacy",
+        "markai-fallback"
+      ],
+      "prohibitedUses": [
+        "expose-account-id",
+        "expose-api-token",
+        "expose-private-server-paths",
+        "expose-prompt-internals",
+        "claim-model-training",
+        "claim-mark-created-gpt-oss",
+        "claim-owner-dashboard"
+      ],
+      "overstatementGuards": [
+        "Mark created GPT-OSS",
+        "MarkAI trains or fine-tunes models",
+        "MarkAI uses embeddings or a vector database",
+        "MarkAI stores questions or answers",
+        "MarkAI has an owner question-history dashboard",
+        "MarkAI can answer literally anything"
+      ],
+      "reviewedByMark": true,
+      "notes": "Public facts only. Do not expose credentials, private paths, prompt text, phone, or raw email.",
+      "lastReviewed": "2026-07-30"
+    },
+    {
+      "id": "project-abacus",
+      "category": "projects",
+      "recordType": "project",
+      "title": "Abacus Senior Design Capstone",
+      "publicText": "Abacus is a team senior design web platform used for the Wisconsin-Dairyland Programming Competition. Mark’s verified work centered on the Eagle Division full-stack workflow, including messaging APIs, role-aware student and staff chat, inbox behavior, instructions access, routing, persistence, and related UI debugging. The April 15, 2026 live competition used Abacus to support approximately 200–300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag. Separate contribution and deep-dive records document the exact scope of his work.",
+      "shortText": "Team Abacus senior design capstone for Wisconsin-Dairyland; Mark contributed Eagle Division messaging, chat, inbox, routing, and UI debugging. The April 15, 2026 live competition used Abacus to support approximately 200–300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag.",
+      "aliases": [
+        "Abacus",
+        "Eagle Division",
+        "senior design Abacus"
+      ],
+      "keywords": [
+        "abacus",
+        "eagle",
+        "capstone",
+        "flask",
+        "react",
+        "messaging",
+        "team",
+        "wisconsin-dairyland",
+        "judge0",
+        "april 15 2026",
+        "competition"
+      ],
+      "status": "approved-summary",
+      "projectType": "senior-design-capstone",
+      "teamOrIndividual": "team",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Flask",
+        "MySQL",
+        "Docker",
+        "Git",
+        "Vite",
+        "JavaScript",
+        "Python",
+        "Judge0",
+        "Docker Compose",
+        "WSL Ubuntu",
+        "DBeaver"
+      ],
+      "currentStatus": "completed-team-capstone",
+      "supportsRecordIds": [
+        "contrib-abacus-eagle-core",
+        "contrib-abacus-instructions-routing",
+        "contrib-abacus-inbox-chat",
+        "contrib-abacus-dropdown-fixes"
+      ],
+      "evidence": [
+        {
+          "kind": "derived-summary",
+          "label": "Summary derived from commit-verified Abacus contribution records",
+          "claimScope": "Project-level summary only. Individual verified behaviors live on contribution records.",
+          "doesNotProve": [
+            "Mark built all of Abacus",
+            "Permanent daily-active-user, customer, or enterprise traffic metrics beyond the approved April 15, 2026 event-scale statement",
+            "Mark designed the entire platform"
+          ]
+        },
+        {
+          "kind": "repo-source",
+          "label": "Portfolio and Terminal Abacus project framing",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports team senior design / Abacus framing and stack labels present in portfolio sources. Broader Terminal claim wording remains subject to contribution evidence.",
+          "doesNotProve": [
+            "Permanent daily-active-user, customer, or enterprise traffic metrics beyond the approved April 15, 2026 event-scale statement"
+          ]
+        }
+      ],
+      "sourceFiles": [
+        "src/terminalPortfolioFileOutput.js",
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js"
+      ],
+      "projectIds": [
+        "project-abacus"
+      ],
+      "linkIds": [
+        "link-github-abacus"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "projects",
+        "full-stack",
+        "capstone",
+        "recruiter",
+        "compare"
+      ],
+      "prohibitedUses": [
+        "solo-credit",
+        "entire-platform-ownership",
+        "customers-or-dau-claims",
+        "inflated-user-metrics-beyond-approved-event-scale"
+      ],
+      "overstatementGuards": [
+        "built Abacus alone",
+        "designed the entire platform",
+        "300 daily active users",
+        "300 customers",
+        "enterprise-scale Abacus traffic",
+        "thousands of Abacus users",
+        "sole author of Abacus"
+      ],
+      "reviewedByMark": true,
+      "notes": "Approved-summary project record. Deep-dive records hold expanded platform, contribution, and event-scale detail. Use the approved approximately 200–300 high-school students, teachers, judges, and administrators wording only for the April 15, 2026 live competition. Canonical commit URLs not registered.",
+      "lastReviewed": "2026-07-29",
+      "relatedRecordIds": [
+        "project-detail-abacus-platform-purpose",
+        "project-detail-abacus-live-competition-scale-stability",
+        "contribution-abacus-eagle-workflows",
+        "contribution-abacus-submission-grading-pipeline",
+        "contribution-abacus-testing-prioritization-delivery",
+        "contribution-abacus-database-merchandise-performance"
+      ]
+    },
+    {
+      "id": "project-maat",
+      "category": "projects",
+      "recordType": "project",
+      "title": "TA-Bot / MAAT Senior Design Capstone",
+      "publicText": "TA-Bot / MAAT is a team senior design academic grading platform. Mark's verified work centered on administrator grading workflows and plagiarism-result interfaces, including saved observed errors, filtering, similarity display, sorting, pagination, comparison links, and related refinements. Separate contribution records document the exact scope of his work.",
+      "shortText": "Team senior design grading platform; Mark contributed administrator grading and plagiarism-result UI integrations.",
+      "aliases": [
+        "MAAT",
+        "TA-Bot",
+        "TA Bot",
+        "senior design MAAT"
+      ],
+      "keywords": [
+        "maat",
+        "ta-bot",
+        "grading",
+        "plagiarism",
+        "capstone",
+        "team",
+        "docker",
+        "ast",
+        "rubrics"
+      ],
+      "status": "approved-summary",
+      "projectType": "senior-design-capstone",
+      "teamOrIndividual": "team",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Flask",
+        "MySQL",
+        "Docker",
+        "Git",
+        "JavaScript",
+        "Node.js",
+        "Docker Compose",
+        "WSL Ubuntu",
+        "DBeaver",
+        "AST-based analysis"
+      ],
+      "currentStatus": "completed-team-capstone",
+      "supportsRecordIds": [
+        "contrib-maat-grading-ui",
+        "contrib-maat-plagiarism-ui",
+        "contrib-maat-similarity-refinement"
+      ],
+      "evidence": [
+        {
+          "kind": "derived-summary",
+          "label": "Summary derived from commit-verified MAAT contribution records",
+          "claimScope": "Project-level summary only. Individual verified behaviors live on contribution records.",
+          "doesNotProve": [
+            "Mark built all of MAAT",
+            "Mark created the plagiarism detector",
+            "Mark owned all grading functionality"
+          ]
+        },
+        {
+          "kind": "repo-source",
+          "label": "Portfolio and Terminal MAAT project framing",
+          "sourcePath": "src/terminalPortfolioFileOutput.js",
+          "claimScope": "Supports team senior design / MAAT framing. Broader Terminal summary bullets remain subject to contribution evidence and separate review.",
+          "doesNotProve": [
+            "Document Manager responsibility",
+            "Ownership of all backend plagiarism algorithms"
+          ]
+        }
+      ],
+      "sourceFiles": [
+        "src/terminalPortfolioFileOutput.js",
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js"
+      ],
+      "projectIds": [
+        "project-maat"
+      ],
+      "linkIds": [
+        "link-github-maat"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "projects",
+        "capstone",
+        "recruiter",
+        "compare"
+      ],
+      "prohibitedUses": [
+        "solo-credit",
+        "entire-platform-ownership",
+        "algorithm-ownership-without-evidence"
+      ],
+      "overstatementGuards": [
+        "built MAAT alone",
+        "built TA-Bot alone",
+        "created the plagiarism detector",
+        "owned all grading",
+        "sole author of MAAT"
+      ],
+      "reviewedByMark": true,
+      "notes": "Approved-summary candidate only. Broader Terminal claims such as Document Manager responsibility need separate evidence before promotion to verified.",
+      "lastReviewed": "2026-07-29",
+      "relatedRecordIds": [
+        "project-detail-maat-platform-purpose",
+        "contribution-maat-rubric-observed-errors",
+        "contribution-maat-plagiarism-analysis-workflows",
+        "project-detail-maat-adoption-maintainability"
+      ]
+    }
+  ]
 }

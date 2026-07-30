@@ -353,6 +353,7 @@ const SKILLS_GROUPS = [
       'C#',
       'HTML / CSS',
       'R',
+      'PHP',
     ],
   },
   {
@@ -366,6 +367,7 @@ const SKILLS_GROUPS = [
       'Unity',
       'Judge0',
       'BirdBrain Finch 2.0',
+      'Cloudflare Workers AI',
     ],
   },
   {
@@ -378,8 +380,11 @@ const SKILLS_GROUPS = [
       'Git / GitHub',
       'Linux / WSL',
       'Figma',
-      'Vite Testing',
-      'Manual Testing',
+      'cURL / HTTPS integration',
+      'Vite build validation',
+      'API integration testing',
+      'Fixture testing',
+      'Manual testing',
       'Debugging',
     ],
   },
@@ -527,10 +532,11 @@ function AboutSection({
                           work.
                         </p>
                         <p className="about__body">
-                          My background includes building this portfolio platform
-                          as a solo project and contributing to Abacus, TA-Bot /
+                          Mark built and deployed this portfolio as a solo
+                          project with Webpage, Terminal, and MarkAI
+                          experiences, and also contributed to Abacus, TA-Bot /
                           MAAT, and the Finch Web Controller. Across those
-                          projects, I worked with React/Vite, Flask, MySQL,
+                          projects, I worked with React/Vite, Flask, PHP, MySQL,
                           Socket.IO, Docker, Unity/C#, C/UNIX programming,
                           testing, debugging, and team-based development.
                         </p>
@@ -889,23 +895,13 @@ const PORTFOLIO_SECTIONS = [
         title: 'Operating Systems C Projects',
         subtitle: 'Systems Programming',
         description:
-          'Public portfolio documentation for Operating Systems coursework in C, covering UNIX/Linux development, process control, memory, file systems, and systems-level debugging. Original course repositories may require access.',
+          'Public portfolio documentation for Operating Systems coursework in C, covering UNIX/Linux development, process control, memory, file systems, and systems-level debugging.',
         role: '',
         impact: '',
         tech: ['C', 'UNIX', 'Linux', 'WSL', 'Git'],
         image: '/images/portfolio/operating-systems-c.svg',
         imageFit: 'contain',
         website: 'https://github.com/markyoingco/operating-systems-c-projects',
-        secondaryLinks: [
-          {
-            label: 'Shared course repo',
-            url: 'https://github.com/Marquette-Operating-Systems-Course/XINU26-ayazdani1-myoingco',
-          },
-          {
-            label: 'Solo course repo',
-            url: 'https://github.com/Marquette-Operating-Systems-Course/XINU26-myoingco-SOLO',
-          },
-        ],
         github: '',
         demo: '',
         proof: '',

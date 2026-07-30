@@ -47,6 +47,7 @@ import {
   TERMINAL_CATEGORY_SLUGS,
   VSCO_GALLERY_URL,
 } from './terminalPortfolioData'
+import MarkAIChat from './markai/MarkAIChat'
 import {
   buildContactFormConfirmErrorOutput,
   buildContactFormErrorOutput,
@@ -457,7 +458,7 @@ const MODE_PICKER_OPTIONS = [
     id: 'markai',
     title: 'MarkAI',
     description:
-      'Coming soon — AI-guided exploration of my resume, projects, skills, experience, and professional background.',
+      'Live conversational portfolio assistant grounded in Mark’s approved information.',
   },
   {
     id: 'terminal',
@@ -1201,48 +1202,7 @@ function TerminalLanding({
       }}
     >
       {showMarkAi ? (
-          <div className="markai-card">
-            <header className="markai-card__titlebar">
-              <div className="terminal-card__dots" aria-hidden="true">
-                <span className="terminal-card__dot" />
-                <span className="terminal-card__dot" />
-                <span className="terminal-card__dot" />
-              </div>
-              <span className="markai-card__label">MarkAI</span>
-            </header>
-
-            <div className="markai-card__body">
-              <p className="markai-card__subtitle">AI portfolio assistant coming soon.</p>
-
-              <div className="markai-messages" role="log" aria-live="polite">
-                <div className="markai-message">
-                  <p className="markai-message__lead">MarkAI is coming soon.</p>
-                  <p className="markai-message__body">
-                    This will become an AI portfolio assistant that answers questions about
-                    Mark&apos;s resume, projects, skills, experience, career direction, and
-                    professional background.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <footer className="markai-card__footer">
-              <label className="markai-input-wrap" htmlFor="markai-input">
-                <input
-                  id="markai-input"
-                  className="markai-input"
-                  type="text"
-                  placeholder="Ask MarkAI anything about Mark..."
-                  disabled
-                  aria-disabled="true"
-                  aria-describedby="markai-input-status"
-                />
-                <span id="markai-input-status" className="markai-input__badge">
-                  Coming soon
-                </span>
-              </label>
-            </footer>
-          </div>
+        <MarkAIChat />
       ) : (
       <div className="terminal-stage">
       <div className={terminalCardClassName} ref={terminalCardRef}>
