@@ -156,10 +156,10 @@ export async function requestMarkAiResponse({
           throw error
         }
         // Timeout or network abort without caller abort → local fallback.
-        const local = await getMockMarkAiResponse(question, { signal })
+        const local = await getMockMarkAiResponse(question, { signal, history })
         return { ...local, transport: 'local-preview' }
       }
-      const local = await getMockMarkAiResponse(question, { signal })
+      const local = await getMockMarkAiResponse(question, { signal, history })
       return { ...local, transport: 'local-preview' }
     }
 
@@ -167,7 +167,7 @@ export async function requestMarkAiResponse({
     const bodyText = await response.text()
 
     if (shouldUseLocalFallback(response.status, contentType, bodyText)) {
-      const local = await getMockMarkAiResponse(question, { signal })
+      const local = await getMockMarkAiResponse(question, { signal, history })
       return { ...local, transport: 'local-preview' }
     }
 
@@ -179,7 +179,7 @@ export async function requestMarkAiResponse({
     try {
       parsed = JSON.parse(bodyText)
     } catch {
-      const local = await getMockMarkAiResponse(question, { signal })
+      const local = await getMockMarkAiResponse(question, { signal, history })
       return { ...local, transport: 'local-preview' }
     }
 

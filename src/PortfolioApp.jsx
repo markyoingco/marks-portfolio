@@ -1124,12 +1124,18 @@ function PortfolioImage({
   }
 
   const hasMatchedAspectRatio = Boolean(imageAspectRatio)
-  const mediaClass =
+  const isMarkAiMedia =
+    typeof src === 'string' && /\/images\/portfolio\/markai\.(png|jpe?g|webp)$/i.test(src)
+  const mediaClass = [
     imageFit === 'contain' && !hasMatchedAspectRatio
       ? 'portfolio-card__media portfolio-card__media--contain'
       : imageFit === 'contain'
         ? 'portfolio-card__media portfolio-card__media--object-contain'
-        : 'portfolio-card__media'
+        : 'portfolio-card__media',
+    isMarkAiMedia ? 'portfolio-card__media--markai' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   const mediaStyle = {
     ...(imageAspectRatio ? { '--portfolio-media-ratio': imageAspectRatio } : {}),

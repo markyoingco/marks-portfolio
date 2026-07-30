@@ -105,7 +105,6 @@ export default function MarkAIChat() {
   const idCounterRef = useRef(1)
   const requestTokenRef = useRef(0)
   const abortControllerRef = useRef(null)
-  const timeoutIdsRef = useRef([])
   const inputRef = useRef(null)
   const conversationRef = useRef(null)
   const conversationEndRef = useRef(null)
@@ -130,6 +129,37 @@ export default function MarkAIChat() {
     messages.some((message) => message.status === 'loading' || message.status === 'error')
   const isEmptyState = !hasConversation
 
+  const focusComposer = () => {
+    requestAnimationFrame(() => {
+      const node = inputRef.current
+      if (!node || !isMountedRef.current) {
+        return
+      }
+      try {
+        node.focus({ preventScroll: true })
+      } catch {
+        node.focus()
+      }
+    })
+  }
+
+  const shouldRestoreComposerFocus = () => {
+    if (typeof document === 'undefined') {
+      return false
+    }
+    const active = document.activeElement
+    if (!active || active === document.body) {
+      return true
+    }
+    if (active === inputRef.current) {
+      return true
+    }
+    return (
+      active instanceof HTMLElement &&
+      active.classList.contains('markai-preview__send')
+    )
+  }
+
   useEffect(() => {
     isMountedRef.current = true
     return () => {
@@ -137,10 +167,6 @@ export default function MarkAIChat() {
       requestTokenRef.current += 1
       abortControllerRef.current?.abort()
       abortControllerRef.current = null
-      for (const timeoutId of timeoutIdsRef.current) {
-        window.clearTimeout(timeoutId)
-      }
-      timeoutIdsRef.current = []
     }
   }, [])
 
@@ -159,15 +185,6 @@ export default function MarkAIChat() {
       block: 'nearest',
     })
   }, [messages, errorText, isLoading, isEmptyState])
-
-  const trackTimeout = (callback, delayMs) => {
-    const timeoutId = window.setTimeout(() => {
-      timeoutIdsRef.current = timeoutIdsRef.current.filter((id) => id !== timeoutId)
-      callback()
-    }, delayMs)
-    timeoutIdsRef.current.push(timeoutId)
-    return timeoutId
-  }
 
   const submitQuestion = async (rawQuestion) => {
     const question = String(rawQuestion || '').trim()
@@ -208,6 +225,7 @@ export default function MarkAIChat() {
         links: [],
       },
     ])
+    focusComposer()
 
     try {
       const response = await requestMarkAiResponse({
@@ -268,9 +286,9 @@ export default function MarkAIChat() {
     } finally {
       if (isMountedRef.current && requestToken === requestTokenRef.current) {
         setIsLoading(false)
-        trackTimeout(() => {
-          inputRef.current?.focus()
-        }, 0)
+        if (shouldRestoreComposerFocus()) {
+          focusComposer()
+        }
       }
     }
   }
@@ -293,18 +311,15 @@ export default function MarkAIChat() {
     requestTokenRef.current += 1
     abortControllerRef.current?.abort()
     abortControllerRef.current = null
-    for (const timeoutId of timeoutIdsRef.current) {
-      window.clearTimeout(timeoutId)
-    }
-    timeoutIdsRef.current = []
     idCounterRef.current = 1
     setIsLoading(false)
     setErrorText('')
     setInputValue('')
     setMessages([createGreetingMessage('msg-0')])
-    trackTimeout(() => {
-      inputRef.current?.focus()
-    }, 0)
+    if (conversationRef.current) {
+      conversationRef.current.scrollTop = 0
+    }
+    focusComposer()
   }
 
   const statusMessage = errorText
@@ -408,7 +423,7 @@ export default function MarkAIChat() {
               placeholder="Ask MarkAI anything..."
               maxLength={MAX_QUESTION_CHARS}
               rows={1}
-              disabled={isLoading}
+              aria-busy={isLoading}
               aria-describedby={`${disclosureId} ${statusId}`}
             />
             <button
@@ -420,6 +435,7 @@ export default function MarkAIChat() {
                 .filter(Boolean)
                 .join(' ')}
               disabled={!canSubmit}
+              aria-disabled={!canSubmit}
             >
               Send
             </button>

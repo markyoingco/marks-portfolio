@@ -965,6 +965,26 @@
   filter: none;
 }
 
+/*
+  MarkAI screenshot includes extra dark scene padding around the UI card.
+  Keep the shared 16/9 media box; zoom only this image so it fills like siblings.
+*/
+.portfolio-card__media--markai {
+  position: relative;
+}
+
+.portfolio-card__media--markai > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.38);
+  transform-origin: center center;
+}
+
 .portfolio-card__media--contain {
   display: flex;
   align-items: center;

@@ -13,6 +13,7 @@ require_once __DIR__ . '/GeneratedAnswerService.php';
 require_once __DIR__ . '/ProviderConfiguration.php';
 require_once __DIR__ . '/FileUsageLimiter.php';
 require_once __DIR__ . '/UsageLimitResult.php';
+require_once __DIR__ . '/IntentUnderstanding.php';
 
 final class MarkAiMockEndpointException extends RuntimeException
 {
@@ -317,14 +318,6 @@ function markai_mock_validate_payload(array $payload): array
  */
 function markai_mock_classify(string $question, array $history = []): array
 {
-    $text = strtolower(trim($question));
-    $text = preg_replace('/\s+/u', ' ', $text) ?? $text;
-
-    $followUp = markai_mock_resolve_followup_from_history($text, $history);
-    if ($followUp !== null) {
-        return $followUp;
-    }
-
     $answers = [
         'profile' => 'Mark Yoingco is a recent Computer Science graduate from Marquette University seeking his first full-time technology role. His work includes a personal portfolio platform, senior design projects, systems coursework, robotics, data projects, and Unity projects.',
         'abacus' => 'Abacus was a team senior-design project used for the Wisconsin-Dairyland Programming Competition. Mark’s verified work included Eagle messaging APIs, role-aware chat and inbox behavior, competition workflows, routing and persistence, frontend/backend integration, submission-system support, testing, and UI debugging. The April 15, 2026 event used the platform to support approximately 200–300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag.',
@@ -374,8 +367,10 @@ function markai_mock_classify(string $question, array $history = []): array
         'favoriteFilmsCreed' => 'Creed and Creed II connect naturally to Mark’s interest in training, ambition, resilience, and earned progress. They are among his favorite films alongside The Batman and Magazine Dreams.',
         'favoriteFilmsBatman' => 'The Batman fits Mark’s preference for dark, cinematic, serious, high-contrast environments. It is one of his favorite films alongside Creed, Creed II, and Magazine Dreams.',
         'favoriteShow' => 'Regular Show is one of Mark’s favorite animated series. It reflects a more relaxed and humorous side of his entertainment interests and is not classified as a movie.',
-        'careerGoals' => 'Mark is working toward a stable technology career centered on meaningful work, continued learning, professional growth, and greater independence. He is open to software development, full-stack work, developer tools, data-oriented systems, technical support, and related entry-level paths, including Milwaukee, Chicago, remote work, or other locations when relocation is practical.',
+        'careerGoals' => 'Mark is working toward a stable technology career built on continued technical growth, meaningful useful work, and greater independence. He wants to keep building stronger software projects while maintaining discipline in fitness and continuing creative practice. Travel and new perspectives matter to him as part of becoming more confident, responsible, and capable over time. He remains open to software development, full-stack work, developer tools, data-oriented systems, technical support, and related entry-level paths in Milwaukee, Chicago, remote work, or other locations when relocation is practical.',
         'success' => 'For Mark, success means career stability, professional growth, independence, meaningful work, physical discipline, and pride in earned progress. A title alone is not enough; he wants to know he built something useful and followed through.',
+        'funFacts' => "Here are several approved fun facts about Mark:\n\n- Bodybuilding is his strongest interest outside technology.\n- Favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR.\n- Favorite films include Creed, Creed II, The Batman, and Magazine Dreams; Regular Show is a favorite series; he also enjoys Marvel and DC.\n- He likes photography and travel, plus museums, hiking, and running.\n- He is interested in Greek mythology and classical statues and art.\n- His favorite color is black, and he prefers a dark cinematic visual style.\n- Outside work he also enjoys reading, music, cooking, and spending time with friends, family, and his dog.",
+        'capabilities' => "You can ask about Mark’s projects, skills, education, experience, collaborators, goals, personality, hobbies, music, films, fitness, travel, testimonials, résumé, or public links.\n\nExamples:\n- “What did Mark build for Abacus?”\n- “What are his strongest skills?”\n- “What are Mark’s goals?”\n- “What music and films does he like?”\n- “Who did he work with on MAAT?”\n- “Can I see the Finch repository?”\n- “What does Mark do outside technology?”",
         'familyGoals' => 'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.',
         'photography' => 'Mark uses photography to preserve feelings, places, views, memories, and important moments. He prefers cinematic, personal, dark, low-exposure, story-driven images of cities, architecture, landscapes, museums, and travel experiences.',
         'travel' => 'Travel helps Mark experience different environments, people, cultures, architecture, and ways of living. It gives him new perspectives and motivates greater freedom and independence. Cities connect to ambition and energy, coastal environments to peace, and mountains and hiking to effort that earns the view.',
@@ -407,10 +402,13 @@ function markai_mock_classify(string $question, array $history = []): array
         'collaboratorsAllan' => 'Allan Akkathara worked with Mark on the Data Mining Game Predictor (Marquette Basketball Predictor).',
         'resume' => 'Mark’s public résumé is available as a PDF through the safe link below.',
         'linkedinOnly' => 'Mark’s public LinkedIn profile is available through the safe link below.',
-        'githubOnly' => 'Mark’s public GitHub profile is available through the safe link below.',
+        'githubOnly' => 'Mark’s public GitHub profile is available through the safe link below. If you have a specific project in mind, ask for that repository by name.',
         'repoContext' => 'You can view the project’s public repository below.',
-        'fallback' => 'I can answer questions about Mark’s projects, skills, experience, education, interests, goals, testimonials, and contact options. Try asking a more specific question.',
+        'fallback' => 'I may be missing the intended topic. You can ask about Mark’s projects, skills, experience, goals, interests, collaborators, résumé, or public links.',
     ];
+
+    $text = markai_intent_normalize($question);
+    $text = markai_intent_apply_typos($text);
 
     if (markai_mock_includes_any($text, [
         'phone',
@@ -434,32 +432,63 @@ function markai_mock_classify(string $question, array $history = []): array
         'sadness',
         'depression',
         'anxiety',
+        'addiction',
+        'substance',
+        'alcohol problem',
+        'pornograph',
+        'diagnosis',
+        'medical condition',
         'mental health',
         'mental-health',
         'therapy',
+        'therapy details',
         'medical',
         'health history',
-        'diagnosis',
         'lung',
+        'journal',
+        'self-hatred',
+        'exact weight',
+        'body fat',
+        'measurements',
+        'physique goals',
+        'salary',
+        'what salary',
+        'salary does mark need',
+        'how much does he make',
+        'how much money',
+        'bank account',
         'finances',
         'financial hardship',
         'struggling with money',
         'money situation',
+        'money pressure',
         'being broke',
         'is mark broke',
         'mark broke',
         'why does mark need money',
         'why does he need money',
         'need money',
-        'how much money',
-        'what salary',
-        'salary does mark need',
+        'family support',
         'family financial',
         'family’s financial',
         "family's financial",
-        'addiction',
-        'substance',
-        'drugs',
+        'support his family',
+        'support my family',
+        'support family',
+        'supporting family',
+        'why support his family',
+        'why support family',
+        'why does he want to support',
+        'need to support his family',
+        'need to support family',
+        'does mark need to support',
+        'depend on his family',
+        'depending on family',
+        'what does family mean to his goals',
+        'family mean to his goals',
+        'family goals',
+        'what does family mean',
+        'family mean to mark',
         'family problems',
         'family conflict',
         'family issues',
@@ -483,18 +512,7 @@ function markai_mock_classify(string $question, array $history = []): array
         'collaborator email',
         'teammate phone',
         'teammate email',
-        'what does family mean',
-        'family mean to his goals',
-        'family mean to mark',
-        'support his family',
-        'supporting family',
-        'why support his family',
-        'why does he want to support',
-        'need to support his family',
-        'need to support family',
-        'does mark need to support',
-        'depend on his family',
-        'depending on family',
+        'drugs',
     ])) {
         return [
             'category' => 'sensitive',
@@ -502,6 +520,18 @@ function markai_mock_classify(string $question, array $history = []): array
             'answer' => $answers['sensitive'],
             'answerStatus' => 'refused',
         ];
+    }
+
+    $text = markai_intent_rewrite_pronouns($text, $history);
+
+    $followUp = markai_mock_resolve_followup_from_history($text, $history, $answers);
+    if ($followUp !== null) {
+        return $followUp;
+    }
+
+    $earlyIntent = markai_intent_match_topic($text, $answers);
+    if ($earlyIntent !== null) {
+        return $earlyIntent;
     }
 
     if (
@@ -713,6 +743,10 @@ function markai_mock_classify(string $question, array $history = []): array
         'marks-portfolio',
         'personal portfolio platform',
         'portfolio repository',
+        'portfolio website repository',
+        'portfolio website',
+        'portfolio site repository',
+        'marks portfolio repository',
     ])) {
         return [
             'category' => 'portfolioPlatform',
@@ -1732,10 +1766,16 @@ function markai_mock_classify(string $question, array $history = []): array
  * Resolve short follow-up link/repo questions from recent conversation history.
  *
  * @param list<array{role: string, content: string}> $history
+ * @param array<string, string> $answers
  * @return array{category: string, mode: string, answer: string, answerStatus: string}|null
  */
-function markai_mock_resolve_followup_from_history(string $text, array $history): ?array
+function markai_mock_resolve_followup_from_history(string $text, array $history, array $answers = []): ?array
 {
+    $topicFollowUp = markai_intent_resolve_topic_followup($text, $history, $answers);
+    if ($topicFollowUp !== null) {
+        return $topicFollowUp;
+    }
+
     $normalized = trim($text, " \t\n\r\0\x0B?.!");
     $isRepoFollowUp = markai_mock_includes_any($text, [
         'repo?',
@@ -1748,7 +1788,26 @@ function markai_mock_resolve_followup_from_history(string $text, array $history)
         'can i see this project',
         'give me the repo',
         'what repository',
-    ]) || in_array($normalized, ['repo', 'repository', 'code', 'github repo', 'source'], true);
+        'website repository',
+        'project repository',
+        'see the repository',
+        'see the repo',
+    ]) || in_array($normalized, ['repo', 'repository', 'code', 'github repo', 'source'], true)
+        || (
+            markai_mock_includes_any($text, ['repository', 'repo'])
+            && markai_mock_includes_any($text, [
+                'portfolio',
+                'abacus',
+                'finch',
+                'maat',
+                'shmup',
+                'apple picker',
+                'mission demolition',
+                'sleep',
+                'basketball',
+                'operating systems',
+            ])
+        );
 
     $isPhotosFollowUp = in_array($normalized, ['photos', 'photo', 'photography'], true);
 
@@ -1852,6 +1911,15 @@ function markai_mock_resolve_followup_from_history(string $text, array $history)
         ];
     }
 
+    if ($context === '') {
+        return [
+            'category' => 'githubOnly',
+            'mode' => 'technical',
+            'answer' => (string) ($answers['githubOnly'] ?? 'Mark’s public GitHub profile is available through the safe link below. If you have a specific project in mind, ask for that repository by name.'),
+            'answerStatus' => 'answered',
+        ];
+    }
+
     return [
         'category' => 'noPublicRepo',
         'mode' => 'technical',
@@ -1900,8 +1968,41 @@ function markai_mock_select_record_ids(array $export, string $category): array
 
     switch ($category) {
         case 'sensitive':
-        case 'fallback':
             return [];
+
+        case 'fallback':
+            return $pick([
+                'navigation-portfolio-modes',
+                'project-portfolio-platform',
+                'personality-career-purpose',
+                'interest-lifestyle-hobbies-expanded',
+                'contact-preferred-methods',
+            ]);
+
+        case 'capabilities':
+            return $pick([
+                'navigation-portfolio-modes',
+                'project-markai',
+            ]);
+
+        case 'funFacts':
+            return $pick([
+                'interest-lifestyle-hobbies-expanded',
+                'interest-favorite-artists',
+                'interest-favorite-films-television',
+                'interest-fitness-bodybuilding',
+                'personality-photography-travel-hobbies',
+                'personality-aesthetic-environment',
+                'interest-greek-mythology-art',
+            ]);
+
+        case 'multiTopic':
+            return $pick([
+                'personality-career-purpose',
+                'project-portfolio-platform',
+                'skill-javascript',
+                'interest-lifestyle-hobbies-expanded',
+            ]);
 
         case 'status':
             return $pick(['navigation-portfolio-modes', 'project-markai']);
@@ -2272,6 +2373,12 @@ function markai_mock_requested_link_ids(string $category): array
             return ['link-portfolio-section'];
         case 'careerGoals':
             return ['link-resume-pdf', 'link-contact-section'];
+        case 'funFacts':
+            return ['link-travel-section', 'link-vsco', 'link-portfolio-section'];
+        case 'capabilities':
+            return ['link-portfolio-section', 'link-contact-section'];
+        case 'multiTopic':
+            return ['link-portfolio-section', 'link-resume-pdf'];
         case 'familyGoals':
             return [];
         case 'photographyTravel':

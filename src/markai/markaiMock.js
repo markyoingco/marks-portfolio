@@ -3,6 +3,14 @@
  * No network, no knowledge export, no persistence.
  */
 
+import {
+  normalizeIntentText,
+  applyIntentTypos,
+  rewriteIntentPronouns,
+  matchIntentTopic,
+  resolveTopicFollowup,
+} from './intentUnderstanding.js'
+
 const MOCK_DELAY_MS = 400
 
 const ANSWERS = {
@@ -101,9 +109,13 @@ const ANSWERS = {
   favoriteShow:
     'Regular Show is one of Mark’s favorite animated series. It reflects a more relaxed and humorous side of his entertainment interests and is not classified as a movie.',
   careerGoals:
-    'Mark is working toward a stable technology career centered on meaningful work, continued learning, professional growth, and greater independence. He is open to software development, full-stack work, developer tools, data-oriented systems, technical support, and related entry-level paths, including Milwaukee, Chicago, remote work, or other locations when relocation is practical.',
+    'Mark is working toward a stable technology career built on continued technical growth, meaningful useful work, and greater independence. He wants to keep building stronger software projects while maintaining discipline in fitness and continuing creative practice. Travel and new perspectives matter to him as part of becoming more confident, responsible, and capable over time. He remains open to software development, full-stack work, developer tools, data-oriented systems, technical support, and related entry-level paths in Milwaukee, Chicago, remote work, or other locations when relocation is practical.',
   success:
     'For Mark, success means career stability, professional growth, independence, meaningful work, physical discipline, and pride in earned progress. A title alone is not enough; he wants to know he built something useful and followed through.',
+  funFacts:
+    "Here are several approved fun facts about Mark:\n\n- Bodybuilding is his strongest interest outside technology.\n- Favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR.\n- Favorite films include Creed, Creed II, The Batman, and Magazine Dreams; Regular Show is a favorite series; he also enjoys Marvel and DC.\n- He likes photography and travel, plus museums, hiking, and running.\n- He is interested in Greek mythology and classical statues and art.\n- His favorite color is black, and he prefers a dark cinematic visual style.\n- Outside work he also enjoys reading, music, cooking, and spending time with friends, family, and his dog.",
+  capabilities:
+    "You can ask about Mark’s projects, skills, education, experience, collaborators, goals, personality, hobbies, music, films, fitness, travel, testimonials, résumé, or public links.\n\nExamples:\n- “What did Mark build for Abacus?”\n- “What are his strongest skills?”\n- “What are Mark’s goals?”\n- “What music and films does he like?”\n- “Who did he work with on MAAT?”\n- “Can I see the Finch repository?”\n- “What does Mark do outside technology?”",
   familyGoals:
     'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.',
   photography:
@@ -134,8 +146,11 @@ const ANSWERS = {
     'Yes. Mark’s portfolio includes public testimonials from people who have worked with, taught, or known him. Zack Kohlwey, Mark’s former supervisor at Marquette University, highlights his dedication, work ethic, and leadership by example. Farzeen Harunani, a Computer Science professor at Marquette, notes his initiative, composure, and dedication. Jorge Torres, a former coworker, emphasizes his thoroughness, ownership, and reliability. Full attributed quotes are in the portfolio Testimonials section.',
   projectsInventory:
     "Mark’s approved public software projects include:\n\n- Portfolio & AI: Personal Portfolio Platform; MarkAI\n- Capstones: Abacus; TA-Bot / MAAT\n- Systems: Operating Systems C Projects\n- Robotics & Software Design: Finch Robot Web Controller\n- Games: Space SHMUP; Apple Picker; Mission Demolition\n- Data: Sleep Efficiency Analysis; Marquette Basketball Predictor\n\nThe portfolio platform and MarkAI are solo personal work. Abacus, MAAT, Finch, and the data projects were team or coursework collaborations.",
+  githubOnly:
+    'Mark’s public GitHub profile is available through the safe link below. If you have a specific project in mind, ask for that repository by name.',
+  resume: 'Mark’s public résumé is available as a PDF through the safe link below.',
   fallback:
-    'I can answer questions about Mark’s projects, skills, experience, education, interests, goals, testimonials, and contact options. Try asking a more specific question.',
+    'I may be missing the intended topic. You can ask about Mark’s projects, skills, experience, goals, interests, collaborators, résumé, or public links.',
   fmsc:
     'Mark has public volunteer service experience with Feed My Starving Children, shown in the Portfolio Service section. A public FMSC location page is available through the safe link below. MarkAI does not share private organization, member, schedule, or internal details.',
   merchSigma:
@@ -146,10 +161,130 @@ function includesAny(text, phrases) {
   return phrases.some((phrase) => text.includes(phrase))
 }
 
-function classifyQuestion(rawQuestion) {
-  const text = String(rawQuestion || '')
-    .trim()
-    .toLowerCase()
+function historyContext(history) {
+  return (Array.isArray(history) ? history.slice(-6) : [])
+    .map((turn) => String(turn?.content || '').trim().toLowerCase())
+    .filter(Boolean)
+    .join(' ')
+}
+
+function resolveFollowupFromHistory(text, history) {
+  const topicFollowUp = resolveTopicFollowup(text, history, ANSWERS)
+  if (topicFollowUp) return topicFollowUp
+
+  const normalized = text.trim().replace(/[?.!]+$/g, '')
+  const isRepoFollowUp =
+    includesAny(text, [
+      'repo?',
+      'repository?',
+      'github repo',
+      'source code',
+      'show me the code',
+      'can i see the code',
+      'where is the project',
+      'can i see this project',
+      'give me the repo',
+      'what repository',
+      'website repository',
+      'project repository',
+      'see the repository',
+      'see the repo',
+    ]) ||
+    ['repo', 'repository', 'code', 'github repo', 'source'].includes(normalized) ||
+    (includesAny(text, ['repository', 'repo']) &&
+      includesAny(text, [
+        'portfolio',
+        'abacus',
+        'finch',
+        'maat',
+        'shmup',
+        'apple picker',
+        'mission demolition',
+        'sleep',
+        'basketball',
+        'operating systems',
+      ]))
+
+  const isPhotosFollowUp = ['photos', 'photo', 'photography'].includes(normalized)
+  if (!isRepoFollowUp && !isPhotosFollowUp) return null
+
+  const context = historyContext(history)
+
+  if (isPhotosFollowUp) {
+    if (
+      includesAny(context, [
+        'outside technology',
+        'hobbies',
+        'travel',
+        'photography',
+        'for fun',
+        'free time',
+      ]) ||
+      context !== ''
+    ) {
+      return {
+        category: 'travelPlaces',
+        mode: 'casual',
+        answer:
+          'Mark’s travel photography is available through the Travel section and VSCO gallery below.',
+        answerStatus: 'answered',
+      }
+    }
+  }
+
+  if (!isRepoFollowUp) return null
+
+  const projectMap = [
+    ['abacus', 'abacus'],
+    ['eagle', 'abacus'],
+    ['maat', 'maat'],
+    ['ta-bot', 'maat'],
+    ['tabot', 'maat'],
+    ['finch', 'finch'],
+    ['birdvroom', 'finch'],
+    ['portfolio', 'portfolioPlatform'],
+    ['marks-portfolio', 'portfolioPlatform'],
+  ]
+  for (const [needle, category] of projectMap) {
+    if (context.includes(needle) || text.includes(needle)) {
+      return {
+        category,
+        mode: 'technical',
+        answer: 'You can view the project’s public repository below.',
+        answerStatus: 'answered',
+      }
+    }
+  }
+
+  if (includesAny(context, ['sigma chi', 'merch'])) {
+    return {
+      category: 'merchSigma',
+      mode: 'casual',
+      answer: ANSWERS.merchSigma,
+      answerStatus: 'answered',
+    }
+  }
+
+  if (context === '') {
+    return {
+      category: 'githubOnly',
+      mode: 'technical',
+      answer: ANSWERS.githubOnly,
+      answerStatus: 'answered',
+    }
+  }
+
+  return {
+    category: 'noPublicRepo',
+    mode: 'technical',
+    answer:
+      'That project does not currently have an approved public repository link, but you can view it in Mark’s Portfolio section.',
+    answerStatus: 'answered',
+  }
+}
+
+function classifyQuestion(rawQuestion, history = []) {
+  let text = applyIntentTypos(normalizeIntentText(rawQuestion))
 
   if (
     includesAny(text, [
@@ -233,6 +368,14 @@ function classifyQuestion(rawQuestion) {
       answerStatus: 'refused',
     }
   }
+
+  text = rewriteIntentPronouns(text, history)
+
+  const followUp = resolveFollowupFromHistory(text, history)
+  if (followUp) return followUp
+
+  const earlyIntent = matchIntentTopic(text, ANSWERS)
+  if (earlyIntent) return earlyIntent
 
   if (
     includesAny(text, [
@@ -1294,7 +1437,7 @@ function delay(ms, signal) {
  */
 export async function getMockMarkAiResponse(question, options = {}) {
   await delay(MOCK_DELAY_MS, options.signal)
-  const classified = classifyQuestion(question)
+  const classified = classifyQuestion(question, options.history || [])
 
   return {
     success: true,
@@ -1306,3 +1449,5 @@ export async function getMockMarkAiResponse(question, options = {}) {
     error: null,
   }
 }
+
+export { classifyQuestion }
