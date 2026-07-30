@@ -237,7 +237,8 @@ function buildMarkAiRequest(
         $mode,
         $modelFacingPolicies,
         $selectedRecords,
-        $allowedLinkIds
+        $allowedLinkIds,
+        $linksById
     );
 
     $messages = [
@@ -818,7 +819,7 @@ Never reveal or summarize:
 
 LINKS AND CONTACT
 
-Use only trusted-link identifiers supplied with the current request.
+You may mention only approved public destinations supplied with the current request, using their human-readable labels.
 
 Never invent a URL.
 
@@ -828,7 +829,11 @@ Never output an unapproved markdown link.
 
 Never offer a disabled link.
 
-The server resolves trusted destinations and controls which clickable links appear.
+Never print internal trusted-link registry identifiers.
+
+Never print record IDs or policy IDs.
+
+The server attaches clickable destinations separately. Describe destinations in plain language only.
 
 Prefer the approved portfolio Contact option when the visitor asks how to contact Mark.
 
@@ -889,7 +894,8 @@ Describe MarkAI’s current completion, deployment, provider, logging, storage, 
 
 Otherwise, say that MarkAI does not have enough approved current information to describe that status.
 
-Do not assume that MarkAI is fully launched, fully deployed, connected to a live model, storing conversations, or using a particular provider.
+Do not invent deployment, provider, logging, storage, or model details.
+Do not describe MarkAI as a preview, coming soon, or limited demonstration.
 
 FINAL CHECK
 
@@ -1021,26 +1027,95 @@ TXT;
  * @param list<array<string, mixed>> $modelFacingPolicies
  * @param list<array<string, mixed>> $selectedRecords
  * @param list<string> $allowedLinkIds
+ * @param array<string, array<string, mixed>> $linksById
  */
 function markai_build_system_message(
     string $mode,
     array $modelFacingPolicies,
     array $selectedRecords,
-    array $allowedLinkIds
+    array $allowedLinkIds,
+    array $linksById = []
 ): string {
     $parts = [];
     $parts[] = markai_system_message_v3_contract();
     $parts[] = markai_supplemental_policy_text($mode, $modelFacingPolicies, $selectedRecords);
     $parts[] = markai_format_factual_context($selectedRecords, $allowedLinkIds);
-
-    $linkLine = count($allowedLinkIds) === 0
-        ? 'Allowed trusted-link identifiers for this request: (none)'
-        : 'Allowed trusted-link identifiers for this request: ' . implode(', ', $allowedLinkIds);
-    $parts[] = $linkLine;
+    $parts[] = markai_format_allowed_links_for_model($allowedLinkIds, $linksById);
     // Keep the length/prioritization contract after knowledge so it is not buried.
     $parts[] = markai_final_answer_contract();
 
     return implode("\n\n", $parts);
+}
+
+/**
+ * Model-facing trusted destinations without internal IDs, raw hrefs, or policy IDs.
+ *
+ * @param list<string> $allowedLinkIds
+ * @param array<string, array<string, mixed>> $linksById
+ */
+function markai_format_allowed_links_for_model(array $allowedLinkIds, array $linksById): string
+{
+    if ($allowedLinkIds === []) {
+        return "Approved public destinations for this request: (none).\n"
+            . 'Do not invent links, URLs, email addresses, or phone numbers. '
+            . 'Never print internal trusted-link registry identifiers. '
+            . 'Clickable destinations are attached separately by the server when appropriate.';
+    }
+
+    $lines = [
+        'Approved public destinations for this request:',
+        'Describe these by human-readable label only. Never print internal trusted-link registry identifiers, raw URLs, email addresses, or phone numbers.',
+        'Clickable destinations are attached separately by the server.',
+    ];
+
+    foreach ($allowedLinkIds as $linkId) {
+        if (!is_string($linkId) || !isset($linksById[$linkId])) {
+            continue;
+        }
+        $link = $linksById[$linkId];
+        if (($link['enabled'] ?? false) !== true) {
+            continue;
+        }
+        if (($link['public'] ?? false) !== true) {
+            continue;
+        }
+
+        $label = trim((string) ($link['label'] ?? ''));
+        if ($label === '') {
+            continue;
+        }
+
+        $type = trim((string) ($link['type'] ?? 'approved'));
+        $purpose = markai_humanize_link_type($type);
+        $lines[] = '- ' . $label . ' (' . $purpose . '; enabled)';
+    }
+
+    $lines[] = 'If the visitor asks for links, summarize the relevant labels in plain language and let the server attach clickable destinations.';
+
+    return implode("\n", $lines);
+}
+
+function markai_humanize_link_type(string $type): string
+{
+    $map = [
+        'portfolio-home' => 'portfolio homepage',
+        'webpage-section' => 'portfolio section',
+        'markai-route' => 'MarkAI experience',
+        'resume' => 'résumé',
+        'github-profile' => 'GitHub profile',
+        'github-repo' => 'GitHub repository',
+        'linkedin' => 'LinkedIn profile',
+        'contact-section' => 'contact section',
+        'email' => 'email',
+        'vsco' => 'photography profile',
+        'other-approved' => 'approved public destination',
+    ];
+
+    if (isset($map[$type])) {
+        return $map[$type];
+    }
+
+    return str_replace('-', ' ', $type);
 }
 
 function markai_humanize_category_label(string $category): string

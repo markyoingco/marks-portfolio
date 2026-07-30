@@ -6,9 +6,9 @@
       "category": "link-and-contact-behavior",
       "action": "validate-and-block",
       "publicBehavior": "Only use destinations from the trusted link registry. Do not invent URLs.",
-      "modelInstruction": "Return trusted link IDs only. Never invent arbitrary URLs or paste raw unapproved destinations.",
+      "modelInstruction": "Describe approved public destinations by human-readable label only. Never invent arbitrary URLs, paste raw unapproved destinations, or print internal trusted-link registry identifiers. The server attaches clickable links separately.",
       "logPolicy": "log-security-event",
-      "notes": "Backend must map link IDs to hrefs and drop unknown IDs."
+      "notes": "Backend resolves trusted destinations into the safe public links array. Visitor-facing text must never contain link-* identifiers."
     },
     {
       "id": "link-requested-or-relevant-links",
@@ -33,7 +33,7 @@
       "category": "link-and-contact-behavior",
       "action": "enforce",
       "publicBehavior": "Public project links already represented through the portfolio may be offered later when requested or directly relevant. Until separately added to the trusted-link registry, do not invent project URLs.",
-      "modelInstruction": "Do not guess repository visibility. Do not offer project links that are not enabled trusted-link IDs. Relevant contexts include project questions, code requests, and documentation requests.",
+      "modelInstruction": "Do not guess repository visibility. Do not offer project destinations that are not among the approved public destinations supplied for the request. Relevant contexts include project questions, code requests, and documentation requests.",
       "logPolicy": "log-category-only",
       "notes": "Future candidates include Finch, OS docs, Unity games, Sleep, and Basketball only after visibility verification."
     },
@@ -51,9 +51,9 @@
       "category": "link-and-contact-behavior",
       "action": "enforce",
       "publicBehavior": "Do not invent testimonial LinkedIn profiles. LinkedIn destinations for speakers may be added later only from local portfolio data through trusted links.",
-      "modelInstruction": "Keep testimonial linkIds empty until a trusted-link phase adds verified speaker LinkedIn IDs. Never fabricate a LinkedIn URL.",
+      "modelInstruction": "Offer speaker LinkedIn destinations only when that speaker’s approved testimonial is in scope or the visitor asks for that person. Never fabricate a LinkedIn URL. Never print internal link identifiers.",
       "logPolicy": "log-category-only",
-      "notes": "All eight current public testimonials have local LinkedIn URLs in testimonialsData.js for a future trusted-link phase."
+      "notes": "Speaker LinkedIn destinations are in the trusted-link registry and related to each testimonial record. Prefer the Testimonials section link for general testimonial questions."
     },
     {
       "id": "link-navigation-claim-accuracy",

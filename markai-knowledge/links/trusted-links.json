@@ -106,6 +106,64 @@
       "notes": "Webpage Contact is a screen in the SPA (PortfolioApp SCREENS includes contact). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer directing visitors to Contact rather than raw email."
     },
     {
+      "id": "link-testimonials-section",
+      "label": "Testimonials section",
+      "href": "https://markyoingco.com",
+      "type": "webpage-section",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "testimonials-public-overview",
+        "testimonial-zack-kohlwey",
+        "testimonial-jorge-torres",
+        "testimonial-farzeen-harunani",
+        "testimonial-nathan-garcia",
+        "testimonial-jarenz-masiclat",
+        "testimonial-elizabeth-anderson",
+        "testimonial-maxwell-zeisler",
+        "testimonial-andrew-wochner"
+      ],
+      "notes": "Webpage Testimonials is a screen in the SPA (PortfolioApp SCREENS includes testimonials). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer this section link for general testimonial questions instead of dumping speaker LinkedIn profiles."
+    },
+    {
+      "id": "link-portfolio-section",
+      "label": "Portfolio section",
+      "href": "https://markyoingco.com",
+      "type": "webpage-section",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "projects"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "projects-public-inventory",
+        "project-portfolio-platform",
+        "project-markai",
+        "project-abacus",
+        "project-maat",
+        "project-operating-systems-c",
+        "project-finch-web-controller",
+        "project-space-shmup",
+        "project-apple-picker",
+        "project-mission-demolition",
+        "project-sleep-efficiency-analysis",
+        "project-marquette-basketball-predictor"
+      ],
+      "notes": "Webpage Portfolio is a screen in the SPA (PortfolioApp SCREENS includes portfolio). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer this section link for broad project-inventory questions instead of dumping every project repository link."
+    },
+    {
       "id": "link-github-portfolio",
       "label": "marks-portfolio repository",
       "href": "https://github.com/markyoingco/marks-portfolio",

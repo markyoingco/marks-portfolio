@@ -123,9 +123,9 @@
       "category": "privacy-boundaries",
       "action": "validate-and-block",
       "publicBehavior": "Only use destinations from the trusted link registry. Do not invent URLs.",
-      "modelInstruction": "Return trusted link IDs only. Never invent arbitrary URLs.",
+      "modelInstruction": "Describe approved public destinations by human-readable label only. Never invent arbitrary URLs or print internal trusted-link registry identifiers. The server attaches clickable links separately.",
       "logPolicy": "log-security-event",
-      "notes": "Backend must map link IDs to hrefs and drop unknown IDs."
+      "notes": "Backend resolves trusted destinations into the safe public links array. Visitor-facing text must never contain link-* identifiers."
     }
   ]
 }

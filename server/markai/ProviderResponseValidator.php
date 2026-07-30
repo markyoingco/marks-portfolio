@@ -34,6 +34,7 @@ final class ProviderResponseValidator
         'prompt_injection',
         'system_prompt_leak',
         'reasoning_leak',
+        'internal_link_identifier',
         'malformed_answer',
         'unsafe_technology_claim',
         'unknown_validation_failure',
@@ -79,6 +80,7 @@ final class ProviderResponseValidator
         'prompt_injection_signal' => 'prompt_injection',
         'system_prompt_leak_signal' => 'system_prompt_leak',
         'reasoning_disclosure' => 'reasoning_leak',
+        'internal_link_identifier' => 'internal_link_identifier',
         'internal_leakage' => 'system_prompt_leak',
         'credential_leakage' => 'private_information',
         'private_contact_leakage' => 'private_information',
@@ -253,6 +255,10 @@ final class ProviderResponseValidator
 
         if ($this->containsReasoningDisclosure($trimmed)) {
             return $this->reject('reasoning_disclosure');
+        }
+
+        if ($this->containsInternalLinkIdentifier($trimmed)) {
+            return $this->reject('internal_link_identifier');
         }
 
         if ($this->containsInternalLeakage($trimmed)) {
@@ -567,6 +573,23 @@ final class ProviderResponseValidator
         return (bool) preg_match('/\bsystem message\b|\bhidden instructions?\b/i', $answer);
     }
 
+    /**
+     * Reject visitor-facing text that leaks internal trusted-link identifiers.
+     * LinkedIn as a normal word must not disable the check.
+     */
+    private function containsInternalLinkIdentifier(string $answer): bool
+    {
+        $probe = preg_replace('/\blinkedIn\b/iu', '', $answer) ?? $answer;
+        if (preg_match('/\blink-[a-z0-9\-]+\b/i', $probe) === 1) {
+            return true;
+        }
+        if (preg_match('/`\s*link-[a-z0-9\-]+\s*`/i', $answer) === 1) {
+            return true;
+        }
+
+        return false;
+    }
+
     private function containsInternalLeakage(string $answer): bool
     {
         $patterns = [
@@ -574,7 +597,6 @@ final class ProviderResponseValidator
             '/\bcontrib-[a-z0-9\-]+\b/i',
             '/\bcontribution-[a-z0-9\-]+\b/i',
             '/\bskill-[a-z0-9\-]+\b/i',
-            '/\blink-[a-z0-9\-]+\b/i',
             '/\bprivacy-[a-z0-9\-]+\b/i',
             '/\bvoice-[a-z0-9\-]+\b/i',
             '/\bserverPolicyIds\b/i',
@@ -592,10 +614,6 @@ final class ProviderResponseValidator
 
         foreach ($patterns as $pattern) {
             if (preg_match($pattern, $answer)) {
-                // Allow natural phrases that are not IDs when talking about portfolio Contact page etc.
-                if ($pattern === '/\blink-[a-z0-9\-]+\b/i' && preg_match('/\blinkedIn\b/i', $answer)) {
-                    continue;
-                }
                 return true;
             }
         }

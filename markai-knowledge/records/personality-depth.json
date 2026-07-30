@@ -1,0 +1,464 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "personality-discipline-and-control",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Discipline, consistency, and controlled strength",
+      "publicText": "Mark believes consistency is more dependable than temporary intensity. He values doing the work even when motivation is absent and wants actions to prove intentions rather than relying only on words. He sees discomfort as a necessary part of growth and believes progress comes from repeated controlled effort. He wants to become better at controlling his actions, emotions, and responses. He is drawn to strength with direction and believes strength without discipline can become wasted potential. He values control, patience, structure, and deliberate action, and prefers confidence that is earned and controlled rather than loud or arrogant. He focuses on what he can control, values accountability for his work and responses, and wants confidence to come from preparation and demonstrated work.",
+      "shortText": "Consistency over temporary intensity; controlled effort, earned confidence, accountability, and strength with direction.",
+      "aliases": [
+        "discipline",
+        "consistency",
+        "controlled strength",
+        "personal responsibility"
+      ],
+      "keywords": [
+        "discipline",
+        "consistency",
+        "controlled strength",
+        "responsibility",
+        "accountability",
+        "control",
+        "patience",
+        "structure"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A personality themes",
+          "claimScope": "Supports public-safe discipline, consistency, controlled strength, and personal-responsibility themes only. Excludes journal text, medical history, mental-health detail, addiction, relationships, and copied public-figure quotations.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-depth.json",
+        "markai-knowledge/records/interests-navigation-contact.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-discipline-growth-controlled-strength",
+        "personality-growth-and-values"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what does discipline mean to Mark",
+        "what does consistency mean",
+        "what does controlled strength mean",
+        "personal responsibility",
+        "personality questions"
+      ],
+      "prohibitedUses": [
+        "medical history",
+        "mental-health details",
+        "addiction details",
+        "relationship history",
+        "copied influencer quotations",
+        "corny motivational speeches",
+        "imitate David Goggins or Kevin Levrone",
+        "journal disclosure"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only depth. Do not copy into Webpage About, Terminal, or resume. Tone must stay professional, mature, direct, and controlled."
+    },
+    {
+      "id": "personality-growth-and-values",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Growth, values, and public personality framing",
+      "publicText": "Mark sees setbacks as lessons that can improve future decisions. He wants to become steadily better through consistent work, does not view himself as finished, and expects his goals to evolve. He values rebuilding, learning, and continuing after difficult periods, and wants to avoid becoming so comfortable that he stops progressing. Approved public values include discipline, consistency, responsibility, ownership, ambition, resilience, patience, humility, learning, family support, financial independence, usefulness, creativity, personal growth, controlled confidence, and direct communication. Safe public personality framing includes ambitious, reflective, disciplined, growth-oriented, creative, detail-focused, willing to rebuild, comfortable spending time alone, motivated by meaningful progress, direct and practical, confident when prepared, interested in multiple perspectives, and serious about improving technically and personally. These are public-facing themes, not medical or psychological assessments.",
+      "shortText": "Growth through consistent work; public values of discipline, ownership, resilience, family support, and controlled confidence.",
+      "aliases": [
+        "growth",
+        "values",
+        "personality",
+        "what kind of person",
+        "setbacks"
+      ],
+      "keywords": [
+        "growth",
+        "values",
+        "personality",
+        "setbacks",
+        "resilience",
+        "humility",
+        "learning",
+        "ambition"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A growth and values themes",
+          "claimScope": "Supports sanitized growth, values, and personality framing only. Excludes private journal content and psychological diagnoses.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-depth.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-discipline-and-control",
+        "interest-discipline-growth-controlled-strength"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "describe Mark’s personality",
+        "what kind of person is Mark",
+        "what motivates Mark",
+        "what are Mark’s values",
+        "how does Mark handle setbacks",
+        "what type of person is Mark trying to become"
+      ],
+      "prohibitedUses": [
+        "psychological diagnosis",
+        "medical assessment",
+        "self-hatred language",
+        "journal disclosure",
+        "relationship history",
+        "corny motivational speeches"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only. Keep answers concise and professional. Do not dump every value into one response unless asked."
+    },
+    {
+      "id": "personality-bodybuilding-depth",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Bodybuilding meaning and training lessons",
+      "publicText": "Bodybuilding is Mark’s strongest personal passion outside technology. He views bodybuilding as an art built through symmetry, structure, patience, detail, and repetition. Training has taught him discipline, consistency, patience, self-awareness, and what his body and mindset can handle in a public-safe sense. His current fitness focus is aesthetics, controlled movement, quality repetitions, and deliberate progress rather than only maximum strength. He believes lessons from training can apply to projects, routines, and professional development, and fitness is part of the identity and environment he is working to build. Do not include physical measurements, medical history, drugs, supplements, or private body-image statements.",
+      "shortText": "Bodybuilding as disciplined craft: symmetry, structure, patience, quality repetitions, and lessons that transfer to professional work.",
+      "aliases": [
+        "bodybuilding meaning",
+        "gym taught",
+        "training lessons",
+        "passion outside technology"
+      ],
+      "keywords": [
+        "bodybuilding",
+        "gym",
+        "training",
+        "aesthetics",
+        "quality repetitions",
+        "discipline",
+        "passion"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A bodybuilding themes",
+          "claimScope": "Supports public-safe bodybuilding meaning only. Excludes measurements, medical history, drugs, supplements, and private body-image statements.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-depth.json",
+        "markai-knowledge/records/interests-navigation-contact.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-fitness-bodybuilding",
+        "personality-discipline-and-control"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what does bodybuilding mean to Mark",
+        "what has the gym taught Mark",
+        "what is Mark passionate about",
+        "fitness meaning"
+      ],
+      "prohibitedUses": [
+        "physical measurements",
+        "medical history",
+        "drugs or supplements",
+        "private body-image statements",
+        "professional coaching claims",
+        "health diagnosis"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only depth layered on interest-fitness-bodybuilding. Keep tone professional and avoid influencer imitation."
+    },
+    {
+      "id": "personality-mythology-figures",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Greek mythology figure connections",
+      "publicText": "Mark is interested in Achilles, Icarus, Heracles, Greek statues, and classical art. He is drawn to stories involving ambition, discipline, strength, sacrifice, consequence, resilience, limitation, and transformation. Mark does not need one permanent favorite figure; different figures may represent different parts of his current mindset and future growth. A safe concise framing is that Mark connects with different figures for different reasons: Icarus for ambition, Achilles for intensity, and Heracles for discipline and endurance. Icarus connects to ambition, dreaming, risk, and the consequences of losing control. Achilles connects to intensity, strength, pride, drive, and human vulnerability. Heracles connects to endurance, discipline, repeated trials, and becoming stronger through difficult work. Mythology is a creative and symbolic interest, not Mark’s religion.",
+      "shortText": "Icarus for ambition, Achilles for intensity, and Heracles for discipline and endurance; no permanent single favorite.",
+      "aliases": [
+        "Icarus",
+        "Achilles",
+        "Heracles",
+        "Hercules",
+        "mythology figures"
+      ],
+      "keywords": [
+        "icarus",
+        "achilles",
+        "heracles",
+        "hercules",
+        "greek mythology",
+        "ambition",
+        "intensity",
+        "endurance"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A mythology figure framing",
+          "claimScope": "Supports figure-specific symbolic connections without declaring one permanent favorite or presenting mythology as religion.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-depth.json",
+        "markai-knowledge/records/interests-navigation-contact.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-greek-mythology-art"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "why does Mark like Greek mythology",
+        "which mythology figures connect with Mark",
+        "what does Icarus mean to Mark",
+        "what does Achilles mean to Mark",
+        "what does Heracles mean to Mark"
+      ],
+      "prohibitedUses": [
+        "declare permanent favorite without Mark choosing one",
+        "present mythology as religion",
+        "psychological diagnosis",
+        "literal claim that Mark is a mythological figure",
+        "private struggle narratives"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only depth. Distinguish figures without forcing one identity."
+    },
+    {
+      "id": "personality-career-purpose",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Career purpose, success, and family support",
+      "publicText": "Mark’s immediate goal is to secure a stable role in technology. He is open to software development, full-stack work, developer tools, data-oriented systems, technical support, and other suitable entry-level technology roles. He wants a role that creates stability and provides a path for continued growth. He wants to become financially independent and support his family. He wants his career to prove to himself that he can create something meaningful. He is open to Milwaukee, Chicago, remote work, and other locations when the opportunity and compensation make relocation practical. Long-term success means stability, confidence, meaningful work, independence, continued ambition, and excitement about what comes next. He wants work that makes him proud because he built something useful and followed through. Money is not his only motivation.",
+      "shortText": "Stable technology role with growth, independence, meaningful work, and family support; open to Milwaukee, Chicago, remote, or practical relocation.",
+      "aliases": [
+        "career goals",
+        "success",
+        "family support",
+        "why technology career",
+        "purpose"
+      ],
+      "keywords": [
+        "career",
+        "goals",
+        "success",
+        "family",
+        "independence",
+        "stability",
+        "meaningful work",
+        "milwaukee",
+        "chicago",
+        "remote"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A career-purpose themes",
+          "claimScope": "Supports public-safe career purpose, success framing, and family-support goals. Excludes financial desperation and private hardship detail.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-depth.json",
+        "markai-knowledge/records/profile-education-career.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "career-direction-first-full-time-tech-role",
+        "personality-growth-and-values"
+      ],
+      "linkIds": [
+        "link-resume-pdf",
+        "link-contact-section"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what are Mark’s goals",
+        "what does success mean to Mark",
+        "why does Mark want a technology career",
+        "what does family mean to his goals",
+        "career motivation"
+      ],
+      "prohibitedUses": [
+        "financial desperation",
+        "private family conflict",
+        "money as only motivation",
+        "unsupported salary claims",
+        "precise private location"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only depth layered on career-direction-first-full-time-tech-role. Keep family support high-level and public-safe."
+    },
+    {
+      "id": "personality-aesthetic-environment",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Favorite color, visual style, and preferred environment",
+      "publicText": "Mark’s favorite color is black. He prefers black, white, gray, dark, low-exposure, high-contrast, cinematic design. He likes clean, organized, minimal environments. His preferred visual atmosphere combines classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional-in-a-cinematic-city atmosphere. He dislikes corny, overly decorative, loud, or empty motivational presentation.",
+      "shortText": "Favorite color black; minimal high-contrast cinematic style and a clean, organized technical-professional environment.",
+      "aliases": [
+        "favorite color",
+        "visual style",
+        "why black",
+        "environment Mark wants"
+      ],
+      "keywords": [
+        "black",
+        "favorite color",
+        "visual style",
+        "cinematic",
+        "minimal",
+        "environment",
+        "high-contrast"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A aesthetic and environment themes",
+          "claimScope": "Supports favorite color, visual style, and preferred environment themes already consistent with public portfolio aesthetics.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-depth.json",
+        "markai-knowledge/records/interests-navigation-contact.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-creative-aesthetics-design"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "what is Mark’s favorite color",
+        "what visual style does Mark prefer",
+        "why does Mark like black",
+        "what kind of environment does Mark want to build"
+      ],
+      "prohibitedUses": [
+        "corny motivational presentation",
+        "private address",
+        "exact location claims"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only depth. Aligns with public portfolio aesthetic without requiring Webpage changes."
+    },
+    {
+      "id": "personality-photography-travel-hobbies",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Photography, travel meaning, and hobbies",
+      "publicText": "Mark uses photography to preserve feelings, places, views, memories, and important moments. He likes photographing cities, architecture, streets, water, mountains, museums, landscapes, friends, and travel experiences. He prefers cinematic, personal, real, dark, low-exposure, and story-driven images. Cities represent ambition and the feeling of having made progress. Oceans and islands represent peace. Mountains and hikes represent effort that earns the view. Travel helps him see different cultures, lifestyles, opportunities, and perspectives, and motivates him to work toward a life with greater independence and freedom. Approved public hobbies include bodybuilding, gym training, hiking, reading, music, travel, photography, running, Greek mythology, classical statues and art, museums, and exploring cities and landscapes.",
+      "shortText": "Photography and travel as story, ambition, peace, and earned views; hobbies include fitness, hiking, reading, music, museums, and classical art.",
+      "aliases": [
+        "photography meaning",
+        "travel meaning",
+        "hobbies",
+        "what Mark likes"
+      ],
+      "keywords": [
+        "photography",
+        "travel",
+        "hobbies",
+        "cities",
+        "mountains",
+        "oceans",
+        "museums",
+        "hiking"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A photography, travel, and hobbies themes",
+          "claimScope": "Supports public-safe photography meaning, travel symbolism, and hobby list. Excludes precise private location and private travel schedules.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/personality-depth.json",
+        "markai-knowledge/records/interests-navigation-contact.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-travel-photography",
+        "interest-music-reading-hiking"
+      ],
+      "linkIds": [
+        "link-vsco"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "why does Mark like photography",
+        "what does travel mean to Mark",
+        "what are Mark’s hobbies",
+        "public interests"
+      ],
+      "prohibitedUses": [
+        "precise private location",
+        "private travel schedules",
+        "infer current residence from photos"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only depth. VSCO may be offered only when photography is relevant."
+    }
+  ]
+}

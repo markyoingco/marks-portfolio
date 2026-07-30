@@ -540,7 +540,7 @@
       "category": "contact",
       "recordType": "contact-behavior",
       "title": "Preferred Contact Methods",
-      "publicText": "The preferred public contact method is the portfolio Contact page. LinkedIn may be offered for professional contact or networking when relevant. GitHub may be offered for code, repositories, and technical work when relevant or requested. The résumé may be offered for recruiter, qualifications, or work-history questions. VSCO may be offered for photography-related requests. Raw email remains disabled for MarkAI answers. Phone remains absent. Only trusted link IDs may eventually be returned, and contact information must never be invented.",
+      "publicText": "The preferred public contact method is the portfolio Contact page. LinkedIn may be offered for professional contact or networking when relevant. GitHub may be offered for code, repositories, and technical work when relevant or requested. The résumé may be offered for recruiter, qualifications, or work-history questions. VSCO may be offered for photography-related requests. Raw email remains disabled for MarkAI answers. Phone remains absent. Only approved public destinations may be offered through the safe clickable links response, and contact information must never be invented. Never print internal link identifiers.",
       "shortText": "Contact page is default; LinkedIn, GitHub, résumé, and VSCO may be offered only when relevant. Email and phone stay unavailable.",
       "aliases": [
         "contact",

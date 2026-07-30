@@ -2,6 +2,102 @@
   "schemaVersion": "1.0.0",
   "records": [
     {
+      "id": "projects-public-inventory",
+      "category": "projects",
+      "recordType": "projects-inventory",
+      "title": "Public project inventory",
+      "publicText": "Mark’s approved public software projects, grouped for inventory answers: Portfolio & AI — Personal Portfolio Platform and MarkAI (solo personal work). Capstones — Abacus and TA-Bot / MAAT (team senior-design / senior-capstone projects). Systems — Operating Systems C Projects (coursework documentation; private or shared course repositories stay hidden). Robotics & Software Design — Finch Robot Web Controller (team coursework). Games — Space SHMUP, Apple Picker, and Mission Demolition. Data — Sleep Efficiency Analysis and Marquette Basketball Predictor (team or coursework data projects). Prefer this grouped inventory for broad every-project or project-list questions. Do not claim every project was solo. Do not invent projects. Do not expose private or shared XINU repository names or URLs.",
+      "shortText": "Approved public projects: Portfolio Platform; MarkAI; Abacus; TA-Bot/MAAT; OS C Projects; Finch; Space SHMUP; Apple Picker; Mission Demolition; Sleep Efficiency Analysis; Marquette Basketball Predictor.",
+      "aliases": [
+        "project list",
+        "all projects",
+        "every project",
+        "project inventory",
+        "software projects",
+        "what Mark built"
+      ],
+      "keywords": [
+        "project list",
+        "all projects",
+        "every project",
+        "software projects",
+        "project portfolio",
+        "technical work",
+        "what has Mark built",
+        "what projects",
+        "personal projects",
+        "college projects"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage portfolio project inventory",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports the approved public project names shown on the portfolio Webpage. Does not invent projects beyond published cards."
+        },
+        {
+          "kind": "derived-summary",
+          "label": "Grouped inventory of approved project records",
+          "sourcePath": "markai-knowledge/records/projects.json",
+          "claimScope": "Summarizes titles and ownership boundaries already present in approved project records."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/portfolioPlatformData.js",
+        "src/terminalPortfolioData.js",
+        "markai-knowledge/records/projects.json",
+        "markai-knowledge/records/additional-projects.json"
+      ],
+      "projectIds": [
+        "project-portfolio-platform",
+        "project-markai",
+        "project-abacus",
+        "project-maat",
+        "project-operating-systems-c",
+        "project-finch-web-controller",
+        "project-space-shmup",
+        "project-apple-picker",
+        "project-mission-demolition",
+        "project-sleep-efficiency-analysis",
+        "project-marquette-basketball-predictor"
+      ],
+      "relatedRecordIds": [],
+      "linkIds": [
+        "link-portfolio-section"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "list every project Mark has done",
+        "list all Mark’s projects",
+        "what projects has Mark built",
+        "what has Mark worked on",
+        "show me his software projects",
+        "give me his project portfolio",
+        "summarize Mark’s technical work",
+        "project list",
+        "all projects",
+        "every project",
+        "what did he build in college",
+        "what personal projects has he completed"
+      ],
+      "prohibitedUses": [
+        "claim all projects were solo",
+        "invent missing projects",
+        "expose private or shared XINU repository names or URLs",
+        "dump every project deep dive into one answer",
+        "print internal link or record IDs"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "Canonical inventory for broad project-list questions. Keep relatedRecordIds empty so PromptBuilder does not cascade every deep-dive and contribution record. Ownership boundaries stay in the publicText and individual project records."
+    },
+    {
       "id": "project-portfolio-platform",
       "category": "projects",
       "recordType": "project",

@@ -1,5 +1,5 @@
 /**
- * Deterministic MarkAI preview suggested questions.
+ * Deterministic MarkAI suggested questions.
  * Session persistence is deferred; these reset with New Chat / remount.
  */
 

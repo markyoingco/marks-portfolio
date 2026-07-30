@@ -96,7 +96,9 @@ $assert(!preg_match('/\[[^\]]*voice-[a-z0-9\-]+\]/', $system), 'model-facing mes
 $assert(!preg_match('/\bserverPolicyIds\b|\bselectedRecordIds\b|\brelatedRecordIds\b/', $system), 'model-facing messages omit internal selection field names');
 $assert(!preg_match('/\b((?:project|contrib|contribution|privacy|voice)-[a-z0-9\-]+|skill-(?!level\b)[a-z0-9\-]+)\b/i', $system), 'model-facing messages contain no record/policy IDs');
 $assert(!preg_match('/https?:\/\//i', $system), 'model-facing messages contain no raw href values');
-$assert(str_contains($system, 'Allowed trusted-link identifiers for this request:'), 'trusted-link identifiers remain server-controlled');
+$assert(!preg_match('/\blink-[a-z0-9\-]+\b/i', preg_replace('/\blinkedIn\b/iu', '', $system) ?? $system), 'model-facing messages contain no internal link-* identifiers');
+$assert(str_contains($system, 'Approved public destinations for this request'), 'trusted destinations remain server-controlled without exposing IDs');
+$assert(str_contains($system, 'Never print internal trusted-link registry identifiers'), 'model instructed not to print internal link identifiers');
 $assert(($builtTechnical['selectedRecordCount'] ?? 0) >= 1, 'record selection remains intact');
 $assert(($builtTechnical['historyMessageCount'] ?? 0) === 0, 'history limits remain intact for empty history');
 $promptCharsBeforeContractBaseline = 23567; // last measured Abacus technical prompt before Phase 2D.4H contract
@@ -1438,6 +1440,519 @@ $assert($networkCalls === $iCalls + 1, '2D.4I exactly one request remains');
 $decodedI = json_decode((string) $iCaptured, true, 512, JSON_THROW_ON_ERROR);
 $assert(($decodedI['max_tokens'] ?? null) === 900, '2D.4I max_tokens remains 900');
 $assert($iResult->isSuccess() === true, '2D.4I approved answer still normalizes');
+
+// --- Trusted-link public output fixtures ---
+$linkNetworkBefore = $networkCalls;
+$linksResponse = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'give me all existing links'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('links path must not transport');
+    }
+);
+$assert($networkCalls === $linkNetworkBefore, 'all-links request makes zero provider calls');
+$assert(($linksResponse['success'] ?? false) === true, 'all-links success');
+$assert(($linksResponse['answerStatus'] ?? '') === 'answered', 'all-links answered');
+$answerText = (string) ($linksResponse['answer'] ?? '');
+$assert($answerText !== '', 'all-links answer non-empty');
+$assert(!preg_match('/\blink-[a-z0-9\-]+\b/i', preg_replace('/\blinkedIn\b/iu', '', $answerText) ?? $answerText), 'all-links answer has no link-* identifiers');
+$assert(!str_contains($answerText, '`link-'), 'all-links answer has no backticked link IDs');
+$assert(
+    str_contains($answerText, 'homepage')
+    || str_contains($answerText, 'GitHub')
+    || str_contains($answerText, 'LinkedIn'),
+    'all-links answer uses readable public labels'
+);
+$publicLinks = is_array($linksResponse['links'] ?? null) ? $linksResponse['links'] : [];
+$assert(count($publicLinks) >= 4, 'all-links returns multiple safe links');
+$returnedIds = [];
+foreach ($publicLinks as $link) {
+    $assert(is_array($link), 'link entry is array');
+    $assert(isset($link['label'], $link['href'], $link['id']), 'link shape unchanged');
+    $assert(is_string($link['label']) && $link['label'] !== '', 'link label readable');
+    $assert(!str_starts_with((string) $link['label'], 'link-'), 'link label is not an internal id');
+    $returnedIds[] = (string) $link['id'];
+    $href = (string) $link['href'];
+    $assert($href !== '' && !str_contains(strtolower($href), 'mailto:'), 'no mailto in returned links');
+    $assert(!preg_match('/\b\d{3}[-.\s]?\d{3}[-.\s]?\d{4}\b/', $href . ' ' . $answerText), 'phone remains hidden');
+}
+$assert(!in_array('link-email', $returnedIds, true), 'disabled email remains hidden');
+$assert(!in_array('link-markai-route', $returnedIds, true), 'markai route placeholder not dumped in all-links response');
+foreach ($returnedIds as $id) {
+    $assert($id !== 'link-email', 'email id never returned');
+}
+$assert(!preg_match('/XINU26|ayazdani1/i', $answerText . json_encode($publicLinks)), 'private/shared repositories remain hidden');
+
+foreach (
+    [
+        'give me all existing links',
+        'show me Mark’s links',
+        'where can I find Mark online?',
+        'give me his GitHub and LinkedIn',
+    ] as $linkPhrase
+) {
+    $c = markai_mock_classify($linkPhrase);
+    $assert(($c['category'] ?? '') === 'links', 'classifies as links: ' . $linkPhrase);
+    $assert(!preg_match('/\blink-[a-z0-9\-]+\b/i', preg_replace('/\blinkedIn\b/iu', '', (string) ($c['answer'] ?? '')) ?? ''), 'deterministic links answer has no link-* for: ' . $linkPhrase);
+}
+
+$contactClassified = markai_mock_classify('how can I contact Mark?');
+$assert(($contactClassified['category'] ?? '') === 'contact', 'how can I contact Mark? classifies as contact');
+$contactNetworkBefore = $networkCalls;
+$contactResponse = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'how can I contact Mark?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('contact path must not transport');
+    }
+);
+$assert($networkCalls === $contactNetworkBefore, 'contact request makes zero provider calls');
+$contactAnswer = (string) ($contactResponse['answer'] ?? '');
+$assert(!preg_match('/\blink-[a-z0-9\-]+\b/i', preg_replace('/\blinkedIn\b/iu', '', $contactAnswer) ?? $contactAnswer), 'contact answer has no link-* identifiers');
+$assert(!preg_match('/@gmail\.com|mailto:/i', $contactAnswer), 'contact answer hides email');
+$assert(!preg_match('/\b\d{3}[-.\s]?\d{3}[-.\s]?\d{4}\b/', $contactAnswer), 'contact answer hides phone');
+$contactLinkIds = [];
+foreach (is_array($contactResponse['links'] ?? null) ? $contactResponse['links'] : [] as $link) {
+    $contactLinkIds[] = (string) ($link['id'] ?? '');
+    $assert(!str_contains(strtolower((string) ($link['href'] ?? '')), 'mailto:'), 'contact links have no mailto');
+}
+$assert(in_array('link-contact-section', $contactLinkIds, true), 'contact returns Contact section link');
+$assert(!in_array('link-email', $contactLinkIds, true), 'contact hides disabled email');
+
+$linksBuilt = buildMarkAiRequest(
+    $export,
+    'give me all existing links',
+    [],
+    markai_mock_select_record_ids($export, 'links'),
+    'general'
+);
+$linksSystem = (string) ($linksBuilt['messages'][0]['content'] ?? '');
+$assert(str_contains($linksSystem, 'Approved public destinations for this request'), 'links prompt lists destinations without IDs');
+$assert(!preg_match('/\blink-[a-z0-9\-]+\b/i', preg_replace('/\blinkedIn\b/iu', '', $linksSystem) ?? $linksSystem), 'links prompt omits link-* identifiers');
+$assert(!str_contains($linksSystem, 'Allowed trusted-link identifiers'), 'links prompt no longer lists raw trusted-link identifiers');
+$assert(str_contains($linksSystem, 'Portfolio home') || str_contains($linksSystem, 'GitHub') || str_contains($linksSystem, 'LinkedIn'), 'links prompt uses human-readable labels');
+$assert(!preg_match('/Return trusted link IDs/i', $linksSystem), 'model is not instructed to return link IDs');
+
+$linkIdReject = $validator->validateDetailed(
+    'You can use `link-contact-section` and link-portfolio-home for Mark.',
+    ['finish_reason' => 'stop']
+);
+$assert(($linkIdReject['accepted'] ?? true) === false, 'validator rejects internal link identifiers');
+$assert(($linkIdReject['reason'] ?? '') === 'internal_link_identifier', 'validator reason internal_link_identifier');
+
+$linkedInSafe = $validator->validateDetailed(
+    'Mark’s LinkedIn profile is available through the approved public links.',
+    ['finish_reason' => 'stop']
+);
+$assert(($linkedInSafe['accepted'] ?? false) === true, 'natural LinkedIn wording remains accepted');
+
+$providerLeakFallbackNetwork = $networkCalls;
+$leakyGenerated = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'give me all existing links'],
+    [
+        'enabled' => true,
+        'accountId' => 'acct_test_local_only_not_real',
+        'apiToken' => 'token_test_local_only_not_real',
+        'model' => '@cf/openai/gpt-oss-120b',
+        'provider' => 'cloudflare-workers-ai',
+    ],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        return [
+            'status' => 200,
+            'body' => json_encode([
+                'success' => true,
+                'result' => [
+                    'choices' => [
+                        [
+                            'message' => [
+                                'role' => 'assistant',
+                                'content' => 'Use link-contact-section and `link-portfolio-home` for Mark.',
+                            ],
+                            'finish_reason' => 'stop',
+                        ],
+                    ],
+                ],
+            ], JSON_THROW_ON_ERROR),
+            'headers' => ['Content-Type' => 'application/json'],
+        ];
+    }
+);
+$assert($networkCalls === $providerLeakFallbackNetwork + 1, 'leaky generated answer still uses fixture transport once');
+$assert(!preg_match('/\blink-[a-z0-9\-]+\b/i', preg_replace('/\blinkedIn\b/iu', '', (string) ($leakyGenerated['answer'] ?? '')) ?? ''), 'rejected leak replaced without link-* in answer');
+$assert(str_contains((string) ($leakyGenerated['answer'] ?? ''), 'homepage') || str_contains((string) ($leakyGenerated['answer'] ?? ''), 'GitHub'), 'fallback answer remains readable');
+foreach (['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'] as $key) {
+    $assert(array_key_exists($key, $leakyGenerated), 'links leak fallback retains ' . $key);
+}
+$assert(count(array_keys($leakyGenerated)) === 8, 'links leak fallback public API shape unchanged');
+
+// --- Testimonials knowledge alignment fixtures ---
+$testimonialNetworkBefore = $networkCalls;
+$testimonialsResponse = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'testimonials?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('testimonials disabled path must not transport');
+    }
+);
+$assert($networkCalls === $testimonialNetworkBefore, 'testimonials? makes zero provider calls');
+$assert(($testimonialsResponse['success'] ?? false) === true, 'testimonials success');
+$assert(($testimonialsResponse['answerStatus'] ?? '') === 'answered', 'testimonials answered');
+$testimonialAnswer = (string) ($testimonialsResponse['answer'] ?? '');
+$assert($testimonialAnswer !== '', 'testimonials answer non-empty');
+$assert(!str_contains(strtolower($testimonialAnswer), 'not enough approved information'), 'testimonials not unavailable');
+$assert(str_contains($testimonialAnswer, 'Zack Kohlwey'), 'includes Zack Kohlwey');
+$assert(str_contains($testimonialAnswer, 'Farzeen Harunani'), 'includes Farzeen Harunani');
+$assert(str_contains($testimonialAnswer, 'Jorge Torres'), 'includes Jorge Torres');
+$assert(!str_contains($testimonialAnswer, 'Nathan Garcia'), 'default summary stays at three representatives');
+$assert(!preg_match('/@gmail\.com|mailto:|markyoingco23/i', $testimonialAnswer), 'no email in testimonials answer');
+$assert(!preg_match('/\b\d{3}[-.\s]?\d{3}[-.\s]?\d{4}\b/', $testimonialAnswer), 'no phone in testimonials answer');
+$assert(!preg_match('/instagram\.com|facebook\.com| privately|phone number/i', $testimonialAnswer), 'no private social dump');
+$assert(!str_contains($testimonialAnswer, 'Invented Speaker'), 'no invented testimonial speaker');
+
+$selectedTestimonialIds = markai_mock_select_record_ids($export, 'testimonials');
+$assert(in_array('testimonials-public-overview', $selectedTestimonialIds, true), 'selects testimonials overview');
+$assert(in_array('testimonial-zack-kohlwey', $selectedTestimonialIds, true), 'selects Zack record');
+$assert(in_array('testimonial-farzeen-harunani', $selectedTestimonialIds, true), 'selects Farzeen record');
+$assert(in_array('testimonial-jorge-torres', $selectedTestimonialIds, true), 'selects Jorge record');
+$assert(count($selectedTestimonialIds) === 4, 'selects overview + 3 representative testimonials');
+
+$classifiedTestimonials = markai_mock_classify('testimonials?');
+$assert(($classifiedTestimonials['category'] ?? '') === 'testimonials', 'testimonials? classifies as testimonials');
+$assert(($classifiedTestimonials['answerStatus'] ?? '') === 'answered', 'testimonials? classifier answered');
+
+foreach (
+    [
+        'testimonial',
+        'reviews',
+        'recommendations',
+        'what people say',
+        'does Mark have testimonials?',
+        'show me Mark’s testimonials',
+        'what do teammates or coworkers say about him?',
+        'what do others say about Mark’s work ethic?',
+        'who has recommended Mark?',
+    ] as $phrase
+) {
+    $c = markai_mock_classify($phrase);
+    $assert(($c['category'] ?? '') === 'testimonials', 'classifies as testimonials: ' . $phrase);
+}
+
+$testimonialLinks = is_array($testimonialsResponse['links'] ?? null) ? $testimonialsResponse['links'] : [];
+$assert(count($testimonialLinks) >= 1, 'testimonials returns safe links');
+$testimonialLinkIds = [];
+foreach ($testimonialLinks as $link) {
+    $assert(is_array($link), 'testimonial link entry is array');
+    $assert(isset($link['label'], $link['href'], $link['id']), 'testimonial link shape unchanged');
+    $testimonialLinkIds[] = (string) $link['id'];
+    $assert(!str_contains(strtolower((string) $link['href']), 'mailto:'), 'no mailto in testimonial links');
+}
+$assert(in_array('link-testimonials-section', $testimonialLinkIds, true), 'Testimonials section link returned');
+$assert(!in_array('link-email', $testimonialLinkIds, true), 'email not returned for testimonials');
+$speakerLinkedIns = array_filter(
+    $testimonialLinkIds,
+    static fn (string $id): bool => str_starts_with($id, 'link-linkedin-') && $id !== 'link-linkedin'
+);
+$assert($speakerLinkedIns === [], 'general testimonials? does not dump speaker LinkedIn links');
+
+foreach (['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'] as $key) {
+    $assert(array_key_exists($key, $testimonialsResponse), 'testimonials response retains ' . $key);
+}
+$assert(count(array_keys($testimonialsResponse)) === 8, 'testimonials public API shape unchanged');
+
+$testimonialBuilt = buildMarkAiRequest(
+    $export,
+    'testimonials?',
+    [],
+    $selectedTestimonialIds,
+    'recruiter'
+);
+$testimonialSystem = (string) ($testimonialBuilt['messages'][0]['content'] ?? '');
+$assert(str_contains($testimonialSystem, 'Zack Kohlwey') || str_contains($testimonialSystem, 'testimonials'), 'prompt includes testimonial context');
+$assert(!preg_match('/@gmail\.com|mailto:/i', $testimonialSystem), 'prompt omits email');
+$assert(!preg_match('/\blink-[a-z0-9\-]+\b/i', preg_replace('/\blinkedIn\b/iu', '', $testimonialSystem) ?? $testimonialSystem), 'prompt omits link-* ids');
+
+// --- Project inventory fixtures ---
+$inventoryNetworkBefore = $networkCalls;
+$inventoryResponse = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'list out every project Mark has done'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('project inventory disabled path must not transport');
+    }
+);
+$assert($networkCalls === $inventoryNetworkBefore, 'project inventory makes zero provider calls');
+$assert(($inventoryResponse['success'] ?? false) === true, 'project inventory success');
+$assert(($inventoryResponse['answerStatus'] ?? '') === 'answered', 'project inventory answered');
+$inventoryAnswer = (string) ($inventoryResponse['answer'] ?? '');
+$assert($inventoryAnswer !== '', 'project inventory answer non-empty');
+$assert(!str_contains(strtolower($inventoryAnswer), 'limited set of demonstration'), 'no limited-demonstration fallback');
+$assert(!str_contains(strtolower($inventoryAnswer), 'markai preview'), 'no MARKAI PREVIEW language');
+$assert(!str_contains(strtolower($inventoryAnswer), 'coming soon'), 'no coming soon language');
+$assert(!str_contains(strtolower($inventoryAnswer), 'currently in development'), 'no currently in development language');
+
+$inventoryClassified = markai_mock_classify('list out every project Mark has done');
+$assert(($inventoryClassified['category'] ?? '') === 'projectsInventory', 'list every project classifies as projectsInventory');
+$builtClassified = markai_mock_classify('what has Mark built?');
+$assert(($builtClassified['category'] ?? '') === 'projectsInventory', 'what has Mark built? classifies as projectsInventory');
+
+$abacusClassified = markai_mock_classify('What did Mark contribute to Abacus?');
+$assert(($abacusClassified['category'] ?? '') === 'abacus', 'named Abacus query still classifies as abacus');
+$abacusSelected = markai_mock_select_record_ids($export, 'abacus');
+$assert(in_array('project-abacus', $abacusSelected, true), 'named Abacus query still selects project-abacus');
+$assert(!in_array('projects-public-inventory', $abacusSelected, true), 'named Abacus query does not select inventory overview');
+
+$inventorySelected = markai_mock_select_record_ids($export, 'projectsInventory');
+$assert(in_array('projects-public-inventory', $inventorySelected, true), 'inventory selects projects-public-inventory');
+
+$requiredProjects = [
+    'Personal Portfolio Platform',
+    'MarkAI',
+    'Abacus',
+    'TA-Bot / MAAT',
+    'Operating Systems C Projects',
+    'Finch Robot Web Controller',
+    'Space SHMUP',
+    'Apple Picker',
+    'Mission Demolition',
+    'Sleep Efficiency Analysis',
+    'Marquette Basketball Predictor',
+];
+foreach ($requiredProjects as $projectName) {
+    $assert(str_contains($inventoryAnswer, $projectName), 'inventory includes ' . $projectName);
+}
+
+$bulletCount = preg_match_all('/^\s*-\s+/m', $inventoryAnswer);
+$assert($bulletCount > 0 && $bulletCount <= 6, 'inventory uses at most six bullets');
+$inventoryWords = preg_split('/\s+/u', trim($inventoryAnswer), -1, PREG_SPLIT_NO_EMPTY);
+$assert(is_array($inventoryWords) && count($inventoryWords) <= 140, 'inventory under 140 words');
+$assert(strlen($inventoryAnswer) <= 1100, 'inventory under 1100 characters');
+
+$assert(str_contains($inventoryAnswer, 'solo personal'), 'preserves solo portfolio/MarkAI boundary');
+$assert(str_contains($inventoryAnswer, 'team') || str_contains($inventoryAnswer, 'coursework'), 'preserves team/coursework boundary');
+$assert(!preg_match('/XINU26|ayazdani1|private repo|shared course repository URL/i', $inventoryAnswer), 'private/shared repos hidden');
+$assert(!preg_match('/\blink-[a-z0-9\-]+\b/i', preg_replace('/\blinkedIn\b/iu', '', $inventoryAnswer) ?? $inventoryAnswer), 'inventory answer has no link-* ids');
+
+$inventoryLinks = is_array($inventoryResponse['links'] ?? null) ? $inventoryResponse['links'] : [];
+$inventoryLinkIds = [];
+foreach ($inventoryLinks as $link) {
+    $assert(isset($link['label'], $link['href'], $link['id']), 'inventory link shape unchanged');
+    $inventoryLinkIds[] = (string) $link['id'];
+}
+$assert(in_array('link-portfolio-section', $inventoryLinkIds, true), 'safe Portfolio section link returned');
+$assert(!in_array('link-email', $inventoryLinkIds, true), 'inventory hides email');
+
+foreach (
+    [
+        'list all Mark’s projects',
+        'what projects has Mark built?',
+        'what has Mark worked on?',
+        'show me his software projects',
+        'give me his project portfolio',
+        'summarize Mark’s technical work',
+        'project list',
+        'all projects',
+        'every project',
+        'what did he build in college?',
+        'what personal projects has he completed?',
+    ] as $phrase
+) {
+    $c = markai_mock_classify($phrase);
+    $assert(($c['category'] ?? '') === 'projectsInventory', 'classifies as projectsInventory: ' . $phrase);
+}
+
+foreach (['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'] as $key) {
+    $assert(array_key_exists($key, $inventoryResponse), 'inventory response retains ' . $key);
+}
+$assert(count(array_keys($inventoryResponse)) === 8, 'inventory public API shape unchanged');
+
+// --- Personality depth + collaborator fixtures ---
+$coreNames = ['Mark Yoingco', 'Justin Hoffman', 'Angel Mora', 'Jacob DunRoseman'];
+$abacusTeam = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'Who was on the Abacus team?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('collaborator path must not transport');
+    }
+);
+$abacusTeamAnswer = (string) ($abacusTeam['answer'] ?? '');
+foreach ($coreNames as $name) {
+    $assert(str_contains($abacusTeamAnswer, $name), 'Abacus team includes ' . $name);
+}
+$assert(str_contains($abacusTeamAnswer, 'Sam Mazzone'), 'Abacus answer mentions Sam as support context');
+$assert(str_contains(strtolower($abacusTeamAnswer), 'core student'), 'Abacus distinguishes core student team');
+
+$maatTeam = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'Who worked on TA-Bot / MAAT?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('collaborator path must not transport');
+    }
+);
+$maatTeamAnswer = (string) ($maatTeam['answer'] ?? '');
+foreach ($coreNames as $name) {
+    $assert(str_contains($maatTeamAnswer, $name), 'MAAT team includes ' . $name);
+}
+
+$samRole = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'What was Sam Mazzone’s role?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('collaborator path must not transport');
+    }
+);
+$samAnswer = (string) ($samRole['answer'] ?? '');
+$assert(str_contains($samAnswer, 'advisor') || str_contains($samAnswer, 'Advisor'), 'Sam role includes advisor');
+$assert(str_contains(strtolower($samAnswer), 'software developer'), 'Sam role includes software developer');
+$assert(str_contains(strtolower($samAnswer), 'moral supporter'), 'Sam role includes moral supporter');
+$assert(str_contains(strtolower($samAnswer), 'not described as one of the core student'), 'Sam distinguished from core student team');
+
+$finchTeam = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'Who was on the Finch team?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('collaborator path must not transport');
+    }
+);
+$finchAnswer = (string) ($finchTeam['answer'] ?? '');
+foreach (['Mark Yoingco', 'Julianne Browne', 'Luis Serrano', 'Xavier Barth'] as $name) {
+    $assert(str_contains($finchAnswer, $name), 'Finch team includes ' . $name);
+}
+
+$dataMining = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'who worked with Mark on data mining?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('collaborator path must not transport');
+    }
+);
+$dataMiningAnswer = (string) ($dataMining['answer'] ?? '');
+$assert(str_contains($dataMiningAnswer, 'Mark Yoingco') && str_contains($dataMiningAnswer, 'Allan Akkathara'), 'data mining names');
+
+$osTeam = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'who worked with Mark in operating systems?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('collaborator path must not transport');
+    }
+);
+$osAnswer = (string) ($osTeam['answer'] ?? '');
+$assert(str_contains($osAnswer, 'Mark Yoingco') && str_contains($osAnswer, 'Armaan Yaz'), 'OS names');
+
+$sleepTeam = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'who worked with Mark on the data science project?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('collaborator path must not transport');
+    }
+);
+$sleepAnswer = (string) ($sleepTeam['answer'] ?? '');
+$assert(str_contains($sleepAnswer, 'Mark Yoingco') && str_contains($sleepAnswer, 'Hunter Carlson'), 'sleep/data-science names');
+
+$collabBlob = strtolower($abacusTeamAnswer . $maatTeamAnswer . $samAnswer . $finchAnswer . $dataMiningAnswer . $osAnswer . $sleepAnswer);
+$assert(!preg_match('/@gmail\.com|mailto:|\b\d{3}[-.\s]?\d{3}[-.\s]?\d{4}\b|linkedin\.com\/in\/|XINU26|ayazdani1/i', $collabBlob), 'collaborator answers hide contact and private repos');
+$assert(!preg_match('/\blink-[a-z0-9\-]+\b/i', preg_replace('/\blinkedIn\b/iu', '', $collabBlob) ?? $collabBlob), 'collaborator answers hide link ids');
+$assert(!str_contains($collabBlob, 'said that') && !str_contains($collabBlob, 'quoted'), 'no invented collaborator quotations');
+$assert(!str_contains(strtolower($samAnswer), 'core student teammate') || str_contains(strtolower($samAnswer), 'not described as one of the core student'), 'Sam not labeled as core teammate');
+
+$personalityQueries = [
+    'describe Mark’s personality' => 'personality',
+    'what kind of person is Mark?' => 'personality',
+    'what motivates Mark?' => 'values',
+    'what is Mark passionate about?' => 'hobbies',
+    'what does discipline mean to Mark?' => 'discipline',
+    'what does consistency mean to him?' => 'discipline',
+    'what does controlled strength mean?' => 'discipline',
+    'how does Mark handle setbacks?' => 'discipline',
+    'what has the gym taught Mark?' => 'bodybuilding',
+    'what does bodybuilding mean to Mark?' => 'bodybuilding',
+    'why does Mark like Greek mythology?' => 'mythology',
+    'which mythology figures connect with Mark?' => 'mythology',
+    'what does Icarus mean to Mark?' => 'mythology',
+    'what does Achilles mean to Mark?' => 'mythology',
+    'what does Heracles mean to Mark?' => 'mythology',
+    'what are Mark’s values?' => 'values',
+    'what are Mark’s goals?' => 'careerGoals',
+    'what does success mean to Mark?' => 'careerGoals',
+    'why does Mark want a technology career?' => 'careerGoals',
+    'what does family mean to his goals?' => 'familyGoals',
+    'what is Mark’s favorite color?' => 'favoriteColor',
+    'what visual style does Mark prefer?' => 'hobbies',
+    'why does Mark like black?' => 'hobbies',
+    'what are Mark’s hobbies?' => 'hobbies',
+    'why does Mark like photography?' => 'photographyTravel',
+    'what does travel mean to Mark?' => 'photographyTravel',
+    'what kind of environment does Mark want to build?' => 'photographyTravel',
+    'what type of person is Mark trying to become?' => 'personality',
+];
+foreach ($personalityQueries as $question => $expectedCategory) {
+    $c = markai_mock_classify($question);
+    $assert(($c['category'] ?? '') === $expectedCategory, 'personality classify ' . $question);
+    $answer = (string) ($c['answer'] ?? '');
+    $assert($answer !== '', 'personality answer non-empty for ' . $question);
+    $assert(!preg_match('/lung|anxiety|addiction|pornograph|girlfriend|self-hatred|diagnosis|weight of|Goggins|Levrone|journal/i', $answer), 'no sensitive journal themes in ' . $question);
+}
+
+$colorAnswer = (string) (markai_mock_classify('what is Mark’s favorite color?')['answer'] ?? '');
+$assert(str_contains(strtolower($colorAnswer), 'black'), 'favorite color returns black');
+$assert(str_contains(strtolower($colorAnswer), 'cinematic') || str_contains(strtolower($colorAnswer), 'high-contrast') || str_contains(strtolower($colorAnswer), 'minimal'), 'favorite color connects to design');
+
+$bodyAnswer = (string) (markai_mock_classify('what does bodybuilding mean to Mark?')['answer'] ?? '');
+$assert(str_contains(strtolower($bodyAnswer), 'bodybuilding'), 'bodybuilding answer present');
+$assert(!preg_match('/\b\d{2,3}\s?kg\b|\b\d{2,3}\s?lbs?\b|steroid|supplement|bmi/i', $bodyAnswer), 'bodybuilding avoids measurements/medical');
+
+$mythAnswer = (string) (markai_mock_classify('which mythology figures connect with Mark?')['answer'] ?? '');
+$assert(str_contains($mythAnswer, 'Icarus') && str_contains($mythAnswer, 'Achilles') && str_contains($mythAnswer, 'Heracles'), 'mythology distinguishes three figures');
+$assert(
+    str_contains(strtolower($mythAnswer), 'does not treat one figure as a permanent favorite')
+    || !preg_match('/\bfavorite is (icarus|achilles|heracles)\b/i', $mythAnswer),
+    'mythology avoids declaring a permanent favorite'
+);
+
+$careerAnswer = (string) (markai_mock_classify('what are Mark’s goals?')['answer'] ?? '');
+$assert(str_contains(strtolower($careerAnswer), 'stable'), 'career includes stability');
+$assert(str_contains(strtolower($careerAnswer), 'grow') || str_contains(strtolower($careerAnswer), 'growth'), 'career includes growth');
+$assert(str_contains(strtolower($careerAnswer), 'independen'), 'career includes independence');
+$assert(str_contains(strtolower($careerAnswer), 'family'), 'career includes family support');
+$assert(str_contains(strtolower($careerAnswer), 'meaningful'), 'career includes meaningful work');
+
+$personalityDisabled = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'describe Mark’s personality'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('personality path must not transport');
+    }
+);
+foreach (['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'] as $key) {
+    $assert(array_key_exists($key, $personalityDisabled), 'personality response retains ' . $key);
+}
+$assert(count(array_keys($personalityDisabled)) === 8, 'personality public API shape unchanged');
+$assert(($personalityDisabled['success'] ?? false) === true, 'personality deterministic success');
 
 fwrite(STDOUT, "\nAll MarkAI provider / System Message V3 tests passed.\n");
 fwrite(STDOUT, 'local_fixture_transport_invocations=' . $networkCalls . "\n");

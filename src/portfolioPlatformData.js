@@ -48,7 +48,10 @@ export const PORTFOLIO_PLATFORM_CARDS = [
       'Conversational portfolio assistant grounded in Mark’s approved projects, resume, experience, skills, interests, and background. Built with a React/Vite interface, private PHP backend, Cloudflare Workers AI, generated-response validation, deterministic fallback answers, privacy controls, and anonymous usage limits.',
     status: 'LIVE',
     tech: ['React', 'PHP', 'Cloudflare AI', 'Response Validation'],
-    placeholderLines: ['MarkAI', 'LIVE'],
+    image: '/images/markai.png',
+    imageAlt: 'MarkAI portfolio assistant chat interface',
+    imageFit: 'cover',
+    imagePosition: 'center center',
     modeAction: { label: 'Open MarkAI', mode: 'markai' },
   },
 ]

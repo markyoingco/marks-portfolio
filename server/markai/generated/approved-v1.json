@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0.0",
-  "sourceDigest": "78f966df7f085c0627cfa828b20c02f4fd30bf32c011a46db32b9ba91b389bfa",
+  "sourceDigest": "bf348954d1668d90c518a19f38c9310cdfda6ce17a9f6d6af390ffd7199cfdc9",
   "counts": {
-    "records": 86,
+    "records": 103,
     "skills": 26,
-    "trustedLinks": 26,
-    "enabledTrustedLinks": 25,
+    "trustedLinks": 28,
+    "enabledTrustedLinks": 27,
     "privacyRules": 14,
     "voiceRules": 7,
     "linkContactRules": 8
@@ -1660,7 +1660,7 @@
       "category": "contact",
       "recordType": "contact-behavior",
       "title": "Preferred Contact Methods",
-      "publicText": "The preferred public contact method is the portfolio Contact page. LinkedIn may be offered for professional contact or networking when relevant. GitHub may be offered for code, repositories, and technical work when relevant or requested. The résumé may be offered for recruiter, qualifications, or work-history questions. VSCO may be offered for photography-related requests. Raw email remains disabled for MarkAI answers. Phone remains absent. Only trusted link IDs may eventually be returned, and contact information must never be invented.",
+      "publicText": "The preferred public contact method is the portfolio Contact page. LinkedIn may be offered for professional contact or networking when relevant. GitHub may be offered for code, repositories, and technical work when relevant or requested. The résumé may be offered for recruiter, qualifications, or work-history questions. VSCO may be offered for photography-related requests. Raw email remains disabled for MarkAI answers. Phone remains absent. Only approved public destinations may be offered through the safe clickable links response, and contact information must never be invented. Never print internal link identifiers.",
       "shortText": "Contact page is default; LinkedIn, GitHub, résumé, and VSCO may be offered only when relevant. Email and phone stay unavailable.",
       "aliases": [
         "contact",
@@ -1748,6 +1748,326 @@
         "claim MarkAI can answer literally anything"
       ],
       "notes": "Actual routing remains a frontend responsibility. MarkAI may describe navigation using approved wording only. Webpage, Terminal, and MarkAI are live."
+    },
+    {
+      "id": "personality-discipline-and-control",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Discipline, consistency, and controlled strength",
+      "publicText": "Mark believes consistency is more dependable than temporary intensity. He values doing the work even when motivation is absent and wants actions to prove intentions rather than relying only on words. He sees discomfort as a necessary part of growth and believes progress comes from repeated controlled effort. He wants to become better at controlling his actions, emotions, and responses. He is drawn to strength with direction and believes strength without discipline can become wasted potential. He values control, patience, structure, and deliberate action, and prefers confidence that is earned and controlled rather than loud or arrogant. He focuses on what he can control, values accountability for his work and responses, and wants confidence to come from preparation and demonstrated work.",
+      "shortText": "Consistency over temporary intensity; controlled effort, earned confidence, accountability, and strength with direction.",
+      "aliases": [
+        "discipline",
+        "consistency",
+        "controlled strength",
+        "personal responsibility"
+      ],
+      "keywords": [
+        "discipline",
+        "consistency",
+        "controlled strength",
+        "responsibility",
+        "accountability",
+        "control",
+        "patience",
+        "structure"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-discipline-growth-controlled-strength",
+        "personality-growth-and-values"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "what does discipline mean to Mark",
+        "what does consistency mean",
+        "what does controlled strength mean",
+        "personal responsibility",
+        "personality questions"
+      ],
+      "prohibitedUses": [
+        "medical history",
+        "mental-health details",
+        "addiction details",
+        "relationship history",
+        "copied influencer quotations",
+        "corny motivational speeches",
+        "imitate David Goggins or Kevin Levrone",
+        "journal disclosure"
+      ],
+      "notes": "MarkAI-only depth. Do not copy into Webpage About, Terminal, or resume. Tone must stay professional, mature, direct, and controlled."
+    },
+    {
+      "id": "personality-growth-and-values",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Growth, values, and public personality framing",
+      "publicText": "Mark sees setbacks as lessons that can improve future decisions. He wants to become steadily better through consistent work, does not view himself as finished, and expects his goals to evolve. He values rebuilding, learning, and continuing after difficult periods, and wants to avoid becoming so comfortable that he stops progressing. Approved public values include discipline, consistency, responsibility, ownership, ambition, resilience, patience, humility, learning, family support, financial independence, usefulness, creativity, personal growth, controlled confidence, and direct communication. Safe public personality framing includes ambitious, reflective, disciplined, growth-oriented, creative, detail-focused, willing to rebuild, comfortable spending time alone, motivated by meaningful progress, direct and practical, confident when prepared, interested in multiple perspectives, and serious about improving technically and personally. These are public-facing themes, not medical or psychological assessments.",
+      "shortText": "Growth through consistent work; public values of discipline, ownership, resilience, family support, and controlled confidence.",
+      "aliases": [
+        "growth",
+        "values",
+        "personality",
+        "what kind of person",
+        "setbacks"
+      ],
+      "keywords": [
+        "growth",
+        "values",
+        "personality",
+        "setbacks",
+        "resilience",
+        "humility",
+        "learning",
+        "ambition"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "personality-discipline-and-control",
+        "interest-discipline-growth-controlled-strength"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "describe Mark’s personality",
+        "what kind of person is Mark",
+        "what motivates Mark",
+        "what are Mark’s values",
+        "how does Mark handle setbacks",
+        "what type of person is Mark trying to become"
+      ],
+      "prohibitedUses": [
+        "psychological diagnosis",
+        "medical assessment",
+        "self-hatred language",
+        "journal disclosure",
+        "relationship history",
+        "corny motivational speeches"
+      ],
+      "notes": "MarkAI-only. Keep answers concise and professional. Do not dump every value into one response unless asked."
+    },
+    {
+      "id": "personality-bodybuilding-depth",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Bodybuilding meaning and training lessons",
+      "publicText": "Bodybuilding is Mark’s strongest personal passion outside technology. He views bodybuilding as an art built through symmetry, structure, patience, detail, and repetition. Training has taught him discipline, consistency, patience, self-awareness, and what his body and mindset can handle in a public-safe sense. His current fitness focus is aesthetics, controlled movement, quality repetitions, and deliberate progress rather than only maximum strength. He believes lessons from training can apply to projects, routines, and professional development, and fitness is part of the identity and environment he is working to build. Do not include physical measurements, medical history, drugs, supplements, or private body-image statements.",
+      "shortText": "Bodybuilding as disciplined craft: symmetry, structure, patience, quality repetitions, and lessons that transfer to professional work.",
+      "aliases": [
+        "bodybuilding meaning",
+        "gym taught",
+        "training lessons",
+        "passion outside technology"
+      ],
+      "keywords": [
+        "bodybuilding",
+        "gym",
+        "training",
+        "aesthetics",
+        "quality repetitions",
+        "discipline",
+        "passion"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-fitness-bodybuilding",
+        "personality-discipline-and-control"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "what does bodybuilding mean to Mark",
+        "what has the gym taught Mark",
+        "what is Mark passionate about",
+        "fitness meaning"
+      ],
+      "prohibitedUses": [
+        "physical measurements",
+        "medical history",
+        "drugs or supplements",
+        "private body-image statements",
+        "professional coaching claims",
+        "health diagnosis"
+      ],
+      "notes": "MarkAI-only depth layered on interest-fitness-bodybuilding. Keep tone professional and avoid influencer imitation."
+    },
+    {
+      "id": "personality-mythology-figures",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Greek mythology figure connections",
+      "publicText": "Mark is interested in Achilles, Icarus, Heracles, Greek statues, and classical art. He is drawn to stories involving ambition, discipline, strength, sacrifice, consequence, resilience, limitation, and transformation. Mark does not need one permanent favorite figure; different figures may represent different parts of his current mindset and future growth. A safe concise framing is that Mark connects with different figures for different reasons: Icarus for ambition, Achilles for intensity, and Heracles for discipline and endurance. Icarus connects to ambition, dreaming, risk, and the consequences of losing control. Achilles connects to intensity, strength, pride, drive, and human vulnerability. Heracles connects to endurance, discipline, repeated trials, and becoming stronger through difficult work. Mythology is a creative and symbolic interest, not Mark’s religion.",
+      "shortText": "Icarus for ambition, Achilles for intensity, and Heracles for discipline and endurance; no permanent single favorite.",
+      "aliases": [
+        "Icarus",
+        "Achilles",
+        "Heracles",
+        "Hercules",
+        "mythology figures"
+      ],
+      "keywords": [
+        "icarus",
+        "achilles",
+        "heracles",
+        "hercules",
+        "greek mythology",
+        "ambition",
+        "intensity",
+        "endurance"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-greek-mythology-art"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "why does Mark like Greek mythology",
+        "which mythology figures connect with Mark",
+        "what does Icarus mean to Mark",
+        "what does Achilles mean to Mark",
+        "what does Heracles mean to Mark"
+      ],
+      "prohibitedUses": [
+        "declare permanent favorite without Mark choosing one",
+        "present mythology as religion",
+        "psychological diagnosis",
+        "literal claim that Mark is a mythological figure",
+        "private struggle narratives"
+      ],
+      "notes": "MarkAI-only depth. Distinguish figures without forcing one identity."
+    },
+    {
+      "id": "personality-career-purpose",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Career purpose, success, and family support",
+      "publicText": "Mark’s immediate goal is to secure a stable role in technology. He is open to software development, full-stack work, developer tools, data-oriented systems, technical support, and other suitable entry-level technology roles. He wants a role that creates stability and provides a path for continued growth. He wants to become financially independent and support his family. He wants his career to prove to himself that he can create something meaningful. He is open to Milwaukee, Chicago, remote work, and other locations when the opportunity and compensation make relocation practical. Long-term success means stability, confidence, meaningful work, independence, continued ambition, and excitement about what comes next. He wants work that makes him proud because he built something useful and followed through. Money is not his only motivation.",
+      "shortText": "Stable technology role with growth, independence, meaningful work, and family support; open to Milwaukee, Chicago, remote, or practical relocation.",
+      "aliases": [
+        "career goals",
+        "success",
+        "family support",
+        "why technology career",
+        "purpose"
+      ],
+      "keywords": [
+        "career",
+        "goals",
+        "success",
+        "family",
+        "independence",
+        "stability",
+        "meaningful work",
+        "milwaukee",
+        "chicago",
+        "remote"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "career-direction-first-full-time-tech-role",
+        "personality-growth-and-values"
+      ],
+      "linkIds": [
+        "link-resume-pdf",
+        "link-contact-section"
+      ],
+      "answerUses": [
+        "what are Mark’s goals",
+        "what does success mean to Mark",
+        "why does Mark want a technology career",
+        "what does family mean to his goals",
+        "career motivation"
+      ],
+      "prohibitedUses": [
+        "financial desperation",
+        "private family conflict",
+        "money as only motivation",
+        "unsupported salary claims",
+        "precise private location"
+      ],
+      "notes": "MarkAI-only depth layered on career-direction-first-full-time-tech-role. Keep family support high-level and public-safe."
+    },
+    {
+      "id": "personality-aesthetic-environment",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Favorite color, visual style, and preferred environment",
+      "publicText": "Mark’s favorite color is black. He prefers black, white, gray, dark, low-exposure, high-contrast, cinematic design. He likes clean, organized, minimal environments. His preferred visual atmosphere combines classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional-in-a-cinematic-city atmosphere. He dislikes corny, overly decorative, loud, or empty motivational presentation.",
+      "shortText": "Favorite color black; minimal high-contrast cinematic style and a clean, organized technical-professional environment.",
+      "aliases": [
+        "favorite color",
+        "visual style",
+        "why black",
+        "environment Mark wants"
+      ],
+      "keywords": [
+        "black",
+        "favorite color",
+        "visual style",
+        "cinematic",
+        "minimal",
+        "environment",
+        "high-contrast"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-creative-aesthetics-design"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "what is Mark’s favorite color",
+        "what visual style does Mark prefer",
+        "why does Mark like black",
+        "what kind of environment does Mark want to build"
+      ],
+      "prohibitedUses": [
+        "corny motivational presentation",
+        "private address",
+        "exact location claims"
+      ],
+      "notes": "MarkAI-only depth. Aligns with public portfolio aesthetic without requiring Webpage changes."
+    },
+    {
+      "id": "personality-photography-travel-hobbies",
+      "category": "public-interests",
+      "recordType": "personality-theme",
+      "title": "Photography, travel meaning, and hobbies",
+      "publicText": "Mark uses photography to preserve feelings, places, views, memories, and important moments. He likes photographing cities, architecture, streets, water, mountains, museums, landscapes, friends, and travel experiences. He prefers cinematic, personal, real, dark, low-exposure, and story-driven images. Cities represent ambition and the feeling of having made progress. Oceans and islands represent peace. Mountains and hikes represent effort that earns the view. Travel helps him see different cultures, lifestyles, opportunities, and perspectives, and motivates him to work toward a life with greater independence and freedom. Approved public hobbies include bodybuilding, gym training, hiking, reading, music, travel, photography, running, Greek mythology, classical statues and art, museums, and exploring cities and landscapes.",
+      "shortText": "Photography and travel as story, ambition, peace, and earned views; hobbies include fitness, hiking, reading, music, museums, and classical art.",
+      "aliases": [
+        "photography meaning",
+        "travel meaning",
+        "hobbies",
+        "what Mark likes"
+      ],
+      "keywords": [
+        "photography",
+        "travel",
+        "hobbies",
+        "cities",
+        "mountains",
+        "oceans",
+        "museums",
+        "hiking"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-travel-photography",
+        "interest-music-reading-hiking"
+      ],
+      "linkIds": [
+        "link-vsco"
+      ],
+      "answerUses": [
+        "why does Mark like photography",
+        "what does travel mean to Mark",
+        "what are Mark’s hobbies",
+        "public interests"
+      ],
+      "prohibitedUses": [
+        "precise private location",
+        "private travel schedules",
+        "infer current residence from photos"
+      ],
+      "notes": "MarkAI-only depth. VSCO may be offered only when photography is relevant."
     },
     {
       "id": "profile-mark-yoingco",
@@ -1895,6 +2215,363 @@
         "unsupported-personality-diagnosis"
       ],
       "notes": "Wording tracks current Terminal profile work-style text. Soft claims; Mark should confirm final public phrasing."
+    },
+    {
+      "id": "collaborators-abacus-core-team",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Abacus core student team",
+      "publicText": "The core student team for Abacus included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. These names are approved only for factual project-team answers. Do not invent roles, leadership claims, equal-contribution claims, quotations, contact information, or private repository details for teammates.",
+      "shortText": "Abacus core student team: Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.",
+      "aliases": [
+        "Abacus team",
+        "Abacus teammates",
+        "who was on Abacus"
+      ],
+      "keywords": [
+        "abacus",
+        "team",
+        "collaborators",
+        "teammates",
+        "Justin Hoffman",
+        "Angel Mora",
+        "Jacob DunRoseman"
+      ],
+      "projectIds": [
+        "project-abacus"
+      ],
+      "relatedRecordIds": [
+        "project-abacus",
+        "collaborators-sam-mazzone-support"
+      ],
+      "linkIds": [
+        "link-github-abacus"
+      ],
+      "answerUses": [
+        "who was on the Abacus team",
+        "who worked on Abacus",
+        "Abacus collaborators"
+      ],
+      "prohibitedUses": [
+        "invent teammate roles",
+        "invent leadership claims",
+        "invent quotations",
+        "contact information",
+        "social profiles",
+        "private repositories",
+        "testimonials",
+        "personality analysis of collaborators",
+        "add names to Webpage or Terminal"
+      ],
+      "notes": "MarkAI-only. Do not add these names to Webpage, Terminal, resume, portfolio cards, or testimonials."
+    },
+    {
+      "id": "collaborators-maat-core-team",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "TA-Bot / MAAT core student team",
+      "publicText": "The core student team for TA-Bot / MAAT included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. These names are approved only for factual project-team answers. Do not invent roles, leadership claims, equal-contribution claims, quotations, contact information, or private repository details for teammates.",
+      "shortText": "TA-Bot / MAAT core student team: Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.",
+      "aliases": [
+        "MAAT team",
+        "TA-Bot team",
+        "who worked on TA-Bot",
+        "who helped with MAAT"
+      ],
+      "keywords": [
+        "maat",
+        "ta-bot",
+        "tabot",
+        "team",
+        "collaborators",
+        "Justin Hoffman",
+        "Angel Mora",
+        "Jacob DunRoseman"
+      ],
+      "projectIds": [
+        "project-maat"
+      ],
+      "relatedRecordIds": [
+        "project-maat",
+        "collaborators-sam-mazzone-support"
+      ],
+      "linkIds": [
+        "link-github-maat"
+      ],
+      "answerUses": [
+        "who worked on TA-Bot",
+        "who helped with MAAT",
+        "MAAT collaborators"
+      ],
+      "prohibitedUses": [
+        "invent teammate roles",
+        "invent leadership claims",
+        "invent quotations",
+        "contact information",
+        "social profiles",
+        "private repositories",
+        "testimonials",
+        "personality analysis of collaborators",
+        "add names to Webpage or Terminal"
+      ],
+      "notes": "MarkAI-only. Same core student names as Abacus; keep project context clear in answers."
+    },
+    {
+      "id": "collaborators-sam-mazzone-support",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Sam Mazzone supporting role for Abacus and TA-Bot / MAAT",
+      "publicText": "Sam Mazzone supported the Abacus and TA-Bot / MAAT teams as an advisor, software developer, and moral supporter. Sam Mazzone is not described as one of the core student teammates. Preferred distinction: the core student team included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman; Sam Mazzone supported the team as an advisor, software developer, and moral supporter.",
+      "shortText": "Sam Mazzone supported Abacus and TA-Bot / MAAT as advisor, software developer, and moral supporter; not a core student teammate.",
+      "aliases": [
+        "Sam Mazzone",
+        "Sam Mazzone role",
+        "advisor Sam"
+      ],
+      "keywords": [
+        "Sam Mazzone",
+        "advisor",
+        "software developer",
+        "moral supporter",
+        "abacus",
+        "maat",
+        "ta-bot"
+      ],
+      "projectIds": [
+        "project-abacus",
+        "project-maat"
+      ],
+      "relatedRecordIds": [
+        "collaborators-abacus-core-team",
+        "collaborators-maat-core-team"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "what was Sam Mazzone’s role",
+        "who was Sam Mazzone",
+        "Abacus support",
+        "MAAT support"
+      ],
+      "prohibitedUses": [
+        "call Sam a core student teammate",
+        "invent additional titles",
+        "contact information",
+        "quotations",
+        "performance claims",
+        "personality analysis",
+        "add name to Webpage or Terminal"
+      ],
+      "notes": "MarkAI-only. Keep Sam distinct from the four core student teammates."
+    },
+    {
+      "id": "collaborators-finch-team",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Finch Web Controller team",
+      "publicText": "The Finch Web Controller team included Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth. These names are approved only for factual project-team answers. Do not invent roles, leadership claims, quotations, contact information, or private repository details.",
+      "shortText": "Finch Web Controller team: Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth.",
+      "aliases": [
+        "Finch team",
+        "Finch teammates",
+        "who was on Finch"
+      ],
+      "keywords": [
+        "finch",
+        "team",
+        "collaborators",
+        "Julianne Browne",
+        "Luis Serrano",
+        "Xavier Barth"
+      ],
+      "projectIds": [
+        "project-finch-web-controller"
+      ],
+      "relatedRecordIds": [
+        "project-finch-web-controller"
+      ],
+      "linkIds": [
+        "link-github-finch"
+      ],
+      "answerUses": [
+        "who was on Mark’s Finch team",
+        "who worked on Finch",
+        "Finch collaborators"
+      ],
+      "prohibitedUses": [
+        "invent teammate roles",
+        "invent leadership claims",
+        "invent quotations",
+        "contact information",
+        "private repositories",
+        "add names to Webpage or Terminal"
+      ],
+      "notes": "MarkAI-only collaborator record."
+    },
+    {
+      "id": "collaborators-data-mining-team",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Data Mining Game Predictor team",
+      "publicText": "The Data Mining Game Predictor project team included Mark Yoingco and Allan Akkathara. These names are approved only for factual project-team answers. Do not invent roles, quotations, contact information, or private repository details.",
+      "shortText": "Data Mining Game Predictor team: Mark Yoingco and Allan Akkathara.",
+      "aliases": [
+        "data mining team",
+        "basketball predictor team",
+        "Allan Akkathara"
+      ],
+      "keywords": [
+        "data mining",
+        "basketball predictor",
+        "Allan Akkathara",
+        "collaborators",
+        "team"
+      ],
+      "projectIds": [
+        "project-marquette-basketball-predictor"
+      ],
+      "relatedRecordIds": [
+        "project-marquette-basketball-predictor"
+      ],
+      "linkIds": [
+        "link-github-marquette-basketball-predictor"
+      ],
+      "answerUses": [
+        "who worked with Mark on data mining",
+        "data mining collaborators",
+        "basketball predictor team"
+      ],
+      "prohibitedUses": [
+        "invent roles",
+        "invent quotations",
+        "contact information",
+        "private repositories",
+        "add names to Webpage or Terminal"
+      ],
+      "notes": "MarkAI-only collaborator record for the Marquette Basketball Predictor / data-mining project."
+    },
+    {
+      "id": "collaborators-operating-systems-team",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Operating Systems C Projects collaborators",
+      "publicText": "For Operating Systems C Projects, approved collaborator names are Mark Yoingco and Armaan Yaz. These names are approved only for factual project-team answers. Do not expose private or shared course repository names or URLs, and do not invent roles, quotations, or contact information.",
+      "shortText": "Operating Systems C Projects collaborators: Mark Yoingco and Armaan Yaz.",
+      "aliases": [
+        "operating systems team",
+        "OS collaborators",
+        "Armaan Yaz"
+      ],
+      "keywords": [
+        "operating systems",
+        "Armaan Yaz",
+        "collaborators",
+        "team",
+        "C projects"
+      ],
+      "projectIds": [
+        "project-operating-systems-c"
+      ],
+      "relatedRecordIds": [
+        "project-operating-systems-c"
+      ],
+      "linkIds": [
+        "link-github-os-c-docs"
+      ],
+      "answerUses": [
+        "who worked with Mark in operating systems",
+        "OS collaborators"
+      ],
+      "prohibitedUses": [
+        "expose private or shared XINU repository names or URLs",
+        "invent roles",
+        "invent quotations",
+        "contact information",
+        "add names to Webpage or Terminal"
+      ],
+      "notes": "MarkAI-only. Keep private/shared course repositories hidden."
+    },
+    {
+      "id": "collaborators-sleep-analysis-team",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Sleep Efficiency Analysis collaborators",
+      "publicText": "For the data science Sleep Efficiency Analysis project, approved collaborator names are Mark Yoingco and Hunter Carlson. These names are approved only for factual project-team answers. Do not invent roles, quotations, contact information, or private repository details.",
+      "shortText": "Sleep Efficiency Analysis collaborators: Mark Yoingco and Hunter Carlson.",
+      "aliases": [
+        "sleep analysis team",
+        "data science team",
+        "Hunter Carlson"
+      ],
+      "keywords": [
+        "sleep",
+        "data science",
+        "Hunter Carlson",
+        "collaborators",
+        "team"
+      ],
+      "projectIds": [
+        "project-sleep-efficiency-analysis"
+      ],
+      "relatedRecordIds": [
+        "project-sleep-efficiency-analysis"
+      ],
+      "linkIds": [
+        "link-github-sleep-efficiency"
+      ],
+      "answerUses": [
+        "who worked with Mark on the data science project",
+        "sleep analysis collaborators"
+      ],
+      "prohibitedUses": [
+        "invent roles",
+        "invent quotations",
+        "contact information",
+        "medical claims about sleep data subjects",
+        "add names to Webpage or Terminal"
+      ],
+      "notes": "MarkAI-only collaborator record."
+    },
+    {
+      "id": "collaborators-public-inventory",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Approved project collaborator inventory",
+      "publicText": "Mark’s approved project collaborators, grouped by project: Abacus core student team — Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman; Sam Mazzone supported Abacus and TA-Bot / MAAT as advisor, software developer, and moral supporter. TA-Bot / MAAT core student team — Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman. Finch Web Controller — Mark Yoingco, Julianne Browne, Luis Serrano, Xavier Barth. Data Mining Game Predictor — Mark Yoingco, Allan Akkathara. Operating Systems C Projects — Mark Yoingco, Armaan Yaz. Sleep Efficiency Analysis — Mark Yoingco, Hunter Carlson. Use only the names relevant to the requested project. Do not invent roles for core teammates, contact information, quotations, or private repositories.",
+      "shortText": "Grouped MarkAI-only collaborator inventory across Abacus, MAAT, Finch, data mining, operating systems, and sleep analysis.",
+      "aliases": [
+        "project collaborators",
+        "who has Mark worked with",
+        "list collaborators"
+      ],
+      "keywords": [
+        "collaborators",
+        "teammates",
+        "who worked with Mark",
+        "project team",
+        "list collaborators"
+      ],
+      "projectIds": [
+        "project-abacus",
+        "project-maat",
+        "project-finch-web-controller",
+        "project-marquette-basketball-predictor",
+        "project-operating-systems-c",
+        "project-sleep-efficiency-analysis"
+      ],
+      "relatedRecordIds": [],
+      "linkIds": [],
+      "answerUses": [
+        "list Mark’s project collaborators",
+        "who has Mark worked with"
+      ],
+      "prohibitedUses": [
+        "dump contact information",
+        "invent roles for core teammates",
+        "invent quotations",
+        "private repositories",
+        "add names to Webpage or Terminal"
+      ],
+      "notes": "MarkAI-only inventory for broad collaborator questions. Keep relatedRecordIds empty to avoid cascading every project deep dive."
     },
     {
       "id": "project-detail-abacus-platform-purpose",
@@ -2554,6 +3231,73 @@
         "invent technologies not listed"
       ],
       "notes": "Coursework Unity project detail. Not professional game-studio employment."
+    },
+    {
+      "id": "projects-public-inventory",
+      "category": "projects",
+      "recordType": "projects-inventory",
+      "title": "Public project inventory",
+      "publicText": "Mark’s approved public software projects, grouped for inventory answers: Portfolio & AI — Personal Portfolio Platform and MarkAI (solo personal work). Capstones — Abacus and TA-Bot / MAAT (team senior-design / senior-capstone projects). Systems — Operating Systems C Projects (coursework documentation; private or shared course repositories stay hidden). Robotics & Software Design — Finch Robot Web Controller (team coursework). Games — Space SHMUP, Apple Picker, and Mission Demolition. Data — Sleep Efficiency Analysis and Marquette Basketball Predictor (team or coursework data projects). Prefer this grouped inventory for broad every-project or project-list questions. Do not claim every project was solo. Do not invent projects. Do not expose private or shared XINU repository names or URLs.",
+      "shortText": "Approved public projects: Portfolio Platform; MarkAI; Abacus; TA-Bot/MAAT; OS C Projects; Finch; Space SHMUP; Apple Picker; Mission Demolition; Sleep Efficiency Analysis; Marquette Basketball Predictor.",
+      "aliases": [
+        "project list",
+        "all projects",
+        "every project",
+        "project inventory",
+        "software projects",
+        "what Mark built"
+      ],
+      "keywords": [
+        "project list",
+        "all projects",
+        "every project",
+        "software projects",
+        "project portfolio",
+        "technical work",
+        "what has Mark built",
+        "what projects",
+        "personal projects",
+        "college projects"
+      ],
+      "projectIds": [
+        "project-portfolio-platform",
+        "project-markai",
+        "project-abacus",
+        "project-maat",
+        "project-operating-systems-c",
+        "project-finch-web-controller",
+        "project-space-shmup",
+        "project-apple-picker",
+        "project-mission-demolition",
+        "project-sleep-efficiency-analysis",
+        "project-marquette-basketball-predictor"
+      ],
+      "relatedRecordIds": [],
+      "linkIds": [
+        "link-portfolio-section"
+      ],
+      "answerUses": [
+        "list every project Mark has done",
+        "list all Mark’s projects",
+        "what projects has Mark built",
+        "what has Mark worked on",
+        "show me his software projects",
+        "give me his project portfolio",
+        "summarize Mark’s technical work",
+        "project list",
+        "all projects",
+        "every project",
+        "what did he build in college",
+        "what personal projects has he completed"
+      ],
+      "prohibitedUses": [
+        "claim all projects were solo",
+        "invent missing projects",
+        "expose private or shared XINU repository names or URLs",
+        "dump every project deep dive into one answer",
+        "print internal link or record IDs"
+      ],
+      "notes": "Canonical inventory for broad project-list questions. Keep relatedRecordIds empty so PromptBuilder does not cascade every deep-dive and contribution record. Ownership boundaries stay in the publicText and individual project records."
     },
     {
       "id": "project-portfolio-platform",
@@ -3291,12 +4035,80 @@
       "notes": "Three separate Unity project records are planned later. Keep this skill scoped to coursework evidence."
     },
     {
+      "id": "testimonials-public-overview",
+      "category": "testimonials",
+      "recordType": "testimonials-overview",
+      "title": "Public testimonials overview",
+      "publicText": "Mark’s public portfolio includes a Testimonials section with attributed recommendations from people who have worked with him, taught him, or know him personally. Published speakers include Zack Kohlwey, Jorge Torres, Farzeen Harunani, Nathan Garcia, Jarenz Masiclat, Elizabeth Anderson, Maxwell Zeisler, and Andrew Wochner. Their comments are attributed opinions from the public portfolio, not independently verified facts. Prefer concise summaries of up to three representative testimonials unless the visitor asks about a specific person. Direct visitors to the portfolio Testimonials section for full quotes.",
+      "shortText": "Mark’s portfolio publishes attributed testimonials from supervisors, professors, coworkers, and peers. Summarize up to three; full quotes live in the Testimonials section.",
+      "aliases": [
+        "testimonials",
+        "reviews",
+        "recommendations",
+        "what people say",
+        "social proof"
+      ],
+      "keywords": [
+        "testimonial",
+        "testimonials",
+        "reviews",
+        "recommendations",
+        "recommendation",
+        "what people say",
+        "what others say",
+        "coworkers",
+        "teammates",
+        "work ethic",
+        "recommended Mark"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "testimonial-zack-kohlwey",
+        "testimonial-jorge-torres",
+        "testimonial-farzeen-harunani",
+        "testimonial-nathan-garcia",
+        "testimonial-jarenz-masiclat",
+        "testimonial-elizabeth-anderson",
+        "testimonial-maxwell-zeisler",
+        "testimonial-andrew-wochner"
+      ],
+      "linkIds": [
+        "link-testimonials-section"
+      ],
+      "answerUses": [
+        "testimonials?",
+        "testimonial",
+        "testimonials",
+        "reviews",
+        "recommendations",
+        "what people say",
+        "what do people say about Mark",
+        "does Mark have testimonials",
+        "show me Mark’s testimonials",
+        "what do teammates or coworkers say",
+        "what do others say about Mark’s work ethic",
+        "who has recommended Mark",
+        "social proof when asked"
+      ],
+      "prohibitedUses": [
+        "invent testimonials",
+        "exaggerate titles or relationships",
+        "claim every speaker is a manager",
+        "quote misattribution",
+        "conversion of praise into objective fact",
+        "dump private contact information",
+        "dump every speaker LinkedIn for a general testimonials question",
+        "override Mark-approved canonical facts"
+      ],
+      "notes": "Canonical public source is src/testimonialsData.js (published: true only). Prefer link-testimonials-section for general testimonial questions. Speaker LinkedIn links remain available only when that speaker’s record is in scope."
+    },
+    {
       "id": "testimonial-zack-kohlwey",
       "category": "testimonials",
       "recordType": "testimonial",
       "title": "Zack Kohlwey",
       "publicText": "I have known Mark for two and a half years, and I was his supervisor at Marquette University. I have had the opportunity to observe Mark’s dedication, work ethic, and values driven decision making firsthand. He respects all individuals and has the ability to form true relationships and friendships with a wide range of people and thinks of the staff as a team.\n\nI hired Mark as a University Information Specialist at the student union’s Information Desk. Not even a year into working, I promoted Mark to Student Manager. His integrity and ambition stood out to me, and that is what ultimately led me to promote him. He understood how his choices and decisions at the desk made an impact on others as this role was the initial interaction that someone had with the university as they walked into the building or called. Mark definitely embraced challenges as learning moments for personal growth, and he exceled at being a role model and leader by example.",
-      "shortText": "Attributed testimonial from Zack Kohlwey, Assistant Director, Alumni Memorial Union @ Marquette University.",
+      "shortText": "Zack Kohlwey, Assistant Director at Marquette’s Alumni Memorial Union and Mark’s former supervisor, describes Mark’s dedication, work ethic, integrity, and leadership by example.",
       "aliases": [
         "Zack Kohlwey",
         "Assistant Director, Alumni Memorial Union @ Marquette University",
@@ -3304,9 +4116,13 @@
       ],
       "keywords": [
         "testimonial",
+        "testimonials",
         "Zack Kohlwey",
         "Marquette University",
-        "recommendation"
+        "recommendation",
+        "reviews",
+        "work ethic",
+        "supervisor"
       ],
       "projectIds": [],
       "relatedRecordIds": [
@@ -3317,10 +4133,13 @@
       ],
       "answerUses": [
         "testimonial request",
+        "testimonials?",
+        "what people say",
         "what Zack Kohlwey said",
         "attributed recommendation",
         "social proof when asked",
-        "summary only when visitor asks for a summary"
+        "summary only when visitor asks for a summary",
+        "work ethic"
       ],
       "prohibitedUses": [
         "quote misattribution",
@@ -3335,7 +4154,7 @@
         "use University Information Specialist as Mark official title",
         "state promotion details without attributing them to Zack Kohlwey"
       ],
-      "notes": "Exact quote preserved from src/testimonialsData.js without wording changes. Attributed opinion only; not objective proof. Must never override Mark-approved canonical facts. Local public LinkedIn URL exists in portfolio data; keep linkIds empty until a trusted-link phase. No separate relationship field in source. Promotion context may be repeated only with explicit attribution to Zack. Canonical Information Desk title remains Information Desk Specialist Manager."
+      "notes": "Exact quote preserved from src/testimonialsData.js without wording changes. Attributed opinion only; not objective proof. Must never override Mark-approved canonical facts. Public speaker LinkedIn is available via link-linkedin-zack-kohlwey when this speaker is in scope. No separate relationship field in source. Promotion context may be repeated only with explicit attribution to Zack. Canonical Information Desk title remains Information Desk Specialist Manager."
     },
     {
       "id": "testimonial-jorge-torres",
@@ -3343,7 +4162,7 @@
       "recordType": "testimonial",
       "title": "Jorge Torres",
       "publicText": "I've known Mark since my junior year of college, and in that time I've come to know him as someone who takes the time to fully understand every task before diving in, no matter how big or small. He never settles for surface-level work - whether he's reviewing code and software comments or testing and documenting a project's performance, he holds himself to a high standard of accuracy and thoroughness.\n\nMark is one of the hardest-working individuals I've had the pleasure of working with. He approaches every project with genuine curiosity, taking the time to ask the right questions and dig into the \"why\" behind a problem rather than just executing tasks on the surface. That mindset consistently translates into higher-quality, more reliable work.\n\nI had the opportunity to work alongside Mark as a Student Manager, which gave me a front-row seat to his work ethic and attention to detail. He was consistently reliable, communicated clearly about progress and roadblocks, and took genuine ownership of the quality of his output. Watching him grow and take on more responsibility over that time was genuinely impressive.\n\nProfessionally, Mark is an outstanding individual who would be an asset to any team he's a part of, thanks to his incredibly diverse skill set and unwavering dedication to doing things right.",
-      "shortText": "Attributed testimonial from Jorge Torres, Staff Validation Engineer @ Performance Validation.",
+      "shortText": "Jorge Torres, Staff Validation Engineer and former Marquette coworker, describes Mark’s thoroughness, curiosity, reliability, ownership, and work ethic.",
       "aliases": [
         "Jorge Torres",
         "Staff Validation Engineer @ Performance Validation",
@@ -3351,10 +4170,14 @@
       ],
       "keywords": [
         "testimonial",
+        "testimonials",
         "Jorge Torres",
         "Performance Validation",
         "relationship context",
-        "recommendation"
+        "recommendation",
+        "reviews",
+        "coworker",
+        "work ethic"
       ],
       "projectIds": [],
       "relatedRecordIds": [
@@ -3391,7 +4214,7 @@
       "recordType": "testimonial",
       "title": "Farzeen Harunani",
       "publicText": "The first time I met Mark Yoingco one-on-one was when he came into my office seeking research and career advice. It was the second week of his senior year, and he was enrolled in the capstone class with me. He wanted to know which year-long project would be the most beneficial to him, longterm. This, in itself, showed a rare level of initiative.\n\nHe took three classes with me, and impressed me with his unflappable demeanor and dedication to getting the job done. No matter how tight the deadlines might be, Mark does not ever let on if he is stressed. He is eager to learn, to improve, and to commit to every endeavor with a smile.",
-      "shortText": "Attributed testimonial from Farzeen Harunani, Professor of Computer Science @ Marquette University.",
+      "shortText": "Farzeen Harunani, Professor of Computer Science at Marquette University, describes Mark’s initiative, composure under pressure, dedication, and eagerness to learn.",
       "aliases": [
         "Farzeen Harunani",
         "Professor of Computer Science @ Marquette University",
@@ -3399,9 +4222,12 @@
       ],
       "keywords": [
         "testimonial",
+        "testimonials",
         "Farzeen Harunani",
         "Marquette University",
-        "recommendation"
+        "recommendation",
+        "reviews",
+        "professor"
       ],
       "projectIds": [],
       "relatedRecordIds": [],
@@ -4077,9 +4903,9 @@
         "action": "validate-and-block",
         "purpose": "privacy-boundaries",
         "publicBehavior": "Only use destinations from the trusted link registry. Do not invent URLs.",
-        "modelInstruction": "Return trusted link IDs only. Never invent arbitrary URLs.",
+        "modelInstruction": "Describe approved public destinations by human-readable label only. Never invent arbitrary URLs or print internal trusted-link registry identifiers. The server attaches clickable links separately.",
         "logPolicy": "log-security-event",
-        "notes": "Backend must map link IDs to hrefs and drop unknown IDs.",
+        "notes": "Backend resolves trusted destinations into the safe public links array. Visitor-facing text must never contain link-* identifiers.",
         "enforcement": "model-and-server"
       }
     ],
@@ -4169,9 +4995,9 @@
         "action": "validate-and-block",
         "purpose": "link-and-contact-behavior",
         "publicBehavior": "Only use destinations from the trusted link registry. Do not invent URLs.",
-        "modelInstruction": "Return trusted link IDs only. Never invent arbitrary URLs or paste raw unapproved destinations.",
+        "modelInstruction": "Describe approved public destinations by human-readable label only. Never invent arbitrary URLs, paste raw unapproved destinations, or print internal trusted-link registry identifiers. The server attaches clickable links separately.",
         "logPolicy": "log-security-event",
-        "notes": "Backend must map link IDs to hrefs and drop unknown IDs.",
+        "notes": "Backend resolves trusted destinations into the safe public links array. Visitor-facing text must never contain link-* identifiers.",
         "enforcement": "model-and-server"
       },
       {
@@ -4202,7 +5028,7 @@
         "action": "enforce",
         "purpose": "link-and-contact-behavior",
         "publicBehavior": "Public project links already represented through the portfolio may be offered later when requested or directly relevant. Until separately added to the trusted-link registry, do not invent project URLs.",
-        "modelInstruction": "Do not guess repository visibility. Do not offer project links that are not enabled trusted-link IDs. Relevant contexts include project questions, code requests, and documentation requests.",
+        "modelInstruction": "Do not guess repository visibility. Do not offer project destinations that are not among the approved public destinations supplied for the request. Relevant contexts include project questions, code requests, and documentation requests.",
         "logPolicy": "log-category-only",
         "notes": "Future candidates include Finch, OS docs, Unity games, Sleep, and Basketball only after visibility verification.",
         "enforcement": "model-and-server"
@@ -4224,9 +5050,9 @@
         "action": "enforce",
         "purpose": "link-and-contact-behavior",
         "publicBehavior": "Do not invent testimonial LinkedIn profiles. LinkedIn destinations for speakers may be added later only from local portfolio data through trusted links.",
-        "modelInstruction": "Keep testimonial linkIds empty until a trusted-link phase adds verified speaker LinkedIn IDs. Never fabricate a LinkedIn URL.",
+        "modelInstruction": "Offer speaker LinkedIn destinations only when that speaker’s approved testimonial is in scope or the visitor asks for that person. Never fabricate a LinkedIn URL. Never print internal link identifiers.",
         "logPolicy": "log-category-only",
-        "notes": "All eight current public testimonials have local LinkedIn URLs in testimonialsData.js for a future trusted-link phase.",
+        "notes": "Speaker LinkedIn destinations are in the trusted-link registry and related to each testimonial record. Prefer the Testimonials section link for general testimonial questions.",
         "enforcement": "model-and-server"
       },
       {
@@ -4357,6 +5183,64 @@
         "career-direction-first-full-time-tech-role"
       ],
       "notes": "Webpage Contact is a screen in the SPA (PortfolioApp SCREENS includes contact). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer directing visitors to Contact rather than raw email."
+    },
+    {
+      "id": "link-testimonials-section",
+      "label": "Testimonials section",
+      "href": "https://markyoingco.com",
+      "type": "webpage-section",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "testimonials-public-overview",
+        "testimonial-zack-kohlwey",
+        "testimonial-jorge-torres",
+        "testimonial-farzeen-harunani",
+        "testimonial-nathan-garcia",
+        "testimonial-jarenz-masiclat",
+        "testimonial-elizabeth-anderson",
+        "testimonial-maxwell-zeisler",
+        "testimonial-andrew-wochner"
+      ],
+      "notes": "Webpage Testimonials is a screen in the SPA (PortfolioApp SCREENS includes testimonials). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer this section link for general testimonial questions instead of dumping speaker LinkedIn profiles."
+    },
+    {
+      "id": "link-portfolio-section",
+      "label": "Portfolio section",
+      "href": "https://markyoingco.com",
+      "type": "webpage-section",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "projects"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "projects-public-inventory",
+        "project-portfolio-platform",
+        "project-markai",
+        "project-abacus",
+        "project-maat",
+        "project-operating-systems-c",
+        "project-finch-web-controller",
+        "project-space-shmup",
+        "project-apple-picker",
+        "project-mission-demolition",
+        "project-sleep-efficiency-analysis",
+        "project-marquette-basketball-predictor"
+      ],
+      "notes": "Webpage Portfolio is a screen in the SPA (PortfolioApp SCREENS includes portfolio). No dedicated deep-link hash exists yet, so href uses the exact public portfolio home URL. Prefer this section link for broad project-inventory questions instead of dumping every project repository link."
     },
     {
       "id": "link-github-portfolio",
