@@ -7,7 +7,7 @@
       "recordType": "employment",
       "title": "Audio-Visual Technician",
       "publicText": "Mark worked as an Audio-Visual Technician at Marquette University from February 2025 to May 2026, supporting live campus events by setting up, operating, and troubleshooting laptops, projectors, microphones, speakers, lighting, wiring, remotes, presentation equipment, and sound systems.",
-      "shortText": "Marquette Audio-Visual Technician, February 2025 – May 2026.",
+      "shortText": "Marquette Audio-Visual Technician, February 2025 - May 2026.",
       "aliases": [
         "AV Technician",
         "Audio Visual Technician",
@@ -72,7 +72,7 @@
       "recordType": "employment",
       "title": "Information Desk Specialist Manager",
       "publicText": "Mark worked as an Information Desk Specialist Manager at Marquette University from January 2024 to May 2026, managing front-desk and building operations including staff schedules, shift and timesheet review, staff meetings, security-camera monitoring, room scheduling, access requests, incident handling, and communication with visitors, students, and staff.",
-      "shortText": "Marquette Information Desk Specialist Manager, January 2024 – May 2026.",
+      "shortText": "Marquette Information Desk Specialist Manager, January 2024 - May 2026.",
       "aliases": [
         "Information Desk Specialist Manager"
       ],
@@ -143,7 +143,7 @@
       "recordType": "employment",
       "title": "Assistant Building Manager",
       "publicText": "Mark worked as an Assistant Building Manager at Marquette University from June 2024 to December 2024, coordinating room setups for events, managing building access, communicating with departments by radio, and supporting building operations during campus events and daily activities.",
-      "shortText": "Marquette Assistant Building Manager, June 2024 – December 2024.",
+      "shortText": "Marquette Assistant Building Manager, June 2024 - December 2024.",
       "aliases": [
         "Assistant Building Manager"
       ],
@@ -255,7 +255,7 @@
       "recordType": "employment",
       "title": "Chef / Person in Charge",
       "publicText": "Mark worked as Chef / Person in Charge at Panda Express in Gurnee, Illinois, from May 2021 to August 2023, supporting kitchen operations, food preparation, service quality, cleaning, restocking, shift leadership, employee training, and team guidance during high-volume shifts.",
-      "shortText": "Panda Express Chef / Person in Charge, May 2021 – August 2023.",
+      "shortText": "Panda Express Chef / Person in Charge, May 2021 - August 2023.",
       "aliases": [
         "Panda Express",
         "Person in Charge",
@@ -316,7 +316,7 @@
       "recordType": "leadership-role",
       "title": "Risk Manager & Merchandise Chair",
       "publicText": "Mark served as Risk Manager and Merchandise Chair for Sigma Chi at Marquette University from January 2023 to May 2026, helping keep chapter operations organized and safe while leading merchandise ideas and design work for the chapter.",
-      "shortText": "Sigma Chi Risk Manager & Merchandise Chair, January 2023 – May 2026.",
+      "shortText": "Sigma Chi Risk Manager & Merchandise Chair, January 2023 - May 2026.",
       "aliases": [
         "Sigma Chi leadership",
         "Risk Manager",
@@ -388,7 +388,7 @@
       ],
       "reviewedByMark": true,
       "lastReviewed": "2026-07-28",
-      "notes": "Combined record selected by Mark. Dates explicitly confirmed by Mark: January 2023 – May 2026. Merchandise design may receive a separate creative-contribution record in a later phase. Do not duplicate this as employment."
+      "notes": "Combined record selected by Mark. Dates explicitly confirmed by Mark: January 2023 - May 2026. Merchandise design may receive a separate creative-contribution record in a later phase. Do not duplicate this as employment."
     },
     {
       "id": "membership-bayanihan-bso",
@@ -396,7 +396,7 @@
       "recordType": "organization-membership",
       "title": "Bayanihan Student Organization (BSO)",
       "publicText": "Mark was a member of Bayanihan Student Organization (BSO), Marquette University’s Filipino student organization, from August 2022 to May 2026.",
-      "shortText": "Bayanihan Student Organization member, August 2022 – May 2026.",
+      "shortText": "Bayanihan Student Organization member, August 2022 - May 2026.",
       "aliases": [
         "BSO",
         "Bayanihan",
@@ -463,7 +463,7 @@
       ],
       "reviewedByMark": true,
       "lastReviewed": "2026-07-28",
-      "notes": "Mark explicitly confirmed that Bayanihan Student Organization is BSO, Marquette University’s Filipino student organization. Mark explicitly confirmed membership only. Dates explicitly confirmed by Mark: August 2022 – May 2026. This is organization membership, not an officer or leadership role. Category leadership is used because the current schema has no separate organization-membership category."
+      "notes": "Mark explicitly confirmed that Bayanihan Student Organization is BSO, Marquette University’s Filipino student organization. Mark explicitly confirmed membership only. Dates explicitly confirmed by Mark: August 2022 - May 2026. This is organization membership, not an officer or leadership role. Category leadership is used because the current schema has no separate organization-membership category."
     }
   ]
 }

@@ -460,7 +460,7 @@
         "project-finch-web-controller",
         "contribution-finch-frontend-controller"
       ],
-      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (finch-controller.github). Repository name is BirdVroomVroom. Forked because the original repository was not owned by Mark; disclose fork/ownership when repository ownership is relevant. Team coursework project — do not imply sole ownership."
+      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (finch-controller.github). Repository name is BirdVroomVroom. Forked because the original repository was not owned by Mark; disclose fork/ownership when repository ownership is relevant. Team coursework project - do not imply sole ownership."
     },
     {
       "id": "link-github-os-c-docs",
@@ -555,7 +555,7 @@
       "relatedRecordIds": [
         "project-sleep-efficiency-analysis"
       ],
-      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (sleep-analysis.github). Team coursework project — do not imply sole ownership."
+      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (sleep-analysis.github). Team coursework project - do not imply sole ownership."
     },
     {
       "id": "link-github-marquette-basketball-predictor",
@@ -574,7 +574,7 @@
       "relatedRecordIds": [
         "project-marquette-basketball-predictor"
       ],
-      "notes": "Exact URL already displayed in PortfolioApp.jsx website field and terminalPortfolioProjectData.js. Team Data Mining project — do not imply sole ownership."
+      "notes": "Exact URL already displayed in PortfolioApp.jsx website field and terminalPortfolioProjectData.js. Team Data Mining project - do not imply sole ownership."
     },
     {
       "id": "link-fmsc-libertyville",

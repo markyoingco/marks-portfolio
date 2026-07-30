@@ -3,14 +3,14 @@
 declare(strict_types=1);
 
 /**
- * One-request Cloudflare live-response structural + transport diagnostic.
- *
- * Manual use only after temporarily enabling private runtime configuration.
- * Prints schema/transport metadata only. Never prints answers, credentials,
- * prompts, raw bodies, raw cURL errors, or knowledge contents.
- *
- * Fixed question only — no visitor or CLI question input.
- */
+* One-request Cloudflare live-response structural + transport diagnostic.
+*
+* Manual use only after temporarily enabling private runtime configuration.
+* Prints schema/transport metadata only. Never prints answers, credentials,
+* prompts, raw bodies, raw cURL errors, or knowledge contents.
+*
+* Fixed question only - no visitor or CLI question input.
+*/
 
 $repoRoot = dirname(__DIR__);
 
@@ -91,8 +91,8 @@ const MARKAI_DIAG_MESSAGE_CONTENT_ITEM_TYPES = [
 ];
 
 /**
- * Local diagnostic-only observer around HttpTransport. Not used in production.
- */
+* Local diagnostic-only observer around HttpTransport. Not used in production.
+*/
 final class MarkAiDiagnoseObservingTransport implements HttpTransport
 {
     public ?array $lastResult = null;
@@ -116,8 +116,8 @@ final class MarkAiDiagnoseObservingTransport implements HttpTransport
 }
 
 /**
- * @param list<string> $lines
- */
+* @param list<string> $lines
+*/
 function markai_diag_print(array $lines): void
 {
     foreach ($lines as $line) {
@@ -126,9 +126,9 @@ function markai_diag_print(array $lines): void
 }
 
 /**
- * @param list<string> $lines
- * @return never
- */
+* @param list<string> $lines
+* @return never
+*/
 function markai_diag_exit(array $lines, int $code): void
 {
     markai_diag_print($lines);
@@ -139,9 +139,9 @@ function markai_diag_exit(array $lines, int $code): void
 function markai_diag_suppress(): void
 {
     markai_diag_exit([
-        'diagnostic_output_suppressed=yes',
-        'credential_leak_check=failed',
-    ], 1);
+            'diagnostic_output_suppressed=yes',
+            'credential_leak_check=failed',
+        ], 1);
 }
 
 function markai_diag_php_type(mixed $value): string
@@ -163,9 +163,9 @@ function markai_diag_php_type(mixed $value): string
 }
 
 /**
- * @param array<string, mixed> $object
- * @param list<string> $allowlist
- */
+* @param array<string, mixed> $object
+* @param list<string> $allowlist
+*/
 function markai_diag_allowlisted_keys_from(array $object, array $allowlist): string
 {
     $keys = [];
@@ -181,16 +181,16 @@ function markai_diag_allowlisted_keys_from(array $object, array $allowlist): str
 }
 
 /**
- * @param array<string, mixed> $object
- */
+* @param array<string, mixed> $object
+*/
 function markai_diag_allowlisted_keys(array $object): string
 {
     return markai_diag_allowlisted_keys_from($object, MARKAI_DIAG_KEY_ALLOWLIST);
 }
 
 /**
- * @param list<string> $allowed
- */
+* @param list<string> $allowed
+*/
 function markai_diag_safe_enum(string $value, array $allowed): string
 {
     $normalized = strtolower(trim($value));
@@ -199,8 +199,8 @@ function markai_diag_safe_enum(string $value, array $allowed): string
 }
 
 /**
- * @param list<string> $values
- */
+* @param list<string> $values
+*/
 function markai_diag_join_enums(array $values): string
 {
     if ($values === []) {
@@ -261,7 +261,7 @@ function markai_diag_safe_provider_status(?string $category, bool $success, stri
 
     $raw = (string) $category;
 
-    // Transport/network categories only — never remap schema failures through this path.
+    // Transport/network categories only - never remap schema failures through this path.
     if (in_array($raw, MARKAI_DIAG_TRANSPORT_CATEGORIES, true)) {
         return $raw === 'none' ? 'invalid_response' : $raw;
     }
@@ -277,11 +277,11 @@ function markai_diag_safe_provider_status(?string $category, bool $success, stri
 }
 
 /**
- * Normalize either HttpTransport contract or provider-callable contract.
- *
- * @param array<string, mixed> $transportResponse
- * @return array{status:int, body:string, contentType:?string, success:?bool, errorCategory:?string, curlErrno:?int, responseByteCount:?int, headersReceived:bool}
- */
+* Normalize either HttpTransport contract or provider-callable contract.
+*
+* @param array<string, mixed> $transportResponse
+* @return array{status:int, body:string, contentType:?string, success:?bool, errorCategory:?string, curlErrno:?int, responseByteCount:?int, headersReceived:bool}
+*/
 function markai_diag_normalize_observed(array $transportResponse): array
 {
     $status = 0;
@@ -310,8 +310,8 @@ function markai_diag_normalize_observed(array $transportResponse): array
     }
 
     $errorCategory = isset($transportResponse['errorCategory']) && is_string($transportResponse['errorCategory'])
-        ? $transportResponse['errorCategory']
-        : null;
+    ? $transportResponse['errorCategory']
+    : null;
 
     $curlErrno = null;
     if (array_key_exists('curlErrno', $transportResponse) && is_int($transportResponse['curlErrno'])) {
@@ -340,9 +340,9 @@ function markai_diag_normalize_observed(array $transportResponse): array
 }
 
 /**
- * @param array<string, mixed> $transportResponse
- * @return array<string, string>
- */
+* @param array<string, mixed> $transportResponse
+* @return array<string, string>
+*/
 function markai_diag_fingerprint(array $transportResponse): array
 {
     $normalized = markai_diag_normalize_observed($transportResponse);
@@ -514,8 +514,8 @@ function markai_diag_fingerprint(array $transportResponse): array
             $fields['choice_keys'] = markai_diag_allowlisted_keys_from($first, MARKAI_DIAG_CHOICE_KEY_ALLOWLIST);
             if (array_key_exists('finish_reason', $first)) {
                 $fields['choice_finish_reason_type'] = is_string($first['finish_reason'])
-                    ? 'string'
-                    : (is_null($first['finish_reason']) ? 'null' : 'other');
+                ? 'string'
+                : (is_null($first['finish_reason']) ? 'null' : 'other');
                 if (is_string($first['finish_reason']) && $first['finish_reason'] !== '') {
                     $fields['choice_finish_reason_value'] = markai_diag_safe_enum(
                         $first['finish_reason'],
@@ -612,11 +612,11 @@ function markai_diag_fingerprint(array $transportResponse): array
 }
 
 /**
- * Safe request-shape audit. Never returns secrets or the full URL.
- *
- * @param array<string, mixed> $configuration
- * @return array<string, string>
- */
+* Safe request-shape audit. Never returns secrets or the full URL.
+*
+* @param array<string, mixed> $configuration
+* @return array<string, string>
+*/
 function markai_diag_audit_request(
     string $method,
     string $url,
@@ -626,8 +626,8 @@ function markai_diag_audit_request(
 ): array {
     $parts = parse_url($url);
     $hostOk = is_array($parts)
-        && ($parts['scheme'] ?? '') === 'https'
-        && ($parts['host'] ?? '') === 'api.cloudflare.com';
+    && ($parts['scheme'] ?? '') === 'https'
+    && ($parts['host'] ?? '') === 'api.cloudflare.com';
 
     $path = is_array($parts) ? (string) ($parts['path'] ?? '') : '';
     $routeOk = (bool) preg_match(
@@ -636,7 +636,7 @@ function markai_diag_audit_request(
     );
     // Model must remain unencoded path segments, not one encoded blob.
     $modelPathOk = str_contains($path, '/ai/run/@cf/openai/gpt-oss-120b')
-        && !str_contains($path, '%40cf%2Fopenai%2Fgpt-oss-120b');
+    && !str_contains($path, '%40cf%2Fopenai%2Fgpt-oss-120b');
 
     $auth = 'missing';
     $contentType = 'other';
@@ -697,56 +697,56 @@ function markai_diag_audit_request(
 
 if ($argc > 1) {
     markai_diag_exit([
-        'provider_runtime_enabled=no',
-        'refusal_reason=cli_arguments_not_allowed',
-        'live_request_attempted=no',
-        'transport_invocations=0',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'provider_runtime_enabled=no',
+            'refusal_reason=cli_arguments_not_allowed',
+            'live_request_attempted=no',
+            'transport_invocations=0',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 $exportPath = $repoRoot . '/server/markai/generated/approved-v1.json';
 if (!is_readable($exportPath)) {
     markai_diag_exit([
-        'provider_runtime_enabled=no',
-        'refusal_reason=export_unavailable',
-        'live_request_attempted=no',
-        'transport_invocations=0',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'provider_runtime_enabled=no',
+            'refusal_reason=export_unavailable',
+            'live_request_attempted=no',
+            'transport_invocations=0',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 try {
     $export = json_decode((string) file_get_contents($exportPath), true, 512, JSON_THROW_ON_ERROR);
 } catch (Throwable $e) {
     markai_diag_exit([
-        'provider_runtime_enabled=no',
-        'refusal_reason=export_unavailable',
-        'live_request_attempted=no',
-        'transport_invocations=0',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'provider_runtime_enabled=no',
+            'refusal_reason=export_unavailable',
+            'live_request_attempted=no',
+            'transport_invocations=0',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 if (!is_array($export)) {
     markai_diag_exit([
-        'provider_runtime_enabled=no',
-        'refusal_reason=export_unavailable',
-        'live_request_attempted=no',
-        'transport_invocations=0',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'provider_runtime_enabled=no',
+            'refusal_reason=export_unavailable',
+            'live_request_attempted=no',
+            'transport_invocations=0',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 $runtime = markai_create_provider_runtime();
 $status = (string) ($runtime['status'] ?? 'disabled');
 $configuration = is_array($runtime['configuration'] ?? null)
-    ? $runtime['configuration']
-    : markai_default_provider_configuration();
+? $runtime['configuration']
+: markai_default_provider_configuration();
 
 $refusalMap = [
     'disabled' => 'provider_disabled',
@@ -768,13 +768,13 @@ if ($status !== 'ready' || !markai_provider_configuration_is_usable($configurati
     }
 
     markai_diag_exit([
-        'provider_runtime_enabled=no',
-        'refusal_reason=' . $reason,
-        'live_request_attempted=no',
-        'transport_invocations=0',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'provider_runtime_enabled=no',
+            'refusal_reason=' . $reason,
+            'live_request_attempted=no',
+            'transport_invocations=0',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 $secretAccountId = trim((string) ($configuration['accountId'] ?? ''));
@@ -790,25 +790,25 @@ try {
     $built = buildMarkAiRequest($export, $question, [], $selectedRecordIds, $mode);
 } catch (Throwable $e) {
     markai_diag_exit([
-        'provider_runtime_enabled=yes',
-        'refusal_reason=prompt_build_failed',
-        'live_request_attempted=no',
-        'transport_invocations=0',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'provider_runtime_enabled=yes',
+            'refusal_reason=prompt_build_failed',
+            'live_request_attempted=no',
+            'transport_invocations=0',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 $messages = is_array($built['messages'] ?? null) ? $built['messages'] : [];
 if ($messages === []) {
     markai_diag_exit([
-        'provider_runtime_enabled=yes',
-        'refusal_reason=prompt_build_failed',
-        'live_request_attempted=no',
-        'transport_invocations=0',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'provider_runtime_enabled=yes',
+            'refusal_reason=prompt_build_failed',
+            'live_request_attempted=no',
+            'transport_invocations=0',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 $systemMessage = '';
@@ -823,13 +823,13 @@ foreach ($messages as $message) {
 $observer = new MarkAiDiagnoseObservingTransport(new CurlHttpTransport());
 if (!$observer->isAvailable()) {
     markai_diag_exit([
-        'provider_runtime_enabled=no',
-        'refusal_reason=curl_unavailable',
-        'live_request_attempted=no',
-        'transport_invocations=0',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'provider_runtime_enabled=no',
+            'refusal_reason=curl_unavailable',
+            'live_request_attempted=no',
+            'transport_invocations=0',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 $productionTransport = markai_wrap_http_transport_for_provider($observer, $configuration);
@@ -878,21 +878,21 @@ $result = $provider->generate($messages, $settings, $configuration, $observingTr
 $httpResult = $observer->lastResult;
 $transportResultReceived = is_array($httpResult) ? 'yes' : 'no';
 $normalizedHttp = is_array($httpResult)
-    ? markai_diag_normalize_observed($httpResult)
-    : [
-        'status' => 0,
-        'body' => '',
-        'contentType' => null,
-        'success' => false,
-        'errorCategory' => 'unknown_transport_error',
-        'curlErrno' => null,
-        'responseByteCount' => 0,
-        'headersReceived' => false,
-    ];
+? markai_diag_normalize_observed($httpResult)
+: [
+    'status' => 0,
+    'body' => '',
+    'contentType' => null,
+    'success' => false,
+    'errorCategory' => 'unknown_transport_error',
+    'curlErrno' => null,
+    'responseByteCount' => 0,
+    'headersReceived' => false,
+];
 
 $fingerprint = is_array($httpResult)
-    ? markai_diag_fingerprint($httpResult)
-    : markai_diag_fingerprint([
+? markai_diag_fingerprint($httpResult)
+: markai_diag_fingerprint([
         'httpStatus' => 0,
         'body' => '',
         'contentType' => null,
@@ -900,7 +900,7 @@ $fingerprint = is_array($httpResult)
         'errorCategory' => 'unknown_transport_error',
         'curlErrno' => null,
         'responseByteCount' => 0,
-    ]);
+]);
 
 $providerSuccess = $result->isSuccess();
 $normalProviderStatus = markai_diag_safe_provider_status(
@@ -916,7 +916,7 @@ if ($providerSuccess) {
     $draft = trim((string) $result->getAnswerText());
     $generatedAnswer = $draft;
     $validation = $validator->validate($draft, [
-        'finish_reason' => $result->getFinishReason(),
+            'finish_reason' => $result->getFinishReason(),
     ]);
     if (($validation['accepted'] ?? false) === true) {
         $validatorResult = 'accepted';
@@ -937,8 +937,8 @@ if ($normalizedHttp['status'] >= 0 && $normalizedHttp['status'] <= 599) {
 }
 
 $responseBytesOut = $normalizedHttp['responseByteCount'] === null
-    ? 'unavailable'
-    : (string) max(0, (int) $normalizedHttp['responseByteCount']);
+? 'unavailable'
+: (string) max(0, (int) $normalizedHttp['responseByteCount']);
 
 $transportSuccess = 'no';
 if ($normalizedHttp['success'] === true) {
@@ -1015,3 +1015,4 @@ if ($leak) {
 
 $report[] = 'credential_leak_check=passed';
 markai_diag_exit($report, 0);
+

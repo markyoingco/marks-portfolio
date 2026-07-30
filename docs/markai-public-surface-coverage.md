@@ -17,11 +17,11 @@ Generated for Phase 3A.1 addendum (music, films, lifestyle, travel, and public-s
 
 Public-surface parity target topics are classified below as:
 
-- **ANSWERABLE** — deterministic and/or approved-record backed
-- **LINK-ONLY** — prefer safe trusted links rather than repeating private contact raw values
-- **EXCLUDED-SENSITIVE** — refused or omitted by privacy policy
-- **NEEDS-REVIEW** — public-ish but not yet fully structured for MarkAI
-- **DUPLICATE-COVERED** — already covered by another primary topic/record
+- **ANSWERABLE** - deterministic and/or approved-record backed
+- **LINK-ONLY** - prefer safe trusted links rather than repeating private contact raw values
+- **EXCLUDED-SENSITIVE** - refused or omitted by privacy policy
+- **NEEDS-REVIEW** - public-ish but not yet fully structured for MarkAI
+- **DUPLICATE-COVERED** - already covered by another primary topic/record
 
 ## Exact public travel sources
 
@@ -68,56 +68,56 @@ Trusted link added for Travel section routing:
 
 | Public topic | Classification | Canonical source | Approved record IDs | Example questions | Fallback | Safe link IDs (dev) | Privacy restrictions | Gaps |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Professional summary | ANSWERABLE | Webpage Welcome / Terminal profile | profile / education / career-direction records | Who is Mark? Tell me about Mark | Deterministic `profile` | `link-portfolio-home`, `link-resume-pdf` | No private bio claims | — |
-| Education | ANSWERABLE | Webpage Education / Terminal resume | education records | Where did Mark go to school? | Deterministic `profile` | `link-resume-pdf` | No grades/GPA unless approved | — |
-| Target roles | ANSWERABLE | Career direction records | `career-direction-first-full-time-tech-role`, `personality-career-purpose` | What roles is Mark seeking? | Deterministic `careerGoals` | `link-resume-pdf`, `link-contact-section` | No salary expectations unless approved | — |
-| Skills | ANSWERABLE | Webpage Skills / shared skill records | skill-* records | What technologies does Mark use? | Deterministic `technologies` | `link-github-profile` | No private tooling secrets | — |
-| Work experience | ANSWERABLE | Webpage Experience / Terminal resume | work-* records | What is Mark’s work experience? | Deterministic `work` | `link-resume-pdf`, `link-linkedin` | No private supervisor contact | — |
-| Leadership / involvement | ANSWERABLE | Webpage Experience / leadership records | leadership / membership records | Leadership experience? | Deterministic `work` | `link-resume-pdf` | No private org disputes | — |
-| Values and goals | ANSWERABLE | Approved personality / career records | `personality-growth-and-values`, `personality-career-purpose` | What are Mark’s values/goals? | Deterministic `values` / `careerGoals` | optional resume/contact | No private journal content | — |
-| Favorite color | ANSWERABLE | Approved aesthetic interest | `personality-aesthetic-environment`, `interest-creative-aesthetics-design` | Favorite color? | Deterministic `favoriteColor` | — | — | — |
-| Current MarkAI status | ANSWERABLE | MarkAI status answer | project-markai / status deterministic | Is MarkAI live? | Deterministic `status` | `link-markai-route` | No provider secrets | — |
+| Professional summary | ANSWERABLE | Webpage Welcome / Terminal profile | profile / education / career-direction records | Who is Mark? Tell me about Mark | Deterministic `profile` | `link-portfolio-home`, `link-resume-pdf` | No private bio claims | - |
+| Education | ANSWERABLE | Webpage Education / Terminal resume | education records | Where did Mark go to school? | Deterministic `profile` | `link-resume-pdf` | No grades/GPA unless approved | - |
+| Target roles | ANSWERABLE | Career direction records | `career-direction-first-full-time-tech-role`, `personality-career-purpose` | What roles is Mark seeking? | Deterministic `careerGoals` | `link-resume-pdf`, `link-contact-section` | No salary expectations unless approved | - |
+| Skills | ANSWERABLE | Webpage Skills / shared skill records | skill-* records | What technologies does Mark use? | Deterministic `technologies` | `link-github-profile` | No private tooling secrets | - |
+| Work experience | ANSWERABLE | Webpage Experience / Terminal resume | work-* records | What is Mark’s work experience? | Deterministic `work` | `link-resume-pdf`, `link-linkedin` | No private supervisor contact | - |
+| Leadership / involvement | ANSWERABLE | Webpage Experience / leadership records | leadership / membership records | Leadership experience? | Deterministic `work` | `link-resume-pdf` | No private org disputes | - |
+| Values and goals | ANSWERABLE | Approved personality / career records | `personality-growth-and-values`, `personality-career-purpose` | What are Mark’s values/goals? | Deterministic `values` / `careerGoals` | optional resume/contact | No private journal content | - |
+| Favorite color | ANSWERABLE | Approved aesthetic interest | `personality-aesthetic-environment`, `interest-creative-aesthetics-design` | Favorite color? | Deterministic `favoriteColor` | - | - | - |
+| Current MarkAI status | ANSWERABLE | MarkAI status answer | project-markai / status deterministic | Is MarkAI live? | Deterministic `status` | `link-markai-route` | No provider secrets | - |
 
 ### Projects
 
 | Public topic | Classification | Canonical source | Approved record IDs | Example questions | Fallback | Safe link IDs (dev) | Privacy restrictions | Gaps |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Public project inventory | ANSWERABLE | Webpage Portfolio / Terminal project files / shared project data | `projects-public-inventory` + project-* | What projects has Mark built? | Deterministic `projectsInventory` | `link-portfolio-section` | No private repos | — |
-| Project contributions | ANSWERABLE | Project records | project-* | What did Mark do on Abacus? | Deterministic project answers | project GitHub links | No private commit dumps | — |
+| Public project inventory | ANSWERABLE | Webpage Portfolio / Terminal project files / shared project data | `projects-public-inventory` + project-* | What projects has Mark built? | Deterministic `projectsInventory` | `link-portfolio-section` | No private repos | - |
+| Project contributions | ANSWERABLE | Project records | project-* | What did Mark do on Abacus? | Deterministic project answers | project GitHub links | No private commit dumps | - |
 | Project teammates (when asked) | ANSWERABLE | MarkAI-only collaborator records | `collaborators-*` | Who worked on Abacus? | Deterministic collaborator answers | related project GitHub | No unpublished teammates | Names are MarkAI-only; not added to Webpage/Terminal/resume |
-| Ownership solo vs team | ANSWERABLE | Project records | inventory + project-* | Did Mark build that alone? | Deterministic `individualTeam` | portfolio/project links | — | — |
+| Ownership solo vs team | ANSWERABLE | Project records | inventory + project-* | Did Mark build that alone? | Deterministic `individualTeam` | portfolio/project links | - | - |
 
 ### Testimonials / contact / navigation
 
 | Public topic | Classification | Canonical source | Approved record IDs | Example questions | Fallback | Safe link IDs (dev) | Privacy restrictions | Gaps |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Testimonials | ANSWERABLE | `src/testimonialsData.js` + Webpage Testimonials | `testimonials-public-overview`, testimonial-* | Testimonials? Reviews? | Deterministic `testimonials` | `link-testimonials-section` | No private metadata, no raw emails | Deep-link hash not available yet |
-| Webpage / Terminal / MarkAI modes | ANSWERABLE | Navigation records | `navigation-portfolio-modes` | What modes does the portfolio have? | Deterministic navigation/contact | mode links | — | — |
-| Resume access | LINK-ONLY / ANSWERABLE | Trusted resume link | contact/navigation records | Where is Mark’s resume? | Deterministic `contact` | `link-resume-pdf` | No private docs | — |
-| GitHub / LinkedIn | LINK-ONLY / ANSWERABLE | Trusted profile links | contact records | GitHub? LinkedIn? | Deterministic `contact` / `links` | `link-github-profile`, `link-linkedin` | No private repos | — |
+| Webpage / Terminal / MarkAI modes | ANSWERABLE | Navigation records | `navigation-portfolio-modes` | What modes does the portfolio have? | Deterministic navigation/contact | mode links | - | - |
+| Resume access | LINK-ONLY / ANSWERABLE | Trusted resume link | contact/navigation records | Where is Mark’s resume? | Deterministic `contact` | `link-resume-pdf` | No private docs | - |
+| GitHub / LinkedIn | LINK-ONLY / ANSWERABLE | Trusted profile links | contact records | GitHub? LinkedIn? | Deterministic `contact` / `links` | `link-github-profile`, `link-linkedin` | No private repos | - |
 | Contact section | LINK-ONLY | Webpage Contact | `contact-preferred-methods` | How do I contact Mark? | Deterministic `contact` | `link-contact-section` | Raw phone / private email excluded | Prefer section over raw contact |
-| Raw phone / private email | EXCLUDED-SENSITIVE | Privacy policy | privacy rules | What is Mark’s phone/email? | Refuse / redirect | contact section only | Never return raw values | — |
+| Raw phone / private email | EXCLUDED-SENSITIVE | Privacy policy | privacy rules | What is Mark’s phone/email? | Refuse / redirect | contact section only | Never return raw values | - |
 
 ### Interests / lifestyle / entertainment (MarkAI-only expansions)
 
 | Public topic | Classification | Canonical source | Approved record IDs | Example questions | Fallback | Safe link IDs (dev) | Privacy restrictions | Gaps |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Favorite artists | ANSWERABLE | Mark-approved (not Webpage/Terminal) | `interest-favorite-artists` | Favorite artists? Drake? R&B? | Deterministic `favoriteArtists` | — | No lyrics, albums, personal artist claims | Not on Webpage/Terminal by design |
-| Favorite films / show | ANSWERABLE | Mark-approved (not Webpage/Terminal) | `interest-favorite-films-television` | Favorite movies? Regular Show? Marvel or DC? | Deterministic `favoriteFilms` | — | No script quotes; Regular Show is a series | Not on Webpage/Terminal by design |
-| Fitness / bodybuilding | ANSWERABLE | Interest + personality depth | `interest-fitness-bodybuilding`, `personality-bodybuilding-depth` | Bodybuilding? Gym? | Deterministic `bodybuilding` | — | No medical/measurements | — |
-| Mythology | ANSWERABLE | Interest + personality depth | `interest-greek-mythology-art`, `personality-mythology-figures` | Greek mythology? Icarus? | Deterministic `mythology` | — | Not religion claims | — |
-| Hobbies / lifestyle | ANSWERABLE | Expanded lifestyle record | `interest-lifestyle-hobbies-expanded` (+ related) | Hobbies? For fun? Cooking? Museums? | Deterministic `hobbies` (+ cooking/museums) | — | No professional cooking claim | — |
-| Dog | ANSWERABLE (non-identifying) | Lifestyle record | `interest-lifestyle-hobbies-expanded` | Does Mark have a dog? | Deterministic dog answer | — | No name/breed/age/medical | Identifying details excluded |
-| Friends / family time | ANSWERABLE (non-identifying) | Lifestyle record | `interest-lifestyle-hobbies-expanded` | Friends and family? | Deterministic friends/family answer | — | No names, schedules, private stories | — |
+| Favorite artists | ANSWERABLE | Mark-approved (not Webpage/Terminal) | `interest-favorite-artists` | Favorite artists? Drake? R&B? | Deterministic `favoriteArtists` | - | No lyrics, albums, personal artist claims | Not on Webpage/Terminal by design |
+| Favorite films / show | ANSWERABLE | Mark-approved (not Webpage/Terminal) | `interest-favorite-films-television` | Favorite movies? Regular Show? Marvel or DC? | Deterministic `favoriteFilms` | - | No script quotes; Regular Show is a series | Not on Webpage/Terminal by design |
+| Fitness / bodybuilding | ANSWERABLE | Interest + personality depth | `interest-fitness-bodybuilding`, `personality-bodybuilding-depth` | Bodybuilding? Gym? | Deterministic `bodybuilding` | - | No medical/measurements | - |
+| Mythology | ANSWERABLE | Interest + personality depth | `interest-greek-mythology-art`, `personality-mythology-figures` | Greek mythology? Icarus? | Deterministic `mythology` | - | Not religion claims | - |
+| Hobbies / lifestyle | ANSWERABLE | Expanded lifestyle record | `interest-lifestyle-hobbies-expanded` (+ related) | Hobbies? For fun? Cooking? Museums? | Deterministic `hobbies` (+ cooking/museums) | - | No professional cooking claim | - |
+| Dog | ANSWERABLE (non-identifying) | Lifestyle record | `interest-lifestyle-hobbies-expanded` | Does Mark have a dog? | Deterministic dog answer | - | No name/breed/age/medical | Identifying details excluded |
+| Friends / family time | ANSWERABLE (non-identifying) | Lifestyle record | `interest-lifestyle-hobbies-expanded` | Friends and family? | Deterministic friends/family answer | - | No names, schedules, private stories | - |
 
 ### Travel / photography
 
 | Public topic | Classification | Canonical source | Approved record IDs | Example questions | Fallback | Safe link IDs (dev) | Privacy restrictions | Gaps |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Travel places | ANSWERABLE | `src/travelPlacesData.js` | `travel-public-places-inventory` | Where has Mark traveled? | Deterministic `travelPlaces` | `link-travel-section`, `link-vsco` | No itinerary/lodging/current location | Blog labels more granular than inventory |
-| Travel meaning | ANSWERABLE | Approved framing + travel interest | `travel-public-places-inventory`, `interest-travel-photography` | What does travel mean to Mark? | Deterministic `travel` / photographyTravel | `link-vsco` / travel section | No exaggerated motivation | — |
-| Photography | ANSWERABLE | Travel/photography interests | `interest-travel-photography`, personality photography record | Why photography? Where view photos? | Deterministic photography / travelPlaces | `link-vsco`, `link-travel-section` | No private EXIF/GPS | — |
-| VSCO | LINK-ONLY / ANSWERABLE | Trusted VSCO link | related travel records | Where can I view Mark’s photography? | Deterministic travel/contact | `link-vsco` | Public gallery only | — |
+| Travel meaning | ANSWERABLE | Approved framing + travel interest | `travel-public-places-inventory`, `interest-travel-photography` | What does travel mean to Mark? | Deterministic `travel` / photographyTravel | `link-vsco` / travel section | No exaggerated motivation | - |
+| Photography | ANSWERABLE | Travel/photography interests | `interest-travel-photography`, personality photography record | Why photography? Where view photos? | Deterministic photography / travelPlaces | `link-vsco`, `link-travel-section` | No private EXIF/GPS | - |
+| VSCO | LINK-ONLY / ANSWERABLE | Trusted VSCO link | related travel records | Where can I view Mark’s photography? | Deterministic travel/contact | `link-vsco` | Public gallery only | - |
 
 ### Explicit exclusions
 
@@ -163,8 +163,8 @@ Optional future NEEDS-REVIEW items outside this approval:
 
 ## Link coverage (Phase 3A.2 addendum)
 
-Canonical MarkAI registry: `markai-knowledge/links/trusted-links.json`  
-Terminal short aliases: `src/publicOpenAliases.js` (URLs must match the registry)  
+Canonical MarkAI registry: `markai-knowledge/links/trusted-links.json` 
+Terminal short aliases: `src/publicOpenAliases.js` (URLs must match the registry) 
 Webpage/Terminal project maps: `src/PortfolioApp.jsx`, `src/terminalPortfolioProjectData.js`
 
 ### Counts
@@ -199,7 +199,7 @@ Webpage/Terminal project maps: `src/PortfolioApp.jsx`, `src/terminalPortfolioPro
 
 | Destination | Canonical URL / route | MarkAI ID | Terminal alias | Verification |
 | --- | --- | --- | --- | --- |
-| Portfolio home | `https://markyoingco.com` | `link-portfolio-home` | — | Static match |
+| Portfolio home | `https://markyoingco.com` | `link-portfolio-home` | - | Static match |
 | Portfolio section | `https://markyoingco.com` | `link-portfolio-section` | `open portfolio` | SPA screen (no hash) |
 | Contact section | `https://markyoingco.com` | `link-contact-section` | `open contact` | SPA screen (no hash) |
 | Testimonials section | `https://markyoingco.com` | `link-testimonials-section` | `open testimonials` | SPA screen (no hash) |
@@ -209,7 +209,7 @@ Webpage/Terminal project maps: `src/PortfolioApp.jsx`, `src/terminalPortfolioPro
 | LinkedIn | `https://www.linkedin.com/in/mark-yoingco` | `link-linkedin` | `open linkedin` | Match |
 | VSCO | `https://vsco.co/markyoingco/gallery` | `link-vsco` | `open vsco` / `open photography` | Match |
 | MarkAI route | `https://markyoingco.com/#markai` | `link-markai-route` | `open markai` | In-app open; hash not SPA-wired |
-| Email | mailto (disabled) | `link-email` | — | Never returned |
+| Email | mailto (disabled) | `link-email` | - | Never returned |
 
 ### Contextual MarkAI behavior
 

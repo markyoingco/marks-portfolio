@@ -97,8 +97,8 @@
       "category": "projects",
       "recordType": "project-detail",
       "title": "Abacus April 2026 Live Competition Scale and Stability",
-      "publicText": "The April 15, 2026 live competition used Abacus to support approximately 200–300 high-school students, teachers, judges, and administrators during the Wisconsin-Dairyland Programming Competition, a live event lasting approximately three hours. The team improved a platform that had previously struggled with server crashes, lag, system overload, and incomplete competition support. Mark approves the outcome statement that the April 15, 2026 competition ran without major server crashes, platform failures, critical bugs, or major lag. Mark also approves that this was the first completely successful Abacus iteration in recent years, that the team was recognized as the hardest-working senior capstone team, and that the team completed both MAAT and Abacus during one academic year. Mark and his team helped deliver one of the smoothest and most stable recent iterations of the competition platform.",
-      "shortText": "April 15, 2026 live Abacus event supported approximately 200–300 students, teachers, judges, and administrators and ran without major crashes, platform failures, critical bugs, or major lag.",
+      "publicText": "The April 15, 2026 live competition used Abacus to support approximately 200 - 300 high-school students, teachers, judges, and administrators during the Wisconsin-Dairyland Programming Competition, a live event lasting approximately three hours. The team improved a platform that had previously struggled with server crashes, lag, system overload, and incomplete competition support. Mark approves the outcome statement that the April 15, 2026 competition ran without major server crashes, platform failures, critical bugs, or major lag. Mark also approves that this was the first completely successful Abacus iteration in recent years, that the team was recognized as the hardest-working senior capstone team, and that the team completed both MAAT and Abacus during one academic year. Mark and his team helped deliver one of the smoothest and most stable recent iterations of the competition platform.",
+      "shortText": "April 15, 2026 live Abacus event supported approximately 200 - 300 students, teachers, judges, and administrators and ran without major crashes, platform failures, critical bugs, or major lag.",
       "aliases": [
         "Abacus live competition",
         "Abacus 200-300 participants",
@@ -297,8 +297,8 @@
       "category": "project-contributions",
       "recordType": "contribution",
       "title": "Abacus Testing, Prioritization, and Delivery Contribution",
-      "publicText": "Mark supported testing and validation through Vite-based frontend validation, TypeScript checks, submission-workflow testing, manual end-to-end competition testing, registration testing, submission testing, leaderboard-update testing, help-request testing, division-page testing, debugging, deployment configuration, and documentation. He helped organize priorities through a Priority 0–3 task list that helped the team identify critical requirements, separate required work from optional work, remove unnecessary features, prioritize MVP functionality, focus on the April 10 deadline, and prepare for the April 15 live competition. Vite-based validation is not Vitest and should not be described as a formal automated unit-test suite.",
-      "shortText": "Mark supported Vite/TypeScript validation, manual end-to-end competition testing, debugging, documentation, and Priority 0–3 delivery planning for the April competition.",
+      "publicText": "Mark supported testing and validation through Vite-based frontend validation, TypeScript checks, submission-workflow testing, manual end-to-end competition testing, registration testing, submission testing, leaderboard-update testing, help-request testing, division-page testing, debugging, deployment configuration, and documentation. He helped organize priorities through a Priority 0 - 3 task list that helped the team identify critical requirements, separate required work from optional work, remove unnecessary features, prioritize MVP functionality, focus on the April 10 deadline, and prepare for the April 15 live competition. Vite-based validation is not Vitest and should not be described as a formal automated unit-test suite.",
+      "shortText": "Mark supported Vite/TypeScript validation, manual end-to-end competition testing, debugging, documentation, and Priority 0 - 3 delivery planning for the April competition.",
       "aliases": [
         "Abacus testing",
         "Abacus prioritization",
@@ -633,7 +633,7 @@
       "category": "projects",
       "recordType": "project-detail",
       "title": "MAAT Adoption and Maintainability",
-      "publicText": "Mark reports that the MAAT platform was accepted for use beyond Marquette by additional Milwaukee-area computer-science programs, including programs associated with University of Wisconsin–Milwaukee and Milwaukee School of Engineering. The team also worked on Docker Compose testing, DBeaver database checks, prioritized issue tracking, admin grading UX cleanup, architecture documentation, verification and validation documentation, and long-term maintainability.",
+      "publicText": "Mark reports that the MAAT platform was accepted for use beyond Marquette by additional Milwaukee-area computer-science programs, including programs associated with University of Wisconsin - Milwaukee and Milwaukee School of Engineering. The team also worked on Docker Compose testing, DBeaver database checks, prioritized issue tracking, admin grading UX cleanup, architecture documentation, verification and validation documentation, and long-term maintainability.",
       "shortText": "Mark reports MAAT was accepted for use by additional Milwaukee-area CS programs including UWM and MSOE, with team work on maintainability and documentation.",
       "aliases": [
         "MAAT adoption",

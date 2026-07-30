@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 /**
- * Local fixture harness for MarkAI provider foundation + System Message V3 hygiene.
- *
- * No network requests. All provider responses come from injectable fixtures.
- */
+* Local fixture harness for MarkAI provider foundation + System Message V3 hygiene.
+*
+* No network requests. All provider responses come from injectable fixtures.
+*/
 
 $repoRoot = dirname(__DIR__);
 require_once $repoRoot . '/server/markai/MockEndpointService.php';
@@ -149,7 +149,7 @@ $assert($promptCharsAfter > 0, 'representative prompt size measured');
 // --- Validator fixtures ---
 
 $badFixtures = [
-    'qualifier_drift' => 'The project supported roughly 200–300 participants and ran without noticeable lag, providing a stable and functional environment.',
+    'qualifier_drift' => 'The project supported roughly 200 - 300 participants and ran without noticeable lag, providing a stable and functional environment.',
     'subjective_claim' => 'Mark was a key member of the team.',
     'finch_ownership' => 'Mark led the Finch frontend and completed all three robots.',
     'maat_ownership' => 'Mark invented MAAT’s plagiarism algorithm.',
@@ -169,7 +169,7 @@ foreach ($badFixtures as $name => $text) {
 
 $goodFixtures = [
     'abacus_ownership' => 'Abacus was a team senior-design project, so Mark did not build the entire system himself. His approved work included Eagle Division workflows, messaging APIs, role-aware chat and inbox behavior, routing and persistence, frontend/backend integration, submission-system support, testing, project prioritization, and UI debugging.',
-    'abacus_impact' => 'Abacus supported the April 15, 2026 Wisconsin-Dairyland Programming Competition for approximately 200–300 high-school students, teachers, judges, and administrators. The event ran without major server crashes, platform failures, critical bugs, or major lag.',
+    'abacus_impact' => 'Abacus supported the April 15, 2026 Wisconsin-Dairyland Programming Competition for approximately 200 - 300 high-school students, teachers, judges, and administrators. The event ran without major server crashes, platform failures, critical bugs, or major lag.',
 ];
 foreach ($goodFixtures as $name => $text) {
     $result = $validator->validate($text);
@@ -183,7 +183,7 @@ $fakeTransport = static function () use (&$networkCalls): array {
     $payload = [
         'success' => true,
         'result' => [
-            'response' => 'The project supported roughly 200–300 participants and ran without noticeable lag, providing a stable and functional environment.',
+            'response' => 'The project supported roughly 200 - 300 participants and ran without noticeable lag, providing a stable and functional environment.',
             'finish_reason' => 'stop',
         ],
     ];
@@ -196,9 +196,9 @@ $fakeTransport = static function () use (&$networkCalls): array {
 };
 
 $enabledConfig = markai_load_provider_configuration([
-    'enabled' => true,
-    'accountId' => 'acct_test_local_only_not_real',
-    'apiToken' => 'token_test_local_only_not_real',
+        'enabled' => true,
+        'accountId' => 'acct_test_local_only_not_real',
+        'apiToken' => 'token_test_local_only_not_real',
 ]);
 
 $beforeCalls = $networkCalls;
@@ -224,12 +224,12 @@ $disabledResponse = handleMarkAiPreviewRequest(
     },
     $service
 );
-$assert(str_contains((string) $disabledResponse['answer'], 'approximately 200–300'), 'disabled path deterministic Abacus scale');
+$assert(str_contains((string) $disabledResponse['answer'], 'approximately 200 - 300'), 'disabled path deterministic Abacus scale');
 $assert($networkCalls === $beforeCalls, 'disabled path made no transport call');
 
 // --- GPT-OSS / Cloudflare response compatibility fixtures ---
 
-$safeAnswer = 'Abacus supported the April 15, 2026 Wisconsin-Dairyland Programming Competition for approximately 200–300 high-school students, teachers, judges, and administrators. The event ran without major server crashes, platform failures, critical bugs, or major lag.';
+$safeAnswer = 'Abacus supported the April 15, 2026 Wisconsin-Dairyland Programming Competition for approximately 200 - 300 high-school students, teachers, judges, and administrators. The event ran without major server crashes, platform failures, critical bugs, or major lag.';
 $runFixture = static function (array $payload) use ($provider, $enabledConfig, &$networkCalls): ProviderResult {
     $networkCalls++;
     return $provider->generate(
@@ -247,13 +247,13 @@ $runFixture = static function (array $payload) use ($provider, $enabledConfig, &
 };
 
 $envelopeResponse = $runFixture([
-    'success' => true,
-    'result' => [
-        'response' => $safeAnswer,
-        'usage' => ['input_tokens' => 100, 'output_tokens' => 30],
-    ],
-    'errors' => [],
-    'messages' => [],
+        'success' => true,
+        'result' => [
+            'response' => $safeAnswer,
+            'usage' => ['input_tokens' => 100, 'output_tokens' => 30],
+        ],
+        'errors' => [],
+        'messages' => [],
 ]);
 $assert($envelopeResponse->isSuccess() === true, 'Cloudflare envelope + result.response accepted');
 $assert($envelopeResponse->getAnswerText() === $safeAnswer, 'envelope response text exact');
@@ -262,62 +262,62 @@ $assert($envelopeResponse->getOutputTokens() === 30, 'usage output_tokens normal
 $assert($envelopeResponse->getFinishReason() === 'completed', 'missing finish reason normalized to completed');
 
 $directResponse = $runFixture([
-    'response' => $safeAnswer,
-    'usage' => ['input_tokens' => 11, 'output_tokens' => 22],
+        'response' => $safeAnswer,
+        'usage' => ['input_tokens' => 11, 'output_tokens' => 22],
 ]);
 $assert($directResponse->isSuccess() === true, 'direct response field accepted');
 
 $envelopeResponsesApi = $runFixture([
-    'success' => true,
-    'result' => [
-        'id' => 'safe-fixture-id',
-        'status' => 'completed',
-        'output' => [
-            [
-                'type' => 'reasoning',
-                'content' => [['type' => 'output_text', 'text' => 'hidden reasoning must not leak']],
+        'success' => true,
+        'result' => [
+            'id' => 'safe-fixture-id',
+            'status' => 'completed',
+            'output' => [
+                [
+                    'type' => 'reasoning',
+                    'content' => [['type' => 'output_text', 'text' => 'hidden reasoning must not leak']],
+                ],
+                [
+                    'type' => 'message',
+                    'role' => 'assistant',
+                    'content' => [['type' => 'output_text', 'text' => $safeAnswer]],
+                ],
             ],
-            [
-                'type' => 'message',
-                'role' => 'assistant',
-                'content' => [['type' => 'output_text', 'text' => $safeAnswer]],
-            ],
+            'usage' => ['input_tokens' => 100, 'output_tokens' => 30],
         ],
-        'usage' => ['input_tokens' => 100, 'output_tokens' => 30],
-    ],
 ]);
 $assert($envelopeResponsesApi->isSuccess() === true, 'envelope + Responses API output accepted');
 $assert($envelopeResponsesApi->getAnswerText() === $safeAnswer, 'reasoning content excluded from answer');
 $assert(!str_contains((string) $envelopeResponsesApi->getAnswerText(), 'hidden reasoning'), 'no reasoning leak in answer');
 
 $directResponsesApi = $runFixture([
-    'id' => 'safe-fixture-id',
-    'status' => 'completed',
-    'output' => [
-        [
-            'type' => 'message',
-            'role' => 'assistant',
-            'content' => [['type' => 'output_text', 'text' => $safeAnswer]],
+        'id' => 'safe-fixture-id',
+        'status' => 'completed',
+        'output' => [
+            [
+                'type' => 'message',
+                'role' => 'assistant',
+                'content' => [['type' => 'output_text', 'text' => $safeAnswer]],
+            ],
         ],
-    ],
-    'usage' => ['input_tokens' => 5, 'output_tokens' => 6],
+        'usage' => ['input_tokens' => 5, 'output_tokens' => 6],
 ]);
 $assert($directResponsesApi->isSuccess() === true, 'direct Responses API output accepted');
 $assert($directResponsesApi->getFinishReason() === 'completed', 'status completed maps to finish completed');
 
 $outputTextForm = $runFixture([
-    'success' => true,
-    'result' => [
-        'output_text' => $safeAnswer,
-        'usage' => ['input_tokens' => 100, 'output_tokens' => 30],
-    ],
+        'success' => true,
+        'result' => [
+            'output_text' => $safeAnswer,
+            'usage' => ['input_tokens' => 100, 'output_tokens' => 30],
+        ],
 ]);
 $assert($outputTextForm->isSuccess() === true, 'approved output_text form accepted');
 
 $successFalse = $runFixture([
-    'success' => false,
-    'result' => ['response' => $safeAnswer],
-    'errors' => [['message' => 'secret provider detail']],
+        'success' => false,
+        'result' => ['response' => $safeAnswer],
+        'errors' => [['message' => 'secret provider detail']],
 ]);
 $assert($successFalse->isSuccess() === false, 'success=false rejected');
 $assert($successFalse->getErrorCategory() === 'provider_success_false', 'success=false category');
@@ -329,9 +329,23 @@ $successNoResult = $runFixture(['success' => true, 'errors' => []]);
 $assert($successNoResult->isSuccess() === false, 'success=true without result rejected');
 
 $incomplete = $runFixture([
-    'success' => true,
-    'result' => [
-        'status' => 'incomplete',
+        'success' => true,
+        'result' => [
+            'status' => 'incomplete',
+            'output' => [
+                [
+                    'type' => 'message',
+                    'role' => 'assistant',
+                    'content' => [['type' => 'output_text', 'text' => $safeAnswer]],
+                ],
+            ],
+        ],
+]);
+$assert($incomplete->isSuccess() === false, 'incomplete status rejected');
+$assert($incomplete->getErrorCategory() === 'incomplete_response', 'incomplete status category');
+
+$failedStatus = $runFixture([
+        'status' => 'failed',
         'output' => [
             [
                 'type' => 'message',
@@ -339,68 +353,54 @@ $incomplete = $runFixture([
                 'content' => [['type' => 'output_text', 'text' => $safeAnswer]],
             ],
         ],
-    ],
-]);
-$assert($incomplete->isSuccess() === false, 'incomplete status rejected');
-$assert($incomplete->getErrorCategory() === 'incomplete_response', 'incomplete status category');
-
-$failedStatus = $runFixture([
-    'status' => 'failed',
-    'output' => [
-        [
-            'type' => 'message',
-            'role' => 'assistant',
-            'content' => [['type' => 'output_text', 'text' => $safeAnswer]],
-        ],
-    ],
 ]);
 $assert($failedStatus->isSuccess() === false, 'failed status rejected');
 
 $emptyOutput = $runFixture([
-    'success' => true,
-    'result' => ['status' => 'completed', 'output' => []],
+        'success' => true,
+        'result' => ['status' => 'completed', 'output' => []],
 ]);
 $assert($emptyOutput->isSuccess() === false, 'empty output rejected');
 $assert($emptyOutput->getErrorCategory() === 'incomplete_response', 'empty output category');
 
 $reasoningOnly = $runFixture([
-    'status' => 'completed',
-    'output' => [
-        [
-            'type' => 'reasoning',
-            'content' => [['type' => 'output_text', 'text' => 'only reasoning']],
+        'status' => 'completed',
+        'output' => [
+            [
+                'type' => 'reasoning',
+                'content' => [['type' => 'output_text', 'text' => 'only reasoning']],
+            ],
         ],
-    ],
 ]);
 $assert($reasoningOnly->isSuccess() === false, 'reasoning-only output rejected');
 $assert($reasoningOnly->getErrorCategory() === 'reasoning_only_output', 'reasoning-only category');
 
 $toolOnly = $runFixture([
-    'status' => 'completed',
-    'output' => [
-        [
-            'type' => 'function_call',
-            'name' => 'lookup',
-            'arguments' => '{}',
+        'status' => 'completed',
+        'output' => [
+            [
+                'type' => 'function_call',
+                'name' => 'lookup',
+                'arguments' => '{}',
+            ],
         ],
-    ],
 ]);
 $assert($toolOnly->isSuccess() === false, 'tool-only output rejected');
 $assert($toolOnly->getErrorCategory() === 'tool_only_output', 'tool-only category');
 
 $conflicting = $runFixture([
-    'success' => true,
-    'result' => [
-        'response' => $safeAnswer,
-        'output_text' => 'A completely different final answer that must not be mixed.',
-    ],
+        'success' => true,
+        'result' => [
+            'response' => $safeAnswer,
+            'output_text' => 'A completely different final answer that must not be mixed.',
+        ],
 ]);
 $assert($conflicting->isSuccess() === false, 'multiple conflicting final answers rejected');
 $assert($conflicting->getErrorCategory() === 'conflicting_answers', 'conflicting answers category');
 
 $promptUsage = $runFixture([
-    'response' => $safeAnswer,
-    'usage' => ['prompt_tokens' => 40, 'completion_tokens' => 12],
+        'response' => $safeAnswer,
+        'usage' => ['prompt_tokens' => 40, 'completion_tokens' => 12],
 ]);
 $assert($promptUsage->getInputTokens() === 40, 'usage prompt_tokens normalized');
 $assert($promptUsage->getOutputTokens() === 12, 'usage completion_tokens normalized');
@@ -411,14 +411,14 @@ $assert($missingUsage->getInputTokens() === null, 'missing usage input unavailab
 $assert($missingUsage->getOutputTokens() === null, 'missing usage output unavailable');
 
 $fingerprint = CloudflareWorkersAiProvider::structuralFingerprintForTests([
-    'success' => true,
-    'result' => [
-        'id' => 'must-not-appear',
-        'output' => [
-            ['type' => 'reasoning', 'content' => [['type' => 'output_text', 'text' => 'secret']]],
-            ['type' => 'message', 'content' => [['type' => 'output_text', 'text' => 'answer']]],
+        'success' => true,
+        'result' => [
+            'id' => 'must-not-appear',
+            'output' => [
+                ['type' => 'reasoning', 'content' => [['type' => 'output_text', 'text' => 'secret']]],
+                ['type' => 'message', 'content' => [['type' => 'output_text', 'text' => 'answer']]],
+            ],
         ],
-    ],
 ]);
 $fpJson = json_encode($fingerprint, JSON_THROW_ON_ERROR);
 $assert(str_contains($fpJson, 'success') && str_contains($fpJson, 'result'), 'fingerprint reports top-level keys');
@@ -431,25 +431,25 @@ $assert(!str_contains($fpJson, 'answer'), 'fingerprint does not leak answer text
 // curl_close deprecation check under PHP 8.5 fixture execution
 $warnings = [];
 set_error_handler(static function (int $errno, string $errstr) use (&$warnings): bool {
-    if ($errno === E_DEPRECATED || $errno === E_USER_DEPRECATED) {
-        $warnings[] = $errstr;
-    }
-    return false;
+        if ($errno === E_DEPRECATED || $errno === E_USER_DEPRECATED) {
+            $warnings[] = $errstr;
+        }
+        return false;
 });
 $transportSource = (string) file_get_contents($repoRoot . '/server/markai/CurlHttpTransport.php');
 $assert(!preg_match('/\bcurl_close\s*\(/', $transportSource), 'CurlHttpTransport source has no curl_close call');
 $curlTransport = new CurlHttpTransport(static function (): array {
-    return [
-        'httpStatus' => 200,
-        'body' => '{"response":"ok"}',
-        'contentType' => 'application/json',
-        'errorCategory' => null,
-    ];
+        return [
+            'httpStatus' => 200,
+            'body' => '{"response":"ok"}',
+            'contentType' => 'application/json',
+            'errorCategory' => null,
+        ];
 });
 $curlTransport->request([
-    'url' => 'https://api.cloudflare.com/client/v4/accounts/x/ai/run/@cf/openai/gpt-oss-120b',
-    'method' => 'POST',
-    'body' => '{}',
+        'url' => 'https://api.cloudflare.com/client/v4/accounts/x/ai/run/@cf/openai/gpt-oss-120b',
+        'method' => 'POST',
+        'body' => '{}',
 ]);
 restore_error_handler();
 $deprecatedCurlClose = false;
@@ -469,14 +469,14 @@ $transportCase = static function (
     ?int $expectedErrno = null
 ) use ($assert, &$networkCalls): void {
     $transport = new CurlHttpTransport(static function () use (&$networkCalls, $executorResult): array {
-        $networkCalls++;
-        return $executorResult;
+            $networkCalls++;
+            return $executorResult;
     });
     $result = $transport->request([
-        'url' => 'https://api.cloudflare.com/client/v4/accounts/x/ai/run/@cf/openai/gpt-oss-120b',
-        'method' => 'POST',
-        'body' => '{}',
-        'maxResponseBytes' => 200000,
+            'url' => 'https://api.cloudflare.com/client/v4/accounts/x/ai/run/@cf/openai/gpt-oss-120b',
+            'method' => 'POST',
+            'body' => '{}',
+            'maxResponseBytes' => 200000,
     ]);
     $assert(($result['success'] ?? true) === false, $label . ' marked unsuccessful');
     $assert(($result['errorCategory'] ?? '') === $expectedCategory, $label . ' category');
@@ -490,83 +490,83 @@ $transportCase = static function (
 };
 
 $transportCase('DNS failure', [
-    'httpStatus' => 0,
-    'body' => '',
-    'contentType' => null,
-    'errorCategory' => 'dns_failed',
-    'curlErrno' => defined('CURLE_COULDNT_RESOLVE_HOST') ? CURLE_COULDNT_RESOLVE_HOST : 6,
-], 'dns_failed', defined('CURLE_COULDNT_RESOLVE_HOST') ? CURLE_COULDNT_RESOLVE_HOST : 6);
+        'httpStatus' => 0,
+        'body' => '',
+        'contentType' => null,
+        'errorCategory' => 'dns_failed',
+        'curlErrno' => defined('CURLE_COULDNT_RESOLVE_HOST') ? CURLE_COULDNT_RESOLVE_HOST : 6,
+    ], 'dns_failed', defined('CURLE_COULDNT_RESOLVE_HOST') ? CURLE_COULDNT_RESOLVE_HOST : 6);
 
 $transportCase('connection failure', [
-    'httpStatus' => 0,
-    'body' => '',
-    'contentType' => null,
-    'errorCategory' => 'connection_failed',
-    'curlErrno' => defined('CURLE_COULDNT_CONNECT') ? CURLE_COULDNT_CONNECT : 7,
-], 'connection_failed');
+        'httpStatus' => 0,
+        'body' => '',
+        'contentType' => null,
+        'errorCategory' => 'connection_failed',
+        'curlErrno' => defined('CURLE_COULDNT_CONNECT') ? CURLE_COULDNT_CONNECT : 7,
+    ], 'connection_failed');
 
 $transportCase('timeout', [
-    'httpStatus' => 0,
-    'body' => '',
-    'contentType' => null,
-    'errorCategory' => 'timeout',
-    'curlErrno' => defined('CURLE_OPERATION_TIMEDOUT') ? CURLE_OPERATION_TIMEDOUT : 28,
-], 'timeout');
+        'httpStatus' => 0,
+        'body' => '',
+        'contentType' => null,
+        'errorCategory' => 'timeout',
+        'curlErrno' => defined('CURLE_OPERATION_TIMEDOUT') ? CURLE_OPERATION_TIMEDOUT : 28,
+    ], 'timeout');
 
 $transportCase('TLS failure', [
-    'httpStatus' => 0,
-    'body' => '',
-    'contentType' => null,
-    'errorCategory' => 'tls_failed',
-    'curlErrno' => defined('CURLE_SSL_CONNECT_ERROR') ? CURLE_SSL_CONNECT_ERROR : 35,
-], 'tls_failed');
+        'httpStatus' => 0,
+        'body' => '',
+        'contentType' => null,
+        'errorCategory' => 'tls_failed',
+        'curlErrno' => defined('CURLE_SSL_CONNECT_ERROR') ? CURLE_SSL_CONNECT_ERROR : 35,
+    ], 'tls_failed');
 
 $transportCase('write callback failure', [
-    'httpStatus' => 0,
-    'body' => '',
-    'contentType' => null,
-    'errorCategory' => 'response_write_failed',
-    'curlErrno' => defined('CURLE_WRITE_ERROR') ? CURLE_WRITE_ERROR : 23,
-], 'response_write_failed');
+        'httpStatus' => 0,
+        'body' => '',
+        'contentType' => null,
+        'errorCategory' => 'response_write_failed',
+        'curlErrno' => defined('CURLE_WRITE_ERROR') ? CURLE_WRITE_ERROR : 23,
+    ], 'response_write_failed');
 
 $transportCase('empty response', [
-    'httpStatus' => 200,
-    'body' => '',
-    'contentType' => 'application/json',
-    'errorCategory' => null,
-    'curlErrno' => 0,
-], 'empty_response');
-
-$transportCase('missing content type', [
-    'httpStatus' => 200,
-    'body' => '{"response":"x"}',
-    'contentType' => null,
-    'errorCategory' => null,
-    'curlErrno' => 0,
-], 'invalid_content_type');
-
-$transportCase('malformed JSON', [
-    'httpStatus' => 200,
-    'body' => '{not-json',
-    'contentType' => 'application/json',
-    'errorCategory' => null,
-    'curlErrno' => 0,
-], 'invalid_json');
-
-$okTransport = new CurlHttpTransport(static function () use (&$networkCalls): array {
-    $networkCalls++;
-    return [
         'httpStatus' => 200,
-        'body' => '{"success":true,"result":{"response":"Abacus supported the April 15, 2026 Wisconsin-Dairyland Programming Competition for approximately 200–300 high-school students, teachers, judges, and administrators. The event ran without major server crashes, platform failures, critical bugs, or major lag."}}',
+        'body' => '',
         'contentType' => 'application/json',
         'errorCategory' => null,
         'curlErrno' => 0,
-    ];
+    ], 'empty_response');
+
+$transportCase('missing content type', [
+        'httpStatus' => 200,
+        'body' => '{"response":"x"}',
+        'contentType' => null,
+        'errorCategory' => null,
+        'curlErrno' => 0,
+    ], 'invalid_content_type');
+
+$transportCase('malformed JSON', [
+        'httpStatus' => 200,
+        'body' => '{not-json',
+        'contentType' => 'application/json',
+        'errorCategory' => null,
+        'curlErrno' => 0,
+    ], 'invalid_json');
+
+$okTransport = new CurlHttpTransport(static function () use (&$networkCalls): array {
+        $networkCalls++;
+        return [
+            'httpStatus' => 200,
+            'body' => '{"success":true,"result":{"response":"Abacus supported the April 15, 2026 Wisconsin-Dairyland Programming Competition for approximately 200 - 300 high-school students, teachers, judges, and administrators. The event ran without major server crashes, platform failures, critical bugs, or major lag."}}',
+            'contentType' => 'application/json',
+            'errorCategory' => null,
+            'curlErrno' => 0,
+        ];
 });
 $okResult = $okTransport->request([
-    'url' => 'https://api.cloudflare.com/client/v4/accounts/x/ai/run/@cf/openai/gpt-oss-120b',
-    'method' => 'POST',
-    'body' => '{}',
+        'url' => 'https://api.cloudflare.com/client/v4/accounts/x/ai/run/@cf/openai/gpt-oss-120b',
+        'method' => 'POST',
+        'body' => '{}',
 ]);
 $assert(($okResult['success'] ?? false) === true, 'successful HTTP 200 JSON response');
 $assert(array_key_exists('httpStatus', $okResult), 'diagnostic contract field httpStatus present');
@@ -574,8 +574,8 @@ $assert(array_key_exists('contentType', $okResult), 'diagnostic contract field c
 $assert(array_key_exists('curlErrno', $okResult), 'diagnostic contract field curlErrno present');
 
 $unsupported = $runFixture([
-    'success' => true,
-    'result' => ['unexpected_only' => true],
+        'success' => true,
+        'result' => ['unexpected_only' => true],
 ]);
 $assert($unsupported->isSuccess() === false, 'valid JSON with unsupported provider schema rejected');
 $assert($unsupported->getErrorCategory() !== 'unknown_transport_error', 'Successful HTTP parsing defect is never unknown_transport_error');
@@ -614,79 +614,79 @@ $assert($observed->getOutputTokens() === 30, 'exact observed envelope completion
 $assert($observed->getErrorCategory() !== 'unknown_transport_error', 'observed envelope never unknown_transport_error');
 
 $directChoices = $runFixture([
-    'choices' => [
-        [
-            'index' => 0,
-            'message' => ['role' => 'assistant', 'content' => $safeAnswer],
-            'finish_reason' => 'stop',
+        'choices' => [
+            [
+                'index' => 0,
+                'message' => ['role' => 'assistant', 'content' => $safeAnswer],
+                'finish_reason' => 'stop',
+            ],
         ],
-    ],
-    'usage' => ['prompt_tokens' => 9, 'completion_tokens' => 4],
+        'usage' => ['prompt_tokens' => 9, 'completion_tokens' => 4],
 ]);
 $assert($directChoices->isSuccess() === true, 'direct choices response accepted');
 
 $textArray = $runFixture([
-    'success' => true,
-    'result' => [
-        'object' => 'chat.completion',
-        'choices' => [
-            [
-                'message' => [
-                    'role' => 'assistant',
-                    'content' => [['type' => 'text', 'text' => $safeAnswer]],
+        'success' => true,
+        'result' => [
+            'object' => 'chat.completion',
+            'choices' => [
+                [
+                    'message' => [
+                        'role' => 'assistant',
+                        'content' => [['type' => 'text', 'text' => $safeAnswer]],
+                    ],
+                    'finish_reason' => 'stop',
                 ],
-                'finish_reason' => 'stop',
             ],
         ],
-    ],
 ]);
 $assert($textArray->isSuccess() === true, 'text content array accepted');
 
 $outputTextArray = $runFixture([
-    'success' => true,
-    'result' => [
-        'choices' => [
-            [
-                'message' => [
-                    'role' => 'assistant',
-                    'content' => [['type' => 'output_text', 'text' => $safeAnswer]],
+        'success' => true,
+        'result' => [
+            'choices' => [
+                [
+                    'message' => [
+                        'role' => 'assistant',
+                        'content' => [['type' => 'output_text', 'text' => $safeAnswer]],
+                    ],
+                    'finish_reason' => 'completed',
                 ],
-                'finish_reason' => 'completed',
             ],
         ],
-    ],
 ]);
 $assert($outputTextArray->isSuccess() === true, 'output-text content array accepted');
 $assert($outputTextArray->getFinishReason() === 'completed', 'completed accepted');
 
 $missingFinish = $runFixture([
-    'success' => true,
-    'result' => [
-        'choices' => [
-            [
-                'message' => ['role' => 'assistant', 'content' => $safeAnswer],
+        'success' => true,
+        'result' => [
+            'choices' => [
+                [
+                    'message' => ['role' => 'assistant', 'content' => $safeAnswer],
+                ],
             ],
         ],
-    ],
 ]);
 $assert($missingFinish->isSuccess() === true, 'missing finish reason with valid synchronous answer accepted');
 $assert($missingFinish->getFinishReason() === 'completed', 'missing finish reason normalized to completed');
 
 foreach ([
-    ['label' => 'empty choices', 'payload' => ['success' => true, 'result' => ['choices' => []]], 'cat' => 'incomplete_response'],
-    ['label' => 'non-object choice', 'payload' => ['success' => true, 'result' => ['choices' => ['x']]], 'cat' => 'unsupported_schema'],
-    ['label' => 'missing message', 'payload' => ['success' => true, 'result' => ['choices' => [['finish_reason' => 'stop']]]], 'cat' => 'incomplete_response'],
-    ['label' => 'non-assistant message', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'user', 'content' => $safeAnswer], 'finish_reason' => 'stop']]]], 'cat' => 'unsupported_schema'],
-    ['label' => 'null content', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => null], 'finish_reason' => 'stop']]]], 'cat' => 'incomplete_response'],
-    ['label' => 'empty content', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => ''], 'finish_reason' => 'stop']]]], 'cat' => 'incomplete_response'],
-    ['label' => 'empty content array', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => []], 'finish_reason' => 'stop']]]], 'cat' => 'incomplete_response'],
-    ['label' => 'reasoning-only response', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => null, 'reasoning_content' => 'hidden'], 'finish_reason' => 'stop']]]], 'cat' => 'reasoning_only_output'],
-    ['label' => 'tool-only response', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => null, 'tool_calls' => [['id' => 'x']]], 'finish_reason' => 'tool_calls']]]], 'cat' => 'tool_only_output'],
-    ['label' => 'conflicting content items', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => [['type' => 'text', 'text' => 'A'], ['type' => 'text', 'text' => 'B']]], 'finish_reason' => 'stop']]]], 'cat' => 'conflicting_answers'],
-    ['label' => 'length/truncation', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => $safeAnswer], 'finish_reason' => 'length']]]], 'cat' => 'incomplete_response'],
-    ['label' => 'content_filter', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => $safeAnswer], 'finish_reason' => 'content_filter']]]], 'cat' => 'incomplete_response'],
-    ['label' => 'unknown finish reason', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => $safeAnswer], 'finish_reason' => 'weird']]]], 'cat' => 'incomplete_response'],
-] as $case) {
+        ['label' => 'empty choices', 'payload' => ['success' => true, 'result' => ['choices' => []]], 'cat' => 'incomplete_response'],
+        ['label' => 'non-object choice', 'payload' => ['success' => true, 'result' => ['choices' => ['x']]], 'cat' => 'unsupported_schema'],
+        ['label' => 'missing message', 'payload' => ['success' => true, 'result' => ['choices' => [['finish_reason' => 'stop']]]], 'cat' => 'incomplete_response'],
+        ['label' => 'non-assistant message', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'user', 'content' => $safeAnswer], 'finish_reason' => 'stop']]]], 'cat' => 'unsupported_schema'],
+        ['label' => 'null content', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => null], 'finish_reason' => 'stop']]]], 'cat' => 'incomplete_response'],
+        ['label' => 'empty content', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => ''], 'finish_reason' => 'stop']]]], 'cat' => 'incomplete_response'],
+        ['label' => 'empty content array', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => []], 'finish_reason' => 'stop']]]], 'cat' => 'incomplete_response'],
+        ['label' => 'reasoning-only response', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => null, 'reasoning_content' => 'hidden'], 'finish_reason' => 'stop']]]], 'cat' => 'reasoning_only_output'],
+        ['label' => 'tool-only response', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => null, 'tool_calls' => [['id' => 'x']]], 'finish_reason' => 'tool_calls']]]], 'cat' => 'tool_only_output'],
+        ['label' => 'conflicting content items', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => [['type' => 'text', 'text' => 'A'], ['type' => 'text', 'text' => 'B']]], 'finish_reason' => 'stop']]]], 'cat' => 'conflicting_answers'],
+        ['label' => 'length/truncation', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => $safeAnswer], 'finish_reason' => 'length']]]], 'cat' => 'incomplete_response'],
+        ['label' => 'content_filter', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => $safeAnswer], 'finish_reason' => 'content_filter']]]], 'cat' => 'incomplete_response'],
+        ['label' => 'unknown finish reason', 'payload' => ['success' => true, 'result' => ['choices' => [['message' => ['role' => 'assistant', 'content' => $safeAnswer], 'finish_reason' => 'weird']]]], 'cat' => 'incomplete_response'],
+    ] as $case) {
     $failed = $runFixture($case['payload']);
     $assert($failed->isSuccess() === false, $case['label'] . ' rejected');
     $assert($failed->getErrorCategory() === $case['cat'], $case['label'] . ' category');
@@ -717,41 +717,41 @@ $assert(!str_contains($fpJson, 'hidden'), 'No reasoning text appears in structur
 // Write-callback semantics: full consume vs intentional abort at size limit.
 $consumeLens = [];
 $callbackTransport = new CurlHttpTransport(static function (array $req) use (&$networkCalls, &$consumeLens): array {
-    $networkCalls++;
-    $max = (int) ($req['maxResponseBytes'] ?? 200000);
-    $chunk = str_repeat('a', 100);
-    $chunkLen = strlen($chunk);
-    $consumeLens[] = $chunkLen;
-    return [
-        'httpStatus' => 200,
-        'body' => $chunk,
-        'contentType' => 'application/json',
-        'errorCategory' => null,
-        'curlErrno' => 0,
-    ];
+        $networkCalls++;
+        $max = (int) ($req['maxResponseBytes'] ?? 200000);
+        $chunk = str_repeat('a', 100);
+        $chunkLen = strlen($chunk);
+        $consumeLens[] = $chunkLen;
+        return [
+            'httpStatus' => 200,
+            'body' => $chunk,
+            'contentType' => 'application/json',
+            'errorCategory' => null,
+            'curlErrno' => 0,
+        ];
 });
 $callbackTransport->request([
-    'url' => 'https://api.cloudflare.com/client/v4/accounts/x/ai/run/@cf/openai/gpt-oss-120b',
-    'method' => 'POST',
-    'body' => '{}',
-    'maxResponseBytes' => 200000,
+        'url' => 'https://api.cloudflare.com/client/v4/accounts/x/ai/run/@cf/openai/gpt-oss-120b',
+        'method' => 'POST',
+        'body' => '{}',
+        'maxResponseBytes' => 200000,
 ]);
 $assert($consumeLens !== [] && $consumeLens[0] === 100, 'callback consumes full byte count');
 
 $abort = new CurlHttpTransport(static function (): array {
-    return [
-        'httpStatus' => 200,
-        'body' => str_repeat('b', 200001),
-        'contentType' => 'application/json',
-        'errorCategory' => null,
-        'curlErrno' => 0,
-    ];
+        return [
+            'httpStatus' => 200,
+            'body' => str_repeat('b', 200001),
+            'contentType' => 'application/json',
+            'errorCategory' => null,
+            'curlErrno' => 0,
+        ];
 });
 $abortResult = $abort->request([
-    'url' => 'https://api.cloudflare.com/client/v4/accounts/x/ai/run/@cf/openai/gpt-oss-120b',
-    'method' => 'POST',
-    'body' => '{}',
-    'maxResponseBytes' => 200000,
+        'url' => 'https://api.cloudflare.com/client/v4/accounts/x/ai/run/@cf/openai/gpt-oss-120b',
+        'method' => 'POST',
+        'body' => '{}',
+        'maxResponseBytes' => 200000,
 ]);
 $assert(($abortResult['errorCategory'] ?? '') === 'response_too_large', 'callback intentionally aborts only at size limit');
 
@@ -807,30 +807,30 @@ $assert($budgetResult->getInputTokens() === 120, '2D.4F prompt_tokens normalize 
 $assert($budgetResult->getOutputTokens() === 45, '2D.4F completion_tokens normalize to outputTokens');
 
 $completedOk = $runFixture([
-    'success' => true,
-    'result' => [
-        'choices' => [
-            [
-                'message' => ['role' => 'assistant', 'content' => $safeAnswer],
-                'finish_reason' => 'completed',
+        'success' => true,
+        'result' => [
+            'choices' => [
+                [
+                    'message' => ['role' => 'assistant', 'content' => $safeAnswer],
+                    'finish_reason' => 'completed',
+                ],
             ],
         ],
-    ],
 ]);
 $assert($completedOk->isSuccess() === true, '2D.4F finish_reason=completed accepted');
 $assert($completedOk->getInputTokens() === null && $completedOk->getOutputTokens() === null, '2D.4F missing usage does not invalidate completed safe answer');
 
 $lengthWithContent = $runFixture([
-    'success' => true,
-    'result' => [
-        'choices' => [
-            [
-                'message' => ['role' => 'assistant', 'content' => $safeAnswer],
-                'finish_reason' => 'length',
+        'success' => true,
+        'result' => [
+            'choices' => [
+                [
+                    'message' => ['role' => 'assistant', 'content' => $safeAnswer],
+                    'finish_reason' => 'length',
+                ],
             ],
+            'usage' => ['prompt_tokens' => 200, 'completion_tokens' => 900],
         ],
-        'usage' => ['prompt_tokens' => 200, 'completion_tokens' => 900],
-    ],
 ]);
 $assert($lengthWithContent->isSuccess() === false, '2D.4F finish_reason=length with non-empty content rejected');
 $assert($lengthWithContent->getErrorCategory() === 'incomplete_response', '2D.4F length truncation => incomplete_response');
@@ -838,19 +838,19 @@ $assert($lengthWithContent->getInputTokens() === 200, '2D.4F length rejection ma
 $assert($lengthWithContent->getOutputTokens() === 900, '2D.4F length rejection may still report output tokens');
 
 $lengthWithReasoning = $runFixture([
-    'success' => true,
-    'result' => [
-        'choices' => [
-            [
-                'message' => [
-                    'role' => 'assistant',
-                    'content' => $safeAnswer,
-                    'reasoning_content' => 'secret internal chain of thought that must never surface',
+        'success' => true,
+        'result' => [
+            'choices' => [
+                [
+                    'message' => [
+                        'role' => 'assistant',
+                        'content' => $safeAnswer,
+                        'reasoning_content' => 'secret internal chain of thought that must never surface',
+                    ],
+                    'finish_reason' => 'length',
                 ],
-                'finish_reason' => 'length',
             ],
         ],
-    ],
 ]);
 $assert($lengthWithReasoning->isSuccess() === false, '2D.4F finish_reason=length with reasoning content rejected');
 $assert($lengthWithReasoning->getErrorCategory() === 'incomplete_response', '2D.4F length+reasoning => incomplete_response');
@@ -885,7 +885,7 @@ $truncResponse = handleMarkAiPreviewRequest(
     $truncFallbackTransport,
     $service
 );
-$assert(str_contains((string) $truncResponse['answer'], 'approximately 200–300') || str_contains((string) $truncResponse['answer'], 'team senior-design'), '2D.4F truncated answer returns deterministic fallback');
+$assert(str_contains((string) $truncResponse['answer'], 'approximately 200 - 300') || str_contains((string) $truncResponse['answer'], 'team senior-design'), '2D.4F truncated answer returns deterministic fallback');
 $assert($networkCalls === $beforeTruncFallback + 1, '2D.4F truncated path still one request and no retry');
 $assert(!str_contains((string) $truncResponse['answer'], 'secret internal'), '2D.4F truncated fallback contains no reasoning text');
 
@@ -905,19 +905,19 @@ $repetitiveValidation = $validator->validate($repetitive, ['finish_reason' => 's
 $assert($repetitiveValidation['accepted'] === false, '2D.4F repetitive generated answer rejected');
 
 $toolOnly = $runFixture([
-    'success' => true,
-    'result' => [
-        'choices' => [
-            [
-                'message' => [
-                    'role' => 'assistant',
-                    'content' => null,
-                    'tool_calls' => [['id' => 'call_1', 'type' => 'function', 'function' => ['name' => 'x', 'arguments' => '{}']]],
+        'success' => true,
+        'result' => [
+            'choices' => [
+                [
+                    'message' => [
+                        'role' => 'assistant',
+                        'content' => null,
+                        'tool_calls' => [['id' => 'call_1', 'type' => 'function', 'function' => ['name' => 'x', 'arguments' => '{}']]],
+                    ],
+                    'finish_reason' => 'tool_calls',
                 ],
-                'finish_reason' => 'tool_calls',
             ],
         ],
-    ],
 ]);
 $assert($toolOnly->isSuccess() === false, '2D.4F tool-only response rejected');
 $assert($toolOnly->getErrorCategory() === 'tool_only_output', '2D.4F tool-only category');
@@ -935,16 +935,16 @@ $configDefaultResult = $provider->generate(
         return [
             'status' => 200,
             'body' => json_encode([
-                'success' => true,
-                'result' => [
-                    'choices' => [
-                        [
-                            'message' => ['role' => 'assistant', 'content' => $safeAnswer],
-                            'finish_reason' => 'stop',
+                    'success' => true,
+                    'result' => [
+                        'choices' => [
+                            [
+                                'message' => ['role' => 'assistant', 'content' => $safeAnswer],
+                                'finish_reason' => 'stop',
+                            ],
                         ],
                     ],
-                ],
-            ], JSON_THROW_ON_ERROR),
+                ], JSON_THROW_ON_ERROR),
             'headers' => ['Content-Type' => 'application/json'],
         ];
     }
@@ -955,10 +955,10 @@ $assert(($configDecoded['max_tokens'] ?? null) === 900, '2D.4F configuration def
 $assert($configDefaultResult->isSuccess() === true, '2D.4F config-default completed answer accepted');
 
 $safeReportBlob = implode("\n", [
-    json_encode($budgetResult->toPublicArray(), JSON_THROW_ON_ERROR),
-    json_encode($lengthWithContent->toPublicArray(), JSON_THROW_ON_ERROR),
-    json_encode($lengthWithReasoning->toPublicArray(), JSON_THROW_ON_ERROR),
-    (string) ($truncResponse['answer'] ?? ''),
+        json_encode($budgetResult->toPublicArray(), JSON_THROW_ON_ERROR),
+        json_encode($lengthWithContent->toPublicArray(), JSON_THROW_ON_ERROR),
+        json_encode($lengthWithReasoning->toPublicArray(), JSON_THROW_ON_ERROR),
+        (string) ($truncResponse['answer'] ?? ''),
 ]);
 $assert(!str_contains($safeReportBlob, 'token_test_local_only_not_real'), '2D.4F token never appears in safe reports');
 $assert(!str_contains($safeReportBlob, 'acct_test_local_only_not_real'), '2D.4F Account ID never appears in safe reports');
@@ -979,7 +979,7 @@ $tooLongDetailed = $validator->validateDetailed(str_repeat('Abacus ran for compe
 $assert($tooLongDetailed['accepted'] === false, '2D.4G over-1200-character answer rejected');
 $assert($tooLongDetailed['reason'] === 'answer_too_long', '2D.4G over-1200 returns answer_too_long');
 
-$emptyDetailed = $validator->validateDetailed('   ', ['finish_reason' => 'stop']);
+$emptyDetailed = $validator->validateDetailed(' ', ['finish_reason' => 'stop']);
 $assert($emptyDetailed['accepted'] === false && $emptyDetailed['reason'] === 'empty_answer', '2D.4G empty answer returns empty_answer');
 
 $truncDetailed = $validator->validateDetailed(
@@ -1012,7 +1012,7 @@ $finchOwner = $validator->validateDetailed(
 $assert($finchOwner['accepted'] === false && $finchOwner['reason'] === 'ownership_exaggeration', '2D.4G Finch led-frontend claim returns ownership_exaggeration');
 
 $scaleDrift = $validator->validateDetailed(
-    'The project supported roughly 200–300 participants and ran without noticeable lag, providing a stable and functional environment.',
+    'The project supported roughly 200 - 300 participants and ran without noticeable lag, providing a stable and functional environment.',
     ['finish_reason' => 'stop']
 );
 $assert($scaleDrift['accepted'] === false, '2D.4G unsupported event scale rejected');
@@ -1064,16 +1064,16 @@ $rejectSource = 'Contact Mark at secret.reject.fixture@example.com regarding Aba
 $rejectValidation = $validator->validateDetailed($rejectSource, ['finish_reason' => 'stop']);
 $assert($rejectValidation['accepted'] === false, '2D.4G rejection fixture rejected');
 $providerOk = $runFixture([
-    'success' => true,
-    'result' => [
-        'choices' => [
-            [
-                'message' => ['role' => 'assistant', 'content' => $rejectSource],
-                'finish_reason' => 'stop',
+        'success' => true,
+        'result' => [
+            'choices' => [
+                [
+                    'message' => ['role' => 'assistant', 'content' => $rejectSource],
+                    'finish_reason' => 'stop',
+                ],
             ],
+            'usage' => ['prompt_tokens' => 10, 'completion_tokens' => 12],
         ],
-        'usage' => ['prompt_tokens' => 10, 'completion_tokens' => 12],
-    ],
 ]);
 $assert($providerOk->isSuccess() === true, '2D.4G provider success before validation');
 $rejectedResult = $providerOk->withSafeValidationRejection($rejectValidation);
@@ -1094,7 +1094,7 @@ $liveDiagLines = [
     'generated_answer_sentences=' . (string) (int) $rejectedResult->getGeneratedAnswerSentences(),
     'validator_result=rejected',
     'answer_source=deterministic_fallback',
-    'answer=Abacus was a team senior-design project with approximately 200–300 competition participants.',
+    'answer=Abacus was a team senior-design project with approximately 200 - 300 competition participants.',
 ];
 $liveDiagJoined = implode("\n", $liveDiagLines);
 $assert(str_contains($liveDiagJoined, 'validator_reason=private_information'), '2D.4G live harness prints safe reason');
@@ -1116,7 +1116,7 @@ foreach ($apiShapeBefore as $key) {
     $assert(array_key_exists($key, $apiResponse), '2D.4G public API response shape retains key ' . $key);
 }
 $assert(count(array_keys($apiResponse)) === count($apiShapeBefore), '2D.4G public API response shape remains unchanged');
-$assert(str_contains((string) $apiResponse['answer'], 'approximately 200–300') || str_contains((string) $apiResponse['answer'], 'team senior-design'), '2D.4G deterministic fallback remains unchanged');
+$assert(str_contains((string) $apiResponse['answer'], 'approximately 200 - 300') || str_contains((string) $apiResponse['answer'], 'team senior-design'), '2D.4G deterministic fallback remains unchanged');
 
 $diagLeakBlob = $rejectedPublic . "\n" . $liveDiagJoined . "\n" . json_encode($apiResponse, JSON_THROW_ON_ERROR);
 $assert(!str_contains($diagLeakBlob, 'token_test_local_only_not_real'), '2D.4G token never appears');
@@ -1134,16 +1134,16 @@ $oneReq = $provider->generate(
         return [
             'status' => 200,
             'body' => json_encode([
-                'success' => true,
-                'result' => [
-                    'choices' => [
-                        [
-                            'message' => ['role' => 'assistant', 'content' => $safeAnswer],
-                            'finish_reason' => 'stop',
+                    'success' => true,
+                    'result' => [
+                        'choices' => [
+                            [
+                                'message' => ['role' => 'assistant', 'content' => $safeAnswer],
+                                'finish_reason' => 'stop',
+                            ],
                         ],
                     ],
-                ],
-            ], JSON_THROW_ON_ERROR),
+                ], JSON_THROW_ON_ERROR),
             'headers' => ['Content-Type' => 'application/json'],
         ];
     }
@@ -1167,10 +1167,10 @@ fwrite(STDOUT, "INFO: 2D.4H prompt chars after={$promptCharsAfterContract}\n");
 fwrite(STDOUT, 'INFO: 2D.4H final-answer contract chars=' . strlen(markai_final_answer_contract()) . "\n");
 
 $assert(str_contains($abacusSystem, 'Answer the visitor’s exact question immediately.'), '2D.4H answer exact question immediately');
-$assert(str_contains($abacusSystem, 'Default to 2–4 concise sentences.'), '2D.4H default 2–4 sentences');
-$assert(str_contains($abacusSystem, 'Target 40–140 words.'), '2D.4H target 40–140 words');
+$assert(str_contains($abacusSystem, 'Default to 2 - 4 concise sentences.'), '2D.4H default 2 - 4 sentences');
+$assert(str_contains($abacusSystem, 'Target 40 - 140 words.'), '2D.4H target 40 - 140 words');
 $assert(str_contains($abacusSystem, 'Never exceed 1,100 characters.'), '2D.4H never exceed 1,100 characters');
-$assert(str_contains($abacusSystem, 'Select only the 3–5 most relevant verified facts.'), '2D.4H select 3–5 relevant facts');
+$assert(str_contains($abacusSystem, 'Select only the 3 - 5 most relevant verified facts.'), '2D.4H select 3 - 5 relevant facts');
 $assert(str_contains($abacusSystem, 'Omit background details that are not necessary to answer the question.'), '2D.4H omit unnecessary background');
 $assert(str_contains($abacusSystem, 'Do not describe your reasoning or the supplied context.'), '2D.4H no reasoning disclosure');
 $assert(str_contains($abacusSystem, 'based on the provided information'), '2D.4H forbids based-on-provided-information filler');
@@ -1190,9 +1190,9 @@ $assert(strrpos($abacusSystem, 'FINAL ANSWER CONTRACT') > strrpos($abacusSystem,
 $assert(ProviderResponseValidator::MAX_ANSWER_CHARS === 1200, '2D.4H validator hard limit remains 1200');
 $assert(CloudflareWorkersAiProvider::DEFAULT_MAX_TOKENS === 900, '2D.4H max_tokens remains 900');
 
-$conciseAbacus = 'Abacus was a team senior-design project, so Mark did not build the entire system himself. His approved work included Eagle Division workflows, messaging APIs, role-aware chat behavior, and frontend/backend integration support. The April 15, 2026 competition ran for approximately 200–300 high-school students, teachers, judges, and administrators without major server crashes, platform failures, critical bugs, or major lag.';
+$conciseAbacus = 'Abacus was a team senior-design project, so Mark did not build the entire system himself. His approved work included Eagle Division workflows, messaging APIs, role-aware chat behavior, and frontend/backend integration support. The April 15, 2026 competition ran for approximately 200 - 300 high-school students, teachers, judges, and administrators without major server crashes, platform failures, critical bugs, or major lag.';
 $assert(strlen($conciseAbacus) < 1100, '2D.4H accepted Abacus fixture under 1100 chars');
-$assert($validator->validate($conciseAbacus, ['finish_reason' => 'stop'])['accepted'] === true, '2D.4H accepted 2–4 sentence Abacus answer');
+$assert($validator->validate($conciseAbacus, ['finish_reason' => 'stop'])['accepted'] === true, '2D.4H accepted 2 - 4 sentence Abacus answer');
 
 $conciseMaat = 'MAAT was a team senior-capstone project. Mark contributed to approved grading and plagiarism-analysis workflows rather than inventing the plagiarism algorithm alone.';
 $assert($validator->validate($conciseMaat, ['finish_reason' => 'stop'])['accepted'] === true, '2D.4H accepted concise MAAT answer');
@@ -1231,7 +1231,7 @@ if (strlen($eighteenSentences) > 1200) {
     $assert($validator->validate($eighteenSentences, ['finish_reason' => 'stop'])['accepted'] === false, '2D.4H 18-sentence repeated answer rejected');
 }
 
-$biography = 'Mark was born to build software and this biography covers his childhood, every course, every hobby, and the complete Abacus deep dive with roughly 200–300 participants and a stable functional environment.';
+$biography = 'Mark was born to build software and this biography covers his childhood, every course, every hobby, and the complete Abacus deep dive with roughly 200 - 300 participants and a stable functional environment.';
 $assert($validator->validate($biography, ['finish_reason' => 'stop'])['accepted'] === false, '2D.4H unnecessary biography with qualifier drift rejected');
 
 $reasoningLeak = 'Abacus was a team project. Internal field reasoning_content must never appear for visitors.';
@@ -1240,7 +1240,7 @@ $assert($validator->validate($reasoningLeak, ['finish_reason' => 'stop'])['accep
 $ownershipBad = 'Mark led the Finch frontend and completed all three robots.';
 $assert($validator->validate($ownershipBad, ['finish_reason' => 'stop'])['accepted'] === false, '2D.4H ownership exaggeration rejected');
 
-$qualifierBad = 'The project supported roughly 200–300 participants and ran without noticeable lag, providing a stable and functional environment.';
+$qualifierBad = 'The project supported roughly 200 - 300 participants and ran without noticeable lag, providing a stable and functional environment.';
 $assert($validator->validate($qualifierBad, ['finish_reason' => 'stop'])['accepted'] === false, '2D.4H qualifier drift rejected');
 
 $hSettings = ['temperature' => 0.2, 'max_tokens' => 900, 'stream' => false];
@@ -1256,16 +1256,16 @@ $hResult = $provider->generate(
         return [
             'status' => 200,
             'body' => json_encode([
-                'success' => true,
-                'result' => [
-                    'choices' => [
-                        [
-                            'message' => ['role' => 'assistant', 'content' => $conciseAbacus],
-                            'finish_reason' => 'stop',
+                    'success' => true,
+                    'result' => [
+                        'choices' => [
+                            [
+                                'message' => ['role' => 'assistant', 'content' => $conciseAbacus],
+                                'finish_reason' => 'stop',
+                            ],
                         ],
                     ],
-                ],
-            ], JSON_THROW_ON_ERROR),
+                ], JSON_THROW_ON_ERROR),
             'headers' => ['Content-Type' => 'application/json'],
         ];
     }
@@ -1284,17 +1284,17 @@ $assert(!str_contains($leakH, 'acct_test_local_only_not_real'), '2D.4H Account I
 
 // --- Phase 2D.4I: safe qualifier-drift subreason diagnosis ---
 
-$approvedScale = 'Abacus supported the April 15, 2026 Wisconsin-Dairyland Programming Competition for approximately 200–300 high-school students, teachers, judges, and administrators. The event ran without major server crashes, platform failures, critical bugs, or major lag.';
+$approvedScale = 'Abacus supported the April 15, 2026 Wisconsin-Dairyland Programming Competition for approximately 200 - 300 high-school students, teachers, judges, and administrators. The event ran without major server crashes, platform failures, critical bugs, or major lag.';
 $approvedScaleDetailed = $validator->validateDetailed($approvedScale, ['finish_reason' => 'stop']);
 $assert($approvedScaleDetailed['accepted'] === true, '2D.4I approved Abacus scale wording accepted');
 $assert($approvedScaleDetailed['detail'] === null, '2D.4I safe accepted answer has validationDetail=null');
 
-$missingApprox = 'Abacus supported the April 15, 2026 competition for 200–300 high-school students, teachers, judges, and administrators.';
+$missingApprox = 'Abacus supported the April 15, 2026 competition for 200 - 300 high-school students, teachers, judges, and administrators.';
 $missingApproxD = $validator->validateDetailed($missingApprox, ['finish_reason' => 'stop']);
 $assert($missingApproxD['accepted'] === false && $missingApproxD['reason'] === 'qualifier_drift', '2D.4I missing approximation still qualifier_drift');
 $assert($missingApproxD['detail'] === 'abacus_scale_approximation', '2D.4I missing approximation receives abacus_scale_approximation');
 
-$roughly = 'Abacus supported roughly 200–300 high-school students, teachers, judges, and administrators on April 15, 2026.';
+$roughly = 'Abacus supported roughly 200 - 300 high-school students, teachers, judges, and administrators on April 15, 2026.';
 $roughlyD = $validator->validateDetailed($roughly, ['finish_reason' => 'stop']);
 $assert($roughlyD['reason'] === 'qualifier_drift' && $roughlyD['detail'] === 'abacus_scale_approximation', '2D.4I roughly substitution detail abacus_scale_approximation');
 
@@ -1313,14 +1313,14 @@ $assert($customersD['reason'] === 'qualifier_drift' && $customersD['detail'] ===
 $approvedAudience = $approvedScale;
 $assert($validator->validateDetailed($approvedAudience, ['finish_reason' => 'stop'])['accepted'] === true, '2D.4I approved audience wording accepted');
 
-$badAudience = 'Abacus supported approximately 200–300 visitors on April 15, 2026 during the programming competition.';
+$badAudience = 'Abacus supported approximately 200 - 300 visitors on April 15, 2026 during the programming competition.';
 $badAudienceD = $validator->validateDetailed($badAudience, ['finish_reason' => 'stop']);
 $assert($badAudienceD['reason'] === 'qualifier_drift' && $badAudienceD['detail'] === 'abacus_audience_scope', '2D.4I unsupported audience scope receives abacus_audience_scope');
 
 $approvedDate = $approvedScale;
 $assert($validator->validateDetailed($approvedDate, ['finish_reason' => 'stop'])['accepted'] === true, '2D.4I approved April 15, 2026 date accepted');
 
-$badDate = 'Abacus supported approximately 200–300 high-school students, teachers, judges, and administrators on April 16, 2026.';
+$badDate = 'Abacus supported approximately 200 - 300 high-school students, teachers, judges, and administrators on April 16, 2026.';
 $badDateD = $validator->validateDetailed($badDate, ['finish_reason' => 'stop']);
 $assert($badDateD['reason'] === 'qualifier_drift' && $badDateD['detail'] === 'abacus_event_date', '2D.4I incorrect date receives abacus_event_date');
 
@@ -1352,27 +1352,27 @@ $assert($locustD['reason'] === 'unsupported_claim' && $locustD['detail'] === 'lo
 
 // Existing decisions unchanged: prior bad fixtures still reject.
 foreach ([
-    'qualifier_drift' => 'The project supported roughly 200–300 participants and ran without noticeable lag, providing a stable and functional environment.',
-    'finch_ownership' => 'Mark led the Finch frontend and completed all three robots.',
-    'maat_ownership' => 'Mark invented MAAT’s plagiarism algorithm.',
-] as $name => $text) {
+        'qualifier_drift' => 'The project supported roughly 200 - 300 participants and ran without noticeable lag, providing a stable and functional environment.',
+        'finch_ownership' => 'Mark led the Finch frontend and completed all three robots.',
+        'maat_ownership' => 'Mark invented MAAT’s plagiarism algorithm.',
+    ] as $name => $text) {
     $assert($validator->validate($text)['accepted'] === false, '2D.4I existing validation decision unchanged for ' . $name);
 }
 
-$rejectSource = 'Abacus supported roughly 200–300 participants on the live day.';
+$rejectSource = 'Abacus supported roughly 200 - 300 participants on the live day.';
 $rejectValidation = $validator->validateDetailed($rejectSource, ['finish_reason' => 'stop']);
 $assert($rejectValidation['reason'] === 'qualifier_drift', '2D.4I rejection fixture reason qualifier_drift');
 $providerOk = $runFixture([
-    'success' => true,
-    'result' => [
-        'choices' => [
-            [
-                'message' => ['role' => 'assistant', 'content' => $rejectSource],
-                'finish_reason' => 'stop',
+        'success' => true,
+        'result' => [
+            'choices' => [
+                [
+                    'message' => ['role' => 'assistant', 'content' => $rejectSource],
+                    'finish_reason' => 'stop',
+                ],
             ],
+            'usage' => ['prompt_tokens' => 11, 'completion_tokens' => 13],
         ],
-        'usage' => ['prompt_tokens' => 11, 'completion_tokens' => 13],
-    ],
 ]);
 $rejectedResult = $providerOk->withSafeValidationRejection($rejectValidation);
 $assert($rejectedResult->getAnswerText() === null, '2D.4I rejected ProviderResult contains no generated text');
@@ -1387,12 +1387,12 @@ $liveDiagLines = [
     'validator_detail=' . (string) $rejectedResult->getValidationDetail(),
     'generated_answer_chars=' . (string) (int) $rejectedResult->getGeneratedAnswerChars(),
     'answer_source=deterministic_fallback',
-    'answer=Abacus was a team senior-design project with approximately 200–300 competition participants.',
+    'answer=Abacus was a team senior-design project with approximately 200 - 300 competition participants.',
 ];
 $liveDiagJoined = implode("\n", $liveDiagLines);
 $assert(str_contains($liveDiagJoined, 'validator_detail=abacus_scale_approximation'), '2D.4I live harness prints only allowlisted detail');
 $assert(ProviderResponseValidator::isAllowlistedDetail('abacus_scale_approximation'), '2D.4I detail allowlisted');
-$assert(!str_contains($liveDiagJoined, 'roughly 200–300 participants on the live day'), '2D.4I live harness omits rejected generated answer');
+$assert(!str_contains($liveDiagJoined, 'roughly 200 - 300 participants on the live day'), '2D.4I live harness omits rejected generated answer');
 
 $apiShapeBefore = ['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'];
 $apiResponse = handleMarkAiPreviewRequest(
@@ -1422,16 +1422,16 @@ $iResult = $provider->generate(
         return [
             'status' => 200,
             'body' => json_encode([
-                'success' => true,
-                'result' => [
-                    'choices' => [
-                        [
-                            'message' => ['role' => 'assistant', 'content' => $approvedScale],
-                            'finish_reason' => 'stop',
+                    'success' => true,
+                    'result' => [
+                        'choices' => [
+                            [
+                                'message' => ['role' => 'assistant', 'content' => $approvedScale],
+                                'finish_reason' => 'stop',
+                            ],
                         ],
                     ],
-                ],
-            ], JSON_THROW_ON_ERROR),
+                ], JSON_THROW_ON_ERROR),
             'headers' => ['Content-Type' => 'application/json'],
         ];
     }
@@ -1566,19 +1566,19 @@ $leakyGenerated = handleMarkAiPreviewRequest(
         return [
             'status' => 200,
             'body' => json_encode([
-                'success' => true,
-                'result' => [
-                    'choices' => [
-                        [
-                            'message' => [
-                                'role' => 'assistant',
-                                'content' => 'Use link-contact-section and `link-portfolio-home` for Mark.',
+                    'success' => true,
+                    'result' => [
+                        'choices' => [
+                            [
+                                'message' => [
+                                    'role' => 'assistant',
+                                    'content' => 'Use link-contact-section and `link-portfolio-home` for Mark.',
+                                ],
+                                'finish_reason' => 'stop',
                             ],
-                            'finish_reason' => 'stop',
                         ],
                     ],
-                ],
-            ], JSON_THROW_ON_ERROR),
+                ], JSON_THROW_ON_ERROR),
             'headers' => ['Content-Type' => 'application/json'],
         ];
     }
@@ -1790,8 +1790,8 @@ $abacusTeamAnswer = (string) ($abacusTeam['answer'] ?? '');
 foreach ($coreNames as $name) {
     $assert(str_contains($abacusTeamAnswer, $name), 'Abacus team includes ' . $name);
 }
-$assert(str_contains($abacusTeamAnswer, 'Sam Mazzone'), 'Abacus answer mentions Sam as support context');
-$assert(str_contains(strtolower($abacusTeamAnswer), 'core student'), 'Abacus distinguishes core student team');
+$assert(!str_contains($abacusTeamAnswer, 'Sam Mazzone'), 'Abacus answer excludes Sam Mazzone');
+$assert(!preg_match('/advisor|moral supporter/i', $abacusTeamAnswer), 'Abacus answer has no advisor/supporter wording');
 
 $maatTeam = handleMarkAiPreviewRequest(
     $export,
@@ -1806,6 +1806,8 @@ $maatTeamAnswer = (string) ($maatTeam['answer'] ?? '');
 foreach ($coreNames as $name) {
     $assert(str_contains($maatTeamAnswer, $name), 'MAAT team includes ' . $name);
 }
+$assert(!str_contains($maatTeamAnswer, 'Sam Mazzone'), 'MAAT answer excludes Sam Mazzone');
+$assert(!preg_match('/advisor|moral supporter/i', $maatTeamAnswer), 'MAAT answer has no advisor/supporter wording');
 
 $samRole = handleMarkAiPreviewRequest(
     $export,
@@ -1817,10 +1819,107 @@ $samRole = handleMarkAiPreviewRequest(
     }
 );
 $samAnswer = (string) ($samRole['answer'] ?? '');
-$assert(str_contains($samAnswer, 'advisor') || str_contains($samAnswer, 'Advisor'), 'Sam role includes advisor');
-$assert(str_contains(strtolower($samAnswer), 'software developer'), 'Sam role includes software developer');
-$assert(str_contains(strtolower($samAnswer), 'moral supporter'), 'Sam role includes moral supporter');
-$assert(str_contains(strtolower($samAnswer), 'not described as one of the core student'), 'Sam distinguished from core student team');
+$assert(($samRole['answerStatus'] ?? '') === 'refused', 'Sam question is refused');
+$assert(str_contains($samAnswer, 'approved public project and collaborator information'), 'Sam question uses collaborator boundary');
+$assert(!str_contains($samAnswer, 'Sam Mazzone'), 'Sam boundary answer does not claim Sam');
+$assert(!preg_match('/advisor|moral supporter|software developer/i', $samAnswer), 'Sam boundary has no role claims');
+
+$samWorked = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'Did Sam Mazzone work on the projects?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('collaborator path must not transport');
+    }
+);
+$assert(($samWorked['answerStatus'] ?? '') === 'refused', 'Did Sam work is refused');
+$assert(!str_contains((string) ($samWorked['answer'] ?? ''), 'Sam Mazzone'), 'Did Sam work answer omits Sam claim');
+$assert(count(array_keys($samWorked)) === 8, 'Sam boundary API shape unchanged');
+
+$inventoryCollab = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'Who has Mark worked with?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('inventory must not transport');
+    }
+);
+$inventoryAnswer = (string) ($inventoryCollab['answer'] ?? '');
+$assert(!str_contains($inventoryAnswer, 'Sam Mazzone'), 'collaborator inventory excludes Sam Mazzone');
+
+foreach ($export['records'] ?? [] as $record) {
+    if (!is_array($record)) {
+        continue;
+    }
+    $blob = json_encode($record, JSON_UNESCAPED_UNICODE);
+    $assert($blob !== false && !str_contains($blob, 'Sam Mazzone') && !str_contains($blob, 'sam-mazzone'), 'export record has no Sam Mazzone: ' . (string) ($record['id'] ?? ''));
+}
+
+$goalsCity = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'What are Mark’s goals?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('goals must not transport');
+    }
+);
+$goalsAnswer = (string) ($goalsCity['answer'] ?? '');
+$assert(!preg_match('/\bMilwaukee\b|\brelocation\b|remote work|other locations|\bChicago\b/i', $goalsAnswer), 'goals answer has no city list');
+$assert(str_contains($goalsAnswer, 'stable technology career'), 'goals answer keeps career framing');
+$assert(count(array_keys($goalsCity)) === 8, 'goals API shape unchanged');
+
+$wantWork = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'Where does Mark want to work?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('want-work must not transport');
+    }
+);
+$wantWorkAnswer = (string) ($wantWork['answer'] ?? '');
+$assert(!preg_match('/Milwaukee|relocation|remote work|other locations/i', $wantWorkAnswer), 'want-to-work has no city list');
+
+$fromChicago = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'Where is Mark from?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('from-chicago must not transport');
+    }
+);
+$assert(str_contains((string) ($fromChicago['answer'] ?? ''), 'from Chicago'), 'from question returns Chicago');
+$assert(!preg_match('/currently live|lives in|resides/i', (string) ($fromChicago['answer'] ?? '')), 'from answer is not current residence');
+
+$liveNow = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'Where does Mark currently live?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('live-now must not transport');
+    }
+);
+$liveAnswer = (string) ($liveNow['answer'] ?? '');
+$assert(str_contains($liveAnswer, 'does not provide precise or current location'), 'current-live declines residence');
+$assert(str_contains($liveAnswer, 'from Chicago'), 'current-live still allows from-Chicago background');
+$assert(!preg_match('/currently lives in|lives in Chicago|resides in/i', $liveAnswer), 'current-live does not claim residence');
+
+$chicagoJobs = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'Is Mark only looking for Chicago jobs?'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('chicago-jobs must not transport');
+    }
+);
+$chicagoJobsAnswer = strtolower((string) ($chicagoJobs['answer'] ?? ''));
+$assert(!preg_match('/only (looking|open|available).*chicago|limited to chicago|must work in chicago/i', $chicagoJobsAnswer), 'Chicago does not restrict job availability');
 
 $finchTeam = handleMarkAiPreviewRequest(
     $export,
@@ -1987,8 +2086,8 @@ $evolvingAnswer = strtolower((string) (markai_mock_classify('Is Mark finished be
 $assert(str_contains($evolvingAnswer, 'evolving') || str_contains($evolvingAnswer, 'still'), 'becoming says still evolving');
 
 $synthesisPrivacyBlob = strtolower(implode("\n", array_map(
-    static fn(string $q): string => (string) (markai_mock_classify($q)['answer'] ?? ''),
-    array_keys($synthesisQueries)
+            static fn(string $q): string => (string) (markai_mock_classify($q)['answer'] ?? ''),
+            array_keys($synthesisQueries)
 )));
 $assert(!preg_match('/dear diary|journal entry|anxiety attack|pornograph|girlfriend|self-hatred|diagnosis|Goggins|Levrone|lung capacity|steroid/i', $synthesisPrivacyBlob), 'synthesis answers contain no sensitive journal material');
 $assert(!preg_match('/stay hard|who\'s gonna carry|can\'t hurt me|copied quote from/i', $synthesisPrivacyBlob), 'synthesis answers contain no copied motivational quotes');
@@ -2053,12 +2152,12 @@ foreach ($privateQuestions as $pq) {
 }
 
 $privacyBlob = strtolower(implode("\n", [
-    $personalityProf,
-    $motivatesProf,
-    $workoutProf,
-    $goalsProf,
-    (string) (markai_mock_classify('What drives Mark?')['answer'] ?? ''),
-    (string) (markai_mock_classify('What does an earned life mean?')['answer'] ?? ''),
+            $personalityProf,
+            $motivatesProf,
+            $workoutProf,
+            $goalsProf,
+            (string) (markai_mock_classify('What drives Mark?')['answer'] ?? ''),
+            (string) (markai_mock_classify('What does an earned life mean?')['answer'] ?? ''),
 ]));
 $assert(!preg_match('/dear diary|journal entry|self-hatred|girlfriend|anxiety attack|pornograph|Goggins|Levrone|stay hard/i', $privacyBlob), 'no raw journal or copied influencer wording');
 $assert(!preg_match('/therapy|trauma|dark period|pain as motivation|fear of failure|warrior/i', $privacyBlob), 'no therapy or motivational-influencer tone');
@@ -2224,14 +2323,14 @@ $assert(count(array_keys($artistsResponse)) === 8, 'favorite artists public API 
 $assert(($artistsResponse['mode'] ?? '') === 'casual', 'favorite artists casual mode');
 
 foreach ([
-    'favorite artists',
-    'what music does Mark like?',
-    'Drake?',
-    'Lil Baby?',
-    'The Weeknd?',
-    'favorite rappers',
-    'does Mark listen to R&B?',
-] as $musicPhrase) {
+        'favorite artists',
+        'what music does Mark like?',
+        'Drake?',
+        'Lil Baby?',
+        'The Weeknd?',
+        'favorite rappers',
+        'does Mark listen to R&B?',
+    ] as $musicPhrase) {
     $c = markai_mock_classify($musicPhrase);
     $assert(($c['category'] ?? '') === 'favoriteArtists', 'classifies music: ' . $musicPhrase);
 }
@@ -2276,13 +2375,13 @@ $assert(
 );
 
 foreach ([
-    'favorite movies',
-    'Creed?',
-    'The Batman?',
-    'Magazine Dreams?',
-    'Regular Show?',
-    'does Mark like superhero movies?',
-] as $filmPhrase) {
+        'favorite movies',
+        'Creed?',
+        'The Batman?',
+        'Magazine Dreams?',
+        'Regular Show?',
+        'does Mark like superhero movies?',
+    ] as $filmPhrase) {
     $c = markai_mock_classify($filmPhrase);
     $assert(($c['category'] ?? '') === 'favoriteFilms', 'classifies films: ' . $filmPhrase);
 }
@@ -2335,11 +2434,11 @@ $assert(in_array('link-vsco', $travelLinkIds, true), 'travel returns VSCO link')
 $selectedTravelIds = markai_mock_select_record_ids($export, 'travelPlaces');
 $assert(in_array('travel-public-places-inventory', $selectedTravelIds, true), 'selects travel inventory record');
 foreach ([
-    'travel',
-    'photography trips',
-    'what is in the Travel section?',
-    'where can I see his travel photos?',
-] as $travelPhrase) {
+        'travel',
+        'photography trips',
+        'what is in the Travel section?',
+        'where can I see his travel photos?',
+    ] as $travelPhrase) {
     $c = markai_mock_classify($travelPhrase);
     $assert(($c['category'] ?? '') === 'travelPlaces', 'classifies travel: ' . $travelPhrase);
 }
@@ -2401,16 +2500,16 @@ $assert(in_array('link-github-os-c-docs', $osIds, true), 'OS returns public docs
 $assert(!preg_match('/XINU26|ayazdani1|SOLO/i', json_encode($osResp)), 'private XINU repos never appear');
 
 $noRepo = $linkFixture('Repo?', [
-    ['role' => 'user', 'content' => 'Tell me about Sigma Chi merchandise'],
-    ['role' => 'assistant', 'content' => 'Sigma Chi merchandise was creative leadership work.'],
+        ['role' => 'user', 'content' => 'Tell me about Sigma Chi merchandise'],
+        ['role' => 'assistant', 'content' => 'Sigma Chi merchandise was creative leadership work.'],
 ]);
 $assert(in_array('link-portfolio-section', $linkIdsOf($noRepo), true), 'Sigma Chi merch falls back to Portfolio section');
 $assert(
     str_contains(strtolower((string) ($noRepo['answer'] ?? '')), 'portfolio')
-        && (
-            str_contains(strtolower((string) ($noRepo['answer'] ?? '')), 'does not currently have an approved public repository')
-            || str_contains(strtolower((string) ($noRepo['answer'] ?? '')), 'does not have a separate public software repository')
-        ),
+    && (
+        str_contains(strtolower((string) ($noRepo['answer'] ?? '')), 'does not currently have an approved public repository')
+        || str_contains(strtolower((string) ($noRepo['answer'] ?? '')), 'does not have a separate public software repository')
+    ),
     'Sigma Chi merch no-repo / portfolio wording'
 );
 
@@ -2426,25 +2525,25 @@ $assert(str_contains((string) ($fmscResp['links'][0]['href'] ?? ''), 'fmsc.org')
 $assert(!preg_match('/\b(member roster|private schedule|home address)\b/i', (string) ($fmscResp['answer'] ?? '')), 'FMSC answer avoids private org details');
 
 $repoFollowUp = $linkFixture('Repo?', [
-    ['role' => 'user', 'content' => 'Tell me about Abacus.'],
-    ['role' => 'assistant', 'content' => 'Abacus was a team senior-design project.'],
+        ['role' => 'user', 'content' => 'Tell me about Abacus.'],
+        ['role' => 'assistant', 'content' => 'Abacus was a team senior-design project.'],
 ]);
 $assert(in_array('link-github-abacus', $linkIdsOf($repoFollowUp), true), 'Repo? returns Abacus repo from context');
 $repoClassified = markai_mock_classify('Repo?', [
-    ['role' => 'user', 'content' => 'Tell me about Abacus.'],
-    ['role' => 'assistant', 'content' => 'Abacus was a team senior-design project.'],
+        ['role' => 'user', 'content' => 'Tell me about Abacus.'],
+        ['role' => 'assistant', 'content' => 'Abacus was a team senior-design project.'],
 ]);
 $assert(($repoClassified['category'] ?? '') === 'abacus', 'Repo? classifies as abacus from history');
 
 $finchRepoFollowUp = $linkFixture('Can I see the code?', [
-    ['role' => 'user', 'content' => 'Tell me about Finch.'],
-    ['role' => 'assistant', 'content' => 'Finch is a robotics web controller project.'],
+        ['role' => 'user', 'content' => 'Tell me about Finch.'],
+        ['role' => 'assistant', 'content' => 'Finch is a robotics web controller project.'],
 ]);
 $assert(in_array('link-github-finch', $linkIdsOf($finchRepoFollowUp), true), 'Finch code follow-up');
 
 $shmupCode = $linkFixture('Can I see the code?', [
-    ['role' => 'user', 'content' => 'Tell me about Space SHMUP.'],
-    ['role' => 'assistant', 'content' => 'Space SHMUP is a Unity arcade shooter.'],
+        ['role' => 'user', 'content' => 'Tell me about Space SHMUP.'],
+        ['role' => 'assistant', 'content' => 'Space SHMUP is a Unity arcade shooter.'],
 ]);
 $assert(in_array('link-github-space-shmup', $linkIdsOf($shmupCode), true), 'Space SHMUP code follow-up');
 
@@ -2490,8 +2589,8 @@ foreach (is_array($allLinks['links'] ?? null) ? $allLinks['links'] : [] as $link
 $assert(!preg_match('/\blink-[a-z0-9\-]+\b/i', (string) ($allLinks['answer'] ?? '')), 'all-links answer omits internal ids');
 
 $photosFollow = $linkFixture('Photos?', [
-    ['role' => 'user', 'content' => 'What does Mark photograph?'],
-    ['role' => 'assistant', 'content' => 'Mark photographs cities, architecture, landscapes, museums, and travel experiences.'],
+        ['role' => 'user', 'content' => 'What does Mark photograph?'],
+        ['role' => 'assistant', 'content' => 'Mark photographs cities, architecture, landscapes, museums, and travel experiences.'],
 ]);
 $assert(in_array('link-vsco', $linkIdsOf($photosFollow), true) || in_array('link-travel-section', $linkIdsOf($photosFollow), true), 'Photos? follow-up returns travel/VSCO');
 $assert(!in_array('link-github-abacus', $linkIdsOf($photosFollow), true), 'Photos? does not dump software repos');
@@ -2518,11 +2617,11 @@ $assert(count($portfolioGithubLinks) === 1, 'portfolio website repository return
 $assert(count(array_keys($portfolioRepo)) === 8, 'portfolio website repository public API shape unchanged');
 
 foreach ([
-    'link-portfolio-section' => '#portfolio',
-    'link-testimonials-section' => '#testimonials',
-    'link-travel-section' => '#travel',
-    'link-contact-section' => '#contact',
-] as $sectionId => $fragment) {
+        'link-portfolio-section' => '#portfolio',
+        'link-testimonials-section' => '#testimonials',
+        'link-travel-section' => '#travel',
+        'link-contact-section' => '#contact',
+    ] as $sectionId => $fragment) {
     $found = null;
     foreach ($export['trustedLinks'] ?? [] as $link) {
         if (($link['id'] ?? '') === $sectionId) {
@@ -2579,12 +2678,12 @@ $publicOpenAliasesPath = $repoRoot . '/src/publicOpenAliases.js';
 $assert(is_file($publicOpenAliasesPath), 'Terminal public open aliases module exists');
 $aliasSource = (string) file_get_contents($publicOpenAliasesPath);
 foreach ([
-    'abacus' => 'https://github.com/musyslab/Abacus',
-    'maat' => 'https://github.com/musyslab/MAAT',
-    'finch' => 'https://github.com/markyoingco/BirdVroomVroom',
-    'space-shmup' => 'https://github.com/markyoingco/space-shmup-unity',
-    'fmsc' => 'https://www.fmsc.org/locations/libertyville-il',
-] as $alias => $url) {
+        'abacus' => 'https://github.com/musyslab/Abacus',
+        'maat' => 'https://github.com/musyslab/MAAT',
+        'finch' => 'https://github.com/markyoingco/BirdVroomVroom',
+        'space-shmup' => 'https://github.com/markyoingco/space-shmup-unity',
+        'fmsc' => 'https://www.fmsc.org/locations/libertyville-il',
+    ] as $alias => $url) {
     $assert(str_contains($aliasSource, "'" . $alias . "'") || str_contains($aliasSource, $alias . ':'), 'terminal alias present: ' . $alias);
     $assert(str_contains($aliasSource, $url), 'terminal alias URL matches canonical: ' . $alias);
 }
@@ -2592,6 +2691,71 @@ $assert(!preg_match('/github\.com\/[^\s\'"]*XINU|XINU26|ayazdani1/i', $aliasSour
 $helpSource = (string) file_get_contents($repoRoot . '/src/terminalPortfolioData.js');
 $assert(str_contains($helpSource, 'open [item]'), 'Terminal Help describes open [item]');
 $assert(str_contains($helpSource, 'Private repositories are not available') || str_contains($helpSource, 'approved public'), 'Terminal Help mentions approved public destinations');
+
+// --- Public punctuation dash normalization ---
+$dashProbe = markai_normalize_public_punctuation("progress\u{2014}whether and range\u{2013}check");
+$assert($dashProbe === 'progress - whether and range - check', 'normalize converts em/en dashes to spaced hyphens');
+$assert(!str_contains($dashProbe, "\u{2014}") && !str_contains($dashProbe, "\u{2013}"), 'normalized probe has no em/en dashes');
+
+$hyphenKeep = markai_normalize_public_punctuation('full-stack entry-level data-oriented team-based');
+$assert($hyphenKeep === 'full-stack entry-level data-oriented team-based', 'ordinary hyphenated terms remain intact');
+
+$urlKeep = markai_normalize_public_punctuation('See https://markyoingco.com/portfolio for details.');
+$assert(str_contains($urlKeep, 'https://markyoingco.com/portfolio'), 'URLs remain unchanged');
+
+$noDashQuestions = [
+    "What are Mark's goals?",
+    'What is Mark’s personality like?',
+    'What can I ask?',
+    'Tell me about Abacus',
+];
+foreach ($noDashQuestions as $q) {
+    $resp = handleMarkAiPreviewRequest(
+        $export,
+        ['question' => $q],
+        ['enabled' => false],
+        static function () use (&$networkCalls): array {
+            $networkCalls++;
+            throw new RuntimeException('dash fixture must not transport');
+        }
+    );
+    $ans = (string) ($resp['answer'] ?? '');
+    $assert(!preg_match('/[—–]/u', $ans), 'deterministic answer has no em/en dash: ' . $q);
+    $assert(count(array_keys($resp)) === 8, 'dash fixture API shape unchanged: ' . $q);
+}
+$assert(str_contains(strtolower((string) (markai_mock_classify("What are Mark's goals?")['answer'] ?? '')), 'full-stack'), 'goals keep full-stack hyphenation');
+
+$generatedDashBody = 'Abacus was a team senior-design project used for the Wisconsin-Dairyland Programming Competition. Mark’s verified work included Eagle messaging APIs, role-aware chat and inbox behavior, competition workflows, routing and persistence, frontend/backend integration, submission-system support, testing, and UI debugging. The April 15, 2026 event used the platform to support approximately 200—300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag.';
+$generatedDash = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'Tell me about Abacus'],
+    [
+        'enabled' => true,
+        'accountId' => 'acct_test_dash_norm_ok_length',
+        'apiToken' => 'token_test_dash_norm_value_ok_length',
+        'model' => '@cf/openai/gpt-oss-120b',
+    ],
+    static function () use (&$networkCalls, $generatedDashBody): array {
+        $networkCalls++;
+        return [
+            'ok' => true,
+            'status' => 200,
+            'body' => json_encode([
+                'success' => true,
+                'result' => [
+                    'response' => $generatedDashBody,
+                ],
+            ], JSON_THROW_ON_ERROR),
+            'headers' => ['content-type' => 'application/json'],
+        ];
+    }
+);
+$genAns = (string) ($generatedDash['answer'] ?? '');
+$assert(($generatedDash['answerStatus'] ?? '') === 'answered', 'generated dash path answered');
+$assert(!preg_match('/[—–]/u', $genAns), 'generated answer has no em dash after normalization');
+$assert(str_contains($genAns, '200 - 300') || str_contains($genAns, 'full-stack') || str_contains($genAns, '200'), 'generated answer retains scale/content');
+$assert(count(array_keys($generatedDash)) === 8, 'generated dash fixture API shape unchanged');
+$assert(str_contains(markai_final_answer_contract(), 'Do not use em dashes or en dashes'), 'final-answer contract bans em/en dashes');
 
 fwrite(STDOUT, "\nAll MarkAI provider / System Message V3 tests passed.\n");
 fwrite(STDOUT, 'local_fixture_transport_invocations=' . $networkCalls . "\n");
@@ -2601,3 +2765,4 @@ fwrite(STDOUT, 'representative_prompt_chars_after=' . $promptCharsAfter . "\n");
 fwrite(STDOUT, 'request_max_tokens=' . CloudflareWorkersAiProvider::DEFAULT_MAX_TOKENS . "\n");
 fwrite(STDOUT, 'final_answer_contract_chars=' . strlen(markai_final_answer_contract()) . "\n");
 exit(0);
+

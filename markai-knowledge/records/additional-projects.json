@@ -233,7 +233,7 @@
       "recordType": "project",
       "title": "Apple Picker",
       "publicText": "Apple Picker was an individual Unity and C# coursework project completed from January to February 2026. The arcade-style game used falling objects, movable baskets, scoring, high-score persistence, lives, restart behavior, collisions, prefabs, and scene logic.",
-      "shortText": "Individual Unity/C# arcade coursework project completed January–February 2026.",
+      "shortText": "Individual Unity/C# arcade coursework project completed January - February 2026.",
       "aliases": [
         "Apple Picker",
         "Apple Picker Unity"
@@ -275,7 +275,7 @@
         {
           "kind": "mark-approved",
           "label": "Mark confirmation during Phase 1F-C.2 planning",
-          "claimScope": "Mark confirmed individual coursework classification and January–February 2026 dates.",
+          "claimScope": "Mark confirmed individual coursework classification and January - February 2026 dates.",
           "markApprovedOn": "2026-07-28"
         }
       ],
@@ -314,7 +314,7 @@
       ],
       "reviewedByMark": true,
       "lastReviewed": "2026-07-28",
-      "notes": "Individual coursework project. Dates: January–February 2026. Course assignment or starter structure may be acknowledged. Mark implemented and completed the project as coursework."
+      "notes": "Individual coursework project. Dates: January - February 2026. Course assignment or starter structure may be acknowledged. Mark implemented and completed the project as coursework."
     },
     {
       "id": "project-mission-demolition",
@@ -322,7 +322,7 @@
       "recordType": "project",
       "title": "Mission Demolition",
       "publicText": "Mission Demolition was an individual Unity and C# coursework project completed from February to March 2026. The physics-based projectile game involved aiming, launching projectiles, collision behavior, structural targets, scene logic, and gameplay progression.",
-      "shortText": "Individual Unity/C# physics coursework project completed February–March 2026.",
+      "shortText": "Individual Unity/C# physics coursework project completed February - March 2026.",
       "aliases": [
         "Mission Demolition",
         "Mission Demolition Unity"
@@ -365,7 +365,7 @@
         {
           "kind": "mark-approved",
           "label": "Mark confirmation during Phase 1F-C.2 planning",
-          "claimScope": "Mark confirmed individual coursework classification and February–March 2026 dates.",
+          "claimScope": "Mark confirmed individual coursework classification and February - March 2026 dates.",
           "markApprovedOn": "2026-07-28"
         }
       ],
@@ -404,7 +404,7 @@
       ],
       "reviewedByMark": true,
       "lastReviewed": "2026-07-28",
-      "notes": "Individual coursework project. Dates: February–March 2026. Course starter structure may be acknowledged."
+      "notes": "Individual coursework project. Dates: February - March 2026. Course starter structure may be acknowledged."
     },
     {
       "id": "project-space-shmup",
@@ -412,7 +412,7 @@
       "recordType": "project",
       "title": "Space SHMUP",
       "publicText": "Space SHMUP was an individual Unity and C# coursework project completed from March to May 2026. The two-dimensional arcade shooter included player movement, projectiles, enemy spawning, collisions, scoring, shields, power-ups, boss gameplay, and game-state logic.",
-      "shortText": "Individual Unity/C# arcade shooter coursework project completed March–May 2026.",
+      "shortText": "Individual Unity/C# arcade shooter coursework project completed March - May 2026.",
       "aliases": [
         "Space SHMUP",
         "Space SHMUP Unity",
@@ -469,7 +469,7 @@
         {
           "kind": "mark-approved",
           "label": "Mark confirmation during Phase 1F-C.2 planning",
-          "claimScope": "Mark confirmed individual coursework classification, March–May 2026 dates, and that shields, power-ups, enemy spawning, and boss gameplay are approved to include.",
+          "claimScope": "Mark confirmed individual coursework classification, March - May 2026 dates, and that shields, power-ups, enemy spawning, and boss gameplay are approved to include.",
           "markApprovedOn": "2026-07-28"
         }
       ],
@@ -512,7 +512,7 @@
       ],
       "reviewedByMark": true,
       "lastReviewed": "2026-07-29",
-      "notes": "Individual coursework project. Dates: March–May 2026. Course starter structure may be acknowledged. Mark confirmed shields, power-ups, enemy spawning, and boss gameplay."
+      "notes": "Individual coursework project. Dates: March - May 2026. Course starter structure may be acknowledged. Mark confirmed shields, power-ups, enemy spawning, and boss gameplay."
     },
     {
       "id": "project-sleep-efficiency-analysis",
@@ -620,8 +620,8 @@
       "id": "project-marquette-basketball-predictor",
       "category": "projects",
       "recordType": "project",
-      "title": "Marquette Basketball Predictor 2023–24",
-      "publicText": "Marquette Basketball Predictor 2023–24 was a Spring 2025 team Data Mining coursework project that used Marquette basketball game data, Random Forest feature importance, and Logistic Regression to predict game wins and losses.",
+      "title": "Marquette Basketball Predictor 2023 - 24",
+      "publicText": "Marquette Basketball Predictor 2023 - 24 was a Spring 2025 team Data Mining coursework project that used Marquette basketball game data, Random Forest feature importance, and Logistic Regression to predict game wins and losses.",
       "shortText": "Spring 2025 team Data Mining project predicting Marquette basketball wins and losses.",
       "aliases": [
         "Marquette Basketball Predictor",

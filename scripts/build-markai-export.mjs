@@ -360,7 +360,7 @@ function validateAndBuildExport(sources) {
     trustedLinks: 30,
     enabledTrustedLinks: 29,
     privacyRules: 14,
-    voiceRules: 7,
+    voiceRules: 8,
     linkContactRules: 8,
   }
   for (const [key, value] of Object.entries(expected)) {

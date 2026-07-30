@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 /**
- * Deterministic MarkAI preview endpoint service.
- *
- * No HTTP output on include. No network, secrets, logging, or database access.
- */
+* Deterministic MarkAI preview endpoint service.
+*
+* No HTTP output on include. No network, secrets, logging, or database access.
+*/
 
 require_once __DIR__ . '/PromptBuilder.php';
 require_once __DIR__ . '/GeneratedAnswerService.php';
@@ -14,6 +14,24 @@ require_once __DIR__ . '/ProviderConfiguration.php';
 require_once __DIR__ . '/FileUsageLimiter.php';
 require_once __DIR__ . '/UsageLimitResult.php';
 require_once __DIR__ . '/IntentUnderstanding.php';
+
+/**
+ * Normalize visitor-facing punctuation dashes to spaced ASCII hyphens.
+ * Preserves ordinary hyphenated words and does not rewrite URLs.
+ */
+function markai_normalize_public_punctuation(string $answer): string
+{
+    $out = str_replace(
+        ["\u{2014}", "\u{2013}"],
+        ' - ',
+        $answer
+    );
+    $out = preg_replace('/&mdash;/i', ' - ', $out) ?? $out;
+    $out = preg_replace('/&ndash;/i', ' - ', $out) ?? $out;
+    // Collapse only runs of spaces created around replacements (not indentation).
+    $out = preg_replace('/[ ]{2,}/', ' ', $out) ?? $out;
+    return $out;
+}
 
 final class MarkAiMockEndpointException extends RuntimeException
 {
@@ -39,21 +57,21 @@ final class MarkAiMockEndpointException extends RuntimeException
 }
 
 /**
- * Handle a MarkAI preview request using the approved export and PromptBuilder.
- *
- * Optional provider generation may draft text, but every provider failure or
- * unsafe answer returns control to the deterministic classifier. Provider
- * configuration defaults to disabled and no network transport is used unless
- * explicitly injected by tests or a future wiring phase.
- *
- * @param array<string, mixed> $export
- * @param array<string, mixed> $payload
- * @param array<string, mixed>|null $providerConfiguration
- * @return array<string, mixed>
- *
- * @throws MarkAiMockEndpointException
- * @throws MarkAiPromptBuilderException
- */
+* Handle a MarkAI preview request using the approved export and PromptBuilder.
+*
+* Optional provider generation may draft text, but every provider failure or
+* unsafe answer returns control to the deterministic classifier. Provider
+* configuration defaults to disabled and no network transport is used unless
+* explicitly injected by tests or a future wiring phase.
+*
+* @param array<string, mixed> $export
+* @param array<string, mixed> $payload
+* @param array<string, mixed>|null $providerConfiguration
+* @return array<string, mixed>
+*
+* @throws MarkAiMockEndpointException
+* @throws MarkAiPromptBuilderException
+*/
 function handleMarkAiPreviewRequest(
     array $export,
     array $payload,
@@ -87,7 +105,7 @@ function handleMarkAiPreviewRequest(
 
         return [
             'success' => true,
-            'answer' => (string) $privacy['answer'],
+            'answer' => markai_normalize_public_punctuation((string) $privacy['answer']),
             'answerStatus' => 'refused',
             'links' => $links,
             'mode' => $mode,
@@ -130,7 +148,7 @@ function handleMarkAiPreviewRequest(
     $messages = is_array($built['messages'] ?? null) ? $built['messages'] : [];
     $deterministic = [
         'success' => true,
-        'answer' => $classified['answer'],
+        'answer' => markai_normalize_public_punctuation((string) $classified['answer']),
         'answerStatus' => $classified['answerStatus'],
         'links' => $links,
         'mode' => $mode,
@@ -170,7 +188,7 @@ function handleMarkAiPreviewRequest(
     if ($generated !== null) {
         return [
             'success' => true,
-            'answer' => $generated['answer'],
+            'answer' => markai_normalize_public_punctuation((string) $generated['answer']),
             'answerStatus' => 'answered',
             'links' => $links,
             'mode' => $mode,
@@ -184,9 +202,9 @@ function handleMarkAiPreviewRequest(
 }
 
 /**
- * @param array<string, mixed> $payload
- * @return array{question: string, history: list<array{role: string, content: string}>, mode: ?string}
- */
+* @param array<string, mixed> $payload
+* @return array{question: string, history: list<array{role: string, content: string}>, mode: ?string}
+*/
 function markai_mock_validate_payload(array $payload): array
 {
     $dangerous = [
@@ -313,14 +331,14 @@ function markai_mock_validate_payload(array $payload): array
 }
 
 /**
- * @param list<array{role: string, content: string}> $history
- * @return array{category: string, mode: string, answer: string, answerStatus: string}
- */
+* @param list<array{role: string, content: string}> $history
+* @return array{category: string, mode: string, answer: string, answerStatus: string}
+*/
 function markai_mock_classify(string $question, array $history = []): array
 {
     $answers = [
-        'profile' => 'Mark Yoingco is a recent Computer Science graduate from Marquette University seeking his first full-time technology role. His work includes a personal portfolio platform, senior design projects, systems coursework, robotics, data projects, and Unity projects.',
-        'abacus' => 'Abacus was a team senior-design project used for the Wisconsin-Dairyland Programming Competition. Mark’s verified work included Eagle messaging APIs, role-aware chat and inbox behavior, competition workflows, routing and persistence, frontend/backend integration, submission-system support, testing, and UI debugging. The April 15, 2026 event used the platform to support approximately 200–300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag.',
+        'profile' => 'Mark is from Chicago and graduated from Marquette University with a Bachelor of Science in Computer Science. He is seeking his first full-time technology role. His work includes a personal portfolio platform, senior design projects, systems coursework, robotics, data projects, and Unity projects.',
+        'abacus' => 'Abacus was a team senior-design project used for the Wisconsin-Dairyland Programming Competition. Mark’s verified work included Eagle messaging APIs, role-aware chat and inbox behavior, competition workflows, routing and persistence, frontend/backend integration, submission-system support, testing, and UI debugging. The April 15, 2026 event used the platform to support approximately 200 - 300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag.',
         'technologies' => 'Mark has worked with technologies including JavaScript, TypeScript, Python, Java, R, SQL, C, C#, PHP, React, Vite, Flask, MySQL, Docker, Socket.IO, Linux/WSL, Unity, Figma, Cloudflare Workers AI, and REST-style APIs through coursework and projects.',
         'individualTeam' => 'Mark built his portfolio platform as an individual project. Abacus, MAAT, Finch, Sleep Efficiency Analysis, and the basketball predictor were team or coursework projects, so their team context should remain clear.',
         'work' => 'Mark’s public experience includes AV Technician, Information Desk Specialist Manager, Assistant Building Manager, Hollister retail work, and Panda Express Chef/Person in Charge, along with approved campus leadership experience.',
@@ -352,7 +370,7 @@ function markai_mock_classify(string $question, array $history = []): array
         'cityVision' => 'Mark is interested in modern cities, architecture, technology, opportunity, and cinematic environments. Cities represent ambition, opportunity, and professional progress. His exact long-term location can still evolve.',
         'perspectiveExploration' => 'Mark values new perspectives as much as new places. Travel, museums, photography, reading, films, music, hiking, and meeting different people help him stay ambitious while remaining grounded and open to learning.',
         'remembered' => 'Mark wants to be remembered for what he built, how he worked, and what he followed through on. Visibility without substance is not the goal.',
-        'becoming' => 'Mark sees himself as still evolving. The direction is clear—more discipline, responsibility, confidence, skill, and independence—even if the exact final version continues to change.',
+        'becoming' => 'Mark sees himself as still evolving. The direction is clear - more discipline, responsibility, confidence, skill, and independence - even if the exact final version continues to change.',
         'futureVision' => 'Mark wants a growing technology career, an active and disciplined lifestyle, continued learning, creative interests, and greater independence.',
         'hobbies' => 'Outside technology, Mark’s public hobbies include bodybuilding and working out, reading, music, movies, cooking, museums, hiking, travel, photography, running, Greek mythology, classical statues and art, spending time with friends, family, and his dog, and experiencing new places and perspectives.',
         'cooking' => 'Cooking is a practical personal interest for Mark, not professional culinary experience. It is one of the ways he spends time outside technology.',
@@ -367,7 +385,7 @@ function markai_mock_classify(string $question, array $history = []): array
         'favoriteFilmsCreed' => 'Creed and Creed II connect naturally to Mark’s interest in training, ambition, resilience, and earned progress. They are among his favorite films alongside The Batman and Magazine Dreams.',
         'favoriteFilmsBatman' => 'The Batman fits Mark’s preference for dark, cinematic, serious, high-contrast environments. It is one of his favorite films alongside Creed, Creed II, and Magazine Dreams.',
         'favoriteShow' => 'Regular Show is one of Mark’s favorite animated series. It reflects a more relaxed and humorous side of his entertainment interests and is not classified as a movie.',
-        'careerGoals' => 'Mark is working toward a stable technology career built on continued technical growth, meaningful useful work, and greater independence. He wants to keep building stronger software projects while maintaining discipline in fitness and continuing creative practice. Travel and new perspectives matter to him as part of becoming more confident, responsible, and capable over time. He remains open to software development, full-stack work, developer tools, data-oriented systems, technical support, and related entry-level paths in Milwaukee, Chicago, remote work, or other locations when relocation is practical.',
+        'careerGoals' => 'Mark is working toward a stable technology career built on continued technical growth, meaningful work, stronger software projects, greater independence, and continued discipline and creativity. He remains open to software development, full-stack applications, developer tools, data-oriented systems, technical support, and related entry-level technology paths.',
         'success' => 'For Mark, success means career stability, professional growth, independence, meaningful work, physical discipline, and pride in earned progress. A title alone is not enough; he wants to know he built something useful and followed through.',
         'funFacts' => "Here are several approved fun facts about Mark:\n\n- Bodybuilding is his strongest interest outside technology.\n- Favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR.\n- Favorite films include Creed, Creed II, The Batman, and Magazine Dreams; Regular Show is a favorite series; he also enjoys Marvel and DC.\n- He likes photography and travel, plus museums, hiking, and running.\n- He is interested in Greek mythology and classical statues and art.\n- His favorite color is black, and he prefers a dark cinematic visual style.\n- Outside work he also enjoys reading, music, cooking, and spending time with friends, family, and his dog.",
         'capabilities' => "You can ask about Mark’s projects, skills, education, experience, collaborators, goals, personality, hobbies, music, films, fitness, travel, testimonials, résumé, or public links.\n\nExamples:\n- “What did Mark build for Abacus?”\n- “What are his strongest skills?”\n- “What are Mark’s goals?”\n- “What music and films does he like?”\n- “Who did he work with on MAAT?”\n- “Can I see the Finch repository?”\n- “What does Mark do outside technology?”",
@@ -376,14 +394,16 @@ function markai_mock_classify(string $question, array $history = []): array
         'travel' => 'Travel helps Mark experience different environments, people, cultures, architecture, and ways of living. It gives him new perspectives and motivates greater freedom and independence. Cities connect to ambition and energy, coastal environments to peace, and mountains and hiking to effort that earns the view.',
         'travelPlaces' => 'Places shown in Mark’s public portfolio travel content include Hawaii, Las Vegas, Chicago, California, Lake Louise in Canada, Manila in the Philippines, London, the Amalfi Coast in Italy, Rome in Italy, Milwaukee, and Nashville. The Travel section and VSCO gallery are the best places to view related photography.',
         'environment' => 'Mark prefers clean, organized, minimal environments with a cinematic mix of classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional atmosphere and dislikes corny or overly decorative presentation.',
-        'collaboratorsAbacus' => 'The core student team for Abacus included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. Sam Mazzone supported the team separately as an advisor, software developer, and moral supporter.',
-        'collaboratorsMaat' => 'The core student team for TA-Bot / MAAT included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. Sam Mazzone supported the team separately as an advisor, software developer, and moral supporter.',
-        'collaboratorsSam' => 'Sam Mazzone supported the Abacus and TA-Bot / MAAT teams as an advisor, software developer, and moral supporter. He is not described as one of the core student teammates; the core student team was Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.',
+        'collaboratorsAbacus' => 'The Abacus team included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.',
+        'collaboratorsMaat' => 'The TA-Bot / MAAT team included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.',
+        'collaboratorsSam' => 'MarkAI provides only Mark’s approved public project and collaborator information.',
         'collaboratorsFinch' => 'The Finch Web Controller team included Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth.',
         'collaboratorsDataMining' => 'The Data Mining Game Predictor team included Mark Yoingco and Allan Akkathara.',
         'collaboratorsOs' => 'For Operating Systems C Projects, the approved collaborator names are Mark Yoingco and Armaan Yaz. Private or shared course repositories remain unpublished.',
         'collaboratorsSleep' => 'For the Sleep Efficiency Analysis data-science project, the approved collaborator names are Mark Yoingco and Hunter Carlson.',
-        'collaboratorsInventory' => "Mark’s approved project collaborators, by project:\n\n- Abacus: Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman\n- TA-Bot / MAAT: Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman\n- Support for Abacus and MAAT: Sam Mazzone (advisor, software developer, moral supporter)\n- Finch: Mark Yoingco, Julianne Browne, Luis Serrano, Xavier Barth\n- Data Mining: Mark Yoingco, Allan Akkathara\n- Operating Systems: Mark Yoingco, Armaan Yaz\n- Sleep Analysis: Mark Yoingco, Hunter Carlson",
+        'fromChicago' => 'Mark is from Chicago.',
+        'locationPrivacy' => 'MarkAI does not provide precise or current location information. Mark’s approved public background states that he is from Chicago.',
+        'collaboratorsInventory' => "Mark’s approved project collaborators, by project:\n\n- Abacus: Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman\n- TA-Bot / MAAT: Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman\n- Finch: Mark Yoingco, Julianne Browne, Luis Serrano, Xavier Barth\n- Data Mining: Mark Yoingco, Allan Akkathara\n- Operating Systems: Mark Yoingco, Armaan Yaz\n- Sleep Analysis: Mark Yoingco, Hunter Carlson",
         'testimonials' => 'Yes. Mark’s portfolio includes public testimonials from people who have worked with, taught, or known him. Zack Kohlwey, Mark’s former supervisor at Marquette University, highlights his dedication, work ethic, and leadership by example. Farzeen Harunani, a Computer Science professor at Marquette, notes his initiative, composure, and dedication. Jorge Torres, a former coworker, emphasizes his thoroughness, ownership, and reliability. Full attributed quotes are in the portfolio Testimonials section.',
         'projectsInventory' => "Mark’s approved public software projects include:\n\n- Portfolio & AI: Personal Portfolio Platform; MarkAI\n- Capstones: Abacus; TA-Bot / MAAT\n- Systems: Operating Systems C Projects\n- Robotics & Software Design: Finch Robot Web Controller\n- Games: Space SHMUP; Apple Picker; Mission Demolition\n- Data: Sleep Efficiency Analysis; Marquette Basketball Predictor\n\nThe portfolio platform and MarkAI are solo personal work. Abacus, MAAT, Finch, and the data projects were team or coursework collaborations.",
         'maat' => 'TA-Bot / MAAT was a team senior-design chatbot and automated assessment platform. Mark’s verified work included rubric grading features, score recalculation, observed error tables, plagiarism-detection support, backend API integration, database checks, Docker Compose testing, debugging, and UI cleanup.',
@@ -411,108 +431,108 @@ function markai_mock_classify(string $question, array $history = []): array
     $text = markai_intent_apply_typos($text);
 
     if (markai_mock_includes_any($text, [
-        'phone',
-        'phone number',
-        'email address',
-        'raw email',
-        'password',
-        'credentials',
-        'api key',
-        'database password',
-        'private repository',
-        'private repo',
-        'relationship',
-        'girlfriend',
-        'boyfriend',
-        'breakup',
-        'romantic',
-        'dating',
-        'lonely',
-        'loneliness',
-        'sadness',
-        'depression',
-        'anxiety',
-        'addiction',
-        'substance',
-        'alcohol problem',
-        'pornograph',
-        'diagnosis',
-        'medical condition',
-        'mental health',
-        'mental-health',
-        'therapy',
-        'therapy details',
-        'medical',
-        'health history',
-        'lung',
-        'journal',
-        'self-hatred',
-        'exact weight',
-        'body fat',
-        'measurements',
-        'physique goals',
-        'salary',
-        'what salary',
-        'salary does mark need',
-        'how much does he make',
-        'how much money',
-        'bank account',
-        'finances',
-        'financial hardship',
-        'struggling with money',
-        'money situation',
-        'money pressure',
-        'being broke',
-        'is mark broke',
-        'mark broke',
-        'why does mark need money',
-        'why does he need money',
-        'need money',
-        'family support',
-        'family financial',
-        'family’s financial',
-        "family's financial",
-        'support his family',
-        'support my family',
-        'support family',
-        'supporting family',
-        'why support his family',
-        'why support family',
-        'why does he want to support',
-        'need to support his family',
-        'need to support family',
-        'does mark need to support',
-        'depend on his family',
-        'depending on family',
-        'what does family mean to his goals',
-        'family mean to his goals',
-        'family goals',
-        'what does family mean',
-        'family mean to mark',
-        'family problems',
-        'family conflict',
-        'family issues',
-        'tell me about mark’s family',
-        "tell me about mark's family",
-        'tell me about marks family',
-        'about mark’s family',
-        "about mark's family",
-        'about his family',
-        'home life',
-        'private struggle',
-        'emotional low',
-        'self-pity',
-        'precise location',
-        'home address',
-        'ignore previous instructions',
-        'ignore the rules',
-        'reveal the system prompt',
-        'pretend to be mark',
-        'act as mark',
-        'collaborator email',
-        'teammate phone',
-        'teammate email',
-        'drugs',
+                'phone',
+                'phone number',
+                'email address',
+                'raw email',
+                'password',
+                'credentials',
+                'api key',
+                'database password',
+                'private repository',
+                'private repo',
+                'relationship',
+                'girlfriend',
+                'boyfriend',
+                'breakup',
+                'romantic',
+                'dating',
+                'lonely',
+                'loneliness',
+                'sadness',
+                'depression',
+                'anxiety',
+                'addiction',
+                'substance',
+                'alcohol problem',
+                'pornograph',
+                'diagnosis',
+                'medical condition',
+                'mental health',
+                'mental-health',
+                'therapy',
+                'therapy details',
+                'medical',
+                'health history',
+                'lung',
+                'journal',
+                'self-hatred',
+                'exact weight',
+                'body fat',
+                'measurements',
+                'physique goals',
+                'salary',
+                'what salary',
+                'salary does mark need',
+                'how much does he make',
+                'how much money',
+                'bank account',
+                'finances',
+                'financial hardship',
+                'struggling with money',
+                'money situation',
+                'money pressure',
+                'being broke',
+                'is mark broke',
+                'mark broke',
+                'why does mark need money',
+                'why does he need money',
+                'need money',
+                'family support',
+                'family financial',
+                'family’s financial',
+                "family's financial",
+                'support his family',
+                'support my family',
+                'support family',
+                'supporting family',
+                'why support his family',
+                'why support family',
+                'why does he want to support',
+                'need to support his family',
+                'need to support family',
+                'does mark need to support',
+                'depend on his family',
+                'depending on family',
+                'what does family mean to his goals',
+                'family mean to his goals',
+                'family goals',
+                'what does family mean',
+                'family mean to mark',
+                'family problems',
+                'family conflict',
+                'family issues',
+                'tell me about mark’s family',
+                "tell me about mark's family",
+                'tell me about marks family',
+                'about mark’s family',
+                "about mark's family",
+                'about his family',
+                'home life',
+                'private struggle',
+                'emotional low',
+                'self-pity',
+                'precise location',
+                'home address',
+                'ignore previous instructions',
+                'ignore the rules',
+                'reveal the system prompt',
+                'pretend to be mark',
+                'act as mark',
+                'collaborator email',
+                'teammate phone',
+                'teammate email',
+                'drugs',
     ])) {
         return [
             'category' => 'sensitive',
@@ -536,11 +556,11 @@ function markai_mock_classify(string $question, array $history = []): array
 
     if (
         markai_mock_includes_any($text, [
-            'is markai live',
-            'markai status',
-            'connected',
-            'real ai',
-            'preview',
+                'is markai live',
+                'markai status',
+                'connected',
+                'real ai',
+                'preview',
         ])
         || (str_contains($text, 'markai')
             && markai_mock_includes_any($text, ['live', 'status', 'ready', 'working']))
@@ -554,9 +574,9 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'fmsc',
-        'feed my starving',
-        'starving children',
+                'fmsc',
+                'feed my starving',
+                'starving children',
     ])) {
         return [
             'category' => 'fmsc',
@@ -567,11 +587,11 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'sigma chi merch',
-        'sigma chi merchandise',
-        'merch design',
-        'about sigma chi merch',
-        'about sigma chi merchandise',
+                'sigma chi merch',
+                'sigma chi merchandise',
+                'merch design',
+                'about sigma chi merch',
+                'about sigma chi merchandise',
     ])) {
         return [
             'category' => 'merchSigma',
@@ -582,25 +602,25 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'all existing links',
-        'all links',
-        'show me mark’s links',
-        "show me mark's links",
-        'show me marks links',
-        'give me all links',
-        'give me every link',
-        'give me his links',
-        'mark’s links',
-        "mark's links",
-        'marks links',
-        'find mark online',
-        'where can i find mark',
-        'github and linkedin',
-        'linkedin and github',
-        'give me his github',
-        'give me his linkedin',
-        'public links',
-        'portfolio links',
+                'all existing links',
+                'all links',
+                'show me mark’s links',
+                "show me mark's links",
+                'show me marks links',
+                'give me all links',
+                'give me every link',
+                'give me his links',
+                'mark’s links',
+                "mark's links",
+                'marks links',
+                'find mark online',
+                'where can i find mark',
+                'github and linkedin',
+                'linkedin and github',
+                'give me his github',
+                'give me his linkedin',
+                'public links',
+                'portfolio links',
     ])) {
         return [
             'category' => 'links',
@@ -613,13 +633,13 @@ function markai_mock_classify(string $question, array $history = []): array
     if (
         markai_mock_includes_any($text, ['abacus', 'eagle', 'messaging'])
         && !markai_mock_includes_any($text, [
-            'abacus team',
-            'on the abacus',
-            'worked on abacus',
-            'who was on abacus',
-            'who worked on abacus',
-            'sam mazzone',
-            'justin',
+                'abacus team',
+                'on the abacus',
+                'worked on abacus',
+                'who was on abacus',
+                'who worked on abacus',
+                'sam mazzone',
+                'justin',
         ])
     ) {
         return [
@@ -633,20 +653,20 @@ function markai_mock_classify(string $question, array $history = []): array
     if (
         markai_mock_includes_any($text, ['maat', 'ta-bot', 'tabot', 'ta bot'])
         && !markai_mock_includes_any($text, [
-            'maat team',
-            'ta-bot team',
-            'tabot team',
-            'worked on ta-bot',
-            'worked on maat',
-            'helped with maat',
-            'helped with ta-bot',
-            'who worked on ta-bot',
-            'who helped with maat',
-            'who worked on maat',
-            'who was on ta-bot',
-            'who was on maat',
-            'justin',
-            'sam mazzone',
+                'maat team',
+                'ta-bot team',
+                'tabot team',
+                'worked on ta-bot',
+                'worked on maat',
+                'helped with maat',
+                'helped with ta-bot',
+                'who worked on ta-bot',
+                'who helped with maat',
+                'who worked on maat',
+                'who was on ta-bot',
+                'who was on maat',
+                'justin',
+                'sam mazzone',
         ])
     ) {
         return [
@@ -660,11 +680,11 @@ function markai_mock_classify(string $question, array $history = []): array
     if (
         markai_mock_includes_any($text, ['finch', 'birdvroom', 'birdbrain'])
         && !markai_mock_includes_any($text, [
-            'finch team',
-            'on the finch',
-            'worked on finch',
-            'who was on finch',
-            'who worked on finch',
+                'finch team',
+                'on the finch',
+                'worked on finch',
+                'who was on finch',
+                'who worked on finch',
         ])
     ) {
         return [
@@ -703,10 +723,10 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'operating systems c',
-        'operating-systems-c',
-        'xinu',
-        'os c projects',
+                'operating systems c',
+                'operating-systems-c',
+                'xinu',
+                'os c projects',
     ])) {
         return [
             'category' => 'osC',
@@ -726,9 +746,9 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'basketball predictor',
-        'marquette basketball',
-        'data mining game',
+                'basketball predictor',
+                'marquette basketball',
+                'data mining game',
     ])) {
         return [
             'category' => 'basketball',
@@ -739,14 +759,14 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'portfolio platform',
-        'marks-portfolio',
-        'personal portfolio platform',
-        'portfolio repository',
-        'portfolio website repository',
-        'portfolio website',
-        'portfolio site repository',
-        'marks portfolio repository',
+                'portfolio platform',
+                'marks-portfolio',
+                'personal portfolio platform',
+                'portfolio repository',
+                'portfolio website repository',
+                'portfolio website',
+                'portfolio site repository',
+                'marks portfolio repository',
     ])) {
         return [
             'category' => 'portfolioPlatform',
@@ -757,38 +777,38 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'list every project',
-        'list all mark’s projects',
-        "list all mark's projects",
-        'list all marks projects',
-        'list out every project',
-        'list all projects',
-        'what projects has mark',
-        'what projects did mark',
-        'what has mark built',
-        'what has mark worked on',
-        'what mark has built',
-        'what mark worked on',
-        'software projects',
-        'project portfolio',
-        'project list',
-        'all projects',
-        'every project',
-        'summarize mark’s technical work',
-        "summarize mark's technical work",
-        'summarize marks technical work',
-        'technical work',
-        'built in college',
-        'build in college',
-        'personal projects',
-        'projects has he completed',
-        'projects he completed',
-        'projects mark has done',
-        'projects mark has',
-        'show me his projects',
-        'give me his projects',
-        'give me his project portfolio',
-        'show me his software projects',
+                'list every project',
+                'list all mark’s projects',
+                "list all mark's projects",
+                'list all marks projects',
+                'list out every project',
+                'list all projects',
+                'what projects has mark',
+                'what projects did mark',
+                'what has mark built',
+                'what has mark worked on',
+                'what mark has built',
+                'what mark worked on',
+                'software projects',
+                'project portfolio',
+                'project list',
+                'all projects',
+                'every project',
+                'summarize mark’s technical work',
+                "summarize mark's technical work",
+                'summarize marks technical work',
+                'technical work',
+                'built in college',
+                'build in college',
+                'personal projects',
+                'projects has he completed',
+                'projects he completed',
+                'projects mark has done',
+                'projects mark has',
+                'show me his projects',
+                'give me his projects',
+                'give me his project portfolio',
+                'show me his software projects',
     ])) {
         return [
             'category' => 'projectsInventory',
@@ -799,26 +819,30 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'sam mazzone',
-        'what was sam',
-        'sam’s role',
-        "sam's role",
-        'sams role',
+                'sam mazzone',
+                'did sam mazzone',
+                'did sam work',
+                'was sam',
+                'what was sam',
+                'sam’s role',
+                "sam's role",
+                'sams role',
+                'who was sam',
     ])) {
         return [
             'category' => 'collaboratorsSam',
-            'mode' => 'technical',
+            'mode' => 'general',
             'answer' => $answers['collaboratorsSam'],
-            'answerStatus' => 'answered',
+            'answerStatus' => 'refused',
         ];
     }
 
     if (markai_mock_includes_any($text, [
-        'abacus team',
-        'on the abacus',
-        'worked on abacus',
-        'who was on abacus',
-        'who worked on abacus',
+                'abacus team',
+                'on the abacus',
+                'worked on abacus',
+                'who was on abacus',
+                'who worked on abacus',
     ])) {
         return [
             'category' => 'collaboratorsAbacus',
@@ -829,18 +853,18 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'maat team',
-        'ta-bot team',
-        'tabot team',
-        'worked on ta-bot',
-        'worked on maat',
-        'helped with maat',
-        'helped with ta-bot',
-        'who worked on ta-bot',
-        'who helped with maat',
-        'who worked on maat',
-        'who was on ta-bot',
-        'who was on maat',
+                'maat team',
+                'ta-bot team',
+                'tabot team',
+                'worked on ta-bot',
+                'worked on maat',
+                'helped with maat',
+                'helped with ta-bot',
+                'who worked on ta-bot',
+                'who helped with maat',
+                'who worked on maat',
+                'who was on ta-bot',
+                'who was on maat',
     ])) {
         return [
             'category' => 'collaboratorsMaat',
@@ -851,13 +875,13 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'finch team',
-        'on the finch',
-        'on mark’s finch',
-        "on mark's finch",
-        'worked on finch',
-        'who was on finch',
-        'who worked on finch',
+                'finch team',
+                'on the finch',
+                'on mark’s finch',
+                "on mark's finch",
+                'worked on finch',
+                'who was on finch',
+                'who worked on finch',
     ])) {
         return [
             'category' => 'collaboratorsFinch',
@@ -868,15 +892,15 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'allan akkathara',
-        'allan work',
-        'project did allan',
-        'what project did allan',
-        'basketball predictor team',
-        'worked with mark on data mining',
-        'who worked with mark on data mining',
-        'data mining collaborators',
-        'data mining team',
+                'allan akkathara',
+                'allan work',
+                'project did allan',
+                'what project did allan',
+                'basketball predictor team',
+                'worked with mark on data mining',
+                'who worked with mark on data mining',
+                'data mining collaborators',
+                'data mining team',
     ])) {
         $answer = $answers['collaboratorsDataMining'];
         if (markai_mock_includes_any($text, ['allan'])) {
@@ -892,12 +916,12 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'justin hoffman',
-        'justin work',
-        'projects did justin',
-        'which projects did justin',
-        'justin help',
-        'worked with justin',
+                'justin hoffman',
+                'justin work',
+                'projects did justin',
+                'which projects did justin',
+                'justin help',
+                'worked with justin',
     ])) {
         return [
             'category' => 'collaboratorsJustin',
@@ -908,12 +932,12 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'armaan yaz',
-        'worked with mark in operating systems',
-        'who worked with mark in operating systems',
-        'os collaborators',
-        'operating systems collaborators',
-        'who worked with mark on operating systems',
+                'armaan yaz',
+                'worked with mark in operating systems',
+                'who worked with mark in operating systems',
+                'os collaborators',
+                'operating systems collaborators',
+                'who worked with mark on operating systems',
     ])) {
         return [
             'category' => 'collaboratorsOs',
@@ -924,12 +948,12 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'hunter carlson',
-        'worked with mark on the data science',
-        'who worked with mark on the data science',
-        'sleep analysis collaborators',
-        'data science collaborators',
-        'who worked with mark on sleep',
+                'hunter carlson',
+                'worked with mark on the data science',
+                'who worked with mark on the data science',
+                'sleep analysis collaborators',
+                'data science collaborators',
+                'who worked with mark on sleep',
     ])) {
         return [
             'category' => 'collaboratorsSleep',
@@ -940,13 +964,13 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'project collaborators',
-        'list mark’s project collaborators',
-        "list mark's project collaborators",
-        'list marks project collaborators',
-        'who has mark worked with',
-        'who has mark collaborated',
-        'list collaborators',
+                'project collaborators',
+                'list mark’s project collaborators',
+                "list mark's project collaborators",
+                'list marks project collaborators',
+                'who has mark worked with',
+                'who has mark collaborated',
+                'list collaborators',
     ])) {
         return [
             'category' => 'collaboratorsInventory',
@@ -957,27 +981,27 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'testimonial',
-        'testimonials',
-        'reviews',
-        'recommendations',
-        'recommendation',
-        'what people say',
-        'people say about',
-        'others say',
-        'people say',
-        'show me mark’s testimonials',
-        "show me mark's testimonials",
-        'show me marks testimonials',
-        'does mark have testimonial',
-        'have testimonials',
-        'recommended mark',
-        'who has recommended',
-        'who recommended',
-        'coworkers say',
-        'teammates say',
-        'teammates or coworkers',
-        'work ethic',
+                'testimonial',
+                'testimonials',
+                'reviews',
+                'recommendations',
+                'recommendation',
+                'what people say',
+                'people say about',
+                'others say',
+                'people say',
+                'show me mark’s testimonials',
+                "show me mark's testimonials",
+                'show me marks testimonials',
+                'does mark have testimonial',
+                'have testimonials',
+                'recommended mark',
+                'who has recommended',
+                'who recommended',
+                'coworkers say',
+                'teammates say',
+                'teammates or coworkers',
+                'work ethic',
     ])) {
         return [
             'category' => 'testimonials',
@@ -988,12 +1012,12 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'what drives mark',
-        'what drives him',
-        'drives mark',
-        'what motivates mark',
-        'what motivates him',
-        'what motivates',
+                'what drives mark',
+                'what drives him',
+                'drives mark',
+                'what motivates mark',
+                'what motivates him',
+                'what motivates',
     ])) {
         return [
             'category' => 'drives',
@@ -1004,23 +1028,23 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'describe mark’s vibe',
-        "describe mark's vibe",
-        'describe marks vibe',
-        'mark’s vibe',
-        "mark's vibe",
-        'marks vibe',
-        'what is mark’s vibe',
-        "what is mark's vibe",
-        'what is marks vibe',
-        'how would you describe mark’s vibe',
-        "how would you describe mark's vibe",
-        'what is mark’s mindset',
-        "what is mark's mindset",
-        'what is marks mindset',
-        'mark’s mindset',
-        "mark's mindset",
-        'what makes mark different',
+                'describe mark’s vibe',
+                "describe mark's vibe",
+                'describe marks vibe',
+                'mark’s vibe',
+                "mark's vibe",
+                'marks vibe',
+                'what is mark’s vibe',
+                "what is mark's vibe",
+                'what is marks vibe',
+                'how would you describe mark’s vibe',
+                "how would you describe mark's vibe",
+                'what is mark’s mindset',
+                "what is mark's mindset",
+                'what is marks mindset',
+                'mark’s mindset',
+                "mark's mindset",
+                'what makes mark different',
     ])) {
         return [
             'category' => 'vibe',
@@ -1031,10 +1055,10 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'earned life',
-        'what does an earned life',
-        'what is an earned life',
-        'earned life mean',
+                'earned life',
+                'what does an earned life',
+                'what is an earned life',
+                'earned life mean',
     ])) {
         return [
             'category' => 'earnedLife',
@@ -1045,13 +1069,13 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'what gives mark confidence',
-        'gives mark confidence',
-        'earned confidence',
-        'quiet confidence',
-        'what does quiet confidence',
-        'quiet ambition',
-        'what does quiet ambition',
+                'what gives mark confidence',
+                'gives mark confidence',
+                'earned confidence',
+                'quiet confidence',
+                'what does quiet confidence',
+                'quiet ambition',
+                'what does quiet ambition',
     ])) {
         $answer = $answers['earnedConfidence'];
         if (markai_mock_includes_any($text, ['quiet ambition'])) {
@@ -1069,11 +1093,11 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'why does mark build',
-        'why mark build',
-        'why does mark care about results',
-        'care about results',
-        'turning ideas into',
+                'why does mark build',
+                'why mark build',
+                'why does mark care about results',
+                'care about results',
+                'turning ideas into',
     ])) {
         return [
             'category' => 'builderIdentity',
@@ -1084,15 +1108,15 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'how does mark view leadership',
-        'how does mark lead',
-        'comfortable leading',
-        'is mark comfortable leading',
-        'mark lead',
-        'approach learning',
-        'how does mark approach learning',
-        'what has teamwork taught',
-        'teamwork taught',
+                'how does mark view leadership',
+                'how does mark lead',
+                'comfortable leading',
+                'is mark comfortable leading',
+                'mark lead',
+                'approach learning',
+                'how does mark approach learning',
+                'what has teamwork taught',
+                'teamwork taught',
     ])) {
         $answer = $answers['leadershipBalance'];
         if (markai_mock_includes_any($text, ['learning', 'teamwork taught', 'taught'])) {
@@ -1108,9 +1132,9 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'what does freedom mean',
-        'freedom mean to mark',
-        'freedom mean to him',
+                'what does freedom mean',
+                'freedom mean to mark',
+                'freedom mean to him',
     ])) {
         return [
             'category' => 'freedomStructure',
@@ -1121,13 +1145,13 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'why city life',
-        'why does he like city',
-        'why does mark like city',
-        'like city life',
-        'city life',
-        'drawn to cities',
-        'modern city',
+                'why city life',
+                'why does he like city',
+                'why does mark like city',
+                'like city life',
+                'city life',
+                'drawn to cities',
+                'modern city',
     ])) {
         return [
             'category' => 'cityVision',
@@ -1138,9 +1162,9 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'new perspectives',
-        'gain new perspectives',
-        'perspective and exploration',
+                'new perspectives',
+                'gain new perspectives',
+                'perspective and exploration',
     ])) {
         return [
             'category' => 'perspectiveExploration',
@@ -1151,10 +1175,10 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'want to be remembered',
-        'should people remember',
-        'what should people remember',
-        'remembered for',
+                'want to be remembered',
+                'should people remember',
+                'what should people remember',
+                'remembered for',
     ])) {
         return [
             'category' => 'remembered',
@@ -1165,14 +1189,14 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'finished becoming',
-        'still evolving',
-        'finished product',
-        'person is he becoming',
-        'type of person is he becoming',
-        'what type of person is he becoming',
-        'person is mark trying to become',
-        'what type of person is mark trying to become',
+                'finished becoming',
+                'still evolving',
+                'finished product',
+                'person is he becoming',
+                'type of person is he becoming',
+                'what type of person is he becoming',
+                'person is mark trying to become',
+                'what type of person is mark trying to become',
     ])) {
         return [
             'category' => 'becoming',
@@ -1183,10 +1207,10 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'what kind of future',
-        'kind of future does mark',
-        'future does mark want',
-        'future does he want',
+                'what kind of future',
+                'kind of future does mark',
+                'future does mark want',
+                'future does he want',
     ])) {
         return [
             'category' => 'futureVision',
@@ -1197,14 +1221,14 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'describe mark’s personality',
-        "describe mark's personality",
-        'describe marks personality',
-        'mark’s personality',
-        "mark's personality",
-        'marks personality',
-        'what kind of person is mark',
-        'type of person is mark',
+                'describe mark’s personality',
+                "describe mark's personality",
+                'describe marks personality',
+                'mark’s personality',
+                "mark's personality",
+                'marks personality',
+                'what kind of person is mark',
+                'type of person is mark',
     ])) {
         return [
             'category' => 'personality',
@@ -1215,14 +1239,14 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'what does discipline mean',
-        'discipline mean to mark',
-        'what does consistency mean',
-        'consistency mean to',
-        'controlled strength',
-        'controlled intensity',
-        'how does mark handle setbacks',
-        'handle setbacks',
+                'what does discipline mean',
+                'discipline mean to mark',
+                'what does consistency mean',
+                'consistency mean to',
+                'controlled strength',
+                'controlled intensity',
+                'how does mark handle setbacks',
+                'handle setbacks',
     ])) {
         $answer = $answers['discipline'];
         if (markai_mock_includes_any($text, ['consistency'])) {
@@ -1242,15 +1266,15 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'what are mark’s goals',
-        "what are mark's goals",
-        'what are marks goals',
-        'why does mark want a technology career',
-        'technology career',
-        'career goals',
-        'what does success mean',
-        'success mean to mark',
-        'success look like',
+                'what are mark’s goals',
+                "what are mark's goals",
+                'what are marks goals',
+                'why does mark want a technology career',
+                'technology career',
+                'career goals',
+                'what does success mean',
+                'success mean to mark',
+                'success look like',
     ])) {
         $answer = $answers['careerGoals'];
         if (markai_mock_includes_any($text, ['success'])) {
@@ -1267,36 +1291,36 @@ function markai_mock_classify(string $question, array $history = []): array
 
     if (
         markai_mock_includes_any($text, [
-            'favorite artists',
-            'favourite artists',
-            'favorite artist',
-            'favourite artist',
-            'favorite musician',
-            'favourite musician',
-            'favorite rappers',
-            'favourite rappers',
-            'favorite r&b',
-            'favourite r&b',
-            'what music',
-            'music does mark',
-            'kind of music',
-            'does mark like music',
-            'does mark listen',
-            'listen to',
-            'drake',
-            'lil baby',
-            'tory lanez',
-            'the weeknd',
-            'don toliver',
-            'travis scott',
-            'partynextdoor',
-            'party next door',
-            'r&b',
-            'hip-hop',
-            'hip hop',
-            'workout music',
-            'music fits',
-            'music while',
+                'favorite artists',
+                'favourite artists',
+                'favorite artist',
+                'favourite artist',
+                'favorite musician',
+                'favourite musician',
+                'favorite rappers',
+                'favourite rappers',
+                'favorite r&b',
+                'favourite r&b',
+                'what music',
+                'music does mark',
+                'kind of music',
+                'does mark like music',
+                'does mark listen',
+                'listen to',
+                'drake',
+                'lil baby',
+                'tory lanez',
+                'the weeknd',
+                'don toliver',
+                'travis scott',
+                'partynextdoor',
+                'party next door',
+                'r&b',
+                'hip-hop',
+                'hip hop',
+                'workout music',
+                'music fits',
+                'music while',
         ])
         || (
             markai_mock_includes_any($text, ['music', 'rapper', 'rappers', 'artist', 'artists'])
@@ -1318,27 +1342,27 @@ function markai_mock_classify(string $question, array $history = []): array
 
     if (
         markai_mock_includes_any($text, [
-            'favorite movies',
-            'favourite movies',
-            'favorite movie',
-            'favourite movie',
-            'favorite films',
-            'favourite films',
-            'favorite film',
-            'favourite film',
-            'favorite show',
-            'favourite show',
-            'creed',
-            'the batman',
-            'magazine dreams',
-            'regular show',
-            'marvel or dc',
-            'dc or marvel',
-            'superhero movies',
-            'superhero movie',
-            'does mark like marvel',
-            'does mark like dc',
-            'like superhero',
+                'favorite movies',
+                'favourite movies',
+                'favorite movie',
+                'favourite movie',
+                'favorite films',
+                'favourite films',
+                'favorite film',
+                'favourite film',
+                'favorite show',
+                'favourite show',
+                'creed',
+                'the batman',
+                'magazine dreams',
+                'regular show',
+                'marvel or dc',
+                'dc or marvel',
+                'superhero movies',
+                'superhero movie',
+                'does mark like marvel',
+                'does mark like dc',
+                'like superhero',
         ])
         || (
             markai_mock_includes_any($text, ['marvel', 'dc'])
@@ -1374,61 +1398,61 @@ function markai_mock_classify(string $question, array $history = []): array
         $text === 'photos'
         || $text === 'photos?'
         || markai_mock_includes_any($text, [
-            'where has mark traveled',
-            'where has mark travelled',
-            'cities he has visited',
-            'cities mark has visited',
-            'places are shown',
-            'travel places',
-            'photography trips',
-            'travel section',
-            'travel photos',
-            'see his travel',
-            'view mark’s photography',
-            "view mark's photography",
-            'where can i see his travel',
-            'where can i view mark',
-            'what is in the travel',
-            'what can i see in the travel',
-            'show me his travel photos',
-            'where can i see his photography',
-            'where can i see mark’s photography',
-            "where can i see mark's photography",
-            'see mark’s photography',
-            "see mark's photography",
+                'where has mark traveled',
+                'where has mark travelled',
+                'cities he has visited',
+                'cities mark has visited',
+                'places are shown',
+                'travel places',
+                'photography trips',
+                'travel section',
+                'travel photos',
+                'see his travel',
+                'view mark’s photography',
+                "view mark's photography",
+                'where can i see his travel',
+                'where can i view mark',
+                'what is in the travel',
+                'what can i see in the travel',
+                'show me his travel photos',
+                'where can i see his photography',
+                'where can i see mark’s photography',
+                "where can i see mark's photography",
+                'see mark’s photography',
+                "see mark's photography",
         ])
         || $text === 'travel'
         || (
             preg_match('/\btravel\b/', $text) === 1
             && markai_mock_includes_any($text, [
-                'where',
-                'places',
-                'cities',
-                'visited',
-                'section',
-                'photos',
-                'photography',
-                'trips',
-                'locations',
-                'prefer',
-                'beaches',
-                'mountains',
-                'learned',
-                'influence',
-                'why does mark like',
+                    'where',
+                    'places',
+                    'cities',
+                    'visited',
+                    'section',
+                    'photos',
+                    'photography',
+                    'trips',
+                    'locations',
+                    'prefer',
+                    'beaches',
+                    'mountains',
+                    'learned',
+                    'influence',
+                    'why does mark like',
             ])
         )
     ) {
         $answer = $answers['travelPlaces'];
         if (markai_mock_includes_any($text, [
-            'mean',
-            'why does mark like traveling',
-            'why travel',
-            'influence',
-            'learned',
-            'prefer',
-            'beaches',
-            'mountains',
+                    'mean',
+                    'why does mark like traveling',
+                    'why travel',
+                    'influence',
+                    'learned',
+                    'prefer',
+                    'beaches',
+                    'mountains',
         ])) {
             $answer = $answers['travel'];
         } elseif (
@@ -1447,15 +1471,15 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'why does mark like photography',
-        'photography mean',
-        'what does mark photograph',
-        'what does mark photograph?',
-        'what does travel mean',
-        'travel mean to mark',
-        'environment does mark want',
-        'environment mark want',
-        'kind of environment',
+                'why does mark like photography',
+                'photography mean',
+                'what does mark photograph',
+                'what does mark photograph?',
+                'what does travel mean',
+                'travel mean to mark',
+                'environment does mark want',
+                'environment mark want',
+                'kind of environment',
     ])) {
         $answer = $answers['photography'];
         if (markai_mock_includes_any($text, ['travel'])) {
@@ -1473,30 +1497,30 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'hobbies',
-        'interests outside',
-        'passionate about',
-        'visual style',
-        'why does mark like black',
-        'why black',
-        'for fun',
-        'outside of technology',
-        'outside technology',
-        'not coding',
-        'free time',
-        'does mark cook',
-        'like cooking',
-        'cooking',
-        'museums',
-        'museum',
-        'have a dog',
-        'his dog',
-        'friends and family',
-        'with friends',
-        'with family',
-        'spend his free time',
-        'spends his free time',
-        'new perspectives',
+                'hobbies',
+                'interests outside',
+                'passionate about',
+                'visual style',
+                'why does mark like black',
+                'why black',
+                'for fun',
+                'outside of technology',
+                'outside technology',
+                'not coding',
+                'free time',
+                'does mark cook',
+                'like cooking',
+                'cooking',
+                'museums',
+                'museum',
+                'have a dog',
+                'his dog',
+                'friends and family',
+                'with friends',
+                'with family',
+                'spend his free time',
+                'spends his free time',
+                'new perspectives',
     ])) {
         $answer = $answers['hobbies'];
         if (markai_mock_includes_any($text, ['passionate'])) {
@@ -1522,12 +1546,12 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'technologies',
-        'technology',
-        'tech stack',
-        'skills',
-        'programming languages',
-        'tools',
+                'technologies',
+                'technology',
+                'tech stack',
+                'skills',
+                'programming languages',
+                'tools',
     ])) {
         return [
             'category' => 'technologies',
@@ -1538,13 +1562,13 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'built by himself',
-        'build by himself',
-        'build himself',
-        'solo',
-        'individual project',
-        'team project',
-        'ownership',
+                'built by himself',
+                'build by himself',
+                'build himself',
+                'solo',
+                'individual project',
+                'team project',
+                'ownership',
     ])) {
         return [
             'category' => 'individualTeam',
@@ -1555,11 +1579,11 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'work experience',
-        'jobs',
-        'employment',
-        'outside the classroom',
-        'leadership',
+                'work experience',
+                'jobs',
+                'employment',
+                'outside the classroom',
+                'leadership',
     ])) {
         return [
             'category' => 'work',
@@ -1570,22 +1594,22 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'show me mark’s résumé',
-        "show me mark's résumé",
-        'show me mark’s resume',
-        "show me mark's resume",
-        'show me his résumé',
-        'show me his resume',
-        'can i see mark’s résumé',
-        "can i see mark's resume",
-        'where is his résumé',
-        'where is his resume',
-        'where is the résumé',
-        'where is the resume',
-        'resume?',
-        'résumé?',
-        'resume pdf',
-    ]) || preg_match('/\b(resume|résumé)\b/', $text) === 1) {
+                'show me mark’s résumé',
+                "show me mark's résumé",
+                'show me mark’s resume',
+                "show me mark's resume",
+                'show me his résumé',
+                'show me his resume',
+                'can i see mark’s résumé',
+                "can i see mark's resume",
+                'where is his résumé',
+                'where is his resume',
+                'where is the résumé',
+                'where is the resume',
+                'resume?',
+                'résumé?',
+                'resume pdf',
+        ]) || preg_match('/\b(resume|résumé)\b/', $text) === 1) {
         return [
             'category' => 'resume',
             'mode' => 'recruiter',
@@ -1595,13 +1619,13 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'where is his linkedin',
-        'where is mark’s linkedin',
-        "where is mark's linkedin",
-        'linkedin?',
-        'mark’s linkedin',
-        "mark's linkedin",
-    ]) || ($text === 'linkedin' || $text === 'linkedin?')) {
+                'where is his linkedin',
+                'where is mark’s linkedin',
+                "where is mark's linkedin",
+                'linkedin?',
+                'mark’s linkedin',
+                "mark's linkedin",
+        ]) || ($text === 'linkedin' || $text === 'linkedin?')) {
         return [
             'category' => 'linkedinOnly',
             'mode' => 'recruiter',
@@ -1611,10 +1635,10 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'where is his github',
-        'github profile',
-        'github?',
-    ]) || ($text === 'github' || $text === 'github?')) {
+                'where is his github',
+                'github profile',
+                'github?',
+        ]) || ($text === 'github' || $text === 'github?')) {
         return [
             'category' => 'githubOnly',
             'mode' => 'recruiter',
@@ -1624,12 +1648,12 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'contact',
-        'reach mark',
-        'how can i contact',
-        'how do i contact',
-        'contact mark',
-        'contact?',
+                'contact',
+                'reach mark',
+                'how can i contact',
+                'how do i contact',
+                'contact mark',
+                'contact?',
     ])) {
         return [
             'category' => 'contact',
@@ -1640,7 +1664,7 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'vsco',
+                'vsco',
     ])) {
         return [
             'category' => 'photographyTravel',
@@ -1651,11 +1675,65 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'who is mark',
-        'tell me about mark',
-        'background',
-        'education',
-        'graduate',
+                'currently live',
+                'current residence',
+                'where does mark live',
+                'where does he live',
+                'where mark lives',
+                'where he lives',
+                'where is mark living',
+                'where is he living',
+    ])) {
+        return [
+            'category' => 'locationPrivacy',
+            'mode' => 'general',
+            'answer' => $answers['locationPrivacy'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'where is mark from',
+                'where is he from',
+                'where mark is from',
+                'where he is from',
+                'hometown',
+                'grew up',
+                'from chicago',
+    ])) {
+        return [
+            'category' => 'fromChicago',
+            'mode' => 'general',
+            'answer' => $answers['fromChicago'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'where does mark want to work',
+                'where does he want to work',
+                'where mark wants to work',
+                'where he wants to work',
+                'where is mark looking',
+                'job locations',
+                'willing to relocate',
+    ])) {
+        return [
+            'category' => 'careerGoals',
+            'mode' => 'recruiter',
+            'answer' => $answers['careerGoals'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'who is mark',
+                'tell me about mark',
+                'tell me briefly about mark',
+                'briefly about mark',
+                'background',
+                'education',
+                'graduate',
     ])) {
         return [
             'category' => 'profile',
@@ -1666,9 +1744,9 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'favorite color',
-        'favourite color',
-        'color black',
+                'favorite color',
+                'favourite color',
+                'color black',
     ])) {
         return [
             'category' => 'favoriteColor',
@@ -1679,19 +1757,19 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'bodybuilding',
-        'fitness',
-        'gym',
-        'training mean',
-        'how does fitness',
-        'gym taught',
-        'bodybuilding mean',
-        'what does bodybuilding',
-        'why does mark work out',
-        'why does mark workout',
-        'why work out',
-        'why workout',
-        'why does mark train',
+                'bodybuilding',
+                'fitness',
+                'gym',
+                'training mean',
+                'how does fitness',
+                'gym taught',
+                'bodybuilding mean',
+                'what does bodybuilding',
+                'why does mark work out',
+                'why does mark workout',
+                'why work out',
+                'why workout',
+                'why does mark train',
     ])) {
         return [
             'category' => 'bodybuilding',
@@ -1702,14 +1780,14 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'mythology',
-        'achilles',
-        'icarus',
-        'heracles',
-        'hercules',
-        'greek myth',
-        'mythology figures',
-        'figures connect',
+                'mythology',
+                'achilles',
+                'icarus',
+                'heracles',
+                'hercules',
+                'greek myth',
+                'mythology figures',
+                'figures connect',
     ])) {
         $answer = $answers['mythology'];
         if (markai_mock_includes_any($text, ['icarus'])) {
@@ -1729,15 +1807,15 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     if (markai_mock_includes_any($text, [
-        'what does mark value',
-        'what are mark’s values',
-        "what are mark's values",
-        'what are marks values',
-        'long-term goals',
-        'long term goals',
-        'what does success',
-        'type of person',
-        'recruiters to remember',
+                'what does mark value',
+                'what are mark’s values',
+                "what are mark's values",
+                'what are marks values',
+                'long-term goals',
+                'long term goals',
+                'what does success',
+                'type of person',
+                'recruiters to remember',
     ])) {
         $answer = $answers['values'];
         if (markai_mock_includes_any($text, ['success'])) {
@@ -1763,12 +1841,12 @@ function markai_mock_classify(string $question, array $history = []): array
 }
 
 /**
- * Resolve short follow-up link/repo questions from recent conversation history.
- *
- * @param list<array{role: string, content: string}> $history
- * @param array<string, string> $answers
- * @return array{category: string, mode: string, answer: string, answerStatus: string}|null
- */
+* Resolve short follow-up link/repo questions from recent conversation history.
+*
+* @param list<array{role: string, content: string}> $history
+* @param array<string, string> $answers
+* @return array{category: string, mode: string, answer: string, answerStatus: string}|null
+*/
 function markai_mock_resolve_followup_from_history(string $text, array $history, array $answers = []): ?array
 {
     $topicFollowUp = markai_intent_resolve_topic_followup($text, $history, $answers);
@@ -1778,24 +1856,24 @@ function markai_mock_resolve_followup_from_history(string $text, array $history,
 
     $normalized = trim($text, " \t\n\r\0\x0B?.!");
     $isRepoFollowUp = markai_mock_includes_any($text, [
-        'repo?',
-        'repository?',
-        'github repo',
-        'source code',
-        'show me the code',
-        'can i see the code',
-        'where is the project',
-        'can i see this project',
-        'give me the repo',
-        'what repository',
-        'website repository',
-        'project repository',
-        'see the repository',
-        'see the repo',
+            'repo?',
+            'repository?',
+            'github repo',
+            'source code',
+            'show me the code',
+            'can i see the code',
+            'where is the project',
+            'can i see this project',
+            'give me the repo',
+            'what repository',
+            'website repository',
+            'project repository',
+            'see the repository',
+            'see the repo',
     ]) || in_array($normalized, ['repo', 'repository', 'code', 'github repo', 'source'], true)
-        || (
-            markai_mock_includes_any($text, ['repository', 'repo'])
-            && markai_mock_includes_any($text, [
+    || (
+        markai_mock_includes_any($text, ['repository', 'repo'])
+        && markai_mock_includes_any($text, [
                 'portfolio',
                 'abacus',
                 'finch',
@@ -1806,8 +1884,8 @@ function markai_mock_resolve_followup_from_history(string $text, array $history,
                 'sleep',
                 'basketball',
                 'operating systems',
-            ])
-        );
+        ])
+    );
 
     $isPhotosFollowUp = in_array($normalized, ['photos', 'photo', 'photography'], true);
 
@@ -1831,12 +1909,12 @@ function markai_mock_resolve_followup_from_history(string $text, array $history,
     if ($isPhotosFollowUp) {
         if (
             markai_mock_includes_any($context, [
-                'outside technology',
-                'hobbies',
-                'travel',
-                'photography',
-                'for fun',
-                'free time',
+                    'outside technology',
+                    'hobbies',
+                    'travel',
+                    'photography',
+                    'for fun',
+                    'free time',
             ]) || $context !== ''
         ) {
             return [
@@ -1929,8 +2007,8 @@ function markai_mock_resolve_followup_from_history(string $text, array $history,
 }
 
 /**
- * @param list<string> $phrases
- */
+* @param list<string> $phrases
+*/
 function markai_mock_includes_any(string $text, array $phrases): bool
 {
     foreach ($phrases as $phrase) {
@@ -1943,9 +2021,9 @@ function markai_mock_includes_any(string $text, array $phrases): bool
 }
 
 /**
- * @param array<string, mixed> $export
- * @return list<string>
- */
+* @param array<string, mixed> $export
+* @return list<string>
+*/
 function markai_mock_select_record_ids(array $export, string $category): array
 {
     $available = [];
@@ -1968,25 +2046,25 @@ function markai_mock_select_record_ids(array $export, string $category): array
 
     switch ($category) {
         case 'sensitive':
-            return [];
+        return [];
 
         case 'fallback':
-            return $pick([
+        return $pick([
                 'navigation-portfolio-modes',
                 'project-portfolio-platform',
                 'personality-career-purpose',
                 'interest-lifestyle-hobbies-expanded',
                 'contact-preferred-methods',
-            ]);
+        ]);
 
         case 'capabilities':
-            return $pick([
+        return $pick([
                 'navigation-portfolio-modes',
                 'project-markai',
-            ]);
+        ]);
 
         case 'funFacts':
-            return $pick([
+        return $pick([
                 'interest-lifestyle-hobbies-expanded',
                 'interest-favorite-artists',
                 'interest-favorite-films-television',
@@ -1994,28 +2072,28 @@ function markai_mock_select_record_ids(array $export, string $category): array
                 'personality-photography-travel-hobbies',
                 'personality-aesthetic-environment',
                 'interest-greek-mythology-art',
-            ]);
+        ]);
 
         case 'multiTopic':
-            return $pick([
+        return $pick([
                 'personality-career-purpose',
                 'project-portfolio-platform',
                 'skill-javascript',
                 'interest-lifestyle-hobbies-expanded',
-            ]);
+        ]);
 
         case 'status':
-            return $pick(['navigation-portfolio-modes', 'project-markai']);
+        return $pick(['navigation-portfolio-modes', 'project-markai']);
 
         case 'links':
-            return $pick([
+        return $pick([
                 'contact-preferred-methods',
                 'navigation-portfolio-modes',
                 'project-portfolio-platform',
-            ]);
+        ]);
 
         case 'abacus':
-            return $pick([
+        return $pick([
                 'project-abacus',
                 'contrib-abacus-eagle-core',
                 'contrib-abacus-instructions-routing',
@@ -2024,249 +2102,255 @@ function markai_mock_select_record_ids(array $export, string $category): array
                 'skill-rest-apis',
                 'skill-flask',
                 'skill-react',
-            ]);
+        ]);
 
         case 'maat':
-            return $pick([
+        return $pick([
                 'project-maat',
-            ]);
+        ]);
 
         case 'finch':
-            return $pick([
+        return $pick([
                 'project-finch-web-controller',
                 'contribution-finch-frontend-controller',
-            ]);
+        ]);
 
         case 'portfolioPlatform':
-            return $pick([
+        return $pick([
                 'project-portfolio-platform',
                 'project-markai',
-            ]);
+        ]);
 
         case 'spaceShmup':
-            return $pick(['project-space-shmup']);
+        return $pick(['project-space-shmup']);
 
         case 'applePicker':
-            return $pick(['project-apple-picker']);
+        return $pick(['project-apple-picker']);
 
         case 'missionDemolition':
-            return $pick(['project-mission-demolition']);
+        return $pick(['project-mission-demolition']);
 
         case 'osC':
-            return $pick(['project-operating-systems-c']);
+        return $pick(['project-operating-systems-c']);
 
         case 'sleep':
-            return $pick(['project-sleep-efficiency-analysis']);
+        return $pick(['project-sleep-efficiency-analysis']);
 
         case 'basketball':
-            return $pick(['project-marquette-basketball-predictor']);
+        return $pick(['project-marquette-basketball-predictor']);
 
         case 'noPublicRepo':
-            return $pick(['projects-public-inventory']);
+        return $pick(['projects-public-inventory']);
 
         case 'collaboratorsJustin':
-            return $pick([
+        return $pick([
                 'collaborators-abacus-core-team',
                 'collaborators-maat-core-team',
-            ]);
+        ]);
 
         case 'resume':
-            return $pick([
+        return $pick([
                 'contact-preferred-methods',
                 'profile-mark-yoingco',
-            ]);
+        ]);
 
         case 'linkedinOnly':
         case 'githubOnly':
-            return $pick([
+        return $pick([
                 'contact-preferred-methods',
-            ]);
+        ]);
 
         case 'projectsInventory':
-            return $pick([
+        return $pick([
                 'projects-public-inventory',
-            ]);
+        ]);
 
         case 'collaboratorsAbacus':
-            return $pick([
+        return $pick([
                 'collaborators-abacus-core-team',
-                'collaborators-sam-mazzone-support',
-            ]);
+        ]);
 
         case 'collaboratorsMaat':
-            return $pick([
+        return $pick([
                 'collaborators-maat-core-team',
-                'collaborators-sam-mazzone-support',
-            ]);
+        ]);
 
         case 'collaboratorsSam':
-            return $pick([
-                'collaborators-sam-mazzone-support',
-                'collaborators-abacus-core-team',
-            ]);
+        return $pick([]);
+
+        case 'fromChicago':
+        return $pick([
+                'profile-from-chicago',
+                'profile-mark-yoingco',
+        ]);
+
+        case 'locationPrivacy':
+        return $pick([
+                'profile-from-chicago',
+        ]);
 
         case 'collaboratorsFinch':
-            return $pick([
+        return $pick([
                 'collaborators-finch-team',
-            ]);
+        ]);
 
         case 'collaboratorsDataMining':
-            return $pick([
+        return $pick([
                 'collaborators-data-mining-team',
-            ]);
+        ]);
 
         case 'collaboratorsOs':
-            return $pick([
+        return $pick([
                 'collaborators-operating-systems-team',
-            ]);
+        ]);
 
         case 'collaboratorsSleep':
-            return $pick([
+        return $pick([
                 'collaborators-sleep-analysis-team',
-            ]);
+        ]);
 
         case 'collaboratorsInventory':
-            return $pick([
+        return $pick([
                 'collaborators-public-inventory',
-            ]);
+        ]);
 
         case 'personality':
-            return $pick([
+        return $pick([
                 'personality-discipline-and-control',
                 'personality-growth-and-values',
                 'personality-public-vibe',
-            ]);
+        ]);
 
         case 'discipline':
-            return $pick([
+        return $pick([
                 'personality-discipline-and-control',
                 'personality-controlled-intensity',
                 'personality-growth-and-values',
-            ]);
+        ]);
 
         case 'drives':
         case 'builderIdentity':
-            return $pick([
+        return $pick([
                 'personality-builder-identity',
                 'personality-career-purpose',
                 'personality-quiet-ambition-earned-confidence',
-            ]);
+        ]);
 
         case 'vibe':
-            return $pick([
+        return $pick([
                 'personality-public-vibe',
                 'personality-quiet-ambition-earned-confidence',
-            ]);
+        ]);
 
         case 'earnedLife':
         case 'freedomStructure':
         case 'futureVision':
-            return $pick([
+        return $pick([
                 'personality-earned-life-and-freedom',
                 'personality-career-purpose',
-            ]);
+        ]);
 
         case 'earnedConfidence':
         case 'quietAmbition':
-            return $pick([
+        return $pick([
                 'personality-quiet-ambition-earned-confidence',
                 'personality-discipline-and-control',
-            ]);
+        ]);
 
         case 'leadershipBalance':
         case 'learningHumility':
-            return $pick([
+        return $pick([
                 'personality-leadership-and-learning',
                 'work-style-practical-collaborative-growth',
-            ]);
+        ]);
 
         case 'cityVision':
         case 'perspectiveExploration':
-            return $pick([
+        return $pick([
                 'personality-city-and-perspective',
                 'personality-aesthetic-environment',
-            ]);
+        ]);
 
         case 'remembered':
-            return $pick([
+        return $pick([
                 'personality-remembered-for-substance',
                 'personality-builder-identity',
-            ]);
+        ]);
 
         case 'becoming':
-            return $pick([
+        return $pick([
                 'personality-evolving-identity',
                 'personality-growth-and-values',
-            ]);
+        ]);
 
         case 'familyGoals':
-            return [];
+        return [];
 
         case 'careerGoals':
-            return $pick([
+        return $pick([
                 'personality-career-purpose',
                 'career-direction-first-full-time-tech-role',
-            ]);
+        ]);
 
         case 'photographyTravel':
-            return $pick([
+        return $pick([
                 'personality-photography-travel-hobbies',
                 'interest-travel-photography',
-            ]);
+        ]);
 
         case 'travelPlaces':
-            return $pick([
+        return $pick([
                 'travel-public-places-inventory',
                 'interest-travel-photography',
                 'personality-photography-travel-hobbies',
-            ]);
+        ]);
 
         case 'favoriteArtists':
-            return $pick([
+        return $pick([
                 'interest-favorite-artists',
                 'interest-music-reading-hiking',
-            ]);
+        ]);
 
         case 'favoriteFilms':
-            return $pick([
+        return $pick([
                 'interest-favorite-films-television',
-            ]);
+        ]);
 
         case 'hobbies':
-            return $pick([
+        return $pick([
                 'interest-lifestyle-hobbies-expanded',
                 'personality-photography-travel-hobbies',
                 'interest-music-reading-hiking',
                 'interest-fitness-bodybuilding',
-            ]);
+        ]);
 
         case 'favoriteColor':
-            return $pick([
+        return $pick([
                 'personality-aesthetic-environment',
                 'interest-creative-aesthetics-design',
-            ]);
+        ]);
 
         case 'bodybuilding':
-            return $pick([
+        return $pick([
                 'personality-bodybuilding-depth',
                 'interest-fitness-bodybuilding',
-            ]);
+        ]);
 
         case 'mythology':
-            return $pick([
+        return $pick([
                 'personality-mythology-figures',
                 'interest-greek-mythology-art',
-            ]);
+        ]);
 
         case 'values':
-            return $pick([
+        return $pick([
                 'personality-growth-and-values',
                 'personality-discipline-and-control',
                 'interest-discipline-growth-controlled-strength',
-            ]);
+        ]);
 
         case 'technologies':
-            return $pick([
+        return $pick([
                 'skill-javascript',
                 'skill-typescript',
                 'skill-python',
@@ -2279,20 +2363,20 @@ function markai_mock_select_record_ids(array $export, string $category): array
                 'skill-socket-io',
                 'skill-figma',
                 'skill-git-github',
-            ]);
+        ]);
 
         case 'individualTeam':
-            return $pick([
+        return $pick([
                 'project-portfolio-platform',
                 'project-abacus',
                 'project-maat',
                 'project-finch-web-controller',
                 'project-sleep-efficiency-analysis',
                 'project-marquette-basketball-predictor',
-            ]);
+        ]);
 
         case 'work':
-            return $pick([
+        return $pick([
                 'work-av-technician-marquette',
                 'work-info-desk-manager-marquette',
                 'work-assistant-building-manager-marquette',
@@ -2300,195 +2384,203 @@ function markai_mock_select_record_ids(array $export, string $category): array
                 'work-panda-express-pic',
                 'leadership-sigma-chi-risk-merchandise',
                 'membership-bayanihan-bso',
-            ]);
+        ]);
 
         case 'contact':
-            return $pick([
+        return $pick([
                 'contact-preferred-methods',
                 'navigation-portfolio-modes',
-            ]);
+        ]);
 
         case 'testimonials':
-            return $pick([
+        return $pick([
                 'testimonials-public-overview',
                 'testimonial-zack-kohlwey',
                 'testimonial-farzeen-harunani',
                 'testimonial-jorge-torres',
-            ]);
+        ]);
 
         case 'profile':
-            return [];
+        return $pick([
+                'profile-mark-yoingco',
+                'profile-from-chicago',
+                'education-marquette-bs-computer-science',
+        ]);
 
         default:
-            return [];
+        return [];
     }
 }
 
 /**
- * @return list<string>
- */
+* @return list<string>
+*/
 function markai_mock_requested_link_ids(string $category): array
 {
     switch ($category) {
         case 'abacus':
         case 'collaboratorsAbacus':
-            return ['link-github-abacus'];
+        return ['link-github-abacus'];
         case 'maat':
         case 'collaboratorsMaat':
-            return ['link-github-maat'];
+        return ['link-github-maat'];
         case 'finch':
         case 'collaboratorsFinch':
-            return ['link-github-finch'];
+        return ['link-github-finch'];
         case 'portfolioPlatform':
-            return ['link-github-portfolio', 'link-portfolio-section'];
+        return ['link-github-portfolio', 'link-portfolio-section'];
         case 'spaceShmup':
-            return ['link-github-space-shmup'];
+        return ['link-github-space-shmup'];
         case 'applePicker':
-            return ['link-github-apple-picker'];
+        return ['link-github-apple-picker'];
         case 'missionDemolition':
-            return ['link-github-mission-demolition'];
+        return ['link-github-mission-demolition'];
         case 'osC':
         case 'collaboratorsOs':
-            return ['link-github-os-c-docs'];
+        return ['link-github-os-c-docs'];
         case 'sleep':
         case 'collaboratorsSleep':
-            return ['link-github-sleep-efficiency'];
+        return ['link-github-sleep-efficiency'];
         case 'basketball':
         case 'collaboratorsDataMining':
-            return ['link-github-marquette-basketball-predictor'];
+        return ['link-github-marquette-basketball-predictor'];
         case 'collaboratorsJustin':
-            return ['link-github-abacus', 'link-github-maat'];
+        return ['link-github-abacus', 'link-github-maat'];
         case 'collaboratorsSam':
-            return ['link-github-abacus', 'link-github-maat'];
+        return [];
+        case 'fromChicago':
+        return ['link-portfolio-home', 'link-resume-pdf'];
+        case 'locationPrivacy':
+        return [];
         case 'collaboratorsInventory':
-            return ['link-portfolio-section'];
+        return ['link-portfolio-section'];
         case 'projectsInventory':
-            return ['link-portfolio-section'];
+        return ['link-portfolio-section'];
         case 'noPublicRepo':
         case 'merchSigma':
-            return ['link-portfolio-section'];
+        return ['link-portfolio-section'];
         case 'fmsc':
-            return ['link-fmsc-libertyville', 'link-portfolio-section'];
+        return ['link-fmsc-libertyville', 'link-portfolio-section'];
         case 'individualTeam':
-            return ['link-portfolio-section'];
+        return ['link-portfolio-section'];
         case 'careerGoals':
-            return ['link-resume-pdf', 'link-contact-section'];
+        return ['link-resume-pdf', 'link-contact-section'];
         case 'funFacts':
-            return ['link-travel-section', 'link-vsco', 'link-portfolio-section'];
+        return ['link-travel-section', 'link-vsco', 'link-portfolio-section'];
         case 'capabilities':
-            return ['link-portfolio-section', 'link-contact-section'];
+        return ['link-portfolio-section', 'link-contact-section'];
         case 'multiTopic':
-            return ['link-portfolio-section', 'link-resume-pdf'];
+        return ['link-portfolio-section', 'link-resume-pdf'];
         case 'familyGoals':
-            return [];
+        return [];
         case 'photographyTravel':
-            return ['link-travel-section', 'link-vsco'];
+        return ['link-travel-section', 'link-vsco'];
         case 'travelPlaces':
-            return ['link-travel-section', 'link-vsco'];
+        return ['link-travel-section', 'link-vsco'];
         case 'technologies':
-            return ['link-github-profile'];
+        return ['link-github-profile'];
         case 'work':
-            return ['link-resume-pdf', 'link-linkedin'];
+        return ['link-resume-pdf', 'link-linkedin'];
         case 'resume':
-            return ['link-resume-pdf'];
+        return ['link-resume-pdf'];
         case 'linkedinOnly':
-            return ['link-linkedin'];
+        return ['link-linkedin'];
         case 'githubOnly':
-            return ['link-github-profile'];
+        return ['link-github-profile'];
         case 'contact':
-            return [
-                'link-contact-section',
-                'link-linkedin',
-            ];
+        return [
+            'link-contact-section',
+            'link-linkedin',
+        ];
         case 'testimonials':
-            return ['link-testimonials-section'];
+        return ['link-testimonials-section'];
         case 'links':
-            return [
-                'link-portfolio-home',
-                'link-portfolio-section',
-                'link-contact-section',
-                'link-testimonials-section',
-                'link-travel-section',
-                'link-github-profile',
-                'link-linkedin',
-                'link-resume-pdf',
-                'link-vsco',
-                'link-fmsc-libertyville',
-            ];
+        return [
+            'link-portfolio-home',
+            'link-portfolio-section',
+            'link-contact-section',
+            'link-testimonials-section',
+            'link-travel-section',
+            'link-github-profile',
+            'link-linkedin',
+            'link-resume-pdf',
+            'link-vsco',
+            'link-fmsc-libertyville',
+        ];
         case 'profile':
-            return ['link-portfolio-home', 'link-resume-pdf'];
+        return ['link-portfolio-home', 'link-resume-pdf'];
         case 'status':
-            return ['link-portfolio-home'];
+        return ['link-portfolio-home'];
         default:
-            return [];
+        return [];
     }
 }
 
 /**
- * @return array<string, bool>
- */
+* @return array<string, bool>
+*/
 function markai_mock_context_set(string $category, string $mode): array
 {
     $contexts = ['answer', $mode];
 
     if (in_array($category, [
-        'abacus',
-        'maat',
-        'finch',
-        'portfolioPlatform',
-        'spaceShmup',
-        'applePicker',
-        'missionDemolition',
-        'osC',
-        'sleep',
-        'basketball',
-        'noPublicRepo',
-        'merchSigma',
-        'fmsc',
-        'technologies',
-        'individualTeam',
-        'projectsInventory',
-        'collaboratorsAbacus',
-        'collaboratorsMaat',
-        'collaboratorsSam',
-        'collaboratorsJustin',
-        'collaboratorsFinch',
-        'collaboratorsDataMining',
-        'collaboratorsOs',
-        'collaboratorsSleep',
-        'collaboratorsInventory',
-    ], true)) {
+                'abacus',
+                'maat',
+                'finch',
+                'portfolioPlatform',
+                'spaceShmup',
+                'applePicker',
+                'missionDemolition',
+                'osC',
+                'sleep',
+                'basketball',
+                'noPublicRepo',
+                'merchSigma',
+                'fmsc',
+                'technologies',
+                'individualTeam',
+                'projectsInventory',
+                'collaboratorsAbacus',
+                'collaboratorsMaat',
+                'collaboratorsSam',
+                'collaboratorsJustin',
+                'collaboratorsFinch',
+                'collaboratorsDataMining',
+                'collaboratorsOs',
+                'collaboratorsSleep',
+                'collaboratorsInventory',
+            ], true)) {
         $contexts[] = 'projects';
     }
     if (in_array($category, [
-        'contact',
-        'work',
-        'profile',
-        'links',
-        'careerGoals',
-        'familyGoals',
-        'resume',
-        'linkedinOnly',
-        'githubOnly',
-    ], true)) {
+                'contact',
+                'work',
+                'profile',
+                'links',
+                'careerGoals',
+                'familyGoals',
+                'resume',
+                'linkedinOnly',
+                'githubOnly',
+            ], true)) {
         $contexts[] = 'contact';
     }
     if (in_array($category, [
-        'status',
-        'profile',
-        'links',
-        'contact',
-        'testimonials',
-        'projectsInventory',
-        'travelPlaces',
-        'photographyTravel',
-        'resume',
-        'linkedinOnly',
-        'githubOnly',
-        'noPublicRepo',
-        'merchSigma',
-        'fmsc',
-    ], true)) {
+                'status',
+                'profile',
+                'links',
+                'contact',
+                'testimonials',
+                'projectsInventory',
+                'travelPlaces',
+                'photographyTravel',
+                'resume',
+                'linkedinOnly',
+                'githubOnly',
+                'noPublicRepo',
+                'merchSigma',
+                'fmsc',
+            ], true)) {
         $contexts[] = 'navigation';
     }
 
@@ -2501,12 +2593,12 @@ function markai_mock_context_set(string $category, string $mode): array
 }
 
 /**
- * @param array<string, mixed> $export
- * @param list<string> $requestedLinkIds
- * @param list<string> $allowedLinkIds
- * @param array<string, bool> $contextSet
- * @return list<array{id: string, label: string, href: string, external: bool, opensNewTab: bool}>
- */
+* @param array<string, mixed> $export
+* @param list<string> $requestedLinkIds
+* @param list<string> $allowedLinkIds
+* @param array<string, bool> $contextSet
+* @return list<array{id: string, label: string, href: string, external: bool, opensNewTab: bool}>
+*/
 function markai_mock_resolve_links(
     array $export,
     array $requestedLinkIds,
@@ -2603,3 +2695,6 @@ if (!function_exists('str_starts_with')) {
         return strncmp($haystack, $needle, strlen($needle)) === 0;
     }
 }
+
+
+

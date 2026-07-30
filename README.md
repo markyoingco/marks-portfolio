@@ -26,21 +26,31 @@ It presents my:
 
 ### Webpage
 
-A cinematic visual portfolio with responsive navigation, project cards, photography, testimonials, contact workflows, and dark/light themes.
+A cinematic, responsive portfolio experience with dark and light themes.
+
+It includes:
+
+- Home and professional positioning
+- About, education, experience, skills, and beyond-work content
+- Project cards across software, systems, games, data, leadership, and service work
+- Testimonials
+- Travel photography
+- Contact and resume access
 
 ### Terminal
 
-An interactive command-line portfolio where visitors can explore content through terminal-style commands.
+An interactive command-line portfolio for deeper exploration of the same professional content.
 
 Supported functionality includes:
 
 - `cd` folder navigation
 - `ls` file and folder listings
 - `cat` readable text files
-- `open` webpage, GitHub, LinkedIn, and external links
+- `open` for public webpage, GitHub, LinkedIn, and approved external links
+- Public-link aliases for common destinations
 - Resume PDF opening and downloading
 - Nested project and testimonial folders
-- Context-aware Help panels
+- Contextual Help panels
 - Tab autocomplete
 - Command history
 - Editable command input
@@ -49,32 +59,70 @@ Supported functionality includes:
 
 ### MarkAI
 
-A live conversational portfolio assistant grounded in approved portfolio information.
+A live conversational portfolio assistant grounded in Mark's approved portfolio information.
 
-MarkAI uses a React/Vite interface, a private PHP backend, Cloudflare Workers AI, response validation, deterministic fallback answers, privacy protections, and anonymous usage limits.
+MarkAI includes:
+
+- A React/Vite chat interface
+- A private PHP backend
+- Cloudflare Workers AI integration
+- Approved portfolio knowledge for projects, experience, skills, interests, and background
+- Intent classification
+- Typo-tolerant natural-language routing
+- Contextual follow-up questions
+- Deterministic fallback answers
+- Provider-response validation
+- Privacy safeguards
+- Anonymous usage limiting
+- Safe contextual public links
+
+MarkAI answers from approved public information only. It does not invent private details, expose credentials, or claim unsupported AI capabilities.
 
 ## Built With
+
+### Languages
+
+- JavaScript
+- PHP
+- SQL
+- HTML
+- CSS
 
 ### Frontend
 
 - React
 - Vite
-- JavaScript
-- CSS
 
-### Backend
+### Backend and Data
 
 - PHP
 - MySQL
 - JSON API requests
 
-### Tools and Deployment
+### AI Integration
 
-- Git
-- GitHub
+- Cloudflare Workers AI
+- LLM API integration
+- Intent classification
+- Provider-response validation
+- Deterministic fallback system
+
+### Testing
+
+- Provider fixtures
+- Runtime fixtures
+- Usage fixtures
+- Intent-understanding fixtures
+- Contextual-link fixtures
+- Privacy and answer-leak checks
+- Manual responsive testing
+- Vite build validation
+
+### Deployment
+
 - DreamHost
-- Figma
-- Responsive and manual testing
+- Private server configuration outside the public web root
+- Git and GitHub
 
 ## Webpage Sections
 
@@ -102,7 +150,7 @@ MarkAI uses a React/Vite interface, a private PHP backend, Cloudflare Workers AI
 - Dark and light theme switching
 - Saved theme preference
 - Responsive desktop, tablet, and mobile layouts
-- Multi-mode navigation
+- Multi-mode navigation between Webpage, Terminal, and MarkAI
 - Interactive terminal portfolio
 - Mobile-safe terminal input and navigation
 - Shared project, testimonial, and travel data
@@ -113,6 +161,7 @@ MarkAI uses a React/Vite interface, a private PHP backend, Cloudflare Workers AI
 - Travel photography and VSCO integration
 - PHP/MySQL contact form
 - Terminal `message.form` contact workflow
+- Live MarkAI assistant with validated provider answers and deterministic fallbacks
 - DreamHost deployment with a custom domain
 
 ## Terminal Structure
@@ -125,3 +174,4 @@ terminal
 ├── testimonials
 ├── travel
 └── contact
+```

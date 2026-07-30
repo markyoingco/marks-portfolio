@@ -1,19 +1,20 @@
 {
   "schemaVersion": "1.0.0",
-  "sourceDigest": "7bb2afd73f69c220e609024dee9d1526f24b24da1690f8206c206c51a30c8f1c",
+  "sourceDigest": "271dd3f0919e19623316ca4d1442fc3372e0f4b862f672b642be542cca048a6e",
   "counts": {
     "records": 116,
     "skills": 26,
     "trustedLinks": 30,
     "enabledTrustedLinks": 29,
     "privacyRules": 14,
-    "voiceRules": 7,
+    "voiceRules": 8,
     "linkContactRules": 8
   },
   "coreRecordIds": [
     "contact-preferred-methods",
     "navigation-portfolio-modes",
     "profile-mark-yoingco",
+    "profile-from-chicago",
     "education-marquette-bs-computer-science",
     "career-direction-first-full-time-tech-role",
     "work-style-practical-collaborative-growth"
@@ -219,7 +220,7 @@
       "recordType": "project",
       "title": "Apple Picker",
       "publicText": "Apple Picker was an individual Unity and C# coursework project completed from January to February 2026. The arcade-style game used falling objects, movable baskets, scoring, high-score persistence, lives, restart behavior, collisions, prefabs, and scene logic.",
-      "shortText": "Individual Unity/C# arcade coursework project completed January–February 2026.",
+      "shortText": "Individual Unity/C# arcade coursework project completed January - February 2026.",
       "aliases": [
         "Apple Picker",
         "Apple Picker Unity"
@@ -259,7 +260,7 @@
         "claim all starter structures were original",
         "describe it as professional game-development employment"
       ],
-      "notes": "Individual coursework project. Dates: January–February 2026. Course assignment or starter structure may be acknowledged. Mark implemented and completed the project as coursework."
+      "notes": "Individual coursework project. Dates: January - February 2026. Course assignment or starter structure may be acknowledged. Mark implemented and completed the project as coursework."
     },
     {
       "id": "project-mission-demolition",
@@ -267,7 +268,7 @@
       "recordType": "project",
       "title": "Mission Demolition",
       "publicText": "Mission Demolition was an individual Unity and C# coursework project completed from February to March 2026. The physics-based projectile game involved aiming, launching projectiles, collision behavior, structural targets, scene logic, and gameplay progression.",
-      "shortText": "Individual Unity/C# physics coursework project completed February–March 2026.",
+      "shortText": "Individual Unity/C# physics coursework project completed February - March 2026.",
       "aliases": [
         "Mission Demolition",
         "Mission Demolition Unity"
@@ -308,7 +309,7 @@
         "describe it as professional game-development employment",
         "invent unsupported levels or mechanics"
       ],
-      "notes": "Individual coursework project. Dates: February–March 2026. Course starter structure may be acknowledged."
+      "notes": "Individual coursework project. Dates: February - March 2026. Course starter structure may be acknowledged."
     },
     {
       "id": "project-space-shmup",
@@ -316,7 +317,7 @@
       "recordType": "project",
       "title": "Space SHMUP",
       "publicText": "Space SHMUP was an individual Unity and C# coursework project completed from March to May 2026. The two-dimensional arcade shooter included player movement, projectiles, enemy spawning, collisions, scoring, shields, power-ups, boss gameplay, and game-state logic.",
-      "shortText": "Individual Unity/C# arcade shooter coursework project completed March–May 2026.",
+      "shortText": "Individual Unity/C# arcade shooter coursework project completed March - May 2026.",
       "aliases": [
         "Space SHMUP",
         "Space SHMUP Unity",
@@ -368,7 +369,7 @@
         "describe it as professional game-development employment",
         "invent unsupported metrics or player adoption"
       ],
-      "notes": "Individual coursework project. Dates: March–May 2026. Course starter structure may be acknowledged. Mark confirmed shields, power-ups, enemy spawning, and boss gameplay."
+      "notes": "Individual coursework project. Dates: March - May 2026. Course starter structure may be acknowledged. Mark confirmed shields, power-ups, enemy spawning, and boss gameplay."
     },
     {
       "id": "project-sleep-efficiency-analysis",
@@ -433,8 +434,8 @@
       "id": "project-marquette-basketball-predictor",
       "category": "projects",
       "recordType": "project",
-      "title": "Marquette Basketball Predictor 2023–24",
-      "publicText": "Marquette Basketball Predictor 2023–24 was a Spring 2025 team Data Mining coursework project that used Marquette basketball game data, Random Forest feature importance, and Logistic Regression to predict game wins and losses.",
+      "title": "Marquette Basketball Predictor 2023 - 24",
+      "publicText": "Marquette Basketball Predictor 2023 - 24 was a Spring 2025 team Data Mining coursework project that used Marquette basketball game data, Random Forest feature importance, and Logistic Regression to predict game wins and losses.",
       "shortText": "Spring 2025 team Data Mining project predicting Marquette basketball wins and losses.",
       "aliases": [
         "Marquette Basketball Predictor",
@@ -2083,7 +2084,7 @@
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Bodybuilding meaning and training lessons",
-      "publicText": "Bodybuilding interests Mark because it combines discipline, structure, symmetry, patience, and progress earned over time. It is a major interest outside technology and an artistic, structured discipline that reinforces focus and consistency. Lessons from training—patience, quality repetitions, and deliberate progress—can apply to projects and professional development. Do not discuss why he originally began training, loneliness, appearance insecurity, health conditions, exact physique goals, body measurements, or private emotional motivations.",
+      "publicText": "Bodybuilding interests Mark because it combines discipline, structure, symmetry, patience, and progress earned over time. It is a major interest outside technology and an artistic, structured discipline that reinforces focus and consistency. Lessons from training - patience, quality repetitions, and deliberate progress - can apply to projects and professional development. Do not discuss why he originally began training, loneliness, appearance insecurity, health conditions, exact physique goals, body measurements, or private emotional motivations.",
       "shortText": "Bodybuilding as disciplined craft: structure, symmetry, patience, consistency, and transferable professional habits.",
       "aliases": [
         "bodybuilding meaning",
@@ -2172,8 +2173,8 @@
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Career purpose, success, and professional independence",
-      "publicText": "Mark is working toward a stable technology career centered on meaningful work, continued learning, professional growth, and greater independence. He is open to software development, full-stack work, developer tools, data-oriented systems, technical support, and other suitable entry-level technology roles. He wants a role that creates stability and a sustainable path for technical development and useful work. He is open to Milwaukee, Chicago, remote work, and other locations when the opportunity makes relocation practical. Long-term success means career stability, professional independence, meaningful work, continued ambition, and pride in work he built usefully and followed through on.",
-      "shortText": "Stable technology role centered on meaningful work, continued learning, professional growth, and independence; open to Milwaukee, Chicago, remote, or practical relocation.",
+      "publicText": "Mark is working toward a stable technology career built on continued technical growth, meaningful work, stronger software projects, greater independence, and continued discipline and creativity. He remains open to software development, full-stack applications, developer tools, data-oriented systems, technical support, and related entry-level technology paths. Long-term success means career stability, professional independence, meaningful work, continued ambition, and pride in work he built usefully and followed through on.",
+      "shortText": "Stable technology career built on technical growth, meaningful work, stronger projects, independence, discipline, and creativity across software, full-stack, tools, data, and support paths.",
       "aliases": [
         "career goals",
         "success",
@@ -2189,9 +2190,8 @@
         "stability",
         "meaningful work",
         "growth",
-        "milwaukee",
-        "chicago",
-        "remote"
+        "discipline",
+        "creativity"
       ],
       "projectIds": [],
       "relatedRecordIds": [
@@ -2474,7 +2474,7 @@
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Earned progress, freedom with structure, and connected goals",
-      "publicText": "To Mark, an earned life means building stability, independence, confidence, meaningful work, physical discipline, and experiences he can take genuine pride in. His goals are connected: career, fitness, confidence, environment, professional independence, creativity, and continued learning. A successful life is not only a title; it is knowing he built stability and followed through on what mattered. He wants greater independence with responsibility—flexibility supported by structure that still protects work, fitness, learning, creativity, and personal interests. Structure helps him keep progress while earning more options through consistency.",
+      "publicText": "To Mark, an earned life means building stability, independence, confidence, meaningful work, physical discipline, and experiences he can take genuine pride in. His goals are connected: career, fitness, confidence, environment, professional independence, creativity, and continued learning. A successful life is not only a title; it is knowing he built stability and followed through on what mattered. He wants greater independence with responsibility - flexibility supported by structure that still protects work, fitness, learning, creativity, and personal interests. Structure helps him keep progress while earning more options through consistency.",
       "shortText": "An earned life of stability, independence, confidence, meaningful work, and physical discipline; freedom with structure and responsibility.",
       "aliases": [
         "earned life",
@@ -2601,7 +2601,7 @@
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Evolving identity and unfinished direction",
-      "publicText": "Mark does not view himself as a finished product. His strongest future self is defined less by one fixed image and more by discipline, confidence, responsibility, experience, and control. His goals may change as he learns and gains experience. He wants MarkAI to describe his direction without pretending every part of his future has already been decided. Mark sees himself as still evolving. The direction is clear—more discipline, responsibility, confidence, skill, and independence—even if the exact final version continues to change.",
+      "publicText": "Mark does not view himself as a finished product. His strongest future self is defined less by one fixed image and more by discipline, confidence, responsibility, experience, and control. His goals may change as he learns and gains experience. He wants MarkAI to describe his direction without pretending every part of his future has already been decided. Mark sees himself as still evolving. The direction is clear - more discipline, responsibility, confidence, skill, and independence - even if the exact final version continues to change.",
       "shortText": "Still evolving toward more discipline, responsibility, confidence, skill, and independence without a fixed finished identity.",
       "aliases": [
         "still evolving",
@@ -2678,8 +2678,8 @@
       "category": "profile",
       "recordType": "profile",
       "title": "Mark Yoingco professional profile",
-      "publicText": "Mark Yoingco is a recent Computer Science graduate from Marquette University seeking his first full-time technology role.",
-      "shortText": "Recent Computer Science graduate from Marquette University seeking a first full-time technology role.",
+      "publicText": "Mark Yoingco is from Chicago and is a recent Computer Science graduate from Marquette University seeking his first full-time technology role.",
+      "shortText": "From Chicago; recent Computer Science graduate from Marquette University seeking a first full-time technology role.",
       "aliases": [
         "Mark",
         "Mark Yoingco",
@@ -2690,12 +2690,15 @@
         "about",
         "graduate",
         "marquette",
-        "portfolio assistant"
+        "portfolio assistant",
+        "Chicago",
+        "from Chicago"
       ],
       "relatedRecordIds": [
         "education-marquette-bs-computer-science",
         "career-direction-first-full-time-tech-role",
-        "work-style-practical-collaborative-growth"
+        "work-style-practical-collaborative-growth",
+        "profile-from-chicago"
       ],
       "linkIds": [
         "link-portfolio-home",
@@ -2713,6 +2716,46 @@
         "private-biography"
       ],
       "notes": "Draft for Mark review. Visibility locked off until approval. Do not imply MarkAI is literally Mark."
+    },
+    {
+      "id": "profile-from-chicago",
+      "category": "profile",
+      "recordType": "profile",
+      "title": "Mark is from Chicago",
+      "publicText": "Mark is from Chicago.",
+      "shortText": "Mark is from Chicago.",
+      "aliases": [
+        "hometown",
+        "where Mark is from",
+        "from Chicago"
+      ],
+      "keywords": [
+        "Chicago",
+        "from Chicago",
+        "hometown",
+        "background"
+      ],
+      "relatedRecordIds": [
+        "profile-mark-yoingco",
+        "education-marquette-bs-computer-science"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "Where is Mark from?",
+        "What is Mark’s background?",
+        "Tell me briefly about Mark."
+      ],
+      "prohibitedUses": [
+        "exact neighborhood",
+        "street address",
+        "current live location",
+        "current residence",
+        "travel schedule",
+        "commuting details",
+        "where family lives",
+        "limit job search to Chicago"
+      ],
+      "notes": "Public background only. Do not infer current residence or restrict career geography to Chicago."
     },
     {
       "id": "education-marquette-bs-computer-science",
@@ -2845,8 +2888,7 @@
         "project-abacus"
       ],
       "relatedRecordIds": [
-        "project-abacus",
-        "collaborators-sam-mazzone-support"
+        "project-abacus"
       ],
       "linkIds": [
         "link-github-abacus"
@@ -2896,8 +2938,7 @@
         "project-maat"
       ],
       "relatedRecordIds": [
-        "project-maat",
-        "collaborators-sam-mazzone-support"
+        "project-maat"
       ],
       "linkIds": [
         "link-github-maat"
@@ -2919,53 +2960,6 @@
         "add names to Webpage or Terminal"
       ],
       "notes": "MarkAI-only. Same core student names as Abacus; keep project context clear in answers."
-    },
-    {
-      "id": "collaborators-sam-mazzone-support",
-      "category": "projects",
-      "recordType": "project-collaborators",
-      "title": "Sam Mazzone supporting role for Abacus and TA-Bot / MAAT",
-      "publicText": "Sam Mazzone supported the Abacus and TA-Bot / MAAT teams as an advisor, software developer, and moral supporter. Sam Mazzone is not described as one of the core student teammates. Preferred distinction: the core student team included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman; Sam Mazzone supported the team as an advisor, software developer, and moral supporter.",
-      "shortText": "Sam Mazzone supported Abacus and TA-Bot / MAAT as advisor, software developer, and moral supporter; not a core student teammate.",
-      "aliases": [
-        "Sam Mazzone",
-        "Sam Mazzone role",
-        "advisor Sam"
-      ],
-      "keywords": [
-        "Sam Mazzone",
-        "advisor",
-        "software developer",
-        "moral supporter",
-        "abacus",
-        "maat",
-        "ta-bot"
-      ],
-      "projectIds": [
-        "project-abacus",
-        "project-maat"
-      ],
-      "relatedRecordIds": [
-        "collaborators-abacus-core-team",
-        "collaborators-maat-core-team"
-      ],
-      "linkIds": [],
-      "answerUses": [
-        "what was Sam Mazzone’s role",
-        "who was Sam Mazzone",
-        "Abacus support",
-        "MAAT support"
-      ],
-      "prohibitedUses": [
-        "call Sam a core student teammate",
-        "invent additional titles",
-        "contact information",
-        "quotations",
-        "performance claims",
-        "personality analysis",
-        "add name to Webpage or Terminal"
-      ],
-      "notes": "MarkAI-only. Keep Sam distinct from the four core student teammates."
     },
     {
       "id": "collaborators-finch-team",
@@ -3140,7 +3134,7 @@
       "category": "projects",
       "recordType": "project-collaborators",
       "title": "Approved project collaborator inventory",
-      "publicText": "Mark’s approved project collaborators, grouped by project: Abacus core student team — Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman; Sam Mazzone supported Abacus and TA-Bot / MAAT as advisor, software developer, and moral supporter. TA-Bot / MAAT core student team — Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman. Finch Web Controller — Mark Yoingco, Julianne Browne, Luis Serrano, Xavier Barth. Data Mining Game Predictor — Mark Yoingco, Allan Akkathara. Operating Systems C Projects — Mark Yoingco, Armaan Yaz. Sleep Efficiency Analysis — Mark Yoingco, Hunter Carlson. Use only the names relevant to the requested project. Do not invent roles for core teammates, contact information, quotations, or private repositories.",
+      "publicText": "Mark’s approved project collaborators, grouped by project: Abacus - Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman. TA-Bot / MAAT - Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman. Finch Web Controller - Mark Yoingco, Julianne Browne, Luis Serrano, Xavier Barth. Data Mining Game Predictor - Mark Yoingco, Allan Akkathara. Operating Systems C Projects - Mark Yoingco, Armaan Yaz. Sleep Efficiency Analysis - Mark Yoingco, Hunter Carlson. Use only the names relevant to the requested project. Do not invent roles for teammates, contact information, quotations, or private repositories.",
       "shortText": "Grouped MarkAI-only collaborator inventory across Abacus, MAAT, Finch, data mining, operating systems, and sleep analysis.",
       "aliases": [
         "project collaborators",
@@ -3252,8 +3246,8 @@
       "category": "projects",
       "recordType": "project-detail",
       "title": "Abacus April 2026 Live Competition Scale and Stability",
-      "publicText": "The April 15, 2026 live competition used Abacus to support approximately 200–300 high-school students, teachers, judges, and administrators during the Wisconsin-Dairyland Programming Competition, a live event lasting approximately three hours. The team improved a platform that had previously struggled with server crashes, lag, system overload, and incomplete competition support. Mark approves the outcome statement that the April 15, 2026 competition ran without major server crashes, platform failures, critical bugs, or major lag. Mark also approves that this was the first completely successful Abacus iteration in recent years, that the team was recognized as the hardest-working senior capstone team, and that the team completed both MAAT and Abacus during one academic year. Mark and his team helped deliver one of the smoothest and most stable recent iterations of the competition platform.",
-      "shortText": "April 15, 2026 live Abacus event supported approximately 200–300 students, teachers, judges, and administrators and ran without major crashes, platform failures, critical bugs, or major lag.",
+      "publicText": "The April 15, 2026 live competition used Abacus to support approximately 200 - 300 high-school students, teachers, judges, and administrators during the Wisconsin-Dairyland Programming Competition, a live event lasting approximately three hours. The team improved a platform that had previously struggled with server crashes, lag, system overload, and incomplete competition support. Mark approves the outcome statement that the April 15, 2026 competition ran without major server crashes, platform failures, critical bugs, or major lag. Mark also approves that this was the first completely successful Abacus iteration in recent years, that the team was recognized as the hardest-working senior capstone team, and that the team completed both MAAT and Abacus during one academic year. Mark and his team helped deliver one of the smoothest and most stable recent iterations of the competition platform.",
+      "shortText": "April 15, 2026 live Abacus event supported approximately 200 - 300 students, teachers, judges, and administrators and ran without major crashes, platform failures, critical bugs, or major lag.",
       "aliases": [
         "Abacus live competition",
         "Abacus 200-300 participants",
@@ -3393,8 +3387,8 @@
       "category": "project-contributions",
       "recordType": "contribution",
       "title": "Abacus Testing, Prioritization, and Delivery Contribution",
-      "publicText": "Mark supported testing and validation through Vite-based frontend validation, TypeScript checks, submission-workflow testing, manual end-to-end competition testing, registration testing, submission testing, leaderboard-update testing, help-request testing, division-page testing, debugging, deployment configuration, and documentation. He helped organize priorities through a Priority 0–3 task list that helped the team identify critical requirements, separate required work from optional work, remove unnecessary features, prioritize MVP functionality, focus on the April 10 deadline, and prepare for the April 15 live competition. Vite-based validation is not Vitest and should not be described as a formal automated unit-test suite.",
-      "shortText": "Mark supported Vite/TypeScript validation, manual end-to-end competition testing, debugging, documentation, and Priority 0–3 delivery planning for the April competition.",
+      "publicText": "Mark supported testing and validation through Vite-based frontend validation, TypeScript checks, submission-workflow testing, manual end-to-end competition testing, registration testing, submission testing, leaderboard-update testing, help-request testing, division-page testing, debugging, deployment configuration, and documentation. He helped organize priorities through a Priority 0 - 3 task list that helped the team identify critical requirements, separate required work from optional work, remove unnecessary features, prioritize MVP functionality, focus on the April 10 deadline, and prepare for the April 15 live competition. Vite-based validation is not Vitest and should not be described as a formal automated unit-test suite.",
+      "shortText": "Mark supported Vite/TypeScript validation, manual end-to-end competition testing, debugging, documentation, and Priority 0 - 3 delivery planning for the April competition.",
       "aliases": [
         "Abacus testing",
         "Abacus prioritization",
@@ -3632,7 +3626,7 @@
       "category": "projects",
       "recordType": "project-detail",
       "title": "MAAT Adoption and Maintainability",
-      "publicText": "Mark reports that the MAAT platform was accepted for use beyond Marquette by additional Milwaukee-area computer-science programs, including programs associated with University of Wisconsin–Milwaukee and Milwaukee School of Engineering. The team also worked on Docker Compose testing, DBeaver database checks, prioritized issue tracking, admin grading UX cleanup, architecture documentation, verification and validation documentation, and long-term maintainability.",
+      "publicText": "Mark reports that the MAAT platform was accepted for use beyond Marquette by additional Milwaukee-area computer-science programs, including programs associated with University of Wisconsin - Milwaukee and Milwaukee School of Engineering. The team also worked on Docker Compose testing, DBeaver database checks, prioritized issue tracking, admin grading UX cleanup, architecture documentation, verification and validation documentation, and long-term maintainability.",
       "shortText": "Mark reports MAAT was accepted for use by additional Milwaukee-area CS programs including UWM and MSOE, with team work on maintainability and documentation.",
       "aliases": [
         "MAAT adoption",
@@ -3841,7 +3835,7 @@
       "category": "projects",
       "recordType": "projects-inventory",
       "title": "Public project inventory",
-      "publicText": "Mark’s approved public software projects, grouped for inventory answers: Portfolio & AI — Personal Portfolio Platform and MarkAI (solo personal work). Capstones — Abacus and TA-Bot / MAAT (team senior-design / senior-capstone projects). Systems — Operating Systems C Projects (coursework documentation; private or shared course repositories stay hidden). Robotics & Software Design — Finch Robot Web Controller (team coursework). Games — Space SHMUP, Apple Picker, and Mission Demolition. Data — Sleep Efficiency Analysis and Marquette Basketball Predictor (team or coursework data projects). Prefer this grouped inventory for broad every-project or project-list questions. Do not claim every project was solo. Do not invent projects. Do not expose private or shared XINU repository names or URLs.",
+      "publicText": "Mark’s approved public software projects, grouped for inventory answers: Portfolio & AI - Personal Portfolio Platform and MarkAI (solo personal work). Capstones - Abacus and TA-Bot / MAAT (team senior-design / senior-capstone projects). Systems - Operating Systems C Projects (coursework documentation; private or shared course repositories stay hidden). Robotics & Software Design - Finch Robot Web Controller (team coursework). Games - Space SHMUP, Apple Picker, and Mission Demolition. Data - Sleep Efficiency Analysis and Marquette Basketball Predictor (team or coursework data projects). Prefer this grouped inventory for broad every-project or project-list questions. Do not claim every project was solo. Do not invent projects. Do not expose private or shared XINU repository names or URLs.",
       "shortText": "Approved public projects: Portfolio Platform; MarkAI; Abacus; TA-Bot/MAAT; OS C Projects; Finch; Space SHMUP; Apple Picker; Mission Demolition; Sleep Efficiency Analysis; Marquette Basketball Predictor.",
       "aliases": [
         "project list",
@@ -4017,8 +4011,8 @@
       "category": "projects",
       "recordType": "project",
       "title": "Abacus Senior Design Capstone",
-      "publicText": "Abacus is a team senior design web platform used for the Wisconsin-Dairyland Programming Competition. Mark’s verified work centered on the Eagle Division full-stack workflow, including messaging APIs, role-aware student and staff chat, inbox behavior, instructions access, routing, persistence, and related UI debugging. The April 15, 2026 live competition used Abacus to support approximately 200–300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag. Separate contribution and deep-dive records document the exact scope of his work.",
-      "shortText": "Team Abacus senior design capstone for Wisconsin-Dairyland; Mark contributed Eagle Division messaging, chat, inbox, routing, and UI debugging. The April 15, 2026 live competition used Abacus to support approximately 200–300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag.",
+      "publicText": "Abacus is a team senior design web platform used for the Wisconsin-Dairyland Programming Competition. Mark’s verified work centered on the Eagle Division full-stack workflow, including messaging APIs, role-aware student and staff chat, inbox behavior, instructions access, routing, persistence, and related UI debugging. The April 15, 2026 live competition used Abacus to support approximately 200 - 300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag. Separate contribution and deep-dive records document the exact scope of his work.",
+      "shortText": "Team Abacus senior design capstone for Wisconsin-Dairyland; Mark contributed Eagle Division messaging, chat, inbox, routing, and UI debugging. The April 15, 2026 live competition used Abacus to support approximately 200 - 300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag.",
       "aliases": [
         "Abacus",
         "Eagle Division",
@@ -4079,7 +4073,7 @@
         "customers-or-dau-claims",
         "inflated-user-metrics-beyond-approved-event-scale"
       ],
-      "notes": "Approved-summary project record. Deep-dive records hold expanded platform, contribution, and event-scale detail. Use the approved approximately 200–300 high-school students, teachers, judges, and administrators wording only for the April 15, 2026 live competition. Canonical commit URLs not registered."
+      "notes": "Approved-summary project record. Deep-dive records hold expanded platform, contribution, and event-scale detail. Use the approved approximately 200 - 300 high-school students, teachers, judges, and administrators wording only for the April 15, 2026 live competition. Canonical commit URLs not registered."
     },
     {
       "id": "project-maat",
@@ -5080,7 +5074,7 @@
       "recordType": "employment",
       "title": "Audio-Visual Technician",
       "publicText": "Mark worked as an Audio-Visual Technician at Marquette University from February 2025 to May 2026, supporting live campus events by setting up, operating, and troubleshooting laptops, projectors, microphones, speakers, lighting, wiring, remotes, presentation equipment, and sound systems.",
-      "shortText": "Marquette Audio-Visual Technician, February 2025 – May 2026.",
+      "shortText": "Marquette Audio-Visual Technician, February 2025 - May 2026.",
       "aliases": [
         "AV Technician",
         "Audio Visual Technician",
@@ -5119,7 +5113,7 @@
       "recordType": "employment",
       "title": "Information Desk Specialist Manager",
       "publicText": "Mark worked as an Information Desk Specialist Manager at Marquette University from January 2024 to May 2026, managing front-desk and building operations including staff schedules, shift and timesheet review, staff meetings, security-camera monitoring, room scheduling, access requests, incident handling, and communication with visitors, students, and staff.",
-      "shortText": "Marquette Information Desk Specialist Manager, January 2024 – May 2026.",
+      "shortText": "Marquette Information Desk Specialist Manager, January 2024 - May 2026.",
       "aliases": [
         "Information Desk Specialist Manager"
       ],
@@ -5163,7 +5157,7 @@
       "recordType": "employment",
       "title": "Assistant Building Manager",
       "publicText": "Mark worked as an Assistant Building Manager at Marquette University from June 2024 to December 2024, coordinating room setups for events, managing building access, communicating with departments by radio, and supporting building operations during campus events and daily activities.",
-      "shortText": "Marquette Assistant Building Manager, June 2024 – December 2024.",
+      "shortText": "Marquette Assistant Building Manager, June 2024 - December 2024.",
       "aliases": [
         "Assistant Building Manager"
       ],
@@ -5237,7 +5231,7 @@
       "recordType": "employment",
       "title": "Chef / Person in Charge",
       "publicText": "Mark worked as Chef / Person in Charge at Panda Express in Gurnee, Illinois, from May 2021 to August 2023, supporting kitchen operations, food preparation, service quality, cleaning, restocking, shift leadership, employee training, and team guidance during high-volume shifts.",
-      "shortText": "Panda Express Chef / Person in Charge, May 2021 – August 2023.",
+      "shortText": "Panda Express Chef / Person in Charge, May 2021 - August 2023.",
       "aliases": [
         "Panda Express",
         "Person in Charge",
@@ -5278,7 +5272,7 @@
       "recordType": "leadership-role",
       "title": "Risk Manager & Merchandise Chair",
       "publicText": "Mark served as Risk Manager and Merchandise Chair for Sigma Chi at Marquette University from January 2023 to May 2026, helping keep chapter operations organized and safe while leading merchandise ideas and design work for the chapter.",
-      "shortText": "Sigma Chi Risk Manager & Merchandise Chair, January 2023 – May 2026.",
+      "shortText": "Sigma Chi Risk Manager & Merchandise Chair, January 2023 - May 2026.",
       "aliases": [
         "Sigma Chi leadership",
         "Risk Manager",
@@ -5311,7 +5305,7 @@
         "invent disciplinary or incident details",
         "invent additional officer titles"
       ],
-      "notes": "Combined record selected by Mark. Dates explicitly confirmed by Mark: January 2023 – May 2026. Merchandise design may receive a separate creative-contribution record in a later phase. Do not duplicate this as employment."
+      "notes": "Combined record selected by Mark. Dates explicitly confirmed by Mark: January 2023 - May 2026. Merchandise design may receive a separate creative-contribution record in a later phase. Do not duplicate this as employment."
     },
     {
       "id": "membership-bayanihan-bso",
@@ -5319,7 +5313,7 @@
       "recordType": "organization-membership",
       "title": "Bayanihan Student Organization (BSO)",
       "publicText": "Mark was a member of Bayanihan Student Organization (BSO), Marquette University’s Filipino student organization, from August 2022 to May 2026.",
-      "shortText": "Bayanihan Student Organization member, August 2022 – May 2026.",
+      "shortText": "Bayanihan Student Organization member, August 2022 - May 2026.",
       "aliases": [
         "BSO",
         "Bayanihan",
@@ -5353,7 +5347,7 @@
         "infer private personal attributes beyond the approved organization fact",
         "merge with unrelated organizations"
       ],
-      "notes": "Mark explicitly confirmed that Bayanihan Student Organization is BSO, Marquette University’s Filipino student organization. Mark explicitly confirmed membership only. Dates explicitly confirmed by Mark: August 2022 – May 2026. This is organization membership, not an officer or leadership role. Category leadership is used because the current schema has no separate organization-membership category."
+      "notes": "Mark explicitly confirmed that Bayanihan Student Organization is BSO, Marquette University’s Filipino student organization. Mark explicitly confirmed membership only. Dates explicitly confirmed by Mark: August 2022 - May 2026. This is organization membership, not an officer or leadership role. Category leadership is used because the current schema has no separate organization-membership category."
     }
   ],
   "policies": {
@@ -5589,6 +5583,17 @@
         "modelInstruction": "Do not disclose, invent, or discuss private relationships, family conflict, medical history, mental-health information, substance use, sexual or adult private information, addiction, financial hardship, diary or private-message content, private addresses, credentials, passwords, API keys, or server configuration. Do not impersonate Mark.",
         "logPolicy": "log-category-only",
         "notes": "Aligns with existing privacy-boundaries rules. MarkAI is an assistant about Mark, not a digital impersonation of Mark.",
+        "enforcement": "model-and-server"
+      },
+      {
+        "id": "voice-ascii-hyphen-punctuation",
+        "category": "voice-and-answer-behavior",
+        "action": "enforce",
+        "purpose": "voice-and-answer-behavior",
+        "publicBehavior": "Public answers use normal hyphens for punctuation dashes. Em dashes and en dashes are not used in visitor-facing writing.",
+        "modelInstruction": "Never use em dashes or en dashes in answers. If a dash is needed as punctuation, use a normal hyphen with spaces (example: progress - whether). Keep ordinary hyphenated words such as full-stack and entry-level unchanged. Do not alter URLs, negative numbers, or code examples.",
+        "logPolicy": "log-category-only",
+        "notes": "Matches Mark’s public writing preference for ASCII hyphen punctuation.",
         "enforcement": "model-and-server"
       }
     ],
@@ -6143,7 +6148,7 @@
         "project-finch-web-controller",
         "contribution-finch-frontend-controller"
       ],
-      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (finch-controller.github). Repository name is BirdVroomVroom. Forked because the original repository was not owned by Mark; disclose fork/ownership when repository ownership is relevant. Team coursework project — do not imply sole ownership."
+      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (finch-controller.github). Repository name is BirdVroomVroom. Forked because the original repository was not owned by Mark; disclose fork/ownership when repository ownership is relevant. Team coursework project - do not imply sole ownership."
     },
     {
       "id": "link-github-os-c-docs",
@@ -6238,7 +6243,7 @@
       "relatedRecordIds": [
         "project-sleep-efficiency-analysis"
       ],
-      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (sleep-analysis.github). Team coursework project — do not imply sole ownership."
+      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (sleep-analysis.github). Team coursework project - do not imply sole ownership."
     },
     {
       "id": "link-github-marquette-basketball-predictor",
@@ -6257,7 +6262,7 @@
       "relatedRecordIds": [
         "project-marquette-basketball-predictor"
       ],
-      "notes": "Exact URL already displayed in PortfolioApp.jsx website field and terminalPortfolioProjectData.js. Team Data Mining project — do not imply sole ownership."
+      "notes": "Exact URL already displayed in PortfolioApp.jsx website field and terminalPortfolioProjectData.js. Team Data Mining project - do not imply sole ownership."
     },
     {
       "id": "link-fmsc-libertyville",

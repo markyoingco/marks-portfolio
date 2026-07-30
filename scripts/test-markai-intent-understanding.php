@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 /**
- * Phase 3A.4 — natural-language understanding, typo tolerance, and smart follow-ups.
- */
+* Phase 3A.4 - natural-language understanding, typo tolerance, and smart follow-ups.
+*/
 
 require_once dirname(__DIR__) . '/server/markai/MockEndpointService.php';
 
@@ -50,7 +50,7 @@ $classify = static function (string $question, array $history = []): array {
 
 $sensitivePattern = '/lung|anxiety|addiction|pornograph|girlfriend|self-hatred|diagnosis|weight of|Goggins|Levrone|journal|family support|financial hardship|salary|phone number|@gmail|link-[a-z0-9\-]+/i';
 
-// 1–5 core screenshot failures + typos
+// 1 - 5 core screenshot failures + typos
 $cases = [
     'goals' => 'careerGoals',
     'goels' => 'careerGoals',
@@ -115,27 +115,27 @@ $assert(
 
 // Contextual follow-ups
 $team = $classify('team?', [
-    ['role' => 'user', 'content' => 'Tell me about Abacus.'],
-    ['role' => 'assistant', 'content' => 'Abacus was a team senior-design project.'],
+        ['role' => 'user', 'content' => 'Tell me about Abacus.'],
+        ['role' => 'assistant', 'content' => 'Abacus was a team senior-design project.'],
 ]);
 $assert(($team['category'] ?? '') === 'collaboratorsAbacus', 'team? after Abacus => collaboratorsAbacus');
 
 $repo = $run('repo?', [
-    ['role' => 'user', 'content' => 'Tell me about Finch.'],
-    ['role' => 'assistant', 'content' => 'Finch is a robotics project.'],
+        ['role' => 'user', 'content' => 'Tell me about Finch.'],
+        ['role' => 'assistant', 'content' => 'Finch is a robotics project.'],
 ]);
 $repoIds = array_map(static fn ($l) => $l['id'] ?? '', $repo['links'] ?? []);
 $assert(in_array('link-github-finch', $repoIds, true), 'repo? after Finch returns Finch repo link');
 
 $musicFollow = $classify('and music?', [
-    ['role' => 'user', 'content' => 'What are Mark’s hobbies?'],
-    ['role' => 'assistant', 'content' => 'Outside technology, Mark’s public hobbies include music and movies.'],
+        ['role' => 'user', 'content' => 'What are Mark’s hobbies?'],
+        ['role' => 'assistant', 'content' => 'Outside technology, Mark’s public hobbies include music and movies.'],
 ]);
 $assert(($musicFollow['category'] ?? '') === 'favoriteArtists', 'and music? after hobbies');
 
 $photos = $run('photos?', [
-    ['role' => 'user', 'content' => 'Where has he traveled?'],
-    ['role' => 'assistant', 'content' => 'Places include Hawaii and Chicago.'],
+        ['role' => 'user', 'content' => 'Where has he traveled?'],
+        ['role' => 'assistant', 'content' => 'Places include Hawaii and Chicago.'],
 ]);
 $photoIds = array_map(static fn ($l) => $l['id'] ?? '', $photos['links'] ?? []);
 $assert(
@@ -144,8 +144,8 @@ $assert(
 );
 
 $careerFollow = $classify('What about career?', [
-    ['role' => 'user', 'content' => 'Tell me about Mark’s goals.'],
-    ['role' => 'assistant', 'content' => 'Mark is working toward a stable technology career.'],
+        ['role' => 'user', 'content' => 'Tell me about Mark’s goals.'],
+        ['role' => 'assistant', 'content' => 'Mark is working toward a stable technology career.'],
 ]);
 $assert(($careerFollow['category'] ?? '') === 'careerGoals', 'what about career? after goals');
 
@@ -168,3 +168,4 @@ if ($failures > 0) {
 }
 
 echo "All MarkAI intent-understanding fixtures passed.\n";
+

@@ -1,264 +1,326 @@
 {
-    "schemaVersion":  "1.0.0",
-    "records":  [
-                    {
-                        "id":  "profile-mark-yoingco",
-                        "category":  "profile",
-                        "recordType":  "profile",
-                        "title":  "Mark Yoingco professional profile",
-                        "publicText":  "Mark Yoingco is a recent Computer Science graduate from Marquette University seeking his first full-time technology role.",
-                        "shortText":  "Recent Computer Science graduate from Marquette University seeking a first full-time technology role.",
-                        "aliases":  [
-                                        "Mark",
-                                        "Mark Yoingco",
-                                        "who is Mark"
-                                    ],
-                        "keywords":  [
-                                         "profile",
-                                         "about",
-                                         "graduate",
-                                         "marquette",
-                                         "portfolio assistant"
-                                     ],
-                        "status":  "verified",
-                        "fullName":  "Mark Yoingco",
-                        "preferredName":  "Mark",
-                        "identityVoice":  "assistant-about-mark",
-                        "headline":  "Computer Science graduate from Marquette University",
-                        "careerStatus":  "seeking-first-full-time-technology-role",
-                        "evidence":  [
-                                         {
-                                             "kind":  "repo-source",
-                                             "label":  "Terminal profile about.txt wording",
-                                             "sourcePath":  "src/terminalProfileFileOutput.js",
-                                             "claimScope":  "Supports name, Marquette Computer Science graduate framing, and career-building direction as published in the portfolio Terminal profile."
-                                         },
-                                         {
-                                             "kind":  "portfolio-text",
-                                             "label":  "README MarkAI assistant framing",
-                                             "sourcePath":  "README.md",
-                                             "claimScope":  "Supports that MarkAI is a portfolio assistant about Mark, not a claim that MarkAI is Mark."
-                                         }
-                                     ],
-                        "sourceFiles":  [
-                                            "src/terminalProfileFileOutput.js",
-                                            "README.md"
-                                        ],
-                        "relatedRecordIds":  [
-                                                 "education-marquette-bs-computer-science",
-                                                 "career-direction-first-full-time-tech-role",
-                                                 "work-style-practical-collaborative-growth"
-                                             ],
-                        "linkIds":  [
-                                        "link-portfolio-home",
-                                        "link-resume-pdf",
-                                        "link-github-profile",
-                                        "link-linkedin"
-                                    ],
-                        "visibility":  {
-                                           "answerable":  true,
-                                           "exportPublic":  true,
-                                           "modelVisible":  true
-                                       },
-                        "answerUses":  [
-                                           "bio",
-                                           "recruiter",
-                                           "identity"
-                                       ],
-                        "prohibitedUses":  [
-                                               "claim-to-be-mark",
-                                               "private-biography"
-                                           ],
-                        "reviewedByMark":  true,
-                        "notes":  "Draft for Mark review. Visibility locked off until approval. Do not imply MarkAI is literally Mark.",
-                        "lastReviewed":  "2026-07-28"
-                    },
-                    {
-                        "id":  "education-marquette-bs-computer-science",
-                        "category":  "education",
-                        "recordType":  "education",
-                        "title":  "B.S. Computer Science, Marquette University",
-                        "publicText":  "Mark earned a B.S. in Computer Science from Marquette University in Milwaukee, WI, graduating in May 2026.",
-                        "shortText":  "B.S. in Computer Science, Marquette University, May 2026.",
-                        "aliases":  [
-                                        "Marquette",
-                                        "Computer Science degree",
-                                        "BS CS",
-                                        "graduation"
-                                    ],
-                        "keywords":  [
-                                         "education",
-                                         "marquette",
-                                         "computer science",
-                                         "may 2026",
-                                         "milwaukee"
-                                     ],
-                        "status":  "verified",
-                        "institution":  "Marquette University",
-                        "degree":  "B.S.",
-                        "field":  "Computer Science",
-                        "graduation":  "2026-05",
-                        "location":  "Milwaukee, WI",
-                        "evidence":  [
-                                         {
-                                             "kind":  "repo-source",
-                                             "label":  "Terminal resume education line",
-                                             "sourcePath":  "src/terminalFileOutput.js",
-                                             "claimScope":  "Supports Marquette University, Milwaukee, WI, and May 2026 education line as published in Terminal resume output."
-                                         },
-                                         {
-                                             "kind":  "repo-source",
-                                             "label":  "Terminal profile about wording",
-                                             "sourcePath":  "src/terminalProfileFileOutput.js",
-                                             "claimScope":  "Supports Computer Science graduate from Marquette University wording."
-                                         }
-                                     ],
-                        "sourceFiles":  [
-                                            "src/terminalFileOutput.js",
-                                            "src/terminalProfileFileOutput.js",
-                                            "src/PortfolioApp.jsx"
-                                        ],
-                        "relatedRecordIds":  [
-                                                 "profile-mark-yoingco"
-                                             ],
-                        "linkIds":  [
-                                        "link-resume-pdf"
-                                    ],
-                        "visibility":  {
-                                           "answerable":  true,
-                                           "exportPublic":  true,
-                                           "modelVisible":  true
-                                       },
-                        "answerUses":  [
-                                           "education",
-                                           "recruiter",
-                                           "bio"
-                                       ],
-                        "reviewedByMark":  true,
-                        "notes":  "Coursework list exists on the Webpage but is not copied into this draft record yet.",
-                        "lastReviewed":  "2026-07-28"
-                    },
-                    {
-                        "id":  "career-direction-first-full-time-tech-role",
-                        "category":  "career-direction",
-                        "recordType":  "career",
-                        "title":  "First full-time technology role direction",
-                        "publicText":  "Mark\u0027s near-term focus is earning an entry-level full-time technology role where he can contribute, continue learning, and build professional experience. His public areas of interest include software development, full-stack web development, developer tools, data-oriented systems, technical support, application support, and systems roles.",
-                        "shortText":  "Seeking an entry-level full-time technology role across software development, full-stack, developer tools, data systems, and support paths.",
-                        "aliases":  [
-                                        "career goals",
-                                        "job search",
-                                        "what roles",
-                                        "looking for"
-                                    ],
-                        "keywords":  [
-                                         "career",
-                                         "full-time",
-                                         "software development",
-                                         "full-stack",
-                                         "developer tools",
-                                         "support"
-                                     ],
-                        "status":  "approved-summary",
-                        "horizon":  "near-term",
-                        "targetDirections":  [
-                                                 "entry-level software development",
-                                                 "full-stack web development",
-                                                 "developer tools",
-                                                 "data-oriented systems",
-                                                 "technical support and systems roles"
-                                             ],
-                        "evidence":  [
-                                         {
-                                             "kind":  "repo-source",
-                                             "label":  "Terminal career-goals.txt wording",
-                                             "sourcePath":  "src/terminalProfileFileOutput.js",
-                                             "claimScope":  "Supports current focus and listed public areas of interest from the published Terminal profile career-goals content."
-                                         }
-                                     ],
-                        "supportsRecordIds":  [
-                                                  "profile-mark-yoingco"
-                                              ],
-                        "sourceFiles":  [
-                                            "src/terminalProfileFileOutput.js"
-                                        ],
-                        "relatedRecordIds":  [
-                                                 "profile-mark-yoingco",
-                                                 "work-style-practical-collaborative-growth"
-                                             ],
-                        "linkIds":  [
-                                        "link-resume-pdf",
-                                        "link-linkedin",
-                                        "link-contact-section"
-                                    ],
-                        "visibility":  {
-                                           "answerable":  true,
-                                           "exportPublic":  true,
-                                           "modelVisible":  true
-                                       },
-                        "answerUses":  [
-                                           "career",
-                                           "recruiter"
-                                       ],
-                        "prohibitedUses":  [
-                                               "private-financial-pressure",
-                                               "unsupported-salary-claims"
-                                           ],
-                        "reviewedByMark":  true,
-                        "notes":  "Long-term public wording in Terminal mentions greater technical ownership and a stable career with room to grow. Private financial pressure must never be added. Cybersecurity interest exists in broader MarkAI product notes but is not asserted here from Terminal career-goals text alone.",
-                        "lastReviewed":  "2026-07-28"
-                    },
-                    {
-                        "id":  "work-style-practical-collaborative-growth",
-                        "category":  "work-style",
-                        "recordType":  "work-style",
-                        "title":  "Practical collaborative work style",
-                        "publicText":  "Mark works best with clear expectations, documented details, honest communication, and shared ownership. He values consistency, practical problem solving, useful software, and following work through to completion. In a team, he is comfortable contributing, listening, leading when needed, and stepping back when another approach is stronger.",
-                        "shortText":  "Clear expectations, honest communication, shared ownership, practical problem solving, and following work through to completion.",
-                        "aliases":  [
-                                        "work style",
-                                        "how Mark works",
-                                        "collaboration"
-                                    ],
-                        "keywords":  [
-                                         "work style",
-                                         "ownership",
-                                         "consistency",
-                                         "teamwork",
-                                         "documentation"
-                                     ],
-                        "status":  "approved-summary",
-                        "evidence":  [
-                                         {
-                                             "kind":  "repo-source",
-                                             "label":  "Terminal work-style.txt wording",
-                                             "sourcePath":  "src/terminalProfileFileOutput.js",
-                                             "claimScope":  "PublicText is adapted from the published Terminal profile work-style content."
-                                         }
-                                     ],
-                        "sourceFiles":  [
-                                            "src/terminalProfileFileOutput.js"
-                                        ],
-                        "relatedRecordIds":  [
-                                                 "profile-mark-yoingco",
-                                                 "career-direction-first-full-time-tech-role"
-                                             ],
-                        "visibility":  {
-                                           "answerable":  true,
-                                           "exportPublic":  true,
-                                           "modelVisible":  true
-                                       },
-                        "answerUses":  [
-                                           "work-style",
-                                           "recruiter"
-                                       ],
-                        "prohibitedUses":  [
-                                               "exaggerated-praise",
-                                               "unsupported-personality-diagnosis"
-                                           ],
-                        "reviewedByMark":  true,
-                        "notes":  "Wording tracks current Terminal profile work-style text. Soft claims; Mark should confirm final public phrasing.",
-                        "lastReviewed":  "2026-07-28"
-                    }
-                ]
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "profile-mark-yoingco",
+      "category": "profile",
+      "recordType": "profile",
+      "title": "Mark Yoingco professional profile",
+      "publicText": "Mark Yoingco is from Chicago and is a recent Computer Science graduate from Marquette University seeking his first full-time technology role.",
+      "shortText": "From Chicago; recent Computer Science graduate from Marquette University seeking a first full-time technology role.",
+      "aliases": [
+        "Mark",
+        "Mark Yoingco",
+        "who is Mark"
+      ],
+      "keywords": [
+        "profile",
+        "about",
+        "graduate",
+        "marquette",
+        "portfolio assistant",
+        "Chicago",
+        "from Chicago"
+      ],
+      "status": "verified",
+      "fullName": "Mark Yoingco",
+      "preferredName": "Mark",
+      "identityVoice": "assistant-about-mark",
+      "headline": "Computer Science graduate from Marquette University",
+      "careerStatus": "seeking-first-full-time-technology-role",
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "Terminal profile about.txt wording",
+          "sourcePath": "src/terminalProfileFileOutput.js",
+          "claimScope": "Supports name, Marquette Computer Science graduate framing, and career-building direction as published in the portfolio Terminal profile."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "README MarkAI assistant framing",
+          "sourcePath": "README.md",
+          "claimScope": "Supports that MarkAI is a portfolio assistant about Mark, not a claim that MarkAI is Mark."
+        }
+      ],
+      "sourceFiles": [
+        "src/terminalProfileFileOutput.js",
+        "README.md"
+      ],
+      "relatedRecordIds": [
+        "education-marquette-bs-computer-science",
+        "career-direction-first-full-time-tech-role",
+        "work-style-practical-collaborative-growth",
+        "profile-from-chicago"
+      ],
+      "linkIds": [
+        "link-portfolio-home",
+        "link-resume-pdf",
+        "link-github-profile",
+        "link-linkedin"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "bio",
+        "recruiter",
+        "identity"
+      ],
+      "prohibitedUses": [
+        "claim-to-be-mark",
+        "private-biography"
+      ],
+      "reviewedByMark": true,
+      "notes": "Draft for Mark review. Visibility locked off until approval. Do not imply MarkAI is literally Mark.",
+      "lastReviewed": "2026-07-30"
+    },
+    {
+      "id": "profile-from-chicago",
+      "category": "profile",
+      "recordType": "profile",
+      "title": "Mark is from Chicago",
+      "publicText": "Mark is from Chicago.",
+      "shortText": "Mark is from Chicago.",
+      "aliases": [
+        "hometown",
+        "where Mark is from",
+        "from Chicago"
+      ],
+      "keywords": [
+        "Chicago",
+        "from Chicago",
+        "hometown",
+        "background"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved public Chicago background fact",
+          "claimScope": "Supports only that Mark is from Chicago. Does not support neighborhood, street address, current residence, family location, or job-city restrictions.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/profile-education-career.json"
+      ],
+      "relatedRecordIds": [
+        "profile-mark-yoingco",
+        "education-marquette-bs-computer-science"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "Where is Mark from?",
+        "What is Mark’s background?",
+        "Tell me briefly about Mark."
+      ],
+      "prohibitedUses": [
+        "exact neighborhood",
+        "street address",
+        "current live location",
+        "current residence",
+        "travel schedule",
+        "commuting details",
+        "where family lives",
+        "limit job search to Chicago"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "Public background only. Do not infer current residence or restrict career geography to Chicago."
+    },
+    {
+      "id": "education-marquette-bs-computer-science",
+      "category": "education",
+      "recordType": "education",
+      "title": "B.S. Computer Science, Marquette University",
+      "publicText": "Mark earned a B.S. in Computer Science from Marquette University in Milwaukee, WI, graduating in May 2026.",
+      "shortText": "B.S. in Computer Science, Marquette University, May 2026.",
+      "aliases": [
+        "Marquette",
+        "Computer Science degree",
+        "BS CS",
+        "graduation"
+      ],
+      "keywords": [
+        "education",
+        "marquette",
+        "computer science",
+        "may 2026",
+        "milwaukee"
+      ],
+      "status": "verified",
+      "institution": "Marquette University",
+      "degree": "B.S.",
+      "field": "Computer Science",
+      "graduation": "2026-05",
+      "location": "Milwaukee, WI",
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "Terminal resume education line",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports Marquette University, Milwaukee, WI, and May 2026 education line as published in Terminal resume output."
+        },
+        {
+          "kind": "repo-source",
+          "label": "Terminal profile about wording",
+          "sourcePath": "src/terminalProfileFileOutput.js",
+          "claimScope": "Supports Computer Science graduate from Marquette University wording."
+        }
+      ],
+      "sourceFiles": [
+        "src/terminalFileOutput.js",
+        "src/terminalProfileFileOutput.js",
+        "src/PortfolioApp.jsx"
+      ],
+      "relatedRecordIds": [
+        "profile-mark-yoingco"
+      ],
+      "linkIds": [
+        "link-resume-pdf"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "education",
+        "recruiter",
+        "bio"
+      ],
+      "reviewedByMark": true,
+      "notes": "Coursework list exists on the Webpage but is not copied into this draft record yet.",
+      "lastReviewed": "2026-07-28"
+    },
+    {
+      "id": "career-direction-first-full-time-tech-role",
+      "category": "career-direction",
+      "recordType": "career",
+      "title": "First full-time technology role direction",
+      "publicText": "Mark's near-term focus is earning an entry-level full-time technology role where he can contribute, continue learning, and build professional experience. His public areas of interest include software development, full-stack web development, developer tools, data-oriented systems, technical support, application support, and systems roles.",
+      "shortText": "Seeking an entry-level full-time technology role across software development, full-stack, developer tools, data systems, and support paths.",
+      "aliases": [
+        "career goals",
+        "job search",
+        "what roles",
+        "looking for"
+      ],
+      "keywords": [
+        "career",
+        "full-time",
+        "software development",
+        "full-stack",
+        "developer tools",
+        "support"
+      ],
+      "status": "approved-summary",
+      "horizon": "near-term",
+      "targetDirections": [
+        "entry-level software development",
+        "full-stack web development",
+        "developer tools",
+        "data-oriented systems",
+        "technical support and systems roles"
+      ],
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "Terminal career-goals.txt wording",
+          "sourcePath": "src/terminalProfileFileOutput.js",
+          "claimScope": "Supports current focus and listed public areas of interest from the published Terminal profile career-goals content."
+        }
+      ],
+      "supportsRecordIds": [
+        "profile-mark-yoingco"
+      ],
+      "sourceFiles": [
+        "src/terminalProfileFileOutput.js"
+      ],
+      "relatedRecordIds": [
+        "profile-mark-yoingco",
+        "work-style-practical-collaborative-growth"
+      ],
+      "linkIds": [
+        "link-resume-pdf",
+        "link-linkedin",
+        "link-contact-section"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "career",
+        "recruiter"
+      ],
+      "prohibitedUses": [
+        "private-financial-pressure",
+        "unsupported-salary-claims"
+      ],
+      "reviewedByMark": true,
+      "notes": "Long-term public wording in Terminal mentions greater technical ownership and a stable career with room to grow. Private financial pressure must never be added. Cybersecurity interest exists in broader MarkAI product notes but is not asserted here from Terminal career-goals text alone.",
+      "lastReviewed": "2026-07-28"
+    },
+    {
+      "id": "work-style-practical-collaborative-growth",
+      "category": "work-style",
+      "recordType": "work-style",
+      "title": "Practical collaborative work style",
+      "publicText": "Mark works best with clear expectations, documented details, honest communication, and shared ownership. He values consistency, practical problem solving, useful software, and following work through to completion. In a team, he is comfortable contributing, listening, leading when needed, and stepping back when another approach is stronger.",
+      "shortText": "Clear expectations, honest communication, shared ownership, practical problem solving, and following work through to completion.",
+      "aliases": [
+        "work style",
+        "how Mark works",
+        "collaboration"
+      ],
+      "keywords": [
+        "work style",
+        "ownership",
+        "consistency",
+        "teamwork",
+        "documentation"
+      ],
+      "status": "approved-summary",
+      "evidence": [
+        {
+          "kind": "repo-source",
+          "label": "Terminal work-style.txt wording",
+          "sourcePath": "src/terminalProfileFileOutput.js",
+          "claimScope": "PublicText is adapted from the published Terminal profile work-style content."
+        }
+      ],
+      "sourceFiles": [
+        "src/terminalProfileFileOutput.js"
+      ],
+      "relatedRecordIds": [
+        "profile-mark-yoingco",
+        "career-direction-first-full-time-tech-role"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "work-style",
+        "recruiter"
+      ],
+      "prohibitedUses": [
+        "exaggerated-praise",
+        "unsupported-personality-diagnosis"
+      ],
+      "reviewedByMark": true,
+      "notes": "Wording tracks current Terminal profile work-style text. Soft claims; Mark should confirm final public phrasing.",
+      "lastReviewed": "2026-07-28"
+    }
+  ]
 }

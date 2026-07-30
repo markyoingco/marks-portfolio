@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 /**
- * Controlled one-request Cloudflare Workers AI live-test harness.
- *
- * Manual use only after temporarily enabling private runtime configuration.
- * Does not enable the provider by itself. Does not write files or store prompts.
- *
- * Fixed question only — no visitor or CLI question input.
- */
+* Controlled one-request Cloudflare Workers AI live-test harness.
+*
+* Manual use only after temporarily enabling private runtime configuration.
+* Does not enable the provider by itself. Does not write files or store prompts.
+*
+* Fixed question only - no visitor or CLI question input.
+*/
 
 $repoRoot = dirname(__DIR__);
 
@@ -23,8 +23,8 @@ require_once $repoRoot . '/server/markai/PromptBuilder.php';
 const MARKAI_LIVE_TEST_QUESTION = 'What did Mark contribute to Abacus?';
 
 /**
- * @param list<string> $lines
- */
+* @param list<string> $lines
+*/
 function markai_live_print(array $lines): void
 {
     foreach ($lines as $line) {
@@ -33,9 +33,9 @@ function markai_live_print(array $lines): void
 }
 
 /**
- * @param list<string> $lines
- * @return never
- */
+* @param list<string> $lines
+* @return never
+*/
 function markai_live_exit(array $lines, int $code): void
 {
     markai_live_print($lines);
@@ -43,8 +43,8 @@ function markai_live_exit(array $lines, int $code): void
 }
 
 /**
- * Map provider/transport categories to the small safe set for this harness.
- */
+* Map provider/transport categories to the small safe set for this harness.
+*/
 function markai_live_safe_error_category(?string $category): string
 {
     $category = (string) $category;
@@ -67,41 +67,41 @@ function markai_live_safe_error_category(?string $category): string
 
 if ($argc > 1) {
     markai_live_exit([
-        'refusal_reason=cli_arguments_not_allowed',
-        'live_request_attempted=no',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'refusal_reason=cli_arguments_not_allowed',
+            'live_request_attempted=no',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 $exportPath = $repoRoot . '/server/markai/generated/approved-v1.json';
 if (!is_readable($exportPath)) {
     markai_live_exit([
-        'refusal_reason=export_unavailable',
-        'live_request_attempted=no',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'refusal_reason=export_unavailable',
+            'live_request_attempted=no',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 try {
     $export = json_decode((string) file_get_contents($exportPath), true, 512, JSON_THROW_ON_ERROR);
 } catch (Throwable $e) {
     markai_live_exit([
-        'refusal_reason=export_unavailable',
-        'live_request_attempted=no',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'refusal_reason=export_unavailable',
+            'live_request_attempted=no',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 if (!is_array($export)) {
     markai_live_exit([
-        'refusal_reason=export_unavailable',
-        'live_request_attempted=no',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'refusal_reason=export_unavailable',
+            'live_request_attempted=no',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 // Load optional private runtime through the production factory only.
@@ -109,8 +109,8 @@ if (!is_array($export)) {
 $runtime = markai_create_provider_runtime();
 $status = (string) ($runtime['status'] ?? 'disabled');
 $configuration = is_array($runtime['configuration'] ?? null)
-    ? $runtime['configuration']
-    : markai_default_provider_configuration();
+? $runtime['configuration']
+: markai_default_provider_configuration();
 $transport = is_callable($runtime['transport'] ?? null) ? $runtime['transport'] : null;
 
 $refusalMap = [
@@ -131,24 +131,24 @@ if ($status !== 'ready' || $transport === null) {
     }
 
     markai_live_exit([
-        'provider_runtime_enabled=no',
-        'refusal_reason=' . $reason,
-        'live_request_attempted=no',
-        'transport_invocations=0',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'provider_runtime_enabled=no',
+            'refusal_reason=' . $reason,
+            'live_request_attempted=no',
+            'transport_invocations=0',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 if (!markai_provider_configuration_is_usable($configuration)) {
     markai_live_exit([
-        'provider_runtime_enabled=no',
-        'refusal_reason=invalid_configuration',
-        'live_request_attempted=no',
-        'transport_invocations=0',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'provider_runtime_enabled=no',
+            'refusal_reason=invalid_configuration',
+            'live_request_attempted=no',
+            'transport_invocations=0',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 // Capture secret material only for leak scanning of printed output. Never print it.
@@ -165,25 +165,25 @@ try {
     $built = buildMarkAiRequest($export, $question, [], $selectedRecordIds, $mode);
 } catch (Throwable $e) {
     markai_live_exit([
-        'provider_runtime_enabled=yes',
-        'refusal_reason=prompt_build_failed',
-        'live_request_attempted=no',
-        'transport_invocations=0',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'provider_runtime_enabled=yes',
+            'refusal_reason=prompt_build_failed',
+            'live_request_attempted=no',
+            'transport_invocations=0',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 $messages = is_array($built['messages'] ?? null) ? $built['messages'] : [];
 if ($messages === []) {
     markai_live_exit([
-        'provider_runtime_enabled=yes',
-        'refusal_reason=prompt_build_failed',
-        'live_request_attempted=no',
-        'transport_invocations=0',
-        'live_network_requests=0',
-        'credential_leak_check=passed',
-    ], 1);
+            'provider_runtime_enabled=yes',
+            'refusal_reason=prompt_build_failed',
+            'live_request_attempted=no',
+            'transport_invocations=0',
+            'live_network_requests=0',
+            'credential_leak_check=passed',
+        ], 1);
 }
 
 $transportInvocations = 0;
@@ -196,7 +196,7 @@ $singleShotTransport = static function (
 ) use ($transport, &$transportInvocations): array {
     $transportInvocations++;
     if ($transportInvocations > 1) {
-        // Hard stop — this harness never retries.
+        // Hard stop - this harness never retries.
         return [
             'status' => 0,
             'body' => '',
@@ -222,8 +222,8 @@ $result = $provider->generate($messages, $settings, $configuration, $singleShotT
 
 $providerSuccess = $result->isSuccess();
 $providerStatus = $providerSuccess
-    ? (string) $result->getStatus()
-    : markai_live_safe_error_category($result->getErrorCategory());
+? (string) $result->getStatus()
+: markai_live_safe_error_category($result->getErrorCategory());
 
 $validatorResult = 'rejected';
 $answerSource = 'deterministic_fallback';
@@ -243,15 +243,15 @@ $outputTokens = $result->getOutputTokens();
 if ($providerSuccess) {
     $draft = trim((string) $result->getAnswerText());
     $validation = $validator->validateDetailed($draft, [
-        'finish_reason' => $result->getFinishReason(),
+            'finish_reason' => $result->getFinishReason(),
     ]);
     $validatorReason = ProviderResponseValidator::isAllowlistedReason((string) ($validation['reason'] ?? ''))
-        ? (string) $validation['reason']
-        : 'unknown_validation_failure';
+    ? (string) $validation['reason']
+    : 'unknown_validation_failure';
     $rawDetail = $validation['detail'] ?? null;
     $validatorDetail = (is_string($rawDetail) && ProviderResponseValidator::isAllowlistedDetail($rawDetail))
-        ? $rawDetail
-        : 'unavailable';
+    ? $rawDetail
+    : 'unavailable';
     $generatedAnswerCharsOut = (string) (int) ($validation['generatedAnswerChars'] ?? 0);
     $generatedAnswerWordsOut = (string) (int) ($validation['generatedAnswerWords'] ?? 0);
     $generatedAnswerSentencesOut = (string) (int) ($validation['generatedAnswerSentences'] ?? 0);
@@ -276,28 +276,28 @@ if ($providerSuccess) {
         $validatorReason = (string) ($safeRejected->getValidationReason() ?? $validatorReason);
         $rejectedDetail = $safeRejected->getValidationDetail();
         $validatorDetail = (is_string($rejectedDetail) && ProviderResponseValidator::isAllowlistedDetail($rejectedDetail))
-            ? $rejectedDetail
-            : 'unavailable';
+        ? $rejectedDetail
+        : 'unavailable';
         $generatedAnswerCharsOut = $safeRejected->getGeneratedAnswerChars() === null
-            ? 'unavailable'
-            : (string) $safeRejected->getGeneratedAnswerChars();
+        ? 'unavailable'
+        : (string) $safeRejected->getGeneratedAnswerChars();
         $generatedAnswerWordsOut = $safeRejected->getGeneratedAnswerWords() === null
-            ? 'unavailable'
-            : (string) $safeRejected->getGeneratedAnswerWords();
+        ? 'unavailable'
+        : (string) $safeRejected->getGeneratedAnswerWords();
         $generatedAnswerSentencesOut = $safeRejected->getGeneratedAnswerSentences() === null
-            ? 'unavailable'
-            : (string) $safeRejected->getGeneratedAnswerSentences();
+        ? 'unavailable'
+        : (string) $safeRejected->getGeneratedAnswerSentences();
         if ($safeRejected->getAnswerText() !== null) {
             markai_live_exit([
-                'provider_runtime_enabled=yes',
-                'live_request_attempted=yes',
-                'provider_success=no',
-                'provider_status=invalid_response',
-                'validator_result=rejected',
-                'answer_source=deterministic_fallback',
-                'credential_leak_check=failed',
-                'live_network_requests=' . ($transportInvocations > 0 ? '1' : '0'),
-            ], 1);
+                    'provider_runtime_enabled=yes',
+                    'live_request_attempted=yes',
+                    'provider_success=no',
+                    'provider_status=invalid_response',
+                    'validator_result=rejected',
+                    'answer_source=deterministic_fallback',
+                    'credential_leak_check=failed',
+                    'live_network_requests=' . ($transportInvocations > 0 ? '1' : '0'),
+                ], 1);
         }
     }
 }
@@ -344,17 +344,18 @@ if (str_contains($joined, 'Bearer ')) {
 if ($leak) {
     // Never print the contaminated report.
     markai_live_exit([
-        'provider_runtime_enabled=yes',
-        'live_request_attempted=yes',
-        'transport_invocations=' . min(1, $transportInvocations),
-        'provider_success=no',
-        'provider_status=invalid_response',
-        'validator_result=rejected',
-        'answer_source=deterministic_fallback',
-        'credential_leak_check=failed',
-        'live_network_requests=' . ($transportInvocations > 0 ? '1' : '0'),
-    ], 1);
+            'provider_runtime_enabled=yes',
+            'live_request_attempted=yes',
+            'transport_invocations=' . min(1, $transportInvocations),
+            'provider_success=no',
+            'provider_status=invalid_response',
+            'validator_result=rejected',
+            'answer_source=deterministic_fallback',
+            'credential_leak_check=failed',
+            'live_network_requests=' . ($transportInvocations > 0 ? '1' : '0'),
+        ], 1);
 }
 
 $report[] = 'credential_leak_check=passed';
 markai_live_exit($report, $exitCode);
+

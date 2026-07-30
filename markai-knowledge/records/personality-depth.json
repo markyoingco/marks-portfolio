@@ -141,7 +141,7 @@
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Bodybuilding meaning and training lessons",
-      "publicText": "Bodybuilding interests Mark because it combines discipline, structure, symmetry, patience, and progress earned over time. It is a major interest outside technology and an artistic, structured discipline that reinforces focus and consistency. Lessons from training—patience, quality repetitions, and deliberate progress—can apply to projects and professional development. Do not discuss why he originally began training, loneliness, appearance insecurity, health conditions, exact physique goals, body measurements, or private emotional motivations.",
+      "publicText": "Bodybuilding interests Mark because it combines discipline, structure, symmetry, patience, and progress earned over time. It is a major interest outside technology and an artistic, structured discipline that reinforces focus and consistency. Lessons from training - patience, quality repetitions, and deliberate progress - can apply to projects and professional development. Do not discuss why he originally began training, loneliness, appearance insecurity, health conditions, exact physique goals, body measurements, or private emotional motivations.",
       "shortText": "Bodybuilding as disciplined craft: structure, symmetry, patience, consistency, and transferable professional habits.",
       "aliases": [
         "bodybuilding meaning",
@@ -270,8 +270,8 @@
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Career purpose, success, and professional independence",
-      "publicText": "Mark is working toward a stable technology career centered on meaningful work, continued learning, professional growth, and greater independence. He is open to software development, full-stack work, developer tools, data-oriented systems, technical support, and other suitable entry-level technology roles. He wants a role that creates stability and a sustainable path for technical development and useful work. He is open to Milwaukee, Chicago, remote work, and other locations when the opportunity makes relocation practical. Long-term success means career stability, professional independence, meaningful work, continued ambition, and pride in work he built usefully and followed through on.",
-      "shortText": "Stable technology role centered on meaningful work, continued learning, professional growth, and independence; open to Milwaukee, Chicago, remote, or practical relocation.",
+      "publicText": "Mark is working toward a stable technology career built on continued technical growth, meaningful work, stronger software projects, greater independence, and continued discipline and creativity. He remains open to software development, full-stack applications, developer tools, data-oriented systems, technical support, and related entry-level technology paths. Long-term success means career stability, professional independence, meaningful work, continued ambition, and pride in work he built usefully and followed through on.",
+      "shortText": "Stable technology career built on technical growth, meaningful work, stronger projects, independence, discipline, and creativity across software, full-stack, tools, data, and support paths.",
       "aliases": [
         "career goals",
         "success",
@@ -287,9 +287,8 @@
         "stability",
         "meaningful work",
         "growth",
-        "milwaukee",
-        "chicago",
-        "remote"
+        "discipline",
+        "creativity"
       ],
       "status": "verified",
       "evidence": [

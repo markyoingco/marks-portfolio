@@ -39,8 +39,7 @@
         "project-abacus"
       ],
       "relatedRecordIds": [
-        "project-abacus",
-        "collaborators-sam-mazzone-support"
+        "project-abacus"
       ],
       "linkIds": [
         "link-github-abacus"
@@ -110,8 +109,7 @@
         "project-maat"
       ],
       "relatedRecordIds": [
-        "project-maat",
-        "collaborators-sam-mazzone-support"
+        "project-maat"
       ],
       "linkIds": [
         "link-github-maat"
@@ -140,72 +138,6 @@
       "reviewedByMark": true,
       "lastReviewed": "2026-07-30",
       "notes": "MarkAI-only. Same core student names as Abacus; keep project context clear in answers."
-    },
-    {
-      "id": "collaborators-sam-mazzone-support",
-      "category": "projects",
-      "recordType": "project-collaborators",
-      "title": "Sam Mazzone supporting role for Abacus and TA-Bot / MAAT",
-      "publicText": "Sam Mazzone supported the Abacus and TA-Bot / MAAT teams as an advisor, software developer, and moral supporter. Sam Mazzone is not described as one of the core student teammates. Preferred distinction: the core student team included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman; Sam Mazzone supported the team as an advisor, software developer, and moral supporter.",
-      "shortText": "Sam Mazzone supported Abacus and TA-Bot / MAAT as advisor, software developer, and moral supporter; not a core student teammate.",
-      "aliases": [
-        "Sam Mazzone",
-        "Sam Mazzone role",
-        "advisor Sam"
-      ],
-      "keywords": [
-        "Sam Mazzone",
-        "advisor",
-        "software developer",
-        "moral supporter",
-        "abacus",
-        "maat",
-        "ta-bot"
-      ],
-      "status": "verified",
-      "evidence": [
-        {
-          "kind": "mark-approved",
-          "label": "Mark-approved Phase 3A Sam Mazzone support roles",
-          "claimScope": "Supports only the approved support roles Advisor, Software Developer, and Moral Supporter. Does not support core-student-teammate wording.",
-          "markApprovedOn": "2026-07-30"
-        }
-      ],
-      "sourceFiles": [
-        "markai-knowledge/records/project-collaborators.json"
-      ],
-      "projectIds": [
-        "project-abacus",
-        "project-maat"
-      ],
-      "relatedRecordIds": [
-        "collaborators-abacus-core-team",
-        "collaborators-maat-core-team"
-      ],
-      "linkIds": [],
-      "visibility": {
-        "answerable": true,
-        "exportPublic": true,
-        "modelVisible": true
-      },
-      "answerUses": [
-        "what was Sam Mazzone’s role",
-        "who was Sam Mazzone",
-        "Abacus support",
-        "MAAT support"
-      ],
-      "prohibitedUses": [
-        "call Sam a core student teammate",
-        "invent additional titles",
-        "contact information",
-        "quotations",
-        "performance claims",
-        "personality analysis",
-        "add name to Webpage or Terminal"
-      ],
-      "reviewedByMark": true,
-      "lastReviewed": "2026-07-30",
-      "notes": "MarkAI-only. Keep Sam distinct from the four core student teammates."
     },
     {
       "id": "collaborators-finch-team",
@@ -460,7 +392,7 @@
       "category": "projects",
       "recordType": "project-collaborators",
       "title": "Approved project collaborator inventory",
-      "publicText": "Mark’s approved project collaborators, grouped by project: Abacus core student team — Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman; Sam Mazzone supported Abacus and TA-Bot / MAAT as advisor, software developer, and moral supporter. TA-Bot / MAAT core student team — Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman. Finch Web Controller — Mark Yoingco, Julianne Browne, Luis Serrano, Xavier Barth. Data Mining Game Predictor — Mark Yoingco, Allan Akkathara. Operating Systems C Projects — Mark Yoingco, Armaan Yaz. Sleep Efficiency Analysis — Mark Yoingco, Hunter Carlson. Use only the names relevant to the requested project. Do not invent roles for core teammates, contact information, quotations, or private repositories.",
+      "publicText": "Mark’s approved project collaborators, grouped by project: Abacus - Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman. TA-Bot / MAAT - Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman. Finch Web Controller - Mark Yoingco, Julianne Browne, Luis Serrano, Xavier Barth. Data Mining Game Predictor - Mark Yoingco, Allan Akkathara. Operating Systems C Projects - Mark Yoingco, Armaan Yaz. Sleep Efficiency Analysis - Mark Yoingco, Hunter Carlson. Use only the names relevant to the requested project. Do not invent roles for teammates, contact information, quotations, or private repositories.",
       "shortText": "Grouped MarkAI-only collaborator inventory across Abacus, MAAT, Finch, data mining, operating systems, and sleep analysis.",
       "aliases": [
         "project collaborators",
@@ -480,7 +412,7 @@
           "kind": "derived-summary",
           "label": "Grouped summary of Mark-approved collaborator records",
           "sourcePath": "markai-knowledge/records/project-collaborators.json",
-          "claimScope": "Summarizes only the collaborator names and Sam Mazzone support roles approved in related collaborator records."
+          "claimScope": "Summarizes only the collaborator names approved in related collaborator records."
         }
       ],
       "sourceFiles": [

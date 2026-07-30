@@ -3,19 +3,19 @@
 declare(strict_types=1);
 
 /**
- * Provider-neutral MarkAI prompt construction helper.
- *
- * This module does not perform HTTP I/O, read secrets, call AI providers,
- * or emit output when included. Future endpoints may call buildMarkAiRequest().
- */
+* Provider-neutral MarkAI prompt construction helper.
+*
+* This module does not perform HTTP I/O, read secrets, call AI providers,
+* or emit output when included. Future endpoints may call buildMarkAiRequest().
+*/
 
 final class MarkAiPromptBuilderException extends RuntimeException
 {
 }
 
 /**
- * Unicode-safe string length with mbstring fallback.
- */
+* Unicode-safe string length with mbstring fallback.
+*/
 function markai_strlen(string $value): int
 {
     if (function_exists('mb_strlen')) {
@@ -26,43 +26,43 @@ function markai_strlen(string $value): int
 }
 
 /**
- * Unicode-safe substring with mbstring fallback.
- */
+* Unicode-safe substring with mbstring fallback.
+*/
 function markai_substr(string $value, int $start, ?int $length = null): string
 {
     if (function_exists('mb_substr')) {
         return $length === null
-            ? (string) mb_substr($value, $start, null, 'UTF-8')
-            : (string) mb_substr($value, $start, $length, 'UTF-8');
+        ? (string) mb_substr($value, $start, null, 'UTF-8')
+        : (string) mb_substr($value, $start, $length, 'UTF-8');
     }
 
     return $length === null
-        ? substr($value, $start)
-        : substr($value, $start, $length);
+    ? substr($value, $start)
+    : substr($value, $start, $length);
 }
 
 /**
- * Build a provider-neutral MarkAI request payload from the approved export.
- *
- * @param array<string, mixed> $export Approved MarkAI export (approved-v1.json shape)
- * @param string $userQuestion Current visitor question
- * @param list<array{role: string, content: string}> $history Prior user/assistant turns
- * @param list<string> $selectedRecordIds Explicit non-core record IDs from retrieval
- * @param string $mode One of: recruiter, technical, general, casual
- *
- * @return array{
- *   mode: string,
- *   selectedRecordIds: list<string>,
- *   allowedLinkIds: list<string>,
- *   messages: list<array{role: string, content: string}>,
- *   selectedRecordCount: int,
- *   historyMessageCount: int,
- *   promptCharacterCount: int,
- *   serverPolicyIds: list<string>
- * }
- *
- * @throws MarkAiPromptBuilderException
- */
+* Build a provider-neutral MarkAI request payload from the approved export.
+*
+* @param array<string, mixed> $export Approved MarkAI export (approved-v1.json shape)
+* @param string $userQuestion Current visitor question
+* @param list<array{role: string, content: string}> $history Prior user/assistant turns
+* @param list<string> $selectedRecordIds Explicit non-core record IDs from retrieval
+* @param string $mode One of: recruiter, technical, general, casual
+*
+* @return array{
+    * mode: string,
+    * selectedRecordIds: list<string>,
+    * allowedLinkIds: list<string>,
+    * messages: list<array{role: string, content: string}>,
+    * selectedRecordCount: int,
+    * historyMessageCount: int,
+    * promptCharacterCount: int,
+    * serverPolicyIds: list<string>
+    * }
+*
+* @throws MarkAiPromptBuilderException
+*/
 function buildMarkAiRequest(
     array $export,
     string $userQuestion,
@@ -281,9 +281,9 @@ function buildMarkAiRequest(
 }
 
 /**
- * @param list<array<mixed>> $history
- * @return list<array{role: string, content: string}>
- */
+* @param list<array<mixed>> $history
+* @return list<array{role: string, content: string}>
+*/
 function markai_normalize_history(
     array $history,
     int $maxMessages,
@@ -332,11 +332,11 @@ function markai_normalize_history(
 }
 
 /**
- * @param list<array<string, mixed>> $selectedRecords
- * @param array<string, array<string, mixed>> $linksById
- * @param list<string> $explicitSelectedIds
- * @return list<string>
- */
+* @param list<array<string, mixed>> $selectedRecords
+* @param array<string, array<string, mixed>> $linksById
+* @param list<string> $explicitSelectedIds
+* @return list<string>
+*/
 function markai_resolve_allowed_link_ids(
     array $selectedRecords,
     array $linksById,
@@ -408,12 +408,12 @@ function markai_resolve_allowed_link_ids(
 
         $type = (string) ($link['type'] ?? '');
         if (!markai_link_type_allowed_for_mode(
-            $type,
-            $linkId,
-            $mode,
-            $explicitSet,
-            $selectedCategories,
-            $selectedIds
+                $type,
+                $linkId,
+                $mode,
+                $explicitSet,
+                $selectedCategories,
+                $selectedIds
         )) {
             continue;
         }
@@ -427,10 +427,10 @@ function markai_resolve_allowed_link_ids(
 }
 
 /**
- * @param array<string, bool> $explicitSet
- * @param array<string, bool> $selectedCategories
- * @param array<string, bool> $selectedIds
- */
+* @param array<string, bool> $explicitSet
+* @param array<string, bool> $selectedCategories
+* @param array<string, bool> $selectedIds
+*/
 function markai_link_type_allowed_for_mode(
     string $type,
     string $linkId,
@@ -442,7 +442,7 @@ function markai_link_type_allowed_for_mode(
     $contactExplicit = isset($explicitSet['contact-preferred-methods']);
     $hasTestimonial = isset($selectedCategories['testimonials']);
     $hasProject = isset($selectedCategories['projects'])
-        || isset($selectedCategories['project-contributions']);
+    || isset($selectedCategories['project-contributions']);
     $hasPhotography = isset($selectedIds['interest-travel-photography']);
 
     if (str_starts_with($linkId, 'link-linkedin-') && $linkId !== 'link-linkedin') {
@@ -455,33 +455,33 @@ function markai_link_type_allowed_for_mode(
 
     switch ($type) {
         case 'resume':
-            return $mode === 'recruiter' || $contactExplicit;
+        return $mode === 'recruiter' || $contactExplicit;
 
         case 'vsco':
         case 'photography':
-            return $hasPhotography || ($contactExplicit && in_array($mode, ['general', 'casual'], true));
+        return $hasPhotography || ($contactExplicit && in_array($mode, ['general', 'casual'], true));
 
         case 'github-profile':
-            return in_array($mode, ['technical', 'recruiter'], true) || $contactExplicit;
+        return in_array($mode, ['technical', 'recruiter'], true) || $contactExplicit;
 
         case 'linkedin':
-            return in_array($mode, ['recruiter', 'general'], true) && ($contactExplicit || $mode === 'recruiter');
+        return in_array($mode, ['recruiter', 'general'], true) && ($contactExplicit || $mode === 'recruiter');
 
         case 'contact-section':
-            return in_array($mode, ['recruiter', 'general'], true);
+        return in_array($mode, ['recruiter', 'general'], true);
 
         case 'portfolio-home':
-            return true;
+        return true;
 
         default:
-            return true;
+        return true;
     }
 }
 
 /**
- * Durable MarkAI System Message V3 (provider-neutral behavior contract).
- * Project facts remain in retrieved approved records, not in this contract.
- */
+* Durable MarkAI System Message V3 (provider-neutral behavior contract).
+* Project facts remain in retrieved approved records, not in this contract.
+*/
 function markai_system_message_v3_contract(): string
 {
     return <<<'TXT'
@@ -637,9 +637,9 @@ Abacus was a team senior-design project.
 
 The approved event scale is:
 
-approximately 200–300 high-school students, teachers, judges, and administrators during the April 15, 2026 live competition
+approximately 200 - 300 high-school students, teachers, judges, and administrators during the April 15, 2026 live competition
 
-Use exactly “approximately 200–300.”
+Use exactly “approximately 200 - 300.”
 
 Do not substitute:
 
@@ -925,39 +925,39 @@ TXT;
  * @param list<array<string, mixed>> $selectedRecords
  */
 function markai_supplemental_policy_text(
-    string $mode,
-    array $modelFacingPolicies,
-    array $selectedRecords
+ string $mode,
+ array $modelFacingPolicies,
+ array $selectedRecords
 ): string {
-    $voiceByMode = [
-        'recruiter' => 'Active answer mode: recruiter. Stay professional, direct, concise, evidence-based, and joke-free. Lead with the strongest relevant approved evidence and avoid full-record summaries.',
-        'technical' => 'Active answer mode: technical. Stay professional, direct, concise, evidence-based, and joke-free. Lead with the strongest relevant approved evidence and avoid full-record summaries.',
-        'general' => 'Active answer mode: general. Stay mature, direct, natural, thoughtful, and quietly confident. Keep answers concise and question-focused.',
-        'casual' => 'Active answer mode: casual. Very light humor is allowed only when it fits. Never force jokes, never joke every turn, and keep accuracy above style.',
-    ];
+ $voiceByMode = [
+ 'recruiter' => 'Active answer mode: recruiter. Stay professional, direct, concise, evidence-based, and joke-free. Lead with the strongest relevant approved evidence and avoid full-record summaries.',
+ 'technical' => 'Active answer mode: technical. Stay professional, direct, concise, evidence-based, and joke-free. Lead with the strongest relevant approved evidence and avoid full-record summaries.',
+ 'general' => 'Active answer mode: general. Stay mature, direct, natural, thoughtful, and quietly confident. Keep answers concise and question-focused.',
+ 'casual' => 'Active answer mode: casual. Very light humor is allowed only when it fits. Never force jokes, never joke every turn, and keep accuracy above style.',
+ ];
 
-    $lines = [];
-    $lines[] = $voiceByMode[$mode] ?? $voiceByMode['general'];
+ $lines = [];
+ $lines[] = $voiceByMode[$mode] ?? $voiceByMode['general'];
 
-    $hasMindsetInterest = false;
-    foreach ($selectedRecords as $record) {
-        $category = (string) ($record['category'] ?? '');
-        $id = (string) ($record['id'] ?? '');
-        if ($category === 'interests' || str_contains($id, 'discipline') || str_contains($id, 'growth')) {
-            $hasMindsetInterest = true;
-            break;
-        }
-    }
+ $hasMindsetInterest = false;
+ foreach ($selectedRecords as $record) {
+ $category = (string) ($record['category'] ?? '');
+ $id = (string) ($record['id'] ?? '');
+ if ($category === 'interests' || str_contains($id, 'discipline') || str_contains($id, 'growth')) {
+ $hasMindsetInterest = true;
+ break;
+ }
+ }
 
-    if ($hasMindsetInterest && in_array($mode, ['casual', 'general'], true)) {
-        $lines[] = 'When mindset or values are relevant, use restrained intensity: action over talk, earned rather than announced, consistency over intensity, and disciplined ambition. Do not make every answer motivational.';
-    }
+ if ($hasMindsetInterest && in_array($mode, ['casual', 'general'], true)) {
+ $lines[] = 'When mindset or values are relevant, use restrained intensity: action over talk, earned rather than announced, consistency over intensity, and disciplined ambition. Do not make every answer motivational.';
+ }
 
-    // Keep server policy objects available for selection, but do not dump IDs or
-    // repeat privacy/link instructions already covered by System Message V3.
-    unset($modelFacingPolicies);
+ // Keep server policy objects available for selection, but do not dump IDs or
+ // repeat privacy/link instructions already covered by System Message V3.
+ unset($modelFacingPolicies);
 
-    return "Mode guidance:\n- " . implode("\n- ", $lines);
+ return "Mode guidance:\n- " . implode("\n- ", $lines);
 }
 
 /**
@@ -966,20 +966,20 @@ function markai_supplemental_policy_text(
  */
 function markai_final_answer_contract(): string
 {
-    return <<<'TXT'
+ return <<<'TXT'
 FINAL ANSWER CONTRACT
 
 Answer the visitor’s exact question immediately.
 
 Give the answer, not a biography or full record summary.
 
-Default to 2–4 concise sentences.
+Default to 2 - 4 concise sentences.
 
-Target 40–140 words.
+Target 40 - 140 words.
 
 Never exceed 1,100 characters.
 
-Select only the 3–5 most relevant verified facts.
+Select only the 3 - 5 most relevant verified facts.
 
 Omit background details that are not necessary to answer the question.
 
@@ -994,6 +994,16 @@ Do not say “based on the provided information,” “according to the records,
 Do not include headings for a simple question.
 
 Stop immediately after the final useful sentence.
+
+PUNCTUATION
+
+Do not use em dashes or en dashes.
+
+When a dash is needed as punctuation, use a normal hyphen with spaces, for example: progress - whether.
+
+Keep ordinary hyphenated words unchanged, such as full-stack, entry-level, data-oriented, and team-based.
+
+Do not rewrite URLs, negative numbers, or code-like tokens.
 
 For explicit list requests:
 
@@ -1010,7 +1020,7 @@ PROJECT CONTRIBUTION QUESTIONS
 When the visitor asks what Mark contributed to a project:
 
 1. State that it was a team project when applicable.
-2. Summarize Mark’s direct work using only the most relevant 3–5 contributions.
+2. Summarize Mark’s direct work using only the most relevant 3 - 5 contributions.
 3. Add one short outcome or context sentence only when useful.
 4. Do not list every technology, workflow, test, event detail, and project outcome at once.
 5. Do not turn the response into a project deep dive unless the visitor explicitly asks for details.
@@ -1030,21 +1040,21 @@ TXT;
  * @param array<string, array<string, mixed>> $linksById
  */
 function markai_build_system_message(
-    string $mode,
-    array $modelFacingPolicies,
-    array $selectedRecords,
-    array $allowedLinkIds,
-    array $linksById = []
+ string $mode,
+ array $modelFacingPolicies,
+ array $selectedRecords,
+ array $allowedLinkIds,
+ array $linksById = []
 ): string {
-    $parts = [];
-    $parts[] = markai_system_message_v3_contract();
-    $parts[] = markai_supplemental_policy_text($mode, $modelFacingPolicies, $selectedRecords);
-    $parts[] = markai_format_factual_context($selectedRecords, $allowedLinkIds);
-    $parts[] = markai_format_allowed_links_for_model($allowedLinkIds, $linksById);
-    // Keep the length/prioritization contract after knowledge so it is not buried.
-    $parts[] = markai_final_answer_contract();
+ $parts = [];
+ $parts[] = markai_system_message_v3_contract();
+ $parts[] = markai_supplemental_policy_text($mode, $modelFacingPolicies, $selectedRecords);
+ $parts[] = markai_format_factual_context($selectedRecords, $allowedLinkIds);
+ $parts[] = markai_format_allowed_links_for_model($allowedLinkIds, $linksById);
+ // Keep the length/prioritization contract after knowledge so it is not buried.
+ $parts[] = markai_final_answer_contract();
 
-    return implode("\n\n", $parts);
+ return implode("\n\n", $parts);
 }
 
 /**
@@ -1055,92 +1065,92 @@ function markai_build_system_message(
  */
 function markai_format_allowed_links_for_model(array $allowedLinkIds, array $linksById): string
 {
-    if ($allowedLinkIds === []) {
-        return "Approved public destinations for this request: (none).\n"
-            . 'Do not invent links, URLs, email addresses, or phone numbers. '
-            . 'Never print internal trusted-link registry identifiers. '
-            . 'Clickable destinations are attached separately by the server when appropriate.';
-    }
+ if ($allowedLinkIds === []) {
+ return "Approved public destinations for this request: (none).\n"
+ . 'Do not invent links, URLs, email addresses, or phone numbers. '
+ . 'Never print internal trusted-link registry identifiers. '
+ . 'Clickable destinations are attached separately by the server when appropriate.';
+ }
 
-    $lines = [
-        'Approved public destinations for this request:',
-        'Describe these by human-readable label only. Never print internal trusted-link registry identifiers, raw URLs, email addresses, or phone numbers.',
-        'Clickable destinations are attached separately by the server.',
-    ];
+ $lines = [
+ 'Approved public destinations for this request:',
+ 'Describe these by human-readable label only. Never print internal trusted-link registry identifiers, raw URLs, email addresses, or phone numbers.',
+ 'Clickable destinations are attached separately by the server.',
+ ];
 
-    foreach ($allowedLinkIds as $linkId) {
-        if (!is_string($linkId) || !isset($linksById[$linkId])) {
-            continue;
-        }
-        $link = $linksById[$linkId];
-        if (($link['enabled'] ?? false) !== true) {
-            continue;
-        }
-        if (($link['public'] ?? false) !== true) {
-            continue;
-        }
+ foreach ($allowedLinkIds as $linkId) {
+ if (!is_string($linkId) || !isset($linksById[$linkId])) {
+ continue;
+ }
+ $link = $linksById[$linkId];
+ if (($link['enabled'] ?? false) !== true) {
+ continue;
+ }
+ if (($link['public'] ?? false) !== true) {
+ continue;
+ }
 
-        $label = trim((string) ($link['label'] ?? ''));
-        if ($label === '') {
-            continue;
-        }
+ $label = trim((string) ($link['label'] ?? ''));
+ if ($label === '') {
+ continue;
+ }
 
-        $type = trim((string) ($link['type'] ?? 'approved'));
-        $purpose = markai_humanize_link_type($type);
-        $lines[] = '- ' . $label . ' (' . $purpose . '; enabled)';
-    }
+ $type = trim((string) ($link['type'] ?? 'approved'));
+ $purpose = markai_humanize_link_type($type);
+ $lines[] = '- ' . $label . ' (' . $purpose . '; enabled)';
+ }
 
-    $lines[] = 'If the visitor asks for links, summarize the relevant labels in plain language and let the server attach clickable destinations.';
+ $lines[] = 'If the visitor asks for links, summarize the relevant labels in plain language and let the server attach clickable destinations.';
 
-    return implode("\n", $lines);
+ return implode("\n", $lines);
 }
 
 function markai_humanize_link_type(string $type): string
 {
-    $map = [
-        'portfolio-home' => 'portfolio homepage',
-        'webpage-section' => 'portfolio section',
-        'markai-route' => 'MarkAI experience',
-        'resume' => 'résumé',
-        'github-profile' => 'GitHub profile',
-        'github-repo' => 'GitHub repository',
-        'linkedin' => 'LinkedIn profile',
-        'contact-section' => 'contact section',
-        'email' => 'email',
-        'vsco' => 'photography profile',
-        'other-approved' => 'approved public destination',
-    ];
+ $map = [
+ 'portfolio-home' => 'portfolio homepage',
+ 'webpage-section' => 'portfolio section',
+ 'markai-route' => 'MarkAI experience',
+ 'resume' => 'résumé',
+ 'github-profile' => 'GitHub profile',
+ 'github-repo' => 'GitHub repository',
+ 'linkedin' => 'LinkedIn profile',
+ 'contact-section' => 'contact section',
+ 'email' => 'email',
+ 'vsco' => 'photography profile',
+ 'other-approved' => 'approved public destination',
+ ];
 
-    if (isset($map[$type])) {
-        return $map[$type];
-    }
+ if (isset($map[$type])) {
+ return $map[$type];
+ }
 
-    return str_replace('-', ' ', $type);
+ return str_replace('-', ' ', $type);
 }
 
 function markai_humanize_category_label(string $category): string
 {
-    $map = [
-        'profile' => 'profile',
-        'education' => 'education',
-        'career-direction' => 'career direction',
-        'work-style' => 'work style',
-        'work-experience' => 'work experience',
-        'leadership' => 'leadership',
-        'projects' => 'projects',
-        'project-contributions' => 'project contributions',
-        'skills' => 'skills',
-        'interests' => 'interests',
-        'testimonials' => 'testimonials',
-        'contact' => 'contact',
-        'navigation' => 'navigation',
-    ];
+ $map = [
+ 'profile' => 'profile',
+ 'education' => 'education',
+ 'career-direction' => 'career direction',
+ 'work-style' => 'work style',
+ 'work-experience' => 'work experience',
+ 'leadership' => 'leadership',
+ 'projects' => 'projects',
+ 'project-contributions' => 'project contributions',
+ 'skills' => 'skills',
+ 'interests' => 'interests',
+ 'testimonials' => 'testimonials',
+ 'contact' => 'contact',
+ 'navigation' => 'navigation',
+ ];
 
-    if (isset($map[$category])) {
-        return $map[$category];
-    }
+ if (isset($map[$category])) {
+ return $map[$category];
+ }
 
-    return str_replace('-', ' ', $category);
+ return str_replace('-', ' ', $category);
 }
 
 /**
@@ -1149,48 +1159,48 @@ function markai_humanize_category_label(string $category): string
  */
 function markai_format_factual_context(array $selectedRecords, array $allowedLinkIds): string
 {
-    $blocks = ['Approved factual context:'];
+ $blocks = ['Approved factual context:'];
 
-    foreach ($selectedRecords as $record) {
-        $category = trim((string) ($record['category'] ?? ''));
-        $title = trim((string) ($record['title'] ?? ''));
-        $publicText = trim((string) ($record['publicText'] ?? ''));
-        $shortText = trim((string) ($record['shortText'] ?? ''));
+ foreach ($selectedRecords as $record) {
+ $category = trim((string) ($record['category'] ?? ''));
+ $title = trim((string) ($record['title'] ?? ''));
+ $publicText = trim((string) ($record['publicText'] ?? ''));
+ $shortText = trim((string) ($record['shortText'] ?? ''));
 
-        $boundaries = [];
-        foreach ($record['prohibitedUses'] ?? [] as $item) {
-            if (is_string($item) && $item !== '') {
-                $boundaries[] = $item;
-            }
-        }
-        // Internal notes stay server-side; they often reference implementation detail.
+ $boundaries = [];
+ foreach ($record['prohibitedUses'] ?? [] as $item) {
+ if (is_string($item) && $item !== '') {
+ $boundaries[] = $item;
+ }
+ }
+ // Internal notes stay server-side; they often reference implementation detail.
 
-        $lines = [];
-        if ($category !== '') {
-            $lines[] = 'Category: ' . markai_humanize_category_label($category);
-        }
-        if ($title !== '') {
-            $lines[] = 'Title: ' . $title;
-        }
-        if ($publicText !== '') {
-            $lines[] = 'Public text: ' . $publicText;
-        }
-        if ($shortText !== '') {
-            $lines[] = 'Short text: ' . $shortText;
-        }
-        if (count($boundaries) > 0) {
-            $lines[] = 'Boundaries: ' . implode(' | ', $boundaries);
-        }
+ $lines = [];
+ if ($category !== '') {
+ $lines[] = 'Category: ' . markai_humanize_category_label($category);
+ }
+ if ($title !== '') {
+ $lines[] = 'Title: ' . $title;
+ }
+ if ($publicText !== '') {
+ $lines[] = 'Public text: ' . $publicText;
+ }
+ if ($shortText !== '') {
+ $lines[] = 'Short text: ' . $shortText;
+ }
+ if (count($boundaries) > 0) {
+ $lines[] = 'Boundaries: ' . implode(' | ', $boundaries);
+ }
 
-        if (count($lines) > 0) {
-            $blocks[] = implode("\n", $lines);
-        }
-    }
+ if (count($lines) > 0) {
+ $blocks[] = implode("\n", $lines);
+ }
+ }
 
-    // $allowedLinkIds remain listed once at the system-message level, not per record.
-    unset($allowedLinkIds);
+ // $allowedLinkIds remain listed once at the system-message level, not per record.
+ unset($allowedLinkIds);
 
-    return implode("\n\n", $blocks);
+ return implode("\n\n", $blocks);
 }
 
 /**
@@ -1198,24 +1208,27 @@ function markai_format_factual_context(array $selectedRecords, array $allowedLin
  */
 function markai_messages_char_count(array $messages): int
 {
-    $total = 0;
-    foreach ($messages as $message) {
-        $total += markai_strlen((string) ($message['content'] ?? ''));
-    }
+ $total = 0;
+ foreach ($messages as $message) {
+ $total += markai_strlen((string) ($message['content'] ?? ''));
+ }
 
-    return $total;
+ return $total;
 }
 
 /**
  * Compatibility for PHP versions without str_starts_with.
  */
 if (!function_exists('str_starts_with')) {
-    function str_starts_with(string $haystack, string $needle): bool
-    {
-        if ($needle === '') {
-            return true;
-        }
+ function str_starts_with(string $haystack, string $needle): bool
+ {
+ if ($needle === '') {
+ return true;
+ }
 
-        return strncmp($haystack, $needle, strlen($needle)) === 0;
-    }
+ return strncmp($haystack, $needle, strlen($needle)) === 0;
+ }
 }
+
+
+

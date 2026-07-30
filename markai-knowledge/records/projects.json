@@ -6,7 +6,7 @@
       "category": "projects",
       "recordType": "projects-inventory",
       "title": "Public project inventory",
-      "publicText": "Mark’s approved public software projects, grouped for inventory answers: Portfolio & AI — Personal Portfolio Platform and MarkAI (solo personal work). Capstones — Abacus and TA-Bot / MAAT (team senior-design / senior-capstone projects). Systems — Operating Systems C Projects (coursework documentation; private or shared course repositories stay hidden). Robotics & Software Design — Finch Robot Web Controller (team coursework). Games — Space SHMUP, Apple Picker, and Mission Demolition. Data — Sleep Efficiency Analysis and Marquette Basketball Predictor (team or coursework data projects). Prefer this grouped inventory for broad every-project or project-list questions. Do not claim every project was solo. Do not invent projects. Do not expose private or shared XINU repository names or URLs.",
+      "publicText": "Mark’s approved public software projects, grouped for inventory answers: Portfolio & AI - Personal Portfolio Platform and MarkAI (solo personal work). Capstones - Abacus and TA-Bot / MAAT (team senior-design / senior-capstone projects). Systems - Operating Systems C Projects (coursework documentation; private or shared course repositories stay hidden). Robotics & Software Design - Finch Robot Web Controller (team coursework). Games - Space SHMUP, Apple Picker, and Mission Demolition. Data - Sleep Efficiency Analysis and Marquette Basketball Predictor (team or coursework data projects). Prefer this grouped inventory for broad every-project or project-list questions. Do not claim every project was solo. Do not invent projects. Do not expose private or shared XINU repository names or URLs.",
       "shortText": "Approved public projects: Portfolio Platform; MarkAI; Abacus; TA-Bot/MAAT; OS C Projects; Finch; Space SHMUP; Apple Picker; Mission Demolition; Sleep Efficiency Analysis; Marquette Basketball Predictor.",
       "aliases": [
         "project list",
@@ -305,8 +305,8 @@
       "category": "projects",
       "recordType": "project",
       "title": "Abacus Senior Design Capstone",
-      "publicText": "Abacus is a team senior design web platform used for the Wisconsin-Dairyland Programming Competition. Mark’s verified work centered on the Eagle Division full-stack workflow, including messaging APIs, role-aware student and staff chat, inbox behavior, instructions access, routing, persistence, and related UI debugging. The April 15, 2026 live competition used Abacus to support approximately 200–300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag. Separate contribution and deep-dive records document the exact scope of his work.",
-      "shortText": "Team Abacus senior design capstone for Wisconsin-Dairyland; Mark contributed Eagle Division messaging, chat, inbox, routing, and UI debugging. The April 15, 2026 live competition used Abacus to support approximately 200–300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag.",
+      "publicText": "Abacus is a team senior design web platform used for the Wisconsin-Dairyland Programming Competition. Mark’s verified work centered on the Eagle Division full-stack workflow, including messaging APIs, role-aware student and staff chat, inbox behavior, instructions access, routing, persistence, and related UI debugging. The April 15, 2026 live competition used Abacus to support approximately 200 - 300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag. Separate contribution and deep-dive records document the exact scope of his work.",
+      "shortText": "Team Abacus senior design capstone for Wisconsin-Dairyland; Mark contributed Eagle Division messaging, chat, inbox, routing, and UI debugging. The April 15, 2026 live competition used Abacus to support approximately 200 - 300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag.",
       "aliases": [
         "Abacus",
         "Eagle Division",
@@ -410,7 +410,7 @@
         "sole author of Abacus"
       ],
       "reviewedByMark": true,
-      "notes": "Approved-summary project record. Deep-dive records hold expanded platform, contribution, and event-scale detail. Use the approved approximately 200–300 high-school students, teachers, judges, and administrators wording only for the April 15, 2026 live competition. Canonical commit URLs not registered.",
+      "notes": "Approved-summary project record. Deep-dive records hold expanded platform, contribution, and event-scale detail. Use the approved approximately 200 - 300 high-school students, teachers, judges, and administrators wording only for the April 15, 2026 live competition. Canonical commit URLs not registered.",
       "lastReviewed": "2026-07-29",
       "relatedRecordIds": [
         "project-detail-abacus-platform-purpose",
