@@ -717,7 +717,16 @@ function AboutSection({
                         </p>
                         <p className="about__closing">
                           You can see more of my travel and lifestyle photography
-                          in Travel.
+                          in{" "}
+                          <button
+                            type="button"
+                            className="about__inline-link"
+                            onClick={onGoToTravel}
+                            aria-label="Open Travel photography"
+                          >
+                            Travel
+                          </button>
+                          .
                         </p>
                         <p className="about__closing">
                           You can also explore my mindset and goals through{" "}
