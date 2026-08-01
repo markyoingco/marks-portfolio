@@ -1,8 +1,12 @@
 # Mark Yoingco Portfolio Platform
 
-A multi-mode personal portfolio built with React, Vite, JavaScript, CSS, PHP, and MySQL.
+A multi-mode personal portfolio built with React, Vite, JavaScript, CSS, PHP, MySQL, and Cloudflare Workers AI.
 
-The platform combines a cinematic webpage, an interactive command-line terminal portfolio, and a MarkAI portfolio assistant currently in development.
+The platform combines three connected experiences:
+
+- A cinematic responsive Webpage
+- An interactive command-line Terminal
+- MarkAI, a conversational portfolio assistant
 
 **Live site:** https://markyoingco.com
 
@@ -20,13 +24,27 @@ It presents my:
 - Testimonials
 - Travel photography
 - Leadership and involvement
+- Career direction
 - Contact information
 
 ## Portfolio Modes
 
 ### Webpage
 
-A cinematic visual portfolio with responsive navigation, project cards, photography, testimonials, contact workflows, and dark/light themes.
+A cinematic visual portfolio with responsive navigation, project cards, About panels, testimonials, travel photography, contact workflows, resume access, and dark/light themes.
+
+The Webpage includes:
+
+- Home
+- About
+- Portfolio
+- Testimonials
+- Travel
+- Contact
+- Resume viewing and downloading
+- Responsive desktop, tablet, and mobile layouts
+- Dark and light theme switching
+- Shared project, testimonial, and travel data
 
 ### Terminal
 
@@ -37,55 +55,103 @@ Supported functionality includes:
 - `cd` folder navigation
 - `ls` file and folder listings
 - `cat` readable text files
-- `open` webpage, GitHub, LinkedIn, and external links
+- `open` portfolio pages, GitHub repositories, LinkedIn, VSCO, and other approved public links
 - Resume PDF opening and downloading
 - Nested project and testimonial folders
 - Context-aware Help panels
 - Tab autocomplete
 - Command history
 - Editable command input
-- Terminal-based contact submissions
+- Public-link aliases
+- Terminal-based contact submissions through `message.form`
 - Responsive desktop and mobile layouts
+
+The Terminal also includes a personal archive with Mark's original writing about his mindset, goals, interests, growth, and life outside technology.
 
 ### MarkAI
 
-A portfolio assistant currently in development.
+MarkAI is a conversational portfolio assistant focused on Mark's intentionally public professional information.
 
-The planned experience will provide a conversational way to explore my resume, projects, experience, technical background, and goals.
+Visitors can ask about:
 
-MarkAI is not yet connected to a completed AI backend.
+- Background and education
+- Technical skills
+- Software projects
+- Verified project contributions
+- Work experience
+- Leadership
+- Testimonials
+- Career goals
+- Interests
+- Portfolio navigation
+- Public project and social links
+
+MarkAI is built with:
+
+- React/Vite chat interface
+- Private PHP backend
+- Cloudflare Workers AI
+- Approved structured knowledge records
+- Intent classification
+- Typo-tolerant natural-language routing
+- Contextual follow-up handling
+- Provider-response validation
+- Deterministic fallback answers
+- Safe public-link resolution
+- Anonymous usage limits
+- Privacy safeguards
+- Fixture and regression testing
+
+MarkAI does not provide private family, financial, relationship, medical, journal, or other sensitive personal information.
 
 ## Built With
+
+### Languages
+
+- JavaScript
+- PHP
+- SQL
+- HTML
+- CSS
 
 ### Frontend
 
 - React
 - Vite
-- JavaScript
-- CSS
+- Responsive CSS
+- Shared content modules
 
-### Backend
+### Backend and Data
 
 - PHP
 - MySQL
 - JSON API requests
+- DreamHost shared hosting
 
-### Tools and Deployment
+### AI Integration
+
+- Cloudflare Workers AI
+- Intent classification
+- Natural-language routing
+- Contextual follow-up handling
+- Provider-response validation
+- Deterministic fallbacks
+- Approved knowledge export
+
+### Tools and Testing
 
 - Git
 - GitHub
-- DreamHost
+- Docker and Docker Compose
+- Linux/WSL
+- DBeaver
 - Figma
-- Responsive and manual testing
-
-## Webpage Sections
-
-- Home
-- About
-- Portfolio
-- Testimonials
-- Travel
-- Contact
+- PHP linting
+- API integration testing
+- Fixture and regression testing
+- Vite build validation
+- Responsive testing
+- Manual debugging
 
 ## Portfolio Categories
 
@@ -105,16 +171,24 @@ MarkAI is not yet connected to a completed AI backend.
 - Saved theme preference
 - Responsive desktop, tablet, and mobile layouts
 - Multi-mode navigation
-- Interactive terminal portfolio
-- Mobile-safe terminal input and navigation
+- Interactive Terminal portfolio
+- Conversational MarkAI experience
+- Mobile-safe Terminal input and navigation
 - Shared project, testimonial, and travel data
 - Resume PDF viewing and downloading
 - Project GitHub and webpage links
-- Nested terminal project folders
+- Nested Terminal project folders
 - Testimonial person folders
 - Travel photography and VSCO integration
 - PHP/MySQL contact form
 - Terminal `message.form` contact workflow
+- Intent classification and typo-tolerant routing
+- Context-aware MarkAI follow-ups
+- Provider-response validation
+- Deterministic fallback Intent classification and typo-tolerant routing
+- Context-aware answers
+- Public knowledge and privacy safeguards
+- Anonymous usage controls
 - DreamHost deployment with a custom domain
 
 ## Terminal Structure
@@ -123,6 +197,11 @@ MarkAI is not yet connected to a completed AI backend.
 terminal
 ├── resume
 ├── personal
+│   ├── about.txt
+│   ├── mindset.txt
+│   ├── goals.txt
+│   ├── beyond-work.txt
+│   └── vsco.link
 ├── portfolio
 ├── testimonials
 ├── travel
