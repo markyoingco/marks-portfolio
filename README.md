@@ -185,8 +185,7 @@ MarkAI does not provide private family, financial, relationship, medical, journa
 - Intent classification and typo-tolerant routing
 - Context-aware MarkAI follow-ups
 - Provider-response validation
-- Deterministic fallback Intent classification and typo-tolerant routing
-- Context-aware answers
+- Deterministic fallback answers
 - Public knowledge and privacy safeguards
 - Anonymous usage controls
 - DreamHost deployment with a custom domain
@@ -206,3 +205,55 @@ terminal
 ├── testimonials
 ├── travel
 └── contact
+```
+
+## MarkAI Knowledge and Privacy
+
+MarkAI uses approved public records covering:
+
+- Profile and education
+- Skills
+- Projects
+- Verified contributions
+- Work and leadership
+- Testimonials
+- Career direction
+- Public interests
+- Approved public links
+
+The assistant is designed to avoid exposing:
+
+- Private contact details beyond approved public links
+- Family conflict or financial hardship
+- Relationship information
+- Medical or mental-health information
+- Private journal content
+- Precise current residence
+- Private repositories
+- Credentials or server configuration
+
+## Deployment Structure
+
+The public website is deployed to DreamHost and includes:
+
+- Compiled React/Vite assets
+- Public images and documents
+- Public PHP contact endpoints
+
+The private MarkAI server is stored outside the public web root and includes:
+
+- PHP runtime services
+- Provider integration
+- Usage controls
+- Approved generated knowledge
+- Private local configuration files
+
+Private configuration, credentials, runtime state, source files, and development dependencies are excluded from public deployment packages.
+
+## Repository Notes
+
+- Webpage, Terminal, and MarkAI are maintained in one repository.
+- MarkAI is not a separate application or repository.
+- The contact form and Terminal contact workflow use the same PHP/MySQL backend.
+- Public MarkAI answers are limited to approved professional and intentionally public information.
+- Production releases are built only after validation and review.
