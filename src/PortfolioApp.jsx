@@ -422,7 +422,7 @@ function AboutSection({
   onPrev,
   onGoTo,
   onGoToTravel,
-  onEnterTerminalProfile,
+  onEnterTerminalPersonal,
 }) {
   const viewportRef = useRef(null);
   const slideTimerRef = useRef(null);
@@ -693,45 +693,41 @@ function AboutSection({
                       <h2 className="about__heading">Beyond Work</h2>
                       <div className="about__copy">
                         <p className="about__body">
-                          Outside of technology, bodybuilding is one of my
-                          strongest interests. I started lifting because I wanted
-                          to change, and over time it taught me consistency,
-                          patience, attention to detail, and the value of
-                          progress earned over time.
+                          Outside of technology, fitness has always been one of my
+                          biggest passions. I started training when I wanted
+                          change, and it taught me that consistency will always
+                          matter more than intensity.
                         </p>
                         <p className="about__body">
-                          I see bodybuilding as both discipline and art.
-                          Structure, symmetry, controlled movement, and quality
-                          repetitions matter, and that same attention to detail
-                          influences how I approach design and technical work.
+                          Bodybuilding is both discipline and art. Structure,
+                          symmetry, control, patience, and attention to detail all
+                          matter, and that same mindset shapes how I approach my
+                          work and personal growth.
                         </p>
                         <p className="about__body">
-                          I also enjoy hiking, reading, music, travel, and
-                          photography. Photography gives me a way to document
-                          cities, landscapes, and meaningful moments through
-                          clean composition and a darker cinematic style.
+                          Outside the gym, I stay inspired through hiking, reading,
+                          music, travel, and experiences that give me a new
+                          perspective on life.
+                        </p>
+                        <p className="about__body">
+                          Photography is how I keep the story with me. Cities,
+                          views, trips, and small moments all give me something
+                          worth capturing. Every picture holds a memory, a
+                          feeling, or a place that still means something.
                         </p>
                         <p className="about__closing">
-                          View more of my travel and lifestyle photography in{" "}
+                          You can see more of my travel and lifestyle photography
+                          in Travel.
+                        </p>
+                        <p className="about__closing">
+                          You can also explore my mindset and goals through{" "}
                           <button
                             type="button"
                             className="about__inline-link"
-                            onClick={onGoToTravel}
-                            aria-label="Open Travel photography"
+                            onClick={() => onEnterTerminalPersonal?.()}
+                            aria-label="Open Terminal to explore Personal Archive"
                           >
-                            Travel
-                          </button>
-                          .
-                        </p>
-                        <p className="about__closing">
-                          For a deeper look at my background and work, open{" "}
-                          <button
-                            type="button"
-                            className="about__inline-link"
-                            onClick={() => onEnterTerminalProfile?.()}
-                            aria-label="Open Terminal to explore my professional profile"
-                          >
-                            Profile in Terminal
+                            Personal Archive in Terminal
                           </button>
                           .
                         </p>
@@ -2059,7 +2055,7 @@ function PortfolioApp({
   onWebpageNavigate,
   onReturnToMainMenu,
   onEnterTerminal,
-  onEnterTerminalProfile,
+  onEnterTerminalPersonal,
   onEnterMarkAi,
 }) {
   const {
@@ -2278,7 +2274,7 @@ function PortfolioApp({
             onPrev={prevAboutPanel}
             onGoTo={goToAboutPanel}
             onGoToTravel={() => goToScreen("travel")}
-            onEnterTerminalProfile={onEnterTerminalProfile}
+            onEnterTerminalPersonal={onEnterTerminalPersonal}
           />
         )}
 

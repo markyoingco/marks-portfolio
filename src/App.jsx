@@ -283,9 +283,9 @@ export default function App() {
     navigateTo((current) => createFreshTerminalEntry(current))
   }, [navigateTo])
 
-  const enterTerminalProfile = useCallback(() => {
+  const enterTerminalPersonal = useCallback(() => {
     navigateTo((current) =>
-      createFreshTerminalEntry(current, { enterRootFolder: 'profile' }),
+      createFreshTerminalEntry(current, { enterRootFolder: 'personal' }),
     )
   }, [navigateTo])
 
@@ -315,7 +315,7 @@ export default function App() {
             onWebpageNavigate={navigateWebpage}
             onReturnToMainMenu={returnToMainMenu}
             onEnterTerminal={enterTerminalFresh}
-            onEnterTerminalProfile={enterTerminalProfile}
+            onEnterTerminalPersonal={enterTerminalPersonal}
             onEnterMarkAi={enterMarkAi}
           />
         </div>

@@ -5,7 +5,7 @@
  */
 
 import { RESUME_PDF_PATH } from './resumeDocument'
-import { VSCO_GALLERY_URL } from './terminalProfileFileOutput'
+import { VSCO_GALLERY_URL } from './terminalPersonalFileOutput'
 
 /** @typedef {'openUrl' | 'openResumePdf' | 'openTravelWebpage' | 'openTestimonialsWebpage' | 'openWebpageScreen' | 'openMarkAi'} PublicOpenActionType */
 

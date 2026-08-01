@@ -23,7 +23,7 @@ import {
   PORTFOLIO_ROOT_UNKNOWN_COMMAND_HINT,
   getTerminalPortfolioLsLines,
   isContactFolder,
-  isProfileFolder,
+  isPersonalFolder,
   isResumeFolder,
   isTestimonialsFolder,
   isTestimonialPersonFolder,
@@ -31,14 +31,14 @@ import {
   isTerminalFolderSlug,
   MARKAI_CD_TARGETS,
   parseContactFileCommand,
-  parseProfileFileCommand,
+  parsePersonalFileCommand,
   parseResumeFileCommand,
   parseTestimonialsRootCommand,
   parseTestimonialPersonCommand,
   parseTestimonialsDeepOpenCommand,
   parseTravelFileCommand,
   CONTACT_UNKNOWN_COMMAND_HINT,
-  PROFILE_UNKNOWN_COMMAND_HINT,
+  PERSONAL_UNKNOWN_COMMAND_HINT,
   TESTIMONIALS_ROOT_UNKNOWN_COMMAND_HINT,
   TRAVEL_UNKNOWN_COMMAND_HINT,
   RESUME_PDF_FILENAME,
@@ -383,15 +383,15 @@ function parseCommand(rawInput, { mode, portfolioPath }) {
     }
   }
 
-  if (mode === MODES.TERMINAL_PORTFOLIO && isProfileFolder(portfolioPath)) {
-    const profileResult = parseProfileFileCommand(lower)
-    if (profileResult) {
-      return profileResult
+  if (mode === MODES.TERMINAL_PORTFOLIO && isPersonalFolder(portfolioPath)) {
+    const personalResult = parsePersonalFileCommand(lower)
+    if (personalResult) {
+      return personalResult
     }
 
     return {
       type: 'output',
-      lines: [PROFILE_UNKNOWN_COMMAND_HINT],
+      lines: [PERSONAL_UNKNOWN_COMMAND_HINT],
     }
   }
 
@@ -472,7 +472,7 @@ const MODE_PICKER_OPTIONS = [
     id: 'terminal',
     title: 'Terminal',
     description:
-      'Deeper command-line exploration of my professional profile, projects, skills, and technical experience.',
+      'Deeper command-line exploration with personal files, mindset, goals, and detailed project context.',
   },
 ]
 
