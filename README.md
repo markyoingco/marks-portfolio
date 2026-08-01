@@ -2,7 +2,7 @@
 
 A multi-mode personal portfolio built with React, Vite, JavaScript, CSS, PHP, MySQL, and Cloudflare Workers AI.
 
-The platform combines three connected experiences:
+This repository contains three connected experiences:
 
 - A cinematic responsive Webpage
 - An interactive command-line Terminal
@@ -55,7 +55,7 @@ Supported functionality includes:
 - `cd` folder navigation
 - `ls` file and folder listings
 - `cat` readable text files
-- `open` portfolio pages, GitHub repositories, LinkedIn, VSCO, and other approved public links
+- `open` portfolio pages, GitHub repositories, LinkedIn, VSCO, and approved public links
 - Resume PDF opening and downloading
 - Nested project and testimonial folders
 - Context-aware Help panels
@@ -102,7 +102,7 @@ MarkAI is built with:
 - Privacy safeguards
 - Fixture and regression testing
 
-MarkAI does not provide private family, financial, relationship, medical, journal, or other sensitive personal information.
+MarkAI is limited to approved public professional and portfolio information and does not expose sensitive private information.
 
 ## Built With
 
@@ -188,7 +188,7 @@ MarkAI does not provide private family, financial, relationship, medical, journa
 - Deterministic fallback answers
 - Public knowledge and privacy safeguards
 - Anonymous usage controls
-- DreamHost deployment with a custom domain
+- DreamHost hosting with a custom domain
 
 ## Terminal Structure
 
@@ -221,20 +221,17 @@ MarkAI uses approved public records covering:
 - Public interests
 - Approved public links
 
-The assistant is designed to avoid exposing:
+The assistant is designed to protect:
 
+- Sensitive private information
 - Private contact details beyond approved public links
-- Family conflict or financial hardship
-- Relationship information
-- Medical or mental-health information
-- Private journal content
-- Precise current residence
 - Private repositories
-- Credentials or server configuration
+- Credentials and server configuration
+- Precise current-location information
 
 ## Deployment Structure
 
-The public website is deployed to DreamHost and includes:
+The public website is hosted on DreamHost and includes:
 
 - Compiled React/Vite assets
 - Public images and documents
