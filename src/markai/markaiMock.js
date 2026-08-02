@@ -169,7 +169,27 @@ const ANSWERS = {
   locationPrivacy:
     "MarkAI does not provide precise or current location information. Mark’s approved public background states that he is from Chicago.",
   testimonials:
-    "Yes. Mark’s portfolio includes public testimonials from people who have worked with, taught, or known him. Zack Kohlwey, Mark’s former supervisor at Marquette University, highlights his dedication, work ethic, and leadership by example. Farzeen Harunani, a Computer Science professor at Marquette, notes his initiative, composure, and dedication. Jorge Torres, a former coworker, emphasizes his thoroughness, ownership, and reliability. Full attributed quotes are in the portfolio Testimonials section.",
+    "Mark’s portfolio Testimonials section includes attributed recommendations from professors, supervisors, coworkers, and collaborators.\n\nAcross those testimonials, recurring themes include initiative, composure under pressure, thoroughness, ownership, reliability, integrity, ambition, leadership by example, and strong work ethic.\n\nRepresentative perspectives, in portfolio order, include:\n- Farzeen Harunani — Professor of Computer Science, Marquette University — notes Mark’s initiative, composure, dedication, and eagerness to learn.\n- Jorge Torres — Staff Validation Engineer, Performance Validation — emphasizes Mark’s thoroughness, curiosity, reliability, and ownership.\n- Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University — highlights Mark’s dedication, work ethic, integrity, and leadership by example.\n\nThese are summaries of attributed opinions, not direct quotations. Full testimonials are available in the portfolio Testimonials section.",
+  testimonialsList:
+    "Here are the people currently featured in Mark’s Testimonials section:\n\n- Farzeen Harunani — Professor of Computer Science, Marquette University\n  Professional connection: Testimonial contributor.\n\n- Jorge Torres — Staff Validation Engineer, Performance Validation\n  Professional connection: Former Marquette University coworker and fellow student manager.\n\n- Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University\n  Professional connection: Mark’s supervisor at Marquette University, as stated in his attributed testimonial.\n\n- Nathan Garcia — IT Supply Chain Intern, Zebra Technologies\n  Professional connection: Longtime friend and former Panda Express coworker.\n\n- Jarenz Masiclat — Investment Associate, Northern Trust\n  Professional connection: Longtime friend, fraternity mentor, and Filipino Student Organization mentor.\n\n- Elizabeth Anderson — Data Analyst Intern, ComEd\n  Professional connection: Testimonial contributor.\n\n- Maxwell Zeisler — Audit Intern, Advisent, LLC\n  Professional connection: Testimonial contributor.\n\n- Andrew Wochner — Cardiac ICU Registered Nurse, Ascension Columbia St. Mary's Hospital\n  Professional connection: College friend from Marquette University.\n\nFull attributed testimonials are available in the portfolio’s Testimonials section.",
+  testimonialProfessors:
+    "From the published Testimonials section, the professor testimonial currently featured is:\n\n- Farzeen Harunani — Professor of Computer Science, Marquette University\n  Professional connection: Testimonial contributor.\n\nFull attributed testimonials are available in the portfolio’s Testimonials section.",
+  testimonialCoworkers:
+    "From the published Testimonials section, contributors with an explicit coworker connection are:\n\n- Jorge Torres — Staff Validation Engineer, Performance Validation\n  Professional connection: Former Marquette University coworker and fellow student manager.\n\n- Nathan Garcia — IT Supply Chain Intern, Zebra Technologies\n  Professional connection: Longtime friend and former Panda Express coworker.\n\nFull attributed testimonials are available in the portfolio’s Testimonials section.",
+  testimonialZack:
+    "Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University.\n\nSummary of his attributed testimonial: Zack writes that he supervised Mark for about two and a half years at Marquette University, hired Mark as a University Information Specialist, later promoted him to Student Manager, and emphasizes Mark’s dedication, work ethic, integrity, ambition, relationship-building, and leadership by example. This is a summary, not a direct quotation.",
+  testimonialZackQuote:
+    "Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University — wrote:\n\nI have known Mark for two and a half years, and I was his supervisor at Marquette University. I have had the opportunity to observe Mark’s dedication, work ethic, and values driven decision making firsthand. He respects all individuals and has the ability to form true relationships and friendships with a wide range of people and thinks of the staff as a team.\n\nI hired Mark as a University Information Specialist at the student union’s Information Desk. Not even a year into working, I promoted Mark to Student Manager. His integrity and ambition stood out to me, and that is what ultimately led me to promote him. He understood how his choices and decisions at the desk made an impact on others as this role was the initial interaction that someone had with the university as they walked into the building or called. Mark definitely embraced challenges as learning moments for personal growth, and he exceled at being a role model and leader by example.",
+  testimonialFarzeen:
+    "Farzeen Harunani — Professor of Computer Science, Marquette University.\n\nSummary of her attributed testimonial: Farzeen describes Mark’s initiative when seeking research and career advice, composure under pressure, dedication, and eagerness to learn. Her published title is Professor of Computer Science, Marquette University, and her attributed testimonial states that Mark took three classes with her. This is a summary, not a direct quotation.",
+  testimonialFarzeenQuote:
+    "Farzeen Harunani — Professor of Computer Science, Marquette University — wrote:\n\nThe first time I met Mark Yoingco one-on-one was when he came into my office seeking research and career advice. It was the second week of his senior year, and he was enrolled in the capstone class with me. He wanted to know which year-long project would be the most beneficial to him, longterm. This, in itself, showed a rare level of initiative.\n\nHe took three classes with me, and impressed me with his unflappable demeanor and dedication to getting the job done. No matter how tight the deadlines might be, Mark does not ever let on if he is stressed. He is eager to learn, to improve, and to commit to every endeavor with a smile.",
+  testimonialJorge:
+    "Jorge Torres — Staff Validation Engineer, Performance Validation.\n\nCanonical relationship text from the portfolio: Former Marquette University coworker and fellow student manager.\n\nSummary of his attributed testimonial: Jorge emphasizes Mark’s thoroughness, curiosity, reliability, ownership, and work ethic. This is a summary, not a direct quotation.",
+  testimonialJorgeQuote:
+    "Jorge Torres — Staff Validation Engineer, Performance Validation — wrote:\n\nI've known Mark since my junior year of college, and in that time I've come to know him as someone who takes the time to fully understand every task before diving in, no matter how big or small. He never settles for surface-level work - whether he's reviewing code and software comments or testing and documenting a project's performance, he holds himself to a high standard of accuracy and thoroughness.\n\nMark is one of the hardest-working individuals I've had the pleasure of working with. He approaches every project with genuine curiosity, taking the time to ask the right questions and dig into the \"why\" behind a problem rather than just executing tasks on the surface. That mindset consistently translates into higher-quality, more reliable work.\n\nI had the opportunity to work alongside Mark as a Student Manager, which gave me a front-row seat to his work ethic and attention to detail. He was consistently reliable, communicated clearly about progress and roadblocks, and took genuine ownership of the quality of his output. Watching him grow and take on more responsibility over that time was genuinely impressive.\n\nProfessionally, Mark is an outstanding individual who would be an asset to any team he's a part of, thanks to his incredibly diverse skill set and unwavering dedication to doing things right.",
+  testimonialsAllQuotes:
+    "Full attributed quotations are available speaker-by-speaker. Ask for a person by name for a word-for-word attributed quotation, or open the portfolio’s Testimonials section for every published testimonial.",
   projectsInventory:
     "Mark’s approved public software projects include:\n\n- Portfolio & AI: Personal Portfolio Platform; MarkAI\n- Capstones: Abacus; TA-Bot / MAAT\n- Systems: Operating Systems C Projects\n- Robotics & Software Design: Finch Robot Web Controller\n- Games: Space SHMUP; Apple Picker; Mission Demolition\n- Data: Sleep Efficiency Analysis; Marquette Basketball Predictor\n\nThe portfolio platform and MarkAI are solo personal work. Abacus, MAAT, Finch, and the data projects were team or coursework collaborations.",
   githubOnly:
@@ -198,9 +218,208 @@ function historyContext(history) {
     .join(" ");
 }
 
+function historySuggestsTestimonials(history) {
+  const context = historyContext(history);
+  if (!context) return false;
+  return includesAny(context, [
+    "testimonial",
+    "testimonials",
+    "recommendation",
+    "recommendations",
+    "reference",
+    "references",
+    "farzeen harunani",
+    "jorge torres",
+    "zack kohlwey",
+    "alumni memorial union",
+    "professor of computer science",
+    "staff validation engineer",
+    "testimonials section",
+    "attributed",
+  ]);
+}
+
+function isTestimonialFollowupContext(text, history) {
+  if (!historySuggestsTestimonials(history)) return false;
+  const normalized = text.trim().replace(/[?.!]+$/g, "");
+  return (
+    includesAny(text, [
+      "whole list",
+      "list of names",
+      "all names",
+      "who else",
+      "their relationship",
+      "relationship with mark",
+      "how do they know",
+      "how does he know",
+      "how does she know",
+      "full quotes",
+      "all full quotes",
+      "which one",
+      "which ones",
+      "professors",
+      "coworkers",
+      "supervisor",
+      "names",
+    ]) ||
+    [
+      "whole list",
+      "all names",
+      "who else",
+      "names",
+      "list",
+      "relationships",
+      "relationship",
+      "full quotes",
+      "all full quotes",
+      "professors",
+      "coworkers",
+      "supervisor",
+    ].includes(normalized)
+  );
+}
+
+function resolveTestimonialsAnswer(text, history = []) {
+  const wantsQuote = includesAny(text, [
+    "full quote",
+    "exact quote",
+    "word for word",
+    "direct quote",
+    "full testimonial",
+    "full quotes",
+    "all full quotes",
+  ]);
+  let answer = ANSWERS.testimonials;
+  let category = "testimonials";
+  const ctx = historyContext(history);
+
+  const personZack =
+    includesAny(text, [
+      "zack",
+      "kohlwey",
+      "supervisor testimonial",
+      "who supervised",
+      "who promoted",
+      "how does zack know",
+      "came from his supervisor",
+      "from his supervisor",
+      "which one was his supervisor",
+    ]) ||
+    (wantsQuote &&
+      (ctx.includes("zack") ||
+        ctx.includes("kohlwey") ||
+        ctx.includes("alumni memorial")));
+  const personFarzeen =
+    includesAny(text, [
+      "farzeen",
+      "harunani",
+      "professor testimonial",
+      "was farzeen",
+      "how does farzeen know",
+    ]) ||
+    (wantsQuote &&
+      (ctx.includes("farzeen") ||
+        ctx.includes("harunani") ||
+        ctx.includes("professor of computer science")));
+  const personJorge =
+    includesAny(text, ["jorge", "torres", "how does jorge know"]) ||
+    (wantsQuote &&
+      (ctx.includes("jorge") ||
+        ctx.includes("torres") ||
+        ctx.includes("performance validation")));
+
+  const wantsList = includesAny(text, [
+    "whole list",
+    "list of names",
+    "all names",
+    "who gave",
+    "every person",
+    "every name",
+    "complete list",
+    "full list",
+    "relationship with mark",
+    "relationship to mark",
+    "their relationship",
+    "how do they know",
+    "which people were",
+    "each person’s relationship",
+    "each person's relationship",
+    "each persons relationship",
+  ]);
+  const wantsProfessors =
+    includesAny(text, [
+      "from professors",
+      "came from professors",
+      "which ones were professors",
+      "which testimonials came from professors",
+    ]) &&
+    !includesAny(text, ["coworkers", "supervisors", "collaborators"]);
+  const wantsCoworkers =
+    includesAny(text, [
+      "from coworkers",
+      "came from coworkers",
+      "which ones were coworkers",
+      "which testimonials came from coworkers",
+    ]) &&
+    !includesAny(text, ["professors", "supervisors", "collaborators"]);
+  const wantsAllQuotes = includesAny(text, ["all full quotes", "all quotes"]);
+
+  if (wantsAllQuotes) {
+    category = "testimonialsList";
+    answer =
+      ANSWERS.testimonialsAllQuotes ||
+      "Full attributed quotations are available in the portfolio’s Testimonials section. Ask for a speaker by name for a word-for-word attributed quotation.";
+  } else if (personZack && !wantsList) {
+    category = "testimonialZack";
+    answer = wantsQuote ? ANSWERS.testimonialZackQuote : ANSWERS.testimonialZack;
+  } else if (personFarzeen && !wantsList) {
+    category = "testimonialFarzeen";
+    answer = wantsQuote
+      ? ANSWERS.testimonialFarzeenQuote
+      : ANSWERS.testimonialFarzeen;
+  } else if (personJorge && !wantsList) {
+    category = "testimonialJorge";
+    answer = wantsQuote
+      ? ANSWERS.testimonialJorgeQuote
+      : ANSWERS.testimonialJorge;
+  } else if (wantsProfessors) {
+    category = "testimonialProfessors";
+    answer = ANSWERS.testimonialProfessors;
+  } else if (wantsCoworkers) {
+    category = "testimonialCoworkers";
+    answer = ANSWERS.testimonialCoworkers;
+  } else if (
+    wantsList ||
+    (isTestimonialFollowupContext(text, history) &&
+      includesAny(text, ["list", "names", "relationship", "who else", "how do they know"]))
+  ) {
+    category = "testimonialsList";
+    answer = ANSWERS.testimonialsList;
+  } else if (includesAny(text, ["strongest testimonial"])) {
+    category = "testimonialZack";
+    answer =
+      "MarkAI does not rank testimonials. A commonly requested professional recommendation is from Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University. " +
+      ANSWERS.testimonialZack;
+  } else if (wantsQuote) {
+    answer =
+      "MarkAI can share an exact attributed quotation when you name the speaker, for example “Zack’s full quote?” or “Farzeen full quote?”. Full testimonials are also available in the portfolio Testimonials section.";
+  }
+
+  return {
+    category,
+    mode: "recruiter",
+    answer,
+    answerStatus: "answered",
+  };
+}
+
 function resolveFollowupFromHistory(text, history) {
   const topicFollowUp = resolveTopicFollowup(text, history, ANSWERS);
   if (topicFollowUp) return topicFollowUp;
+
+  if (isTestimonialFollowupContext(text, history)) {
+    return resolveTestimonialsAnswer(text, history);
+  }
 
   const normalized = text.trim().replace(/[?.!]+$/g, "");
   const isRepoFollowUp =
@@ -319,6 +538,9 @@ function resolveFollowupFromHistory(text, history) {
 
 function classifyQuestion(rawQuestion, history = []) {
   let text = applyIntentTypos(normalizeIntentText(rawQuestion));
+  text = text
+    .replaceAll("there relationship", "their relationship")
+    .replaceAll("there relations", "their relations");
 
   if (
     includesAny(text, [
@@ -329,12 +551,32 @@ function classifyQuestion(rawQuestion, history = []) {
       "credential",
       "private repository",
       "private repo",
-      "relationship",
       "girlfriend",
       "boyfriend",
       "breakup",
       "romantic",
+      "romantic relationship",
+      "romantic relationships",
       "dating",
+      "dating relationship",
+      "relationship status",
+      "relationship history",
+      "private relationship",
+      "private relationships",
+      "personal relationship",
+      "personal relationships",
+      "mark’s relationships",
+      "mark's relationships",
+      "marks relationships",
+      "his relationships",
+      "who is mark dating",
+      "who has mark been involved",
+      "been involved with",
+      "who is mark involved",
+      "tell me about mark’s romantic",
+      "tell me about mark's romantic",
+      "tell me about private family relationships",
+      "private family relationships",
       "lonely",
       "loneliness",
       "sadness",
@@ -736,9 +978,11 @@ function classifyQuestion(rawQuestion, history = []) {
     includesAny(text, [
       "testimonial",
       "testimonials",
+      "testiomonials",
       "reviews",
       "recommendations",
       "recommendation",
+      "references",
       "what people say",
       "people say about",
       "others say",
@@ -751,18 +995,57 @@ function classifyQuestion(rawQuestion, history = []) {
       "recommended mark",
       "who has recommended",
       "who recommended",
+      "who recommends",
       "coworkers say",
+      "professors and coworkers",
+      "professors say",
       "teammates say",
       "teammates or coworkers",
       "work ethic",
-    ])
+      "zack",
+      "farzeen",
+      "jorge",
+      "full quote",
+      "exact quote",
+      "strongest testimonial",
+      "supervisor testimonial",
+      "professor testimonial",
+      "more testimonials",
+      "whole list",
+      "list of names",
+      "all names",
+      "who gave mark",
+      "who gave",
+      "who else",
+      "relationship with mark",
+      "relationship to mark",
+      "their relationship",
+      "how do they know",
+      "how does zack know",
+      "how does farzeen know",
+      "how does jorge know",
+      "who supervised",
+      "who promoted",
+      "which testimonial",
+      "which testimonials",
+      "which people were",
+      "which ones were",
+      "which one was",
+      "came from professors",
+      "came from coworkers",
+      "came from his supervisor",
+      "from his supervisor",
+      "from professors",
+      "from coworkers",
+      "was farzeen",
+      "all full quotes",
+      "full quotes",
+      "each person’s relationship",
+      "each person's relationship",
+      "each persons relationship",
+    ]) || isTestimonialFollowupContext(text, history)
   ) {
-    return {
-      category: "testimonials",
-      mode: "recruiter",
-      answer: ANSWERS.testimonials,
-      answerStatus: "answered",
-    };
+    return resolveTestimonialsAnswer(text, history);
   }
 
   if (

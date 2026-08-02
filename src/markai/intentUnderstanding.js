@@ -225,7 +225,33 @@ function categoryToResult(category, answers, normalized = '') {
     case 'resume':
     case 'contact':
     case 'testimonials':
+    case 'testimonialsList':
+    case 'testimonialsAllQuotes':
+    case 'testimonialProfessors':
+    case 'testimonialCoworkers':
+    case 'testimonialZack':
+    case 'testimonialFarzeen':
+    case 'testimonialJorge':
       mode = 'recruiter'
+      if (category === 'testimonialsList') {
+        answerKey = includesAny(normalized, ['all full', 'all quotes'])
+          ? 'testimonialsAllQuotes'
+          : 'testimonialsList'
+      } else if (
+        includesAny(normalized, [
+          'full quote',
+          'exact quote',
+          'word for word',
+          'direct quote',
+          'full testimonial',
+        ])
+      ) {
+        if (category === 'testimonialZack') answerKey = 'testimonialZackQuote'
+        else if (category === 'testimonialFarzeen')
+          answerKey = 'testimonialFarzeenQuote'
+        else if (category === 'testimonialJorge')
+          answerKey = 'testimonialJorgeQuote'
+      }
       break
     case 'capabilities':
       mode = 'general'
@@ -462,6 +488,35 @@ export function resolveTopicFollowup(text, history, answers) {
   if (typeof target !== 'string' || !target) return null
 
   const context = historyContext(history)
+  if (
+    target === 'testimonials' &&
+    (normalized === 'full quote' ||
+      normalized === 'exact quote' ||
+      text.trim().toLowerCase().startsWith('full quote'))
+  ) {
+    if (
+      context.includes('zack') ||
+      context.includes('kohlwey') ||
+      context.includes('alumni memorial')
+    ) {
+      return categoryToResult('testimonialZack', answers, 'full quote')
+    }
+    if (
+      context.includes('farzeen') ||
+      context.includes('harunani') ||
+      context.includes('professor of computer science')
+    ) {
+      return categoryToResult('testimonialFarzeen', answers, 'full quote')
+    }
+    if (
+      context.includes('jorge') ||
+      context.includes('torres') ||
+      context.includes('performance validation')
+    ) {
+      return categoryToResult('testimonialJorge', answers, 'full quote')
+    }
+  }
+
   if (target === 'collaboratorsContextual') {
     const projectMap = data.projectContext && typeof data.projectContext === 'object' ? data.projectContext : {}
     for (const [needle, category] of Object.entries(projectMap)) {

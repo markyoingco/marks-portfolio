@@ -516,7 +516,34 @@ function markai_intent_normalize(string $question): string
                             case 'resume':
                             case 'contact':
                             case 'testimonials':
+                            case 'testimonialsList':
+                            case 'testimonialsAllQuotes':
+                            case 'testimonialProfessors':
+                            case 'testimonialCoworkers':
+                            case 'testimonialZack':
+                            case 'testimonialFarzeen':
+                            case 'testimonialJorge':
                             $mode = 'recruiter';
+                            if ($category === 'testimonialsList') {
+                                $answerKey = markai_intent_includes_any($normalized, [
+                                            'all full',
+                                            'all quotes',
+                                ]) ? 'testimonialsAllQuotes' : 'testimonialsList';
+                            } elseif (markai_intent_includes_any($normalized, [
+                                        'full quote',
+                                        'exact quote',
+                                        'word for word',
+                                        'direct quote',
+                                        'full testimonial',
+                            ])) {
+                                if ($category === 'testimonialZack') {
+                                    $answerKey = 'testimonialZackQuote';
+                                } elseif ($category === 'testimonialFarzeen') {
+                                    $answerKey = 'testimonialFarzeenQuote';
+                                } elseif ($category === 'testimonialJorge') {
+                                    $answerKey = 'testimonialJorgeQuote';
+                                }
+                            }
                             break;
                             case 'githubOnly':
                             $mode = 'technical';
@@ -617,6 +644,37 @@ function markai_intent_normalize(string $question): string
                         }
 
                         $context = markai_intent_history_context($history);
+                        if (
+                            $target === 'testimonials'
+                            && (
+                                $normalized === 'full quote'
+                                || $normalized === 'exact quote'
+                                || str_starts_with(strtolower(trim($text)), 'full quote')
+                            )
+                        ) {
+                            if (
+                                str_contains($context, 'zack')
+                                || str_contains($context, 'kohlwey')
+                                || str_contains($context, 'alumni memorial')
+                            ) {
+                                return markai_intent_category_to_result('testimonialZack', $answers, 'full quote');
+                            }
+                            if (
+                                str_contains($context, 'farzeen')
+                                || str_contains($context, 'harunani')
+                                || str_contains($context, 'professor of computer science')
+                            ) {
+                                return markai_intent_category_to_result('testimonialFarzeen', $answers, 'full quote');
+                            }
+                            if (
+                                str_contains($context, 'jorge')
+                                || str_contains($context, 'torres')
+                                || str_contains($context, 'performance validation')
+                            ) {
+                                return markai_intent_category_to_result('testimonialJorge', $answers, 'full quote');
+                            }
+                        }
+
                         if ($context === '') {
                             // Without history, one-word follow-ups still map via normal one-word topics.
                             if ($target === 'collaboratorsContextual') {

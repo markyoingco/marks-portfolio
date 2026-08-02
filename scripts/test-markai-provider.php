@@ -1715,6 +1715,209 @@ $assert(str_contains($testimonialSystem, 'Zack Kohlwey') || str_contains($testim
 $assert(!preg_match('/@gmail\.com|mailto:/i', $testimonialSystem), 'prompt omits email');
 $assert(!preg_match('/\blink-[a-z0-9\-]+\b/i', preg_replace('/\blinkedIn\b/iu', '', $testimonialSystem) ?? $testimonialSystem), 'prompt omits link-* ids');
 
+// --- Testimonial answer correction regression fixtures ---
+$typoTestimonials = markai_mock_classify('testiomonials');
+$assert(($typoTestimonials['category'] ?? '') === 'testimonials', 'testiomonials routes to testimonials');
+$assert(($typoTestimonials['answerStatus'] ?? '') === 'answered', 'testiomonials answered');
+$typoAnswer = (string) ($typoTestimonials['answer'] ?? '');
+$assert(str_contains($typoAnswer, 'Farzeen Harunani — Professor of Computer Science, Marquette University'), 'canonical Farzeen title');
+$assert(str_contains($typoAnswer, 'Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University'), 'canonical Zack title');
+$assert(str_contains($typoAnswer, 'Jorge Torres — Staff Validation Engineer, Performance Validation'), 'canonical Jorge title');
+$farzeenPos = strpos($typoAnswer, 'Farzeen Harunani');
+$jorgePos = strpos($typoAnswer, 'Jorge Torres');
+$zackPos = strpos($typoAnswer, 'Zack Kohlwey');
+$assert($farzeenPos !== false && $jorgePos !== false && $zackPos !== false, 'three representative names present');
+$assert($farzeenPos < $jorgePos && $jorgePos < $zackPos, 'canonical Farzeen → Jorge → Zack order');
+$assert(!str_contains(strtolower($typoAnswer), 'former coworker'), 'no unsupported former coworker phrasing');
+$assert(!str_contains(strtolower($typoAnswer), 'senior-year professor'), 'no unsupported senior-year professor phrasing');
+$assert(!str_contains(strtolower($typoAnswer), 'former supervisor'), 'no unsupported former supervisor phrasing');
+$assert(str_contains($typoAnswer, 'summaries of attributed opinions, not direct quotations'), 'summary distinguished from quotes');
+$assert(str_contains($typoAnswer, 'Testimonials section'), 'mentions Testimonials section');
+
+$selectedOrder = markai_mock_select_record_ids($export, 'testimonials');
+$assert($selectedOrder === [
+    'testimonials-public-overview',
+    'testimonial-farzeen-harunani',
+    'testimonial-jorge-torres',
+    'testimonial-zack-kohlwey',
+], 'select order matches canonical Farzeen → Jorge → Zack');
+
+$typoNetworkBefore = $networkCalls;
+$typoResponse = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => 'testiomonials'],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('testiomonials disabled path must not transport');
+    }
+);
+$assert($networkCalls === $typoNetworkBefore, 'testiomonials live_network_requests=0');
+$typoLinks = is_array($typoResponse['links'] ?? null) ? $typoResponse['links'] : [];
+$typoLinkIds = array_map(static fn ($link): string => (string) ($link['id'] ?? ''), $typoLinks);
+$assert(in_array('link-testimonials-section', $typoLinkIds, true), 'verified Testimonials link included');
+
+$zackSummary = markai_mock_classify("Zack’s testimonial?");
+$assert(($zackSummary['category'] ?? '') === 'testimonialZack', 'Zack follow-up category');
+$zackSummaryAnswer = (string) ($zackSummary['answer'] ?? '');
+$assert(str_contains($zackSummaryAnswer, 'Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University'), 'Zack attribution with canonical title');
+$assert(str_contains($zackSummaryAnswer, 'This is a summary, not a direct quotation'), 'Zack summary not presented as quote');
+$assert(str_contains($zackSummaryAnswer, 'University Information Specialist'), 'Zack hire context from attributed record');
+$assert(str_contains($zackSummaryAnswer, 'Student Manager'), 'Zack promotion context from attributed record');
+
+$zackQuote = markai_mock_classify("Zack’s full quote?");
+$assert(($zackQuote['category'] ?? '') === 'testimonialZack', 'Zack full quote category');
+$zackQuoteAnswer = (string) ($zackQuote['answer'] ?? '');
+$assert(str_contains($zackQuoteAnswer, 'I have known Mark for two and a half years, and I was his supervisor at Marquette University.'), 'Zack quote word-for-word start');
+$assert(str_contains($zackQuoteAnswer, 'he exceled at being a role model and leader by example.'), 'Zack quote word-for-word end');
+$assert(str_contains($zackQuoteAnswer, 'Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University — wrote:'), 'Zack quote attribution present');
+
+$farzeenFollowUp = markai_mock_classify('Farzeen?');
+$assert(($farzeenFollowUp['category'] ?? '') === 'testimonialFarzeen', 'Farzeen? follow-up');
+$farzeenAnswer = (string) ($farzeenFollowUp['answer'] ?? '');
+$assert(str_contains($farzeenAnswer, 'Farzeen Harunani — Professor of Computer Science, Marquette University'), 'Farzeen canonical title');
+$assert(!str_contains(strtolower($farzeenAnswer), 'senior-year professor'), 'Farzeen answer omits invented senior-year professor label');
+
+$jorgeFollowUp = markai_mock_classify('Jorge?');
+$assert(($jorgeFollowUp['category'] ?? '') === 'testimonialJorge', 'Jorge? follow-up');
+$jorgeAnswer = (string) ($jorgeFollowUp['answer'] ?? '');
+$assert(str_contains($jorgeAnswer, 'Jorge Torres — Staff Validation Engineer, Performance Validation'), 'Jorge canonical title');
+$assert(str_contains($jorgeAnswer, 'Former Marquette University coworker and fellow student manager'), 'Jorge uses canonical relationship text');
+
+$professorFollowUp = markai_mock_classify('professor testimonial?');
+$assert(($professorFollowUp['category'] ?? '') === 'testimonialFarzeen', 'professor testimonial routes to Farzeen');
+$supervisorFollowUp = markai_mock_classify('supervisor testimonial?');
+$assert(($supervisorFollowUp['category'] ?? '') === 'testimonialZack', 'supervisor testimonial routes to Zack');
+$strongestFollowUp = markai_mock_classify('strongest testimonial?');
+$assert(($strongestFollowUp['category'] ?? '') === 'testimonialZack', 'strongest testimonial routes without inventing a rank as fact');
+
+$farzeenQuote = markai_mock_classify('Farzeen full quote?');
+$farzeenQuoteAnswer = (string) ($farzeenQuote['answer'] ?? '');
+$assert(str_contains($farzeenQuoteAnswer, 'The first time I met Mark Yoingco one-on-one was when he came into my office seeking research and career advice.'), 'Farzeen quote word-for-word');
+$assert(str_contains($farzeenQuoteAnswer, 'Farzeen Harunani — Professor of Computer Science, Marquette University — wrote:'), 'Farzeen quote attribution');
+
+$historyQuote = markai_mock_classify('full quote?', [
+    ['role' => 'user', 'content' => "Zack’s testimonial?"],
+    ['role' => 'assistant', 'content' => $zackSummaryAnswer],
+]);
+$historyQuoteAnswer = (string) ($historyQuote['answer'] ?? '');
+$assert(str_contains($historyQuoteAnswer, 'I have known Mark for two and a half years, and I was his supervisor at Marquette University.'), 'full quote? follow-up uses history for Zack exact quote');
+
+$moreTestimonials = markai_mock_classify('more testimonials?');
+$assert(($moreTestimonials['category'] ?? '') === 'testimonials', 'more testimonials? stays on overview');
+
+// --- Professional-relationship vs private-relationship routing ---
+$profRelNetworkBefore = $networkCalls;
+$liveFailure = handleMarkAiPreviewRequest(
+    $export,
+    [
+        'question' => 'can i get a whole lsit of names of who did a testimonial and there relationship with mark',
+        'history' => [
+            ['role' => 'user', 'content' => 'testiomonials'],
+            ['role' => 'assistant', 'content' => (string) (markai_mock_classify('testiomonials')['answer'] ?? '')],
+        ],
+    ],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('professional relationship path must not transport');
+    }
+);
+$assert($networkCalls === $profRelNetworkBefore, 'professional relationship follow-up live_network_requests=0');
+$assert(($liveFailure['answerStatus'] ?? '') === 'answered', 'professional relationship answered not refused');
+$assert(!str_contains(strtolower((string) ($liveFailure['answer'] ?? '')), 'only provides professional and intentionally public information about mark'), 'live failure path is not privacy refusal');
+$listClassified = markai_mock_classify(
+    'can i get a whole lsit of names of who did a testimonial and there relationship with mark',
+    [
+        ['role' => 'user', 'content' => 'testiomonials'],
+        ['role' => 'assistant', 'content' => (string) (markai_mock_classify('testiomonials')['answer'] ?? '')],
+    ]
+);
+$assert(($listClassified['category'] ?? '') === 'testimonialsList', 'whole list + relationship routes to testimonialsList');
+$assert(($listClassified['answerStatus'] ?? '') === 'answered', 'whole list answered');
+$listAnswer = (string) ($listClassified['answer'] ?? '');
+$assert(str_contains((string) ($liveFailure['answer'] ?? ''), 'Farzeen Harunani'), 'preview answer uses full contributor list');
+$assert(str_contains($listAnswer, 'Here are the people currently featured in Mark’s Testimonials section:'), 'full-list intro present');
+foreach (
+    [
+        'Farzeen Harunani — Professor of Computer Science, Marquette University',
+        'Jorge Torres — Staff Validation Engineer, Performance Validation',
+        'Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University',
+        'Nathan Garcia — IT Supply Chain Intern, Zebra Technologies',
+        'Jarenz Masiclat — Investment Associate, Northern Trust',
+        'Elizabeth Anderson — Data Analyst Intern, ComEd',
+        'Maxwell Zeisler — Audit Intern, Advisent, LLC',
+        "Andrew Wochner — Cardiac ICU Registered Nurse, Ascension Columbia St. Mary's Hospital",
+    ] as $canonicalLine
+) {
+    $assert(str_contains($listAnswer, $canonicalLine), 'canonical list line: ' . $canonicalLine);
+}
+$assert(str_contains($listAnswer, 'Former Marquette University coworker and fellow student manager'), 'Jorge canonical relationship');
+$assert(str_contains($listAnswer, 'Longtime friend and former Panda Express coworker'), 'Nathan canonical relationship');
+$assert(str_contains($listAnswer, 'Longtime friend, fraternity mentor, and Filipino Student Organization mentor'), 'Jarenz canonical relationship');
+$assert(str_contains($listAnswer, 'College friend from Marquette University'), 'Andrew canonical relationship');
+$assert(str_contains($listAnswer, 'Mark’s supervisor at Marquette University, as stated in his attributed testimonial'), 'Zack supervisor from attributed record');
+$assert(substr_count($listAnswer, 'Professional connection: Testimonial contributor.') === 3, 'three testimonial-contributor fallbacks');
+$assert(!str_contains($listAnswer, 'More Perspectives'), 'excludes More Perspectives placeholder');
+$assert(!str_contains(strtolower($listAnswer), 'senior-year professor'), 'no invented senior-year professor');
+$assert(!str_contains($listAnswer, 'Invented Speaker'), 'no invented speaker');
+$listOrderNames = ['Farzeen Harunani', 'Jorge Torres', 'Zack Kohlwey', 'Nathan Garcia', 'Jarenz Masiclat', 'Elizabeth Anderson', 'Maxwell Zeisler', 'Andrew Wochner'];
+$prevPos = -1;
+foreach ($listOrderNames as $name) {
+    $pos = strpos($listAnswer, $name);
+    $assert($pos !== false && $pos > $prevPos, 'canonical order includes ' . $name);
+    $prevPos = $pos;
+}
+$assert(str_contains($listAnswer, 'Full attributed testimonials are available in the portfolio’s Testimonials section.'), 'list closing points to Testimonials section');
+$listLinks = is_array($liveFailure['links'] ?? null) ? $liveFailure['links'] : [];
+$listLinkIds = array_map(static fn ($link): string => (string) ($link['id'] ?? ''), $listLinks);
+$assert(in_array('link-testimonials-section', $listLinkIds, true), 'trusted Testimonials link on professional-relationship list');
+
+$followupRel = markai_mock_classify('their relationship with Mark?', [
+    ['role' => 'user', 'content' => 'testiomonials'],
+    ['role' => 'assistant', 'content' => (string) (markai_mock_classify('testiomonials')['answer'] ?? '')],
+]);
+$assert(($followupRel['category'] ?? '') === 'testimonialsList', 'their relationship with Mark inherits testimonial context');
+$assert(($followupRel['answerStatus'] ?? '') === 'answered', 'relationship follow-up answered');
+$assert(!str_contains(strtolower((string) ($followupRel['answer'] ?? '')), 'only provides professional and intentionally public information about mark'), 'relationship follow-up is not privacy refusal');
+
+$wholeListFollowUp = markai_mock_classify('whole list?', [
+    ['role' => 'user', 'content' => 'testiomonials'],
+    ['role' => 'assistant', 'content' => (string) (markai_mock_classify('testiomonials')['answer'] ?? '')],
+]);
+$assert(($wholeListFollowUp['category'] ?? '') === 'testimonialsList', 'whole list? inherits testimonial context');
+
+$zackKnow = markai_mock_classify('How does Zack know Mark?');
+$assert(($zackKnow['category'] ?? '') === 'testimonialZack', 'How does Zack know Mark routes to Zack');
+$assert(str_contains((string) ($zackKnow['answer'] ?? ''), 'This is a summary, not a direct quotation'), 'Zack know-him summary not presented as quote');
+
+$whoSupervised = markai_mock_classify('Who supervised Mark?');
+$assert(($whoSupervised['category'] ?? '') === 'testimonialZack', 'Who supervised Mark → Zack');
+$whoPromoted = markai_mock_classify('Who promoted Mark?');
+$assert(($whoPromoted['category'] ?? '') === 'testimonialZack', 'Who promoted Mark → Zack');
+$profOnly = markai_mock_classify('Which testimonials came from professors?');
+$assert(($profOnly['category'] ?? '') === 'testimonialProfessors', 'professors filter category');
+$assert(str_contains((string) ($profOnly['answer'] ?? ''), 'Farzeen Harunani'), 'professors filter includes Farzeen');
+$assert(!str_contains((string) ($profOnly['answer'] ?? ''), 'Jorge Torres'), 'professors filter excludes Jorge');
+$coworkerOnly = markai_mock_classify('Which testimonials came from coworkers?');
+$assert(($coworkerOnly['category'] ?? '') === 'testimonialCoworkers', 'coworkers filter category');
+$assert(str_contains((string) ($coworkerOnly['answer'] ?? ''), 'Jorge Torres'), 'coworkers includes Jorge');
+$assert(str_contains((string) ($coworkerOnly['answer'] ?? ''), 'Nathan Garcia'), 'coworkers includes Nathan');
+
+$stillPrivate = [
+    'Who is Mark dating?',
+    'Does Mark have a girlfriend?',
+    'Tell me about Mark’s romantic relationships.',
+    'Who has Mark been involved with?',
+    'Tell me about private family relationships.',
+    'Show me Mark’s private messages.',
+];
+foreach ($stillPrivate as $pq) {
+    $pc = markai_mock_classify($pq);
+    $assert(($pc['category'] ?? '') === 'sensitive', 'still blocked private: ' . $pq);
+    $assert(($pc['answerStatus'] ?? '') === 'refused', 'still refused private: ' . $pq);
+}
+
 // --- Project inventory fixtures ---
 $inventoryNetworkBefore = $networkCalls;
 $inventoryResponse = handleMarkAiPreviewRequest(

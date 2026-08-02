@@ -454,7 +454,17 @@ function markai_mock_classify(string $question, array $history = []): array
         'fromChicago' => 'Mark is from Chicago.',
         'locationPrivacy' => 'MarkAI does not provide precise or current location information. Mark’s approved public background states that he is from Chicago.',
         'collaboratorsInventory' => "Mark’s approved project collaborators, by project:\n\n- Abacus: Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman\n- TA-Bot / MAAT: Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman\n- Finch: Mark Yoingco, Julianne Browne, Luis Serrano, Xavier Barth\n- Data Mining: Mark Yoingco, Allan Akkathara\n- Operating Systems: Mark Yoingco, Armaan Yaz\n- Sleep Analysis: Mark Yoingco, Hunter Carlson",
-        'testimonials' => 'Yes. Mark’s portfolio includes public testimonials from people who have worked with, taught, or known him. Zack Kohlwey, Mark’s former supervisor at Marquette University, highlights his dedication, work ethic, and leadership by example. Farzeen Harunani, a Computer Science professor at Marquette, notes his initiative, composure, and dedication. Jorge Torres, a former coworker, emphasizes his thoroughness, ownership, and reliability. Full attributed quotes are in the portfolio Testimonials section.',
+        'testimonials' => "Mark’s portfolio Testimonials section includes attributed recommendations from professors, supervisors, coworkers, and collaborators.\n\nAcross those testimonials, recurring themes include initiative, composure under pressure, thoroughness, ownership, reliability, integrity, ambition, leadership by example, and strong work ethic.\n\nRepresentative perspectives, in portfolio order, include:\n- Farzeen Harunani — Professor of Computer Science, Marquette University — notes Mark’s initiative, composure, dedication, and eagerness to learn.\n- Jorge Torres — Staff Validation Engineer, Performance Validation — emphasizes Mark’s thoroughness, curiosity, reliability, and ownership.\n- Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University — highlights Mark’s dedication, work ethic, integrity, and leadership by example.\n\nThese are summaries of attributed opinions, not direct quotations. Full testimonials are available in the portfolio Testimonials section.",
+        'testimonialsList' => "Here are the people currently featured in Mark’s Testimonials section:\n\n- Farzeen Harunani — Professor of Computer Science, Marquette University\n  Professional connection: Testimonial contributor.\n\n- Jorge Torres — Staff Validation Engineer, Performance Validation\n  Professional connection: Former Marquette University coworker and fellow student manager.\n\n- Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University\n  Professional connection: Mark’s supervisor at Marquette University, as stated in his attributed testimonial.\n\n- Nathan Garcia — IT Supply Chain Intern, Zebra Technologies\n  Professional connection: Longtime friend and former Panda Express coworker.\n\n- Jarenz Masiclat — Investment Associate, Northern Trust\n  Professional connection: Longtime friend, fraternity mentor, and Filipino Student Organization mentor.\n\n- Elizabeth Anderson — Data Analyst Intern, ComEd\n  Professional connection: Testimonial contributor.\n\n- Maxwell Zeisler — Audit Intern, Advisent, LLC\n  Professional connection: Testimonial contributor.\n\n- Andrew Wochner — Cardiac ICU Registered Nurse, Ascension Columbia St. Mary's Hospital\n  Professional connection: College friend from Marquette University.\n\nFull attributed testimonials are available in the portfolio’s Testimonials section.",
+        'testimonialProfessors' => "From the published Testimonials section, the professor testimonial currently featured is:\n\n- Farzeen Harunani — Professor of Computer Science, Marquette University\n  Professional connection: Testimonial contributor.\n\nFull attributed testimonials are available in the portfolio’s Testimonials section.",
+        'testimonialCoworkers' => "From the published Testimonials section, contributors with an explicit coworker connection are:\n\n- Jorge Torres — Staff Validation Engineer, Performance Validation\n  Professional connection: Former Marquette University coworker and fellow student manager.\n\n- Nathan Garcia — IT Supply Chain Intern, Zebra Technologies\n  Professional connection: Longtime friend and former Panda Express coworker.\n\nFull attributed testimonials are available in the portfolio’s Testimonials section.",
+        'testimonialZack' => "Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University.\n\nSummary of his attributed testimonial: Zack writes that he supervised Mark for about two and a half years at Marquette University, hired Mark as a University Information Specialist, later promoted him to Student Manager, and emphasizes Mark’s dedication, work ethic, integrity, ambition, relationship-building, and leadership by example. This is a summary, not a direct quotation.",
+        'testimonialZackQuote' => "Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University — wrote:\n\nI have known Mark for two and a half years, and I was his supervisor at Marquette University. I have had the opportunity to observe Mark’s dedication, work ethic, and values driven decision making firsthand. He respects all individuals and has the ability to form true relationships and friendships with a wide range of people and thinks of the staff as a team.\n\nI hired Mark as a University Information Specialist at the student union’s Information Desk. Not even a year into working, I promoted Mark to Student Manager. His integrity and ambition stood out to me, and that is what ultimately led me to promote him. He understood how his choices and decisions at the desk made an impact on others as this role was the initial interaction that someone had with the university as they walked into the building or called. Mark definitely embraced challenges as learning moments for personal growth, and he exceled at being a role model and leader by example.",
+        'testimonialFarzeen' => "Farzeen Harunani — Professor of Computer Science, Marquette University.\n\nSummary of her attributed testimonial: Farzeen describes Mark’s initiative when seeking research and career advice, composure under pressure, dedication, and eagerness to learn. Her published title is Professor of Computer Science, Marquette University, and her attributed testimonial states that Mark took three classes with her. This is a summary, not a direct quotation.",
+        'testimonialFarzeenQuote' => "Farzeen Harunani — Professor of Computer Science, Marquette University — wrote:\n\nThe first time I met Mark Yoingco one-on-one was when he came into my office seeking research and career advice. It was the second week of his senior year, and he was enrolled in the capstone class with me. He wanted to know which year-long project would be the most beneficial to him, longterm. This, in itself, showed a rare level of initiative.\n\nHe took three classes with me, and impressed me with his unflappable demeanor and dedication to getting the job done. No matter how tight the deadlines might be, Mark does not ever let on if he is stressed. He is eager to learn, to improve, and to commit to every endeavor with a smile.",
+        'testimonialJorge' => "Jorge Torres — Staff Validation Engineer, Performance Validation.\n\nCanonical relationship text from the portfolio: Former Marquette University coworker and fellow student manager.\n\nSummary of his attributed testimonial: Jorge emphasizes Mark’s thoroughness, curiosity, reliability, ownership, and work ethic. This is a summary, not a direct quotation.",
+        'testimonialJorgeQuote' => "Jorge Torres — Staff Validation Engineer, Performance Validation — wrote:\n\nI've known Mark since my junior year of college, and in that time I've come to know him as someone who takes the time to fully understand every task before diving in, no matter how big or small. He never settles for surface-level work - whether he's reviewing code and software comments or testing and documenting a project's performance, he holds himself to a high standard of accuracy and thoroughness.\n\nMark is one of the hardest-working individuals I've had the pleasure of working with. He approaches every project with genuine curiosity, taking the time to ask the right questions and dig into the \"why\" behind a problem rather than just executing tasks on the surface. That mindset consistently translates into higher-quality, more reliable work.\n\nI had the opportunity to work alongside Mark as a Student Manager, which gave me a front-row seat to his work ethic and attention to detail. He was consistently reliable, communicated clearly about progress and roadblocks, and took genuine ownership of the quality of his output. Watching him grow and take on more responsibility over that time was genuinely impressive.\n\nProfessionally, Mark is an outstanding individual who would be an asset to any team he's a part of, thanks to his incredibly diverse skill set and unwavering dedication to doing things right.",
+        'testimonialsAllQuotes' => "Full attributed quotations from Mark’s published Testimonials section, in portfolio order:\n\nFarzeen Harunani — Professor of Computer Science, Marquette University — wrote:\n\nThe first time I met Mark Yoingco one-on-one was when he came into my office seeking research and career advice. It was the second week of his senior year, and he was enrolled in the capstone class with me. He wanted to know which year-long project would be the most beneficial to him, longterm. This, in itself, showed a rare level of initiative.\n\nHe took three classes with me, and impressed me with his unflappable demeanor and dedication to getting the job done. No matter how tight the deadlines might be, Mark does not ever let on if he is stressed. He is eager to learn, to improve, and to commit to every endeavor with a smile.\n\n---\n\nJorge Torres — Staff Validation Engineer, Performance Validation — wrote:\n\nI've known Mark since my junior year of college, and in that time I've come to know him as someone who takes the time to fully understand every task before diving in, no matter how big or small. He never settles for surface-level work - whether he's reviewing code and software comments or testing and documenting a project's performance, he holds himself to a high standard of accuracy and thoroughness.\n\nMark is one of the hardest-working individuals I've had the pleasure of working with. He approaches every project with genuine curiosity, taking the time to ask the right questions and dig into the \"why\" behind a problem rather than just executing tasks on the surface. That mindset consistently translates into higher-quality, more reliable work.\n\nI had the opportunity to work alongside Mark as a Student Manager, which gave me a front-row seat to his work ethic and attention to detail. He was consistently reliable, communicated clearly about progress and roadblocks, and took genuine ownership of the quality of his output. Watching him grow and take on more responsibility over that time was genuinely impressive.\n\nProfessionally, Mark is an outstanding individual who would be an asset to any team he's a part of, thanks to his incredibly diverse skill set and unwavering dedication to doing things right.\n\n---\n\nZack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University — wrote:\n\nI have known Mark for two and a half years, and I was his supervisor at Marquette University. I have had the opportunity to observe Mark’s dedication, work ethic, and values driven decision making firsthand. He respects all individuals and has the ability to form true relationships and friendships with a wide range of people and thinks of the staff as a team.\n\nI hired Mark as a University Information Specialist at the student union’s Information Desk. Not even a year into working, I promoted Mark to Student Manager. His integrity and ambition stood out to me, and that is what ultimately led me to promote him. He understood how his choices and decisions at the desk made an impact on others as this role was the initial interaction that someone had with the university as they walked into the building or called. Mark definitely embraced challenges as learning moments for personal growth, and he exceled at being a role model and leader by example.\n\n---\n\nNathan Garcia — IT Supply Chain Intern, Zebra Technologies — wrote:\n\nI have known Mark Yoingco for about eight years after meeting him through high school and mutual friends. What has kept us close is our similar outlook on life, especially our shared belief in hard work, setting goals, and constantly working toward success. Mark is one of the most determined, focused, and loyal people I know. No matter the situation or circumstances, he is always willing to help, and his loyalty is the quality I admire most about him.\n\nMark has also shown me firsthand that hard work pays off. Throughout the years, he has competed in basketball, track, powerlifting, and bodybuilding, and he has approached each sport with the same discipline and commitment. As someone who is currently pursuing bodybuilding, he continues to push me through his advice, encouragement, and willingness to lend a helping hand. His ability to put his head down, stay focused, and grind toward his goals is what separates him from many others.\n\nProfessionally, Mark has developed a diverse skill set through his computer science projects and classwork. Since I work in IT, I understand the effort required in the technology field and have a great deal of respect for his work, just as he respects mine. I also worked with Mark at Panda Express in high school, where I saw his leadership skills, professionalism, and eagerness to learn and grow in his role. I have recommended him to former managers because I trust his work ethic and know the type of person he is. Mark would be a valuable addition to any team because he is dependable, hardworking, and always committed to improving.\n\n---\n\nJarenz Masiclat — Investment Associate, Northern Trust — wrote:\n\nI have known Mark Yoingco since he was a freshman in college while I was a sophomore, and over the years we have built a close friendship. Mark is my fraternity little as well as my Filipino Student Organization little, and watching him grow into the person he is today has been something I have genuinely admired. From the beginning, what stood out most about Mark was his drive to continuously improve himself. Whether it was in the classroom, the gym, or through his relationships with others, he has always approached every challenge with discipline, humility, and a strong work ethic.\n\nPersonally, Mark has pushed me to become a better version of myself through lifting, his friendship, and the example he sets every day. His dedication to fitness is inspiring, but what impresses me even more is how that same level of commitment carries over into his academics, personal hobbies, leadership, and the way he invests in the people around him. He is someone who consistently follows through on his goals and encourages others to do the same.\n\nOne of Mark's greatest strengths is his personality. His presence is felt in every room he enters, and his charisma has a unique ability to bring people together and positively influence those around him. He is approachable, genuine, and naturally builds meaningful relationships. At the same time, he possesses analytical and critical thinking skills that are well beyond his years. Whether we are discussing complex topics or collaborating on projects, I have always been impressed by his ability to think through problems thoughtfully and arrive at practical, well-reasoned solutions.\n\nAs an Investment Associate at Northern Trust, I work in an environment where analytical thinking, professionalism, accountability, and continuous learning are essential. These are many of the same qualities I see in Mark. He approaches challenges with curiosity, remains composed under pressure, and is always looking for opportunities to grow both personally and professionally. His willingness to accept feedback and constantly improve makes him someone who will continue to develop into an exceptional leader.\n\nAbove all, Mark is someone I trust completely. He is dependable, hardworking, and genuinely cares about the success of the people around him. His integrity, leadership potential, and relentless work ethic make him an outstanding individual and someone I have no doubt will make a meaningful impact wherever his career takes him. I am confident that any organization would be fortunate to have Mark as part of its team.\n\n---\n\nElizabeth Anderson — Data Analyst Intern, ComEd — wrote:\n\nI've known Mark for about five years, and there are a few of his qualities that I've found admirable and that have only become stronger as we've grown up. The first is discipline, with his commitment to strength training reflecting his conditioning and his ability to handle challenges through consistency, which I believe can be applied beyond the gym. Secondly, his leadership and mentorship have shaped aspects of my mindset, demonstrating the mental resilience and strength of character he brings to both his work and his everyday life. Lastly, his positive energy and genuine enthusiasm naturally inspire those around him, and I am confident they will continue to serve him well wherever he decides to go. I strongly believe that with his drive and work ethic, he will thrive anywhere he goes, and I am so proud to call him my friend.\n\n---\n\nMaxwell Zeisler — Audit Intern, Advisent, LLC — wrote:\n\nMark is one of my best friends who I've known since our days of middle school basketball. He boasts a plethora of outstanding qualities that have stood out since our first practice together. He is one of the most dedicated and reliable individuals I know, applying no less than his absolute best to any team he is apart of. His perseverance and professionalism through school, life challenges, and the workplace proceeds his reputation as a respectful, hard working, and disciplined person with extensive work and projects to show for it. He's truly a valuable asset to have as a part of any team, and an even better friend.\n\n---\n\nAndrew Wochner — Cardiac ICU Registered Nurse, Ascension Columbia St. Mary's Hospital — wrote:\n\nMark is one of the most down to earth people I know. My life drastically changed when I met Mark at Marquette University. Even though he is younger than me, he has the maturity level of a grown adult and has taught me so many important life lessons. I’ll never forget about all the talks we had in college about life experiences, moving up in the world, and being on top of ourselves. His discipline and work ethic is extremely admirable and he will never back down from a challenge. I know his quality traits will take him far in life & I wouldn’t be where I am today without him\n\nFull attributed testimonials are also available in the portfolio’s Testimonials section.",
         'projectsInventory' => "Mark’s approved public software projects include:\n\n- Portfolio & AI: Personal Portfolio Platform; MarkAI\n- Capstones: Abacus; TA-Bot / MAAT\n- Systems: Operating Systems C Projects\n- Robotics & Software Design: Finch Robot Web Controller\n- Games: Space SHMUP; Apple Picker; Mission Demolition\n- Data: Sleep Efficiency Analysis; Marquette Basketball Predictor\n\nThe portfolio platform and MarkAI are solo personal work. Abacus, MAAT, Finch, and the data projects were team or coursework collaborations.",
         'maat' => 'TA-Bot / MAAT was a team senior-design chatbot and automated assessment platform. Mark’s verified work included rubric grading features, score recalculation, observed error tables, plagiarism-detection support, backend API integration, database checks, Docker Compose testing, debugging, and UI cleanup.',
         'finch' => 'The Finch Robot Web Controller was a team robotics project for controlling BirdBrain Finch 2.0 robots through browser pages, room codes, multiplayer lobbies, and real-time controller screens. Mark contributed heavily to frontend controller screens, UI planning, setup documentation, and Flask/Socket.IO interaction flow.',
@@ -479,6 +489,11 @@ function markai_mock_classify(string $question, array $history = []): array
 
     $text = markai_intent_normalize($question);
     $text = markai_intent_apply_typos($text);
+    $text = str_replace(
+        ['there relationship', 'there relations', 'relationsip with', 'relationship wit mark'],
+        ['their relationship', 'their relations', 'relationship with', 'relationship with mark'],
+        $text
+    );
 
     if (markai_mock_includes_any($text, [
                 'phone',
@@ -491,12 +506,32 @@ function markai_mock_classify(string $question, array $history = []): array
                 'database password',
                 'private repository',
                 'private repo',
-                'relationship',
                 'girlfriend',
                 'boyfriend',
                 'breakup',
                 'romantic',
+                'romantic relationship',
+                'romantic relationships',
                 'dating',
+                'dating relationship',
+                'relationship status',
+                'relationship history',
+                'private relationship',
+                'private relationships',
+                'personal relationship',
+                'personal relationships',
+                'mark’s relationships',
+                "mark's relationships",
+                'marks relationships',
+                'his relationships',
+                'who is mark dating',
+                'who has mark been involved',
+                'been involved with',
+                'who is mark involved',
+                'tell me about mark’s romantic',
+                "tell me about mark's romantic",
+                'tell me about private family relationships',
+                'private family relationships',
                 'lonely',
                 'loneliness',
                 'sadness',
@@ -1060,9 +1095,11 @@ function markai_mock_classify(string $question, array $history = []): array
     if (markai_mock_includes_any($text, [
                 'testimonial',
                 'testimonials',
+                'testiomonials',
                 'reviews',
                 'recommendations',
                 'recommendation',
+                'references',
                 'what people say',
                 'people say about',
                 'others say',
@@ -1075,17 +1112,56 @@ function markai_mock_classify(string $question, array $history = []): array
                 'recommended mark',
                 'who has recommended',
                 'who recommended',
+                'who recommends',
                 'coworkers say',
+                'professors and coworkers',
+                'professors say',
                 'teammates say',
                 'teammates or coworkers',
                 'work ethic',
-    ])) {
-        return [
-            'category' => 'testimonials',
-            'mode' => 'recruiter',
-            'answer' => $answers['testimonials'],
-            'answerStatus' => 'answered',
-        ];
+                'zack',
+                'farzeen',
+                'jorge',
+                'full quote',
+                'exact quote',
+                'strongest testimonial',
+                'supervisor testimonial',
+                'professor testimonial',
+                'more testimonials',
+                'whole list',
+                'list of names',
+                'all names',
+                'who gave mark',
+                'who gave',
+                'who else',
+                'relationship with mark',
+                'relationship to mark',
+                'their relationship',
+                'how do they know',
+                'how does zack know',
+                'how does farzeen know',
+                'how does jorge know',
+                'who supervised',
+                'who promoted',
+                'which testimonial',
+                'which testimonials',
+                'which people were',
+                'which ones were',
+                'which one was',
+                'came from professors',
+                'came from coworkers',
+                'came from his supervisor',
+                'from his supervisor',
+                'from professors',
+                'from coworkers',
+                'was farzeen',
+                'all full quotes',
+                'full quotes',
+                'each person’s relationship',
+                "each person's relationship",
+                'each persons relationship',
+    ]) || markai_mock_is_testimonial_followup_context($text, $history)) {
+        return markai_mock_resolve_testimonials_answer($text, $history, $answers);
     }
 
     if (markai_mock_includes_any($text, [
@@ -2055,6 +2131,10 @@ function markai_mock_resolve_followup_from_history(string $text, array $history,
         return $topicFollowUp;
     }
 
+    if ($answers !== [] && markai_mock_is_testimonial_followup_context($text, $history)) {
+        return markai_mock_resolve_testimonials_answer($text, $history, $answers);
+    }
+
     $normalized = trim($text, " \t\n\r\0\x0B?.!");
     $isRepoFollowUp = markai_mock_includes_any($text, [
             'repo?',
@@ -2210,6 +2290,193 @@ function markai_mock_resolve_followup_from_history(string $text, array $history,
 /**
 * @param list<string> $phrases
 */
+/**
+ * @param list<array{role?: string, content?: string}> $history
+ */
+function markai_mock_history_suggests_testimonials(array $history): bool
+{
+    $context = strtolower(markai_intent_history_context($history));
+    if ($context === '') {
+        return false;
+    }
+
+    return markai_mock_includes_any($context, [
+        'testimonial',
+        'testimonials',
+        'recommendation',
+        'recommendations',
+        'reference',
+        'references',
+        'farzeen harunani',
+        'jorge torres',
+        'zack kohlwey',
+        'alumni memorial union',
+        'professor of computer science',
+        'staff validation engineer',
+        'testimonials section',
+        'attributed',
+    ]);
+}
+
+/**
+ * @param list<array{role?: string, content?: string}> $history
+ */
+function markai_mock_is_testimonial_followup_context(string $text, array $history): bool
+{
+    if (!markai_mock_history_suggests_testimonials($history)) {
+        return false;
+    }
+
+    $normalized = trim($text, " \t\n\r\0\x0B?.!");
+
+    return markai_mock_includes_any($text, [
+            'whole list',
+            'list of names',
+            'all names',
+            'who else',
+            'their relationship',
+            'relationship with mark',
+            'how do they know',
+            'how does he know',
+            'how does she know',
+            'full quotes',
+            'all full quotes',
+            'which one',
+            'which ones',
+            'professors',
+            'coworkers',
+            'supervisor',
+            'names',
+    ]) || in_array($normalized, [
+            'whole list',
+            'all names',
+            'who else',
+            'names',
+            'list',
+            'relationships',
+            'relationship',
+            'full quotes',
+            'all full quotes',
+            'professors',
+            'coworkers',
+            'supervisor',
+    ], true);
+}
+
+/**
+ * @param list<array{role?: string, content?: string}> $history
+ * @param array<string, string> $answers
+ * @return array{category: string, mode: string, answer: string, answerStatus: string}
+ */
+function markai_mock_resolve_testimonials_answer(string $text, array $history, array $answers): array
+{
+    $wantsQuote = markai_mock_includes_any($text, [
+        'full quote',
+        'exact quote',
+        'word for word',
+        'direct quote',
+        'full testimonial',
+        'full quotes',
+        'all full quotes',
+    ]);
+    $answer = $answers['testimonials'];
+    $category = 'testimonials';
+    $historyContext = strtolower(markai_intent_history_context($history));
+
+    $personZack = markai_mock_includes_any($text, [
+            'zack',
+            'kohlwey',
+            'supervisor testimonial',
+            'who supervised',
+            'who promoted',
+            'how does zack know',
+            'came from his supervisor',
+            'from his supervisor',
+            'which one was his supervisor',
+    ]) || ($wantsQuote && (str_contains($historyContext, 'zack') || str_contains($historyContext, 'kohlwey') || str_contains($historyContext, 'alumni memorial')));
+    $personFarzeen = markai_mock_includes_any($text, [
+            'farzeen',
+            'harunani',
+            'professor testimonial',
+            'was farzeen',
+            'how does farzeen know',
+    ]) || ($wantsQuote && (str_contains($historyContext, 'farzeen') || str_contains($historyContext, 'harunani') || str_contains($historyContext, 'professor of computer science')));
+    $personJorge = markai_mock_includes_any($text, [
+            'jorge',
+            'torres',
+            'how does jorge know',
+    ]) || ($wantsQuote && (str_contains($historyContext, 'jorge') || str_contains($historyContext, 'torres') || str_contains($historyContext, 'performance validation')));
+
+    $wantsList = markai_mock_includes_any($text, [
+            'whole list',
+            'list of names',
+            'all names',
+            'who gave',
+            'every person',
+            'every name',
+            'complete list',
+            'full list',
+            'relationship with mark',
+            'their relationship',
+            'how do they know',
+            'which people were',
+    ]);
+    $wantsProfessors = markai_mock_includes_any($text, [
+            'from professors',
+            'came from professors',
+            'which ones were professors',
+            'which testimonials came from professors',
+    ]) && !markai_mock_includes_any($text, ['coworkers', 'supervisors', 'collaborators']);
+    $wantsCoworkers = markai_mock_includes_any($text, [
+            'from coworkers',
+            'came from coworkers',
+            'which ones were coworkers',
+            'which testimonials came from coworkers',
+    ]) && !markai_mock_includes_any($text, ['professors', 'supervisors', 'collaborators']);
+    $wantsAllQuotes = markai_mock_includes_any($text, ['all full quotes', 'all quotes']);
+
+    if ($wantsAllQuotes) {
+        $category = 'testimonialsList';
+        $answer = $answers['testimonialsAllQuotes'];
+    } elseif ($personZack && !$wantsList) {
+        $category = 'testimonialZack';
+        $answer = $wantsQuote ? $answers['testimonialZackQuote'] : $answers['testimonialZack'];
+    } elseif ($personFarzeen && !$wantsList) {
+        $category = 'testimonialFarzeen';
+        $answer = $wantsQuote ? $answers['testimonialFarzeenQuote'] : $answers['testimonialFarzeen'];
+    } elseif ($personJorge && !$wantsList) {
+        $category = 'testimonialJorge';
+        $answer = $wantsQuote ? $answers['testimonialJorgeQuote'] : $answers['testimonialJorge'];
+    } elseif ($wantsProfessors) {
+        $category = 'testimonialProfessors';
+        $answer = $answers['testimonialProfessors'];
+    } elseif ($wantsCoworkers) {
+        $category = 'testimonialCoworkers';
+        $answer = $answers['testimonialCoworkers'];
+    } elseif ($wantsList || (markai_mock_is_testimonial_followup_context($text, $history) && markai_mock_includes_any($text, [
+                'list',
+                'names',
+                'relationship',
+                'who else',
+                'how do they know',
+    ]))) {
+        $category = 'testimonialsList';
+        $answer = $answers['testimonialsList'];
+    } elseif (markai_mock_includes_any($text, ['strongest testimonial'])) {
+        $category = 'testimonialZack';
+        $answer = 'MarkAI does not rank testimonials. A commonly requested professional recommendation is from Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University. ' . $answers['testimonialZack'];
+    } elseif ($wantsQuote) {
+        $answer = 'MarkAI can share an exact attributed quotation when you name the speaker, for example “Zack’s full quote?” or “Farzeen full quote?”. Full testimonials are also available in the portfolio Testimonials section.';
+    }
+
+    return [
+        'category' => $category,
+        'mode' => 'recruiter',
+        'answer' => $answer,
+        'answerStatus' => 'answered',
+    ];
+}
+
 function markai_mock_includes_any(string $text, array $phrases): bool
 {
     foreach ($phrases as $phrase) {
@@ -2619,11 +2886,30 @@ function markai_mock_select_record_ids(array $export, string $category): array
         ]);
 
         case 'testimonials':
+        case 'testimonialZack':
+        case 'testimonialFarzeen':
+        case 'testimonialJorge':
         return $pick([
                 'testimonials-public-overview',
-                'testimonial-zack-kohlwey',
                 'testimonial-farzeen-harunani',
                 'testimonial-jorge-torres',
+                'testimonial-zack-kohlwey',
+        ]);
+
+        case 'testimonialsList':
+        case 'testimonialsAllQuotes':
+        case 'testimonialProfessors':
+        case 'testimonialCoworkers':
+        return $pick([
+                'testimonials-public-overview',
+                'testimonial-farzeen-harunani',
+                'testimonial-jorge-torres',
+                'testimonial-zack-kohlwey',
+                'testimonial-nathan-garcia',
+                'testimonial-jarenz-masiclat',
+                'testimonial-elizabeth-anderson',
+                'testimonial-maxwell-zeisler',
+                'testimonial-andrew-wochner',
         ]);
 
         case 'profile':
@@ -2719,6 +3005,13 @@ function markai_mock_requested_link_ids(string $category): array
             'link-linkedin',
         ];
         case 'testimonials':
+        case 'testimonialsList':
+        case 'testimonialsAllQuotes':
+        case 'testimonialProfessors':
+        case 'testimonialCoworkers':
+        case 'testimonialZack':
+        case 'testimonialFarzeen':
+        case 'testimonialJorge':
         return ['link-testimonials-section'];
         case 'links':
         return [
