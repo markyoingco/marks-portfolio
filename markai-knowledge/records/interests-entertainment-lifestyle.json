@@ -146,14 +146,15 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Lifestyle hobbies outside technology",
-      "publicText": "Outside technology, Mark’s approved public interests include fitness and bodybuilding, travel, travel photography, cinematic and low-exposure photography, hiking, reading, music, cities, streets, architecture, landscapes, water and coastal views, mountains, museums, classical statues, Greek mythology, visual art, cinematic visual design, clean dark minimal high-contrast aesthetics, and spending time with his dog Kobe. He enjoys activities that help him improve, create, learn, recharge, or gain a different perspective. Museums connect to photography, classical art, architecture, statues, history, and visual storytelling. Hiking and travel combine physical activity, exploration, scenery, and reflection. Do not list running as a hobby. Do not invent favorite movie titles. Do not discuss private family details, family routines, or relationship history.",
-      "shortText": "Hobbies include fitness, travel, photography, hiking, reading, music, cities, museums, mythology/art, aesthetics, and his dog Kobe.",
+      "publicText": "Outside technology, Mark’s approved public interests include fitness and bodybuilding, travel, travel photography, cinematic and low-exposure photography, hiking, reading, music, cities, streets, architecture, landscapes, water and coastal views, mountains, museums, classical statues, Greek mythology, visual art, cinematic visual design, clean dark minimal high-contrast aesthetics, and spending time with his dog Kobe. Mark sometimes affectionately calls Kobe his son. That nickname is for his dog only and must not be treated as a human-child or family claim. He enjoys activities that help him improve, create, learn, recharge, or gain a different perspective. Museums connect to photography, classical art, architecture, statues, history, and visual storytelling. Hiking and travel combine physical activity, exploration, scenery, and reflection. Do not list running as a hobby. Do not invent favorite movie titles. Do not discuss private family details, family routines, or relationship history.",
+      "shortText": "Hobbies include fitness, travel, photography, hiking, reading, music, cities, museums, mythology/art, aesthetics, and his dog Kobe, whom he sometimes affectionately calls his son.",
       "aliases": [
         "hobbies",
         "for fun",
         "outside technology",
         "dog",
         "Kobe",
+        "my son",
         "museums",
         "interests"
       ],
@@ -162,6 +163,7 @@
         "museums",
         "dog",
         "Kobe",
+        "son",
         "free time",
         "lifestyle",
         "fitness",
@@ -174,9 +176,9 @@
       "evidence": [
         {
           "kind": "mark-approved",
-          "label": "Mark-approved public lifestyle, hobbies, and dog Kobe",
-          "claimScope": "Supports the approved public hobby list and that Mark has a dog named Kobe. Excludes family details, family routines, schedules, medical pet details, and private relationship history.",
-          "markApprovedOn": "2026-08-01"
+          "label": "Mark-approved public lifestyle, hobbies, dog Kobe, and affectionate son nickname",
+          "claimScope": "Supports the approved public hobby list, that Mark has a dog named Kobe, and that Mark sometimes affectionately calls Kobe his son as a dog-only nickname. Excludes human-child claims, human family details, family routines, schedules, medical pet details, breed, age, and private relationship history.",
+          "markApprovedOn": "2026-08-02"
         }
       ],
       "sourceFiles": [
@@ -203,6 +205,8 @@
         "what does Mark enjoy outside technology",
         "does Mark have a dog",
         "what is Mark’s dog’s name",
+        "does Mark call Kobe his son",
+        "who is Mark’s son",
         "does Mark enjoy museums",
         "how does Mark gain new perspectives",
         "what does Mark do when he is not coding",
@@ -210,7 +214,8 @@
         "what are Mark’s interests"
       ],
       "prohibitedUses": [
-        "names of friends or family",
+        "names of friends or human family members",
+        "treat Kobe nickname son as a human child or family claim",
         "dog breed age medical information or private schedules",
         "private family details",
         "family routines",
@@ -226,8 +231,8 @@
         "add private lifestyle details to Webpage or Terminal"
       ],
       "reviewedByMark": true,
-      "lastReviewed": "2026-08-01",
-      "notes": "Public hobbies include Mark’s dog Kobe by name. Running and favorite movie titles are out of scope. Family details and family routines remain private."
+      "lastReviewed": "2026-08-02",
+      "notes": "Public hobbies include Mark’s dog Kobe by name and that Mark sometimes affectionately calls Kobe his son. That nickname is dog-only and must never be expanded into human-child or family facts. Running and favorite movie titles are out of scope."
     },
     {
       "id": "travel-public-places-inventory",

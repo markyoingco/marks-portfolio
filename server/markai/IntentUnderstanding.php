@@ -493,7 +493,7 @@ function markai_intent_normalize(string $question): string
                                     : 'careerGoals');
                             break;
                             case 'hobbies':
-                            if (markai_intent_includes_any($normalized, ['dog', 'kobe']) || $normalized === 'dog' || $normalized === 'dog name') {
+                            if (markai_intent_includes_any($normalized, ['dog', 'kobe', 'my son', 'his son']) || $normalized === 'dog' || $normalized === 'dog name') {
                                 $answerKey = 'dog';
                             }
                             break;
@@ -544,6 +544,22 @@ function markai_intent_normalize(string $question): string
                                     $answerKey = 'testimonialJorgeQuote';
                                 }
                             }
+                            break;
+                            case 'collaboratorsJustin':
+                            case 'collaboratorsAngel':
+                            case 'collaboratorsJacob':
+                            case 'collaboratorsLuis':
+                            case 'collaboratorsXavier':
+                            case 'collaboratorsJulianne':
+                            case 'collaboratorsAllan':
+                            case 'collaboratorsAbacus':
+                            case 'collaboratorsMaat':
+                            case 'collaboratorsFinch':
+                            case 'collaboratorsDataMining':
+                            case 'collaboratorsOs':
+                            case 'collaboratorsSleep':
+                            case 'collaboratorsInventory':
+                            $mode = 'technical';
                             break;
                             case 'githubOnly':
                             $mode = 'technical';
@@ -644,6 +660,11 @@ function markai_intent_normalize(string $question): string
                         }
 
                         $context = markai_intent_history_context($history);
+
+                        if ($target === 'namesContextual') {
+                            return markai_intent_resolve_names_contextual($text, $context, $answers, $ontology);
+                        }
+
                         if (
                             $target === 'testimonials'
                             && (
@@ -675,6 +696,15 @@ function markai_intent_normalize(string $question): string
                             }
                         }
 
+                        // Testimonials-list style targets must not win when the current wording
+                        // or recent history clearly points at project teammates.
+                        if (
+                            in_array($target, ['testimonials', 'testimonialsList'], true)
+                            && markai_intent_project_team_cues($text . ' ' . $context)
+                        ) {
+                            return markai_intent_resolve_names_contextual($text, $context, $answers, $ontology);
+                        }
+
                         if ($context === '') {
                             // Without history, one-word follow-ups still map via normal one-word topics.
                             if ($target === 'collaboratorsContextual') {
@@ -701,6 +731,145 @@ function markai_intent_normalize(string $question): string
                         // Prefer follow-up when prior turn discussed related lifestyle/career themes,
                         // or always when the short follow-up is an approved topic word.
                         return markai_intent_category_to_result($target, $answers, $normalized);
+                    }
+
+                    function markai_intent_project_team_cues(string $haystack): bool
+                    {
+                        $haystack = strtolower($haystack);
+
+                        return markai_intent_includes_any($haystack, [
+                            'project',
+                            'team',
+                            'teammate',
+                            'teammates',
+                            'classmate',
+                            'classmates',
+                            'collaborator',
+                            'collaborators',
+                            'senior design',
+                            'abacus',
+                            'eagle',
+                            'maat',
+                            'ta-bot',
+                            'tabot',
+                            'finch',
+                            'birdvroom',
+                            'worked on',
+                            'worked with',
+                            'justin',
+                            'hoffman',
+                            'angel',
+                            'mora',
+                            'jacob',
+                            'dunroseman',
+                            'dun roseman',
+                            'luis',
+                            'serrano',
+                            'xavier',
+                            'barth',
+                            'julianne',
+                            'browne',
+                            'allan',
+                            'akkathara',
+                            'armaan',
+                            'hunter carlson',
+                            'document manager',
+                            'repo manager',
+                            'operating systems',
+                            'data mining',
+                            'sleep analysis',
+                        ]);
+                    }
+
+                    function markai_intent_history_has_project_team_topic(string $context): bool
+                    {
+                        $context = strtolower($context);
+
+                        return markai_intent_includes_any($context, [
+                            'abacus',
+                            'eagle messaging',
+                            'maat',
+                            'ta-bot',
+                            'tabot',
+                            'finch',
+                            'birdvroom',
+                            'senior design',
+                            'document manager',
+                            'repo manager',
+                            'justin hoffman',
+                            'angel mora',
+                            'jacob dunroseman',
+                            'luis serrano',
+                            'xavier barth',
+                            'julianne browne',
+                            'allan akkathara',
+                            'armaan yaz',
+                            'hunter carlson',
+                            'project collaborators, by project',
+                            'verified teammates',
+                            'core student team',
+                            'operating systems c',
+                            'data mining game',
+                            'sleep efficiency analysis',
+                        ]);
+                    }
+
+                    function markai_intent_history_suggests_testimonials_only(string $context): bool
+                    {
+                        if ($context === '') {
+                            return false;
+                        }
+
+                        $hasTestimonial = markai_intent_includes_any($context, [
+                            'testimonial',
+                            'testimonials',
+                            'recommendation',
+                            'recommendations',
+                            'farzeen',
+                            'zack kohlwey',
+                            'jorge torres',
+                            'alumni memorial',
+                            'professor of computer science',
+                            'testimonials section',
+                            'attributed',
+                        ]);
+                        if (!$hasTestimonial) {
+                            return false;
+                        }
+
+                        // If recent history is also about project teammates, do not treat it as
+                        // testimonials-only continuation.
+                        return !markai_intent_history_has_project_team_topic($context);
+                    }
+
+                    /**
+                    * @param array<string, mixed> $ontology
+                    * @param array<string, string> $answers
+                    * @return array{category: string, mode: string, answer: string, answerStatus: string}|null
+                    */
+                    function markai_intent_resolve_names_contextual(string $text, string $context, array $answers, array $ontology): ?array
+                    {
+                        $combined = strtolower(trim($text . ' ' . $context));
+                        if (markai_intent_project_team_cues($text) || markai_intent_history_has_project_team_topic($context)) {
+                            $projectMap = is_array($ontology['projectContext'] ?? null) ? $ontology['projectContext'] : [];
+                            foreach ($projectMap as $needle => $category) {
+                                if (!is_string($needle) || !is_string($category)) {
+                                    continue;
+                                }
+                                if (str_contains($combined, $needle)) {
+                                    return markai_intent_category_to_result($category, $answers);
+                                }
+                            }
+
+                            return markai_intent_category_to_result('collaboratorsInventory', $answers);
+                        }
+
+                        if (markai_intent_history_suggests_testimonials_only($context)) {
+                            return markai_intent_category_to_result('testimonialsList', $answers);
+                        }
+
+                        // Ambiguous short "list names?" / "who else?" with no usable topic.
+                        return markai_intent_category_to_result('collaboratorsInventory', $answers);
                     }
 
 

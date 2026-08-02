@@ -205,7 +205,7 @@ function categoryToResult(category, answers, normalized = '') {
       break
     case 'hobbies':
       if (
-        includesAny(normalized, ['dog', 'kobe']) ||
+        includesAny(normalized, ['dog', 'kobe', 'my son', 'his son']) ||
         normalized === 'dog' ||
         normalized === 'dog name'
       ) {
@@ -488,6 +488,11 @@ export function resolveTopicFollowup(text, history, answers) {
   if (typeof target !== 'string' || !target) return null
 
   const context = historyContext(history)
+
+  if (target === 'namesContextual') {
+    return resolveNamesContextual(text, context, answers, data)
+  }
+
   if (
     target === 'testimonials' &&
     (normalized === 'full quote' ||
@@ -517,6 +522,13 @@ export function resolveTopicFollowup(text, history, answers) {
     }
   }
 
+  if (
+    (target === 'testimonials' || target === 'testimonialsList') &&
+    projectTeamCues(`${text} ${context}`)
+  ) {
+    return resolveNamesContextual(text, context, answers, data)
+  }
+
   if (target === 'collaboratorsContextual') {
     const projectMap = data.projectContext && typeof data.projectContext === 'object' ? data.projectContext : {}
     for (const [needle, category] of Object.entries(projectMap)) {
@@ -528,6 +540,111 @@ export function resolveTopicFollowup(text, history, answers) {
   }
 
   return categoryToResult(target, answers, normalized)
+}
+
+function projectTeamCues(haystack) {
+  const text = String(haystack || '').toLowerCase()
+  return includesAny(text, [
+    'project',
+    'team',
+    'teammate',
+    'teammates',
+    'classmate',
+    'classmates',
+    'collaborator',
+    'collaborators',
+    'senior design',
+    'abacus',
+    'eagle',
+    'maat',
+    'ta-bot',
+    'tabot',
+    'finch',
+    'birdvroom',
+    'worked on',
+    'worked with',
+    'justin',
+    'hoffman',
+    'angel',
+    'mora',
+    'jacob',
+    'dunroseman',
+    'luis',
+    'serrano',
+    'xavier',
+    'barth',
+    'julianne',
+    'browne',
+    'allan',
+    'akkathara',
+    'armaan',
+    'hunter carlson',
+    'document manager',
+    'repo manager',
+    'operating systems',
+    'data mining',
+    'sleep analysis',
+  ])
+}
+
+function resolveNamesContextual(text, context, answers, data) {
+  const combined = `${text} ${context}`.toLowerCase()
+  if (projectTeamCues(text) || historyHasProjectTeamTopicIntent(context)) {
+    const projectMap = data.projectContext && typeof data.projectContext === 'object' ? data.projectContext : {}
+    for (const [needle, category] of Object.entries(projectMap)) {
+      if (combined.includes(needle)) {
+        return categoryToResult(category, answers)
+      }
+    }
+    return categoryToResult('collaboratorsInventory', answers)
+  }
+
+  const hasTestimonial = includesAny(context, [
+    'testimonial',
+    'testimonials',
+    'recommendation',
+    'farzeen',
+    'zack kohlwey',
+    'jorge torres',
+    'alumni memorial',
+    'testimonials section',
+    'attributed',
+  ])
+  if (hasTestimonial && !historyHasProjectTeamTopicIntent(context)) {
+    return categoryToResult('testimonialsList', answers)
+  }
+
+  return categoryToResult('collaboratorsInventory', answers)
+}
+
+function historyHasProjectTeamTopicIntent(context) {
+  return includesAny(String(context || '').toLowerCase(), [
+    'abacus',
+    'eagle messaging',
+    'maat',
+    'ta-bot',
+    'tabot',
+    'finch',
+    'birdvroom',
+    'senior design',
+    'document manager',
+    'repo manager',
+    'justin hoffman',
+    'angel mora',
+    'jacob dunroseman',
+    'luis serrano',
+    'xavier barth',
+    'julianne browne',
+    'allan akkathara',
+    'armaan yaz',
+    'hunter carlson',
+    'project collaborators, by project',
+    'verified teammates',
+    'core student team',
+    'operating systems c',
+    'data mining game',
+    'sleep efficiency analysis',
+  ])
 }
 
 export function getIntentOntology() {

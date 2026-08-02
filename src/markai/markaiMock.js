@@ -104,7 +104,7 @@ const ANSWERS = {
     "Outside technology, Mark’s public hobbies include fitness and bodybuilding, travel, travel photography, cinematic and low-exposure photography, hiking, reading, music, cities, streets, architecture, landscapes, water and coastal views, mountains, museums, classical statues, Greek mythology, visual art, cinematic visual design, clean dark minimal high-contrast aesthetics, and spending time with his dog Kobe. Fitness is a source of discipline, structure, patience, and consistency, while photography helps him preserve places, feelings, and perspective.",
   cooking:
     "Cooking is not part of MarkAI’s current approved public hobby list. You can ask about approved interests such as fitness, travel, photography, music, hiking, museums, and mythology.",
-  dog: "Mark has a dog named Kobe. He enjoys spending time with him, and MarkAI does not share identifying pet details, age, or private schedules.",
+  dog: "Mark has a dog named Kobe. He enjoys spending time with him and sometimes affectionately calls Kobe his son. That nickname is for his dog only and is not a human-child or family claim. MarkAI does not share identifying pet details, age, or private schedules.",
   friendsFamily:
     "MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.",
   museums:
@@ -150,13 +150,13 @@ const ANSWERS = {
   environment:
     "Mark prefers clean, organized, minimal environments with a cinematic mix of classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional atmosphere and dislikes corny or overly decorative presentation.",
   collaboratorsAbacus:
-    "The Abacus team included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.",
+    "Mark worked on Abacus with Justin Hoffman, Jacob DunRoseman, and Angel Mora. The project was a team senior-design effort, and Mark’s portfolio distinguishes his individual contributions from the team’s overall work. On the Abacus team, Mark Yoingco served as Document Manager, Justin Hoffman as Project Manager, Jacob DunRoseman as Repo Manager, and Angel Mora as Project Manager.",
   collaboratorsMaat:
-    "The TA-Bot / MAAT team included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.",
+    "Mark worked on TA-Bot / MAAT with Justin Hoffman, Jacob DunRoseman, and Angel Mora. The project was a team senior-design effort, and Mark’s portfolio distinguishes his individual contributions from the team’s overall work. The core student team was Mark Yoingco, Justin Hoffman, Jacob DunRoseman, and Angel Mora.",
   collaboratorsSam:
     "MarkAI provides only Mark’s approved public project and collaborator information.",
   collaboratorsFinch:
-    "The Finch Web Controller team included Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth.",
+    "The Finch Web Controller was a team coursework project. Mark worked primarily on frontend development, Figma mockups, controller layouts, setup documentation, and project presentation work. His verified teammates were Julianne Browne, Luis Serrano, and Xavier Barth, along with Mark Yoingco.",
   collaboratorsDataMining:
     "The Data Mining Game Predictor team included Mark Yoingco and Allan Akkathara.",
   collaboratorsOs:
@@ -165,6 +165,22 @@ const ANSWERS = {
     "For the Sleep Efficiency Analysis data-science project, the approved collaborator names are Mark Yoingco and Hunter Carlson.",
   collaboratorsInventory:
     "Mark’s approved project collaborators, by project:\n\n- Abacus: Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman\n- TA-Bot / MAAT: Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman\n- Finch: Mark Yoingco, Julianne Browne, Luis Serrano, Xavier Barth\n- Data Mining: Mark Yoingco, Allan Akkathara\n- Operating Systems: Mark Yoingco, Armaan Yaz\n- Sleep Analysis: Mark Yoingco, Hunter Carlson",
+  collaboratorsJustin:
+    "Justin Hoffman was Project Manager on Mark’s Abacus senior-design team and was also part of the core student team for TA-Bot / MAAT with Mark Yoingco, Jacob DunRoseman, and Angel Mora.",
+  collaboratorsAngel:
+    "Angel Mora was a Project Manager on Mark’s Abacus senior-design team and was also part of the core student team for TA-Bot / MAAT with Mark Yoingco, Justin Hoffman, and Jacob DunRoseman.",
+  collaboratorsJacob:
+    "Jacob DunRoseman served as Repo Manager on the senior-design team that worked on Abacus and TA-Bot / MAAT with Mark Yoingco, Justin Hoffman, and Angel Mora.",
+  collaboratorsLuis:
+    "Luis Serrano was a verified teammate on the Finch Web Controller coursework project with Mark Yoingco, Julianne Browne, and Xavier Barth.",
+  collaboratorsXavier:
+    "Xavier Barth was a verified teammate on the Finch Web Controller coursework project with Mark Yoingco, Julianne Browne, and Luis Serrano.",
+  collaboratorsJulianne:
+    "Julianne Browne was a verified teammate on the Finch Web Controller coursework project with Mark Yoingco, Luis Serrano, and Xavier Barth.",
+  collaboratorsAllan:
+    "Allan Akkathara worked with Mark on the Data Mining Game Predictor (Marquette Basketball Predictor).",
+  seniorDesignTeam:
+    "Mark worked on Abacus and TA-Bot / MAAT with Justin Hoffman, Jacob DunRoseman, and Angel Mora. The projects were team senior-design efforts, and Mark’s portfolio distinguishes his individual contributions from the team’s overall work. On Abacus, Mark Yoingco was Document Manager, Justin Hoffman was Project Manager, Jacob DunRoseman was Repo Manager, and Angel Mora was Project Manager.",
   fromChicago: "Mark is from Chicago.",
   locationPrivacy:
     "MarkAI does not provide precise or current location information. Mark’s approved public background states that he is from Chicago.",
@@ -221,7 +237,7 @@ function historyContext(history) {
 function historySuggestsTestimonials(history) {
   const context = historyContext(history);
   if (!context) return false;
-  return includesAny(context, [
+  const hasTestimonial = includesAny(context, [
     "testimonial",
     "testimonials",
     "recommendation",
@@ -237,10 +253,87 @@ function historySuggestsTestimonials(history) {
     "testimonials section",
     "attributed",
   ]);
+  if (!hasTestimonial) return false;
+  return !historyHasProjectTeamTopic(context);
+}
+
+function historyHasProjectTeamTopic(context) {
+  return includesAny(String(context || "").toLowerCase(), [
+    "abacus",
+    "eagle messaging",
+    "maat",
+    "ta-bot",
+    "tabot",
+    "finch",
+    "birdvroom",
+    "senior design",
+    "document manager",
+    "repo manager",
+    "justin hoffman",
+    "angel mora",
+    "jacob dunroseman",
+    "luis serrano",
+    "xavier barth",
+    "julianne browne",
+    "allan akkathara",
+    "armaan yaz",
+    "hunter carlson",
+    "project collaborators, by project",
+    "verified teammates",
+    "core student team",
+    "operating systems c",
+    "data mining game",
+    "sleep efficiency analysis",
+  ]);
+}
+
+function hasProjectTeamCues(haystack) {
+  return includesAny(String(haystack || "").toLowerCase(), [
+    "project",
+    "team",
+    "teammate",
+    "teammates",
+    "classmate",
+    "classmates",
+    "collaborator",
+    "collaborators",
+    "senior design",
+    "abacus",
+    "eagle",
+    "maat",
+    "ta-bot",
+    "tabot",
+    "finch",
+    "birdvroom",
+    "worked on",
+    "worked with",
+    "justin",
+    "hoffman",
+    "angel",
+    "mora",
+    "jacob",
+    "dunroseman",
+    "luis",
+    "serrano",
+    "xavier",
+    "barth",
+    "julianne",
+    "browne",
+    "allan",
+    "akkathara",
+    "armaan",
+    "hunter carlson",
+    "document manager",
+    "repo manager",
+    "operating systems",
+    "data mining",
+    "sleep analysis",
+  ]);
 }
 
 function isTestimonialFollowupContext(text, history) {
   if (!historySuggestsTestimonials(history)) return false;
+  if (hasProjectTeamCues(text)) return false;
   const normalized = text.trim().replace(/[?.!]+$/g, "");
   return (
     includesAny(text, [
@@ -260,7 +353,8 @@ function isTestimonialFollowupContext(text, history) {
       "professors",
       "coworkers",
       "supervisor",
-      "names",
+      "who wrote",
+      "who gave",
     ]) ||
     [
       "whole list",
@@ -268,6 +362,7 @@ function isTestimonialFollowupContext(text, history) {
       "who else",
       "names",
       "list",
+      "list names",
       "relationships",
       "relationship",
       "full quotes",
@@ -625,6 +720,10 @@ function classifyQuestion(rawQuestion, history = []) {
       "with friends and family",
       "time with family",
       "spending time with family",
+      "human son",
+      "have a human son",
+      "does mark have a human son",
+      "mark have a human son",
       "home life",
       "private struggle",
       "private problems",
@@ -891,12 +990,144 @@ function classifyQuestion(rawQuestion, history = []) {
       "worked on finch",
       "who was on finch",
       "who worked on finch",
+      "who else worked on finch",
+      "finch collaborators",
+      "finch teammates",
     ])
   ) {
     return {
       category: "collaboratorsFinch",
       mode: "technical",
       answer: ANSWERS.collaboratorsFinch,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "justin hoffman",
+      "worked with justin",
+      "who else worked with justin",
+    ]) || /\bjustin\b/.test(text)
+  ) {
+    if (
+      includesAny(text, [
+        "who else",
+        "rest of",
+        "other members",
+        "other teammates",
+        "team with justin",
+      ])
+    ) {
+      return {
+        category: "collaboratorsAbacus",
+        mode: "technical",
+        answer: ANSWERS.seniorDesignTeam,
+        answerStatus: "answered",
+      };
+    }
+    return {
+      category: "collaboratorsJustin",
+      mode: "technical",
+      answer: ANSWERS.collaboratorsJustin,
+      answerStatus: "answered",
+    };
+  }
+
+  if (includesAny(text, ["angel mora", "angel moran"]) || /\bangel\b/.test(text)) {
+    return {
+      category: "collaboratorsAngel",
+      mode: "technical",
+      answer: ANSWERS.collaboratorsAngel,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, ["jacob dunroseman", "jacob dun roseman"]) ||
+    /\bjacob\b/.test(text)
+  ) {
+    return {
+      category: "collaboratorsJacob",
+      mode: "technical",
+      answer: ANSWERS.collaboratorsJacob,
+      answerStatus: "answered",
+    };
+  }
+
+  if (includesAny(text, ["luis serrano"]) || /\bluis\b/.test(text)) {
+    return {
+      category: "collaboratorsLuis",
+      mode: "technical",
+      answer: ANSWERS.collaboratorsLuis,
+      answerStatus: "answered",
+    };
+  }
+
+  if (includesAny(text, ["xavier barth"]) || /\bxavier\b/.test(text)) {
+    return {
+      category: "collaboratorsXavier",
+      mode: "technical",
+      answer: ANSWERS.collaboratorsXavier,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, ["julianne browne", "who is julian"]) ||
+    /\bjulianne\b|\bjulian\b/.test(text)
+  ) {
+    return {
+      category: "collaboratorsJulianne",
+      mode: "technical",
+      answer: ANSWERS.collaboratorsJulianne,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "project teammates",
+      "project team",
+      "project teams",
+      "who else was on the team",
+      "who else was on the project",
+      "who was on the team",
+      "who was on the project team",
+      "classmates who worked",
+      "collaborators on the project",
+      "team members",
+      "list names from the project",
+      "senior design team",
+    ])
+  ) {
+    const ctx = historyContext(history);
+    let category = "collaboratorsInventory";
+    let answer = ANSWERS.collaboratorsInventory;
+    if (includesAny(`${text} ${ctx}`, ["finch", "birdvroom", "luis", "xavier", "julianne"])) {
+      category = "collaboratorsFinch";
+      answer = ANSWERS.collaboratorsFinch;
+    } else if (
+      includesAny(`${text} ${ctx}`, [
+        "justin",
+        "hoffman",
+        "angel",
+        "mora",
+        "jacob",
+        "dunroseman",
+        "abacus",
+        "maat",
+        "ta-bot",
+        "senior design",
+      ])
+    ) {
+      category = "collaboratorsAbacus";
+      answer = ANSWERS.seniorDesignTeam;
+    }
+    return {
+      category,
+      mode: "technical",
+      answer,
       answerStatus: "answered",
     };
   }
@@ -1011,12 +1242,12 @@ function classifyQuestion(rawQuestion, history = []) {
       "supervisor testimonial",
       "professor testimonial",
       "more testimonials",
-      "whole list",
-      "list of names",
-      "all names",
+      "whole list of testimonials",
+      "testimonial names",
       "who gave mark",
-      "who gave",
-      "who else",
+      "who gave a testimonial",
+      "who wrote the testimonials",
+      "who wrote them",
       "relationship with mark",
       "relationship to mark",
       "their relationship",
@@ -1608,6 +1839,11 @@ function classifyQuestion(rawQuestion, history = []) {
       "who is kobe",
       "tell me about kobe",
       "kobe",
+      "my son",
+      "his son",
+      "call kobe",
+      "calls kobe",
+      "kobe his son",
       "spend his free time",
       "spends his free time",
       "new perspectives",
@@ -1628,7 +1864,10 @@ function classifyQuestion(rawQuestion, history = []) {
     else if (includesAny(text, ["visual style", "like black", "why black"]))
       answer = ANSWERS.favoriteColor;
     else if (includesAny(text, ["cook"])) answer = ANSWERS.cooking;
-    else if (includesAny(text, ["dog", "kobe"]) || text === "dog")
+    else if (
+      includesAny(text, ["dog", "kobe", "my son", "his son", "call kobe", "calls kobe"]) ||
+      text === "dog"
+    )
       answer = ANSWERS.dog;
     else if (includesAny(text, ["museum"])) answer = ANSWERS.museums;
     return {

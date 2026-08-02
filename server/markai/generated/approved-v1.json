@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "sourceDigest": "673bdac7729dc1e781cd9790645e6ba0b92c4901b3ae3fb1140ec358882e7875",
+  "sourceDigest": "bd509121892d4d95fb53eac05a2d8c223ebc681584e118d17320791215682c2a",
   "counts": {
     "records": 116,
     "skills": 26,
@@ -1439,14 +1439,15 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Lifestyle hobbies outside technology",
-      "publicText": "Outside technology, Mark’s approved public interests include fitness and bodybuilding, travel, travel photography, cinematic and low-exposure photography, hiking, reading, music, cities, streets, architecture, landscapes, water and coastal views, mountains, museums, classical statues, Greek mythology, visual art, cinematic visual design, clean dark minimal high-contrast aesthetics, and spending time with his dog Kobe. He enjoys activities that help him improve, create, learn, recharge, or gain a different perspective. Museums connect to photography, classical art, architecture, statues, history, and visual storytelling. Hiking and travel combine physical activity, exploration, scenery, and reflection. Do not list running as a hobby. Do not invent favorite movie titles. Do not discuss private family details, family routines, or relationship history.",
-      "shortText": "Hobbies include fitness, travel, photography, hiking, reading, music, cities, museums, mythology/art, aesthetics, and his dog Kobe.",
+      "publicText": "Outside technology, Mark’s approved public interests include fitness and bodybuilding, travel, travel photography, cinematic and low-exposure photography, hiking, reading, music, cities, streets, architecture, landscapes, water and coastal views, mountains, museums, classical statues, Greek mythology, visual art, cinematic visual design, clean dark minimal high-contrast aesthetics, and spending time with his dog Kobe. Mark sometimes affectionately calls Kobe his son. That nickname is for his dog only and must not be treated as a human-child or family claim. He enjoys activities that help him improve, create, learn, recharge, or gain a different perspective. Museums connect to photography, classical art, architecture, statues, history, and visual storytelling. Hiking and travel combine physical activity, exploration, scenery, and reflection. Do not list running as a hobby. Do not invent favorite movie titles. Do not discuss private family details, family routines, or relationship history.",
+      "shortText": "Hobbies include fitness, travel, photography, hiking, reading, music, cities, museums, mythology/art, aesthetics, and his dog Kobe, whom he sometimes affectionately calls his son.",
       "aliases": [
         "hobbies",
         "for fun",
         "outside technology",
         "dog",
         "Kobe",
+        "my son",
         "museums",
         "interests"
       ],
@@ -1455,6 +1456,7 @@
         "museums",
         "dog",
         "Kobe",
+        "son",
         "free time",
         "lifestyle",
         "fitness",
@@ -1478,6 +1480,8 @@
         "what does Mark enjoy outside technology",
         "does Mark have a dog",
         "what is Mark’s dog’s name",
+        "does Mark call Kobe his son",
+        "who is Mark’s son",
         "does Mark enjoy museums",
         "how does Mark gain new perspectives",
         "what does Mark do when he is not coding",
@@ -1485,7 +1489,8 @@
         "what are Mark’s interests"
       ],
       "prohibitedUses": [
-        "names of friends or family",
+        "names of friends or human family members",
+        "treat Kobe nickname son as a human child or family claim",
         "dog breed age medical information or private schedules",
         "private family details",
         "family routines",
@@ -1500,7 +1505,7 @@
         "professional photography employment claims",
         "add private lifestyle details to Webpage or Terminal"
       ],
-      "notes": "Public hobbies include Mark’s dog Kobe by name. Running and favorite movie titles are out of scope. Family details and family routines remain private."
+      "notes": "Public hobbies include Mark’s dog Kobe by name and that Mark sometimes affectionately calls Kobe his son. That nickname is dog-only and must never be expanded into human-child or family facts. Running and favorite movie titles are out of scope."
     },
     {
       "id": "travel-public-places-inventory",
@@ -2890,12 +2895,15 @@
       "category": "projects",
       "recordType": "project-collaborators",
       "title": "Abacus core student team",
-      "publicText": "The core student team for Abacus included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. These names are approved only for factual project-team answers. Do not invent roles, leadership claims, equal-contribution claims, quotations, contact information, or private repository details for teammates.",
-      "shortText": "Abacus core student team: Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.",
+      "publicText": "The core student team for Abacus included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. Approved Abacus team roles are: Mark Yoingco — Document Manager; Justin Hoffman — Project Manager; Jacob DunRoseman — Repo Manager; Angel Mora — Project Manager. These names and roles are approved only for factual MarkAI project-team answers. Do not invent additional roles, leadership claims beyond these titles, equal-contribution claims, quotations, contact information, or private repository details. Do not add these names to Webpage or Terminal surfaces.",
+      "shortText": "Abacus core student team: Mark Yoingco (Document Manager), Justin Hoffman (Project Manager), Jacob DunRoseman (Repo Manager), Angel Mora (Project Manager).",
       "aliases": [
         "Abacus team",
         "Abacus teammates",
-        "who was on Abacus"
+        "who was on Abacus",
+        "Angel Moran",
+        "Jacob Dun Roseman",
+        "Jacob Dunroseman"
       ],
       "keywords": [
         "abacus",
@@ -2918,10 +2926,13 @@
       "answerUses": [
         "who was on the Abacus team",
         "who worked on Abacus",
-        "Abacus collaborators"
+        "Abacus collaborators",
+        "Angel Mora",
+        "Jacob DunRoseman",
+        "Justin Hoffman"
       ],
       "prohibitedUses": [
-        "invent teammate roles",
+        "invent teammate roles beyond approved Abacus titles",
         "invent leadership claims",
         "invent quotations",
         "contact information",
@@ -2931,20 +2942,22 @@
         "personality analysis of collaborators",
         "add names to Webpage or Terminal"
       ],
-      "notes": "MarkAI-only. Do not add these names to Webpage, Terminal, resume, portfolio cards, or testimonials."
+      "notes": "MarkAI-only. Do not add these names to Webpage, Terminal, resume, portfolio cards, or testimonials. Prefer Angel Mora over Angel Moran."
     },
     {
       "id": "collaborators-maat-core-team",
       "category": "projects",
       "recordType": "project-collaborators",
       "title": "TA-Bot / MAAT core student team",
-      "publicText": "The core student team for TA-Bot / MAAT included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. These names are approved only for factual project-team answers. Do not invent roles, leadership claims, equal-contribution claims, quotations, contact information, or private repository details for teammates.",
+      "publicText": "The core student team for TA-Bot / MAAT included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. These names are approved only for factual MarkAI project-team answers. Do not invent MAAT-specific role titles beyond membership on the core student team, equal-contribution claims, quotations, contact information, or private repository details. Do not add these names to Webpage or Terminal surfaces.",
       "shortText": "TA-Bot / MAAT core student team: Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.",
       "aliases": [
         "MAAT team",
         "TA-Bot team",
         "who worked on TA-Bot",
-        "who helped with MAAT"
+        "who helped with MAAT",
+        "Angel Moran",
+        "Jacob Dun Roseman"
       ],
       "keywords": [
         "maat",
@@ -2988,12 +3001,16 @@
       "category": "projects",
       "recordType": "project-collaborators",
       "title": "Finch Web Controller team",
-      "publicText": "The Finch Web Controller team included Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth. These names are approved only for factual project-team answers. Do not invent roles, leadership claims, quotations, contact information, or private repository details.",
+      "publicText": "The Finch Web Controller was a team coursework project. Mark worked primarily on frontend development, Figma mockups, controller layouts, setup documentation, and project presentation work. Verified teammates were Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth. These names are approved only for factual MarkAI project-team answers. Do not invent roles, leadership claims, quotations, contact information, or private repository details. Do not add these names to Webpage or Terminal surfaces.",
       "shortText": "Finch Web Controller team: Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth.",
       "aliases": [
         "Finch team",
         "Finch teammates",
-        "who was on Finch"
+        "who was on Finch",
+        "Luis Serrano",
+        "Xavier Barth",
+        "Julianne Browne",
+        "Julian"
       ],
       "keywords": [
         "finch",
@@ -5401,7 +5418,7 @@
         "publicBehavior": "Decline questions about family details, family routines, private household arrangements, or friends-and-family personal life. Reply that MarkAI only provides professional and intentionally public information. Approved public interests such as fitness, travel, photography, music, and Mark’s dog Kobe may still be discussed when relevant.",
         "modelInstruction": "Do not discuss private family details, family routines, or private household arrangements. Do not invent such details. Do not confirm or deny private family matters. Approved public interests and Mark’s dog Kobe remain allowed when grounded in approved records.",
         "logPolicy": "log-category-only",
-        "notes": "Family details remain private. Intentionally public interests and Kobe are not blocked by this rule.",
+        "notes": "Family details remain private. Intentionally public interests and Kobe are not blocked by this rule. Calling Kobe his son is an approved affectionate dog nickname only and must not be treated as a human family claim.",
         "enforcement": "model-and-server"
       },
       {

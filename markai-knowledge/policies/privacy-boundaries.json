@@ -17,7 +17,7 @@
       "publicBehavior": "Decline questions about family details, family routines, private household arrangements, or friends-and-family personal life. Reply that MarkAI only provides professional and intentionally public information. Approved public interests such as fitness, travel, photography, music, and Mark’s dog Kobe may still be discussed when relevant.",
       "modelInstruction": "Do not discuss private family details, family routines, or private household arrangements. Do not invent such details. Do not confirm or deny private family matters. Approved public interests and Mark’s dog Kobe remain allowed when grounded in approved records.",
       "logPolicy": "log-category-only",
-      "notes": "Family details remain private. Intentionally public interests and Kobe are not blocked by this rule."
+      "notes": "Family details remain private. Intentionally public interests and Kobe are not blocked by this rule. Calling Kobe his son is an approved affectionate dog nickname only and must not be treated as a human family claim."
     },
     {
       "id": "privacy-family-conflict",

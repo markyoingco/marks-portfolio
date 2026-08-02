@@ -6,12 +6,15 @@
       "category": "projects",
       "recordType": "project-collaborators",
       "title": "Abacus core student team",
-      "publicText": "The core student team for Abacus included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. These names are approved only for factual project-team answers. Do not invent roles, leadership claims, equal-contribution claims, quotations, contact information, or private repository details for teammates.",
-      "shortText": "Abacus core student team: Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.",
+      "publicText": "The core student team for Abacus included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. Approved Abacus team roles are: Mark Yoingco — Document Manager; Justin Hoffman — Project Manager; Jacob DunRoseman — Repo Manager; Angel Mora — Project Manager. These names and roles are approved only for factual MarkAI project-team answers. Do not invent additional roles, leadership claims beyond these titles, equal-contribution claims, quotations, contact information, or private repository details. Do not add these names to Webpage or Terminal surfaces.",
+      "shortText": "Abacus core student team: Mark Yoingco (Document Manager), Justin Hoffman (Project Manager), Jacob DunRoseman (Repo Manager), Angel Mora (Project Manager).",
       "aliases": [
         "Abacus team",
         "Abacus teammates",
-        "who was on Abacus"
+        "who was on Abacus",
+        "Angel Moran",
+        "Jacob Dun Roseman",
+        "Jacob Dunroseman"
       ],
       "keywords": [
         "abacus",
@@ -26,9 +29,9 @@
       "evidence": [
         {
           "kind": "mark-approved",
-          "label": "Mark-approved Phase 3A Abacus collaborator names",
-          "claimScope": "Supports the four core student names for Abacus team questions only. Does not support contact data, roles beyond core-student membership, or performance claims.",
-          "markApprovedOn": "2026-07-30"
+          "label": "Mark-approved senior-design collaborator names and Abacus roles",
+          "claimScope": "Supports the four core student names for Abacus team questions and Abacus roles Document Manager (Mark Yoingco), Project Manager (Justin Hoffman), Repo Manager (Jacob DunRoseman), and Project Manager (Angel Mora). Canonical spelling is Angel Mora; Angel Moran is a typo variant. Does not support contact data or invented code-contribution detail.",
+          "markApprovedOn": "2026-08-02"
         }
       ],
       "sourceFiles": [
@@ -52,10 +55,13 @@
       "answerUses": [
         "who was on the Abacus team",
         "who worked on Abacus",
-        "Abacus collaborators"
+        "Abacus collaborators",
+        "Angel Mora",
+        "Jacob DunRoseman",
+        "Justin Hoffman"
       ],
       "prohibitedUses": [
-        "invent teammate roles",
+        "invent teammate roles beyond approved Abacus titles",
         "invent leadership claims",
         "invent quotations",
         "contact information",
@@ -66,21 +72,23 @@
         "add names to Webpage or Terminal"
       ],
       "reviewedByMark": true,
-      "lastReviewed": "2026-07-30",
-      "notes": "MarkAI-only. Do not add these names to Webpage, Terminal, resume, portfolio cards, or testimonials."
+      "lastReviewed": "2026-08-02",
+      "notes": "MarkAI-only. Do not add these names to Webpage, Terminal, resume, portfolio cards, or testimonials. Prefer Angel Mora over Angel Moran."
     },
     {
       "id": "collaborators-maat-core-team",
       "category": "projects",
       "recordType": "project-collaborators",
       "title": "TA-Bot / MAAT core student team",
-      "publicText": "The core student team for TA-Bot / MAAT included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. These names are approved only for factual project-team answers. Do not invent roles, leadership claims, equal-contribution claims, quotations, contact information, or private repository details for teammates.",
+      "publicText": "The core student team for TA-Bot / MAAT included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. These names are approved only for factual MarkAI project-team answers. Do not invent MAAT-specific role titles beyond membership on the core student team, equal-contribution claims, quotations, contact information, or private repository details. Do not add these names to Webpage or Terminal surfaces.",
       "shortText": "TA-Bot / MAAT core student team: Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.",
       "aliases": [
         "MAAT team",
         "TA-Bot team",
         "who worked on TA-Bot",
-        "who helped with MAAT"
+        "who helped with MAAT",
+        "Angel Moran",
+        "Jacob Dun Roseman"
       ],
       "keywords": [
         "maat",
@@ -144,12 +152,16 @@
       "category": "projects",
       "recordType": "project-collaborators",
       "title": "Finch Web Controller team",
-      "publicText": "The Finch Web Controller team included Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth. These names are approved only for factual project-team answers. Do not invent roles, leadership claims, quotations, contact information, or private repository details.",
+      "publicText": "The Finch Web Controller was a team coursework project. Mark worked primarily on frontend development, Figma mockups, controller layouts, setup documentation, and project presentation work. Verified teammates were Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth. These names are approved only for factual MarkAI project-team answers. Do not invent roles, leadership claims, quotations, contact information, or private repository details. Do not add these names to Webpage or Terminal surfaces.",
       "shortText": "Finch Web Controller team: Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth.",
       "aliases": [
         "Finch team",
         "Finch teammates",
-        "who was on Finch"
+        "who was on Finch",
+        "Luis Serrano",
+        "Xavier Barth",
+        "Julianne Browne",
+        "Julian"
       ],
       "keywords": [
         "finch",

@@ -168,6 +168,14 @@ $assert(
     '1 short-term still returns approved answer'
 );
 
+// 1b) Rate-limit fallback preserves project-team intent (not Testimonials)
+$windowCollab = $run($windowLimiter, $sessionA, ['question' => 'Who else worked on Finch?']);
+$assert(($windowCollab['answerStatus'] ?? '') === 'rate_limited', '1b Finch under window still rate_limited');
+$assert(($windowCollab['errorCode'] ?? '') === 'session_window_limit', '1b Finch keeps session_window_limit');
+$assert(($windowCollab['fallbackUsed'] ?? false) === true, '1b Finch uses deterministic fallback');
+$assert(str_contains((string) ($windowCollab['answer'] ?? ''), 'Luis Serrano') || str_contains((string) ($windowCollab['answer'] ?? ''), 'Finch'), '1b Finch fallback keeps project team');
+$assert(!str_contains((string) ($windowCollab['answer'] ?? ''), 'Farzeen Harunani — Professor of Computer Science'), '1b Finch fallback is not testimonials');
+
 // 2) Daily session limit says try again tomorrow
 $dayDir = $makeTempDir();
 $sessionB = bin2hex(random_bytes(32));
@@ -221,6 +229,13 @@ $assert(
     (string) ($gBlocked['userNote'] ?? '') === 'Please try again tomorrow. Approved portfolio answers may still be available.',
     '3 global note uses approved-answers wording'
 );
+
+// 3b) Global-limit fallback preserves collaborator intent
+$gCollab = $run($gLimiter, $sessionC, ['question' => 'Who else worked on Finch?']);
+$assert(($gCollab['errorCode'] ?? '') === 'global_daily_limit', '3b Finch keeps global_daily_limit');
+$assert(($gCollab['fallbackUsed'] ?? false) === true, '3b Finch uses deterministic fallback');
+$assert(str_contains((string) ($gCollab['answer'] ?? ''), 'Luis Serrano') || str_contains((string) ($gCollab['answer'] ?? ''), 'Finch'), '3b Finch fallback keeps project team');
+$assert(!str_contains((string) ($gCollab['answer'] ?? ''), 'Farzeen Harunani — Professor of Computer Science'), '3b Finch fallback is not testimonials');
 
 // 4) Provider timeout shows temporary-provider note with deterministic fallback
 $timeoutDir = $makeTempDir();

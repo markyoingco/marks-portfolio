@@ -1918,6 +1918,121 @@ foreach ($stillPrivate as $pq) {
     $assert(($pc['answerStatus'] ?? '') === 'refused', 'still refused private: ' . $pq);
 }
 
+// --- Project-team vs testimonials routing correction ---
+$justinLookup = markai_mock_classify('Justin Hoffman');
+$assert(($justinLookup['category'] ?? '') === 'collaboratorsJustin', 'Justin Hoffman lookup category');
+$assert(str_contains((string) ($justinLookup['answer'] ?? ''), 'Project Manager'), 'Justin role present');
+$assert(str_contains((string) ($justinLookup['answer'] ?? ''), 'Abacus'), 'Justin Abacus project present');
+$assert(!str_contains(strtolower((string) ($justinLookup['answer'] ?? '')), 'testimonials section'), 'Justin lookup is not testimonials');
+
+$angelLookup = markai_mock_classify('Angel Mora');
+$assert(($angelLookup['category'] ?? '') === 'collaboratorsAngel', 'Angel Mora lookup');
+$assert(str_contains((string) ($angelLookup['answer'] ?? ''), 'Project Manager'), 'Angel role present');
+$angelTypo = markai_mock_classify('Angel Moran');
+$assert(($angelTypo['category'] ?? '') === 'collaboratorsAngel', 'Angel Moran typo routes to Angel Mora');
+
+$jacobLookup = markai_mock_classify('Jacob Dun Roseman');
+$assert(($jacobLookup['category'] ?? '') === 'collaboratorsJacob', 'Jacob Dun Roseman lookup');
+$assert(str_contains((string) ($jacobLookup['answer'] ?? ''), 'Repo Manager'), 'Jacob role present');
+$jacobCanonical = markai_mock_classify('Jacob DunRoseman');
+$assert(($jacobCanonical['category'] ?? '') === 'collaboratorsJacob', 'Jacob DunRoseman lookup');
+$jacobTypo = markai_mock_classify('Jacob Dunroseman');
+$assert(($jacobTypo['category'] ?? '') === 'collaboratorsJacob', 'Jacob Dunroseman lookup');
+
+$abacusTeam = markai_mock_classify('list the Abacus team');
+$assert(($abacusTeam['category'] ?? '') === 'collaboratorsAbacus', 'Abacus team list category');
+foreach (['Mark Yoingco', 'Justin Hoffman', 'Angel Mora', 'Jacob DunRoseman'] as $name) {
+    $assert(str_contains((string) ($abacusTeam['answer'] ?? ''), $name), 'Abacus team includes ' . $name);
+}
+foreach (['Document Manager', 'Project Manager', 'Repo Manager'] as $role) {
+    $assert(str_contains((string) ($abacusTeam['answer'] ?? ''), $role), 'Abacus team includes role ' . $role);
+}
+$maatTeam = markai_mock_classify('who worked on TA-Bot');
+$assert(($maatTeam['category'] ?? '') === 'collaboratorsMaat', 'TA-Bot team category');
+foreach (['Mark Yoingco', 'Justin Hoffman', 'Angel Mora', 'Jacob DunRoseman'] as $name) {
+    $assert(str_contains((string) ($maatTeam['answer'] ?? ''), $name), 'MAAT team includes ' . $name);
+}
+$assert(!preg_match('/Document Manager|Repo Manager/i', (string) ($maatTeam['answer'] ?? '')), 'MAAT answer invents no Abacus-only role titles');
+
+$finchTeam = markai_mock_classify('who was on the Finch team');
+$assert(($finchTeam['category'] ?? '') === 'collaboratorsFinch', 'Finch team category');
+foreach (['Mark Yoingco', 'Julianne Browne', 'Luis Serrano', 'Xavier Barth'] as $name) {
+    $assert(str_contains((string) ($finchTeam['answer'] ?? ''), $name), 'Finch team includes ' . $name);
+}
+
+$justinHist = [
+    ['role' => 'user', 'content' => 'Justin Hoffman'],
+    ['role' => 'assistant', 'content' => (string) ($justinLookup['answer'] ?? '')],
+];
+$whoElseAfterJustin = markai_mock_classify('Who else was on the team?', $justinHist);
+$assert(($whoElseAfterJustin['category'] ?? '') === 'collaboratorsAbacus', 'who else after Justin stays on project team');
+$assert(str_contains((string) ($whoElseAfterJustin['answer'] ?? ''), 'Angel Mora'), 'who else after Justin lists Angel');
+$assert(!str_contains((string) ($whoElseAfterJustin['answer'] ?? ''), 'Farzeen Harunani'), 'who else after Justin is not testimonials');
+
+$testimonialHist = [
+    ['role' => 'user', 'content' => 'testimonials'],
+    ['role' => 'assistant', 'content' => (string) (markai_mock_classify('testimonials')['answer'] ?? '')],
+];
+$projectAfterTestimonials = markai_mock_classify('Who else was on the project teams?', $testimonialHist);
+$assert(($projectAfterTestimonials['category'] ?? '') !== 'testimonials', 'project wording after testimonials is not testimonials overview');
+$assert(($projectAfterTestimonials['category'] ?? '') !== 'testimonialsList', 'project wording after testimonials is not testimonials list');
+$assert(
+    in_array(($projectAfterTestimonials['category'] ?? ''), ['collaboratorsInventory', 'collaboratorsAbacus', 'collaboratorsMaat'], true),
+    'project wording after testimonials routes to collaborators'
+);
+$assert(!str_contains((string) ($projectAfterTestimonials['answer'] ?? ''), 'Farzeen Harunani — Professor of Computer Science'), 'project override omits testimonial title list');
+
+$finchAfterTestimonials = markai_mock_classify('Who else worked on Finch?', $testimonialHist);
+$assert(($finchAfterTestimonials['category'] ?? '') === 'collaboratorsFinch', 'Finch after testimonials routes to Finch collaborators');
+$assert(str_contains((string) ($finchAfterTestimonials['answer'] ?? ''), 'Luis Serrano'), 'Finch answer includes Luis');
+$assert(str_contains((string) ($finchAfterTestimonials['answer'] ?? ''), 'Xavier Barth'), 'Finch answer includes Xavier');
+$assert(str_contains((string) ($finchAfterTestimonials['answer'] ?? ''), 'Julianne Browne'), 'Finch answer includes Julianne');
+$assert(!str_contains((string) ($finchAfterTestimonials['answer'] ?? ''), 'Zack Kohlwey'), 'Finch answer excludes testimonials speakers');
+
+$finchHist = [
+    ['role' => 'user', 'content' => 'Who worked on Finch?'],
+    ['role' => 'assistant', 'content' => (string) ($finchAfterTestimonials['answer'] ?? '')],
+];
+$listNamesAfterFinch = markai_mock_classify('list names', $finchHist);
+$assert(($listNamesAfterFinch['category'] ?? '') === 'collaboratorsFinch', 'list names inherits Finch context');
+$listNamesAfterTestimonials = markai_mock_classify('list names', $testimonialHist);
+$assert(($listNamesAfterTestimonials['category'] ?? '') === 'testimonialsList', 'list names inherits testimonials only after testimonials');
+
+$testimonialAfterProject = markai_mock_classify('testimonials', $finchHist);
+$assert(($testimonialAfterProject['category'] ?? '') === 'testimonials', 'testimonials after project conversation still route to testimonials');
+$assert(str_contains((string) ($testimonialAfterProject['answer'] ?? ''), 'Farzeen Harunani') || str_contains((string) ($testimonialAfterProject['answer'] ?? ''), 'Testimonials'), 'testimonials after project keeps testimonial content');
+
+$emptyHist = markai_mock_classify('list names', []);
+$assert(($emptyHist['category'] ?? '') !== 'testimonialsList', 'New Chat / empty history does not force testimonials list');
+
+$luis = markai_mock_classify('Luis Serrano');
+$assert(($luis['category'] ?? '') === 'collaboratorsLuis', 'Luis Serrano supported');
+$xavier = markai_mock_classify('Xavier');
+$assert(($xavier['category'] ?? '') === 'collaboratorsXavier', 'Xavier supported');
+$julian = markai_mock_classify('Julian');
+$assert(($julian['category'] ?? '') === 'collaboratorsJulianne', 'Julian maps to Julianne Browne');
+$aydan = markai_mock_classify('Aydan');
+$assert(($aydan['category'] ?? '') === 'fallback', 'Aydan unsupported remains fallback');
+$assert(($aydan['answerStatus'] ?? '') === 'unavailable', 'Aydan unavailable status');
+
+$rateLimitCollabNetworkBefore = $networkCalls;
+$rateLimitCollab = handleMarkAiPreviewRequest(
+    $export,
+    [
+        'question' => 'Who else worked on Finch?',
+        'history' => $testimonialHist,
+    ],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('collaborator fallback path must not transport');
+    }
+);
+$assert($networkCalls === $rateLimitCollabNetworkBefore, 'collaborator fallback live_network_requests=0');
+$assert(($rateLimitCollab['answerStatus'] ?? '') === 'answered', 'collaborator deterministic path answered');
+$assert(str_contains((string) ($rateLimitCollab['answer'] ?? ''), 'Luis Serrano'), 'deterministic Finch team preserved');
+$assert(!str_contains((string) ($rateLimitCollab['answer'] ?? ''), 'Farzeen Harunani — Professor of Computer Science'), 'deterministic path not testimonials');
+
 // --- Project inventory fixtures ---
 $inventoryNetworkBefore = $networkCalls;
 $inventoryResponse = handleMarkAiPreviewRequest(
@@ -2748,11 +2863,42 @@ $assert(($dogClassify = markai_mock_classify('does Mark have a dog?'))['category
 $assert(($dogClassify['answerStatus'] ?? '') === 'answered', 'dog answered status');
 $assert(str_contains(strtolower($dogAnswer), 'dog'), 'dog answer mentions dog');
 $assert(str_contains(strtolower($dogAnswer), 'kobe'), 'dog answer names Kobe');
+$assert(str_contains(strtolower($dogAnswer), 'son'), 'dog answer includes affectionate son nickname');
 $assert(!preg_match('/breed|years old|lbs|kg|vet|golden retriever|labrador/i', $dogAnswer), 'dog answer has no private pet details');
 
 $dogNameAnswer = (string) (markai_mock_classify("what is Mark's dog's name?")['answer'] ?? '');
 $assert(str_contains(strtolower($dogNameAnswer), 'kobe'), 'dog name answer includes Kobe');
 
+$kobeSon = markai_mock_classify('Does Mark call Kobe his son?');
+$assert(($kobeSon['answerStatus'] ?? '') === 'answered', 'Kobe son nickname answered');
+$assert(str_contains(strtolower((string) ($kobeSon['answer'] ?? '')), 'son'), 'Kobe son nickname present');
+$assert(str_contains(strtolower((string) ($kobeSon['answer'] ?? '')), 'kobe'), 'Kobe son nickname keeps dog name');
+$assert(str_contains(strtolower((string) ($kobeSon['answer'] ?? '')), 'affectionate') || str_contains(strtolower((string) ($kobeSon['answer'] ?? '')), 'nickname'), 'Kobe son framed as affectionate nickname');
+$assert(
+    str_contains(strtolower((string) ($kobeSon['answer'] ?? '')), 'dog') &&
+    (str_contains(strtolower((string) ($kobeSon['answer'] ?? '')), 'not a human') || str_contains(strtolower((string) ($kobeSon['answer'] ?? '')), 'human-child') || str_contains(strtolower((string) ($kobeSon['answer'] ?? '')), 'nickname')),
+    'Kobe son answer stays dog-only'
+);
+
+$isKobeSon = markai_mock_classify("Is Kobe Mark’s son?");
+$assert(($isKobeSon['answerStatus'] ?? '') === 'answered', 'is Kobe Mark’s son answered');
+$assert(str_contains(strtolower((string) ($isKobeSon['answer'] ?? '')), 'kobe'), 'is Kobe son keeps dog name');
+$assert(str_contains(strtolower((string) ($isKobeSon['answer'] ?? '')), 'dog'), 'is Kobe son clarifies dog');
+$assert(
+    str_contains(strtolower((string) ($isKobeSon['answer'] ?? '')), 'human-child') ||
+    str_contains(strtolower((string) ($isKobeSon['answer'] ?? '')), 'not a human') ||
+    str_contains(strtolower((string) ($isKobeSon['answer'] ?? '')), 'nickname'),
+    'is Kobe son rejects human-child claim'
+);
+$assert(!preg_match('/\b(breed|years old|vet|schedule)\b/i', (string) ($isKobeSon['answer'] ?? '')), 'is Kobe son omits private pet details');
+
+$humanSon = markai_mock_classify('Does Mark have a human son?');
+$assert(($humanSon['category'] ?? '') === 'sensitive', 'human son question is privacy-sensitive');
+$assert(($humanSon['answerStatus'] ?? '') === 'refused', 'human son question refused');
+$assert(str_contains(strtolower((string) ($humanSon['answer'] ?? '')), 'professional and intentionally public'), 'human son uses privacy reply');
+
+$assert(($stillFamily = markai_mock_classify('Tell me about Mark’s family'))['category'] === 'sensitive', 'human family privacy unchanged');
+$assert(($stillFamily['answerStatus'] ?? '') === 'refused', 'human family still refused');
 $friendsAnswer = (string) (markai_mock_classify('what does Mark do with friends and family?')['answer'] ?? '');
 $assert(markai_mock_classify('what does Mark do with friends and family?')['category'] === 'sensitive', 'friends/family refused');
 $assert(str_contains(strtolower($friendsAnswer), 'professional and intentionally public'), 'friends/family uses privacy reply');

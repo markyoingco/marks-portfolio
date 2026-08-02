@@ -421,7 +421,7 @@ function markai_mock_classify(string $question, array $history = []): array
         'futureVision' => 'Mark wants a growing technology career, an active and disciplined lifestyle, continued learning, creative interests, and greater independence.',
         'hobbies' => 'Outside technology, Mark’s public hobbies include fitness and bodybuilding, travel, travel photography, cinematic and low-exposure photography, hiking, reading, music, cities, streets, architecture, landscapes, water and coastal views, mountains, museums, classical statues, Greek mythology, visual art, cinematic visual design, clean dark minimal high-contrast aesthetics, and spending time with his dog Kobe. Fitness is a source of discipline, structure, patience, and consistency, while photography helps him preserve places, feelings, and perspective.',
         'cooking' => 'Cooking is not part of MarkAI’s current approved public hobby list. You can ask about approved interests such as fitness, travel, photography, music, hiking, museums, and mythology.',
-        'dog' => 'Mark has a dog named Kobe. He enjoys spending time with him, and MarkAI does not share identifying pet details, age, or private schedules.',
+        'dog' => 'Mark has a dog named Kobe. He enjoys spending time with him and sometimes affectionately calls Kobe his son. That nickname is for his dog only and is not a human-child or family claim. MarkAI does not share identifying pet details, age, or private schedules.',
         'friendsFamily' => 'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.',
         'museums' => 'Mark enjoys museums, especially where they connect to photography, classical art, architecture, statues, history, and visual storytelling.',
         'passion' => 'Mark is passionate about building useful software and about bodybuilding outside technology. In both areas he focuses on disciplined practice, steady improvement, and work he can stand behind.',
@@ -444,16 +444,24 @@ function markai_mock_classify(string $question, array $history = []): array
         'travel' => 'Travel helps Mark experience different environments, people, cultures, architecture, and ways of living. It gives him new perspectives and motivates greater freedom and independence. Cities connect to ambition and energy, coastal environments to peace, and mountains and hiking to effort that earns the view.',
         'travelPlaces' => 'Places shown in Mark’s public portfolio travel content include Hawaii, Las Vegas, Chicago, California, Lake Louise in Canada, Manila in the Philippines, London, the Amalfi Coast in Italy, Rome in Italy, Milwaukee, and Nashville. The Travel section and VSCO gallery are the best places to view related photography.',
         'environment' => 'Mark prefers clean, organized, minimal environments with a cinematic mix of classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional atmosphere and dislikes corny or overly decorative presentation.',
-        'collaboratorsAbacus' => 'The Abacus team included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.',
-        'collaboratorsMaat' => 'The TA-Bot / MAAT team included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.',
+        'collaboratorsAbacus' => 'Mark worked on Abacus with Justin Hoffman, Jacob DunRoseman, and Angel Mora. The project was a team senior-design effort, and Mark’s portfolio distinguishes his individual contributions from the team’s overall work. On the Abacus team, Mark Yoingco served as Document Manager, Justin Hoffman as Project Manager, Jacob DunRoseman as Repo Manager, and Angel Mora as Project Manager.',
+        'collaboratorsMaat' => 'Mark worked on TA-Bot / MAAT with Justin Hoffman, Jacob DunRoseman, and Angel Mora. The project was a team senior-design effort, and Mark’s portfolio distinguishes his individual contributions from the team’s overall work. The core student team was Mark Yoingco, Justin Hoffman, Jacob DunRoseman, and Angel Mora.',
         'collaboratorsSam' => 'MarkAI provides only Mark’s approved public project and collaborator information.',
-        'collaboratorsFinch' => 'The Finch Web Controller team included Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth.',
+        'collaboratorsFinch' => 'The Finch Web Controller was a team coursework project. Mark worked primarily on frontend development, Figma mockups, controller layouts, setup documentation, and project presentation work. His verified teammates were Julianne Browne, Luis Serrano, and Xavier Barth, along with Mark Yoingco.',
         'collaboratorsDataMining' => 'The Data Mining Game Predictor team included Mark Yoingco and Allan Akkathara.',
         'collaboratorsOs' => 'For Operating Systems C Projects, the approved collaborator names are Mark Yoingco and Armaan Yaz. Private or shared course repositories remain unpublished.',
         'collaboratorsSleep' => 'For the Sleep Efficiency Analysis data-science project, the approved collaborator names are Mark Yoingco and Hunter Carlson.',
         'fromChicago' => 'Mark is from Chicago.',
         'locationPrivacy' => 'MarkAI does not provide precise or current location information. Mark’s approved public background states that he is from Chicago.',
         'collaboratorsInventory' => "Mark’s approved project collaborators, by project:\n\n- Abacus: Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman\n- TA-Bot / MAAT: Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman\n- Finch: Mark Yoingco, Julianne Browne, Luis Serrano, Xavier Barth\n- Data Mining: Mark Yoingco, Allan Akkathara\n- Operating Systems: Mark Yoingco, Armaan Yaz\n- Sleep Analysis: Mark Yoingco, Hunter Carlson",
+        'collaboratorsJustin' => 'Justin Hoffman was Project Manager on Mark’s Abacus senior-design team and was also part of the core student team for TA-Bot / MAAT with Mark Yoingco, Jacob DunRoseman, and Angel Mora.',
+        'collaboratorsAngel' => 'Angel Mora was a Project Manager on Mark’s Abacus senior-design team and was also part of the core student team for TA-Bot / MAAT with Mark Yoingco, Justin Hoffman, and Jacob DunRoseman.',
+        'collaboratorsJacob' => 'Jacob DunRoseman served as Repo Manager on the senior-design team that worked on Abacus and TA-Bot / MAAT with Mark Yoingco, Justin Hoffman, and Angel Mora.',
+        'collaboratorsLuis' => 'Luis Serrano was a verified teammate on the Finch Web Controller coursework project with Mark Yoingco, Julianne Browne, and Xavier Barth.',
+        'collaboratorsXavier' => 'Xavier Barth was a verified teammate on the Finch Web Controller coursework project with Mark Yoingco, Julianne Browne, and Luis Serrano.',
+        'collaboratorsJulianne' => 'Julianne Browne was a verified teammate on the Finch Web Controller coursework project with Mark Yoingco, Luis Serrano, and Xavier Barth.',
+        'collaboratorsAllan' => 'Allan Akkathara worked with Mark on the Data Mining Game Predictor (Marquette Basketball Predictor).',
+        'seniorDesignTeam' => 'Mark worked on Abacus and TA-Bot / MAAT with Justin Hoffman, Jacob DunRoseman, and Angel Mora. The projects were team senior-design efforts, and Mark’s portfolio distinguishes his individual contributions from the team’s overall work. On Abacus, Mark Yoingco was Document Manager, Justin Hoffman was Project Manager, Jacob DunRoseman was Repo Manager, and Angel Mora was Project Manager.',
         'testimonials' => "Mark’s portfolio Testimonials section includes attributed recommendations from professors, supervisors, coworkers, and collaborators.\n\nAcross those testimonials, recurring themes include initiative, composure under pressure, thoroughness, ownership, reliability, integrity, ambition, leadership by example, and strong work ethic.\n\nRepresentative perspectives, in portfolio order, include:\n- Farzeen Harunani — Professor of Computer Science, Marquette University — notes Mark’s initiative, composure, dedication, and eagerness to learn.\n- Jorge Torres — Staff Validation Engineer, Performance Validation — emphasizes Mark’s thoroughness, curiosity, reliability, and ownership.\n- Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University — highlights Mark’s dedication, work ethic, integrity, and leadership by example.\n\nThese are summaries of attributed opinions, not direct quotations. Full testimonials are available in the portfolio Testimonials section.",
         'testimonialsList' => "Here are the people currently featured in Mark’s Testimonials section:\n\n- Farzeen Harunani — Professor of Computer Science, Marquette University\n  Professional connection: Testimonial contributor.\n\n- Jorge Torres — Staff Validation Engineer, Performance Validation\n  Professional connection: Former Marquette University coworker and fellow student manager.\n\n- Zack Kohlwey — Assistant Director, Alumni Memorial Union, Marquette University\n  Professional connection: Mark’s supervisor at Marquette University, as stated in his attributed testimonial.\n\n- Nathan Garcia — IT Supply Chain Intern, Zebra Technologies\n  Professional connection: Longtime friend and former Panda Express coworker.\n\n- Jarenz Masiclat — Investment Associate, Northern Trust\n  Professional connection: Longtime friend, fraternity mentor, and Filipino Student Organization mentor.\n\n- Elizabeth Anderson — Data Analyst Intern, ComEd\n  Professional connection: Testimonial contributor.\n\n- Maxwell Zeisler — Audit Intern, Advisent, LLC\n  Professional connection: Testimonial contributor.\n\n- Andrew Wochner — Cardiac ICU Registered Nurse, Ascension Columbia St. Mary's Hospital\n  Professional connection: College friend from Marquette University.\n\nFull attributed testimonials are available in the portfolio’s Testimonials section.",
         'testimonialProfessors' => "From the published Testimonials section, the professor testimonial currently featured is:\n\n- Farzeen Harunani — Professor of Computer Science, Marquette University\n  Professional connection: Testimonial contributor.\n\nFull attributed testimonials are available in the portfolio’s Testimonials section.",
@@ -478,8 +486,6 @@ function markai_mock_classify(string $question, array $history = []): array
         'noPublicRepo' => 'That project does not currently have an approved public repository link, but you can view it in Mark’s Portfolio section.',
         'fmsc' => 'Mark has public volunteer service experience with Feed My Starving Children, shown in the Portfolio Service section. A public FMSC location page is available through the safe link below. MarkAI does not share private organization, member, schedule, or internal details.',
         'merchSigma' => 'Sigma Chi merchandise design is shown in Mark’s Portfolio Merch section. It does not have a separate public software repository; the Portfolio section is the approved place to view it.',
-        'collaboratorsJustin' => 'Justin Hoffman was part of the core student teams for Abacus and TA-Bot / MAAT.',
-        'collaboratorsAllan' => 'Allan Akkathara worked with Mark on the Data Mining Game Predictor (Marquette Basketball Predictor).',
         'resume' => 'Mark’s public résumé is available as a PDF through the safe link below.',
         'linkedinOnly' => 'Mark’s public LinkedIn profile is available through the safe link below.',
         'githubOnly' => 'Mark’s public GitHub profile is available through the safe link below. If you have a specific project in mind, ask for that repository by name.',
@@ -490,8 +496,28 @@ function markai_mock_classify(string $question, array $history = []): array
     $text = markai_intent_normalize($question);
     $text = markai_intent_apply_typos($text);
     $text = str_replace(
-        ['there relationship', 'there relations', 'relationsip with', 'relationship wit mark'],
-        ['their relationship', 'their relations', 'relationship with', 'relationship with mark'],
+        [
+            'there relationship',
+            'there relations',
+            'relationsip with',
+            'relationship wit mark',
+            'angel moran',
+            'jacob dun roseman',
+            'jacob dun-roseman',
+            'jacob dunroseman',
+            'dun roseman',
+        ],
+        [
+            'their relationship',
+            'their relations',
+            'relationship with',
+            'relationship with mark',
+            'angel mora',
+            'jacob dunroseman',
+            'jacob dunroseman',
+            'jacob dunroseman',
+            'dunroseman',
+        ],
         $text
     );
 
@@ -611,6 +637,10 @@ function markai_mock_classify(string $question, array $history = []): array
                 'with friends and family',
                 'time with family',
                 'spending time with family',
+                'human son',
+                'have a human son',
+                'does mark have a human son',
+                'mark have a human son',
                 'home life',
                 'private struggle',
                 'private problems',
@@ -955,11 +985,20 @@ function markai_mock_classify(string $question, array $history = []): array
                 'worked on abacus',
                 'who was on abacus',
                 'who worked on abacus',
+                'list the abacus',
+                'abacus collaborators',
+                'senior design team',
+                'senior-design team',
+                'mark’s senior design',
+                "mark's senior design",
+                'marks senior design',
     ])) {
         return [
             'category' => 'collaboratorsAbacus',
             'mode' => 'technical',
-            'answer' => $answers['collaboratorsAbacus'],
+            'answer' => markai_mock_includes_any($text, ['senior design', 'senior-design', 'abacus and', 'ta-bot', 'maat'])
+                ? $answers['seniorDesignTeam']
+                : $answers['collaboratorsAbacus'],
             'answerStatus' => 'answered',
         ];
     }
@@ -977,6 +1016,8 @@ function markai_mock_classify(string $question, array $history = []): array
                 'who worked on maat',
                 'who was on ta-bot',
                 'who was on maat',
+                'list the ta-bot',
+                'list the maat',
     ])) {
         return [
             'category' => 'collaboratorsMaat',
@@ -994,6 +1035,10 @@ function markai_mock_classify(string $question, array $history = []): array
                 'worked on finch',
                 'who was on finch',
                 'who worked on finch',
+                'who else worked on finch',
+                'finch collaborators',
+                'finch teammates',
+                'list the finch',
     ])) {
         return [
             'category' => 'collaboratorsFinch',
@@ -1034,11 +1079,136 @@ function markai_mock_classify(string $question, array $history = []): array
                 'which projects did justin',
                 'justin help',
                 'worked with justin',
-    ])) {
+                'who else worked with justin',
+                'who else was on the team with justin',
+    ]) || preg_match('/\bjustin\b/', $text) === 1) {
+        $category = 'collaboratorsJustin';
+        $answer = $answers['collaboratorsJustin'];
+        if (markai_mock_includes_any($text, ['who else', 'rest of', 'other members', 'other teammates', 'team with justin'])) {
+            $category = 'collaboratorsAbacus';
+            $answer = $answers['seniorDesignTeam'];
+        }
+
         return [
-            'category' => 'collaboratorsJustin',
+            'category' => $category,
             'mode' => 'technical',
-            'answer' => $answers['collaboratorsJustin'],
+            'answer' => $answer,
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (
+        markai_mock_includes_any($text, [
+                'angel mora',
+                'angel moran',
+                'worked with angel',
+                'who is angel',
+        ]) || preg_match('/\bangel\b/', $text) === 1
+    ) {
+        return [
+            'category' => 'collaboratorsAngel',
+            'mode' => 'technical',
+            'answer' => $answers['collaboratorsAngel'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (
+        markai_mock_includes_any($text, [
+                'jacob dunroseman',
+                'jacob dun roseman',
+                'jacob dun-roseman',
+                'worked with jacob',
+                'who is jacob',
+        ]) || preg_match('/\bjacob\b/', $text) === 1
+    ) {
+        return [
+            'category' => 'collaboratorsJacob',
+            'mode' => 'technical',
+            'answer' => $answers['collaboratorsJacob'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (
+        markai_mock_includes_any($text, [
+                'luis serrano',
+                'worked with luis',
+                'who is luis',
+        ]) || preg_match('/\bluis\b/', $text) === 1
+    ) {
+        return [
+            'category' => 'collaboratorsLuis',
+            'mode' => 'technical',
+            'answer' => $answers['collaboratorsLuis'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (
+        markai_mock_includes_any($text, [
+                'xavier barth',
+                'worked with xavier',
+                'who is xavier',
+        ]) || preg_match('/\bxavier\b/', $text) === 1
+    ) {
+        return [
+            'category' => 'collaboratorsXavier',
+            'mode' => 'technical',
+            'answer' => $answers['collaboratorsXavier'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (
+        markai_mock_includes_any($text, [
+                'julianne browne',
+                'julianne brown',
+                'worked with julianne',
+                'who is julianne',
+                'who is julian',
+        ]) || preg_match('/\bjulianne\b|\bjulian\b/', $text) === 1
+    ) {
+        return [
+            'category' => 'collaboratorsJulianne',
+            'mode' => 'technical',
+            'answer' => $answers['collaboratorsJulianne'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'project teammates',
+                'project team',
+                'project teams',
+                'who else was on the team',
+                'who else was on the project',
+                'who was on the team',
+                'who was on the project team',
+                'classmates who worked',
+                'collaborators on the project',
+                'team members',
+                'list names from the project',
+                'who worked on the project',
+    ])) {
+        $historyContext = strtolower(markai_intent_history_context($history));
+        $answer = $answers['collaboratorsInventory'];
+        $category = 'collaboratorsInventory';
+        if (markai_mock_includes_any($text . ' ' . $historyContext, ['finch', 'birdvroom'])) {
+            $category = 'collaboratorsFinch';
+            $answer = $answers['collaboratorsFinch'];
+        } elseif (markai_mock_includes_any($text . ' ' . $historyContext, ['justin', 'hoffman', 'angel', 'mora', 'jacob', 'dunroseman', 'abacus', 'maat', 'ta-bot', 'senior design'])) {
+            $category = 'collaboratorsAbacus';
+            $answer = $answers['seniorDesignTeam'];
+        } elseif (markai_mock_includes_any($historyContext, ['luis', 'xavier', 'julianne', 'finch'])) {
+            $category = 'collaboratorsFinch';
+            $answer = $answers['collaboratorsFinch'];
+        }
+
+        return [
+            'category' => $category,
+            'mode' => 'technical',
+            'answer' => $answer,
             'answerStatus' => 'answered',
         ];
     }
@@ -1128,12 +1298,12 @@ function markai_mock_classify(string $question, array $history = []): array
                 'supervisor testimonial',
                 'professor testimonial',
                 'more testimonials',
-                'whole list',
-                'list of names',
-                'all names',
+                'whole list of testimonials',
+                'testimonial names',
                 'who gave mark',
-                'who gave',
-                'who else',
+                'who gave a testimonial',
+                'who wrote the testimonials',
+                'who wrote them',
                 'relationship with mark',
                 'relationship to mark',
                 'their relationship',
@@ -1697,6 +1867,11 @@ function markai_mock_classify(string $question, array $history = []): array
                 'who is kobe',
                 'tell me about kobe',
                 'kobe',
+                'my son',
+                'his son',
+                'call kobe',
+                'calls kobe',
+                'kobe his son',
                 'spend his free time',
                 'spends his free time',
                 'new perspectives',
@@ -1716,7 +1891,7 @@ function markai_mock_classify(string $question, array $history = []): array
             $answer = $answers['favoriteColor'];
         } elseif (markai_mock_includes_any($text, ['cook'])) {
             $answer = $answers['cooking'];
-        } elseif (markai_mock_includes_any($text, ['dog', 'kobe']) || $text === 'dog') {
+        } elseif (markai_mock_includes_any($text, ['dog', 'kobe', 'my son', 'his son', 'call kobe', 'calls kobe']) || $text === 'dog') {
             $answer = $answers['dog'];
         } elseif (markai_mock_includes_any($text, ['museum'])) {
             $answer = $answers['museums'];
@@ -2290,6 +2465,90 @@ function markai_mock_resolve_followup_from_history(string $text, array $history,
 /**
 * @param list<string> $phrases
 */
+function markai_mock_has_project_team_cues(string $haystack): bool
+{
+    $haystack = strtolower($haystack);
+
+    return markai_mock_includes_any($haystack, [
+        'project',
+        'team',
+        'teammate',
+        'teammates',
+        'classmate',
+        'classmates',
+        'collaborator',
+        'collaborators',
+        'senior design',
+        'abacus',
+        'eagle',
+        'maat',
+        'ta-bot',
+        'tabot',
+        'finch',
+        'birdvroom',
+        'worked on',
+        'worked with',
+        'justin',
+        'hoffman',
+        'angel',
+        'mora',
+        'jacob',
+        'dunroseman',
+        'luis',
+        'serrano',
+        'xavier',
+        'barth',
+        'julianne',
+        'browne',
+        'allan',
+        'akkathara',
+        'armaan',
+        'hunter carlson',
+        'document manager',
+        'repo manager',
+        'operating systems',
+        'data mining',
+        'sleep analysis',
+    ]);
+}
+
+/**
+ * Stronger project/person signals for conversation history so generic words inside
+ * testimonial answers (for example “collaborators”) do not erase testimonial context.
+ */
+function markai_mock_history_has_project_team_topic(string $context): bool
+{
+    $context = strtolower($context);
+
+    return markai_mock_includes_any($context, [
+        'abacus',
+        'eagle messaging',
+        'maat',
+        'ta-bot',
+        'tabot',
+        'finch',
+        'birdvroom',
+        'senior design',
+        'document manager',
+        'repo manager',
+        'justin hoffman',
+        'angel mora',
+        'jacob dunroseman',
+        'luis serrano',
+        'xavier barth',
+        'julianne browne',
+        'allan akkathara',
+        'armaan yaz',
+        'hunter carlson',
+        'project collaborators, by project',
+        'verified teammates',
+        'core student team',
+        'operating systems c',
+        'data mining game',
+        'sleep efficiency analysis',
+    ]);
+}
+
 /**
  * @param list<array{role?: string, content?: string}> $history
  */
@@ -2300,7 +2559,7 @@ function markai_mock_history_suggests_testimonials(array $history): bool
         return false;
     }
 
-    return markai_mock_includes_any($context, [
+    $hasTestimonial = markai_mock_includes_any($context, [
         'testimonial',
         'testimonials',
         'recommendation',
@@ -2316,6 +2575,12 @@ function markai_mock_history_suggests_testimonials(array $history): bool
         'testimonials section',
         'attributed',
     ]);
+    if (!$hasTestimonial) {
+        return false;
+    }
+
+    // Recent project-team discussion should not be treated as testimonials-only history.
+    return !markai_mock_history_has_project_team_topic($context);
 }
 
 /**
@@ -2324,6 +2589,11 @@ function markai_mock_history_suggests_testimonials(array $history): bool
 function markai_mock_is_testimonial_followup_context(string $text, array $history): bool
 {
     if (!markai_mock_history_suggests_testimonials($history)) {
+        return false;
+    }
+
+    // Explicit project/engineering-team wording always overrides stale testimonial context.
+    if (markai_mock_has_project_team_cues($text)) {
         return false;
     }
 
@@ -2346,13 +2616,15 @@ function markai_mock_is_testimonial_followup_context(string $text, array $histor
             'professors',
             'coworkers',
             'supervisor',
-            'names',
+            'who wrote',
+            'who gave',
     ]) || in_array($normalized, [
             'whole list',
             'all names',
             'who else',
             'names',
             'list',
+            'list names',
             'relationships',
             'relationship',
             'full quotes',
@@ -2611,9 +2883,23 @@ function markai_mock_select_record_ids(array $export, string $category): array
         return $pick(['projects-public-inventory']);
 
         case 'collaboratorsJustin':
+        case 'collaboratorsAngel':
+        case 'collaboratorsJacob':
         return $pick([
                 'collaborators-abacus-core-team',
                 'collaborators-maat-core-team',
+        ]);
+
+        case 'collaboratorsLuis':
+        case 'collaboratorsXavier':
+        case 'collaboratorsJulianne':
+        return $pick([
+                'collaborators-finch-team',
+        ]);
+
+        case 'collaboratorsAllan':
+        return $pick([
+                'collaborators-data-mining-team',
         ]);
 
         case 'resume':
@@ -2957,7 +3243,13 @@ function markai_mock_requested_link_ids(string $category): array
         case 'collaboratorsDataMining':
         return ['link-github-marquette-basketball-predictor'];
         case 'collaboratorsJustin':
+        case 'collaboratorsAngel':
+        case 'collaboratorsJacob':
         return ['link-github-abacus', 'link-github-maat'];
+        case 'collaboratorsLuis':
+        case 'collaboratorsXavier':
+        case 'collaboratorsJulianne':
+        return ['link-github-finch'];
         case 'collaboratorsSam':
         return [];
         case 'fromChicago':
