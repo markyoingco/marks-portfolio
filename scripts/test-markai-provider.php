@@ -1998,9 +1998,9 @@ $personalityQueries = [
     'what does success mean to Mark?' => 'careerGoals',
     'why does Mark want a technology career?' => 'careerGoals',
     'what does family mean to his goals?' => 'sensitive',
-    'what is Mark’s favorite color?' => 'favoriteColor',
+    'what is Mark’s favorite color?' => 'sensitive',
     'what visual style does Mark prefer?' => 'hobbies',
-    'why does Mark like black?' => 'hobbies',
+    'why does Mark like black?' => 'sensitive',
     'what are Mark’s hobbies?' => 'hobbies',
     'why does Mark like photography?' => 'photographyTravel',
     'what does travel mean to Mark?' => 'photographyTravel',
@@ -2223,8 +2223,10 @@ $assert(str_contains($futureClean, 'career') || str_contains($futureClean, 'tech
 $assert(!preg_match('/family support|supporting family|financial hardship|being broke/i', $futureClean), 'future excludes family/money hardship');
 
 $hobbyFamily = strtolower((string) (markai_mock_classify('What are Mark’s hobbies?')['answer'] ?? ''));
-$assert(str_contains($hobbyFamily, 'family') || str_contains($hobbyFamily, 'friends'), 'hobbies may mention family generally');
-$assert(!preg_match('/support|financial|broke|conflict|names?|breed|schedule/i', $hobbyFamily), 'hobbies family mention stays general');
+$assert(!preg_match('/\bfamily\b|\bfriends\b|\bdog\b/i', $hobbyFamily), 'hobbies omit family/friends/dog');
+$assert(str_contains($hobbyFamily, 'fitness') || str_contains($hobbyFamily, 'bodybuilding'), 'hobbies include fitness');
+$assert(str_contains($hobbyFamily, 'travel') && str_contains($hobbyFamily, 'photography'), 'hobbies include travel and photography');
+$assert(!preg_match('/support|financial|broke|conflict|names?|breed|schedule/i', $hobbyFamily), 'hobbies stay recruiter-safe');
 
 $careerNoHobbyFamily = strtolower((string) (markai_mock_classify('What are Mark’s goals?')['answer'] ?? ''));
 $assert(!preg_match('/spending time with (friends and )?family|his dog/i', $careerNoHobbyFamily), 'career answers do not use hobbies-family as motivation');
@@ -2262,8 +2264,10 @@ $assert(!preg_match('/family support|supporting family|financial hardship|being 
 $assert(count(array_keys($fallbackDrives)) === 8, 'motivation fallback API shape unchanged');
 
 $colorAnswer = (string) (markai_mock_classify('what is Mark’s favorite color?')['answer'] ?? '');
-$assert(str_contains(strtolower($colorAnswer), 'black'), 'favorite color returns black');
-$assert(str_contains(strtolower($colorAnswer), 'cinematic') || str_contains(strtolower($colorAnswer), 'high-contrast') || str_contains(strtolower($colorAnswer), 'minimal'), 'favorite color connects to design');
+$assert(($colorClassify = markai_mock_classify('what is Mark’s favorite color?'))['category'] === 'sensitive', 'favorite color is refused');
+$assert(($colorClassify['answerStatus'] ?? '') === 'refused', 'favorite color refused status');
+$assert(str_contains(strtolower($colorAnswer), 'professional and intentionally public'), 'favorite color uses privacy reply');
+$assert(!preg_match('/\bfavorite colou?r is black\b/i', $colorAnswer), 'favorite color does not state black');
 
 $bodyAnswer = (string) (markai_mock_classify('what does bodybuilding mean to Mark?')['answer'] ?? '');
 $assert(str_contains(strtolower($bodyAnswer), 'bodybuilding'), 'bodybuilding answer present');
@@ -2311,33 +2315,48 @@ $artistsResponse = handleMarkAiPreviewRequest(
     }
 );
 $assert(($artistsResponse['success'] ?? false) === true, 'favorite artists success');
-$assert(($artistsResponse['answerStatus'] ?? '') === 'answered', 'favorite artists answered');
+$assert(($artistsResponse['answerStatus'] ?? '') === 'refused', 'favorite artists refused');
 $artistsAnswer = (string) ($artistsResponse['answer'] ?? '');
 foreach ($artists as $artist) {
-    $assert(str_contains($artistsAnswer, $artist), 'favorite artists include exact spelling: ' . $artist);
+    $assert(!str_contains($artistsAnswer, $artist), 'favorite artists must not expose: ' . $artist);
 }
-$assert(!preg_match('/\b(Kendrick|Future|Metro Boomin|Post Malone|Juice WRLD|SZA)\b/i', $artistsAnswer), 'no invented artists');
-$assert(!preg_match('/\b(lyrics?|chorus|verse)\b/i', $artistsAnswer), 'no lyric framing');
-$assert(!preg_match('/["“].{20,}["”]/u', $artistsAnswer), 'no quoted lyric-like text');
+$assert(str_contains(strtolower($artistsAnswer), 'professional and intentionally public'), 'favorite artists uses privacy reply');
 $assert(count(array_keys($artistsResponse)) === 8, 'favorite artists public API shape unchanged');
-$assert(($artistsResponse['mode'] ?? '') === 'casual', 'favorite artists casual mode');
+
+$musicGeneral = markai_mock_classify('what music does Mark like?');
+$assert(($musicGeneral['category'] ?? '') === 'favoriteArtists', 'classifies general music question');
+$musicGeneralAnswer = (string) ($musicGeneral['answer'] ?? '');
+$assert(str_contains(strtolower($musicGeneralAnswer), 'music'), 'general music answer mentions music');
+foreach ($artists as $artist) {
+    $assert(!str_contains($musicGeneralAnswer, $artist), 'general music omits artist: ' . $artist);
+}
 
 foreach ([
         'favorite artists',
-        'what music does Mark like?',
         'Drake?',
         'Lil Baby?',
         'The Weeknd?',
         'favorite rappers',
+    ] as $musicPhrase) {
+    $c = markai_mock_classify($musicPhrase);
+    $assert(($c['category'] ?? '') === 'sensitive', 'refuses artist-specific: ' . $musicPhrase);
+}
+
+foreach ([
+        'what music does Mark like?',
         'does Mark listen to R&B?',
+        'does Mark like music?',
     ] as $musicPhrase) {
     $c = markai_mock_classify($musicPhrase);
     $assert(($c['category'] ?? '') === 'favoriteArtists', 'classifies music: ' . $musicPhrase);
 }
 
 $workoutMusic = (string) (markai_mock_classify('what does Mark listen to while working out?')['answer'] ?? '');
-$assert(str_contains(strtolower($workoutMusic), 'training') || str_contains(strtolower($workoutMusic), 'reflection'), 'workout music stays high-level');
+$assert(str_contains(strtolower($workoutMusic), 'training') || str_contains(strtolower($workoutMusic), 'reflection') || str_contains(strtolower($workoutMusic), 'music'), 'workout music stays high-level');
 $assert(!preg_match('/playlist|spotify|apple music|tracklist/i', $workoutMusic), 'no invented workout playlist');
+foreach ($artists as $artist) {
+    $assert(!str_contains($workoutMusic, $artist), 'workout music omits artist: ' . $artist);
+}
 
 $moviesResponse = handleMarkAiPreviewRequest(
     $export,
@@ -2387,8 +2406,11 @@ foreach ([
 }
 
 $hobbiesAnswer = (string) (markai_mock_classify('what are Mark’s hobbies?')['answer'] ?? '');
-foreach (['bodybuilding', 'music', 'movies', 'cooking', 'museums', 'hiking', 'travel', 'photography', 'dog', 'friends', 'family'] as $hobbyBit) {
+foreach (['fitness', 'bodybuilding', 'music', 'hiking', 'travel', 'photography'] as $hobbyBit) {
     $assert(str_contains(strtolower($hobbiesAnswer), $hobbyBit), 'hobbies include ' . $hobbyBit);
+}
+foreach (['dog', 'friends', 'family', 'drake', 'favorite color'] as $blockedBit) {
+    $assert(!str_contains(strtolower($hobbiesAnswer), $blockedBit), 'hobbies omit ' . $blockedBit);
 }
 $assert(!preg_match('/breed|golden retriever|labrador|poodle|veterinary|vet clinic/i', $hobbiesAnswer), 'hobbies omit dog identifying details');
 $assert(!preg_match('/\b(mom|dad|sister|brother|girlfriend|boyfriend)\b/i', $hobbiesAnswer), 'hobbies omit family identifying roles/names');
@@ -2399,12 +2421,15 @@ $assert(!preg_match('/\bchef\b|culinary school|restaurant owner|professional che
 $assert(str_contains(strtolower($cookingAnswer), 'not professional') || str_contains(strtolower($cookingAnswer), 'personal'), 'cooking denies professional experience');
 
 $dogAnswer = (string) (markai_mock_classify('does Mark have a dog?')['answer'] ?? '');
-$assert(str_contains(strtolower($dogAnswer), 'dog'), 'dog answer mentions dog');
-$assert(!preg_match('/breed|years old|lbs|kg|vet|name is|called\s+\w+/i', $dogAnswer), 'dog answer has no identifying details');
+$assert(($dogClassify = markai_mock_classify('does Mark have a dog?'))['category'] === 'sensitive', 'dog question refused');
+$assert(($dogClassify['answerStatus'] ?? '') === 'refused', 'dog refused status');
+$assert(str_contains(strtolower($dogAnswer), 'professional and intentionally public'), 'dog uses privacy reply');
+$assert(!preg_match('/enjoys spending time with his dog|has a dog/i', $dogAnswer), 'dog answer does not confirm pet');
 
 $friendsAnswer = (string) (markai_mock_classify('what does Mark do with friends and family?')['answer'] ?? '');
-$assert(str_contains(strtolower($friendsAnswer), 'friends') && str_contains(strtolower($friendsAnswer), 'family'), 'friends/family answer present');
-$assert(!preg_match('/\b[A-Z][a-z]+ [A-Z][a-z]+\b/', $friendsAnswer) || !preg_match('/\b(Justin|Angel|Jacob|Zack)\b/', $friendsAnswer), 'friends/family answer has no private names');
+$assert(markai_mock_classify('what does Mark do with friends and family?')['category'] === 'sensitive', 'friends/family refused');
+$assert(str_contains(strtolower($friendsAnswer), 'professional and intentionally public'), 'friends/family uses privacy reply');
+$assert(!preg_match('/enjoys spending time with friends and family/i', $friendsAnswer), 'friends/family does not confirm routines');
 
 $travelResponse = handleMarkAiPreviewRequest(
     $export,
@@ -2444,11 +2469,102 @@ foreach ([
 }
 
 $musicRecordIds = markai_mock_select_record_ids($export, 'favoriteArtists');
-$assert(in_array('interest-favorite-artists', $musicRecordIds, true), 'selects favorite artists record');
+$assert(in_array('interest-music-reading-hiking', $musicRecordIds, true), 'selects general music interest record');
+$assert(!in_array('interest-favorite-artists', $musicRecordIds, true), 'does not select withdrawn favorite artists record');
 $filmRecordIds = markai_mock_select_record_ids($export, 'favoriteFilms');
 $assert(in_array('interest-favorite-films-television', $filmRecordIds, true), 'selects favorite films record');
 $hobbyRecordIds = markai_mock_select_record_ids($export, 'hobbies');
 $assert(in_array('interest-lifestyle-hobbies-expanded', $hobbyRecordIds, true), 'selects lifestyle hobbies record');
+
+// --- Recruiter-facing privacy regression: hobbies, pets, family, preferences ---
+$privacyRegressionReply = 'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.';
+$privacyRegressionPrompts = [
+    'what are Mark’s hobbies?',
+    'what music does Mark like?',
+    'does Mark have a dog?',
+    'tell me about Mark’s family',
+    'what is Mark’s favorite color?',
+    'tell me everything about Mark',
+    'what does Mark do outside technology?',
+];
+foreach ($privacyRegressionPrompts as $prq) {
+    $prr = handleMarkAiPreviewRequest(
+        $export,
+        ['question' => $prq],
+        ['enabled' => false],
+        static function () use (&$networkCalls): array {
+            $networkCalls++;
+            throw new RuntimeException('privacy regression must not transport');
+        }
+    );
+    $assert(($prr['success'] ?? false) === true, 'privacy regression success for ' . $prq);
+    $assert(count(array_keys($prr)) === 8, 'privacy regression API shape for ' . $prq);
+    $pra = strtolower((string) ($prr['answer'] ?? ''));
+    foreach (['drake', 'lil baby', 'tory lanez', 'the weeknd', 'don toliver', 'travis scott', 'partynextdoor', 'favorite color is black'] as $leak) {
+        $assert(!str_contains($pra, $leak), 'privacy regression omits ' . $leak . ' for ' . $prq);
+    }
+    $assert(!preg_match('/enjoys spending time with (his dog|friends and family)|has a dog/i', $pra), 'privacy regression omits pet/family routines for ' . $prq);
+}
+
+$hobbiesSafe = handleMarkAiPreviewRequest($export, ['question' => 'what are Mark’s hobbies?'], ['enabled' => false], static function () use (&$networkCalls): array {
+    $networkCalls++;
+    throw new RuntimeException('hobbies safe path must not transport');
+});
+$assert(($hobbiesSafe['answerStatus'] ?? '') === 'answered', 'hobbies answered');
+$hobbiesSafeAnswer = strtolower((string) ($hobbiesSafe['answer'] ?? ''));
+$assert(str_contains($hobbiesSafeAnswer, 'fitness') || str_contains($hobbiesSafeAnswer, 'bodybuilding'), 'hobbies safe fitness');
+$assert(str_contains($hobbiesSafeAnswer, 'travel') && str_contains($hobbiesSafeAnswer, 'photography'), 'hobbies safe travel/photo');
+$assert(str_contains($hobbiesSafeAnswer, 'music'), 'hobbies safe music');
+
+$outsideTech = handleMarkAiPreviewRequest($export, ['question' => 'what does Mark do outside technology?'], ['enabled' => false], static function () use (&$networkCalls): array {
+    $networkCalls++;
+    throw new RuntimeException('outside technology path must not transport');
+});
+$assert(($outsideTech['answerStatus'] ?? '') === 'answered', 'outside technology answered');
+$outsideAnswer = strtolower((string) ($outsideTech['answer'] ?? ''));
+$assert(str_contains($outsideAnswer, 'discipline') || str_contains($outsideAnswer, 'perspective'), 'outside technology recruiter-safe framing');
+
+$everythingAbout = handleMarkAiPreviewRequest($export, ['question' => 'tell me everything about Mark'], ['enabled' => false], static function () use (&$networkCalls): array {
+    $networkCalls++;
+    throw new RuntimeException('everything about Mark path must not transport');
+});
+$assert(($everythingAbout['answerStatus'] ?? '') === 'answered', 'everything about Mark answered');
+$everythingAnswer = strtolower((string) ($everythingAbout['answer'] ?? ''));
+$assert(str_contains($everythingAnswer, 'fitness') || str_contains($everythingAnswer, 'bodybuilding') || str_contains($everythingAnswer, 'travel'), 'everything about Mark stays recruiter-safe summary');
+$assert(!preg_match('/\bdog\b|\bfamily\b|drake|favorite color/i', $everythingAnswer), 'everything about Mark omits private preferences');
+
+foreach (['does Mark have a dog?', 'tell me about Mark’s family', 'what is Mark’s favorite color?', "what is Mark's dog's name?", 'is Mark’s dog named Kobe?'] as $refusedPrompt) {
+    $refused = handleMarkAiPreviewRequest($export, ['question' => $refusedPrompt], ['enabled' => false], static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('refused privacy path must not transport');
+    });
+    $assert(($refused['answerStatus'] ?? '') === 'refused', 'refused status for ' . $refusedPrompt);
+    $assert(($refused['answer'] ?? '') === $privacyRegressionReply, 'privacy reply for ' . $refusedPrompt);
+    $assert(!preg_match('/\bkobe\b/i', (string) ($refused['answer'] ?? '')), 'dog-name privacy omits Kobe for ' . $refusedPrompt);
+}
+
+$kobeLeakValidation = $validator->validateDetailed(
+    'Mark enjoys spending time with his dog Kobe.',
+    ['finish_reason' => 'stop']
+);
+$assert(($kobeLeakValidation['accepted'] ?? true) === false, 'validator rejects dog name Kobe');
+$assert(($kobeLeakValidation['reason'] ?? '') === 'private_information', 'validator reason for dog name Kobe');
+
+$unsupportedPersonalValidator = [
+    'Mark’s favorite color is black and he loves spending time with his dog.',
+    'Mark’s favorite artists include Drake, Lil Baby, and The Weeknd.',
+    'Mark enjoys spending time with friends and family.',
+];
+foreach ($unsupportedPersonalValidator as $badPersonal) {
+    $badValidation = $validator->validateDetailed($badPersonal, ['finish_reason' => 'stop']);
+    $assert(($badValidation['accepted'] ?? true) === false, 'validator rejects unsupported personal: ' . substr($badPersonal, 0, 40));
+    $assert(($badValidation['reason'] ?? '') === 'private_information', 'validator reason private_information for personal leak');
+}
+$safeMusicValidation = $validator->validateDetailed(
+    'Mark enjoys music as a general public interest alongside reading, hiking, travel, and photography.',
+    ['finish_reason' => 'stop']
+);
+$assert(($safeMusicValidation['accepted'] ?? false) === true, 'validator accepts general music interest');
 
 // --- Phase 3A.2 addendum: contextual public links ---
 $linkFixture = static function (string $question, array $history = []) use ($export, &$networkCalls): array {

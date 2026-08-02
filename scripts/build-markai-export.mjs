@@ -239,16 +239,34 @@ function loadSources() {
 }
 
 function validateAndBuildExport(sources) {
-  const { records, privacy, voice, linkContact, trustedLinks } = sources
+  const { records: allRecords, privacy, voice, linkContact, trustedLinks } = sources
   const recordIds = new Set()
   const projectIds = new Set()
   const policyIds = new Set()
   const linkIds = new Set()
 
-  for (const record of records) {
+  const records = []
+  const withheldRecords = []
+
+  for (const record of allRecords) {
     if (!record?.id) fail('record missing id')
     if (recordIds.has(record.id)) fail(`duplicate record ID: ${record.id}`)
     recordIds.add(record.id)
+
+    const visibility = record.visibility || {}
+    const isPublic =
+      visibility.answerable === true &&
+      visibility.exportPublic === true &&
+      visibility.modelVisible === true
+
+    if (!isPublic) {
+      if (record.reviewedByMark !== true) {
+        fail(`withheld record ${record.id} failed approval gate: reviewedByMark !== true`)
+      }
+      withheldRecords.push(record)
+      continue
+    }
+
     if (record.category === 'projects') projectIds.add(record.id)
 
     if (record.reviewedByMark !== true) {
@@ -257,18 +275,28 @@ function validateAndBuildExport(sources) {
     if (!['verified', 'approved-summary'].includes(record.status)) {
       fail(`record ${record.id} failed approval gate: status=${record.status}`)
     }
-    const visibility = record.visibility || {}
     for (const key of ['answerable', 'exportPublic', 'modelVisible']) {
       if (visibility[key] !== true) {
         fail(`record ${record.id} failed approval gate: visibility.${key} !== true`)
       }
     }
     scanRecordSafety(record)
+    records.push(record)
   }
+
+  if (withheldRecords.length > 0) {
+    console.log(
+      `MarkAI export withheld ${withheldRecords.length} non-public record(s): ${withheldRecords
+        .map((record) => record.id)
+        .join(', ')}`
+    )
+  }
+
+  const publicRecordIds = new Set(records.map((record) => record.id))
 
   for (const record of records) {
     for (const relatedId of record.relatedRecordIds || []) {
-      if (!recordIds.has(relatedId)) {
+      if (!publicRecordIds.has(relatedId)) {
         fail(`record ${record.id} has unresolved relatedRecordId: ${relatedId}`)
       }
     }
@@ -355,11 +383,11 @@ function validateAndBuildExport(sources) {
   exportObject.sourceDigest = sha256Hex(JSON.stringify(digestBasis))
 
   const expected = {
-    records: 116,
+    records: 115,
     skills: 26,
     trustedLinks: 30,
     enabledTrustedLinks: 29,
-    privacyRules: 14,
+    privacyRules: 16,
     voiceRules: 8,
     linkContactRules: 8,
   }

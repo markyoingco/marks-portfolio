@@ -365,21 +365,19 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Creative Aesthetics and Design",
-      "publicText": "Mark’s favorite color is black. He prefers black, white, and gray visual palettes and likes minimal, cinematic, serious, high-contrast design. He dislikes corny, overly decorative, or empty motivational presentation, and prefers writing that feels clean, direct, mature, and confident. This aesthetic appears across his portfolio, photography, interface work, and merchandise design.",
-      "shortText": "Favorite color black; prefers minimal black/white/gray cinematic design and clean, mature writing.",
+      "publicText": "Mark prefers black, white, and gray visual palettes and likes minimal, cinematic, serious, high-contrast design. He dislikes corny, overly decorative, or empty motivational presentation, and prefers writing that feels clean, direct, mature, and confident. This aesthetic appears across his portfolio, photography, interface work, and merchandise design. Do not state a favorite color or other unpublished personal preferences.",
+      "shortText": "Prefers minimal black/white/gray cinematic design and clean, mature writing.",
       "aliases": [
         "creative aesthetics",
         "visual design",
         "cinematic aesthetics",
         "merchandise design",
-        "favorite color",
-        "black"
+        "visual style"
       ],
       "keywords": [
         "aesthetics",
         "design",
         "cinematic",
-        "black",
         "minimal",
         "high-contrast",
         "organization",
@@ -429,18 +427,18 @@
         "creative interest",
         "design sensibility",
         "portfolio aesthetic questions",
-        "favorite color",
         "visual style",
         "casual personality questions"
       ],
       "prohibitedUses": [
+        "state a favorite color",
         "claim professional design employment unless supported by a separate approved record",
         "claim professional photography employment",
         "overstate merchandise design as a full design career"
       ],
       "reviewedByMark": true,
-      "lastReviewed": "2026-07-28",
-      "notes": "Creative interest across portfolio, photography, interface work, and merchandise design. Do not claim professional design employment unless separately approved."
+      "lastReviewed": "2026-08-01",
+      "notes": "Creative interest across portfolio, photography, interface work, and merchandise design. Favorite-color claims are out of recruiter-facing scope."
     },
     {
       "id": "interest-discipline-growth-controlled-strength",

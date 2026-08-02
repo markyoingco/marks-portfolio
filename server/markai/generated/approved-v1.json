@@ -1,12 +1,12 @@
 {
   "schemaVersion": "1.0.0",
-  "sourceDigest": "53d666a56dbc944db30447b623a88896d2573e3a4473fd13c9c254fce64d3f9b",
+  "sourceDigest": "2065c14d445315476da9e9a62e64c34573856a6cca28f45661a34ebd2dac0dc8",
   "counts": {
-    "records": 116,
+    "records": 115,
     "skills": 26,
     "trustedLinks": 30,
     "enabledTrustedLinks": 29,
-    "privacyRules": 14,
+    "privacyRules": 16,
     "voiceRules": 8,
     "linkContactRules": 8
   },
@@ -1333,64 +1333,6 @@
       "notes": "No constructed commit URL. Presentation refinement only."
     },
     {
-      "id": "interest-favorite-artists",
-      "category": "public-interests",
-      "recordType": "public-interest",
-      "title": "Favorite artists and music preferences",
-      "publicText": "Mark’s favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR. He enjoys rap, melodic hip-hop, and R&B, ranging from energetic and confident tracks to darker, atmospheric, reflective music. That preference fits the cinematic, high-contrast visual atmosphere used in his portfolio. Music is part of how Mark trains, reflects, travels, and stays connected to particular moments or moods. Do not invent favorite albums or songs, quote lyrics, claim Mark knows an artist personally, claim an artist endorses Mark, or imitate an artist’s style.",
-      "shortText": "Favorite artists: Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR; rap, melodic hip-hop, and R&B.",
-      "aliases": [
-        "favorite artists",
-        "favorite musicians",
-        "favorite rappers",
-        "music taste",
-        "Drake",
-        "Lil Baby",
-        "Tory Lanez",
-        "The Weeknd",
-        "Don Toliver",
-        "Travis Scott",
-        "PARTYNEXTDOOR"
-      ],
-      "keywords": [
-        "music",
-        "artists",
-        "rap",
-        "R&B",
-        "hip-hop",
-        "Drake",
-        "Lil Baby",
-        "The Weeknd",
-        "workout music"
-      ],
-      "projectIds": [],
-      "relatedRecordIds": [
-        "interest-music-reading-hiking",
-        "interest-creative-aesthetics-design"
-      ],
-      "linkIds": [],
-      "answerUses": [
-        "who are Mark’s favorite artists",
-        "what music does Mark listen to",
-        "what kind of music does Mark like",
-        "does Mark like Drake",
-        "does Mark listen to R&B",
-        "what music fits Mark’s visual style",
-        "what does Mark listen to while working out"
-      ],
-      "prohibitedUses": [
-        "quote song lyrics",
-        "invent favorite albums or songs",
-        "claim Mark knows an artist",
-        "claim artist endorsement",
-        "imitate an artist’s style",
-        "generate in the style of a living artist",
-        "infer political or personal beliefs from artists",
-        "add favorites to Webpage or Terminal"
-      ],
-      "notes": "MarkAI-only. Do not add artist lists to Webpage, Terminal, resume, or portfolio cards."
-    },
-    {
       "id": "interest-favorite-films-television",
       "category": "public-interests",
       "recordType": "public-interest",
@@ -1453,52 +1395,46 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Lifestyle hobbies outside technology",
-      "publicText": "Mark’s life outside technology combines fitness, creativity, reflection, exploration, and time with people close to him. Approved public interests include bodybuilding, working out, reading, music, movies, cooking, museums, hiking, travel, photography, running, Greek mythology, classical statues and art, spending time with friends, family, and his dog, and experiencing new places and perspectives. He enjoys activities that help him improve, create, learn, recharge, or gain a different perspective. Cooking is a practical personal interest, not professional culinary experience. Museums connect to photography, classical art, architecture, statues, history, and visual storytelling. Reading and movies give him additional perspectives and ideas. Hiking and travel combine physical activity, exploration, scenery, and reflection.",
-      "shortText": "Hobbies include fitness, reading, music, movies, cooking, museums, hiking, travel, photography, mythology/art, friends, family, and time with his dog.",
+      "publicText": "Outside technology, Mark’s recruiter-facing public interests include fitness and bodybuilding, travel, photography, hiking, reading, music, cities, architecture, landscapes, museums, classical statues and art, Greek mythology, running, and cinematic visual design. He describes fitness as a source of discipline, structure, patience, and consistency. Photography helps him document places, cities, architecture, and landscapes that give him a new perspective. Travel and hiking combine exploration, scenery, and reflection. Music and reading remain general public interests without naming private preferences. Do not mention pets, family routines, private relationships, favorite artists, favorite colors, or other unpublished personal details.",
+      "shortText": "Public hobbies include fitness, travel, photography, hiking, reading, music, cities, architecture, landscapes, museums, and cinematic visual interests.",
       "aliases": [
         "hobbies",
         "for fun",
         "outside technology",
-        "cooking",
-        "dog",
         "museums",
-        "friends and family"
+        "lifestyle interests"
       ],
       "keywords": [
         "hobbies",
-        "cooking",
         "museums",
-        "dog",
-        "friends",
-        "family",
         "free time",
-        "lifestyle"
+        "lifestyle",
+        "fitness",
+        "travel",
+        "photography"
       ],
       "projectIds": [],
       "relatedRecordIds": [
         "interest-music-reading-hiking",
         "interest-fitness-bodybuilding",
-        "interest-favorite-artists",
-        "interest-favorite-films-television"
+        "interest-travel-photography"
       ],
       "linkIds": [],
       "answerUses": [
         "what does Mark do for fun",
         "what are Mark’s hobbies",
         "what does Mark enjoy outside technology",
-        "does Mark like cooking",
-        "does Mark have a dog",
         "does Mark enjoy museums",
-        "what does Mark do with friends and family",
         "how does Mark gain new perspectives",
-        "what does Mark do when he is not coding"
+        "what does Mark do when he is not coding",
+        "tell me about Mark’s life outside technology"
       ],
       "prohibitedUses": [
+        "pets or dog ownership",
+        "family routines or private family details",
         "names of friends or family",
-        "dog name breed age or medical information",
-        "private family details",
-        "family support or financial motivation",
-        "career motivation from family facts",
+        "private relationships",
+        "favorite artists or favorite colors",
         "home address",
         "private schedules",
         "relationship history",
@@ -1507,7 +1443,7 @@
         "professional photography employment claims",
         "add private lifestyle details to Webpage or Terminal"
       ],
-      "notes": "MarkAI-only expansion. For dog questions, say only that he enjoys spending time with his dog."
+      "notes": "Recruiter-facing public hobbies only. Pets, family routines, favorite artists, and favorite colors are out of scope."
     },
     {
       "id": "travel-public-places-inventory",
@@ -1785,21 +1721,19 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Creative Aesthetics and Design",
-      "publicText": "Mark’s favorite color is black. He prefers black, white, and gray visual palettes and likes minimal, cinematic, serious, high-contrast design. He dislikes corny, overly decorative, or empty motivational presentation, and prefers writing that feels clean, direct, mature, and confident. This aesthetic appears across his portfolio, photography, interface work, and merchandise design.",
-      "shortText": "Favorite color black; prefers minimal black/white/gray cinematic design and clean, mature writing.",
+      "publicText": "Mark prefers black, white, and gray visual palettes and likes minimal, cinematic, serious, high-contrast design. He dislikes corny, overly decorative, or empty motivational presentation, and prefers writing that feels clean, direct, mature, and confident. This aesthetic appears across his portfolio, photography, interface work, and merchandise design. Do not state a favorite color or other unpublished personal preferences.",
+      "shortText": "Prefers minimal black/white/gray cinematic design and clean, mature writing.",
       "aliases": [
         "creative aesthetics",
         "visual design",
         "cinematic aesthetics",
         "merchandise design",
-        "favorite color",
-        "black"
+        "visual style"
       ],
       "keywords": [
         "aesthetics",
         "design",
         "cinematic",
-        "black",
         "minimal",
         "high-contrast",
         "organization",
@@ -1818,16 +1752,16 @@
         "creative interest",
         "design sensibility",
         "portfolio aesthetic questions",
-        "favorite color",
         "visual style",
         "casual personality questions"
       ],
       "prohibitedUses": [
+        "state a favorite color",
         "claim professional design employment unless supported by a separate approved record",
         "claim professional photography employment",
         "overstate merchandise design as a full design career"
       ],
-      "notes": "Creative interest across portfolio, photography, interface work, and merchandise design. Do not claim professional design employment unless separately approved."
+      "notes": "Creative interest across portfolio, photography, interface work, and merchandise design. Favorite-color claims are out of recruiter-facing scope."
     },
     {
       "id": "interest-discipline-growth-controlled-strength",
@@ -2226,18 +2160,15 @@
       "id": "personality-aesthetic-environment",
       "category": "public-interests",
       "recordType": "personality-theme",
-      "title": "Favorite color, visual style, and preferred environment",
-      "publicText": "Mark’s favorite color is black. He prefers black, white, gray, dark, low-exposure, high-contrast, cinematic design. He likes clean, organized, minimal environments. His preferred visual atmosphere combines classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional-in-a-cinematic-city atmosphere. He dislikes corny, overly decorative, loud, or empty motivational presentation.",
-      "shortText": "Favorite color black; minimal high-contrast cinematic style and a clean, organized technical-professional environment.",
+      "title": "Visual style and preferred environment",
+      "publicText": "Mark prefers black, white, gray, dark, low-exposure, high-contrast, cinematic design. He likes clean, organized, minimal environments. His preferred visual atmosphere combines classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional-in-a-cinematic-city atmosphere. He dislikes corny, overly decorative, loud, or empty motivational presentation. Do not state a favorite color or other unpublished personal preferences.",
+      "shortText": "Minimal high-contrast cinematic style and a clean, organized technical-professional environment.",
       "aliases": [
-        "favorite color",
         "visual style",
-        "why black",
-        "environment Mark wants"
+        "environment Mark wants",
+        "cinematic aesthetic"
       ],
       "keywords": [
-        "black",
-        "favorite color",
         "visual style",
         "cinematic",
         "minimal",
@@ -2250,24 +2181,23 @@
       ],
       "linkIds": [],
       "answerUses": [
-        "what is Mark’s favorite color",
         "what visual style does Mark prefer",
-        "why does Mark like black",
         "what kind of environment does Mark want to build"
       ],
       "prohibitedUses": [
+        "state a favorite color",
         "corny motivational presentation",
         "private address",
         "exact location claims"
       ],
-      "notes": "MarkAI-only depth. Aligns with public portfolio aesthetic without requiring Webpage changes."
+      "notes": "MarkAI-only depth. Aligns with public portfolio aesthetic. Favorite-color claims are out of recruiter-facing scope."
     },
     {
       "id": "personality-photography-travel-hobbies",
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Photography, travel meaning, and hobbies",
-      "publicText": "Mark uses photography to preserve feelings, places, views, memories, and important moments. He likes photographing cities, architecture, streets, water, mountains, museums, landscapes, friends, and travel experiences. He prefers cinematic, personal, real, dark, low-exposure, and story-driven images. Cities represent ambition and the feeling of having made progress. Oceans and islands represent peace. Mountains and hikes represent effort that earns the view. Travel helps him see different cultures, lifestyles, opportunities, and perspectives, and motivates him to work toward a life with greater independence and freedom. Approved public hobbies include bodybuilding, gym training, hiking, reading, music, travel, photography, running, Greek mythology, classical statues and art, museums, and exploring cities and landscapes.",
+      "publicText": "Mark uses photography to preserve feelings, places, views, memories, and important moments. He likes photographing cities, architecture, streets, water, mountains, museums, landscapes, and travel experiences. He prefers cinematic, personal, real, dark, low-exposure, and story-driven images. Cities represent ambition and the feeling of having made progress. Oceans and islands represent peace. Mountains and hikes represent effort that earns the view. Travel helps him see different cultures, lifestyles, opportunities, and perspectives, and motivates him to work toward a life with greater independence and freedom. Approved public hobbies include bodybuilding, gym training, hiking, reading, music, travel, photography, running, Greek mythology, classical statues and art, museums, and exploring cities and landscapes.",
       "shortText": "Photography and travel as story, ambition, peace, and earned views; hobbies include fitness, hiking, reading, music, museums, and classical art.",
       "aliases": [
         "photography meaning",
@@ -5364,6 +5294,17 @@
         "enforcement": "model-and-server"
       },
       {
+        "id": "privacy-family-and-household",
+        "category": "privacy-boundaries",
+        "action": "refuse",
+        "purpose": "privacy-boundaries",
+        "publicBehavior": "Decline questions about family details, family routines, friends-and-family time, pets, or household life. Reply that MarkAI only provides professional and intentionally public information, and redirect to approved public interests such as fitness, travel, photography, hiking, reading, and music.",
+        "modelInstruction": "Do not discuss family details, family routines, pets, dog ownership, or private household life. Do not invent such details. Do not confirm or deny private family or pet matters.",
+        "logPolicy": "log-category-only",
+        "notes": "Recruiter-facing scope excludes family routines and pets.",
+        "enforcement": "model-and-server"
+      },
+      {
         "id": "privacy-family-conflict",
         "category": "privacy-boundaries",
         "action": "refuse",
@@ -5372,6 +5313,17 @@
         "modelInstruction": "Do not discuss family conflict, family finances, dependence on family, or private family responsibility. Do not invent such details. Do not confirm or deny private family matters.",
         "logPolicy": "log-category-only",
         "notes": "Generic category only.",
+        "enforcement": "model-and-server"
+      },
+      {
+        "id": "privacy-private-preferences",
+        "category": "privacy-boundaries",
+        "action": "refuse",
+        "purpose": "privacy-boundaries",
+        "publicBehavior": "Do not state favorite artists, favorite colors, favorite foods, or other unpublished personal preferences unless an approved public record explicitly authorizes them. Music may be discussed only as a general public interest.",
+        "modelInstruction": "Do not name specific favorite artists, colors, foods, or other unpublished preferences. Prefer general approved interests such as music, fitness, travel, and photography.",
+        "logPolicy": "log-category-only",
+        "notes": "Prevents preference leakage beyond recruiter-facing public scope.",
         "enforcement": "model-and-server"
       },
       {

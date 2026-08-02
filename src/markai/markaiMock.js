@@ -42,7 +42,7 @@ const ANSWERS = {
   status:
     "MarkAI is live on markyoingco.com and actively maintained. It answers from Mark’s approved portfolio information using a PHP backend and Cloudflare Workers AI, with response validation, deterministic fallback answers, privacy protections, and anonymous usage limits. Future updates may include bug fixes, testing, design refinement, and approved knowledge expansion.",
   favoriteColor:
-    "Mark’s favorite color is black. It fits the minimal, cinematic, high-contrast style he prefers across his portfolio and personal branding, along with clean, organized environments rather than loud or decorative presentation.",
+    "MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.",
   bodybuilding:
     "Bodybuilding interests Mark because it combines discipline, structure, symmetry, patience, and progress earned over time. It is a major interest outside technology and reinforces focus, consistency, and quality work habits that also support professional growth.",
   mythology:
@@ -93,20 +93,20 @@ const ANSWERS = {
   futureVision:
     "Mark wants a growing technology career, an active and disciplined lifestyle, continued learning, creative interests, and greater independence.",
   hobbies:
-    "Outside technology, Mark’s public hobbies include bodybuilding and working out, reading, music, movies, cooking, museums, hiking, travel, photography, running, Greek mythology, classical statues and art, spending time with friends, family, and his dog, and experiencing new places and perspectives.",
+    "Outside technology, Mark is interested in fitness and bodybuilding, travel, photography, hiking, reading, music, cities, architecture, and cinematic visual design. He describes fitness as a source of discipline, structure, patience, and consistency, while photography helps him document places and experiences that give him a new perspective.",
   cooking:
     "Cooking is a practical personal interest for Mark, not professional culinary experience. It is one of the ways he spends time outside technology.",
-  dog: "Mark enjoys spending time with his dog.",
+  dog: "MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.",
   friendsFamily:
-    "Mark enjoys spending time with friends and family. He keeps those details general in public answers and does not share names, schedules, or private stories.",
+    "MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.",
   museums:
     "Mark enjoys museums, especially where they connect to photography, classical art, architecture, statues, history, and visual storytelling.",
   passion:
     "Mark is passionate about building useful software and about bodybuilding outside technology. In both areas he focuses on disciplined practice, steady improvement, and work he can stand behind.",
   favoriteArtists:
-    "Mark’s favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR. His taste leans toward melodic rap, R&B, atmospheric production, and music that works for both training and reflection.",
+    "Mark enjoys music as a general public interest alongside reading, hiking, travel, and photography. MarkAI keeps music preferences high-level and does not list specific favorite artists.",
   favoriteArtistsWorkout:
-    "Mark’s broader music interests often fit training and personal reflection. His favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR, spanning energetic tracks and darker, atmospheric moods.",
+    "Music is part of Mark’s broader public interests and often fits training and reflection. MarkAI discusses music only as a general interest and does not list specific favorite artists.",
   favoriteFilms:
     "Some of Mark’s favorite films are Creed, Creed II, The Batman, and Magazine Dreams. He also enjoys Marvel and DC stories, while Regular Show is one of his favorite animated series.",
   favoriteFilmsMarvelDc:
@@ -122,7 +122,7 @@ const ANSWERS = {
   success:
     "For Mark, success means career stability, professional growth, independence, meaningful work, physical discipline, and pride in earned progress. A title alone is not enough; he wants to know he built something useful and followed through.",
   funFacts:
-    "Here are several approved fun facts about Mark:\n\n- Bodybuilding is his strongest interest outside technology.\n- Favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR.\n- Favorite films include Creed, Creed II, The Batman, and Magazine Dreams; Regular Show is a favorite series; he also enjoys Marvel and DC.\n- He likes photography and travel, plus museums, hiking, and running.\n- He is interested in Greek mythology and classical statues and art.\n- His favorite color is black, and he prefers a dark cinematic visual style.\n- Outside work he also enjoys reading, music, cooking, and spending time with friends, family, and his dog.",
+    "Here are several approved fun facts about Mark:\n\n- Bodybuilding is his strongest interest outside technology.\n- Favorite films include Creed, Creed II, The Batman, and Magazine Dreams; Regular Show is a favorite series; he also enjoys Marvel and DC.\n- He likes photography and travel, plus museums, hiking, and running.\n- He is interested in Greek mythology and classical statues and art.\n- He prefers a dark cinematic visual style across his portfolio.\n- Outside work he also enjoys reading, music, and exploring cities, architecture, and landscapes.",
   capabilities:
     "You can ask about Mark’s projects, skills, education, experience, collaborators, goals, personality, hobbies, music, films, fitness, travel, testimonials, résumé, or public links.\n\nExamples:\n- “What did Mark build for Abacus?”\n- “What are his strongest skills?”\n- “What are Mark’s goals?”\n- “What music and films does he like?”\n- “Who did he work with on MAAT?”\n- “Can I see the Finch repository?”\n- “What does Mark do outside technology?”",
   familyGoals:
@@ -361,6 +361,55 @@ function classifyQuestion(rawQuestion, history = []) {
       "about mark’s family",
       "about mark's family",
       "about his family",
+      "mark’s family",
+      "mark's family",
+      "his family",
+      "friends and family",
+      "with friends and family",
+      "time with friends",
+      "time with family",
+      "spending time with friends",
+      "spending time with family",
+      "does mark have a dog",
+      "have a dog",
+      "his dog",
+      "mark’s dog",
+      "mark's dog",
+      "dog’s name",
+      "dog's name",
+      "dogs name",
+      "name of his dog",
+      "name of the dog",
+      "what is his dog",
+      "pet named",
+      "dog named",
+      "named kobe",
+      "dog kobe",
+      "his dog kobe",
+      "who is kobe",
+      "tell me about kobe",
+      "pets",
+      "pet ownership",
+      "favorite color",
+      "favourite color",
+      "favorite colour",
+      "favourite colour",
+      "favorite artist",
+      "favourite artist",
+      "favorite artists",
+      "favourite artists",
+      "favorite rappers",
+      "favourite rappers",
+      "favorite food",
+      "favourite food",
+      "drake",
+      "lil baby",
+      "tory lanez",
+      "the weeknd",
+      "don toliver",
+      "travis scott",
+      "partynextdoor",
+      "party next door",
       "home life",
       "private struggle",
       "emotional low",
@@ -1021,30 +1070,12 @@ function classifyQuestion(rawQuestion, history = []) {
 
   if (
     includesAny(text, [
-      "favorite artists",
-      "favourite artists",
-      "favorite artist",
-      "favourite artist",
-      "favorite musician",
-      "favourite musician",
-      "favorite rappers",
-      "favourite rappers",
-      "favorite r&b",
-      "favourite r&b",
       "what music",
       "music does mark",
       "kind of music",
       "does mark like music",
       "does mark listen",
       "listen to",
-      "drake",
-      "lil baby",
-      "tory lanez",
-      "the weeknd",
-      "don toliver",
-      "travis scott",
-      "partynextdoor",
-      "party next door",
       "r&b",
       "hip-hop",
       "hip hop",
@@ -1052,10 +1083,10 @@ function classifyQuestion(rawQuestion, history = []) {
       "music fits",
       "music while",
     ]) ||
+    (includesAny(text, ["music"]) &&
+      includesAny(text, ["like", "listen", "taste", "enjoy"])) ||
     (includesAny(text, ["music", "rapper", "rappers", "artist", "artists"]) &&
       includesAny(text, [
-        "favorite",
-        "favourite",
         "like",
         "listen",
         "taste",
@@ -1063,7 +1094,8 @@ function classifyQuestion(rawQuestion, history = []) {
         "working out",
         "train",
         "visual",
-      ]))
+      ]) &&
+      !includesAny(text, ["favorite", "favourite"]))
   ) {
     const answer = includesAny(text, ["workout", "working out", "train"])
       ? ANSWERS.favoriteArtistsWorkout
@@ -1237,8 +1269,6 @@ function classifyQuestion(rawQuestion, history = []) {
       "interests outside",
       "passionate about",
       "visual style",
-      "why does mark like black",
-      "why black",
       "for fun",
       "outside of technology",
       "outside technology",
@@ -1249,29 +1279,21 @@ function classifyQuestion(rawQuestion, history = []) {
       "cooking",
       "museums",
       "museum",
-      "have a dog",
-      "his dog",
-      "friends and family",
-      "with friends",
-      "with family",
       "spend his free time",
       "spends his free time",
       "new perspectives",
+      "tell me everything about mark",
+      "tell me about his life",
+      "about mark’s life",
+      "about mark's life",
+      "about marks life",
     ])
   ) {
     let answer = ANSWERS.hobbies;
     if (includesAny(text, ["passionate"])) answer = ANSWERS.passion;
-    else if (includesAny(text, ["visual style", "like black", "why black"]))
-      answer = ANSWERS.favoriteColor;
+    else if (includesAny(text, ["visual style"])) answer = ANSWERS.environment;
     else if (includesAny(text, ["cook"])) answer = ANSWERS.cooking;
-    else if (includesAny(text, ["dog"])) answer = ANSWERS.dog;
     else if (includesAny(text, ["museum"])) answer = ANSWERS.museums;
-    else if (
-      includesAny(text, ["friends", "family"]) &&
-      !includesAny(text, ["support", "goals", "mean to"])
-    ) {
-      answer = ANSWERS.friendsFamily;
-    }
     return {
       category: "hobbies",
       mode: "casual",
@@ -1425,20 +1447,35 @@ function classifyQuestion(rawQuestion, history = []) {
       "graduate",
     ])
   ) {
+    const broadLife = includesAny(text, [
+      "tell me everything",
+      "everything about mark",
+      "about his life",
+      "about mark’s life",
+      "about mark's life",
+    ]);
     return {
-      category: "profile",
+      category: broadLife ? "hobbies" : "profile",
       mode: "general",
-      answer: ANSWERS.profile,
+      answer: broadLife ? ANSWERS.hobbies : ANSWERS.profile,
       answerStatus: "answered",
     };
   }
 
-  if (includesAny(text, ["favorite color", "favourite color", "color black"])) {
+  if (
+    includesAny(text, [
+      "favorite color",
+      "favourite color",
+      "color black",
+      "why does mark like black",
+      "why black",
+    ])
+  ) {
     return {
-      category: "favoriteColor",
-      mode: "casual",
-      answer: ANSWERS.favoriteColor,
-      answerStatus: "answered",
+      category: "sensitive",
+      mode: "general",
+      answer: ANSWERS.sensitive,
+      answerStatus: "refused",
     };
   }
 

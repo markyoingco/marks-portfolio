@@ -346,7 +346,7 @@ function markai_mock_classify(string $question, array $history = []): array
         'links' => 'Mark’s public portfolio links include his homepage, project contact section, GitHub, LinkedIn, résumé, and VSCO profile.',
         'sensitive' => 'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.',
         'status' => 'MarkAI is live on markyoingco.com and actively maintained. It answers from Mark’s approved portfolio information using a PHP backend and Cloudflare Workers AI, with response validation, deterministic fallback answers, privacy protections, and anonymous usage limits. Future updates may include bug fixes, testing, design refinement, and approved knowledge expansion.',
-        'favoriteColor' => 'Mark’s favorite color is black. It fits the minimal, cinematic, high-contrast style he prefers across his portfolio and personal branding, along with clean, organized environments rather than loud or decorative presentation.',
+        'favoriteColor' => 'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.',
         'bodybuilding' => 'Bodybuilding interests Mark because it combines discipline, structure, symmetry, patience, and progress earned over time. It is a major interest outside technology and reinforces focus, consistency, and quality work habits that also support professional growth.',
         'mythology' => 'Mark connects with Icarus, Achilles, and Heracles through themes such as ambition, intensity, discipline, consequence, and endurance. Greek mythology is a creative and symbolic interest connected to art and classical imagery, not a religion or a psychological profile.',
         'mythologyIcarus' => 'For Mark, Icarus connects to ambition, risk, and the consequences of losing control. It is one symbolic interest among several mythological figures, not a permanent identity.',
@@ -372,14 +372,14 @@ function markai_mock_classify(string $question, array $history = []): array
         'remembered' => 'Mark wants to be remembered for what he built, how he worked, and what he followed through on. Visibility without substance is not the goal.',
         'becoming' => 'Mark sees himself as still evolving. The direction is clear - more discipline, responsibility, confidence, skill, and independence - even if the exact final version continues to change.',
         'futureVision' => 'Mark wants a growing technology career, an active and disciplined lifestyle, continued learning, creative interests, and greater independence.',
-        'hobbies' => 'Outside technology, Mark’s public hobbies include bodybuilding and working out, reading, music, movies, cooking, museums, hiking, travel, photography, running, Greek mythology, classical statues and art, spending time with friends, family, and his dog, and experiencing new places and perspectives.',
+        'hobbies' => 'Outside technology, Mark is interested in fitness and bodybuilding, travel, photography, hiking, reading, music, cities, architecture, and cinematic visual design. He describes fitness as a source of discipline, structure, patience, and consistency, while photography helps him document places and experiences that give him a new perspective.',
         'cooking' => 'Cooking is a practical personal interest for Mark, not professional culinary experience. It is one of the ways he spends time outside technology.',
-        'dog' => 'Mark enjoys spending time with his dog.',
-        'friendsFamily' => 'Mark enjoys spending time with friends and family. He keeps those details general in public answers and does not share names, schedules, or private stories.',
+        'dog' => 'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.',
+        'friendsFamily' => 'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.',
         'museums' => 'Mark enjoys museums, especially where they connect to photography, classical art, architecture, statues, history, and visual storytelling.',
         'passion' => 'Mark is passionate about building useful software and about bodybuilding outside technology. In both areas he focuses on disciplined practice, steady improvement, and work he can stand behind.',
-        'favoriteArtists' => 'Mark’s favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR. His taste leans toward melodic rap, R&B, atmospheric production, and music that works for both training and reflection.',
-        'favoriteArtistsWorkout' => 'Mark’s broader music interests often fit training and personal reflection. His favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR, spanning energetic tracks and darker, atmospheric moods.',
+        'favoriteArtists' => 'Mark enjoys music as a general public interest alongside reading, hiking, travel, and photography. MarkAI keeps music preferences high-level and does not list specific favorite artists.',
+        'favoriteArtistsWorkout' => 'Music is part of Mark’s broader public interests and often fits training and reflection. MarkAI discusses music only as a general interest and does not list specific favorite artists.',
         'favoriteFilms' => 'Some of Mark’s favorite films are Creed, Creed II, The Batman, and Magazine Dreams. He also enjoys Marvel and DC stories, while Regular Show is one of his favorite animated series.',
         'favoriteFilmsMarvelDc' => 'Mark enjoys both Marvel and DC movies, characters, and story worlds. That includes heroes, character arcs, visual design, and major film stories. He does not claim to have seen every release.',
         'favoriteFilmsCreed' => 'Creed and Creed II connect naturally to Mark’s interest in training, ambition, resilience, and earned progress. They are among his favorite films alongside The Batman and Magazine Dreams.',
@@ -387,7 +387,7 @@ function markai_mock_classify(string $question, array $history = []): array
         'favoriteShow' => 'Regular Show is one of Mark’s favorite animated series. It reflects a more relaxed and humorous side of his entertainment interests and is not classified as a movie.',
         'careerGoals' => 'Mark is working toward a stable technology career built on continued technical growth, meaningful work, stronger software projects, greater independence, and continued discipline and creativity. He remains open to software development, full-stack applications, developer tools, data-oriented systems, technical support, and related entry-level technology paths.',
         'success' => 'For Mark, success means career stability, professional growth, independence, meaningful work, physical discipline, and pride in earned progress. A title alone is not enough; he wants to know he built something useful and followed through.',
-        'funFacts' => "Here are several approved fun facts about Mark:\n\n- Bodybuilding is his strongest interest outside technology.\n- Favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR.\n- Favorite films include Creed, Creed II, The Batman, and Magazine Dreams; Regular Show is a favorite series; he also enjoys Marvel and DC.\n- He likes photography and travel, plus museums, hiking, and running.\n- He is interested in Greek mythology and classical statues and art.\n- His favorite color is black, and he prefers a dark cinematic visual style.\n- Outside work he also enjoys reading, music, cooking, and spending time with friends, family, and his dog.",
+        'funFacts' => "Here are several approved fun facts about Mark:\n\n- Bodybuilding is his strongest interest outside technology.\n- Favorite films include Creed, Creed II, The Batman, and Magazine Dreams; Regular Show is a favorite series; he also enjoys Marvel and DC.\n- He likes photography and travel, plus museums, hiking, and running.\n- He is interested in Greek mythology and classical statues and art.\n- He prefers a dark cinematic visual style across his portfolio.\n- Outside work he also enjoys reading, music, and exploring cities, architecture, and landscapes.",
         'capabilities' => "You can ask about Mark’s projects, skills, education, experience, collaborators, goals, personality, hobbies, music, films, fitness, travel, testimonials, résumé, or public links.\n\nExamples:\n- “What did Mark build for Abacus?”\n- “What are his strongest skills?”\n- “What are Mark’s goals?”\n- “What music and films does he like?”\n- “Who did he work with on MAAT?”\n- “Can I see the Finch repository?”\n- “What does Mark do outside technology?”",
         'familyGoals' => 'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.',
         'photography' => 'Mark uses photography to preserve feelings, places, views, memories, and important moments. He prefers cinematic, personal, dark, low-exposure, story-driven images of cities, architecture, landscapes, museums, and travel experiences.',
@@ -518,6 +518,55 @@ function markai_mock_classify(string $question, array $history = []): array
                 'about mark’s family',
                 "about mark's family",
                 'about his family',
+                'mark’s family',
+                "mark's family",
+                'his family',
+                'friends and family',
+                'with friends and family',
+                'time with friends',
+                'time with family',
+                'spending time with friends',
+                'spending time with family',
+                'does mark have a dog',
+                'have a dog',
+                'his dog',
+                'mark’s dog',
+                "mark's dog",
+                'dog’s name',
+                "dog's name",
+                'dogs name',
+                'name of his dog',
+                'name of the dog',
+                'what is his dog',
+                'pet named',
+                'dog named',
+                'named kobe',
+                'dog kobe',
+                'his dog kobe',
+                'who is kobe',
+                'tell me about kobe',
+                'pets',
+                'pet ownership',
+                'favorite color',
+                'favourite color',
+                'favorite colour',
+                'favourite colour',
+                'favorite artist',
+                'favourite artist',
+                'favorite artists',
+                'favourite artists',
+                'favorite rappers',
+                'favourite rappers',
+                'favorite food',
+                'favourite food',
+                'drake',
+                'lil baby',
+                'tory lanez',
+                'the weeknd',
+                'don toliver',
+                'travis scott',
+                'partynextdoor',
+                'party next door',
                 'home life',
                 'private struggle',
                 'emotional low',
@@ -1291,30 +1340,12 @@ function markai_mock_classify(string $question, array $history = []): array
 
     if (
         markai_mock_includes_any($text, [
-                'favorite artists',
-                'favourite artists',
-                'favorite artist',
-                'favourite artist',
-                'favorite musician',
-                'favourite musician',
-                'favorite rappers',
-                'favourite rappers',
-                'favorite r&b',
-                'favourite r&b',
                 'what music',
                 'music does mark',
                 'kind of music',
                 'does mark like music',
                 'does mark listen',
                 'listen to',
-                'drake',
-                'lil baby',
-                'tory lanez',
-                'the weeknd',
-                'don toliver',
-                'travis scott',
-                'partynextdoor',
-                'party next door',
                 'r&b',
                 'hip-hop',
                 'hip hop',
@@ -1324,7 +1355,12 @@ function markai_mock_classify(string $question, array $history = []): array
         ])
         || (
             markai_mock_includes_any($text, ['music', 'rapper', 'rappers', 'artist', 'artists'])
-            && markai_mock_includes_any($text, ['favorite', 'favourite', 'like', 'listen', 'taste', 'workout', 'working out', 'train', 'visual'])
+            && markai_mock_includes_any($text, ['like', 'listen', 'taste', 'workout', 'working out', 'train', 'visual'])
+            && !markai_mock_includes_any($text, ['favorite', 'favourite'])
+        )
+        || (
+            markai_mock_includes_any($text, ['music'])
+            && markai_mock_includes_any($text, ['like', 'listen', 'taste', 'enjoy'])
         )
     ) {
         $answer = $answers['favoriteArtists'];
@@ -1501,8 +1537,6 @@ function markai_mock_classify(string $question, array $history = []): array
                 'interests outside',
                 'passionate about',
                 'visual style',
-                'why does mark like black',
-                'why black',
                 'for fun',
                 'outside of technology',
                 'outside technology',
@@ -1513,28 +1547,24 @@ function markai_mock_classify(string $question, array $history = []): array
                 'cooking',
                 'museums',
                 'museum',
-                'have a dog',
-                'his dog',
-                'friends and family',
-                'with friends',
-                'with family',
                 'spend his free time',
                 'spends his free time',
                 'new perspectives',
+                'tell me everything about mark',
+                'tell me about his life',
+                'about mark’s life',
+                "about mark's life",
+                'about marks life',
     ])) {
         $answer = $answers['hobbies'];
         if (markai_mock_includes_any($text, ['passionate'])) {
             $answer = $answers['passion'];
-        } elseif (markai_mock_includes_any($text, ['visual style', 'like black', 'why black'])) {
-            $answer = $answers['favoriteColor'];
+        } elseif (markai_mock_includes_any($text, ['visual style'])) {
+            $answer = $answers['environment'];
         } elseif (markai_mock_includes_any($text, ['cook'])) {
             $answer = $answers['cooking'];
-        } elseif (markai_mock_includes_any($text, ['dog'])) {
-            $answer = $answers['dog'];
         } elseif (markai_mock_includes_any($text, ['museum'])) {
             $answer = $answers['museums'];
-        } elseif (markai_mock_includes_any($text, ['friends', 'family']) && !markai_mock_includes_any($text, ['support', 'goals', 'mean to'])) {
-            $answer = $answers['friendsFamily'];
         }
 
         return [
@@ -1735,10 +1765,27 @@ function markai_mock_classify(string $question, array $history = []): array
                 'education',
                 'graduate',
     ])) {
+        $answer = $answers['profile'];
+        if (markai_mock_includes_any($text, [
+            'tell me everything',
+            'everything about mark',
+            'about his life',
+            'about mark’s life',
+            "about mark's life",
+        ])) {
+            $answer = $answers['hobbies'];
+        }
+
         return [
-            'category' => 'profile',
+            'category' => markai_mock_includes_any($text, [
+                'tell me everything',
+                'everything about mark',
+                'about his life',
+                'about mark’s life',
+                "about mark's life",
+            ]) ? 'hobbies' : 'profile',
             'mode' => 'general',
-            'answer' => $answers['profile'],
+            'answer' => $answer,
             'answerStatus' => 'answered',
         ];
     }
@@ -1747,12 +1794,14 @@ function markai_mock_classify(string $question, array $history = []): array
                 'favorite color',
                 'favourite color',
                 'color black',
+                'why does mark like black',
+                'why black',
     ])) {
         return [
-            'category' => 'favoriteColor',
-            'mode' => 'casual',
-            'answer' => $answers['favoriteColor'],
-            'answerStatus' => 'answered',
+            'category' => 'sensitive',
+            'mode' => 'general',
+            'answer' => $answers['sensitive'],
+            'answerStatus' => 'refused',
         ];
     }
 
@@ -2066,7 +2115,7 @@ function markai_mock_select_record_ids(array $export, string $category): array
         case 'funFacts':
         return $pick([
                 'interest-lifestyle-hobbies-expanded',
-                'interest-favorite-artists',
+                'interest-music-reading-hiking',
                 'interest-favorite-films-television',
                 'interest-fitness-bodybuilding',
                 'personality-photography-travel-hobbies',
@@ -2307,7 +2356,6 @@ function markai_mock_select_record_ids(array $export, string $category): array
 
         case 'favoriteArtists':
         return $pick([
-                'interest-favorite-artists',
                 'interest-music-reading-hiking',
         ]);
 
@@ -2322,13 +2370,11 @@ function markai_mock_select_record_ids(array $export, string $category): array
                 'personality-photography-travel-hobbies',
                 'interest-music-reading-hiking',
                 'interest-fitness-bodybuilding',
+                'interest-travel-photography',
         ]);
 
         case 'favoriteColor':
-        return $pick([
-                'personality-aesthetic-environment',
-                'interest-creative-aesthetics-design',
-        ]);
+        return [];
 
         case 'bodybuilding':
         return $pick([

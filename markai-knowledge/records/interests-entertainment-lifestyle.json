@@ -51,9 +51,9 @@
       ],
       "linkIds": [],
       "visibility": {
-        "answerable": true,
-        "exportPublic": true,
-        "modelVisible": true
+        "answerable": false,
+        "exportPublic": false,
+        "modelVisible": false
       },
       "answerUses": [
         "who are Mark’s favorite artists",
@@ -72,11 +72,12 @@
         "imitate an artist’s style",
         "generate in the style of a living artist",
         "infer political or personal beliefs from artists",
+        "name specific favorite artists in recruiter-facing answers",
         "add favorites to Webpage or Terminal"
       ],
       "reviewedByMark": true,
-      "lastReviewed": "2026-07-30",
-      "notes": "MarkAI-only. Do not add artist lists to Webpage, Terminal, resume, or portfolio cards."
+      "lastReviewed": "2026-08-01",
+      "notes": "Withdrawn from MarkAI public export. Specific artist names are not recruiter-facing public scope. Use interest-music-reading-hiking for general music interest only."
     },
     {
       "id": "interest-favorite-films-television",
@@ -160,34 +161,31 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Lifestyle hobbies outside technology",
-      "publicText": "Mark’s life outside technology combines fitness, creativity, reflection, exploration, and time with people close to him. Approved public interests include bodybuilding, working out, reading, music, movies, cooking, museums, hiking, travel, photography, running, Greek mythology, classical statues and art, spending time with friends, family, and his dog, and experiencing new places and perspectives. He enjoys activities that help him improve, create, learn, recharge, or gain a different perspective. Cooking is a practical personal interest, not professional culinary experience. Museums connect to photography, classical art, architecture, statues, history, and visual storytelling. Reading and movies give him additional perspectives and ideas. Hiking and travel combine physical activity, exploration, scenery, and reflection.",
-      "shortText": "Hobbies include fitness, reading, music, movies, cooking, museums, hiking, travel, photography, mythology/art, friends, family, and time with his dog.",
+      "publicText": "Outside technology, Mark’s recruiter-facing public interests include fitness and bodybuilding, travel, photography, hiking, reading, music, cities, architecture, landscapes, museums, classical statues and art, Greek mythology, running, and cinematic visual design. He describes fitness as a source of discipline, structure, patience, and consistency. Photography helps him document places, cities, architecture, and landscapes that give him a new perspective. Travel and hiking combine exploration, scenery, and reflection. Music and reading remain general public interests without naming private preferences. Do not mention pets, family routines, private relationships, favorite artists, favorite colors, or other unpublished personal details.",
+      "shortText": "Public hobbies include fitness, travel, photography, hiking, reading, music, cities, architecture, landscapes, museums, and cinematic visual interests.",
       "aliases": [
         "hobbies",
         "for fun",
         "outside technology",
-        "cooking",
-        "dog",
         "museums",
-        "friends and family"
+        "lifestyle interests"
       ],
       "keywords": [
         "hobbies",
-        "cooking",
         "museums",
-        "dog",
-        "friends",
-        "family",
         "free time",
-        "lifestyle"
+        "lifestyle",
+        "fitness",
+        "travel",
+        "photography"
       ],
       "status": "verified",
       "evidence": [
         {
           "kind": "mark-approved",
           "label": "Mark-approved Phase 3A.1 lifestyle and hobby expansion",
-          "claimScope": "Supports the expanded public hobby list and general friends/family/dog mentions without identifying details, schedules, or private stories.",
-          "markApprovedOn": "2026-07-30"
+          "claimScope": "Supports recruiter-facing public hobbies only: fitness, travel, photography, hiking, reading, music, cities, architecture, landscapes, museums, classical art, mythology, running, and cinematic visual interests. Excludes pets, family routines, favorite artists, and favorite colors.",
+          "markApprovedOn": "2026-08-01"
         }
       ],
       "sourceFiles": [
@@ -198,8 +196,7 @@
       "relatedRecordIds": [
         "interest-music-reading-hiking",
         "interest-fitness-bodybuilding",
-        "interest-favorite-artists",
-        "interest-favorite-films-television"
+        "interest-travel-photography"
       ],
       "linkIds": [],
       "visibility": {
@@ -211,19 +208,17 @@
         "what does Mark do for fun",
         "what are Mark’s hobbies",
         "what does Mark enjoy outside technology",
-        "does Mark like cooking",
-        "does Mark have a dog",
         "does Mark enjoy museums",
-        "what does Mark do with friends and family",
         "how does Mark gain new perspectives",
-        "what does Mark do when he is not coding"
+        "what does Mark do when he is not coding",
+        "tell me about Mark’s life outside technology"
       ],
       "prohibitedUses": [
+        "pets or dog ownership",
+        "family routines or private family details",
         "names of friends or family",
-        "dog name breed age or medical information",
-        "private family details",
-        "family support or financial motivation",
-        "career motivation from family facts",
+        "private relationships",
+        "favorite artists or favorite colors",
         "home address",
         "private schedules",
         "relationship history",
@@ -233,8 +228,8 @@
         "add private lifestyle details to Webpage or Terminal"
       ],
       "reviewedByMark": true,
-      "lastReviewed": "2026-07-30",
-      "notes": "MarkAI-only expansion. For dog questions, say only that he enjoys spending time with his dog."
+      "lastReviewed": "2026-08-01",
+      "notes": "Recruiter-facing public hobbies only. Pets, family routines, favorite artists, and favorite colors are out of scope."
     },
     {
       "id": "travel-public-places-inventory",

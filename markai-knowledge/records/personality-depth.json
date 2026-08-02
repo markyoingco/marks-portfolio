@@ -343,18 +343,15 @@
       "id": "personality-aesthetic-environment",
       "category": "public-interests",
       "recordType": "personality-theme",
-      "title": "Favorite color, visual style, and preferred environment",
-      "publicText": "Mark’s favorite color is black. He prefers black, white, gray, dark, low-exposure, high-contrast, cinematic design. He likes clean, organized, minimal environments. His preferred visual atmosphere combines classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional-in-a-cinematic-city atmosphere. He dislikes corny, overly decorative, loud, or empty motivational presentation.",
-      "shortText": "Favorite color black; minimal high-contrast cinematic style and a clean, organized technical-professional environment.",
+      "title": "Visual style and preferred environment",
+      "publicText": "Mark prefers black, white, gray, dark, low-exposure, high-contrast, cinematic design. He likes clean, organized, minimal environments. His preferred visual atmosphere combines classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional-in-a-cinematic-city atmosphere. He dislikes corny, overly decorative, loud, or empty motivational presentation. Do not state a favorite color or other unpublished personal preferences.",
+      "shortText": "Minimal high-contrast cinematic style and a clean, organized technical-professional environment.",
       "aliases": [
-        "favorite color",
         "visual style",
-        "why black",
-        "environment Mark wants"
+        "environment Mark wants",
+        "cinematic aesthetic"
       ],
       "keywords": [
-        "black",
-        "favorite color",
         "visual style",
         "cinematic",
         "minimal",
@@ -366,8 +363,8 @@
         {
           "kind": "mark-approved",
           "label": "Mark-approved Phase 3A aesthetic and environment themes",
-          "claimScope": "Supports favorite color, visual style, and preferred environment themes already consistent with public portfolio aesthetics.",
-          "markApprovedOn": "2026-07-30"
+          "claimScope": "Supports visual style and preferred environment themes already consistent with public portfolio aesthetics. Does not authorize favorite-color claims.",
+          "markApprovedOn": "2026-08-01"
         }
       ],
       "sourceFiles": [
@@ -385,26 +382,25 @@
         "modelVisible": true
       },
       "answerUses": [
-        "what is Mark’s favorite color",
         "what visual style does Mark prefer",
-        "why does Mark like black",
         "what kind of environment does Mark want to build"
       ],
       "prohibitedUses": [
+        "state a favorite color",
         "corny motivational presentation",
         "private address",
         "exact location claims"
       ],
       "reviewedByMark": true,
-      "lastReviewed": "2026-07-30",
-      "notes": "MarkAI-only depth. Aligns with public portfolio aesthetic without requiring Webpage changes."
+      "lastReviewed": "2026-08-01",
+      "notes": "MarkAI-only depth. Aligns with public portfolio aesthetic. Favorite-color claims are out of recruiter-facing scope."
     },
     {
       "id": "personality-photography-travel-hobbies",
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Photography, travel meaning, and hobbies",
-      "publicText": "Mark uses photography to preserve feelings, places, views, memories, and important moments. He likes photographing cities, architecture, streets, water, mountains, museums, landscapes, friends, and travel experiences. He prefers cinematic, personal, real, dark, low-exposure, and story-driven images. Cities represent ambition and the feeling of having made progress. Oceans and islands represent peace. Mountains and hikes represent effort that earns the view. Travel helps him see different cultures, lifestyles, opportunities, and perspectives, and motivates him to work toward a life with greater independence and freedom. Approved public hobbies include bodybuilding, gym training, hiking, reading, music, travel, photography, running, Greek mythology, classical statues and art, museums, and exploring cities and landscapes.",
+      "publicText": "Mark uses photography to preserve feelings, places, views, memories, and important moments. He likes photographing cities, architecture, streets, water, mountains, museums, landscapes, and travel experiences. He prefers cinematic, personal, real, dark, low-exposure, and story-driven images. Cities represent ambition and the feeling of having made progress. Oceans and islands represent peace. Mountains and hikes represent effort that earns the view. Travel helps him see different cultures, lifestyles, opportunities, and perspectives, and motivates him to work toward a life with greater independence and freedom. Approved public hobbies include bodybuilding, gym training, hiking, reading, music, travel, photography, running, Greek mythology, classical statues and art, museums, and exploring cities and landscapes.",
       "shortText": "Photography and travel as story, ambition, peace, and earned views; hobbies include fitness, hiking, reading, music, museums, and classical art.",
       "aliases": [
         "photography meaning",

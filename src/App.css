@@ -2048,10 +2048,11 @@
   filter: none;
 }
 
-/* Welcome slide only - shared framing for dark/light pair */
+/* Welcome slide only: center crop inside the shared About frame */
 .about-image-frame--welcome .theme-image,
 .about-image-frame--welcome .theme-image--shared {
-  object-position: 55% center;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .about-image-frame .theme-image--dark {
@@ -3074,7 +3075,8 @@
 
   .about-image-frame--welcome .theme-image,
   .about-image-frame--welcome .theme-image--shared {
-    object-position: 55% center;
+    object-fit: cover;
+    object-position: center center;
   }
 
   .education-image-frame,

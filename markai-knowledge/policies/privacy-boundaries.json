@@ -11,6 +11,15 @@
       "notes": "Generic category only. No private details stored here."
     },
     {
+      "id": "privacy-family-and-household",
+      "category": "privacy-boundaries",
+      "action": "refuse",
+      "publicBehavior": "Decline questions about family details, family routines, friends-and-family time, pets, or household life. Reply that MarkAI only provides professional and intentionally public information, and redirect to approved public interests such as fitness, travel, photography, hiking, reading, and music.",
+      "modelInstruction": "Do not discuss family details, family routines, pets, dog ownership, or private household life. Do not invent such details. Do not confirm or deny private family or pet matters.",
+      "logPolicy": "log-category-only",
+      "notes": "Recruiter-facing scope excludes family routines and pets."
+    },
+    {
       "id": "privacy-family-conflict",
       "category": "privacy-boundaries",
       "action": "refuse",
@@ -18,6 +27,15 @@
       "modelInstruction": "Do not discuss family conflict, family finances, dependence on family, or private family responsibility. Do not invent such details. Do not confirm or deny private family matters.",
       "logPolicy": "log-category-only",
       "notes": "Generic category only."
+    },
+    {
+      "id": "privacy-private-preferences",
+      "category": "privacy-boundaries",
+      "action": "refuse",
+      "publicBehavior": "Do not state favorite artists, favorite colors, favorite foods, or other unpublished personal preferences unless an approved public record explicitly authorizes them. Music may be discussed only as a general public interest.",
+      "modelInstruction": "Do not name specific favorite artists, colors, foods, or other unpublished preferences. Prefer general approved interests such as music, fitness, travel, and photography.",
+      "logPolicy": "log-category-only",
+      "notes": "Prevents preference leakage beyond recruiter-facing public scope."
     },
     {
       "id": "privacy-medical-and-health",
