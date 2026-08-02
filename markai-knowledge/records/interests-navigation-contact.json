@@ -6,20 +6,33 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Fitness and Bodybuilding",
-      "publicText": "Fitness and bodybuilding are major interests for Mark outside technology. Training represents consistency, patience, detail, structure, and progress earned over time. Bodybuilding also influences how he approaches design and technical work through symmetry, structure, control, refinement, and repetition. Fitness is part of his personal discipline and self-development, not a claim of professional coaching or medical expertise.",
-      "shortText": "Fitness and bodybuilding as discipline, structure, patience, and progress that also shape Mark’s design and technical habits.",
+      "publicText": "Mark has trained consistently for nearly six years. He began lifting because he wanted change and to become a better version of himself. After about a year, he pursued powerlifting for a more structured challenge and something greater to work toward, and he competed in and won his first powerlifting meet. He later shifted his primary focus to bodybuilding, where he became more interested in aesthetics, symmetry, control, patience, consistency, and long-term physical development. Fitness and bodybuilding are among Mark’s strongest personal interests outside technology and a source of discipline he applies beyond the gym. Training also influences how he approaches design and technical work through structure, refinement, and repetition. When asked specifically about his gym lifts, MarkAI may state that he benches over 315 pounds, squats over 450 pounds, and deadlifts over 550 pounds. This is public personal interest and self-development, not professional coaching, medical expertise, or a claim of professional bodybuilding status. Do not invent additional meets, competition totals, weight classes, rankings, competition dates, diet details, current body weight, medical history, or private body-image statements.",
+      "shortText": "Nearly six years of training; started for change; powerlifting after about a year with a first-meet win; later primary focus on bodybuilding; approved gym lifts over 315/450/550 when asked.",
       "aliases": [
         "fitness",
         "bodybuilding",
         "training",
-        "gym"
+        "gym",
+        "powerlifting",
+        "gym background",
+        "fitness background",
+        "working out",
+        "bench",
+        "squat",
+        "deadlift"
       ],
       "keywords": [
         "fitness",
         "bodybuilding",
+        "powerlifting",
         "discipline",
         "consistency",
         "training",
+        "first meet",
+        "nearly six years",
+        "bench",
+        "squat",
+        "deadlift",
         "public interest"
       ],
       "status": "verified",
@@ -35,6 +48,12 @@
           "label": "Terminal profile interests fitness wording",
           "sourcePath": "src/terminalProfileFileOutput.js",
           "claimScope": "Supports fitness as a strongest interest and consistency, patience, and progress-over-time framing."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved public fitness history",
+          "claimScope": "Supports nearly six years of consistent training; starting lifting for change and self-improvement; moving into powerlifting after approximately one year for a structured challenge; competing in and winning his first powerlifting meet; later choosing bodybuilding as primary focus for aesthetics, structure, symmetry, control, patience, consistency, and long-term development; fitness as a strongest interest and transferable discipline; and stating bench over 315 lb, squat over 450 lb, and deadlift over 550 lb only when asked about those lifts. Does not authorize multiple meets, competition totals, weight classes, rankings, dates, professional bodybuilding status, medical history, diet, current body weight, or private body-image details.",
+          "markApprovedOn": "2026-08-02"
         }
       ],
       "sourceFiles": [
@@ -44,6 +63,7 @@
       "projectIds": [],
       "relatedRecordIds": [
         "membership-marquette-powerlifting-club",
+        "personality-bodybuilding-depth",
         "interest-discipline-growth-controlled-strength"
       ],
       "linkIds": [],
@@ -56,20 +76,27 @@
         "public interests",
         "fitness",
         "bodybuilding",
+        "powerlifting",
+        "gym background",
+        "how long has Mark been working out",
         "casual personality questions",
         "beyond-work background"
       ],
       "prohibitedUses": [
         "professional coaching claims",
         "certified-trainer claims",
+        "professional bodybuilding status",
         "medical advice",
         "health diagnosis",
         "private physique or health information",
+        "diet or body-weight disclosure",
+        "invented additional meets, competition totals, weight classes, rankings, or competition dates",
+        "invented lift numbers beyond the approved over-315 / over-450 / over-550 floors",
         "converting the interest into employment experience"
       ],
       "reviewedByMark": true,
-      "lastReviewed": "2026-07-28",
-      "notes": "Public interest only. Separate from paid employment and technical skill records. Do not treat fitness as professional expertise."
+      "lastReviewed": "2026-08-02",
+      "notes": "Public interest only. Separate from paid employment and technical skill records. Do not treat fitness as professional expertise. First-meet win is also supported by membership-marquette-powerlifting-club; do not invent further competition statistics."
     },
     {
       "id": "membership-marquette-powerlifting-club",
@@ -222,8 +249,8 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Music, Reading, and Hiking",
-      "publicText": "Outside technology and fitness, Mark enjoys music, reading, hiking, travel, photography, running, and Greek mythology and classical art. These interests give him space to think, stay active, and keep a broader perspective outside software work.",
-      "shortText": "Hobbies include music, reading, hiking, travel, photography, running, and classical art interests.",
+      "publicText": "Outside technology and fitness, Mark enjoys music, reading, hiking, travel, photography, and Greek mythology and classical art. These interests give him space to think, stay active, and keep a broader perspective outside software work. Do not list running as a hobby.",
+      "shortText": "Hobbies include music, reading, hiking, travel, photography, and classical art interests.",
       "aliases": [
         "music",
         "reading",
@@ -365,19 +392,21 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Creative Aesthetics and Design",
-      "publicText": "Mark prefers black, white, and gray visual palettes and likes minimal, cinematic, serious, high-contrast design. He dislikes corny, overly decorative, or empty motivational presentation, and prefers writing that feels clean, direct, mature, and confident. This aesthetic appears across his portfolio, photography, interface work, and merchandise design. Do not state a favorite color or other unpublished personal preferences.",
-      "shortText": "Prefers minimal black/white/gray cinematic design and clean, mature writing.",
+      "publicText": "Mark’s favorite color is black. He prefers black, white, and gray visual palettes and likes minimal, cinematic, serious, high-contrast design. He dislikes corny, overly decorative, or empty motivational presentation, and prefers writing that feels clean, direct, mature, and confident. This aesthetic appears across his portfolio, photography, interface work, and merchandise design.",
+      "shortText": "Favorite color black; prefers minimal black/white/gray cinematic design and clean, mature writing.",
       "aliases": [
         "creative aesthetics",
         "visual design",
         "cinematic aesthetics",
         "merchandise design",
-        "visual style"
+        "favorite color",
+        "black"
       ],
       "keywords": [
         "aesthetics",
         "design",
         "cinematic",
+        "black",
         "minimal",
         "high-contrast",
         "organization",
@@ -427,18 +456,18 @@
         "creative interest",
         "design sensibility",
         "portfolio aesthetic questions",
+        "favorite color",
         "visual style",
         "casual personality questions"
       ],
       "prohibitedUses": [
-        "state a favorite color",
         "claim professional design employment unless supported by a separate approved record",
         "claim professional photography employment",
         "overstate merchandise design as a full design career"
       ],
       "reviewedByMark": true,
-      "lastReviewed": "2026-08-01",
-      "notes": "Creative interest across portfolio, photography, interface work, and merchandise design. Favorite-color claims are out of recruiter-facing scope."
+      "lastReviewed": "2026-07-28",
+      "notes": "Creative interest across portfolio, photography, interface work, and merchandise design. Do not claim professional design employment unless separately approved."
     },
     {
       "id": "interest-discipline-growth-controlled-strength",

@@ -141,20 +141,23 @@
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Bodybuilding meaning and training lessons",
-      "publicText": "Bodybuilding interests Mark because it combines discipline, structure, symmetry, patience, and progress earned over time. It is a major interest outside technology and an artistic, structured discipline that reinforces focus and consistency. Lessons from training - patience, quality repetitions, and deliberate progress - can apply to projects and professional development. Do not discuss why he originally began training, loneliness, appearance insecurity, health conditions, exact physique goals, body measurements, or private emotional motivations.",
-      "shortText": "Bodybuilding as disciplined craft: structure, symmetry, patience, consistency, and transferable professional habits.",
+      "publicText": "Mark has trained consistently for nearly six years. He began lifting because he wanted change and to become a better version of himself. After about a year he pursued powerlifting for a more structured challenge, competed in and won his first powerlifting meet, then later chose bodybuilding as his primary focus. Bodybuilding interests him because it connects aesthetics, structure, symmetry, control, patience, consistency, and long-term physical development. It is a major interest outside technology and reinforces focus and consistency that can apply to projects and professional growth. Fitness has become one of Mark’s strongest personal interests and a source of discipline he applies outside the gym. When asked about gym lifts, MarkAI may state that he benches over 315 pounds, squats over 450 pounds, and deadlifts over 550 pounds. Do not invent multiple meets, competition totals, weight classes, rankings, competition dates, diet details, body measurements, medical history, or private body-image or self-esteem statements.",
+      "shortText": "Nearly six years of training culminating in bodybuilding as craft: aesthetics, structure, patience, consistency, and transferable discipline.",
       "aliases": [
         "bodybuilding meaning",
         "gym taught",
         "training lessons",
-        "passion outside technology"
+        "passion outside technology",
+        "why bodybuilding",
+        "fitness background"
       ],
       "keywords": [
         "bodybuilding",
         "gym",
         "training",
         "aesthetics",
-        "quality repetitions",
+        "powerlifting",
+        "first meet",
         "discipline",
         "passion"
       ],
@@ -162,9 +165,9 @@
       "evidence": [
         {
           "kind": "mark-approved",
-          "label": "Mark-approved Phase 3A bodybuilding themes",
-          "claimScope": "Supports public-safe bodybuilding meaning only. Excludes measurements, medical history, drugs, supplements, and private body-image statements.",
-          "markApprovedOn": "2026-07-30"
+          "label": "Mark-approved Phase 3A bodybuilding themes plus 2026-08-02 fitness history",
+          "claimScope": "Supports public-safe bodybuilding meaning and approved training history. Excludes measurements, medical history, drugs, supplements, unsupported competition statistics, and private body-image statements.",
+          "markApprovedOn": "2026-08-02"
         }
       ],
       "sourceFiles": [
@@ -174,6 +177,7 @@
       "projectIds": [],
       "relatedRecordIds": [
         "interest-fitness-bodybuilding",
+        "membership-marquette-powerlifting-club",
         "personality-discipline-and-control"
       ],
       "linkIds": [],
@@ -186,7 +190,9 @@
         "what does bodybuilding mean to Mark",
         "what has the gym taught Mark",
         "what is Mark passionate about",
-        "fitness meaning"
+        "fitness meaning",
+        "why bodybuilding",
+        "fitness background"
       ],
       "prohibitedUses": [
         "physical measurements",
@@ -194,10 +200,12 @@
         "drugs or supplements",
         "private body-image statements",
         "professional coaching claims",
-        "health diagnosis"
+        "professional bodybuilding status",
+        "health diagnosis",
+        "invented competition statistics"
       ],
       "reviewedByMark": true,
-      "lastReviewed": "2026-07-30",
+      "lastReviewed": "2026-08-02",
       "notes": "MarkAI-only depth layered on interest-fitness-bodybuilding. Keep tone professional and avoid influencer imitation."
     },
     {
@@ -343,15 +351,18 @@
       "id": "personality-aesthetic-environment",
       "category": "public-interests",
       "recordType": "personality-theme",
-      "title": "Visual style and preferred environment",
-      "publicText": "Mark prefers black, white, gray, dark, low-exposure, high-contrast, cinematic design. He likes clean, organized, minimal environments. His preferred visual atmosphere combines classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional-in-a-cinematic-city atmosphere. He dislikes corny, overly decorative, loud, or empty motivational presentation. Do not state a favorite color or other unpublished personal preferences.",
-      "shortText": "Minimal high-contrast cinematic style and a clean, organized technical-professional environment.",
+      "title": "Favorite color, visual style, and preferred environment",
+      "publicText": "Mark’s favorite color is black. He prefers black, white, gray, dark, low-exposure, high-contrast, cinematic design. He likes clean, organized, minimal environments. His preferred visual atmosphere combines classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional-in-a-cinematic-city atmosphere. He dislikes corny, overly decorative, loud, or empty motivational presentation.",
+      "shortText": "Favorite color black; minimal high-contrast cinematic style and a clean, organized technical-professional environment.",
       "aliases": [
+        "favorite color",
         "visual style",
-        "environment Mark wants",
-        "cinematic aesthetic"
+        "why black",
+        "environment Mark wants"
       ],
       "keywords": [
+        "black",
+        "favorite color",
         "visual style",
         "cinematic",
         "minimal",
@@ -363,8 +374,8 @@
         {
           "kind": "mark-approved",
           "label": "Mark-approved Phase 3A aesthetic and environment themes",
-          "claimScope": "Supports visual style and preferred environment themes already consistent with public portfolio aesthetics. Does not authorize favorite-color claims.",
-          "markApprovedOn": "2026-08-01"
+          "claimScope": "Supports favorite color, visual style, and preferred environment themes already consistent with public portfolio aesthetics.",
+          "markApprovedOn": "2026-07-30"
         }
       ],
       "sourceFiles": [
@@ -382,25 +393,26 @@
         "modelVisible": true
       },
       "answerUses": [
+        "what is Mark’s favorite color",
         "what visual style does Mark prefer",
+        "why does Mark like black",
         "what kind of environment does Mark want to build"
       ],
       "prohibitedUses": [
-        "state a favorite color",
         "corny motivational presentation",
         "private address",
         "exact location claims"
       ],
       "reviewedByMark": true,
-      "lastReviewed": "2026-08-01",
-      "notes": "MarkAI-only depth. Aligns with public portfolio aesthetic. Favorite-color claims are out of recruiter-facing scope."
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only depth. Aligns with public portfolio aesthetic without requiring Webpage changes."
     },
     {
       "id": "personality-photography-travel-hobbies",
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Photography, travel meaning, and hobbies",
-      "publicText": "Mark uses photography to preserve feelings, places, views, memories, and important moments. He likes photographing cities, architecture, streets, water, mountains, museums, landscapes, and travel experiences. He prefers cinematic, personal, real, dark, low-exposure, and story-driven images. Cities represent ambition and the feeling of having made progress. Oceans and islands represent peace. Mountains and hikes represent effort that earns the view. Travel helps him see different cultures, lifestyles, opportunities, and perspectives, and motivates him to work toward a life with greater independence and freedom. Approved public hobbies include bodybuilding, gym training, hiking, reading, music, travel, photography, running, Greek mythology, classical statues and art, museums, and exploring cities and landscapes.",
+      "publicText": "Mark uses photography to preserve feelings, places, views, memories, and important moments. He likes photographing cities, architecture, streets, water, mountains, museums, landscapes, and travel experiences. He prefers cinematic, personal, real, dark, low-exposure, and story-driven images. Cities represent ambition and the feeling of having made progress. Oceans and islands represent peace. Mountains and hikes represent effort that earns the view. Travel helps him see different cultures, lifestyles, opportunities, and perspectives, and motivates him to work toward a life with greater independence and freedom. Approved public hobbies include bodybuilding, gym training, hiking, reading, music, travel, photography, Greek mythology, classical statues and art, museums, and exploring cities and landscapes. Do not list running as a hobby.",
       "shortText": "Photography and travel as story, ambition, peace, and earned views; hobbies include fitness, hiking, reading, music, museums, and classical art.",
       "aliases": [
         "photography meaning",

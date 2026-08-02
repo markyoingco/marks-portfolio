@@ -416,11 +416,28 @@ $assert($detailedRuntime['accepted'] === false, '2D.4G runtime detailed validati
 $assert($detailedRuntime['reason'] === 'private_information', '2D.4G runtime allowlisted reason');
 $assert(!array_key_exists('answer', $detailedRuntime), '2D.4G runtime detailed result omits answer');
 
-$shapeKeys = ['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'];
+$shapeKeys = [
+    'success',
+    'answer',
+    'answerStatus',
+    'links',
+    'mode',
+    'conversationId',
+    'preview',
+    'error',
+    'errorCode',
+    'userMessage',
+    'userNote',
+    'retryAfterSeconds',
+    'fallbackUsed',
+];
 foreach ($shapeKeys as $key) {
     $assert(array_key_exists($key, $response), '2D.4G runtime public API retains ' . $key);
 }
 $assert(count(array_keys($response)) === count($shapeKeys), '2D.4G runtime public API shape unchanged');
+$assert(array_key_exists('errorCode', $response) && $response['errorCode'] === null, '2D.4G privacy refusal has no errorCode');
+$assert(array_key_exists('userNote', $response) && $response['userNote'] === null, '2D.4G privacy refusal has no userNote');
+$assert(($response['fallbackUsed'] ?? true) === false, '2D.4G privacy refusal is not a fallback');
 
 // 26) Token absence across outputs
 $assert(!str_contains($capturedOutput, $SECRET_TOKEN), 'token absent from captured test output');

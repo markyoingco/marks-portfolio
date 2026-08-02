@@ -72,6 +72,7 @@ export function applyIntentTypos(text) {
     'favorite',
     'movies',
     'music',
+    'artists',
     'personality',
     'resume',
     'repository',
@@ -84,8 +85,10 @@ export function applyIntentTypos(text) {
     'bodybuilding',
     'mythology',
     'travel',
+    'traveled',
     'github',
     'skills',
+    'color',
   ]) {
     fuzzyTargets.add(token)
   }
@@ -184,7 +187,33 @@ function categoryToResult(category, answers, normalized = '') {
   let answerKey = category
   switch (category) {
     case 'careerGoals':
-      answerKey = includesAny(normalized, ['success']) ? 'success' : 'careerGoals'
+      if (includesAny(normalized, ['success'])) {
+        answerKey = 'success'
+      } else if (
+        includesAny(normalized, [
+          'want to work',
+          'job locations',
+          'work',
+          'relocate',
+        ])
+      ) {
+        mode = 'recruiter'
+        answerKey = 'workLocation'
+      } else {
+        answerKey = 'careerGoals'
+      }
+      break
+    case 'hobbies':
+      if (
+        includesAny(normalized, ['dog', 'kobe']) ||
+        normalized === 'dog' ||
+        normalized === 'dog name'
+      ) {
+        answerKey = 'dog'
+      }
+      break
+    case 'favoriteColor':
+      answerKey = 'favoriteColor'
       break
     case 'technologies':
     case 'projectsInventory':
@@ -223,6 +252,20 @@ function matchMultiTopic(text, answers) {
     return null
   }
 
+  if (
+    matched.travelPlaces &&
+    matched.careerGoals &&
+    includesAny(text, [
+      'want to work',
+      'job locations',
+      'work location',
+      'where does mark want',
+    ]) &&
+    answers.travelAndWork
+  ) {
+    return result('travelPlaces', 'casual', answers.travelAndWork)
+  }
+
   const sections = []
   if (matched.careerGoals) sections.push(`Goals: ${answers.careerGoals || ''}`)
   if (matched.projectsInventory) {
@@ -238,7 +281,10 @@ function matchMultiTopic(text, answers) {
   if (matched.work) sections.push(`Experience: ${answers.work || ''}`)
   if (matched.favoriteArtists) sections.push(`Music: ${answers.favoriteArtists || ''}`)
   if (matched.favoriteFilms) sections.push(`Films: ${answers.favoriteFilms || ''}`)
-  if (matched.bodybuilding) sections.push(`Fitness: ${answers.bodybuilding || ''}`)
+  if (matched.bodybuilding || matched.powerlifting) {
+    sections.push(`Fitness: ${answers.bodybuilding || ''}`)
+  }
+  if (matched.travelPlaces) sections.push(`Travel: ${answers.travelPlaces || ''}`)
   if (sections.length < 2) return null
   const clipped = sections.slice(0, 3)
   return result(
@@ -361,6 +407,30 @@ export function matchIntentTopic(text, answers) {
     const category = String(topic.category || topicId)
     if (category === 'careerGoals' && includesAny(normalized, ['success'])) {
       answer = String(answers.success || answer)
+    }
+    if (category === 'bodybuilding') {
+      if (
+        includesAny(normalized, [
+          'gym taught',
+          'fitness taught',
+          'what has fitness',
+          'what has the gym',
+          'taught mark',
+        ])
+      ) {
+        answer = String(answers.fitnessTaught || answer)
+      } else if (
+        includesAny(normalized, [
+          'bodybuilding mean',
+          'what does bodybuilding',
+          'why bodybuilding',
+          'why did mark move',
+          'move from powerlifting',
+          'powerlifting to bodybuilding',
+        ])
+      ) {
+        answer = String(answers.bodybuildingMeaning || answer)
+      }
     }
     if (category === 'favoriteFilms') {
       if (includesAny(normalized, ['regular show'])) answer = String(answers.favoriteShow || answer)

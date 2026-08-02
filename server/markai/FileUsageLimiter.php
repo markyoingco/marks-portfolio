@@ -114,7 +114,7 @@ final class FileUsageLimiter
 
             $activeUntil = $session['activeUntil'];
             if (is_int($activeUntil) && $activeUntil > $now) {
-                return UsageLimitResult::deny('active_request');
+                return UsageLimitResult::deny('active_request', max(1, $activeUntil - $now));
             }
 
             $windowSeconds = (int) $this->configuration['sessionWindowSeconds'];
@@ -129,12 +129,17 @@ final class FileUsageLimiter
                 static fn (int $ts): bool => $ts >= ($now - 86400)
             ));
 
-            $windowCount = count(array_filter(
+            $windowTimestamps = array_values(array_filter(
                 $timestamps,
                 static fn (int $ts): bool => $ts >= ($now - $windowSeconds)
             ));
+            $windowCount = count($windowTimestamps);
             if ($windowCount >= $windowMax) {
-                return UsageLimitResult::deny('session_window');
+                sort($windowTimestamps);
+                $oldestInWindow = (int) $windowTimestamps[0];
+                $retryAfter = max(1, ($oldestInWindow + $windowSeconds) - $now);
+
+                return UsageLimitResult::deny('session_window', $retryAfter);
             }
 
             $utcDay = gmdate('Y-m-d', $now);

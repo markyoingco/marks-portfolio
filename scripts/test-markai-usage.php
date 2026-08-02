@@ -94,7 +94,21 @@ $enabledConfig = markai_load_provider_configuration([
         'apiToken' => 'token_test_local_only_not_real',
 ]);
 
-$shapeKeys = ['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'];
+$shapeKeys = [
+    'success',
+    'answer',
+    'answerStatus',
+    'links',
+    'mode',
+    'conversationId',
+    'preview',
+    'error',
+    'errorCode',
+    'userMessage',
+    'userNote',
+    'retryAfterSeconds',
+    'fallbackUsed',
+];
 
 $runQuestion = static function (
     FileUsageLimiter $limiter,
@@ -162,6 +176,9 @@ $limiter = new FileUsageLimiter([
     ], $baseNow + 7);
 $blocked = $runQuestion($limiter, $sessionA, ['question' => 'What did Mark contribute to Abacus?']);
 $assert(($blocked['answerStatus'] ?? '') === 'rate_limited', '3 next request blocked as rate_limited');
+$assert(($blocked['errorCode'] ?? '') === 'session_window_limit', '3 blocked request exposes session_window_limit');
+$assert(is_int($blocked['retryAfterSeconds'] ?? null) && $blocked['retryAfterSeconds'] >= 1, '3 blocked request includes retryAfterSeconds');
+$assert(str_contains((string) ($blocked['userNote'] ?? ''), 'minute'), '3 blocked request includes retry note');
 $assert($networkCalls === $afterSix, '3 blocked request made zero provider calls');
 $assert(str_contains((string) $blocked['answer'], 'team senior-design') || str_contains((string) $blocked['answer'], 'approximately 200 - 300'), '3 blocked path uses deterministic fallback');
 
@@ -207,6 +224,8 @@ $dayLimiter = new FileUsageLimiter([
     ], $dayNow + 40);
 $dayBlocked = $runQuestion($dayLimiter, $sessionB, ['question' => 'What did Mark contribute to Abacus?']);
 $assert(($dayBlocked['answerStatus'] ?? '') === 'daily_limit', '5 daily session limit blocks with daily_limit');
+$assert(($dayBlocked['errorCode'] ?? '') === 'session_daily_limit', '5 daily session limit exposes session_daily_limit');
+$assert(str_contains((string) ($dayBlocked['userNote'] ?? ''), 'tomorrow'), '5 daily session limit note says tomorrow');
 
 // 6 - 7) Global daily provider limit; increments only for provider calls
 $globalDir = $makeTempDir();
@@ -238,6 +257,8 @@ $gLimiter = new FileUsageLimiter([
     ], $gNow + 3);
 $gBlocked = $runQuestion($gLimiter, $sessionC, ['question' => 'What did Mark contribute to Abacus?']);
 $assert(($gBlocked['answerStatus'] ?? '') === 'daily_limit', '6 global daily provider limit blocks');
+$assert(($gBlocked['errorCode'] ?? '') === 'global_daily_limit', '6 global daily limit exposes global_daily_limit');
+$assert(str_contains((string) ($gBlocked['userMessage'] ?? ''), 'shared AI limit'), '6 global daily limit message is distinct from browser limit');
 $assert($networkCalls === $gCallsBefore + 2, '6 global block made zero provider calls');
 $gState = $gLimiter->readGlobalStateForTests($gNow + 3);
 $assert((int) ($gState['providerCount'] ?? -1) === 2, '7 global count remains 2 after block');

@@ -151,10 +151,25 @@ $assert(($careerFollow['category'] ?? '') === 'careerGoals', 'what about career?
 
 // API shape unchanged
 $shape = $run('goals');
-foreach (['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'] as $key) {
+$shapeKeys = [
+    'success',
+    'answer',
+    'answerStatus',
+    'links',
+    'mode',
+    'conversationId',
+    'preview',
+    'error',
+    'errorCode',
+    'userMessage',
+    'userNote',
+    'retryAfterSeconds',
+    'fallbackUsed',
+];
+foreach ($shapeKeys as $key) {
     $assert(array_key_exists($key, $shape), 'API retains ' . $key);
 }
-$assert(count(array_keys($shape)) === 8, 'API shape key count unchanged');
+$assert(count(array_keys($shape)) === count($shapeKeys), 'API shape key count unchanged');
 $assert(($shape['success'] ?? false) === true, 'goals deterministic success');
 $assert(($shape['answerStatus'] ?? '') === 'answered', 'goals answerStatus answered');
 $assert(!preg_match('/\blink-[a-z0-9\-]+\b/', (string) ($shape['answer'] ?? '')), 'no internal link IDs in prose');

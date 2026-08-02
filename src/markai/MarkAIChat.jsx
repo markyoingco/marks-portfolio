@@ -18,6 +18,50 @@ function createGreetingMessage(id) {
     content: INITIAL_GREETING,
     status: 'complete',
     links: [],
+    note: null,
+  }
+}
+
+function resolveAssistantPresentation(response) {
+  const userMessage =
+    typeof response?.userMessage === 'string' && response.userMessage.trim() !== ''
+      ? response.userMessage.trim()
+      : null
+  const userNote =
+    typeof response?.userNote === 'string' && response.userNote.trim() !== ''
+      ? response.userNote.trim()
+      : null
+  const answer =
+    typeof response?.answer === 'string' && response.answer.trim() !== ''
+      ? response.answer
+      : null
+
+  if (response?.success === true && answer) {
+    return {
+      content: answer,
+      note: userNote,
+      status: 'complete',
+      links: Array.isArray(response.links) ? response.links : [],
+      failed: false,
+    }
+  }
+
+  if (response?.success === false) {
+    return {
+      content: answer || userMessage || ERROR_MESSAGE,
+      note: userNote,
+      status: 'error',
+      links: [],
+      failed: true,
+    }
+  }
+
+  return {
+    content: ERROR_MESSAGE,
+    note: null,
+    status: 'error',
+    links: [],
+    failed: true,
   }
 }
 
@@ -216,6 +260,7 @@ export default function MarkAIChat() {
         content: question,
         status: 'complete',
         links: [],
+        note: null,
       },
       {
         id: loadingId,
@@ -223,6 +268,7 @@ export default function MarkAIChat() {
         content: 'MarkAI is responding…',
         status: 'loading',
         links: [],
+        note: null,
       },
     ])
     focusComposer()
@@ -238,12 +284,7 @@ export default function MarkAIChat() {
         return
       }
 
-      const answer =
-        response && response.success && typeof response.answer === 'string'
-          ? response.answer
-          : ERROR_MESSAGE
-      const links = Array.isArray(response?.links) ? response.links : []
-      const failed = !(response && response.success && typeof response.answer === 'string')
+      const presentation = resolveAssistantPresentation(response)
 
       setMessages((prev) =>
         prev.map((message) =>
@@ -251,15 +292,16 @@ export default function MarkAIChat() {
             ? {
                 id: loadingId,
                 role: 'assistant',
-                content: failed ? ERROR_MESSAGE : answer,
-                status: failed ? 'error' : 'complete',
-                links: failed ? [] : links,
+                content: presentation.content,
+                status: presentation.status,
+                links: presentation.links,
+                note: presentation.note,
               }
             : message,
         ),
       )
-      if (failed) {
-        setErrorText(ERROR_MESSAGE)
+      if (presentation.failed) {
+        setErrorText(presentation.content)
       }
     } catch (error) {
       if (
@@ -278,6 +320,7 @@ export default function MarkAIChat() {
                 content: ERROR_MESSAGE,
                 status: 'error',
                 links: [],
+                note: null,
               }
             : message,
         ),
@@ -396,7 +439,16 @@ export default function MarkAIChat() {
                   </span>
                 </p>
               ) : (
-                <p className="markai-preview__message-text">{message.content}</p>
+                <>
+                  <p className="markai-preview__message-text">{message.content}</p>
+                  {!isUser &&
+                  typeof message.note === 'string' &&
+                  message.note.trim() !== '' ? (
+                    <p className="markai-preview__message-note" role="note">
+                      {message.note}
+                    </p>
+                  ) : null}
+                </>
               )}
               {!isUser && message.status === 'complete' ? (
                 <MarkAiLinks links={message.links} />

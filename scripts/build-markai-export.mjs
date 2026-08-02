@@ -383,7 +383,7 @@ function validateAndBuildExport(sources) {
   exportObject.sourceDigest = sha256Hex(JSON.stringify(digestBasis))
 
   const expected = {
-    records: 115,
+    records: 116,
     skills: 26,
     trustedLinks: 30,
     enabledTrustedLinks: 29,

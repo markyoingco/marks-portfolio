@@ -51,9 +51,9 @@
       ],
       "linkIds": [],
       "visibility": {
-        "answerable": false,
-        "exportPublic": false,
-        "modelVisible": false
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
       },
       "answerUses": [
         "who are Mark’s favorite artists",
@@ -72,49 +72,39 @@
         "imitate an artist’s style",
         "generate in the style of a living artist",
         "infer political or personal beliefs from artists",
-        "name specific favorite artists in recruiter-facing answers",
         "add favorites to Webpage or Terminal"
       ],
       "reviewedByMark": true,
-      "lastReviewed": "2026-08-01",
-      "notes": "Withdrawn from MarkAI public export. Specific artist names are not recruiter-facing public scope. Use interest-music-reading-hiking for general music interest only."
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only. Do not add artist lists to Webpage, Terminal, resume, or portfolio cards."
     },
     {
       "id": "interest-favorite-films-television",
       "category": "public-interests",
       "recordType": "public-interest",
-      "title": "Favorite films, animated series, and superhero worlds",
-      "publicText": "Some of Mark’s favorite films are Creed, Creed II, The Batman, and Magazine Dreams. Regular Show is one of his favorite animated series and should not be classified as a movie. He also enjoys Marvel and DC movies, characters, and story worlds, including heroes, character arcs, visual design, and major film stories. He does not claim to have seen every release. He is drawn to stories involving ambition, transformation, discipline, pressure, identity, setbacks, sacrifice, and becoming stronger. Creed and Creed II connect to training, ambition, resilience, and earned progress. The Batman fits his preference for dark, cinematic, serious, high-contrast environments. Magazine Dreams connects to his interest in bodybuilding-centered character stories. Regular Show reflects a more relaxed and humorous side of his entertainment interests. If asked Marvel or DC, he enjoys both unless a stronger preference is later approved.",
-      "shortText": "Favorite films: Creed, Creed II, The Batman, Magazine Dreams. Favorite animated series: Regular Show. Enjoys both Marvel and DC story worlds.",
+      "title": "Entertainment interests without published movie titles",
+      "publicText": "MarkAI does not currently publish a verified list of Mark’s favorite movie titles. Entertainment questions should stay within approved public interests such as music, fitness and bodybuilding, travel, photography, hiking, reading, museums, Greek mythology, classical statues, and cinematic visual design. Do not invent movie titles, rankings, watchlists, or streaming habits.",
+      "shortText": "No verified favorite movie titles are published; redirect to approved public interests.",
       "aliases": [
         "favorite movies",
         "favorite films",
         "favorite show",
-        "Creed",
-        "The Batman",
-        "Magazine Dreams",
-        "Regular Show",
-        "Marvel",
-        "DC"
+        "movies",
+        "films"
       ],
       "keywords": [
         "movies",
         "films",
         "television",
-        "Creed",
-        "Batman",
-        "Marvel",
-        "DC",
-        "Regular Show",
-        "superhero"
+        "entertainment"
       ],
       "status": "verified",
       "evidence": [
         {
           "kind": "mark-approved",
-          "label": "Mark-approved Phase 3A.1 film and television preferences",
-          "claimScope": "Supports the listed films, Regular Show as a series, and broad Marvel/DC interest without claiming every title was watched or ranking them definitively.",
-          "markApprovedOn": "2026-07-30"
+          "label": "Mark-approved public scope: no published favorite movie titles",
+          "claimScope": "Supports declining invented movie-title claims while preserving approved non-film public interests.",
+          "markApprovedOn": "2026-08-01"
         }
       ],
       "sourceFiles": [
@@ -122,7 +112,7 @@
       ],
       "projectIds": [],
       "relatedRecordIds": [
-        "interest-fitness-bodybuilding",
+        "interest-lifestyle-hobbies-expanded",
         "interest-creative-aesthetics-design"
       ],
       "linkIds": [],
@@ -136,55 +126,56 @@
         "what is Mark’s favorite show",
         "does Mark like superhero movies",
         "Marvel or DC",
-        "why does Mark like Creed",
-        "why does Mark like The Batman",
         "what movies match Mark’s personality",
         "what does Mark watch outside technology"
       ],
       "prohibitedUses": [
-        "classify Regular Show as a movie",
-        "describe Marvel or DC as one trilogy",
-        "claim a character is exactly like Mark",
+        "invent favorite movie titles",
         "psychological analysis",
         "quote scripts or copyrighted dialogue",
         "invent definitive ranking",
-        "claim Mark watched every Marvel or DC title",
         "claim comics are a major hobby",
         "add favorites to Webpage or Terminal"
       ],
       "reviewedByMark": true,
-      "lastReviewed": "2026-07-30",
-      "notes": "MarkAI-only. Keep connections light and grounded in approved interests."
+      "lastReviewed": "2026-08-01",
+      "notes": "Favorite movie titles are not part of MarkAI’s approved public knowledge."
     },
     {
       "id": "interest-lifestyle-hobbies-expanded",
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Lifestyle hobbies outside technology",
-      "publicText": "Outside technology, Mark’s recruiter-facing public interests include fitness and bodybuilding, travel, photography, hiking, reading, music, cities, architecture, landscapes, museums, classical statues and art, Greek mythology, running, and cinematic visual design. He describes fitness as a source of discipline, structure, patience, and consistency. Photography helps him document places, cities, architecture, and landscapes that give him a new perspective. Travel and hiking combine exploration, scenery, and reflection. Music and reading remain general public interests without naming private preferences. Do not mention pets, family routines, private relationships, favorite artists, favorite colors, or other unpublished personal details.",
-      "shortText": "Public hobbies include fitness, travel, photography, hiking, reading, music, cities, architecture, landscapes, museums, and cinematic visual interests.",
+      "publicText": "Outside technology, Mark’s approved public interests include fitness and bodybuilding, travel, travel photography, cinematic and low-exposure photography, hiking, reading, music, cities, streets, architecture, landscapes, water and coastal views, mountains, museums, classical statues, Greek mythology, visual art, cinematic visual design, clean dark minimal high-contrast aesthetics, and spending time with his dog Kobe. He enjoys activities that help him improve, create, learn, recharge, or gain a different perspective. Museums connect to photography, classical art, architecture, statues, history, and visual storytelling. Hiking and travel combine physical activity, exploration, scenery, and reflection. Do not list running as a hobby. Do not invent favorite movie titles. Do not discuss private family details, family routines, or relationship history.",
+      "shortText": "Hobbies include fitness, travel, photography, hiking, reading, music, cities, museums, mythology/art, aesthetics, and his dog Kobe.",
       "aliases": [
         "hobbies",
         "for fun",
         "outside technology",
+        "dog",
+        "Kobe",
         "museums",
-        "lifestyle interests"
+        "interests"
       ],
       "keywords": [
         "hobbies",
         "museums",
+        "dog",
+        "Kobe",
         "free time",
         "lifestyle",
         "fitness",
         "travel",
-        "photography"
+        "photography",
+        "architecture",
+        "mythology"
       ],
       "status": "verified",
       "evidence": [
         {
           "kind": "mark-approved",
-          "label": "Mark-approved Phase 3A.1 lifestyle and hobby expansion",
-          "claimScope": "Supports recruiter-facing public hobbies only: fitness, travel, photography, hiking, reading, music, cities, architecture, landscapes, museums, classical art, mythology, running, and cinematic visual interests. Excludes pets, family routines, favorite artists, and favorite colors.",
+          "label": "Mark-approved public lifestyle, hobbies, and dog Kobe",
+          "claimScope": "Supports the approved public hobby list and that Mark has a dog named Kobe. Excludes family details, family routines, schedules, medical pet details, and private relationship history.",
           "markApprovedOn": "2026-08-01"
         }
       ],
@@ -196,7 +187,9 @@
       "relatedRecordIds": [
         "interest-music-reading-hiking",
         "interest-fitness-bodybuilding",
-        "interest-travel-photography"
+        "interest-favorite-artists",
+        "interest-creative-aesthetics-design",
+        "personality-photography-travel-hobbies"
       ],
       "linkIds": [],
       "visibility": {
@@ -208,28 +201,33 @@
         "what does Mark do for fun",
         "what are Mark’s hobbies",
         "what does Mark enjoy outside technology",
+        "does Mark have a dog",
+        "what is Mark’s dog’s name",
         "does Mark enjoy museums",
         "how does Mark gain new perspectives",
         "what does Mark do when he is not coding",
-        "tell me about Mark’s life outside technology"
+        "what is Mark like outside technology",
+        "what are Mark’s interests"
       ],
       "prohibitedUses": [
-        "pets or dog ownership",
-        "family routines or private family details",
         "names of friends or family",
-        "private relationships",
-        "favorite artists or favorite colors",
+        "dog breed age medical information or private schedules",
+        "private family details",
+        "family routines",
+        "family support or financial motivation",
+        "career motivation from family facts",
         "home address",
         "private schedules",
         "relationship history",
         "exact travel schedules",
-        "professional cooking claims",
+        "listing running as a hobby",
+        "inventing favorite movie titles",
         "professional photography employment claims",
         "add private lifestyle details to Webpage or Terminal"
       ],
       "reviewedByMark": true,
       "lastReviewed": "2026-08-01",
-      "notes": "Recruiter-facing public hobbies only. Pets, family routines, favorite artists, and favorite colors are out of scope."
+      "notes": "Public hobbies include Mark’s dog Kobe by name. Running and favorite movie titles are out of scope. Family details and family routines remain private."
     },
     {
       "id": "travel-public-places-inventory",

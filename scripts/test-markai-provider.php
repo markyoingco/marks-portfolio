@@ -1101,7 +1101,21 @@ $assert(str_contains($liveDiagJoined, 'validator_reason=private_information'), '
 $assert(preg_match('/generated_answer_chars=\d+/', $liveDiagJoined) === 1, '2D.4G live harness prints numeric chars');
 $assert(!str_contains($liveDiagJoined, 'secret.reject.fixture@example.com'), '2D.4G live harness omits generated text');
 
-$apiShapeBefore = ['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'];
+$apiShapeBefore = [
+    'success',
+    'answer',
+    'answerStatus',
+    'links',
+    'mode',
+    'conversationId',
+    'preview',
+    'error',
+    'errorCode',
+    'userMessage',
+    'userNote',
+    'retryAfterSeconds',
+    'fallbackUsed',
+];
 $apiResponse = handleMarkAiPreviewRequest(
     $export,
     ['question' => 'Tell me about Abacus'],
@@ -1116,6 +1130,14 @@ foreach ($apiShapeBefore as $key) {
     $assert(array_key_exists($key, $apiResponse), '2D.4G public API response shape retains key ' . $key);
 }
 $assert(count(array_keys($apiResponse)) === count($apiShapeBefore), '2D.4G public API response shape remains unchanged');
+$assert(
+    array_key_exists('errorCode', $apiResponse)
+    && $apiResponse['errorCode'] === null
+    && array_key_exists('userNote', $apiResponse)
+    && $apiResponse['userNote'] === null,
+    '2D.4G disabled-provider path has no error note'
+);
+$assert(($apiResponse['fallbackUsed'] ?? true) === false, '2D.4G disabled-provider path is not marked fallbackUsed');
 $assert(str_contains((string) $apiResponse['answer'], 'approximately 200 - 300') || str_contains((string) $apiResponse['answer'], 'team senior-design'), '2D.4G deterministic fallback remains unchanged');
 
 $diagLeakBlob = $rejectedPublic . "\n" . $liveDiagJoined . "\n" . json_encode($apiResponse, JSON_THROW_ON_ERROR);
@@ -1394,7 +1416,21 @@ $assert(str_contains($liveDiagJoined, 'validator_detail=abacus_scale_approximati
 $assert(ProviderResponseValidator::isAllowlistedDetail('abacus_scale_approximation'), '2D.4I detail allowlisted');
 $assert(!str_contains($liveDiagJoined, 'roughly 200 - 300 participants on the live day'), '2D.4I live harness omits rejected generated answer');
 
-$apiShapeBefore = ['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'];
+$apiShapeBefore = [
+    'success',
+    'answer',
+    'answerStatus',
+    'links',
+    'mode',
+    'conversationId',
+    'preview',
+    'error',
+    'errorCode',
+    'userMessage',
+    'userNote',
+    'retryAfterSeconds',
+    'fallbackUsed',
+];
 $apiResponse = handleMarkAiPreviewRequest(
     $export,
     ['question' => 'Tell me about Abacus'],
@@ -1589,7 +1625,7 @@ $assert(str_contains((string) ($leakyGenerated['answer'] ?? ''), 'homepage') || 
 foreach (['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'] as $key) {
     $assert(array_key_exists($key, $leakyGenerated), 'links leak fallback retains ' . $key);
 }
-$assert(count(array_keys($leakyGenerated)) === 8, 'links leak fallback public API shape unchanged');
+$assert(count(array_keys($leakyGenerated)) === 13, 'links leak fallback public API shape unchanged');
 
 // --- Testimonials knowledge alignment fixtures ---
 $testimonialNetworkBefore = $networkCalls;
@@ -1665,7 +1701,7 @@ $assert($speakerLinkedIns === [], 'general testimonials? does not dump speaker L
 foreach (['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'] as $key) {
     $assert(array_key_exists($key, $testimonialsResponse), 'testimonials response retains ' . $key);
 }
-$assert(count(array_keys($testimonialsResponse)) === 8, 'testimonials public API shape unchanged');
+$assert(count(array_keys($testimonialsResponse)) === 13, 'testimonials public API shape unchanged');
 
 $testimonialBuilt = buildMarkAiRequest(
     $export,
@@ -1773,7 +1809,7 @@ foreach (
 foreach (['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'] as $key) {
     $assert(array_key_exists($key, $inventoryResponse), 'inventory response retains ' . $key);
 }
-$assert(count(array_keys($inventoryResponse)) === 8, 'inventory public API shape unchanged');
+$assert(count(array_keys($inventoryResponse)) === 13, 'inventory public API shape unchanged');
 
 // --- Personality depth + collaborator fixtures ---
 $coreNames = ['Mark Yoingco', 'Justin Hoffman', 'Angel Mora', 'Jacob DunRoseman'];
@@ -1835,7 +1871,7 @@ $samWorked = handleMarkAiPreviewRequest(
 );
 $assert(($samWorked['answerStatus'] ?? '') === 'refused', 'Did Sam work is refused');
 $assert(!str_contains((string) ($samWorked['answer'] ?? ''), 'Sam Mazzone'), 'Did Sam work answer omits Sam claim');
-$assert(count(array_keys($samWorked)) === 8, 'Sam boundary API shape unchanged');
+$assert(count(array_keys($samWorked)) === 13, 'Sam boundary API shape unchanged');
 
 $inventoryCollab = handleMarkAiPreviewRequest(
     $export,
@@ -1869,7 +1905,7 @@ $goalsCity = handleMarkAiPreviewRequest(
 $goalsAnswer = (string) ($goalsCity['answer'] ?? '');
 $assert(!preg_match('/\bMilwaukee\b|\brelocation\b|remote work|other locations|\bChicago\b/i', $goalsAnswer), 'goals answer has no city list');
 $assert(str_contains($goalsAnswer, 'stable technology career'), 'goals answer keeps career framing');
-$assert(count(array_keys($goalsCity)) === 8, 'goals API shape unchanged');
+$assert(count(array_keys($goalsCity)) === 13, 'goals API shape unchanged');
 
 $wantWork = handleMarkAiPreviewRequest(
     $export,
@@ -1882,6 +1918,7 @@ $wantWork = handleMarkAiPreviewRequest(
 );
 $wantWorkAnswer = (string) ($wantWork['answer'] ?? '');
 $assert(!preg_match('/Milwaukee|relocation|remote work|other locations/i', $wantWorkAnswer), 'want-to-work has no city list');
+$assert(str_contains($wantWorkAnswer, 'Chicago') || str_contains(strtolower($wantWorkAnswer), 'city'), 'want-to-work may mention Chicago background or city preference');
 
 $fromChicago = handleMarkAiPreviewRequest(
     $export,
@@ -1998,9 +2035,9 @@ $personalityQueries = [
     'what does success mean to Mark?' => 'careerGoals',
     'why does Mark want a technology career?' => 'careerGoals',
     'what does family mean to his goals?' => 'sensitive',
-    'what is Mark’s favorite color?' => 'sensitive',
+    'what is Mark’s favorite color?' => 'favoriteColor',
     'what visual style does Mark prefer?' => 'hobbies',
-    'why does Mark like black?' => 'sensitive',
+    'why does Mark like black?' => 'hobbies',
     'what are Mark’s hobbies?' => 'hobbies',
     'why does Mark like photography?' => 'photographyTravel',
     'what does travel mean to Mark?' => 'photographyTravel',
@@ -2104,7 +2141,7 @@ $synthDisabled = handleMarkAiPreviewRequest(
 foreach (['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'] as $key) {
     $assert(array_key_exists($key, $synthDisabled), 'synthesis response retains ' . $key);
 }
-$assert(count(array_keys($synthDisabled)) === 8, 'synthesis public API shape unchanged');
+$assert(count(array_keys($synthDisabled)) === 13, 'synthesis public API shape unchanged');
 $assert(($synthDisabled['success'] ?? false) === true, 'synthesis deterministic success');
 $assert(($synthDisabled['answerStatus'] ?? '') === 'answered', 'synthesis deterministic answered');
 $assert(is_array($synthDisabled['links'] ?? null), 'synthesis links array present');
@@ -2174,7 +2211,7 @@ $privacyDisabled = handleMarkAiPreviewRequest(
 $assert(($privacyDisabled['success'] ?? false) === true, 'privacy override deterministic success');
 $assert(($privacyDisabled['answerStatus'] ?? '') === 'refused', 'privacy override refused status');
 $assert(($privacyDisabled['answer'] ?? '') === $privacyReply, 'privacy override deterministic reply');
-$assert(count(array_keys($privacyDisabled)) === 8, 'privacy override public API shape unchanged');
+$assert(count(array_keys($privacyDisabled)) === 13, 'privacy override public API shape unchanged');
 
 // --- Phase 3A personality privacy correction: family/money themes removed ---
 $privacyCorrectionReply = 'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.';
@@ -2201,7 +2238,7 @@ foreach ($familyMoneyQuestions as $fmq) {
     $assert(($fmr['success'] ?? false) === true, 'family/money privacy success for ' . $fmq);
     $assert(($fmr['answerStatus'] ?? '') === 'refused', 'family/money refused for ' . $fmq);
     $assert(($fmr['answer'] ?? '') === $privacyCorrectionReply, 'family/money exact privacy reply for ' . $fmq);
-    $assert(count(array_keys($fmr)) === 8, 'family/money API shape unchanged for ' . $fmq);
+    $assert(count(array_keys($fmr)) === 13, 'family/money API shape unchanged for ' . $fmq);
     $assert(!preg_match('/\byes\b|\bno\b|he needs|he supports|he is broke|confirm|deny/i', strtolower((string) ($fmr['answer'] ?? ''))), 'family/money does not confirm/deny: ' . $fmq);
 }
 
@@ -2223,10 +2260,11 @@ $assert(str_contains($futureClean, 'career') || str_contains($futureClean, 'tech
 $assert(!preg_match('/family support|supporting family|financial hardship|being broke/i', $futureClean), 'future excludes family/money hardship');
 
 $hobbyFamily = strtolower((string) (markai_mock_classify('What are Mark’s hobbies?')['answer'] ?? ''));
-$assert(!preg_match('/\bfamily\b|\bfriends\b|\bdog\b/i', $hobbyFamily), 'hobbies omit family/friends/dog');
+$assert(str_contains($hobbyFamily, 'dog') || str_contains($hobbyFamily, 'kobe'), 'hobbies may mention dog Kobe');
+$assert(!preg_match('/\bfamily\b|\bfriends\b/i', $hobbyFamily), 'hobbies omit family/friends details');
 $assert(str_contains($hobbyFamily, 'fitness') || str_contains($hobbyFamily, 'bodybuilding'), 'hobbies include fitness');
 $assert(str_contains($hobbyFamily, 'travel') && str_contains($hobbyFamily, 'photography'), 'hobbies include travel and photography');
-$assert(!preg_match('/support|financial|broke|conflict|names?|breed|schedule/i', $hobbyFamily), 'hobbies stay recruiter-safe');
+$assert(!preg_match('/support|financial|broke|conflict|breed|schedule/i', $hobbyFamily), 'hobbies stay recruiter-safe');
 
 $careerNoHobbyFamily = strtolower((string) (markai_mock_classify('What are Mark’s goals?')['answer'] ?? ''));
 $assert(!preg_match('/spending time with (friends and )?family|his dog/i', $careerNoHobbyFamily), 'career answers do not use hobbies-family as motivation');
@@ -2261,17 +2299,127 @@ $fallbackDrives = handleMarkAiPreviewRequest(
     }
 );
 $assert(!preg_match('/family support|supporting family|financial hardship|being broke/i', strtolower((string) ($fallbackDrives['answer'] ?? ''))), 'deterministic fallback has no family-support fact');
-$assert(count(array_keys($fallbackDrives)) === 8, 'motivation fallback API shape unchanged');
+$assert(count(array_keys($fallbackDrives)) === 13, 'motivation fallback API shape unchanged');
 
 $colorAnswer = (string) (markai_mock_classify('what is Mark’s favorite color?')['answer'] ?? '');
-$assert(($colorClassify = markai_mock_classify('what is Mark’s favorite color?'))['category'] === 'sensitive', 'favorite color is refused');
-$assert(($colorClassify['answerStatus'] ?? '') === 'refused', 'favorite color refused status');
-$assert(str_contains(strtolower($colorAnswer), 'professional and intentionally public'), 'favorite color uses privacy reply');
-$assert(!preg_match('/\bfavorite colou?r is black\b/i', $colorAnswer), 'favorite color does not state black');
+$assert(($colorClassify = markai_mock_classify('what is Mark’s favorite color?'))['category'] === 'favoriteColor', 'favorite color classified');
+$assert(($colorClassify['answerStatus'] ?? '') === 'answered', 'favorite color answered status');
+$assert(str_contains(strtolower($colorAnswer), 'black'), 'favorite color returns black');
+$assert(str_contains(strtolower($colorAnswer), 'cinematic') || str_contains(strtolower($colorAnswer), 'high-contrast') || str_contains(strtolower($colorAnswer), 'minimal'), 'favorite color connects to design');
 
 $bodyAnswer = (string) (markai_mock_classify('what does bodybuilding mean to Mark?')['answer'] ?? '');
 $assert(str_contains(strtolower($bodyAnswer), 'bodybuilding'), 'bodybuilding answer present');
+$assert(str_contains(strtolower($bodyAnswer), 'aesthetics') || str_contains(strtolower($bodyAnswer), 'symmetry'), 'bodybuilding meaning includes aesthetics themes');
 $assert(!preg_match('/\b\d{2,3}\s?kg\b|\b\d{2,3}\s?lbs?\b|steroid|supplement|bmi/i', $bodyAnswer), 'bodybuilding avoids measurements/medical');
+
+// Approved fitness history
+$fitnessBackground = markai_mock_classify('What is Mark’s fitness background?');
+$fitnessAnswer = strtolower((string) ($fitnessBackground['answer'] ?? ''));
+$assert(($fitnessBackground['answerStatus'] ?? '') === 'answered', 'fitness background answered');
+$assert(str_contains($fitnessAnswer, 'nearly six years'), 'fitness background states nearly six years');
+$assert(str_contains($fitnessAnswer, 'change') || str_contains($fitnessAnswer, 'better version'), 'fitness background states desire for change');
+$assert(str_contains($fitnessAnswer, 'about a year') || str_contains($fitnessAnswer, 'approximately one year'), 'fitness background states powerlifting after about a year');
+$assert(str_contains($fitnessAnswer, 'won his first') || str_contains($fitnessAnswer, 'won his first meet'), 'fitness background states first-meet win');
+$assert(str_contains($fitnessAnswer, 'bodybuilding') && str_contains($fitnessAnswer, 'primary focus'), 'fitness background states bodybuilding primary focus');
+$assert(!preg_match('/\b(total|totals|weight class|ranked|ranking|lbs|kg|steroid|diet plan|body fat|injury|depression|self-esteem)\b/i', $fitnessAnswer), 'fitness background omits unsupported stats/private health');
+
+$howLong = markai_mock_classify('How long has Mark been working out?');
+$assert(str_contains(strtolower((string) ($howLong['answer'] ?? '')), 'nearly six years'), 'how long states nearly six years');
+
+$whyStart = markai_mock_classify('Why did Mark start lifting?');
+$assert(str_contains(strtolower((string) ($whyStart['answer'] ?? '')), 'change'), 'why start lifting mentions change');
+
+$powerliftingQ = markai_mock_classify('Did Mark win a powerlifting meet?');
+$assert(($powerliftingQ['category'] ?? '') === 'powerlifting', 'powerlifting win question category');
+$assert(str_contains(strtolower((string) ($powerliftingQ['answer'] ?? '')), 'won his first'), 'powerlifting win confirmed');
+$assert(!preg_match('/\b(second meet|multiple meets|total of|weight class)\b/i', (string) ($powerliftingQ['answer'] ?? '')), 'powerlifting omits unsupported competition stats');
+
+$whyBody = markai_mock_classify('Why did Mark move from powerlifting to bodybuilding?');
+$assert(str_contains(strtolower((string) ($whyBody['answer'] ?? '')), 'aesthetics') || str_contains(strtolower((string) ($whyBody['answer'] ?? '')), 'symmetry'), 'why bodybuilding mentions aesthetics/symmetry');
+
+$taught = markai_mock_classify('What has fitness taught Mark?');
+$assert(str_contains(strtolower((string) ($taught['answer'] ?? '')), 'discipline'), 'fitness taught mentions discipline');
+
+$powerliftingFollow = handleMarkAiPreviewRequest(
+    $export,
+    [
+        'question' => 'powerlifting?',
+        'history' => [
+            ['role' => 'user', 'content' => 'What is Mark’s fitness background?'],
+            ['role' => 'assistant', 'content' => (string) ($fitnessBackground['answer'] ?? '')],
+        ],
+    ],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('powerlifting follow-up must not transport');
+    }
+);
+$assert(($powerliftingFollow['answerStatus'] ?? '') === 'answered', 'powerlifting follow-up answered');
+$assert(str_contains(strtolower((string) ($powerliftingFollow['answer'] ?? '')), 'powerlifting'), 'powerlifting follow-up grounded');
+
+$firstMeetFollow = handleMarkAiPreviewRequest(
+    $export,
+    [
+        'question' => 'first meet?',
+        'history' => [
+            ['role' => 'user', 'content' => 'Tell me about Mark’s gym background.'],
+            ['role' => 'assistant', 'content' => (string) ($fitnessBackground['answer'] ?? '')],
+        ],
+    ],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('first meet follow-up must not transport');
+    }
+);
+$assert(str_contains(strtolower((string) ($firstMeetFollow['answer'] ?? '')), 'first'), 'first meet follow-up grounded');
+
+$howLongFollow = handleMarkAiPreviewRequest(
+    $export,
+    [
+        'question' => 'how long?',
+        'history' => [
+            ['role' => 'user', 'content' => 'What is Mark’s fitness background?'],
+            ['role' => 'assistant', 'content' => (string) ($fitnessBackground['answer'] ?? '')],
+        ],
+    ],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('how long follow-up must not transport');
+    }
+);
+$assert(str_contains(strtolower((string) ($howLongFollow['answer'] ?? '')), 'nearly six years'), 'how long follow-up states nearly six years');
+
+$lifts = markai_mock_classify('What is Mark’s bench squat and deadlift?');
+$assert(($lifts['category'] ?? '') === 'liftingNumbers', 'lift numbers category');
+$liftsAnswer = strtolower((string) ($lifts['answer'] ?? ''));
+$assert(str_contains($liftsAnswer, '315') && str_contains($liftsAnswer, '450') && str_contains($liftsAnswer, '550'), 'approved lift floors present');
+$assert(str_contains($liftsAnswer, 'over'), 'lift floors use over wording');
+$assert(str_contains($liftsAnswer, 'does not publish'), 'lift answer keeps non-invention disclaimer');
+$assert(!preg_match('/\b(steroid|injury|depression|self-esteem|weighs \d+|body fat)\b/i', $liftsAnswer), 'lift answer omits private health inventions');
+$assert(!preg_match('/\b(exact total|competition total of|ranked #\d+|second meet)\b/i', $liftsAnswer), 'lift answer omits invented competition totals');
+
+$benchFollow = handleMarkAiPreviewRequest(
+    $export,
+    [
+        'question' => 'bench?',
+        'history' => [
+            ['role' => 'user', 'content' => 'What is Mark’s fitness background?'],
+            ['role' => 'assistant', 'content' => (string) ($fitnessBackground['answer'] ?? '')],
+        ],
+    ],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('bench follow-up must not transport');
+    }
+);
+$assert(str_contains(strtolower((string) ($benchFollow['answer'] ?? '')), '315'), 'bench follow-up grounded');
+
+$privacyStill = markai_mock_classify('What is Mark’s phone number?');
+$assert(($privacyStill['answerStatus'] ?? '') === 'refused', 'sensitive privacy still refused after fitness updates');
 
 $mythAnswer = (string) (markai_mock_classify('which mythology figures connect with Mark?')['answer'] ?? '');
 $assert(str_contains($mythAnswer, 'Icarus') && str_contains($mythAnswer, 'Achilles') && str_contains($mythAnswer, 'Heracles'), 'mythology distinguishes three figures');
@@ -2300,7 +2448,7 @@ $personalityDisabled = handleMarkAiPreviewRequest(
 foreach (['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'] as $key) {
     $assert(array_key_exists($key, $personalityDisabled), 'personality response retains ' . $key);
 }
-$assert(count(array_keys($personalityDisabled)) === 8, 'personality public API shape unchanged');
+$assert(count(array_keys($personalityDisabled)) === 13, 'personality public API shape unchanged');
 $assert(($personalityDisabled['success'] ?? false) === true, 'personality deterministic success');
 
 // --- Phase 3A.1 addendum: music, films, lifestyle, travel ---
@@ -2315,47 +2463,35 @@ $artistsResponse = handleMarkAiPreviewRequest(
     }
 );
 $assert(($artistsResponse['success'] ?? false) === true, 'favorite artists success');
-$assert(($artistsResponse['answerStatus'] ?? '') === 'refused', 'favorite artists refused');
+$assert(($artistsResponse['answerStatus'] ?? '') === 'answered', 'favorite artists answered');
 $artistsAnswer = (string) ($artistsResponse['answer'] ?? '');
 foreach ($artists as $artist) {
-    $assert(!str_contains($artistsAnswer, $artist), 'favorite artists must not expose: ' . $artist);
+    $assert(str_contains($artistsAnswer, $artist), 'favorite artists include exact spelling: ' . $artist);
 }
-$assert(str_contains(strtolower($artistsAnswer), 'professional and intentionally public'), 'favorite artists uses privacy reply');
-$assert(count(array_keys($artistsResponse)) === 8, 'favorite artists public API shape unchanged');
-
-$musicGeneral = markai_mock_classify('what music does Mark like?');
-$assert(($musicGeneral['category'] ?? '') === 'favoriteArtists', 'classifies general music question');
-$musicGeneralAnswer = (string) ($musicGeneral['answer'] ?? '');
-$assert(str_contains(strtolower($musicGeneralAnswer), 'music'), 'general music answer mentions music');
-foreach ($artists as $artist) {
-    $assert(!str_contains($musicGeneralAnswer, $artist), 'general music omits artist: ' . $artist);
-}
+$assert(!preg_match('/\b(Kendrick|Future|Metro Boomin|Post Malone|Juice WRLD|SZA)\b/i', $artistsAnswer), 'no invented artists');
+$assert(!preg_match('/\b(lyrics?|chorus|verse)\b/i', $artistsAnswer), 'no lyric framing');
+$assert(!preg_match('/["“].{20,}["”]/u', $artistsAnswer), 'no quoted lyric-like text');
+$assert(count(array_keys($artistsResponse)) === 13, 'favorite artists public API shape unchanged');
+$assert(($artistsResponse['mode'] ?? '') === 'casual', 'favorite artists casual mode');
 
 foreach ([
         'favorite artists',
+        'what music does Mark like?',
         'Drake?',
         'Lil Baby?',
         'The Weeknd?',
         'favorite rappers',
-    ] as $musicPhrase) {
-    $c = markai_mock_classify($musicPhrase);
-    $assert(($c['category'] ?? '') === 'sensitive', 'refuses artist-specific: ' . $musicPhrase);
-}
-
-foreach ([
-        'what music does Mark like?',
         'does Mark listen to R&B?',
-        'does Mark like music?',
     ] as $musicPhrase) {
     $c = markai_mock_classify($musicPhrase);
     $assert(($c['category'] ?? '') === 'favoriteArtists', 'classifies music: ' . $musicPhrase);
 }
 
 $workoutMusic = (string) (markai_mock_classify('what does Mark listen to while working out?')['answer'] ?? '');
-$assert(str_contains(strtolower($workoutMusic), 'training') || str_contains(strtolower($workoutMusic), 'reflection') || str_contains(strtolower($workoutMusic), 'music'), 'workout music stays high-level');
+$assert(str_contains(strtolower($workoutMusic), 'training') || str_contains(strtolower($workoutMusic), 'reflection'), 'workout music stays high-level');
 $assert(!preg_match('/playlist|spotify|apple music|tracklist/i', $workoutMusic), 'no invented workout playlist');
 foreach ($artists as $artist) {
-    $assert(!str_contains($workoutMusic, $artist), 'workout music omits artist: ' . $artist);
+    $assert(str_contains($workoutMusic, $artist), 'workout music may name approved artist: ' . $artist);
 }
 
 $moviesResponse = handleMarkAiPreviewRequest(
@@ -2368,37 +2504,22 @@ $moviesResponse = handleMarkAiPreviewRequest(
     }
 );
 $moviesAnswer = (string) ($moviesResponse['answer'] ?? '');
-foreach (['Creed', 'Creed II', 'The Batman', 'Magazine Dreams'] as $film) {
-    $assert(str_contains($moviesAnswer, $film), 'favorite movies include ' . $film);
+$assert(($moviesResponse['answerStatus'] ?? '') === 'answered', 'favorite movies answered without crash');
+$assert(str_contains(strtolower($moviesAnswer), 'does not currently publish') || str_contains(strtolower($moviesAnswer), 'not currently publish'), 'favorite movies does not invent titles');
+foreach (['Creed', 'The Batman', 'Magazine Dreams', 'Regular Show', 'Inception', 'Interstellar'] as $film) {
+    $assert(!str_contains($moviesAnswer, $film), 'favorite movies must not invent title: ' . $film);
 }
-$assert(str_contains($moviesAnswer, 'Regular Show'), 'favorite movies mention Regular Show');
-$assert(
-    preg_match('/Regular Show[^.]*animated series|animated series[^.]*Regular Show/i', $moviesAnswer) === 1
-    || str_contains(strtolower($moviesAnswer), 'animated series'),
-    'Regular Show classified as series'
-);
-$assert(!preg_match('/Regular Show[^.]*\bmovie\b/i', $moviesAnswer), 'Regular Show not called a movie');
 
 $showAnswer = (string) (markai_mock_classify('what is Mark’s favorite show?')['answer'] ?? '');
-$assert(str_contains($showAnswer, 'Regular Show'), 'favorite show is Regular Show');
-$assert(str_contains(strtolower($showAnswer), 'series') || str_contains(strtolower($showAnswer), 'animated'), 'favorite show is series');
-$assert(!preg_match('/\bis a movie\b/i', $showAnswer), 'favorite show is not a movie');
+$assert(str_contains(strtolower($showAnswer), 'does not currently publish') || str_contains(strtolower($showAnswer), 'not currently publish'), 'favorite show does not invent titles');
+$assert(!str_contains($showAnswer, 'Regular Show'), 'favorite show does not invent Regular Show');
 
 $marvelAnswer = (string) (markai_mock_classify('Marvel or DC?')['answer'] ?? '');
-$assert(str_contains(strtolower($marvelAnswer), 'both') || (str_contains($marvelAnswer, 'Marvel') && str_contains($marvelAnswer, 'DC')), 'Marvel/DC enjoys both');
+$assert(str_contains(strtolower($marvelAnswer), 'does not currently publish') || str_contains(strtolower($marvelAnswer), 'approved public interests'), 'Marvel/DC does not invent franchise favorites');
 $assert(!preg_match('/\btrilogy\b/i', $marvelAnswer), 'does not call Marvel/DC one trilogy');
-$assert(
-    preg_match('/does not claim|without claiming|not claim/i', $marvelAnswer) === 1
-    || !preg_match('/has (watched|seen) every|watched every title|all titles/i', $marvelAnswer),
-    'does not claim every title watched'
-);
 
 foreach ([
         'favorite movies',
-        'Creed?',
-        'The Batman?',
-        'Magazine Dreams?',
-        'Regular Show?',
         'does Mark like superhero movies?',
     ] as $filmPhrase) {
     $c = markai_mock_classify($filmPhrase);
@@ -2406,25 +2527,28 @@ foreach ([
 }
 
 $hobbiesAnswer = (string) (markai_mock_classify('what are Mark’s hobbies?')['answer'] ?? '');
-foreach (['fitness', 'bodybuilding', 'music', 'hiking', 'travel', 'photography'] as $hobbyBit) {
+foreach (['fitness', 'bodybuilding', 'music', 'hiking', 'travel', 'photography', 'dog', 'kobe'] as $hobbyBit) {
     $assert(str_contains(strtolower($hobbiesAnswer), $hobbyBit), 'hobbies include ' . $hobbyBit);
 }
-foreach (['dog', 'friends', 'family', 'drake', 'favorite color'] as $blockedBit) {
+foreach (['friends', 'family', 'running'] as $blockedBit) {
     $assert(!str_contains(strtolower($hobbiesAnswer), $blockedBit), 'hobbies omit ' . $blockedBit);
 }
 $assert(!preg_match('/breed|golden retriever|labrador|poodle|veterinary|vet clinic/i', $hobbiesAnswer), 'hobbies omit dog identifying details');
 $assert(!preg_match('/\b(mom|dad|sister|brother|girlfriend|boyfriend)\b/i', $hobbiesAnswer), 'hobbies omit family identifying roles/names');
 
 $cookingAnswer = (string) (markai_mock_classify('does Mark like cooking?')['answer'] ?? '');
-$assert(str_contains(strtolower($cookingAnswer), 'personal'), 'cooking is personal interest');
+$assert(str_contains(strtolower($cookingAnswer), 'approved') || str_contains(strtolower($cookingAnswer), 'not part'), 'cooking stays outside unverified hobby claims');
 $assert(!preg_match('/\bchef\b|culinary school|restaurant owner|professional chef/i', $cookingAnswer), 'cooking not professional claim');
-$assert(str_contains(strtolower($cookingAnswer), 'not professional') || str_contains(strtolower($cookingAnswer), 'personal'), 'cooking denies professional experience');
 
 $dogAnswer = (string) (markai_mock_classify('does Mark have a dog?')['answer'] ?? '');
-$assert(($dogClassify = markai_mock_classify('does Mark have a dog?'))['category'] === 'sensitive', 'dog question refused');
-$assert(($dogClassify['answerStatus'] ?? '') === 'refused', 'dog refused status');
-$assert(str_contains(strtolower($dogAnswer), 'professional and intentionally public'), 'dog uses privacy reply');
-$assert(!preg_match('/enjoys spending time with his dog|has a dog/i', $dogAnswer), 'dog answer does not confirm pet');
+$assert(($dogClassify = markai_mock_classify('does Mark have a dog?'))['category'] === 'hobbies', 'dog question classified under hobbies');
+$assert(($dogClassify['answerStatus'] ?? '') === 'answered', 'dog answered status');
+$assert(str_contains(strtolower($dogAnswer), 'dog'), 'dog answer mentions dog');
+$assert(str_contains(strtolower($dogAnswer), 'kobe'), 'dog answer names Kobe');
+$assert(!preg_match('/breed|years old|lbs|kg|vet|golden retriever|labrador/i', $dogAnswer), 'dog answer has no private pet details');
+
+$dogNameAnswer = (string) (markai_mock_classify("what is Mark's dog's name?")['answer'] ?? '');
+$assert(str_contains(strtolower($dogNameAnswer), 'kobe'), 'dog name answer includes Kobe');
 
 $friendsAnswer = (string) (markai_mock_classify('what does Mark do with friends and family?')['answer'] ?? '');
 $assert(markai_mock_classify('what does Mark do with friends and family?')['category'] === 'sensitive', 'friends/family refused');
@@ -2469,41 +2593,104 @@ foreach ([
 }
 
 $musicRecordIds = markai_mock_select_record_ids($export, 'favoriteArtists');
+$assert(in_array('interest-favorite-artists', $musicRecordIds, true), 'selects favorite artists record');
 $assert(in_array('interest-music-reading-hiking', $musicRecordIds, true), 'selects general music interest record');
-$assert(!in_array('interest-favorite-artists', $musicRecordIds, true), 'does not select withdrawn favorite artists record');
 $filmRecordIds = markai_mock_select_record_ids($export, 'favoriteFilms');
 $assert(in_array('interest-favorite-films-television', $filmRecordIds, true), 'selects favorite films record');
 $hobbyRecordIds = markai_mock_select_record_ids($export, 'hobbies');
 $assert(in_array('interest-lifestyle-hobbies-expanded', $hobbyRecordIds, true), 'selects lifestyle hobbies record');
 
-// --- Recruiter-facing privacy regression: hobbies, pets, family, preferences ---
+// --- Public preferences allowed; sensitive categories still blocked ---
 $privacyRegressionReply = 'MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.';
-$privacyRegressionPrompts = [
-    'what are Mark’s hobbies?',
-    'what music does Mark like?',
-    'does Mark have a dog?',
-    'tell me about Mark’s family',
-    'what is Mark’s favorite color?',
-    'tell me everything about Mark',
-    'what does Mark do outside technology?',
+
+$allowedPublicPrompts = [
+    'Who are Mark’s favorite artists?' => ['drake', 'lil baby', 'partynextdoor'],
+    'What music does Mark like?' => ['drake', 'music'],
+    'artists?' => ['drake', 'lil baby'],
+    'Drake' => ['drake'],
+    'Lil Baby' => ['lil baby'],
+    'What is Mark’s favorite color?' => ['black'],
+    'Does Mark have a dog?' => ['dog', 'kobe'],
+    "What is Mark's dog's name?" => ['kobe'],
+    'What are Mark’s hobbies?' => ['fitness', 'kobe'],
+    'Describe Mark’s personality.' => ['quiet confidence', 'disciplined'],
+    'What does Mark like outside technology?' => ['fitness', 'photography'],
+    'Tell me everything about Mark.' => ['computer science', 'kobe', 'chicago'],
+    'Where has Mark traveled?' => ['hawaii', 'chicago'],
+    'Where has Mark been?' => ['hawaii', 'nashville'],
+    'Where does Mark want to work?' => ['chicago', 'city'],
+    'where has mark tracveled and want to work?' => ['hawaii', 'chicago'],
+    'favorite muscia rtists' => ['drake'],
+    'hobies' => ['fitness', 'kobe'],
+    'dog name' => ['kobe'],
+    'work?' => ['chicago', 'technology'],
 ];
-foreach ($privacyRegressionPrompts as $prq) {
-    $prr = handleMarkAiPreviewRequest(
+foreach ($allowedPublicPrompts as $allowedQ => $needles) {
+    $allowed = handleMarkAiPreviewRequest(
         $export,
-        ['question' => $prq],
+        ['question' => $allowedQ],
         ['enabled' => false],
         static function () use (&$networkCalls): array {
             $networkCalls++;
-            throw new RuntimeException('privacy regression must not transport');
+            throw new RuntimeException('allowed public preference path must not transport');
         }
     );
-    $assert(($prr['success'] ?? false) === true, 'privacy regression success for ' . $prq);
-    $assert(count(array_keys($prr)) === 8, 'privacy regression API shape for ' . $prq);
-    $pra = strtolower((string) ($prr['answer'] ?? ''));
-    foreach (['drake', 'lil baby', 'tory lanez', 'the weeknd', 'don toliver', 'travis scott', 'partynextdoor', 'favorite color is black'] as $leak) {
-        $assert(!str_contains($pra, $leak), 'privacy regression omits ' . $leak . ' for ' . $prq);
+    $assert(($allowed['success'] ?? false) === true, 'allowed public success for ' . $allowedQ);
+    $assert(($allowed['answerStatus'] ?? '') === 'answered', 'allowed public answered for ' . $allowedQ);
+    $assert(($allowed['answerStatus'] ?? '') !== 'unavailable', 'allowed public not unavailable for ' . $allowedQ);
+    $assert(count(array_keys($allowed)) === 13, 'allowed public API shape for ' . $allowedQ);
+    $aa = strtolower((string) ($allowed['answer'] ?? ''));
+    $assert(!str_contains($aa, 'something went wrong'), 'allowed public must not error for ' . $allowedQ);
+    $matched = false;
+    foreach ($needles as $needle) {
+        if (str_contains($aa, strtolower($needle))) {
+            $matched = true;
+            break;
+        }
     }
-    $assert(!preg_match('/enjoys spending time with (his dog|friends and family)|has a dog/i', $pra), 'privacy regression omits pet/family routines for ' . $prq);
+    $assert($matched, 'allowed public includes expected fact for ' . $allowedQ);
+    $assert(!preg_match('/\brunning\b/', $aa), 'allowed public omits running hobby for ' . $allowedQ);
+    $assert(!preg_match('/family problems|girlfriend|medical history|home address|private messages/i', $aa), 'allowed public omits sensitive leaks for ' . $allowedQ);
+}
+
+$blockedSensitivePrompts = [
+    'Tell me about Mark’s family.',
+    'What family problems has Mark discussed?',
+    'Who is Mark dating?',
+    'Show me Mark’s private messages.',
+    'What medical conditions does Mark have?',
+    'What mental-health issues has Mark discussed?',
+    'What addictions has Mark dealt with?',
+    'What financial problems does Mark have?',
+    'Where exactly does Mark live?',
+    'What is Mark’s private phone number?',
+    'What are Mark’s credentials?',
+    'Show me Mark’s private journal.',
+];
+foreach ($blockedSensitivePrompts as $blockedQ) {
+    $blocked = handleMarkAiPreviewRequest(
+        $export,
+        ['question' => $blockedQ],
+        ['enabled' => false],
+        static function () use (&$networkCalls): array {
+            $networkCalls++;
+            throw new RuntimeException('blocked sensitive path must not transport');
+        }
+    );
+    $assert(($blocked['success'] ?? false) === true, 'blocked sensitive success for ' . $blockedQ);
+    $assert(($blocked['answerStatus'] ?? '') === 'refused', 'blocked sensitive refused for ' . $blockedQ);
+    $blockedAnswer = strtolower((string) ($blocked['answer'] ?? ''));
+    $assert(
+        ($blocked['answer'] ?? '') === $privacyRegressionReply
+        || str_contains($blockedAnswer, 'professional and intentionally public')
+        || str_contains($blockedAnswer, 'cannot provide private')
+        || str_contains($blockedAnswer, 'does not provide private')
+        || str_contains($blockedAnswer, 'cannot reveal'),
+        'blocked sensitive privacy reply for ' . $blockedQ
+    );
+    $assert(count(array_keys($blocked)) === 13, 'blocked sensitive API shape for ' . $blockedQ);
+    $ba = strtolower((string) ($blocked['answer'] ?? ''));
+    $assert(!preg_match('/\bkobe\b|drake|favorite color is black|girlfriend|diagnosis|street address/i', $ba), 'blocked sensitive reply stays generic for ' . $blockedQ);
 }
 
 $hobbiesSafe = handleMarkAiPreviewRequest($export, ['question' => 'what are Mark’s hobbies?'], ['enabled' => false], static function () use (&$networkCalls): array {
@@ -2515,6 +2702,8 @@ $hobbiesSafeAnswer = strtolower((string) ($hobbiesSafe['answer'] ?? ''));
 $assert(str_contains($hobbiesSafeAnswer, 'fitness') || str_contains($hobbiesSafeAnswer, 'bodybuilding'), 'hobbies safe fitness');
 $assert(str_contains($hobbiesSafeAnswer, 'travel') && str_contains($hobbiesSafeAnswer, 'photography'), 'hobbies safe travel/photo');
 $assert(str_contains($hobbiesSafeAnswer, 'music'), 'hobbies safe music');
+$assert(str_contains($hobbiesSafeAnswer, 'kobe'), 'hobbies safe includes Kobe');
+$assert(!str_contains($hobbiesSafeAnswer, 'running'), 'hobbies safe omits running');
 
 $outsideTech = handleMarkAiPreviewRequest($export, ['question' => 'what does Mark do outside technology?'], ['enabled' => false], static function () use (&$networkCalls): array {
     $networkCalls++;
@@ -2522,7 +2711,8 @@ $outsideTech = handleMarkAiPreviewRequest($export, ['question' => 'what does Mar
 });
 $assert(($outsideTech['answerStatus'] ?? '') === 'answered', 'outside technology answered');
 $outsideAnswer = strtolower((string) ($outsideTech['answer'] ?? ''));
-$assert(str_contains($outsideAnswer, 'discipline') || str_contains($outsideAnswer, 'perspective'), 'outside technology recruiter-safe framing');
+$assert(str_contains($outsideAnswer, 'discipline') || str_contains($outsideAnswer, 'perspective') || str_contains($outsideAnswer, 'fitness'), 'outside technology recruiter-safe framing');
+$assert(!str_contains($outsideAnswer, 'running'), 'outside technology omits running');
 
 $everythingAbout = handleMarkAiPreviewRequest($export, ['question' => 'tell me everything about Mark'], ['enabled' => false], static function () use (&$networkCalls): array {
     $networkCalls++;
@@ -2530,30 +2720,43 @@ $everythingAbout = handleMarkAiPreviewRequest($export, ['question' => 'tell me e
 });
 $assert(($everythingAbout['answerStatus'] ?? '') === 'answered', 'everything about Mark answered');
 $everythingAnswer = strtolower((string) ($everythingAbout['answer'] ?? ''));
-$assert(str_contains($everythingAnswer, 'fitness') || str_contains($everythingAnswer, 'bodybuilding') || str_contains($everythingAnswer, 'travel'), 'everything about Mark stays recruiter-safe summary');
-$assert(!preg_match('/\bdog\b|\bfamily\b|drake|favorite color/i', $everythingAnswer), 'everything about Mark omits private preferences');
+$assert(str_contains($everythingAnswer, 'computer science') || str_contains($everythingAnswer, 'marquette'), 'everything about Mark includes professional background');
+$assert(str_contains($everythingAnswer, 'abacus') || str_contains($everythingAnswer, 'portfolio'), 'everything about Mark includes projects');
+$assert(str_contains($everythingAnswer, 'quiet confidence') || str_contains($everythingAnswer, 'disciplined'), 'everything about Mark includes personality');
+$assert(str_contains($everythingAnswer, 'fitness') || str_contains($everythingAnswer, 'kobe'), 'everything about Mark includes public interests');
+$assert(!preg_match('/\bfamily\b|\bfriends\b|\brunning\b/i', $everythingAnswer), 'everything about Mark omits family/friends/running');
 
-foreach (['does Mark have a dog?', 'tell me about Mark’s family', 'what is Mark’s favorite color?', "what is Mark's dog's name?", 'is Mark’s dog named Kobe?'] as $refusedPrompt) {
-    $refused = handleMarkAiPreviewRequest($export, ['question' => $refusedPrompt], ['enabled' => false], static function () use (&$networkCalls): array {
-        $networkCalls++;
-        throw new RuntimeException('refused privacy path must not transport');
-    });
-    $assert(($refused['answerStatus'] ?? '') === 'refused', 'refused status for ' . $refusedPrompt);
-    $assert(($refused['answer'] ?? '') === $privacyRegressionReply, 'privacy reply for ' . $refusedPrompt);
-    $assert(!preg_match('/\bkobe\b/i', (string) ($refused['answer'] ?? '')), 'dog-name privacy omits Kobe for ' . $refusedPrompt);
-}
+$familyOnly = handleMarkAiPreviewRequest($export, ['question' => 'tell me about Mark’s family'], ['enabled' => false], static function () use (&$networkCalls): array {
+    $networkCalls++;
+    throw new RuntimeException('family-only privacy path must not transport');
+});
+$assert(($familyOnly['answerStatus'] ?? '') === 'refused', 'family-only refused');
+$assert(($familyOnly['answer'] ?? '') === $privacyRegressionReply, 'family-only privacy reply');
 
-$kobeLeakValidation = $validator->validateDetailed(
+$kobeOkValidation = $validator->validateDetailed(
     'Mark enjoys spending time with his dog Kobe.',
     ['finish_reason' => 'stop']
 );
-$assert(($kobeLeakValidation['accepted'] ?? true) === false, 'validator rejects dog name Kobe');
-$assert(($kobeLeakValidation['reason'] ?? '') === 'private_information', 'validator reason for dog name Kobe');
+$assert(($kobeOkValidation['accepted'] ?? false) === true, 'validator accepts approved dog name Kobe');
+
+$blackOkValidation = $validator->validateDetailed(
+    'Mark’s favorite color is black and he loves spending time with his dog.',
+    ['finish_reason' => 'stop']
+);
+$assert(($blackOkValidation['accepted'] ?? false) === true, 'validator accepts approved favorite color and dog');
+
+$artistsOkValidation = $validator->validateDetailed(
+    'Mark’s favorite artists include Drake, Lil Baby, and The Weeknd.',
+    ['finish_reason' => 'stop']
+);
+$assert(($artistsOkValidation['accepted'] ?? false) === true, 'validator accepts approved favorite artists');
 
 $unsupportedPersonalValidator = [
-    'Mark’s favorite color is black and he loves spending time with his dog.',
-    'Mark’s favorite artists include Drake, Lil Baby, and The Weeknd.',
     'Mark enjoys spending time with friends and family.',
+    'Mark has family problems and financial hardship.',
+    'Mark has a girlfriend and private relationship history.',
+    'Mark’s medical history includes mental health issues.',
+    'Mark’s home address and precise location are private.',
 ];
 foreach ($unsupportedPersonalValidator as $badPersonal) {
     $badValidation = $validator->validateDetailed($badPersonal, ['finish_reason' => 'stop']);
@@ -2730,7 +2933,7 @@ foreach (is_array($portfolioRepo['links'] ?? null) ? $portfolioRepo['links'] : [
 }
 $assert(in_array('https://github.com/markyoingco/marks-portfolio', $portfolioGithubLinks, true), 'portfolio website repository returns marks-portfolio GitHub URL');
 $assert(count($portfolioGithubLinks) === 1, 'portfolio website repository returns only the portfolio GitHub repository');
-$assert(count(array_keys($portfolioRepo)) === 8, 'portfolio website repository public API shape unchanged');
+$assert(count(array_keys($portfolioRepo)) === 13, 'portfolio website repository public API shape unchanged');
 
 foreach ([
         'link-portfolio-section' => '#portfolio',
@@ -2762,7 +2965,7 @@ $assert(!str_contains((string) ($markaiRoute['href'] ?? ''), '#markai'), 'MarkAI
 foreach (['success', 'answer', 'answerStatus', 'links', 'mode', 'conversationId', 'preview', 'error'] as $key) {
     $assert(array_key_exists($key, $abacusContrib), 'contextual link response retains ' . $key);
 }
-$assert(count(array_keys($abacusContrib)) === 8, 'contextual links public API shape unchanged');
+$assert(count(array_keys($abacusContrib)) === 13, 'contextual links public API shape unchanged');
 
 $canonicalRepoUrls = [
     'link-github-abacus' => 'https://github.com/musyslab/Abacus',
@@ -2837,7 +3040,7 @@ foreach ($noDashQuestions as $q) {
     );
     $ans = (string) ($resp['answer'] ?? '');
     $assert(!preg_match('/[—–]/u', $ans), 'deterministic answer has no em/en dash: ' . $q);
-    $assert(count(array_keys($resp)) === 8, 'dash fixture API shape unchanged: ' . $q);
+    $assert(count(array_keys($resp)) === 13, 'dash fixture API shape unchanged: ' . $q);
 }
 $assert(str_contains(strtolower((string) (markai_mock_classify("What are Mark's goals?")['answer'] ?? '')), 'full-stack'), 'goals keep full-stack hyphenation');
 
@@ -2870,7 +3073,7 @@ $genAns = (string) ($generatedDash['answer'] ?? '');
 $assert(($generatedDash['answerStatus'] ?? '') === 'answered', 'generated dash path answered');
 $assert(!preg_match('/[—–]/u', $genAns), 'generated answer has no em dash after normalization');
 $assert(str_contains($genAns, '200 - 300') || str_contains($genAns, 'full-stack') || str_contains($genAns, '200'), 'generated answer retains scale/content');
-$assert(count(array_keys($generatedDash)) === 8, 'generated dash fixture API shape unchanged');
+$assert(count(array_keys($generatedDash)) === 13, 'generated dash fixture API shape unchanged');
 $assert(str_contains(markai_final_answer_contract(), 'Do not use em dashes or en dashes'), 'final-answer contract bans em/en dashes');
 
 fwrite(STDOUT, "\nAll MarkAI provider / System Message V3 tests passed.\n");

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0.0",
-  "sourceDigest": "2065c14d445315476da9e9a62e64c34573856a6cca28f45661a34ebd2dac0dc8",
+  "sourceDigest": "e355843e60af8895f5b4d6e82fa55454b190f9b3fc6694012e360b062712b2f5",
   "counts": {
-    "records": 115,
+    "records": 116,
     "skills": 26,
     "trustedLinks": 30,
     "enabledTrustedLinks": 29,
@@ -1333,37 +1333,86 @@
       "notes": "No constructed commit URL. Presentation refinement only."
     },
     {
+      "id": "interest-favorite-artists",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Favorite artists and music preferences",
+      "publicText": "Mark’s favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR. He enjoys rap, melodic hip-hop, and R&B, ranging from energetic and confident tracks to darker, atmospheric, reflective music. That preference fits the cinematic, high-contrast visual atmosphere used in his portfolio. Music is part of how Mark trains, reflects, travels, and stays connected to particular moments or moods. Do not invent favorite albums or songs, quote lyrics, claim Mark knows an artist personally, claim an artist endorses Mark, or imitate an artist’s style.",
+      "shortText": "Favorite artists: Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR; rap, melodic hip-hop, and R&B.",
+      "aliases": [
+        "favorite artists",
+        "favorite musicians",
+        "favorite rappers",
+        "music taste",
+        "Drake",
+        "Lil Baby",
+        "Tory Lanez",
+        "The Weeknd",
+        "Don Toliver",
+        "Travis Scott",
+        "PARTYNEXTDOOR"
+      ],
+      "keywords": [
+        "music",
+        "artists",
+        "rap",
+        "R&B",
+        "hip-hop",
+        "Drake",
+        "Lil Baby",
+        "The Weeknd",
+        "workout music"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-music-reading-hiking",
+        "interest-creative-aesthetics-design"
+      ],
+      "linkIds": [],
+      "answerUses": [
+        "who are Mark’s favorite artists",
+        "what music does Mark listen to",
+        "what kind of music does Mark like",
+        "does Mark like Drake",
+        "does Mark listen to R&B",
+        "what music fits Mark’s visual style",
+        "what does Mark listen to while working out"
+      ],
+      "prohibitedUses": [
+        "quote song lyrics",
+        "invent favorite albums or songs",
+        "claim Mark knows an artist",
+        "claim artist endorsement",
+        "imitate an artist’s style",
+        "generate in the style of a living artist",
+        "infer political or personal beliefs from artists",
+        "add favorites to Webpage or Terminal"
+      ],
+      "notes": "MarkAI-only. Do not add artist lists to Webpage, Terminal, resume, or portfolio cards."
+    },
+    {
       "id": "interest-favorite-films-television",
       "category": "public-interests",
       "recordType": "public-interest",
-      "title": "Favorite films, animated series, and superhero worlds",
-      "publicText": "Some of Mark’s favorite films are Creed, Creed II, The Batman, and Magazine Dreams. Regular Show is one of his favorite animated series and should not be classified as a movie. He also enjoys Marvel and DC movies, characters, and story worlds, including heroes, character arcs, visual design, and major film stories. He does not claim to have seen every release. He is drawn to stories involving ambition, transformation, discipline, pressure, identity, setbacks, sacrifice, and becoming stronger. Creed and Creed II connect to training, ambition, resilience, and earned progress. The Batman fits his preference for dark, cinematic, serious, high-contrast environments. Magazine Dreams connects to his interest in bodybuilding-centered character stories. Regular Show reflects a more relaxed and humorous side of his entertainment interests. If asked Marvel or DC, he enjoys both unless a stronger preference is later approved.",
-      "shortText": "Favorite films: Creed, Creed II, The Batman, Magazine Dreams. Favorite animated series: Regular Show. Enjoys both Marvel and DC story worlds.",
+      "title": "Entertainment interests without published movie titles",
+      "publicText": "MarkAI does not currently publish a verified list of Mark’s favorite movie titles. Entertainment questions should stay within approved public interests such as music, fitness and bodybuilding, travel, photography, hiking, reading, museums, Greek mythology, classical statues, and cinematic visual design. Do not invent movie titles, rankings, watchlists, or streaming habits.",
+      "shortText": "No verified favorite movie titles are published; redirect to approved public interests.",
       "aliases": [
         "favorite movies",
         "favorite films",
         "favorite show",
-        "Creed",
-        "The Batman",
-        "Magazine Dreams",
-        "Regular Show",
-        "Marvel",
-        "DC"
+        "movies",
+        "films"
       ],
       "keywords": [
         "movies",
         "films",
         "television",
-        "Creed",
-        "Batman",
-        "Marvel",
-        "DC",
-        "Regular Show",
-        "superhero"
+        "entertainment"
       ],
       "projectIds": [],
       "relatedRecordIds": [
-        "interest-fitness-bodybuilding",
+        "interest-lifestyle-hobbies-expanded",
         "interest-creative-aesthetics-design"
       ],
       "linkIds": [],
@@ -1372,78 +1421,86 @@
         "what is Mark’s favorite show",
         "does Mark like superhero movies",
         "Marvel or DC",
-        "why does Mark like Creed",
-        "why does Mark like The Batman",
         "what movies match Mark’s personality",
         "what does Mark watch outside technology"
       ],
       "prohibitedUses": [
-        "classify Regular Show as a movie",
-        "describe Marvel or DC as one trilogy",
-        "claim a character is exactly like Mark",
+        "invent favorite movie titles",
         "psychological analysis",
         "quote scripts or copyrighted dialogue",
         "invent definitive ranking",
-        "claim Mark watched every Marvel or DC title",
         "claim comics are a major hobby",
         "add favorites to Webpage or Terminal"
       ],
-      "notes": "MarkAI-only. Keep connections light and grounded in approved interests."
+      "notes": "Favorite movie titles are not part of MarkAI’s approved public knowledge."
     },
     {
       "id": "interest-lifestyle-hobbies-expanded",
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Lifestyle hobbies outside technology",
-      "publicText": "Outside technology, Mark’s recruiter-facing public interests include fitness and bodybuilding, travel, photography, hiking, reading, music, cities, architecture, landscapes, museums, classical statues and art, Greek mythology, running, and cinematic visual design. He describes fitness as a source of discipline, structure, patience, and consistency. Photography helps him document places, cities, architecture, and landscapes that give him a new perspective. Travel and hiking combine exploration, scenery, and reflection. Music and reading remain general public interests without naming private preferences. Do not mention pets, family routines, private relationships, favorite artists, favorite colors, or other unpublished personal details.",
-      "shortText": "Public hobbies include fitness, travel, photography, hiking, reading, music, cities, architecture, landscapes, museums, and cinematic visual interests.",
+      "publicText": "Outside technology, Mark’s approved public interests include fitness and bodybuilding, travel, travel photography, cinematic and low-exposure photography, hiking, reading, music, cities, streets, architecture, landscapes, water and coastal views, mountains, museums, classical statues, Greek mythology, visual art, cinematic visual design, clean dark minimal high-contrast aesthetics, and spending time with his dog Kobe. He enjoys activities that help him improve, create, learn, recharge, or gain a different perspective. Museums connect to photography, classical art, architecture, statues, history, and visual storytelling. Hiking and travel combine physical activity, exploration, scenery, and reflection. Do not list running as a hobby. Do not invent favorite movie titles. Do not discuss private family details, family routines, or relationship history.",
+      "shortText": "Hobbies include fitness, travel, photography, hiking, reading, music, cities, museums, mythology/art, aesthetics, and his dog Kobe.",
       "aliases": [
         "hobbies",
         "for fun",
         "outside technology",
+        "dog",
+        "Kobe",
         "museums",
-        "lifestyle interests"
+        "interests"
       ],
       "keywords": [
         "hobbies",
         "museums",
+        "dog",
+        "Kobe",
         "free time",
         "lifestyle",
         "fitness",
         "travel",
-        "photography"
+        "photography",
+        "architecture",
+        "mythology"
       ],
       "projectIds": [],
       "relatedRecordIds": [
         "interest-music-reading-hiking",
         "interest-fitness-bodybuilding",
-        "interest-travel-photography"
+        "interest-favorite-artists",
+        "interest-creative-aesthetics-design",
+        "personality-photography-travel-hobbies"
       ],
       "linkIds": [],
       "answerUses": [
         "what does Mark do for fun",
         "what are Mark’s hobbies",
         "what does Mark enjoy outside technology",
+        "does Mark have a dog",
+        "what is Mark’s dog’s name",
         "does Mark enjoy museums",
         "how does Mark gain new perspectives",
         "what does Mark do when he is not coding",
-        "tell me about Mark’s life outside technology"
+        "what is Mark like outside technology",
+        "what are Mark’s interests"
       ],
       "prohibitedUses": [
-        "pets or dog ownership",
-        "family routines or private family details",
         "names of friends or family",
-        "private relationships",
-        "favorite artists or favorite colors",
+        "dog breed age medical information or private schedules",
+        "private family details",
+        "family routines",
+        "family support or financial motivation",
+        "career motivation from family facts",
         "home address",
         "private schedules",
         "relationship history",
         "exact travel schedules",
-        "professional cooking claims",
+        "listing running as a hobby",
+        "inventing favorite movie titles",
         "professional photography employment claims",
         "add private lifestyle details to Webpage or Terminal"
       ],
-      "notes": "Recruiter-facing public hobbies only. Pets, family routines, favorite artists, and favorite colors are out of scope."
+      "notes": "Public hobbies include Mark’s dog Kobe by name. Running and favorite movie titles are out of scope. Family details and family routines remain private."
     },
     {
       "id": "travel-public-places-inventory",
@@ -1506,25 +1563,39 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Fitness and Bodybuilding",
-      "publicText": "Fitness and bodybuilding are major interests for Mark outside technology. Training represents consistency, patience, detail, structure, and progress earned over time. Bodybuilding also influences how he approaches design and technical work through symmetry, structure, control, refinement, and repetition. Fitness is part of his personal discipline and self-development, not a claim of professional coaching or medical expertise.",
-      "shortText": "Fitness and bodybuilding as discipline, structure, patience, and progress that also shape Mark’s design and technical habits.",
+      "publicText": "Mark has trained consistently for nearly six years. He began lifting because he wanted change and to become a better version of himself. After about a year, he pursued powerlifting for a more structured challenge and something greater to work toward, and he competed in and won his first powerlifting meet. He later shifted his primary focus to bodybuilding, where he became more interested in aesthetics, symmetry, control, patience, consistency, and long-term physical development. Fitness and bodybuilding are among Mark’s strongest personal interests outside technology and a source of discipline he applies beyond the gym. Training also influences how he approaches design and technical work through structure, refinement, and repetition. When asked specifically about his gym lifts, MarkAI may state that he benches over 315 pounds, squats over 450 pounds, and deadlifts over 550 pounds. This is public personal interest and self-development, not professional coaching, medical expertise, or a claim of professional bodybuilding status. Do not invent additional meets, competition totals, weight classes, rankings, competition dates, diet details, current body weight, medical history, or private body-image statements.",
+      "shortText": "Nearly six years of training; started for change; powerlifting after about a year with a first-meet win; later primary focus on bodybuilding; approved gym lifts over 315/450/550 when asked.",
       "aliases": [
         "fitness",
         "bodybuilding",
         "training",
-        "gym"
+        "gym",
+        "powerlifting",
+        "gym background",
+        "fitness background",
+        "working out",
+        "bench",
+        "squat",
+        "deadlift"
       ],
       "keywords": [
         "fitness",
         "bodybuilding",
+        "powerlifting",
         "discipline",
         "consistency",
         "training",
+        "first meet",
+        "nearly six years",
+        "bench",
+        "squat",
+        "deadlift",
         "public interest"
       ],
       "projectIds": [],
       "relatedRecordIds": [
         "membership-marquette-powerlifting-club",
+        "personality-bodybuilding-depth",
         "interest-discipline-growth-controlled-strength"
       ],
       "linkIds": [],
@@ -1532,18 +1603,25 @@
         "public interests",
         "fitness",
         "bodybuilding",
+        "powerlifting",
+        "gym background",
+        "how long has Mark been working out",
         "casual personality questions",
         "beyond-work background"
       ],
       "prohibitedUses": [
         "professional coaching claims",
         "certified-trainer claims",
+        "professional bodybuilding status",
         "medical advice",
         "health diagnosis",
         "private physique or health information",
+        "diet or body-weight disclosure",
+        "invented additional meets, competition totals, weight classes, rankings, or competition dates",
+        "invented lift numbers beyond the approved over-315 / over-450 / over-550 floors",
         "converting the interest into employment experience"
       ],
-      "notes": "Public interest only. Separate from paid employment and technical skill records. Do not treat fitness as professional expertise."
+      "notes": "Public interest only. Separate from paid employment and technical skill records. Do not treat fitness as professional expertise. First-meet win is also supported by membership-marquette-powerlifting-club; do not invent further competition statistics."
     },
     {
       "id": "membership-marquette-powerlifting-club",
@@ -1637,8 +1715,8 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Music, Reading, and Hiking",
-      "publicText": "Outside technology and fitness, Mark enjoys music, reading, hiking, travel, photography, running, and Greek mythology and classical art. These interests give him space to think, stay active, and keep a broader perspective outside software work.",
-      "shortText": "Hobbies include music, reading, hiking, travel, photography, running, and classical art interests.",
+      "publicText": "Outside technology and fitness, Mark enjoys music, reading, hiking, travel, photography, and Greek mythology and classical art. These interests give him space to think, stay active, and keep a broader perspective outside software work. Do not list running as a hobby.",
+      "shortText": "Hobbies include music, reading, hiking, travel, photography, and classical art interests.",
       "aliases": [
         "music",
         "reading",
@@ -1721,19 +1799,21 @@
       "category": "public-interests",
       "recordType": "public-interest",
       "title": "Creative Aesthetics and Design",
-      "publicText": "Mark prefers black, white, and gray visual palettes and likes minimal, cinematic, serious, high-contrast design. He dislikes corny, overly decorative, or empty motivational presentation, and prefers writing that feels clean, direct, mature, and confident. This aesthetic appears across his portfolio, photography, interface work, and merchandise design. Do not state a favorite color or other unpublished personal preferences.",
-      "shortText": "Prefers minimal black/white/gray cinematic design and clean, mature writing.",
+      "publicText": "Mark’s favorite color is black. He prefers black, white, and gray visual palettes and likes minimal, cinematic, serious, high-contrast design. He dislikes corny, overly decorative, or empty motivational presentation, and prefers writing that feels clean, direct, mature, and confident. This aesthetic appears across his portfolio, photography, interface work, and merchandise design.",
+      "shortText": "Favorite color black; prefers minimal black/white/gray cinematic design and clean, mature writing.",
       "aliases": [
         "creative aesthetics",
         "visual design",
         "cinematic aesthetics",
         "merchandise design",
-        "visual style"
+        "favorite color",
+        "black"
       ],
       "keywords": [
         "aesthetics",
         "design",
         "cinematic",
+        "black",
         "minimal",
         "high-contrast",
         "organization",
@@ -1752,16 +1832,16 @@
         "creative interest",
         "design sensibility",
         "portfolio aesthetic questions",
+        "favorite color",
         "visual style",
         "casual personality questions"
       ],
       "prohibitedUses": [
-        "state a favorite color",
         "claim professional design employment unless supported by a separate approved record",
         "claim professional photography employment",
         "overstate merchandise design as a full design career"
       ],
-      "notes": "Creative interest across portfolio, photography, interface work, and merchandise design. Favorite-color claims are out of recruiter-facing scope."
+      "notes": "Creative interest across portfolio, photography, interface work, and merchandise design. Do not claim professional design employment unless separately approved."
     },
     {
       "id": "interest-discipline-growth-controlled-strength",
@@ -2018,26 +2098,30 @@
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Bodybuilding meaning and training lessons",
-      "publicText": "Bodybuilding interests Mark because it combines discipline, structure, symmetry, patience, and progress earned over time. It is a major interest outside technology and an artistic, structured discipline that reinforces focus and consistency. Lessons from training - patience, quality repetitions, and deliberate progress - can apply to projects and professional development. Do not discuss why he originally began training, loneliness, appearance insecurity, health conditions, exact physique goals, body measurements, or private emotional motivations.",
-      "shortText": "Bodybuilding as disciplined craft: structure, symmetry, patience, consistency, and transferable professional habits.",
+      "publicText": "Mark has trained consistently for nearly six years. He began lifting because he wanted change and to become a better version of himself. After about a year he pursued powerlifting for a more structured challenge, competed in and won his first powerlifting meet, then later chose bodybuilding as his primary focus. Bodybuilding interests him because it connects aesthetics, structure, symmetry, control, patience, consistency, and long-term physical development. It is a major interest outside technology and reinforces focus and consistency that can apply to projects and professional growth. Fitness has become one of Mark’s strongest personal interests and a source of discipline he applies outside the gym. When asked about gym lifts, MarkAI may state that he benches over 315 pounds, squats over 450 pounds, and deadlifts over 550 pounds. Do not invent multiple meets, competition totals, weight classes, rankings, competition dates, diet details, body measurements, medical history, or private body-image or self-esteem statements.",
+      "shortText": "Nearly six years of training culminating in bodybuilding as craft: aesthetics, structure, patience, consistency, and transferable discipline.",
       "aliases": [
         "bodybuilding meaning",
         "gym taught",
         "training lessons",
-        "passion outside technology"
+        "passion outside technology",
+        "why bodybuilding",
+        "fitness background"
       ],
       "keywords": [
         "bodybuilding",
         "gym",
         "training",
         "aesthetics",
-        "quality repetitions",
+        "powerlifting",
+        "first meet",
         "discipline",
         "passion"
       ],
       "projectIds": [],
       "relatedRecordIds": [
         "interest-fitness-bodybuilding",
+        "membership-marquette-powerlifting-club",
         "personality-discipline-and-control"
       ],
       "linkIds": [],
@@ -2045,7 +2129,9 @@
         "what does bodybuilding mean to Mark",
         "what has the gym taught Mark",
         "what is Mark passionate about",
-        "fitness meaning"
+        "fitness meaning",
+        "why bodybuilding",
+        "fitness background"
       ],
       "prohibitedUses": [
         "physical measurements",
@@ -2053,7 +2139,9 @@
         "drugs or supplements",
         "private body-image statements",
         "professional coaching claims",
-        "health diagnosis"
+        "professional bodybuilding status",
+        "health diagnosis",
+        "invented competition statistics"
       ],
       "notes": "MarkAI-only depth layered on interest-fitness-bodybuilding. Keep tone professional and avoid influencer imitation."
     },
@@ -2160,15 +2248,18 @@
       "id": "personality-aesthetic-environment",
       "category": "public-interests",
       "recordType": "personality-theme",
-      "title": "Visual style and preferred environment",
-      "publicText": "Mark prefers black, white, gray, dark, low-exposure, high-contrast, cinematic design. He likes clean, organized, minimal environments. His preferred visual atmosphere combines classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional-in-a-cinematic-city atmosphere. He dislikes corny, overly decorative, loud, or empty motivational presentation. Do not state a favorite color or other unpublished personal preferences.",
-      "shortText": "Minimal high-contrast cinematic style and a clean, organized technical-professional environment.",
+      "title": "Favorite color, visual style, and preferred environment",
+      "publicText": "Mark’s favorite color is black. He prefers black, white, gray, dark, low-exposure, high-contrast, cinematic design. He likes clean, organized, minimal environments. His preferred visual atmosphere combines classical architecture, statues, modern technology, city lights, rooftops, and controlled darkness. He likes a modern technical-professional-in-a-cinematic-city atmosphere. He dislikes corny, overly decorative, loud, or empty motivational presentation.",
+      "shortText": "Favorite color black; minimal high-contrast cinematic style and a clean, organized technical-professional environment.",
       "aliases": [
+        "favorite color",
         "visual style",
-        "environment Mark wants",
-        "cinematic aesthetic"
+        "why black",
+        "environment Mark wants"
       ],
       "keywords": [
+        "black",
+        "favorite color",
         "visual style",
         "cinematic",
         "minimal",
@@ -2181,23 +2272,24 @@
       ],
       "linkIds": [],
       "answerUses": [
+        "what is Mark’s favorite color",
         "what visual style does Mark prefer",
+        "why does Mark like black",
         "what kind of environment does Mark want to build"
       ],
       "prohibitedUses": [
-        "state a favorite color",
         "corny motivational presentation",
         "private address",
         "exact location claims"
       ],
-      "notes": "MarkAI-only depth. Aligns with public portfolio aesthetic. Favorite-color claims are out of recruiter-facing scope."
+      "notes": "MarkAI-only depth. Aligns with public portfolio aesthetic without requiring Webpage changes."
     },
     {
       "id": "personality-photography-travel-hobbies",
       "category": "public-interests",
       "recordType": "personality-theme",
       "title": "Photography, travel meaning, and hobbies",
-      "publicText": "Mark uses photography to preserve feelings, places, views, memories, and important moments. He likes photographing cities, architecture, streets, water, mountains, museums, landscapes, and travel experiences. He prefers cinematic, personal, real, dark, low-exposure, and story-driven images. Cities represent ambition and the feeling of having made progress. Oceans and islands represent peace. Mountains and hikes represent effort that earns the view. Travel helps him see different cultures, lifestyles, opportunities, and perspectives, and motivates him to work toward a life with greater independence and freedom. Approved public hobbies include bodybuilding, gym training, hiking, reading, music, travel, photography, running, Greek mythology, classical statues and art, museums, and exploring cities and landscapes.",
+      "publicText": "Mark uses photography to preserve feelings, places, views, memories, and important moments. He likes photographing cities, architecture, streets, water, mountains, museums, landscapes, and travel experiences. He prefers cinematic, personal, real, dark, low-exposure, and story-driven images. Cities represent ambition and the feeling of having made progress. Oceans and islands represent peace. Mountains and hikes represent effort that earns the view. Travel helps him see different cultures, lifestyles, opportunities, and perspectives, and motivates him to work toward a life with greater independence and freedom. Approved public hobbies include bodybuilding, gym training, hiking, reading, music, travel, photography, Greek mythology, classical statues and art, museums, and exploring cities and landscapes. Do not list running as a hobby.",
       "shortText": "Photography and travel as story, ambition, peace, and earned views; hobbies include fitness, hiking, reading, music, museums, and classical art.",
       "aliases": [
         "photography meaning",
@@ -5298,10 +5390,10 @@
         "category": "privacy-boundaries",
         "action": "refuse",
         "purpose": "privacy-boundaries",
-        "publicBehavior": "Decline questions about family details, family routines, friends-and-family time, pets, or household life. Reply that MarkAI only provides professional and intentionally public information, and redirect to approved public interests such as fitness, travel, photography, hiking, reading, and music.",
-        "modelInstruction": "Do not discuss family details, family routines, pets, dog ownership, or private household life. Do not invent such details. Do not confirm or deny private family or pet matters.",
+        "publicBehavior": "Decline questions about family details, family routines, private household arrangements, or friends-and-family personal life. Reply that MarkAI only provides professional and intentionally public information. Approved public interests such as fitness, travel, photography, music, and Mark’s dog Kobe may still be discussed when relevant.",
+        "modelInstruction": "Do not discuss private family details, family routines, or private household arrangements. Do not invent such details. Do not confirm or deny private family matters. Approved public interests and Mark’s dog Kobe remain allowed when grounded in approved records.",
         "logPolicy": "log-category-only",
-        "notes": "Recruiter-facing scope excludes family routines and pets.",
+        "notes": "Family details remain private. Intentionally public interests and Kobe are not blocked by this rule.",
         "enforcement": "model-and-server"
       },
       {
@@ -5318,12 +5410,12 @@
       {
         "id": "privacy-private-preferences",
         "category": "privacy-boundaries",
-        "action": "refuse",
+        "action": "omit",
         "purpose": "privacy-boundaries",
-        "publicBehavior": "Do not state favorite artists, favorite colors, favorite foods, or other unpublished personal preferences unless an approved public record explicitly authorizes them. Music may be discussed only as a general public interest.",
-        "modelInstruction": "Do not name specific favorite artists, colors, foods, or other unpublished preferences. Prefer general approved interests such as music, fitness, travel, and photography.",
+        "publicBehavior": "Only state personal preferences that appear in approved public records. Approved examples include favorite artists, favorite color black, music taste, and Mark’s dog Kobe. Do not invent unpublished preferences such as favorite foods or unlisted artists.",
+        "modelInstruction": "Use only approved preference facts from supplied records. Do not invent unpublished favorites.",
         "logPolicy": "log-category-only",
-        "notes": "Prevents preference leakage beyond recruiter-facing public scope.",
+        "notes": "Approved preferences are intentionally public; unpublished preferences remain omitted.",
         "enforcement": "model-and-server"
       },
       {

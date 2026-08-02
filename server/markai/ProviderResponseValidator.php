@@ -651,46 +651,32 @@ final class ProviderResponseValidator
     }
 
     /**
-     * Reject recruiter-facing answers that introduce unapproved personal details.
-     * These claims are blocked unless an approved public record is later restored
-     * and this guard is intentionally narrowed.
+     * Reject genuinely sensitive or unapproved private claims.
+     * Intentionally public interests (dog Kobe, favorite color black, named artists,
+     * hobbies, personality, aesthetics) are not blocked here.
      */
     private function containsUnsupportedPersonalClaims(string $answer): bool
     {
         $lower = $this->lower($answer);
 
         $blockedPhrases = [
-            'favorite color',
-            'favourite color',
-            'favorite colour',
-            'favourite colour',
-            'favorite artists',
-            'favourite artists',
-            'favorite artist',
-            'favourite artist',
-            'favorite food',
-            'favourite food',
-            'his dog',
-            'her dog',
-            'has a dog',
-            'have a dog',
-            'owns a dog',
-            'pet ownership',
-            'his pets',
-            'dog named',
-            'pet named',
-            'named kobe',
-            'dog kobe',
-            'his dog kobe',
+            'family problems',
+            'family conflict',
+            'family issues',
+            'family financial',
+            'supporting his family',
+            'support his family',
+            'depends on his family',
+            'depending on family',
+            'family routines',
             'spending time with friends and family',
             'spends time with friends and family',
             'time with friends and family',
-            'friends, family, and his dog',
             'friends and family',
-            'family routines',
             'private relationship',
             'girlfriend',
             'boyfriend',
+            'dating',
             'medical history',
             'mental health',
             'financial hardship',
@@ -700,47 +686,16 @@ final class ProviderResponseValidator
             'precise location',
             'where he lives',
             'current residence',
+            'exact address',
+            'private messages',
+            'medical conditions',
+            'private problems',
         ];
 
         foreach ($blockedPhrases as $phrase) {
             if ($this->affirmativeContains($lower, [$phrase])) {
                 return true;
             }
-        }
-
-        // Named artists withdrawn from recruiter-facing public scope.
-        $artists = [
-            'drake',
-            'lil baby',
-            'tory lanez',
-            'the weeknd',
-            'don toliver',
-            'travis scott',
-            'partynextdoor',
-            'party next door',
-        ];
-        foreach ($artists as $artist) {
-            if ($this->affirmativeContains($lower, [$artist])) {
-                return true;
-            }
-        }
-
-        // Favorite-color claims that name black as a personal favorite.
-        if (
-            preg_match('/\bfavorite\s+colou?r\s+is\s+black\b/u', $lower)
-            || preg_match('/\bfavourite\s+colou?r\s+is\s+black\b/u', $lower)
-            || preg_match('/\bhis\s+favorite\s+colou?r\s+is\s+black\b/u', $lower)
-        ) {
-            return true;
-        }
-
-        // Pet name leakage (dog name is private; never confirm in MarkAI answers).
-        if (
-            preg_match('/\b(?:dog|pet)\b[^.!?]{0,40}\bnamed\s+kobe\b/u', $lower)
-            || preg_match('/\bkobe\b[^.!?]{0,40}\b(?:dog|pet)\b/u', $lower)
-            || preg_match('/\b(?:dog|pet)(?:\'s|’s)?\s+name\s+is\s+kobe\b/u', $lower)
-        ) {
-            return true;
         }
 
         return false;

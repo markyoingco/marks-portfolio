@@ -100,7 +100,7 @@ function markai_intent_normalize(string $question): string
                             }
                         }
                         // Approved topic words that are safe to fuzzy-correct toward.
-                        foreach (['goals', 'hobbies', 'projects', 'experience', 'favorite', 'movies', 'music', 'personality', 'resume', 'repository', 'collaborators', 'photography', 'testimonials', 'education', 'mindset', 'fitness', 'bodybuilding', 'mythology', 'travel', 'github', 'skills'] as $token) {
+                        foreach (['goals', 'hobbies', 'projects', 'experience', 'favorite', 'movies', 'music', 'artists', 'personality', 'resume', 'repository', 'collaborators', 'photography', 'testimonials', 'education', 'mindset', 'fitness', 'bodybuilding', 'mythology', 'travel', 'traveled', 'github', 'skills', 'color'] as $token) {
                             $fuzzyTargets[$token] = true;
                         }
 
@@ -420,6 +420,16 @@ function markai_intent_normalize(string $question): string
                             return null;
                         }
 
+                        if (
+                            isset($matched['travelPlaces'], $matched['careerGoals'])
+                            && markai_intent_includes_any($text, ['want to work', 'job locations', 'work location', 'where does mark want'])
+                        ) {
+                            $combined = (string) ($answers['travelAndWork'] ?? '');
+                            if ($combined !== '') {
+                                return markai_intent_result('travelPlaces', 'casual', $combined);
+                            }
+                        }
+
                         $sections = [];
                         if (isset($matched['careerGoals'])) {
                             $sections[] = 'Goals: ' . (string) ($answers['careerGoals'] ?? '');
@@ -445,8 +455,11 @@ function markai_intent_normalize(string $question): string
                         if (isset($matched['favoriteFilms'])) {
                             $sections[] = 'Films: ' . (string) ($answers['favoriteFilms'] ?? '');
                         }
-                        if (isset($matched['bodybuilding'])) {
+                        if (isset($matched['bodybuilding']) || isset($matched['powerlifting'])) {
                             $sections[] = 'Fitness: ' . (string) ($answers['bodybuilding'] ?? '');
+                        }
+                        if (isset($matched['travelPlaces'])) {
+                            $sections[] = 'Travel: ' . (string) ($answers['travelPlaces'] ?? '');
                         }
 
                         if (count($sections) < 2) {
@@ -470,8 +483,22 @@ function markai_intent_normalize(string $question): string
 
                         switch ($category) {
                             case 'careerGoals':
-                            $mode = 'casual';
-                            $answerKey = markai_intent_includes_any($normalized, ['success']) ? 'success' : 'careerGoals';
+                            $mode = markai_intent_includes_any($normalized, ['want to work', 'job locations', 'work', 'relocate'])
+                                ? 'recruiter'
+                                : 'casual';
+                            $answerKey = markai_intent_includes_any($normalized, ['success'])
+                                ? 'success'
+                                : (markai_intent_includes_any($normalized, ['want to work', 'job locations', 'work', 'relocate'])
+                                    ? 'workLocation'
+                                    : 'careerGoals');
+                            break;
+                            case 'hobbies':
+                            if (markai_intent_includes_any($normalized, ['dog', 'kobe']) || $normalized === 'dog' || $normalized === 'dog name') {
+                                $answerKey = 'dog';
+                            }
+                            break;
+                            case 'favoriteColor':
+                            $answerKey = 'favoriteColor';
                             break;
                             case 'technologies':
                             $mode = 'technical';
@@ -499,6 +526,36 @@ function markai_intent_normalize(string $question): string
                             break;
                             case 'funFacts':
                             $mode = 'casual';
+                            break;
+                            case 'powerlifting':
+                            $mode = 'casual';
+                            $answerKey = 'powerlifting';
+                            break;
+                            case 'liftingNumbers':
+                            $mode = 'casual';
+                            $answerKey = 'liftingNumbers';
+                            break;
+                            case 'bodybuilding':
+                            $mode = 'casual';
+                            $answerKey = 'bodybuilding';
+                            if (markai_intent_includes_any($normalized, [
+                                        'gym taught',
+                                        'fitness taught',
+                                        'what has fitness',
+                                        'what has the gym',
+                                        'taught mark',
+                            ])) {
+                                $answerKey = 'fitnessTaught';
+                            } elseif (markai_intent_includes_any($normalized, [
+                                        'bodybuilding mean',
+                                        'what does bodybuilding',
+                                        'why bodybuilding',
+                                        'why did mark move',
+                                        'move from powerlifting',
+                                        'powerlifting to bodybuilding',
+                            ])) {
+                                $answerKey = 'bodybuildingMeaning';
+                            }
                             break;
                             default:
                             $mode = 'casual';

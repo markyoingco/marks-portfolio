@@ -42,9 +42,17 @@ const ANSWERS = {
   status:
     "MarkAI is live on markyoingco.com and actively maintained. It answers from Mark’s approved portfolio information using a PHP backend and Cloudflare Workers AI, with response validation, deterministic fallback answers, privacy protections, and anonymous usage limits. Future updates may include bug fixes, testing, design refinement, and approved knowledge expansion.",
   favoriteColor:
-    "MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.",
+    "Mark’s favorite color is black. It fits the minimal, cinematic, high-contrast style he prefers across his portfolio and personal branding, along with clean, organized environments rather than loud or decorative presentation.",
   bodybuilding:
-    "Bodybuilding interests Mark because it combines discipline, structure, symmetry, patience, and progress earned over time. It is a major interest outside technology and reinforces focus, consistency, and quality work habits that also support professional growth.",
+    "Mark has trained consistently for nearly six years. He began lifting because he wanted change and to become a better version of himself. After about a year, he pursued powerlifting for a more structured challenge and won his first meet. He later shifted his primary focus to bodybuilding, where he became more interested in aesthetics, symmetry, control, patience, and consistent long-term progress. Fitness is one of his strongest personal interests and a source of discipline he applies outside the gym.",
+  powerlifting:
+    "After about a year of lifting, Mark moved into powerlifting because he wanted a more structured challenge and something greater to work toward. He competed in and won his first powerlifting meet, including through Marquette Powerlifting Club support. He later chose bodybuilding as his primary focus. MarkAI does not publish meet names, dates, weight classes, competition totals, or rankings.",
+  liftingNumbers:
+    "Mark benches over 315 pounds, squats over 450 pounds, and deadlifts over 550 pounds. MarkAI does not publish competition totals, weight classes, rankings, body weight, diet details, or medical information.",
+  fitnessTaught:
+    "Fitness has become one of Mark’s strongest personal interests and a source of discipline that he applies outside the gym. Training reinforces patience, consistency, structure, and long-term progress that also support how he approaches projects and professional growth.",
+  bodybuildingMeaning:
+    "Mark later chose bodybuilding as his primary focus because it better connects with his interest in aesthetics, structure, symmetry, control, patience, consistency, and long-term physical development. It remains a major public interest outside technology rather than professional coaching or medical expertise.",
   mythology:
     "Mark connects with Icarus, Achilles, and Heracles through themes such as ambition, intensity, discipline, consequence, and endurance. Greek mythology is a creative and symbolic interest connected to art and classical imagery, not a religion or a psychological profile.",
   mythologyIcarus:
@@ -93,10 +101,10 @@ const ANSWERS = {
   futureVision:
     "Mark wants a growing technology career, an active and disciplined lifestyle, continued learning, creative interests, and greater independence.",
   hobbies:
-    "Outside technology, Mark is interested in fitness and bodybuilding, travel, photography, hiking, reading, music, cities, architecture, and cinematic visual design. He describes fitness as a source of discipline, structure, patience, and consistency, while photography helps him document places and experiences that give him a new perspective.",
+    "Outside technology, Mark’s public hobbies include fitness and bodybuilding, travel, travel photography, cinematic and low-exposure photography, hiking, reading, music, cities, streets, architecture, landscapes, water and coastal views, mountains, museums, classical statues, Greek mythology, visual art, cinematic visual design, clean dark minimal high-contrast aesthetics, and spending time with his dog Kobe. Fitness is a source of discipline, structure, patience, and consistency, while photography helps him preserve places, feelings, and perspective.",
   cooking:
-    "Cooking is a practical personal interest for Mark, not professional culinary experience. It is one of the ways he spends time outside technology.",
-  dog: "MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.",
+    "Cooking is not part of MarkAI’s current approved public hobby list. You can ask about approved interests such as fitness, travel, photography, music, hiking, museums, and mythology.",
+  dog: "Mark has a dog named Kobe. He enjoys spending time with him, and MarkAI does not share identifying pet details, age, or private schedules.",
   friendsFamily:
     "MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.",
   museums:
@@ -104,27 +112,33 @@ const ANSWERS = {
   passion:
     "Mark is passionate about building useful software and about bodybuilding outside technology. In both areas he focuses on disciplined practice, steady improvement, and work he can stand behind.",
   favoriteArtists:
-    "Mark enjoys music as a general public interest alongside reading, hiking, travel, and photography. MarkAI keeps music preferences high-level and does not list specific favorite artists.",
+    "Mark’s favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR. His taste leans toward melodic rap, R&B, atmospheric production, and music that works for both training and reflection.",
   favoriteArtistsWorkout:
-    "Music is part of Mark’s broader public interests and often fits training and reflection. MarkAI discusses music only as a general interest and does not list specific favorite artists.",
+    "Mark’s broader music interests often fit training and personal reflection. His favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR, spanning energetic tracks and darker, atmospheric moods.",
   favoriteFilms:
-    "Some of Mark’s favorite films are Creed, Creed II, The Batman, and Magazine Dreams. He also enjoys Marvel and DC stories, while Regular Show is one of his favorite animated series.",
+    "MarkAI does not currently publish a verified list of Mark’s favorite movie titles. You can ask about approved public interests such as music, fitness, travel, photography, hiking, reading, museums, mythology, and cinematic visual design.",
   favoriteFilmsMarvelDc:
-    "Mark enjoys both Marvel and DC movies, characters, and story worlds. That includes heroes, character arcs, visual design, and major film stories. He does not claim to have seen every release.",
+    "MarkAI does not currently publish verified favorite movie or franchise rankings. Approved public interests include music, fitness, travel, photography, and cinematic visual design.",
   favoriteFilmsCreed:
-    "Creed and Creed II connect naturally to Mark’s interest in training, ambition, resilience, and earned progress. They are among his favorite films alongside The Batman and Magazine Dreams.",
+    "MarkAI does not currently publish verified favorite movie titles, including specific film names.",
   favoriteFilmsBatman:
-    "The Batman fits Mark’s preference for dark, cinematic, serious, high-contrast environments. It is one of his favorite films alongside Creed, Creed II, and Magazine Dreams.",
+    "MarkAI does not currently publish verified favorite movie titles, including specific film names.",
   favoriteShow:
-    "Regular Show is one of Mark’s favorite animated series. It reflects a more relaxed and humorous side of his entertainment interests and is not classified as a movie.",
+    "MarkAI does not currently publish a verified list of Mark’s favorite shows or movie titles.",
   careerGoals:
     "Mark is working toward a stable technology career built on continued technical growth, meaningful work, stronger software projects, greater independence, and continued discipline and creativity. He remains open to software development, full-stack applications, developer tools, data-oriented systems, technical support, and related entry-level technology paths.",
   success:
     "For Mark, success means career stability, professional growth, independence, meaningful work, physical discipline, and pride in earned progress. A title alone is not enough; he wants to know he built something useful and followed through.",
+  overview:
+    "Mark is a recent Computer Science graduate from Marquette University, from Chicago, seeking an entry-level technology role. His public work includes a personal portfolio platform with MarkAI, senior-design projects such as Abacus and TA-Bot / MAAT, Finch, systems coursework, robotics, data projects, and Unity games. He works in a practical, collaborative, growth-oriented way with quiet confidence, disciplined ambition, creativity, and controlled strength. Career interests include software development, full-stack applications, developer tools, data-oriented systems, and technical support or systems roles. Outside technology, approved interests include fitness and bodybuilding, travel and photography, hiking, reading, music, cities and architecture, museums, Greek mythology, cinematic visual design, and his dog Kobe. His favorite color is black.",
+  workLocation:
+    "Mark is seeking entry-level technology roles and is drawn to city environments that support ambition, architecture, technology, and professional progress. He is from Chicago and remains open to Chicago opportunities and suitable roles as his search evolves. MarkAI does not share a precise current residence or private move logistics.",
+  travelAndWork:
+    "Public travel places shown in Mark’s portfolio include Hawaii, Las Vegas, Chicago, California, Lake Louise in Canada, Manila in the Philippines, London, the Amalfi Coast in Italy, Rome in Italy, Milwaukee, and Nashville. For work, he is seeking entry-level technology roles, is drawn to city environments, is from Chicago, and remains open to Chicago opportunities and suitable roles. MarkAI does not share a precise current residence.",
   funFacts:
-    "Here are several approved fun facts about Mark:\n\n- Bodybuilding is his strongest interest outside technology.\n- Favorite films include Creed, Creed II, The Batman, and Magazine Dreams; Regular Show is a favorite series; he also enjoys Marvel and DC.\n- He likes photography and travel, plus museums, hiking, and running.\n- He is interested in Greek mythology and classical statues and art.\n- He prefers a dark cinematic visual style across his portfolio.\n- Outside work he also enjoys reading, music, and exploring cities, architecture, and landscapes.",
+    "Here are several approved fun facts about Mark:\n\n- Bodybuilding is his strongest interest outside technology.\n- Favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR.\n- He likes photography and travel, plus museums and hiking.\n- He is interested in Greek mythology and classical statues and art.\n- His favorite color is black, and he prefers a dark cinematic visual style.\n- Outside work he also enjoys reading, music, and spending time with his dog Kobe.",
   capabilities:
-    "You can ask about Mark’s projects, skills, education, experience, collaborators, goals, personality, hobbies, music, films, fitness, travel, testimonials, résumé, or public links.\n\nExamples:\n- “What did Mark build for Abacus?”\n- “What are his strongest skills?”\n- “What are Mark’s goals?”\n- “What music and films does he like?”\n- “Who did he work with on MAAT?”\n- “Can I see the Finch repository?”\n- “What does Mark do outside technology?”",
+    "You can ask about Mark’s projects, skills, education, experience, collaborators, goals, personality, hobbies, music, fitness, travel, testimonials, résumé, or public links.\n\nExamples:\n- “What did Mark build for Abacus?”\n- “What are his strongest skills?”\n- “What are Mark’s goals?”\n- “What music does he like?”\n- “Who did he work with on MAAT?”\n- “Can I see the Finch repository?”\n- “What does Mark do outside technology?”",
   familyGoals:
     "MarkAI only provides professional and intentionally public information about Mark. You can ask about his projects, experience, skills, interests, goals, or portfolio.",
   photography:
@@ -335,6 +349,7 @@ function classifyQuestion(rawQuestion, history = []) {
       "lung",
       "finances",
       "financial hardship",
+      "financial problems",
       "struggling with money",
       "money situation",
       "being broke",
@@ -366,52 +381,30 @@ function classifyQuestion(rawQuestion, history = []) {
       "his family",
       "friends and family",
       "with friends and family",
-      "time with friends",
       "time with family",
-      "spending time with friends",
       "spending time with family",
-      "does mark have a dog",
-      "have a dog",
-      "his dog",
-      "mark’s dog",
-      "mark's dog",
-      "dog’s name",
-      "dog's name",
-      "dogs name",
-      "name of his dog",
-      "name of the dog",
-      "what is his dog",
-      "pet named",
-      "dog named",
-      "named kobe",
-      "dog kobe",
-      "his dog kobe",
-      "who is kobe",
-      "tell me about kobe",
-      "pets",
-      "pet ownership",
-      "favorite color",
-      "favourite color",
-      "favorite colour",
-      "favourite colour",
-      "favorite artist",
-      "favourite artist",
-      "favorite artists",
-      "favourite artists",
-      "favorite rappers",
-      "favourite rappers",
-      "favorite food",
-      "favourite food",
-      "drake",
-      "lil baby",
-      "tory lanez",
-      "the weeknd",
-      "don toliver",
-      "travis scott",
-      "partynextdoor",
-      "party next door",
       "home life",
       "private struggle",
+      "private problems",
+      "private messages",
+      "private contact",
+      "private contact details",
+      "private phone",
+      "private phone number",
+      "where exactly does mark live",
+      "exact address",
+      "precise residence",
+      "private journal",
+      "private diary",
+      "show me mark’s private journal",
+      "show me mark's private journal",
+      "mental health issues",
+      "mental-health issues",
+      "what addictions",
+      "addictions has mark",
+      "credentials",
+      "api token",
+      "api tokens",
       "emotional low",
       "self-pity",
       "precise location",
@@ -1070,12 +1063,30 @@ function classifyQuestion(rawQuestion, history = []) {
 
   if (
     includesAny(text, [
+      "favorite artists",
+      "favourite artists",
+      "favorite artist",
+      "favourite artist",
+      "favorite musician",
+      "favourite musician",
+      "favorite rappers",
+      "favourite rappers",
+      "favorite r&b",
+      "favourite r&b",
       "what music",
       "music does mark",
       "kind of music",
       "does mark like music",
       "does mark listen",
       "listen to",
+      "drake",
+      "lil baby",
+      "tory lanez",
+      "the weeknd",
+      "don toliver",
+      "travis scott",
+      "partynextdoor",
+      "party next door",
       "r&b",
       "hip-hop",
       "hip hop",
@@ -1083,10 +1094,10 @@ function classifyQuestion(rawQuestion, history = []) {
       "music fits",
       "music while",
     ]) ||
-    (includesAny(text, ["music"]) &&
-      includesAny(text, ["like", "listen", "taste", "enjoy"])) ||
     (includesAny(text, ["music", "rapper", "rappers", "artist", "artists"]) &&
       includesAny(text, [
+        "favorite",
+        "favourite",
         "like",
         "listen",
         "taste",
@@ -1094,8 +1105,7 @@ function classifyQuestion(rawQuestion, history = []) {
         "working out",
         "train",
         "visual",
-      ]) &&
-      !includesAny(text, ["favorite", "favourite"]))
+      ]))
   ) {
     const answer = includesAny(text, ["workout", "working out", "train"])
       ? ANSWERS.favoriteArtistsWorkout
@@ -1168,9 +1178,28 @@ function classifyQuestion(rawQuestion, history = []) {
   }
 
   if (
+    includesAny(text, ["traveled", "travelled", "travel"]) &&
+    includesAny(text, [
+      "want to work",
+      "where does mark want to work",
+      "job locations",
+      "work location",
+    ])
+  ) {
+    return {
+      category: "travelPlaces",
+      mode: "casual",
+      answer: ANSWERS.travelAndWork,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
     includesAny(text, [
       "where has mark traveled",
       "where has mark travelled",
+      "where has mark been",
+      "where mark has been",
       "cities he has visited",
       "cities mark has visited",
       "places are shown",
@@ -1185,6 +1214,8 @@ function classifyQuestion(rawQuestion, history = []) {
       "where can i view mark",
       "what is in the travel",
       "what can i see in the travel",
+      "places has mark photographed",
+      "where does mark like to travel",
     ]) ||
     text === "travel" ||
     (/\btravel\b/.test(text) &&
@@ -1229,6 +1260,7 @@ function classifyQuestion(rawQuestion, history = []) {
         "traveled",
         "travelled",
         "visited",
+        "been",
       ])
     ) {
       answer = ANSWERS.photography;
@@ -1269,6 +1301,8 @@ function classifyQuestion(rawQuestion, history = []) {
       "interests outside",
       "passionate about",
       "visual style",
+      "why does mark like black",
+      "why black",
       "for fun",
       "outside of technology",
       "outside technology",
@@ -1279,20 +1313,40 @@ function classifyQuestion(rawQuestion, history = []) {
       "cooking",
       "museums",
       "museum",
+      "have a dog",
+      "his dog",
+      "dog’s name",
+      "dog's name",
+      "dogs name",
+      "dog name",
+      "name of his dog",
+      "what is his dog",
+      "named kobe",
+      "who is kobe",
+      "tell me about kobe",
+      "kobe",
       "spend his free time",
       "spends his free time",
       "new perspectives",
-      "tell me everything about mark",
       "tell me about his life",
       "about mark’s life",
       "about mark's life",
       "about marks life",
-    ])
+      "like outside technology",
+      "what are mark’s interests",
+      "what are mark's interests",
+      "what are marks interests",
+    ]) ||
+    text === "dog" ||
+    text === "interests"
   ) {
     let answer = ANSWERS.hobbies;
     if (includesAny(text, ["passionate"])) answer = ANSWERS.passion;
-    else if (includesAny(text, ["visual style"])) answer = ANSWERS.environment;
+    else if (includesAny(text, ["visual style", "like black", "why black"]))
+      answer = ANSWERS.favoriteColor;
     else if (includesAny(text, ["cook"])) answer = ANSWERS.cooking;
+    else if (includesAny(text, ["dog", "kobe"]) || text === "dog")
+      answer = ANSWERS.dog;
     else if (includesAny(text, ["museum"])) answer = ANSWERS.museums;
     return {
       category: "hobbies",
@@ -1426,56 +1480,64 @@ function classifyQuestion(rawQuestion, history = []) {
       "where is mark looking",
       "job locations",
       "willing to relocate",
-    ])
+      "want to work",
+    ]) ||
+    text === "work"
   ) {
     return {
       category: "careerGoals",
       mode: "recruiter",
-      answer: ANSWERS.careerGoals,
+      answer: ANSWERS.workLocation,
       answerStatus: "answered",
     };
   }
 
   if (
     includesAny(text, [
-      "who is mark",
-      "tell me about mark",
-      "tell me briefly about mark",
-      "briefly about mark",
-      "background",
-      "education",
-      "graduate",
+      "bench",
+      "squat",
+      "deadlift",
+      "dead lift",
+      "how much can mark lift",
+      "how much does mark lift",
+      "what are mark’s lifts",
+      "what are mark's lifts",
+      "maxes",
+      "pr numbers",
+      "lifting numbers",
     ])
   ) {
-    const broadLife = includesAny(text, [
-      "tell me everything",
-      "everything about mark",
-      "about his life",
-      "about mark’s life",
-      "about mark's life",
-    ]);
     return {
-      category: broadLife ? "hobbies" : "profile",
-      mode: "general",
-      answer: broadLife ? ANSWERS.hobbies : ANSWERS.profile,
+      category: "liftingNumbers",
+      mode: "casual",
+      answer: ANSWERS.liftingNumbers,
       answerStatus: "answered",
     };
   }
 
   if (
     includesAny(text, [
-      "favorite color",
-      "favourite color",
-      "color black",
-      "why does mark like black",
-      "why black",
+      "powerlifting",
+      "first meet",
+      "won his first",
+      "won a powerlifting",
+      "did mark compete",
+      "did he compete",
+      "compete in powerlifting",
+      "powerlifting meet",
+    ]) &&
+    !includesAny(text, [
+      "bodybuilding",
+      "why bodybuilding",
+      "move from powerlifting",
+      "to bodybuilding",
     ])
   ) {
     return {
-      category: "sensitive",
-      mode: "general",
-      answer: ANSWERS.sensitive,
-      answerStatus: "refused",
+      category: "powerlifting",
+      mode: "casual",
+      answer: ANSWERS.powerlifting,
+      answerStatus: "answered",
     };
   }
 
@@ -1494,12 +1556,97 @@ function classifyQuestion(rawQuestion, history = []) {
       "why work out",
       "why workout",
       "why does mark train",
+      "how long has mark been working out",
+      "how long has mark trained",
+      "how long working out",
+      "how long training",
+      "why did mark start lifting",
+      "why start lifting",
+      "why did mark start",
+      "fitness background",
+      "gym background",
+      "working out",
+      "why bodybuilding",
+      "move from powerlifting",
+      "powerlifting to bodybuilding",
+      "what has fitness taught",
+      "what has the gym taught",
     ])
   ) {
+    let answer = ANSWERS.bodybuilding;
+    if (
+      includesAny(text, [
+        "gym taught",
+        "fitness taught",
+        "what has fitness",
+        "what has the gym",
+        "taught mark",
+      ])
+    ) {
+      answer = ANSWERS.fitnessTaught;
+    } else if (
+      includesAny(text, [
+        "bodybuilding mean",
+        "what does bodybuilding",
+        "why bodybuilding",
+        "why did mark move",
+        "move from powerlifting",
+        "powerlifting to bodybuilding",
+      ])
+    ) {
+      answer = ANSWERS.bodybuildingMeaning;
+    }
     return {
       category: "bodybuilding",
       mode: "casual",
-      answer: ANSWERS.bodybuilding,
+      answer,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "who is mark",
+      "tell me about mark",
+      "tell me briefly about mark",
+      "briefly about mark",
+      "background",
+      "education",
+      "graduate",
+      "tell me everything about mark",
+      "everything about mark",
+    ])
+  ) {
+    const broadLife = includesAny(text, [
+      "tell me everything",
+      "everything about mark",
+      "about his life",
+      "about mark’s life",
+      "about mark's life",
+    ]);
+    return {
+      category: broadLife ? "overview" : "profile",
+      mode: "general",
+      answer: broadLife ? ANSWERS.overview : ANSWERS.profile,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "favorite color",
+      "favourite color",
+      "favorite colour",
+      "favourite colour",
+      "color black",
+      "why does mark like black",
+      "why black",
+    ])
+  ) {
+    return {
+      category: "favoriteColor",
+      mode: "casual",
+      answer: ANSWERS.favoriteColor,
       answerStatus: "answered",
     };
   }
@@ -1612,6 +1759,11 @@ export async function getMockMarkAiResponse(question, options = {}) {
     mode: classified.mode,
     conversationId: "preview",
     error: null,
+    errorCode: null,
+    userMessage: null,
+    userNote: null,
+    retryAfterSeconds: null,
+    fallbackUsed: false,
   };
 }
 

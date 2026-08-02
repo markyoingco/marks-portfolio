@@ -187,6 +187,28 @@
   word-break: break-word;
 }
 
+.markai-preview__message-note {
+  margin: 6px 0 0;
+  max-width: 100%;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--markai-text-dim);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Keep note hierarchy readable when the surrounding page theme flips. */
+[data-theme='light'] .markai-card.markai-preview {
+  --markai-text-dim: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme='dark'] .markai-card.markai-preview {
+  --markai-text-dim: rgba(255, 255, 255, 0.42);
+}
+
 .markai-preview__loading {
   margin: 0;
   display: flex;

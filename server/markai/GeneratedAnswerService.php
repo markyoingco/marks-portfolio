@@ -140,43 +140,10 @@ final class GeneratedAnswerService
             'his family',
             'friends and family',
             'with friends and family',
-            'time with friends',
             'time with family',
-            'spending time with friends',
             'spending time with family',
-            'does mark have a dog',
-            'have a dog',
-            'his dog',
-            'mark’s dog',
-            "mark's dog",
-            'dog’s name',
-            "dog's name",
-            'dogs name',
-            'name of his dog',
-            'name of the dog',
-            'what is his dog',
-            'pet named',
-            'dog named',
-            'named kobe',
-            'dog kobe',
-            'his dog kobe',
-            'who is kobe',
-            'tell me about kobe',
-            'pets',
-            'pet ownership',
-            'favorite color',
-            'favourite color',
-            'favorite colour',
-            'favourite colour',
-            'favorite artist',
-            'favourite artist',
-            'favorite artists',
-            'favourite artists',
-            'favorite rappers',
-            'favourite rappers',
-            'favorite food',
-            'favourite food',
             'financial hardship',
+            'financial problems',
             'struggling with money',
             'money situation',
             'being broke',
@@ -193,10 +160,36 @@ final class GeneratedAnswerService
             'breakup',
             'romantic',
             'dating',
+            'who is mark dating',
             'mental health',
             'mental-health',
             'medical history',
+            'medical conditions',
             'addiction',
+            'private messages',
+            'where exactly does mark live',
+            'exact address',
+            'home address',
+            'precise residence',
+            'precise location',
+            'private contact',
+            'private contact details',
+            'private phone',
+            'private phone number',
+            'private problems',
+            'private messages',
+            'private journal',
+            'private diary',
+            'show me mark’s private journal',
+            "show me mark's private journal",
+            'mental health issues',
+            'mental-health issues',
+            'what addictions',
+            'addictions has mark',
+            'credentials',
+            'api token',
+            'api tokens',
+            'password',
         ])) {
             return [
                 'refuse' => true,
@@ -209,20 +202,28 @@ final class GeneratedAnswerService
     }
 
     /**
-     * Attempt provider generation. Returns null when provider should not be used
-     * or when generation fails validation. Never exposes provider failure details.
+     * Attempt provider generation.
+     *
+     * Returns accepted=true with answer text on success.
+     * Returns accepted=false with a public errorCode when live generation is
+     * unavailable. Never exposes provider failure details, tokens, or paths.
      *
      * @param list<array{role: string, content: string}> $messages
      * @param array<string, mixed> $configuration
-     * @return array{answer: string, provider: string, model: string}|null
+     * @return array{accepted: true, answer: string, provider: string, model: string}|array{accepted: false, errorCode: string}
      */
     public function tryProviderAnswer(
         array $messages,
         array $configuration,
         ?callable $transport = null
-    ): ?array {
+    ): array {
+        require_once __DIR__ . '/MarkAiUserFacingStatus.php';
+
         if (!markai_provider_configuration_is_usable($configuration)) {
-            return null;
+            return [
+                'accepted' => false,
+                'errorCode' => MarkAiUserFacingStatus::CODE_PROVIDER_DISABLED,
+            ];
         }
 
         $settings = [
@@ -233,7 +234,10 @@ final class GeneratedAnswerService
 
         $result = $this->provider->generate($messages, $settings, $configuration, $transport);
         if (!$result->isSuccess()) {
-            return null;
+            return [
+                'accepted' => false,
+                'errorCode' => MarkAiUserFacingStatus::fromProviderCategory($result->getErrorCategory()),
+            ];
         }
 
         $answer = (string) $result->getAnswerText();
@@ -241,10 +245,14 @@ final class GeneratedAnswerService
             'finish_reason' => $result->getFinishReason(),
         ]);
         if ($validation['accepted'] !== true) {
-            return null;
+            return [
+                'accepted' => false,
+                'errorCode' => MarkAiUserFacingStatus::CODE_PROVIDER_UNAVAILABLE,
+            ];
         }
 
         return [
+            'accepted' => true,
             'answer' => trim($answer),
             'provider' => $result->getProviderName(),
             'model' => $result->getModelName(),

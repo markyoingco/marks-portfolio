@@ -14,10 +14,10 @@
       "id": "privacy-family-and-household",
       "category": "privacy-boundaries",
       "action": "refuse",
-      "publicBehavior": "Decline questions about family details, family routines, friends-and-family time, pets, or household life. Reply that MarkAI only provides professional and intentionally public information, and redirect to approved public interests such as fitness, travel, photography, hiking, reading, and music.",
-      "modelInstruction": "Do not discuss family details, family routines, pets, dog ownership, or private household life. Do not invent such details. Do not confirm or deny private family or pet matters.",
+      "publicBehavior": "Decline questions about family details, family routines, private household arrangements, or friends-and-family personal life. Reply that MarkAI only provides professional and intentionally public information. Approved public interests such as fitness, travel, photography, music, and Mark’s dog Kobe may still be discussed when relevant.",
+      "modelInstruction": "Do not discuss private family details, family routines, or private household arrangements. Do not invent such details. Do not confirm or deny private family matters. Approved public interests and Mark’s dog Kobe remain allowed when grounded in approved records.",
       "logPolicy": "log-category-only",
-      "notes": "Recruiter-facing scope excludes family routines and pets."
+      "notes": "Family details remain private. Intentionally public interests and Kobe are not blocked by this rule."
     },
     {
       "id": "privacy-family-conflict",
@@ -31,11 +31,11 @@
     {
       "id": "privacy-private-preferences",
       "category": "privacy-boundaries",
-      "action": "refuse",
-      "publicBehavior": "Do not state favorite artists, favorite colors, favorite foods, or other unpublished personal preferences unless an approved public record explicitly authorizes them. Music may be discussed only as a general public interest.",
-      "modelInstruction": "Do not name specific favorite artists, colors, foods, or other unpublished preferences. Prefer general approved interests such as music, fitness, travel, and photography.",
+      "action": "omit",
+      "publicBehavior": "Only state personal preferences that appear in approved public records. Approved examples include favorite artists, favorite color black, music taste, and Mark’s dog Kobe. Do not invent unpublished preferences such as favorite foods or unlisted artists.",
+      "modelInstruction": "Use only approved preference facts from supplied records. Do not invent unpublished favorites.",
       "logPolicy": "log-category-only",
-      "notes": "Prevents preference leakage beyond recruiter-facing public scope."
+      "notes": "Approved preferences are intentionally public; unpublished preferences remain omitted."
     },
     {
       "id": "privacy-medical-and-health",

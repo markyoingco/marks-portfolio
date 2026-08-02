@@ -31,11 +31,27 @@ function markai_respond(array $payload, int $status): void
 }
 
 /**
+ * Map transport/API failure codes to safe public MarkAI error categories.
+ */
+function markai_public_error_code(string $code): string
+{
+    return match ($code) {
+        'service_unavailable' => 'provider_unavailable',
+        'internal_error' => 'internal_error',
+        // Client/request validation failures stay generic — no invented cause note.
+        default => 'internal_error',
+    };
+}
+
+/**
  * @return array<string, mixed>
  */
 function markai_error_payload(string $code = 'invalid_request'): array
 {
-    return [
+    $statusHelper = dirname(__DIR__, 2) . '/server/markai/MarkAiUserFacingStatus.php';
+    $publicCode = markai_public_error_code($code);
+
+    $base = [
         'success' => false,
         'answer' => '',
         'answerStatus' => 'error',
@@ -48,6 +64,27 @@ function markai_error_payload(string $code = 'invalid_request'): array
             'message' => 'The request could not be processed.',
         ],
     ];
+
+    if (is_readable($statusHelper)) {
+        require_once $statusHelper;
+        $status = MarkAiUserFacingStatus::forErrorCode($publicCode);
+        $base['answer'] = $status['userMessage'];
+        $base['errorCode'] = $status['errorCode'];
+        $base['userMessage'] = $status['userMessage'];
+        $base['userNote'] = $status['userNote'] !== '' ? $status['userNote'] : null;
+        $base['retryAfterSeconds'] = $status['retryAfterSeconds'];
+        $base['fallbackUsed'] = false;
+
+        return $base;
+    }
+
+    return array_merge($base, [
+        'errorCode' => 'internal_error',
+        'userMessage' => 'Something went wrong. Please try again.',
+        'userNote' => null,
+        'retryAfterSeconds' => null,
+        'fallbackUsed' => false,
+    ]);
 }
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
