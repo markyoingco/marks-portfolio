@@ -1538,6 +1538,64 @@
   background: var(--app-surface-titlebar);
 }
 
+/* Shared titlebar window-dot geometry. Dark mode keeps original neutral grays
+   from .terminal-card__dot; light mode only adds macOS traffic-light colors. */
+.mode-picker__titlebar,
+.terminal-card__titlebar {
+  --titlebar-dot-size: 8px;
+  --titlebar-dot-gap: 6px;
+}
+
+.mode-picker__titlebar .terminal-card__dots,
+.terminal-card__titlebar .terminal-card__dots {
+  gap: var(--titlebar-dot-gap);
+  pointer-events: none;
+  cursor: default;
+}
+
+.mode-picker__titlebar .terminal-card__dot,
+.terminal-card__titlebar .terminal-card__dot {
+  width: var(--titlebar-dot-size);
+  height: var(--titlebar-dot-size);
+  border-radius: 50%;
+  box-sizing: border-box;
+  pointer-events: none;
+  cursor: default;
+  border: 0;
+  box-shadow: none;
+}
+
+[data-theme='light'] .mode-picker__titlebar .terminal-card__dot,
+[data-theme='light'] .terminal-card__titlebar .terminal-card__dot {
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme='light'] .mode-picker__titlebar .terminal-card__dot:nth-child(1),
+[data-theme='light'] .terminal-card__titlebar .terminal-card__dot:nth-child(1) {
+  background: #ff5f57;
+}
+
+[data-theme='light'] .mode-picker__titlebar .terminal-card__dot:nth-child(2),
+[data-theme='light'] .terminal-card__titlebar .terminal-card__dot:nth-child(2) {
+  background: #febc2e;
+}
+
+[data-theme='light'] .mode-picker__titlebar .terminal-card__dot:nth-child(3),
+[data-theme='light'] .terminal-card__titlebar .terminal-card__dot:nth-child(3) {
+  background: #28c840;
+}
+
+@media (max-width: 900px) {
+  .mode-picker__titlebar,
+  .terminal-card__titlebar {
+    --titlebar-dot-size: 6px;
+    --titlebar-dot-gap: 4px;
+  }
+}
+
 .mode-picker__label {
   min-width: 0;
   overflow: hidden;
