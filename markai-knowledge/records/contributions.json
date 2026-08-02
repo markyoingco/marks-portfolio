@@ -1,0 +1,538 @@
+{
+    "schemaVersion":  "1.0.0",
+    "records":  [
+                    {
+                        "id":  "contrib-abacus-eagle-core",
+                        "category":  "project-contributions",
+                        "recordType":  "contribution",
+                        "title":  "Abacus Eagle core messaging and integration",
+                        "projectId":  "project-abacus",
+                        "projectIds":  [
+                                           "project-abacus"
+                                       ],
+                        "publicText":  "In Abacus, Mark contributed to the Eagle Division messaging workflow across the Flask backend and React frontend, including role-aware access, team messaging endpoints, message persistence, student and administrator interfaces, routing, and menu integration.",
+                        "shortText":  "Role-aware Eagle messaging APIs, persistence, student and administrator interfaces, routing, and integration.",
+                        "aliases":  [
+                                        "Eagle messaging",
+                                        "Abacus chat",
+                                        "Eagle Division"
+                                    ],
+                        "keywords":  [
+                                         "abacus",
+                                         "eagle",
+                                         "messages",
+                                         "flask",
+                                         "react",
+                                         "authorization"
+                                     ],
+                        "status":  "verified",
+                        "contributionType":  "full-stack-feature",
+                        "exactContribution":  "Eagle authorization and role checks; API blueprint registration; team listing; message GET/POST; EagleTeamMessages persistence; assignment preview; student Eagle home; administrator Eagle chat; routes; menu integration; frontend/backend integration.",
+                        "teamContext":  "Team senior design capstone. This record covers Mark\u0027s commit-supported Eagle Division work, not sole ownership of Abacus.",
+                        "claimScope":  "diff-supported",
+                        "commitHashes":  [
+                                             "e93967c"
+                                         ],
+                        "affectedFiles":  [
+
+                                          ],
+                        "safeSummary":  "Mark helped implement Eagle Division messaging and related full-stack integration for the team Abacus platform.",
+                        "prohibitedOverstatement":  [
+                                                        "Mark built all of Abacus",
+                                                        "Mark designed the entire backend",
+                                                        "Mark created every Eagle feature alone",
+                                                        "Abacus had a specific number of users"
+                                                    ],
+                        "evidence":  [
+                                         {
+                                             "kind":  "git-commit",
+                                             "label":  "Mark-supplied Abacus commit evidence e93967c",
+                                             "commitHash":  "e93967c",
+                                             "claimScope":  "Eagle authorization and role behavior; API blueprint registration; team listing; message GET and POST behavior; persistent EagleTeamMessages model; assignment preview handling; student Eagle interface; administrator Eagle interface; routes; menu integration; frontend/backend integration.",
+                                             "doesNotProve":  [
+                                                                  "Sole authorship of Abacus",
+                                                                  "Design of the entire platform",
+                                                                  "Any user-count metric",
+                                                                  "Ownership of unrelated Abacus subsystems"
+                                                              ]
+                                         }
+                                     ],
+                        "relatedRecordIds":  [
+                                                 "project-abacus",
+                                                 "contrib-abacus-instructions-routing",
+                                                 "contrib-abacus-inbox-chat",
+                                                 "contrib-abacus-dropdown-fixes"
+                                             ],
+                        "linkIds":  [
+                                        "link-github-abacus"
+                                    ],
+                        "visibility":  {
+                                           "answerable":  true,
+                                           "exportPublic":  true,
+                                           "modelVisible":  true
+                                       },
+                        "answerUses":  [
+                                           "projects",
+                                           "contributions",
+                                           "full-stack",
+                                           "capstone"
+                                       ],
+                        "reviewedByMark":  true,
+                        "notes":  "Commit hash recorded without a constructed GitHub commit URL. Exact affected file paths pending canonical repository verification. Visibility locked off until Mark review.",
+                        "lastReviewed":  "2026-07-28"
+                    },
+                    {
+                        "id":  "contrib-abacus-instructions-routing",
+                        "category":  "project-contributions",
+                        "recordType":  "contribution",
+                        "title":  "Abacus Eagle instructions PDF and routing",
+                        "projectId":  "project-abacus",
+                        "projectIds":  [
+                                           "project-abacus"
+                                       ],
+                        "publicText":  "In Abacus, Mark contributed protected Eagle instructions-download behavior, student routing and redirects, login destinations, breadcrumbs, and student and administrator layout refinements.",
+                        "shortText":  "Protected instructions download, Eagle student routing, breadcrumbs, and layout refinements.",
+                        "aliases":  [
+                                        "Abacus PDF instructions",
+                                        "Eagle routing"
+                                    ],
+                        "keywords":  [
+                                         "abacus",
+                                         "pdf",
+                                         "instructions",
+                                         "routing",
+                                         "breadcrumbs"
+                                     ],
+                        "status":  "verified",
+                        "contributionType":  "full-stack-feature",
+                        "exactContribution":  "Protected instructions PDF endpoint; file resolution; PDF download; Eagle student redirects; login destination behavior; breadcrumbs; student/admin layout refinements; navigation integration.",
+                        "teamContext":  "Team senior design capstone. Scoped to the listed routing and instructions work.",
+                        "claimScope":  "diff-supported",
+                        "commitHashes":  [
+                                             "1053462"
+                                         ],
+                        "affectedFiles":  [
+
+                                          ],
+                        "safeSummary":  "Mark added protected Eagle instructions download behavior and related student/admin routing and layout refinements.",
+                        "prohibitedOverstatement":  [
+                                                        "Mark built all of Abacus",
+                                                        "Mark owned all student navigation",
+                                                        "Mark created every PDF feature in the platform"
+                                                    ],
+                        "evidence":  [
+                                         {
+                                             "kind":  "git-commit",
+                                             "label":  "Mark-supplied Abacus commit evidence 1053462",
+                                             "commitHash":  "1053462",
+                                             "claimScope":  "Protected instructions PDF endpoint; instructions-file resolution; PDF download; Eagle student redirects; login destination behavior; breadcrumbs; student and administrator layout refinements; navigation integration.",
+                                             "doesNotProve":  [
+                                                                  "Sole ownership of Abacus navigation",
+                                                                  "Authorship of unrelated Abacus modules"
+                                                              ]
+                                         }
+                                     ],
+                        "relatedRecordIds":  [
+                                                 "project-abacus",
+                                                 "contrib-abacus-eagle-core"
+                                             ],
+                        "linkIds":  [
+                                        "link-github-abacus"
+                                    ],
+                        "visibility":  {
+                                           "answerable":  true,
+                                           "exportPublic":  true,
+                                           "modelVisible":  true
+                                       },
+                        "answerUses":  [
+                                           "projects",
+                                           "contributions",
+                                           "capstone"
+                                       ],
+                        "reviewedByMark":  true,
+                        "notes":  "No constructed commit URL. Exact affected file paths pending verification.",
+                        "lastReviewed":  "2026-07-28"
+                    },
+                    {
+                        "id":  "contrib-abacus-inbox-chat",
+                        "category":  "project-contributions",
+                        "recordType":  "contribution",
+                        "title":  "Abacus staff inbox and team chat",
+                        "projectId":  "project-abacus",
+                        "projectIds":  [
+                                           "project-abacus"
+                                       ],
+                        "publicText":  "In Abacus, Mark contributed a role-aware Eagle inbox and team-chat flow for administrators and teachers, including school scoping, sender labels, shared message rendering, unread tracking, auto-scroll behavior, Enter-to-send, mailbox UI, and related routing.",
+                        "shortText":  "Role-aware Eagle inbox, staff team chat, shared messages, unread tracking, and related routing.",
+                        "aliases":  [
+                                        "Abacus inbox",
+                                        "Eagle chat",
+                                        "staff mailbox"
+                                    ],
+                        "keywords":  [
+                                         "abacus",
+                                         "inbox",
+                                         "chat",
+                                         "unread",
+                                         "role-aware"
+                                     ],
+                        "status":  "verified",
+                        "contributionType":  "full-stack-feature",
+                        "exactContribution":  "Staff inbox endpoint and role-aware visibility; teacher school scoping; team-specific access; sender-role labeling; staff team-chat routes; shared message rendering; unread behavior; auto-scroll; Enter-to-send; menu mailbox; team-management and submission routing into chat.",
+                        "teamContext":  "Team senior design capstone. Scoped to inbox/chat contributions listed in commit evidence.",
+                        "claimScope":  "diff-supported",
+                        "commitHashes":  [
+                                             "8ab5f20"
+                                         ],
+                        "affectedFiles":  [
+
+                                          ],
+                        "safeSummary":  "Mark contributed role-aware Eagle inbox and team chat interfaces, including shared message rendering and unread tracking.",
+                        "prohibitedOverstatement":  [
+                                                        "Mark built all of Abacus messaging",
+                                                        "Mark invented the entire product messaging model alone",
+                                                        "Mark owned all teacher workflows"
+                                                    ],
+                        "evidence":  [
+                                         {
+                                             "kind":  "git-commit",
+                                             "label":  "Mark-supplied Abacus commit evidence 8ab5f20",
+                                             "commitHash":  "8ab5f20",
+                                             "claimScope":  "Staff inbox; role-aware inbox behavior; teacher school scoping; team-specific access; sender-role labeling; staff chat routes; shared message rendering; unread behavior; auto-scroll behavior; Enter-to-send; menu mailbox; team-management and submission routing.",
+                                             "doesNotProve":  [
+                                                                  "Sole ownership of all Abacus communication features",
+                                                                  "Any live user-count claim"
+                                                              ]
+                                         }
+                                     ],
+                        "relatedRecordIds":  [
+                                                 "project-abacus",
+                                                 "contrib-abacus-eagle-core",
+                                                 "contrib-abacus-dropdown-fixes"
+                                             ],
+                        "linkIds":  [
+                                        "link-github-abacus"
+                                    ],
+                        "visibility":  {
+                                           "answerable":  true,
+                                           "exportPublic":  true,
+                                           "modelVisible":  true
+                                       },
+                        "answerUses":  [
+                                           "projects",
+                                           "contributions",
+                                           "full-stack",
+                                           "capstone"
+                                       ],
+                        "reviewedByMark":  true,
+                        "notes":  "No constructed commit URL. Exact affected file paths pending verification.",
+                        "lastReviewed":  "2026-07-28"
+                    },
+                    {
+                        "id":  "contrib-abacus-dropdown-fixes",
+                        "category":  "project-contributions",
+                        "recordType":  "contribution",
+                        "title":  "Abacus chat and team dropdown bug fixes",
+                        "projectId":  "project-abacus",
+                        "projectIds":  [
+                                           "project-abacus"
+                                       ],
+                        "publicText":  "In Abacus, Mark fixed chat and team-dropdown behavior issues, including outside-click closing, dropdown reference handling, and preventing blur from breaking option selection.",
+                        "shortText":  "Outside-click closing, dropdown reference handling, and blur/selection fixes for team chat UI.",
+                        "aliases":  [
+                                        "Abacus dropdown fix",
+                                        "team dropdown bug"
+                                    ],
+                        "keywords":  [
+                                         "abacus",
+                                         "dropdown",
+                                         "bugfix",
+                                         "chat"
+                                     ],
+                        "status":  "verified",
+                        "contributionType":  "bugfix",
+                        "exactContribution":  "Outside-click closing; dropdown reference handling; blur/selection behavior; focused chat and team-dropdown bug fixes.",
+                        "teamContext":  "Team senior design capstone. Focused UI reliability fixes, not platform authorship.",
+                        "claimScope":  "diff-supported",
+                        "commitHashes":  [
+                                             "a7dbf1b"
+                                         ],
+                        "affectedFiles":  [
+
+                                          ],
+                        "safeSummary":  "Mark fixed chat and team-dropdown closing and selection bugs in the Eagle workflow UI.",
+                        "prohibitedOverstatement":  [
+                                                        "Mark built the entire Abacus frontend",
+                                                        "This commit proves ownership of all Abacus UI"
+                                                    ],
+                        "evidence":  [
+                                         {
+                                             "kind":  "git-commit",
+                                             "label":  "Mark-supplied Abacus commit evidence a7dbf1b",
+                                             "commitHash":  "a7dbf1b",
+                                             "claimScope":  "Outside-click closing; dropdown reference handling; preventing blur from breaking option selection; focused chat and team-dropdown bug fixes.",
+                                             "doesNotProve":  [
+                                                                  "Authorship of all Abacus frontend components"
+                                                              ]
+                                         }
+                                     ],
+                        "relatedRecordIds":  [
+                                                 "project-abacus",
+                                                 "contrib-abacus-inbox-chat"
+                                             ],
+                        "linkIds":  [
+                                        "link-github-abacus"
+                                    ],
+                        "visibility":  {
+                                           "answerable":  true,
+                                           "exportPublic":  true,
+                                           "modelVisible":  true
+                                       },
+                        "answerUses":  [
+                                           "projects",
+                                           "contributions",
+                                           "debugging"
+                                       ],
+                        "reviewedByMark":  true,
+                        "notes":  "No constructed commit URL. Exact affected file paths pending verification.",
+                        "lastReviewed":  "2026-07-28"
+                    },
+                    {
+                        "id":  "contrib-maat-grading-ui",
+                        "category":  "project-contributions",
+                        "recordType":  "contribution",
+                        "title":  "MAAT admin grading and observed-errors UI",
+                        "projectId":  "project-maat",
+                        "projectIds":  [
+                                           "project-maat"
+                                       ],
+                        "publicText":  "In TA-Bot / MAAT, Mark contributed admin grading UI work including loading saved grading information, transforming backend error records into line-referenced frontend state, saving grade and observed-error data, save-status handling, and an observed-errors panel showing line number, error label, point values, and removal, plus related grading interface styling.",
+                        "shortText":  "Admin grading load/save, observed-errors panel, save-status handling, and related styling.",
+                        "aliases":  [
+                                        "MAAT grading",
+                                        "observed errors",
+                                        "AdminGrading"
+                                    ],
+                        "keywords":  [
+                                         "maat",
+                                         "grading",
+                                         "observed errors",
+                                         "admin"
+                                     ],
+                        "status":  "verified",
+                        "contributionType":  "frontend-backend-integration",
+                        "exactContribution":  "Load saved grading data; transform backend errors into line-referenced state; save grade and observed errors; save-status handling; observed-errors display with line number, label, points, removal; grading UI styling.",
+                        "teamContext":  "Team senior design capstone. Scoped to admin grading UI/integration shown in commit evidence, not sole ownership of MAAT grading.",
+                        "claimScope":  "diff-supported",
+                        "commitHashes":  [
+                                             "7946c19"
+                                         ],
+                        "affectedFiles":  [
+                                              "ui/src/pages/admin/AdminGrading.tsx",
+                                              "ui/src/styling/AdminGrading.scss"
+                                          ],
+                        "safeSummary":  "Mark implemented admin grading and observed-error UI flows that load and save grade data with line-referenced error display.",
+                        "prohibitedOverstatement":  [
+                                                        "Mark built all of MAAT",
+                                                        "Mark owned all grading functionality",
+                                                        "Mark created the entire assessment platform"
+                                                    ],
+                        "evidence":  [
+                                         {
+                                             "kind":  "git-commit",
+                                             "label":  "Mark-supplied MAAT commit evidence 7946c19",
+                                             "commitHash":  "7946c19",
+                                             "affectedFiles":  [
+                                                                   "ui/src/pages/admin/AdminGrading.tsx",
+                                                                   "ui/src/styling/AdminGrading.scss"
+                                                               ],
+                                             "claimScope":  "Loading saved grading data; transforming backend errors into line-referenced state; saving grade and observed errors; save-status handling; displaying observed errors with line number, error label, point values, and removal; grading UI styling.",
+                                             "doesNotProve":  [
+                                                                  "Ownership of all MAAT grading algorithms",
+                                                                  "Sole authorship of MAAT",
+                                                                  "Document Manager responsibility"
+                                                              ]
+                                         }
+                                     ],
+                        "relatedRecordIds":  [
+                                                 "project-maat",
+                                                 "contrib-maat-plagiarism-ui",
+                                                 "contrib-maat-similarity-refinement"
+                                             ],
+                        "linkIds":  [
+                                        "link-github-maat"
+                                    ],
+                        "visibility":  {
+                                           "answerable":  true,
+                                           "exportPublic":  true,
+                                           "modelVisible":  true
+                                       },
+                        "answerUses":  [
+                                           "projects",
+                                           "contributions",
+                                           "capstone",
+                                           "recruiter"
+                                       ],
+                        "reviewedByMark":  true,
+                        "notes":  "No constructed commit URL. Affected files come from Mark-supplied commit evidence descriptions.",
+                        "lastReviewed":  "2026-07-28"
+                    },
+                    {
+                        "id":  "contrib-maat-plagiarism-ui",
+                        "category":  "project-contributions",
+                        "recordType":  "contribution",
+                        "title":  "MAAT plagiarism-result UI and filtering",
+                        "projectId":  "project-maat",
+                        "projectIds":  [
+                                           "project-maat"
+                                       ],
+                        "publicText":  "In TA-Bot / MAAT, Mark contributed plagiarism-result UI features including pagination and pagination reset, threshold and overlap filtering, token and AST similarity percentages, result sorting, pair counts, comparison links, severity styling, and scroll containment.",
+                        "shortText":  "Plagiarism-result pagination, similarity percentages, filtering, sorting, and comparison links.",
+                        "aliases":  [
+                                        "MAAT plagiarism UI",
+                                        "plagiarism results",
+                                        "AdminStudentRoster plagiarism"
+                                    ],
+                        "keywords":  [
+                                         "maat",
+                                         "plagiarism",
+                                         "similarity",
+                                         "pagination",
+                                         "ast",
+                                         "token"
+                                     ],
+                        "status":  "verified",
+                        "contributionType":  "frontend-feature",
+                        "exactContribution":  "Plagiarism-result pagination; pagination reset; threshold filtering; overlap filtering; token similarity percentage; AST similarity percentage; result sorting; pair count; comparison links; severity styling; scroll containment.",
+                        "teamContext":  "Team senior design capstone. UI and integration work around plagiarism results, not a claim that Mark created the underlying detector.",
+                        "claimScope":  "diff-supported",
+                        "commitHashes":  [
+                                             "8cb11a9"
+                                         ],
+                        "affectedFiles":  [
+                                              "ui/src/pages/admin/AdminStudentRoster.tsx",
+                                              "ui/src/styling/AdminStudentRoster.scss"
+                                          ],
+                        "safeSummary":  "Mark contributed plagiarism-result presentation features such as filtering, similarity display, pagination, and comparison links in the administrator roster interface.",
+                        "prohibitedOverstatement":  [
+                                                        "Mark created the plagiarism detector",
+                                                        "Mark owned all plagiarism detection",
+                                                        "UI work proves ownership of similarity algorithms",
+                                                        "Mark built all of MAAT"
+                                                    ],
+                        "evidence":  [
+                                         {
+                                             "kind":  "git-commit",
+                                             "label":  "Mark-supplied MAAT commit evidence 8cb11a9",
+                                             "commitHash":  "8cb11a9",
+                                             "affectedFiles":  [
+                                                                   "ui/src/pages/admin/AdminStudentRoster.tsx",
+                                                                   "ui/src/styling/AdminStudentRoster.scss"
+                                                               ],
+                                             "claimScope":  "Plagiarism-result pagination; pagination reset; threshold and overlap filtering; token and AST similarity percentages; result sorting; pair count; comparison links; severity styling; scroll containment.",
+                                             "doesNotProve":  [
+                                                                  "Authorship of underlying similarity algorithms",
+                                                                  "Sole ownership of plagiarism detection",
+                                                                  "Sole authorship of MAAT"
+                                                              ]
+                                         }
+                                     ],
+                        "relatedRecordIds":  [
+                                                 "project-maat",
+                                                 "contrib-maat-grading-ui",
+                                                 "contrib-maat-similarity-refinement"
+                                             ],
+                        "linkIds":  [
+                                        "link-github-maat"
+                                    ],
+                        "visibility":  {
+                                           "answerable":  true,
+                                           "exportPublic":  true,
+                                           "modelVisible":  true
+                                       },
+                        "answerUses":  [
+                                           "projects",
+                                           "contributions",
+                                           "capstone",
+                                           "recruiter"
+                                       ],
+                        "reviewedByMark":  true,
+                        "notes":  "No constructed commit URL. Do not treat UI similarity display as proof of algorithm ownership.",
+                        "lastReviewed":  "2026-07-28"
+                    },
+                    {
+                        "id":  "contrib-maat-similarity-refinement",
+                        "category":  "project-contributions",
+                        "recordType":  "contribution",
+                        "title":  "MAAT similarity score and threshold refinement",
+                        "projectId":  "project-maat",
+                        "projectIds":  [
+                                           "project-maat"
+                                       ],
+                        "publicText":  "In TA-Bot / MAAT, Mark refined plagiarism-result filtering and presentation by using a combined token and AST similarity score, adjusting the configured threshold, handling missing overlap snippets, and preserving sorting and pagination.",
+                        "shortText":  "Combined token and AST score, threshold refinement, missing-overlap handling, sorting, and pagination.",
+                        "aliases":  [
+                                        "MAAT similarity refinement",
+                                        "combined similarity score"
+                                    ],
+                        "keywords":  [
+                                         "maat",
+                                         "similarity",
+                                         "threshold",
+                                         "overlap"
+                                     ],
+                        "status":  "verified",
+                        "contributionType":  "frontend-refinement",
+                        "exactContribution":  "Combined or average token/AST similarity score; threshold adjustment; missing-overlap handling; retaining sorting and pagination.",
+                        "teamContext":  "Team senior design capstone. Refinement of plagiarism-result UI behavior shown in commit evidence.",
+                        "claimScope":  "diff-supported",
+                        "commitHashes":  [
+                                             "83a9d29"
+                                         ],
+                        "affectedFiles":  [
+                                              "ui/src/pages/admin/AdminStudentRoster.tsx"
+                                          ],
+                        "safeSummary":  "Mark refined plagiarism-result filtering and presentation through combined similarity scoring, threshold handling, and preserved sorting and pagination behavior.",
+                        "prohibitedOverstatement":  [
+                                                        "Mark invented the similarity algorithms",
+                                                        "Mark owned all plagiarism detection",
+                                                        "Mark built all of MAAT"
+                                                    ],
+                        "evidence":  [
+                                         {
+                                             "kind":  "git-commit",
+                                             "label":  "Mark-supplied MAAT commit evidence 83a9d29",
+                                             "commitHash":  "83a9d29",
+                                             "affectedFiles":  [
+                                                                   "ui/src/pages/admin/AdminStudentRoster.tsx"
+                                                               ],
+                                             "claimScope":  "Combined token/AST similarity score; threshold adjustment; missing-overlap handling; retaining sorting and pagination behavior.",
+                                             "doesNotProve":  [
+                                                                  "Ownership of underlying similarity algorithms",
+                                                                  "Sole authorship of MAAT"
+                                                              ]
+                                         }
+                                     ],
+                        "relatedRecordIds":  [
+                                                 "project-maat",
+                                                 "contrib-maat-plagiarism-ui"
+                                             ],
+                        "linkIds":  [
+                                        "link-github-maat"
+                                    ],
+                        "visibility":  {
+                                           "answerable":  true,
+                                           "exportPublic":  true,
+                                           "modelVisible":  true
+                                       },
+                        "answerUses":  [
+                                           "projects",
+                                           "contributions",
+                                           "capstone"
+                                       ],
+                        "reviewedByMark":  true,
+                        "notes":  "No constructed commit URL. Presentation refinement only.",
+                        "lastReviewed":  "2026-07-28"
+                    }
+                ]
+}

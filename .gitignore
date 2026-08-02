@@ -25,3 +25,17 @@ dist-ssr
 
 # DreamHost contact form credentials
 public/api/config.php
+
+# MarkAI private provider runtime configuration (never commit secrets)
+server/markai/ProviderConfiguration.local.php
+
+# MarkAI private usage-limiter overrides and runtime state (never commit)
+server/markai/UsageConfiguration.local.php
+server/markai/runtime-state/**
+!server/markai/runtime-state/
+!server/markai/runtime-state/usage/
+!server/markai/runtime-state/usage/.htaccess
+!server/markai/runtime-state/usage/index.html
+
+# Local deployment staging and archives (never commit packages or credentials)
+deployment/

@@ -66,18 +66,76 @@ export function snapshotsEqual(a, b) {
   return JSON.stringify(a) === JSON.stringify(b)
 }
 
+/** Webpage screen keys that may appear in public deep-link hashes. */
+export const WEBPAGE_SCREENS = [
+  'home',
+  'about',
+  'portfolio',
+  'testimonials',
+  'travel',
+  'contact',
+]
+
+/**
+ * Parse location hash into route + webpage screen.
+ * Supported public deep links:
+ * - (empty) → Terminal
+ * - #webpage or #webpage/home → Webpage home
+ * - #webpage/<screen> → Webpage screen
+ * - #<screen> shorthand for portfolio|testimonials|travel|contact|about|home
+ * Dead/unsupported hashes such as #markai fall back to Terminal (MarkAI opens in-app).
+ *
+ * @param {string} [hashRaw]
+ * @returns {{ route: 'webpage' | 'terminal', screen: string }}
+ */
+export function parseNavFromHash(hashRaw) {
+  const raw =
+    typeof hashRaw === 'string'
+      ? hashRaw
+      : typeof window !== 'undefined'
+        ? window.location.hash
+        : ''
+  const hash = String(raw).replace(/^#/, '').trim().toLowerCase()
+
+  if (!hash) {
+    return { route: 'terminal', screen: 'home' }
+  }
+
+  if (hash === 'webpage' || hash === 'webpage/home') {
+    return { route: 'webpage', screen: 'home' }
+  }
+
+  if (hash.startsWith('webpage/')) {
+    const screen = hash.slice('webpage/'.length).split(/[/?#]/)[0] || 'home'
+    if (WEBPAGE_SCREENS.includes(screen)) {
+      return { route: 'webpage', screen }
+    }
+    return { route: 'webpage', screen: 'home' }
+  }
+
+  if (WEBPAGE_SCREENS.includes(hash)) {
+    return { route: 'webpage', screen: hash }
+  }
+
+  return { route: 'terminal', screen: 'home' }
+}
+
 export function createInitialSnapshot() {
   const showModePicker =
     sessionStorage.getItem(MODE_PICKER_DISMISSED_KEY) !== 'true'
+  const nav = parseNavFromHash()
 
   return {
-    route: getRouteFromHash(),
+    route: nav.route,
     entryKey: 0,
     terminal: {
       ...DEFAULT_TERMINAL,
       showModePicker,
     },
-    webpage: { ...DEFAULT_WEBPAGE },
+    webpage: {
+      ...DEFAULT_WEBPAGE,
+      screen: nav.screen,
+    },
   }
 }
 
@@ -146,13 +204,18 @@ export function createMarkAiEntry(snapshot) {
 }
 
 export function getRouteFromHash() {
-  const hash = window.location.hash.replace(/^#/, '').trim().toLowerCase()
-  return hash === 'webpage' ? 'webpage' : 'terminal'
+  return parseNavFromHash().route
 }
 
+/**
+ * Build the public URL path+hash for a snapshot.
+ * Home uses #webpage; other screens use #<screen> (e.g. #travel).
+ */
 export function buildPathFromSnapshot(snapshot) {
   if (snapshot.route === 'webpage') {
-    return `${window.location.pathname}${window.location.search}#webpage`
+    const screen = snapshot.webpage?.screen || 'home'
+    const fragment = screen === 'home' ? 'webpage' : screen
+    return `${window.location.pathname}${window.location.search}#${fragment}`
   }
 
   return `${window.location.pathname}${window.location.search}`

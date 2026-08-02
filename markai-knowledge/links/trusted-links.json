@@ -1,0 +1,597 @@
+{
+  "schemaVersion": "1.0.0",
+  "links": [
+    {
+      "id": "link-portfolio-home",
+      "label": "Portfolio home",
+      "href": "https://markyoingco.com",
+      "type": "portfolio-home",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "contact"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "profile-mark-yoingco",
+        "project-portfolio-platform"
+      ],
+      "notes": "Exact URL from Terminal contact links and portfolio project data."
+    },
+    {
+      "id": "link-resume-pdf",
+      "label": "Resume PDF",
+      "href": "/documents/Mark_Yoingco_MainTech_Resume_2026.pdf",
+      "type": "resume",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "contact"
+      ],
+      "external": false,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "profile-mark-yoingco",
+        "education-marquette-bs-computer-science"
+      ],
+      "notes": "Exact path from src/resumeDocument.js RESUME_PDF_PATH."
+    },
+    {
+      "id": "link-github-profile",
+      "label": "GitHub profile",
+      "href": "https://github.com/markyoingco",
+      "type": "github-profile",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "contact",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "profile-mark-yoingco"
+      ],
+      "notes": "Exact URL from PortfolioApp social links and Terminal contact links."
+    },
+    {
+      "id": "link-linkedin",
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/mark-yoingco",
+      "type": "linkedin",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "contact"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "profile-mark-yoingco",
+        "career-direction-first-full-time-tech-role"
+      ],
+      "notes": "Exact URL from PortfolioApp social links and Terminal contact links."
+    },
+    {
+      "id": "link-contact-section",
+      "label": "Contact section",
+      "href": "https://markyoingco.com/#contact",
+      "type": "contact-section",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "contact"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "career-direction-first-full-time-tech-role"
+      ],
+      "notes": "Deep-links to Webpage Contact via #contact (SPA parseNavFromHash). Prefer Contact rather than raw email."
+    },
+    {
+      "id": "link-testimonials-section",
+      "label": "Testimonials section",
+      "href": "https://markyoingco.com/#testimonials",
+      "type": "webpage-section",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "testimonials-public-overview",
+        "testimonial-zack-kohlwey",
+        "testimonial-jorge-torres",
+        "testimonial-farzeen-harunani",
+        "testimonial-nathan-garcia",
+        "testimonial-jarenz-masiclat",
+        "testimonial-elizabeth-anderson",
+        "testimonial-maxwell-zeisler",
+        "testimonial-andrew-wochner"
+      ],
+      "notes": "Deep-links to Webpage Testimonials via #testimonials (SPA parseNavFromHash). Prefer this section link for general testimonial questions."
+    },
+    {
+      "id": "link-travel-section",
+      "label": "Travel section",
+      "href": "https://markyoingco.com/#travel",
+      "type": "webpage-section",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "travel-public-places-inventory",
+        "interest-travel-photography",
+        "personality-photography-travel-hobbies"
+      ],
+      "notes": "Deep-links to Webpage Travel via #travel (SPA parseNavFromHash). Prefer this section link and/or VSCO for travel photography questions."
+    },
+    {
+      "id": "link-portfolio-section",
+      "label": "Portfolio section",
+      "href": "https://markyoingco.com/#portfolio",
+      "type": "webpage-section",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation",
+        "projects"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "projects-public-inventory",
+        "project-portfolio-platform",
+        "project-markai",
+        "project-abacus",
+        "project-maat",
+        "project-operating-systems-c",
+        "project-finch-web-controller",
+        "project-space-shmup",
+        "project-apple-picker",
+        "project-mission-demolition",
+        "project-sleep-efficiency-analysis",
+        "project-marquette-basketball-predictor"
+      ],
+      "notes": "Deep-links to Webpage Portfolio via #portfolio (SPA parseNavFromHash). Prefer this section for broad project-inventory and no-repo project questions."
+    },
+    {
+      "id": "link-github-portfolio",
+      "label": "marks-portfolio repository",
+      "href": "https://github.com/markyoingco/marks-portfolio",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects",
+        "navigation"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-portfolio-platform"
+      ],
+      "notes": "Exact URL from src/portfolioPlatformData.js and terminalPortfolioProjectData.js."
+    },
+    {
+      "id": "link-github-abacus",
+      "label": "Abacus repository",
+      "href": "https://github.com/musyslab/Abacus",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-abacus"
+      ],
+      "notes": "Exact URL from PortfolioApp and terminalPortfolioProjectData.js. Commit URLs intentionally omitted."
+    },
+    {
+      "id": "link-github-maat",
+      "label": "MAAT repository",
+      "href": "https://github.com/musyslab/MAAT",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-maat"
+      ],
+      "notes": "Exact URL from PortfolioApp and terminalPortfolioProjectData.js. Commit URLs intentionally omitted."
+    },
+    {
+      "id": "link-vsco",
+      "label": "VSCO gallery",
+      "href": "https://vsco.co/markyoingco/gallery",
+      "type": "vsco",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "travel-public-places-inventory",
+        "interest-travel-photography",
+        "personality-photography-travel-hobbies"
+      ],
+      "notes": "Exact URL from src/terminalProfileFileOutput.js VSCO_GALLERY_URL and PortfolioApp Travel section."
+    },
+    {
+      "id": "link-markai-route",
+      "label": "MarkAI",
+      "href": "https://markyoingco.com",
+      "type": "markai-route",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "navigation"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-portfolio-platform",
+        "project-markai",
+        "navigation-portfolio-modes"
+      ],
+      "notes": "MarkAI opens in-app via Terminal open markai or the portfolio card Open MarkAI action. Do not use a dead #markai hash. Prefer not returning this link from MarkAI answers."
+    },
+    {
+      "id": "link-email",
+      "label": "Email",
+      "href": "mailto:markyoingco23@gmail.com",
+      "type": "email",
+      "public": true,
+      "enabled": false,
+      "allowedContexts": [
+        "authoring-only"
+      ],
+      "external": false,
+      "opensNewTab": false,
+      "disclosure": "disabled",
+      "notes": "Exact mailto from PortfolioApp and Terminal contact links. Disabled for MarkAI answers until Mark explicitly approves raw email disclosure. Prefer link-contact-section, LinkedIn, GitHub, and resume."
+    },
+    {
+      "id": "link-linkedin-zack-kohlwey",
+      "label": "Zack Kohlwey on LinkedIn",
+      "href": "https://www.linkedin.com/in/zack-kohlwey-m-ed-44789445/",
+      "type": "linkedin",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "testimonial-zack-kohlwey"
+      ],
+      "notes": "Exact LinkedIn URL from src/testimonialsData.js. Offer only for this speaker's testimonial or a direct request for their LinkedIn. Do not dump into unrelated answers. Does not imply the speaker endorses every MarkAI answer."
+    },
+    {
+      "id": "link-linkedin-jorge-torres",
+      "label": "Jorge Torres on LinkedIn",
+      "href": "https://www.linkedin.com/in/jorge-torres-1q2w/",
+      "type": "linkedin",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "testimonial-jorge-torres"
+      ],
+      "notes": "Exact LinkedIn URL from src/testimonialsData.js. Offer only for this speaker's testimonial or a direct request for their LinkedIn. Do not dump into unrelated answers. Does not imply the speaker endorses every MarkAI answer."
+    },
+    {
+      "id": "link-linkedin-farzeen-harunani",
+      "label": "Farzeen Harunani on LinkedIn",
+      "href": "https://www.linkedin.com/in/farzeenharunani/",
+      "type": "linkedin",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "testimonial-farzeen-harunani"
+      ],
+      "notes": "Exact LinkedIn URL from src/testimonialsData.js. Offer only for this speaker's testimonial or a direct request for their LinkedIn. Do not dump into unrelated answers. Does not imply the speaker endorses every MarkAI answer."
+    },
+    {
+      "id": "link-linkedin-nathan-garcia",
+      "label": "Nathan Garcia on LinkedIn",
+      "href": "https://www.linkedin.com/in/nathanmgarcia5758/",
+      "type": "linkedin",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "testimonial-nathan-garcia"
+      ],
+      "notes": "Exact LinkedIn URL from src/testimonialsData.js. Offer only for this speaker's testimonial or a direct request for their LinkedIn. Do not dump into unrelated answers. Does not imply the speaker endorses every MarkAI answer."
+    },
+    {
+      "id": "link-linkedin-jarenz-masiclat",
+      "label": "Jarenz Masiclat on LinkedIn",
+      "href": "https://www.linkedin.com/in/jarenz-masiclat10",
+      "type": "linkedin",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "testimonial-jarenz-masiclat"
+      ],
+      "notes": "Exact LinkedIn URL from src/testimonialsData.js. Offer only for this speaker's testimonial or a direct request for their LinkedIn. Do not dump into unrelated answers. Does not imply the speaker endorses every MarkAI answer."
+    },
+    {
+      "id": "link-linkedin-elizabeth-anderson",
+      "label": "Elizabeth Anderson on LinkedIn",
+      "href": "https://www.linkedin.com/in/elizabeth-anderson-7b26472a2/",
+      "type": "linkedin",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "testimonial-elizabeth-anderson"
+      ],
+      "notes": "Exact LinkedIn URL from src/testimonialsData.js. Offer only for this speaker's testimonial or a direct request for their LinkedIn. Do not dump into unrelated answers. Does not imply the speaker endorses every MarkAI answer."
+    },
+    {
+      "id": "link-linkedin-maxwell-zeisler",
+      "label": "Maxwell Zeisler on LinkedIn",
+      "href": "https://www.linkedin.com/in/maxwell-zeisler123/",
+      "type": "linkedin",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "testimonial-maxwell-zeisler"
+      ],
+      "notes": "Exact LinkedIn URL from src/testimonialsData.js. Offer only for this speaker's testimonial or a direct request for their LinkedIn. Do not dump into unrelated answers. Does not imply the speaker endorses every MarkAI answer."
+    },
+    {
+      "id": "link-linkedin-andrew-wochner",
+      "label": "Andrew Wochner on LinkedIn",
+      "href": "https://www.linkedin.com/in/andrew-wochner/",
+      "type": "linkedin",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "testimonial-andrew-wochner"
+      ],
+      "notes": "Exact LinkedIn URL from src/testimonialsData.js. Offer only for this speaker's testimonial or a direct request for their LinkedIn. Do not dump into unrelated answers. Does not imply the speaker endorses every MarkAI answer."
+    },
+    {
+      "id": "link-github-finch",
+      "label": "Finch Robot Web Controller repository",
+      "href": "https://github.com/markyoingco/BirdVroomVroom",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-finch-web-controller",
+        "contribution-finch-frontend-controller"
+      ],
+      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (finch-controller.github). Repository name is BirdVroomVroom. Forked because the original repository was not owned by Mark; disclose fork/ownership when repository ownership is relevant. Team coursework project - do not imply sole ownership."
+    },
+    {
+      "id": "link-github-os-c-docs",
+      "label": "Operating Systems C Projects documentation repository",
+      "href": "https://github.com/markyoingco/operating-systems-c-projects",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-operating-systems-c"
+      ],
+      "notes": "Exact public documentation URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (operating-systems-c.github). XINU shared and solo course repositories must never be added."
+    },
+    {
+      "id": "link-github-apple-picker",
+      "label": "Apple Picker repository",
+      "href": "https://github.com/markyoingco/apple-picker-unity",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-apple-picker"
+      ],
+      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (apple-picker.github)."
+    },
+    {
+      "id": "link-github-mission-demolition",
+      "label": "Mission Demolition repository",
+      "href": "https://github.com/markyoingco/mission-demolition-unity",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-mission-demolition"
+      ],
+      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (mission-demolition.github)."
+    },
+    {
+      "id": "link-github-space-shmup",
+      "label": "Space SHMUP repository",
+      "href": "https://github.com/markyoingco/space-shmup-unity",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-space-shmup"
+      ],
+      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (space-shmup.github)."
+    },
+    {
+      "id": "link-github-sleep-efficiency",
+      "label": "Sleep Efficiency Analysis repository",
+      "href": "https://github.com/markyoingco/sleep-efficiency-analysis",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-sleep-efficiency-analysis"
+      ],
+      "notes": "Exact URL from PortfolioApp.jsx and terminalPortfolioProjectData.js (sleep-analysis.github). Team coursework project - do not imply sole ownership."
+    },
+    {
+      "id": "link-github-marquette-basketball-predictor",
+      "label": "Marquette Basketball Predictor repository",
+      "href": "https://github.com/markyoingco/marquette-basketball-predictor-2024",
+      "type": "github-repo",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "projects"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [
+        "project-marquette-basketball-predictor"
+      ],
+      "notes": "Exact URL already displayed in PortfolioApp.jsx website field and terminalPortfolioProjectData.js. Team Data Mining project - do not imply sole ownership."
+    },
+    {
+      "id": "link-fmsc-libertyville",
+      "label": "Feed My Starving Children (Libertyville)",
+      "href": "https://www.fmsc.org/locations/libertyville-il",
+      "type": "external-org",
+      "public": true,
+      "enabled": true,
+      "allowedContexts": [
+        "answer",
+        "navigation"
+      ],
+      "external": true,
+      "opensNewTab": true,
+      "disclosure": "always",
+      "relatedRecordIds": [],
+      "notes": "Public FMSC location page used by the Webpage Service card and Terminal fmsc.link. No private organization, member, schedule, or address details beyond this public page."
+    }
+  ]
+}

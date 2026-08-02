@@ -23,7 +23,7 @@ import {
   PORTFOLIO_ROOT_UNKNOWN_COMMAND_HINT,
   getTerminalPortfolioLsLines,
   isContactFolder,
-  isProfileFolder,
+  isPersonalFolder,
   isResumeFolder,
   isTestimonialsFolder,
   isTestimonialPersonFolder,
@@ -31,14 +31,14 @@ import {
   isTerminalFolderSlug,
   MARKAI_CD_TARGETS,
   parseContactFileCommand,
-  parseProfileFileCommand,
+  parsePersonalFileCommand,
   parseResumeFileCommand,
   parseTestimonialsRootCommand,
   parseTestimonialPersonCommand,
   parseTestimonialsDeepOpenCommand,
   parseTravelFileCommand,
   CONTACT_UNKNOWN_COMMAND_HINT,
-  PROFILE_UNKNOWN_COMMAND_HINT,
+  PERSONAL_UNKNOWN_COMMAND_HINT,
   TESTIMONIALS_ROOT_UNKNOWN_COMMAND_HINT,
   TRAVEL_UNKNOWN_COMMAND_HINT,
   RESUME_PDF_FILENAME,
@@ -47,6 +47,8 @@ import {
   TERMINAL_CATEGORY_SLUGS,
   VSCO_GALLERY_URL,
 } from './terminalPortfolioData'
+import MarkAIChat from './markai/MarkAIChat'
+import { parsePublicOpenAliasCommand } from './publicOpenAliases'
 import {
   buildContactFormConfirmErrorOutput,
   buildContactFormErrorOutput,
@@ -168,6 +170,13 @@ function parseCommand(rawInput, { mode, portfolioPath }) {
       return { type: 'clearOutput' }
     }
     return { type: 'output', lines: ['Terminal cleared.'] }
+  }
+
+  if (mode === MODES.TERMINAL_PORTFOLIO) {
+    const publicOpenAlias = parsePublicOpenAliasCommand(lower)
+    if (publicOpenAlias) {
+      return publicOpenAlias
+    }
   }
 
   if (lower === 'ls') {
@@ -374,15 +383,15 @@ function parseCommand(rawInput, { mode, portfolioPath }) {
     }
   }
 
-  if (mode === MODES.TERMINAL_PORTFOLIO && isProfileFolder(portfolioPath)) {
-    const profileResult = parseProfileFileCommand(lower)
-    if (profileResult) {
-      return profileResult
+  if (mode === MODES.TERMINAL_PORTFOLIO && isPersonalFolder(portfolioPath)) {
+    const personalResult = parsePersonalFileCommand(lower)
+    if (personalResult) {
+      return personalResult
     }
 
     return {
       type: 'output',
-      lines: [PROFILE_UNKNOWN_COMMAND_HINT],
+      lines: [PERSONAL_UNKNOWN_COMMAND_HINT],
     }
   }
 
@@ -457,13 +466,13 @@ const MODE_PICKER_OPTIONS = [
     id: 'markai',
     title: 'MarkAI',
     description:
-      'Coming soon — AI-guided exploration of my resume, projects, skills, experience, and professional background.',
+      'Live conversational portfolio assistant grounded in Mark’s approved information.',
   },
   {
     id: 'terminal',
     title: 'Terminal',
     description:
-      'Deeper command-line exploration of my professional profile, projects, skills, and technical experience.',
+      'Deeper command-line exploration with personal files, mindset, goals, and detailed project context.',
   },
 ]
 
@@ -963,6 +972,18 @@ function TerminalLanding({
       return
     }
 
+    if (result.type === 'openWebpageScreen') {
+      appendEntry(trimmed, result.lines ?? [], currentPrompt)
+      onEnterWebpageScreen(result.screen || 'home')
+      return
+    }
+
+    if (result.type === 'openMarkAi') {
+      appendEntry(trimmed, result.lines ?? [], currentPrompt)
+      handlePickMarkAi()
+      return
+    }
+
     if (result.type === 'downloadResumePdf') {
       const link = document.createElement('a')
       link.href = RESUME_PDF_PATH
@@ -1201,48 +1222,7 @@ function TerminalLanding({
       }}
     >
       {showMarkAi ? (
-          <div className="markai-card">
-            <header className="markai-card__titlebar">
-              <div className="terminal-card__dots" aria-hidden="true">
-                <span className="terminal-card__dot" />
-                <span className="terminal-card__dot" />
-                <span className="terminal-card__dot" />
-              </div>
-              <span className="markai-card__label">MarkAI</span>
-            </header>
-
-            <div className="markai-card__body">
-              <p className="markai-card__subtitle">AI portfolio assistant coming soon.</p>
-
-              <div className="markai-messages" role="log" aria-live="polite">
-                <div className="markai-message">
-                  <p className="markai-message__lead">MarkAI is coming soon.</p>
-                  <p className="markai-message__body">
-                    This will become an AI portfolio assistant that answers questions about
-                    Mark&apos;s resume, projects, skills, experience, career direction, and
-                    professional background.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <footer className="markai-card__footer">
-              <label className="markai-input-wrap" htmlFor="markai-input">
-                <input
-                  id="markai-input"
-                  className="markai-input"
-                  type="text"
-                  placeholder="Ask MarkAI anything about Mark..."
-                  disabled
-                  aria-disabled="true"
-                  aria-describedby="markai-input-status"
-                />
-                <span id="markai-input-status" className="markai-input__badge">
-                  Coming soon
-                </span>
-              </label>
-            </footer>
-          </div>
+        <MarkAIChat />
       ) : (
       <div className="terminal-stage">
       <div className={terminalCardClassName} ref={terminalCardRef}>

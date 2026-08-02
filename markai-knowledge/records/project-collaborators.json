@@ -1,0 +1,452 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "collaborators-abacus-core-team",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Abacus core student team",
+      "publicText": "The core student team for Abacus included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. These names are approved only for factual project-team answers. Do not invent roles, leadership claims, equal-contribution claims, quotations, contact information, or private repository details for teammates.",
+      "shortText": "Abacus core student team: Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.",
+      "aliases": [
+        "Abacus team",
+        "Abacus teammates",
+        "who was on Abacus"
+      ],
+      "keywords": [
+        "abacus",
+        "team",
+        "collaborators",
+        "teammates",
+        "Justin Hoffman",
+        "Angel Mora",
+        "Jacob DunRoseman"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A Abacus collaborator names",
+          "claimScope": "Supports the four core student names for Abacus team questions only. Does not support contact data, roles beyond core-student membership, or performance claims.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-collaborators.json",
+        "markai-knowledge/records/projects.json"
+      ],
+      "projectIds": [
+        "project-abacus"
+      ],
+      "relatedRecordIds": [
+        "project-abacus"
+      ],
+      "linkIds": [
+        "link-github-abacus"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "who was on the Abacus team",
+        "who worked on Abacus",
+        "Abacus collaborators"
+      ],
+      "prohibitedUses": [
+        "invent teammate roles",
+        "invent leadership claims",
+        "invent quotations",
+        "contact information",
+        "social profiles",
+        "private repositories",
+        "testimonials",
+        "personality analysis of collaborators",
+        "add names to Webpage or Terminal"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only. Do not add these names to Webpage, Terminal, resume, portfolio cards, or testimonials."
+    },
+    {
+      "id": "collaborators-maat-core-team",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "TA-Bot / MAAT core student team",
+      "publicText": "The core student team for TA-Bot / MAAT included Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman. These names are approved only for factual project-team answers. Do not invent roles, leadership claims, equal-contribution claims, quotations, contact information, or private repository details for teammates.",
+      "shortText": "TA-Bot / MAAT core student team: Mark Yoingco, Justin Hoffman, Angel Mora, and Jacob DunRoseman.",
+      "aliases": [
+        "MAAT team",
+        "TA-Bot team",
+        "who worked on TA-Bot",
+        "who helped with MAAT"
+      ],
+      "keywords": [
+        "maat",
+        "ta-bot",
+        "tabot",
+        "team",
+        "collaborators",
+        "Justin Hoffman",
+        "Angel Mora",
+        "Jacob DunRoseman"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A MAAT collaborator names",
+          "claimScope": "Supports the four core student names for TA-Bot / MAAT team questions only.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-collaborators.json",
+        "markai-knowledge/records/projects.json"
+      ],
+      "projectIds": [
+        "project-maat"
+      ],
+      "relatedRecordIds": [
+        "project-maat"
+      ],
+      "linkIds": [
+        "link-github-maat"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "who worked on TA-Bot",
+        "who helped with MAAT",
+        "MAAT collaborators"
+      ],
+      "prohibitedUses": [
+        "invent teammate roles",
+        "invent leadership claims",
+        "invent quotations",
+        "contact information",
+        "social profiles",
+        "private repositories",
+        "testimonials",
+        "personality analysis of collaborators",
+        "add names to Webpage or Terminal"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only. Same core student names as Abacus; keep project context clear in answers."
+    },
+    {
+      "id": "collaborators-finch-team",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Finch Web Controller team",
+      "publicText": "The Finch Web Controller team included Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth. These names are approved only for factual project-team answers. Do not invent roles, leadership claims, quotations, contact information, or private repository details.",
+      "shortText": "Finch Web Controller team: Mark Yoingco, Julianne Browne, Luis Serrano, and Xavier Barth.",
+      "aliases": [
+        "Finch team",
+        "Finch teammates",
+        "who was on Finch"
+      ],
+      "keywords": [
+        "finch",
+        "team",
+        "collaborators",
+        "Julianne Browne",
+        "Luis Serrano",
+        "Xavier Barth"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A Finch collaborator names",
+          "claimScope": "Supports the four approved Finch team names for team questions only.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-collaborators.json",
+        "markai-knowledge/records/additional-projects.json"
+      ],
+      "projectIds": [
+        "project-finch-web-controller"
+      ],
+      "relatedRecordIds": [
+        "project-finch-web-controller"
+      ],
+      "linkIds": [
+        "link-github-finch"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "who was on Mark’s Finch team",
+        "who worked on Finch",
+        "Finch collaborators"
+      ],
+      "prohibitedUses": [
+        "invent teammate roles",
+        "invent leadership claims",
+        "invent quotations",
+        "contact information",
+        "private repositories",
+        "add names to Webpage or Terminal"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only collaborator record."
+    },
+    {
+      "id": "collaborators-data-mining-team",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Data Mining Game Predictor team",
+      "publicText": "The Data Mining Game Predictor project team included Mark Yoingco and Allan Akkathara. These names are approved only for factual project-team answers. Do not invent roles, quotations, contact information, or private repository details.",
+      "shortText": "Data Mining Game Predictor team: Mark Yoingco and Allan Akkathara.",
+      "aliases": [
+        "data mining team",
+        "basketball predictor team",
+        "Allan Akkathara"
+      ],
+      "keywords": [
+        "data mining",
+        "basketball predictor",
+        "Allan Akkathara",
+        "collaborators",
+        "team"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A data-mining collaborator names",
+          "claimScope": "Supports Mark Yoingco and Allan Akkathara for data-mining team questions only.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-collaborators.json",
+        "markai-knowledge/records/additional-projects.json"
+      ],
+      "projectIds": [
+        "project-marquette-basketball-predictor"
+      ],
+      "relatedRecordIds": [
+        "project-marquette-basketball-predictor"
+      ],
+      "linkIds": [
+        "link-github-marquette-basketball-predictor"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "who worked with Mark on data mining",
+        "data mining collaborators",
+        "basketball predictor team"
+      ],
+      "prohibitedUses": [
+        "invent roles",
+        "invent quotations",
+        "contact information",
+        "private repositories",
+        "add names to Webpage or Terminal"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only collaborator record for the Marquette Basketball Predictor / data-mining project."
+    },
+    {
+      "id": "collaborators-operating-systems-team",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Operating Systems C Projects collaborators",
+      "publicText": "For Operating Systems C Projects, approved collaborator names are Mark Yoingco and Armaan Yaz. These names are approved only for factual project-team answers. Do not expose private or shared course repository names or URLs, and do not invent roles, quotations, or contact information.",
+      "shortText": "Operating Systems C Projects collaborators: Mark Yoingco and Armaan Yaz.",
+      "aliases": [
+        "operating systems team",
+        "OS collaborators",
+        "Armaan Yaz"
+      ],
+      "keywords": [
+        "operating systems",
+        "Armaan Yaz",
+        "collaborators",
+        "team",
+        "C projects"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A operating-systems collaborator names",
+          "claimScope": "Supports Mark Yoingco and Armaan Yaz for operating-systems collaborator questions only. Private/shared XINU repositories remain hidden.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-collaborators.json",
+        "markai-knowledge/records/additional-projects.json"
+      ],
+      "projectIds": [
+        "project-operating-systems-c"
+      ],
+      "relatedRecordIds": [
+        "project-operating-systems-c"
+      ],
+      "linkIds": [
+        "link-github-os-c-docs"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "who worked with Mark in operating systems",
+        "OS collaborators"
+      ],
+      "prohibitedUses": [
+        "expose private or shared XINU repository names or URLs",
+        "invent roles",
+        "invent quotations",
+        "contact information",
+        "add names to Webpage or Terminal"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only. Keep private/shared course repositories hidden."
+    },
+    {
+      "id": "collaborators-sleep-analysis-team",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Sleep Efficiency Analysis collaborators",
+      "publicText": "For the data science Sleep Efficiency Analysis project, approved collaborator names are Mark Yoingco and Hunter Carlson. These names are approved only for factual project-team answers. Do not invent roles, quotations, contact information, or private repository details.",
+      "shortText": "Sleep Efficiency Analysis collaborators: Mark Yoingco and Hunter Carlson.",
+      "aliases": [
+        "sleep analysis team",
+        "data science team",
+        "Hunter Carlson"
+      ],
+      "keywords": [
+        "sleep",
+        "data science",
+        "Hunter Carlson",
+        "collaborators",
+        "team"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "mark-approved",
+          "label": "Mark-approved Phase 3A sleep-analysis collaborator names",
+          "claimScope": "Supports Mark Yoingco and Hunter Carlson for sleep-analysis / data-science project team questions only.",
+          "markApprovedOn": "2026-07-30"
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-collaborators.json",
+        "markai-knowledge/records/additional-projects.json"
+      ],
+      "projectIds": [
+        "project-sleep-efficiency-analysis"
+      ],
+      "relatedRecordIds": [
+        "project-sleep-efficiency-analysis"
+      ],
+      "linkIds": [
+        "link-github-sleep-efficiency"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "who worked with Mark on the data science project",
+        "sleep analysis collaborators"
+      ],
+      "prohibitedUses": [
+        "invent roles",
+        "invent quotations",
+        "contact information",
+        "medical claims about sleep data subjects",
+        "add names to Webpage or Terminal"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only collaborator record."
+    },
+    {
+      "id": "collaborators-public-inventory",
+      "category": "projects",
+      "recordType": "project-collaborators",
+      "title": "Approved project collaborator inventory",
+      "publicText": "Mark’s approved project collaborators, grouped by project: Abacus - Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman. TA-Bot / MAAT - Mark Yoingco, Justin Hoffman, Angel Mora, Jacob DunRoseman. Finch Web Controller - Mark Yoingco, Julianne Browne, Luis Serrano, Xavier Barth. Data Mining Game Predictor - Mark Yoingco, Allan Akkathara. Operating Systems C Projects - Mark Yoingco, Armaan Yaz. Sleep Efficiency Analysis - Mark Yoingco, Hunter Carlson. Use only the names relevant to the requested project. Do not invent roles for teammates, contact information, quotations, or private repositories.",
+      "shortText": "Grouped MarkAI-only collaborator inventory across Abacus, MAAT, Finch, data mining, operating systems, and sleep analysis.",
+      "aliases": [
+        "project collaborators",
+        "who has Mark worked with",
+        "list collaborators"
+      ],
+      "keywords": [
+        "collaborators",
+        "teammates",
+        "who worked with Mark",
+        "project team",
+        "list collaborators"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "derived-summary",
+          "label": "Grouped summary of Mark-approved collaborator records",
+          "sourcePath": "markai-knowledge/records/project-collaborators.json",
+          "claimScope": "Summarizes only the collaborator names approved in related collaborator records."
+        }
+      ],
+      "sourceFiles": [
+        "markai-knowledge/records/project-collaborators.json"
+      ],
+      "projectIds": [
+        "project-abacus",
+        "project-maat",
+        "project-finch-web-controller",
+        "project-marquette-basketball-predictor",
+        "project-operating-systems-c",
+        "project-sleep-efficiency-analysis"
+      ],
+      "relatedRecordIds": [],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "list Mark’s project collaborators",
+        "who has Mark worked with"
+      ],
+      "prohibitedUses": [
+        "dump contact information",
+        "invent roles for core teammates",
+        "invent quotations",
+        "private repositories",
+        "add names to Webpage or Terminal"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "MarkAI-only inventory for broad collaborator questions. Keep relatedRecordIds empty to avoid cascading every project deep dive."
+    }
+  ]
+}

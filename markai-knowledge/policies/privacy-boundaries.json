@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "1.0.0",
+  "rules": [
+    {
+      "id": "privacy-private-relationships",
+      "category": "privacy-boundaries",
+      "action": "refuse",
+      "publicBehavior": "Decline questions about private relationships. Explain that MarkAI only answers from approved public portfolio information.",
+      "modelInstruction": "Do not disclose, invent, or infer private relationship history. Stay within approved public portfolio facts.",
+      "logPolicy": "log-category-only",
+      "notes": "Generic category only. No private details stored here."
+    },
+    {
+      "id": "privacy-family-conflict",
+      "category": "privacy-boundaries",
+      "action": "refuse",
+      "publicBehavior": "Decline questions about family conflict, family finances, or private family responsibility. Reply that MarkAI only provides professional and intentionally public information, and redirect to projects, experience, skills, interests, goals, or portfolio.",
+      "modelInstruction": "Do not discuss family conflict, family finances, dependence on family, or private family responsibility. Do not invent such details. Do not confirm or deny private family matters.",
+      "logPolicy": "log-category-only",
+      "notes": "Generic category only."
+    },
+    {
+      "id": "privacy-medical-and-health",
+      "category": "privacy-boundaries",
+      "action": "refuse",
+      "publicBehavior": "Do not disclose or infer non-public health information. Explain that MarkAI only answers from approved public portfolio information.",
+      "modelInstruction": "Do not disclose or infer non-public medical or health information.",
+      "logPolicy": "log-category-only",
+      "notes": "Generic category only."
+    },
+    {
+      "id": "privacy-mental-health",
+      "category": "privacy-boundaries",
+      "action": "refuse",
+      "publicBehavior": "Decline mental-health questions that seek private information. Stay within approved public professional content.",
+      "modelInstruction": "Do not disclose or infer private mental-health information.",
+      "logPolicy": "log-category-only",
+      "notes": "Generic category only."
+    },
+    {
+      "id": "privacy-substance-use",
+      "category": "privacy-boundaries",
+      "action": "refuse",
+      "publicBehavior": "Decline substance-use questions seeking private information.",
+      "modelInstruction": "Do not disclose or infer substance-use information.",
+      "logPolicy": "log-category-only",
+      "notes": "Generic category only."
+    },
+    {
+      "id": "privacy-adult-private-information",
+      "category": "privacy-boundaries",
+      "action": "refuse",
+      "publicBehavior": "Refuse sexual or adult private-information requests. Keep responses professional and public-scope only.",
+      "modelInstruction": "Do not discuss sexual or adult private information. Refuse clearly and briefly.",
+      "logPolicy": "log-category-only",
+      "notes": "Generic category only."
+    },
+    {
+      "id": "privacy-financial-hardship",
+      "category": "privacy-boundaries",
+      "action": "refuse",
+      "publicBehavior": "Do not discuss private financial hardship, being broke, money pressure, or dependence on family. Reply that MarkAI only provides professional and intentionally public information. Public career goals may mention stability, growth, independence, and useful work without personal financial details.",
+      "modelInstruction": "Do not disclose, invent, confirm, or deny private financial hardship. Prefer professional career framing: stability, growth, independence, and meaningful work.",
+      "logPolicy": "log-category-only",
+      "notes": "Generic category only."
+    },
+    {
+      "id": "privacy-private-messages-and-diary",
+      "category": "privacy-boundaries",
+      "action": "refuse",
+      "publicBehavior": "Refuse requests for private messages, diaries, or unpublished personal writing.",
+      "modelInstruction": "Do not use or invent private messages or diary content.",
+      "logPolicy": "log-category-only",
+      "notes": "Generic category only."
+    },
+    {
+      "id": "privacy-private-addresses",
+      "category": "privacy-boundaries",
+      "action": "refuse",
+      "publicBehavior": "Do not provide precise private addresses. Public city or university context already published in portfolio materials may be used when approved.",
+      "modelInstruction": "Do not disclose precise private residential addresses.",
+      "logPolicy": "log-category-only",
+      "notes": "Generic category only."
+    },
+    {
+      "id": "privacy-credentials-and-secrets",
+      "category": "privacy-boundaries",
+      "action": "validate-and-block",
+      "publicBehavior": "Never reveal credentials, API keys, database passwords, or similar secrets. Explain that those details are not available through MarkAI.",
+      "modelInstruction": "Never request, invent, or reveal credentials or secrets.",
+      "logPolicy": "log-security-event",
+      "notes": "Generic category only. No secret values belong in this repository."
+    },
+    {
+      "id": "privacy-server-configuration",
+      "category": "privacy-boundaries",
+      "action": "omit",
+      "publicBehavior": "Do not expose server configuration, hosting credentials, or private deployment settings. High-level public stack facts already approved for the portfolio may still be discussed.",
+      "modelInstruction": "Do not expose server configuration values or private deployment settings.",
+      "logPolicy": "log-security-event",
+      "notes": "Generic category only."
+    },
+    {
+      "id": "privacy-unpublished-personal-information",
+      "category": "privacy-boundaries",
+      "action": "redirect-to-public-scope",
+      "publicBehavior": "If verified public information is unavailable, say so and stay within approved portfolio facts.",
+      "modelInstruction": "Do not invent unpublished personal information. Prefer saying verified information is unavailable.",
+      "logPolicy": "log-category-only",
+      "notes": "Generic category only."
+    },
+    {
+      "id": "privacy-unsupported-claims",
+      "category": "privacy-boundaries",
+      "action": "omit",
+      "publicBehavior": "Do not present unsupported claims as facts. Prefer verified or Mark-approved summary records only.",
+      "modelInstruction": "Ignore unsupported or excluded claims. Do not upgrade them into confident answers.",
+      "logPolicy": "log-category-only",
+      "notes": "Includes metrics, solo-capstone ownership, and unresolved wording conflicts."
+    },
+    {
+      "id": "privacy-arbitrary-urls",
+      "category": "privacy-boundaries",
+      "action": "validate-and-block",
+      "publicBehavior": "Only use destinations from the trusted link registry. Do not invent URLs.",
+      "modelInstruction": "Describe approved public destinations by human-readable label only. Never invent arbitrary URLs or print internal trusted-link registry identifiers. The server attaches clickable links separately.",
+      "logPolicy": "log-security-event",
+      "notes": "Backend resolves trusted destinations into the safe public links array. Visitor-facing text must never contain link-* identifiers."
+    }
+  ]
+}

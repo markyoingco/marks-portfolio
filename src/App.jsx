@@ -11,7 +11,7 @@ import {
   createMarkAiEntry,
   createModePickerSnapshot,
   DEFAULT_WEBPAGE,
-  getRouteFromHash,
+  parseNavFromHash,
   snapshotsEqual,
   syncSessionFromSnapshot,
 } from './appNavigation'
@@ -82,6 +82,9 @@ export default function App() {
 
     skipPopRef.current = true
     window.history.pushState(state, '', url)
+    queueMicrotask(() => {
+      skipPopRef.current = false
+    })
   }, [])
 
   const navigateTo = useCallback(
@@ -153,17 +156,47 @@ export default function App() {
         return
       }
 
-      const route = getRouteFromHash()
+      const nav = parseNavFromHash()
       setSnapshot((current) => {
         const next = cloneSnapshot(current)
-        next.route = route
+        next.route = nav.route
+        if (nav.route === 'webpage') {
+          next.webpage = { ...next.webpage, screen: nav.screen }
+        }
+        syncSessionFromSnapshot(next)
+        return next
+      })
+    }
+
+    const onHashChange = () => {
+      if (skipPopRef.current) {
+        skipPopRef.current = false
+        return
+      }
+      const nav = parseNavFromHash()
+      setSnapshot((current) => {
+        const next = cloneSnapshot(current)
+        next.route = nav.route
+        if (nav.route === 'webpage') {
+          next.webpage = { ...next.webpage, ...DEFAULT_WEBPAGE, screen: nav.screen }
+        } else {
+          next.terminal = {
+            ...next.terminal,
+            showModePicker: false,
+            showMarkAi: false,
+          }
+        }
         syncSessionFromSnapshot(next)
         return next
       })
     }
 
     window.addEventListener('popstate', onPopState)
-    return () => window.removeEventListener('popstate', onPopState)
+    window.addEventListener('hashchange', onHashChange)
+    return () => {
+      window.removeEventListener('popstate', onPopState)
+      window.removeEventListener('hashchange', onHashChange)
+    }
   }, [pushHistoryState])
 
   const navigateWebpage = useCallback(
@@ -250,9 +283,9 @@ export default function App() {
     navigateTo((current) => createFreshTerminalEntry(current))
   }, [navigateTo])
 
-  const enterTerminalProfile = useCallback(() => {
+  const enterTerminalPersonal = useCallback(() => {
     navigateTo((current) =>
-      createFreshTerminalEntry(current, { enterRootFolder: 'profile' }),
+      createFreshTerminalEntry(current, { enterRootFolder: 'personal' }),
     )
   }, [navigateTo])
 
@@ -282,7 +315,7 @@ export default function App() {
             onWebpageNavigate={navigateWebpage}
             onReturnToMainMenu={returnToMainMenu}
             onEnterTerminal={enterTerminalFresh}
-            onEnterTerminalProfile={enterTerminalProfile}
+            onEnterTerminalPersonal={enterTerminalPersonal}
             onEnterMarkAi={enterMarkAi}
           />
         </div>

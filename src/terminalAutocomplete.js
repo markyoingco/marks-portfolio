@@ -16,18 +16,19 @@ import {
   CONTACT_FOLDER_FILES,
   isNestedPortfolioProjectFolder,
   isContactFolder,
-  isProfileFolder,
+  isPersonalFolder,
   isPortfolioCategoryFolder,
   isPortfolioRoot,
   isResumeFolder,
   isTestimonialsFolder,
   isTestimonialPersonFolder,
   isTravelFolder,
-  PROFILE_FOLDER_FILES,
+  PERSONAL_FOLDER_FILES,
   RESUME_FOLDER_FILES,
   TRAVEL_FOLDER_FILES,
   TERMINAL_CATEGORY_SLUGS,
 } from './terminalPortfolioData'
+import { PUBLIC_OPEN_ALIAS_KEYS } from './publicOpenAliases'
 
 const LANDING_COMMANDS = ['ls', 'back', 'cd webpage', 'cd terminal', 'cd markai', 'cd main']
 
@@ -93,7 +94,7 @@ export function getTerminalAutocompleteCandidates({
       commands: ROOT_COMMANDS,
       cdTargets: ROOT_CD_TARGETS,
       catTargets: [],
-      openTargets: getTestimonialDeepOpenWebpageTargets(),
+      openTargets: [...PUBLIC_OPEN_ALIAS_KEYS, ...getTestimonialDeepOpenWebpageTargets()],
       downloadTargets: [],
     }
   }
@@ -114,11 +115,11 @@ export function getTerminalAutocompleteCandidates({
     }
   }
 
-  if (isProfileFolder(portfolioPath)) {
+  if (isPersonalFolder(portfolioPath)) {
     return {
       commands: FOLDER_COMMANDS,
       cdTargets: ['..'],
-      ...filesToActionTargets(PROFILE_FOLDER_FILES),
+      ...filesToActionTargets(PERSONAL_FOLDER_FILES),
     }
   }
 

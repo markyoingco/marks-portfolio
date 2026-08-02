@@ -1,0 +1,701 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "interest-fitness-bodybuilding",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Fitness and Bodybuilding",
+      "publicText": "Fitness and bodybuilding are major interests for Mark outside technology. Training represents consistency, patience, detail, structure, and progress earned over time. Bodybuilding also influences how he approaches design and technical work through symmetry, structure, control, refinement, and repetition. Fitness is part of his personal discipline and self-development, not a claim of professional coaching or medical expertise.",
+      "shortText": "Fitness and bodybuilding as discipline, structure, patience, and progress that also shape Mark’s design and technical habits.",
+      "aliases": [
+        "fitness",
+        "bodybuilding",
+        "training",
+        "gym"
+      ],
+      "keywords": [
+        "fitness",
+        "bodybuilding",
+        "discipline",
+        "consistency",
+        "training",
+        "public interest"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Beyond Work fitness and bodybuilding copy",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports fitness as a central public interest and bodybuilding framed as discipline, creativity, structure, and attention to detail."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal profile interests fitness wording",
+          "sourcePath": "src/terminalProfileFileOutput.js",
+          "claimScope": "Supports fitness as a strongest interest and consistency, patience, and progress-over-time framing."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalProfileFileOutput.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "membership-marquette-powerlifting-club",
+        "interest-discipline-growth-controlled-strength"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "public interests",
+        "fitness",
+        "bodybuilding",
+        "casual personality questions",
+        "beyond-work background"
+      ],
+      "prohibitedUses": [
+        "professional coaching claims",
+        "certified-trainer claims",
+        "medical advice",
+        "health diagnosis",
+        "private physique or health information",
+        "converting the interest into employment experience"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Public interest only. Separate from paid employment and technical skill records. Do not treat fitness as professional expertise."
+    },
+    {
+      "id": "membership-marquette-powerlifting-club",
+      "category": "public-interests",
+      "recordType": "organization-membership",
+      "title": "Marquette Powerlifting Club",
+      "publicText": "Mark joined Marquette Powerlifting Club to improve, compete, and meet people. With support and help from the club, he won his first powerlifting meet.",
+      "shortText": "Marquette Powerlifting Club member who won his first powerlifting meet with support from the club.",
+      "aliases": [
+        "Powerlifting Club",
+        "Marquette Powerlifting",
+        "powerlifting"
+      ],
+      "keywords": [
+        "powerlifting",
+        "Marquette",
+        "club",
+        "membership",
+        "competition",
+        "fitness"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal resume lists Marquette Powerlifting Club",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports Marquette Powerlifting Club listing under leadership and involvement. Does not prove officer role, meet name, date, weight class, placing, or score."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation during Phase 1F-D.2 planning",
+          "claimScope": "Mark confirmed he joined to improve, compete, and meet people, and that with support and help from the club he won his first powerlifting meet. No meet name, date, weight class, placing, total, or record was authorized.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/terminalFileOutput.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-fitness-bodybuilding"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "campus involvement",
+        "public fitness interest",
+        "organization membership",
+        "full involvement history"
+      ],
+      "prohibitedUses": [
+        "officer claims",
+        "coaching claims",
+        "professional powerlifting claims",
+        "invented meet name, date, weight class, placing, score, or record",
+        "medical or injury discussion",
+        "treat as paid employment"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Organization membership and public fitness interest. Membership purpose and first-meet result are Mark-approved. Do not invent meet details. Category public-interests is used because this is public fitness involvement rather than paid work."
+    },
+    {
+      "id": "interest-travel-photography",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Travel Photography",
+      "publicText": "Mark enjoys travel photography with a dark, low-exposure, cinematic style. He uses photography to document cities, landscapes, travel, architecture, museums, people, and meaningful moments. He prefers images that feel personal, real, cinematic, and story-driven.",
+      "shortText": "Personal cinematic travel photography focused on cities, landscapes, atmosphere, and story.",
+      "aliases": [
+        "photography",
+        "travel photography",
+        "VSCO",
+        "cinematic photography"
+      ],
+      "keywords": [
+        "photography",
+        "travel",
+        "cinematic",
+        "VSCO",
+        "museums",
+        "atmosphere",
+        "composition"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Beyond Work and Travel photography copy",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports travel photography interest, darker cinematic style, and VSCO invitation for more pictures."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal travel photography wording",
+          "sourcePath": "src/terminalTravelFileOutput.js",
+          "claimScope": "Supports photography focused on travel, lifestyle, growth, cities, landscapes, museums, people, and small details."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal profile photography and VSCO wording",
+          "sourcePath": "src/terminalProfileFileOutput.js",
+          "claimScope": "Supports photography interest and public VSCO gallery reference."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalTravelFileOutput.js",
+        "src/terminalProfileFileOutput.js",
+        "src/blogPhotosData.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-creative-aesthetics-design",
+        "interest-music-reading-hiking"
+      ],
+      "linkIds": [
+        "link-vsco"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "photography questions",
+        "travel interest",
+        "public interests",
+        "creative background",
+        "casual personality questions"
+      ],
+      "prohibitedUses": [
+        "professional-photographer claims",
+        "current-location inference",
+        "private travel schedules",
+        "precise private-location disclosure",
+        "ownership claims over photographs not presented as Mark’s work"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Personal, travel-focused, cinematic, dark or low-exposure, storytelling-focused photography. The approved VSCO trusted link may be offered when photography is directly relevant or requested. Do not infer current location from travel photos."
+    },
+    {
+      "id": "interest-music-reading-hiking",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Music, Reading, and Hiking",
+      "publicText": "Outside technology and fitness, Mark enjoys music, reading, hiking, travel, photography, running, and Greek mythology and classical art. These interests give him space to think, stay active, and keep a broader perspective outside software work.",
+      "shortText": "Hobbies include music, reading, hiking, travel, photography, running, and classical art interests.",
+      "aliases": [
+        "music",
+        "reading",
+        "hiking",
+        "hobbies"
+      ],
+      "keywords": [
+        "music",
+        "reading",
+        "hiking",
+        "hobbies",
+        "public interests"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Beyond Work interests list",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports public enjoyment of hiking, reading, music, travel, and photography."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal profile interests list",
+          "sourcePath": "src/terminalProfileFileOutput.js",
+          "claimScope": "Supports photography, travel, music, reading, and hiking as public interests."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalProfileFileOutput.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-travel-photography",
+        "interest-fitness-bodybuilding"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "public interests",
+        "casual personality questions",
+        "beyond-work background"
+      ],
+      "prohibitedUses": [
+        "invent favorite artists",
+        "invent favorite books",
+        "invent specific hiking achievements",
+        "claim professional expertise in music, literature, or outdoor guiding"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Broad public interests only. Do not invent favorites or accomplishments beyond the portfolio wording."
+    },
+    {
+      "id": "interest-greek-mythology-art",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Greek Mythology, Statues, Museums, and Art",
+      "publicText": "Mark is strongly interested in Greek mythology, classical statues, and the symbolism behind mythological figures. He is drawn to themes such as ambition, discipline, strength, consequence, sacrifice, limits, resilience, and human imperfection. Achilles, Icarus, and Heracles may be discussed as figures whose stories connect to those themes. Greek-statue and architectural imagery also influenced the cinematic visual direction of his portfolio. No single figure is his absolute identity or favorite by default.",
+      "shortText": "Interest in Greek mythology, classical statues, and themes of ambition, discipline, consequence, and resilience.",
+      "aliases": [
+        "Greek mythology",
+        "Achilles",
+        "Heracles",
+        "Icarus",
+        "museums",
+        "statues"
+      ],
+      "keywords": [
+        "greek mythology",
+        "art",
+        "museums",
+        "achilles",
+        "heracles",
+        "icarus",
+        "visual storytelling"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal profile Greek mythology interest",
+          "sourcePath": "src/terminalProfileFileOutput.js",
+          "claimScope": "Supports interest in Greek mythology and sculpture, especially stories about ambition, discipline, strength, and consequence."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Travel photography museum and visual atmosphere wording",
+          "sourcePath": "src/terminalTravelFileOutput.js",
+          "claimScope": "Supports museums and visual storytelling as part of Mark’s public photography interest."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation during Phase 1F-D.2 planning",
+          "claimScope": "Mark confirmed Achilles may represent intensity and drive, Heracles disciplined strength and development, and Icarus ambition and the need for control. No single figure is Mark’s complete identity.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/terminalProfileFileOutput.js",
+        "src/terminalTravelFileOutput.js",
+        "src/PortfolioApp.jsx"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-discipline-growth-controlled-strength",
+        "interest-creative-aesthetics-design"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "public interests",
+        "creative direction questions",
+        "casual personality questions",
+        "visual art interest"
+      ],
+      "prohibitedUses": [
+        "psychological diagnosis",
+        "religious inference",
+        "literal comparison claiming Mark is a mythological figure",
+        "private struggle narratives",
+        "copied external mythology commentary without approval"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "No single mythological figure should be presented as Mark’s complete identity. Achilles may represent intensity and drive. Heracles may represent disciplined strength and development. Icarus may represent ambition and the need for control."
+    },
+    {
+      "id": "interest-creative-aesthetics-design",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Creative Aesthetics and Design",
+      "publicText": "Mark’s favorite color is black. He prefers black, white, and gray visual palettes and likes minimal, cinematic, serious, high-contrast design. He dislikes corny, overly decorative, or empty motivational presentation, and prefers writing that feels clean, direct, mature, and confident. This aesthetic appears across his portfolio, photography, interface work, and merchandise design.",
+      "shortText": "Favorite color black; prefers minimal black/white/gray cinematic design and clean, mature writing.",
+      "aliases": [
+        "creative aesthetics",
+        "visual design",
+        "cinematic aesthetics",
+        "merchandise design",
+        "favorite color",
+        "black"
+      ],
+      "keywords": [
+        "aesthetics",
+        "design",
+        "cinematic",
+        "black",
+        "minimal",
+        "high-contrast",
+        "organization",
+        "portfolio",
+        "photography",
+        "merchandise"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Beyond Work and Travel aesthetic framing",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports darker cinematic photography style and design-minded attention to detail connected to bodybuilding and visual work."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Sigma Chi merchandise creative framing",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports merchandise ideas and design work as a creative interest connected to Sigma Chi leadership."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal travel and profile visual wording",
+          "sourcePath": "src/terminalTravelFileOutput.js",
+          "claimScope": "Supports cinematic, personal, atmosphere-focused visual storytelling."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalTravelFileOutput.js",
+        "src/terminalProfileFileOutput.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "interest-travel-photography",
+        "leadership-sigma-chi-risk-merchandise",
+        "interest-discipline-growth-controlled-strength"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "creative interest",
+        "design sensibility",
+        "portfolio aesthetic questions",
+        "favorite color",
+        "visual style",
+        "casual personality questions"
+      ],
+      "prohibitedUses": [
+        "claim professional design employment unless supported by a separate approved record",
+        "claim professional photography employment",
+        "overstate merchandise design as a full design career"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Creative interest across portfolio, photography, interface work, and merchandise design. Do not claim professional design employment unless separately approved."
+    },
+    {
+      "id": "interest-discipline-growth-controlled-strength",
+      "category": "public-interests",
+      "recordType": "public-interest",
+      "title": "Discipline, Growth, and Controlled Strength",
+      "publicText": "Mark is drawn to discipline, growth, controlled strength, responsibility, ownership, resilience, and action over talk. He believes consistency lasts longer than intensity, steady progress beats temporary intensity, and ambition needs direction. Public goals include building a stable career, growing professionally, becoming more independent, continuing to improve technically, and creating useful work. Fitness reinforces patience and control, while software projects reinforce communication, humility, ownership, and turning ideas into useful experiences. He aims to come across as confident without sounding arrogant, and prefers direct practical communication over empty motivational language.",
+      "shortText": "Public values centered on discipline, ownership, resilience, useful work, stable growth, and controlled confidence.",
+      "aliases": [
+        "mindset",
+        "discipline",
+        "controlled strength",
+        "ambition with direction",
+        "public values"
+      ],
+      "keywords": [
+        "discipline",
+        "growth",
+        "consistency",
+        "ambition",
+        "controlled strength",
+        "action over talk",
+        "purpose"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Beyond Work discipline and consistency framing",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports public fitness and bodybuilding themes of consistency, patience, attention to detail, and progress over time."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal profile work-style and interest values",
+          "sourcePath": "src/terminalProfileFileOutput.js",
+          "claimScope": "Supports consistency, ownership, practical problem solving, and Greek-mythology themes of ambition, discipline, strength, and consequence."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation during Phase 1F-D.2 planning",
+          "claimScope": "Mark approved the public-safe mindset summary centered on discipline, growth, controlled strength, action over talk, consistency over intensity, ambition with direction, and progress through discomfort. Private diary, struggle, and external-quotation material remain excluded.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalProfileFileOutput.js",
+        "markai-knowledge/records/profile-education-career.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "work-style-practical-collaborative-growth",
+        "interest-fitness-bodybuilding",
+        "interest-greek-mythology-art"
+      ],
+      "linkIds": [],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "mindset questions",
+        "motivation questions",
+        "values questions",
+        "discipline",
+        "growth",
+        "fitness meaning",
+        "ambition",
+        "creative direction",
+        "long-term goals",
+        "personality outside technology"
+      ],
+      "prohibitedUses": [
+        "diary-like writing",
+        "private relationship material",
+        "medical history",
+        "mental-health details",
+        "addiction or substance information",
+        "sexual or adult private content",
+        "financial hardship",
+        "appearance insecurity",
+        "copied YouTube transcripts",
+        "copied David Goggins or other external quotations",
+        "rapper imitation",
+        "forced slang",
+        "corny motivational speeches",
+        "use mindset language in every answer"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-28",
+      "notes": "Public-safe mindset only. Approved tone is mature, direct, quietly confident, restrained intensity, and earned rather than announced. Use only when the visitor asks about mindset, motivation, values, discipline, growth, fitness, ambition, creative direction, long-term goals, or personality outside technology. Do not duplicate or replace work-style-practical-collaborative-growth."
+    },
+    {
+      "id": "contact-preferred-methods",
+      "category": "contact",
+      "recordType": "contact-behavior",
+      "title": "Preferred Contact Methods",
+      "publicText": "The preferred public contact method is the portfolio Contact page. LinkedIn may be offered for professional contact or networking when relevant. GitHub may be offered for code, repositories, and technical work when relevant or requested. The résumé may be offered for recruiter, qualifications, or work-history questions. VSCO may be offered for photography-related requests. Raw email remains disabled for MarkAI answers. Phone remains absent. Only approved public destinations may be offered through the safe clickable links response, and contact information must never be invented. Never print internal link identifiers.",
+      "shortText": "Contact page is default; LinkedIn, GitHub, résumé, and VSCO may be offered only when relevant. Email and phone stay unavailable.",
+      "aliases": [
+        "contact",
+        "how to contact Mark",
+        "email",
+        "reach out"
+      ],
+      "keywords": [
+        "contact",
+        "linkedin",
+        "github",
+        "resume",
+        "vsco",
+        "portfolio"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage Contact screen and social links",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Contact page, GitHub, LinkedIn, résumé, and VSCO as public contact or related destinations."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal contact folder destinations",
+          "sourcePath": "src/terminalFileOutput.js",
+          "claimScope": "Supports Terminal contact destinations for portfolio, GitHub, LinkedIn, and related public paths."
+        },
+        {
+          "kind": "mark-approved",
+          "label": "Mark confirmation during Phase 1F-D.2 planning",
+          "claimScope": "Mark confirmed Contact page as default, relevant-only LinkedIn/GitHub/résumé/VSCO offering, raw email disabled, phone absent, and trusted-link-only behavior.",
+          "markApprovedOn": "2026-07-28"
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/terminalFileOutput.js",
+        "src/resumeDocument.js",
+        "markai-knowledge/links/trusted-links.json"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "navigation-portfolio-modes"
+      ],
+      "linkIds": [
+        "link-contact-section",
+        "link-linkedin",
+        "link-github-profile",
+        "link-resume-pdf",
+        "link-vsco"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "contact questions",
+        "recruiter contact",
+        "networking",
+        "resume requests",
+        "photography link requests"
+      ],
+      "prohibitedUses": [
+        "return raw email",
+        "return phone number",
+        "copy raw Gmail from Terminal error text",
+        "invent contact information",
+        "dump all contact links into unrelated answers"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "Uses the approved Contact, LinkedIn, GitHub profile, résumé, and VSCO trusted links. Raw email remains disabled for MarkAI answers, and phone remains absent."
+    },
+    {
+      "id": "navigation-portfolio-modes",
+      "category": "navigation",
+      "recordType": "navigation",
+      "title": "Portfolio Modes and Sections",
+      "publicText": "The portfolio currently includes live Webpage, Terminal, and MarkAI experiences. The Webpage includes home, about, portfolio, testimonials, travel, and contact areas. Visitors can switch modes from the Main Menu or with commands such as cd webpage, cd terminal, and cd markai. Actual routing remains a frontend responsibility. This record is for answering navigation questions, not performing navigation.",
+      "shortText": "Webpage, Terminal, and MarkAI are live. Webpage sections include home, about, portfolio, testimonials, travel, and contact.",
+      "aliases": [
+        "navigation",
+        "portfolio modes",
+        "Webpage",
+        "Terminal",
+        "MarkAI",
+        "Main Menu"
+      ],
+      "keywords": [
+        "navigation",
+        "webpage",
+        "terminal",
+        "markai",
+        "main menu",
+        "portfolio sections"
+      ],
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "portfolio-text",
+          "label": "Webpage screen list and Main Menu",
+          "sourcePath": "src/PortfolioApp.jsx",
+          "claimScope": "Supports Webpage screens: home, about, portfolio, testimonials, travel, and contact."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Terminal landing mode switching",
+          "sourcePath": "src/TerminalLanding.jsx",
+          "claimScope": "Supports Webpage, Terminal, and MarkAI mode switching."
+        },
+        {
+          "kind": "portfolio-text",
+          "label": "Portfolio platform live MarkAI framing",
+          "sourcePath": "src/portfolioPlatformData.js",
+          "claimScope": "Supports MarkAI as a live third portfolio experience."
+        }
+      ],
+      "sourceFiles": [
+        "src/PortfolioApp.jsx",
+        "src/TerminalLanding.jsx",
+        "src/App.jsx",
+        "src/portfolioPlatformData.js"
+      ],
+      "projectIds": [],
+      "relatedRecordIds": [
+        "contact-preferred-methods",
+        "project-portfolio-platform",
+        "project-markai"
+      ],
+      "linkIds": [
+        "link-portfolio-home",
+        "link-contact-section"
+      ],
+      "visibility": {
+        "answerable": true,
+        "exportPublic": true,
+        "modelVisible": true
+      },
+      "answerUses": [
+        "navigation questions",
+        "how to use the portfolio",
+        "Webpage versus Terminal",
+        "MarkAI status"
+      ],
+      "prohibitedUses": [
+        "claim MarkAI can perform site navigation itself",
+        "invent routes or hashes that are not public",
+        "claim MarkAI can answer literally anything"
+      ],
+      "reviewedByMark": true,
+      "lastReviewed": "2026-07-30",
+      "notes": "Actual routing remains a frontend responsibility. MarkAI may describe navigation using approved wording only. Webpage, Terminal, and MarkAI are live."
+    }
+  ]
+}
