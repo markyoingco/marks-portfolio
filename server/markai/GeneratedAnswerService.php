@@ -6,6 +6,9 @@ require_once __DIR__ . '/ProviderConfiguration.php';
 require_once __DIR__ . '/CloudflareWorkersAiProvider.php';
 require_once __DIR__ . '/ProviderResponseValidator.php';
 require_once __DIR__ . '/LanguageModelProvider.php';
+require_once __DIR__ . '/ProviderResult.php';
+require_once __DIR__ . '/ProviderOwnerDiagnostics.php';
+require_once __DIR__ . '/MarkAiUserFacingStatus.php';
 
 /**
  * Generated-answer orchestration helpers: privacy pre-filter, optional provider
@@ -217,12 +220,12 @@ final class GeneratedAnswerService
         array $configuration,
         ?callable $transport = null
     ): array {
-        require_once __DIR__ . '/MarkAiUserFacingStatus.php';
-
         if (!markai_provider_configuration_is_usable($configuration)) {
             return [
                 'accepted' => false,
                 'errorCode' => MarkAiUserFacingStatus::CODE_PROVIDER_DISABLED,
+                'ownerCategory' => 'invalid_configuration',
+                'httpStatus' => null,
             ];
         }
 
@@ -234,9 +237,25 @@ final class GeneratedAnswerService
 
         $result = $this->provider->generate($messages, $settings, $configuration, $transport);
         if (!$result->isSuccess()) {
+            $category = (string) ($result->getErrorCategory() ?? 'unknown_transport_error');
+            $httpStatus = self::extractHttpStatus($result);
+            $publicCode = MarkAiUserFacingStatus::fromProviderCategory($category);
+            ProviderOwnerDiagnostics::record([
+                'event' => 'provider_attempt_failed',
+                'category' => $category,
+                'publicErrorCode' => $publicCode,
+                'runtimeStatus' => 'ready',
+                'httpStatus' => $httpStatus,
+                'model' => $result->getModelName(),
+                'provider' => $result->getProviderName(),
+                'fallbackUsed' => true,
+            ]);
+
             return [
                 'accepted' => false,
-                'errorCode' => MarkAiUserFacingStatus::fromProviderCategory($result->getErrorCategory()),
+                'errorCode' => $publicCode,
+                'ownerCategory' => $category,
+                'httpStatus' => $httpStatus,
             ];
         }
 
@@ -245,9 +264,22 @@ final class GeneratedAnswerService
             'finish_reason' => $result->getFinishReason(),
         ]);
         if ($validation['accepted'] !== true) {
+            ProviderOwnerDiagnostics::record([
+                'event' => 'provider_validator_rejected',
+                'category' => 'unsafe_answer',
+                'publicErrorCode' => MarkAiUserFacingStatus::CODE_PROVIDER_UNAVAILABLE,
+                'runtimeStatus' => 'ready',
+                'model' => $result->getModelName(),
+                'provider' => $result->getProviderName(),
+                'fallbackUsed' => true,
+                'validationReason' => (string) ($validation['reason'] ?? 'unknown_validation_failure'),
+            ]);
+
             return [
                 'accepted' => false,
                 'errorCode' => MarkAiUserFacingStatus::CODE_PROVIDER_UNAVAILABLE,
+                'ownerCategory' => 'unsafe_answer',
+                'httpStatus' => null,
             ];
         }
 
@@ -256,7 +288,23 @@ final class GeneratedAnswerService
             'answer' => trim($answer),
             'provider' => $result->getProviderName(),
             'model' => $result->getModelName(),
+            'ownerCategory' => null,
+            'httpStatus' => null,
         ];
+    }
+
+    private static function extractHttpStatus(ProviderResult $result): ?int
+    {
+        $raw = $result->getRawPayloadForTests();
+        if (!is_array($raw)) {
+            return null;
+        }
+        if (!isset($raw['status']) || !is_numeric($raw['status'])) {
+            return null;
+        }
+        $status = (int) $raw['status'];
+
+        return ($status >= 100 && $status <= 599) ? $status : null;
     }
 
     public function getValidator(): ProviderResponseValidator

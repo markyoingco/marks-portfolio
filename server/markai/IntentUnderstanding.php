@@ -100,7 +100,7 @@ function markai_intent_normalize(string $question): string
                             }
                         }
                         // Approved topic words that are safe to fuzzy-correct toward.
-                        foreach (['goals', 'hobbies', 'projects', 'experience', 'favorite', 'movies', 'music', 'artists', 'personality', 'resume', 'repository', 'collaborators', 'photography', 'testimonials', 'education', 'mindset', 'fitness', 'bodybuilding', 'mythology', 'travel', 'traveled', 'github', 'skills', 'color'] as $token) {
+                        foreach (['goals', 'hobbies', 'projects', 'experience', 'favorite', 'movies', 'music', 'artists', 'personality', 'resume', 'repository', 'collaborators', 'photography', 'testimonials', 'education', 'mindset', 'fitness', 'bodybuilding', 'mythology', 'travel', 'traveled', 'github', 'skills', 'color', 'strongest', 'represents', 'technology', 'abacus'] as $token) {
                             $fuzzyTargets[$token] = true;
                         }
 

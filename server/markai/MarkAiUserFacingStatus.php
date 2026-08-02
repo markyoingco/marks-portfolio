@@ -95,19 +95,43 @@ final class MarkAiUserFacingStatus
 
     /**
      * Map provider failure categories to public error codes.
+     *
+     * Public codes stay coarse. Owner-safe diagnostics retain the finer category.
      */
     public static function fromProviderCategory(?string $category): string
     {
         $category = is_string($category) ? strtolower(trim($category)) : '';
 
         return match ($category) {
-            'provider_disabled' => self::CODE_PROVIDER_DISABLED,
+            'provider_disabled',
+            'invalid_configuration',
+            'invalid_model' => self::CODE_PROVIDER_DISABLED,
             'timeout' => self::CODE_PROVIDER_TIMEOUT,
             'transport_unavailable',
+            'curl_unavailable',
             'rate_limited',
             'http_server_error',
-            'unknown_transport_error' => self::CODE_PROVIDER_UNAVAILABLE,
-            'invalid_configuration' => self::CODE_PROVIDER_DISABLED,
+            'dns_failed',
+            'connection_failed',
+            'tls_failed',
+            'unknown_transport_error',
+            'authentication_failed',
+            'not_found',
+            'invalid_endpoint',
+            'empty_response',
+            'invalid_content_type',
+            'invalid_json',
+            'unsupported_schema',
+            'incomplete_response',
+            'provider_success_false',
+            'unrecognized_response',
+            'conflicting_answers',
+            'reasoning_only_output',
+            'tool_only_output',
+            'http_client_error',
+            'payload_too_large',
+            'response_too_large',
+            'unsafe_answer' => self::CODE_PROVIDER_UNAVAILABLE,
             default => self::CODE_PROVIDER_UNAVAILABLE,
         };
     }

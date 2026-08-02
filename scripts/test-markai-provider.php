@@ -3425,6 +3425,142 @@ $assert(str_contains($genAns, '200 - 300') || str_contains($genAns, 'full-stack'
 $assert(count(array_keys($generatedDash)) === 13, 'generated dash fixture API shape unchanged');
 $assert(str_contains(markai_final_answer_contract(), 'Do not use em dashes or en dashes'), 'final-answer contract bans em/en dashes');
 
+// --- Multi-question batching / greeting / improved profile answers ---
+require_once dirname(__DIR__) . '/server/markai/MultiQuestionService.php';
+
+$helloOnly = markai_mock_classify('hello');
+$assert(($helloOnly['category'] ?? '') === 'greeting', 'standalone hello is greeting');
+$assert(str_contains(strtolower((string) ($helloOnly['answer'] ?? '')), 'projects'), 'greeting invites portfolio topics');
+$assert(($helloOnly['category'] ?? '') !== 'personality', 'hello is not personality');
+$assert(($helloOnly['category'] ?? '') !== 'fallback', 'hello is not fallback');
+
+$profileBatch = <<<'TXT'
+hello
+who is Mark Yoingco?
+tell me everything about Mark
+give me a shorter summary
+what makes Mark different?
+how would you describe Mark in three sentences?
+what is Mark most proud of?
+why should someone hire Mark?
+what is Mark like to work with?
+what does Mark care about most?
+TXT;
+$profileMulti = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => $profileBatch],
+    ['enabled' => false],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        throw new RuntimeException('multi profile batch must not transport');
+    }
+);
+$profileAns = (string) ($profileMulti['answer'] ?? '');
+$assert(($profileMulti['answerStatus'] ?? '') === 'answered', 'profile multi answered');
+$assert(substr_count($profileAns, "\n\n1. ") >= 1 || str_contains($profileAns, '1. Who is Mark'), 'profile multi numbered');
+$assert(str_contains($profileAns, '2. '), 'profile multi has second question');
+$assert(str_contains($profileAns, 'Marquette'), 'profile multi mentions Marquette');
+$assert(str_contains($profileAns, 'hire') || str_contains(strtolower($profileAns), 'entry-level'), 'profile multi includes hire answer');
+$assert(!str_contains(strtolower($profileAns), 'live ai generation is temporarily unavailable'), 'single-message body has no repeated fallback note text');
+$assert(($profileMulti['fallbackUsed'] ?? true) === false || ($profileMulti['userNote'] ?? null) === null || ($profileMulti['userNote'] ?? '') === MarkAiUserFacingStatus::FALLBACK_NOTE, 'at most one fallback note field');
+
+$techBatch = "What are Mark’s strongest technical skills?\nWhat type of developer is Mark?\nWhat roles is Mark qualified for?\nIs Mark ready for a full-time software job?";
+$techMulti = markai_mock_classify_many(
+    ['What are Mark’s strongest technical skills?', 'What type of developer is Mark?', 'What roles is Mark qualified for?', 'Is Mark ready for a full-time software job?'],
+    ['What are Mark’s strongest technical skills?', 'What type of developer is Mark?', 'What roles is Mark qualified for?', 'Is Mark ready for a full-time software job?']
+);
+$techAns = (string) ($techMulti['answer'] ?? '');
+$assert(($techMulti['category'] ?? '') === 'multiQuestion', 'tech multi category');
+$assert(str_contains($techAns, 'full-stack') || str_contains($techAns, 'React'), 'tech multi skills evidence');
+$assert(str_contains(strtolower($techAns), 'entry-level'), 'tech multi entry-level framing');
+$assert(str_contains($techAns, '1. ') && str_contains($techAns, '4. '), 'tech multi has distinct numbered answers');
+
+$projectBatchQs = [
+    'What are Mark’s strongest projects?',
+    'Which project best represents Mark?',
+    'What did Mark build by himself?',
+    'Which projects used React, Python, databases, and testing?',
+    'Which projects show leadership?',
+];
+$projectMulti = markai_mock_classify_many($projectBatchQs, $projectBatchQs);
+$projectAns = (string) ($projectMulti['answer'] ?? '');
+$assert(str_contains($projectAns, 'Portfolio') || str_contains($projectAns, 'MarkAI'), 'project multi includes portfolio');
+$assert(str_contains($projectAns, 'Abacus'), 'project multi includes Abacus');
+$assert(str_contains($projectAns, 'Document Manager') || str_contains($projectAns, 'student-manager') || str_contains($projectAns, 'Student Manager') || str_contains(strtolower($projectAns), 'leadership'), 'project multi leadership grounded');
+$assert(!str_contains($projectAns, 'Justin Hoffman as Project Manager') || str_contains($projectAns, 'does not claim Mark was Abacus project manager') || str_contains($projectAns, 'Project Manager roles'), 'project multi does not invent Mark as sole PM');
+
+$mixedQs = ['What are Mark’s skills?', 'Who is Mark dating?', 'What projects has he built?'];
+$mixed = markai_mock_classify_many($mixedQs, $mixedQs);
+$mixedAns = (string) ($mixed['answer'] ?? '');
+$assert(str_contains(strtolower($mixedAns), 'react') || str_contains(strtolower($mixedAns), 'full-stack') || str_contains(strtolower($mixedAns), 'skills'), 'mixed batch answers skills');
+$assert(str_contains(strtolower($mixedAns), 'professional and intentionally public') || str_contains(strtolower($mixedAns), 'dating') === false || str_contains($mixedAns, 'MarkAI only provides'), 'mixed batch refuses dating privately');
+$assert(str_contains($mixedAns, 'Portfolio') || str_contains($mixedAns, 'Abacus') || str_contains($mixedAns, 'projects'), 'mixed batch answers projects');
+$assert(($mixed['answerStatus'] ?? '') === 'answered', 'mixed batch remains answered overall');
+
+$who = markai_mock_classify('Who is Mark Yoingco?');
+$assert(str_contains((string) ($who['answer'] ?? ''), 'Marquette'), 'who-is answer includes Marquette');
+$assert(str_contains(strtolower((string) ($who['answer'] ?? '')), 'markai') || str_contains((string) ($who['answer'] ?? ''), 'portfolio'), 'who-is includes portfolio/MarkAI');
+$assert(!str_contains(strtolower((string) ($who['answer'] ?? '')), 'quiet confidence') || str_contains((string) ($who['answer'] ?? ''), 'Computer Science'), 'who-is is factual not only aesthetic');
+
+$overviewQ = markai_mock_classify('tell me everything about Mark');
+$assert(($overviewQ['category'] ?? '') === 'overview', 'everything about mark is overview');
+$assert(str_contains((string) ($overviewQ['answer'] ?? ''), 'Education') || str_contains((string) ($overviewQ['answer'] ?? ''), 'education') || str_contains((string) ($overviewQ['answer'] ?? ''), 'Strongest projects'), 'overview is structured');
+
+$summaryFollow = markai_mock_classify('give me a shorter summary', [
+    ['role' => 'user', 'content' => 'tell me everything about Mark'],
+    ['role' => 'assistant', 'content' => (string) ($overviewQ['answer'] ?? '')],
+]);
+$assert(($summaryFollow['category'] ?? '') === 'shorterSummary', 'shorter summary follow-up category');
+$assert(strlen((string) ($summaryFollow['answer'] ?? '')) < strlen((string) ($overviewQ['answer'] ?? '')), 'shorter summary is shorter than overview');
+
+$skillsFollow = markai_mock_classify('What are his strongest skills?', [
+    ['role' => 'user', 'content' => 'Who is Mark?'],
+    ['role' => 'assistant', 'content' => (string) ($who['answer'] ?? '')],
+]);
+$assert(($skillsFollow['category'] ?? '') === 'strongestSkills' || ($skillsFollow['category'] ?? '') === 'technologies', 'his strongest skills resolves');
+$assert(str_contains(strtolower((string) ($skillsFollow['answer'] ?? '')), 'full-stack') || str_contains((string) ($skillsFollow['answer'] ?? ''), 'React'), 'his skills answer grounded');
+
+$provesFollow = markai_mock_classify('Which project proves that?', [
+    ['role' => 'user', 'content' => 'What are his strongest skills?'],
+    ['role' => 'assistant', 'content' => (string) ($skillsFollow['answer'] ?? '')],
+]);
+$assert(($provesFollow['category'] ?? '') === 'bestRepresents' || ($provesFollow['category'] ?? '') === 'strongestProjects', 'project proves that uses prior skills context');
+
+$providerUnavailableMulti = handleMarkAiPreviewRequest(
+    $export,
+    ['question' => $techBatch],
+    [
+        'enabled' => true,
+        'accountId' => 'acct_test_multi_provider_fail_ok',
+        'apiToken' => 'token_test_multi_provider_fail_ok_length',
+        'model' => '@cf/openai/gpt-oss-120b',
+    ],
+    static function () use (&$networkCalls): array {
+        $networkCalls++;
+        return [
+            'status' => 503,
+            'body' => '',
+            'headers' => [],
+            'errorCategory' => 'http_server_error',
+        ];
+    }
+);
+$assert(($providerUnavailableMulti['fallbackUsed'] ?? false) === true, 'provider-unavailable multi uses fallback');
+$assert(($providerUnavailableMulti['userNote'] ?? '') === MarkAiUserFacingStatus::FALLBACK_NOTE, 'one fallback note on multi response');
+$assert(str_contains((string) ($providerUnavailableMulti['answer'] ?? ''), '1. '), 'provider-unavailable multi still answers each question');
+
+$splitTen = markai_split_visitor_questions($profileBatch);
+$assert(($splitTen['greetingLead'] ?? false) === true, 'profile batch detects greeting lead');
+$assert(count($splitTen['questions']) === 9, 'profile batch yields nine substantive questions');
+$assert(($splitTen['truncated'] ?? true) === false, 'nine questions are under max');
+
+$tooManyLines = implode("\n", array_map(static fn ($i) => 'What is project number ' . $i . '?', range(1, 12)));
+$splitCap = markai_split_visitor_questions($tooManyLines);
+$assert(count($splitCap['questions']) === MARKAI_MAX_QUESTIONS_PER_MESSAGE, 'caps at max questions');
+$assert(($splitCap['truncated'] ?? false) === true, 'marks truncated when over max');
+$capped = markai_mock_classify_many($splitCap['questions'], $splitCap['displayQuestions'], [], false, true);
+$assert(str_contains((string) ($capped['answer'] ?? ''), 'first ' . MARKAI_MAX_QUESTIONS_PER_MESSAGE), 'truncated note present');
+
 fwrite(STDOUT, "\nAll MarkAI provider / System Message V3 tests passed.\n");
 fwrite(STDOUT, 'local_fixture_transport_invocations=' . $networkCalls . "\n");
 fwrite(STDOUT, "live_network_requests=0\n");

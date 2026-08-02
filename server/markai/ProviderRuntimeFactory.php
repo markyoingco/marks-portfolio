@@ -6,6 +6,7 @@ require_once __DIR__ . '/ProviderConfiguration.php';
 require_once __DIR__ . '/CurlHttpTransport.php';
 require_once __DIR__ . '/HttpTransport.php';
 require_once __DIR__ . '/CloudflareWorkersAiProvider.php';
+require_once __DIR__ . '/ProviderOwnerDiagnostics.php';
 
 /**
  * Build an optional MarkAI provider runtime.
@@ -115,6 +116,64 @@ function markai_read_local_provider_configuration(): ?array
 function markai_provider_local_configuration_path(): string
 {
     return __DIR__ . DIRECTORY_SEPARATOR . 'ProviderConfiguration.local.php';
+}
+
+/**
+ * Safe configuration metadata for owner diagnostics and CLI health checks.
+ * Never returns account IDs, API tokens, or Authorization material.
+ *
+ * @return array{
+ *   localFileReadable: bool,
+ *   enabledFlag: bool,
+ *   accountIdPresent: bool,
+ *   apiTokenPresent: bool,
+ *   containsPlaceholder: bool,
+ *   model: string,
+ *   modelAllowed: bool,
+ *   baseUrlAllowed: bool,
+ *   configurationUsable: bool,
+ *   runtimeStatus: string,
+ *   curlAvailable: bool,
+ *   transportReady: bool
+ * }
+ */
+function markai_provider_safe_configuration_metadata(
+    ?array $configurationOverride = null
+): array {
+    $localPath = markai_provider_local_configuration_path();
+    $localReadable = is_readable($localPath);
+    $raw = is_array($configurationOverride)
+        ? $configurationOverride
+        : markai_read_local_provider_configuration();
+    $configuration = markai_load_provider_configuration(is_array($raw) ? $raw : null);
+
+    $model = trim((string) ($configuration['model'] ?? ''));
+    $baseUrl = trim((string) ($configuration['baseUrl'] ?? ''));
+    $accountId = trim((string) ($configuration['accountId'] ?? ''));
+    $apiToken = trim((string) ($configuration['apiToken'] ?? ''));
+    // Drop secret values immediately after presence checks.
+    $accountPresent = $accountId !== '';
+    $tokenPresent = $apiToken !== '';
+    $containsPlaceholder = markai_provider_configuration_contains_placeholder($configuration);
+    unset($accountId, $apiToken, $raw);
+
+    $runtime = markai_create_provider_runtime($configurationOverride);
+    $curlAvailable = extension_loaded('curl') && function_exists('curl_init');
+
+    return [
+        'localFileReadable' => $localReadable,
+        'enabledFlag' => ($configuration['enabled'] ?? false) === true,
+        'accountIdPresent' => $accountPresent,
+        'apiTokenPresent' => $tokenPresent,
+        'containsPlaceholder' => $containsPlaceholder,
+        'model' => $model,
+        'modelAllowed' => markai_provider_model_is_allowed($configuration),
+        'baseUrlAllowed' => $baseUrl === '' || str_starts_with($baseUrl, 'https://api.cloudflare.com/'),
+        'configurationUsable' => markai_provider_configuration_is_usable($configuration),
+        'runtimeStatus' => (string) ($runtime['status'] ?? 'disabled'),
+        'curlAvailable' => $curlAvailable,
+        'transportReady' => is_callable($runtime['transport'] ?? null),
+    ];
 }
 
 /**

@@ -89,6 +89,10 @@ export function applyIntentTypos(text) {
     'github',
     'skills',
     'color',
+    'strongest',
+    'represents',
+    'technology',
+    'abacus',
   ]) {
     fuzzyTargets.add(token)
   }

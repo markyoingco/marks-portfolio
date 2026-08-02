@@ -176,6 +176,16 @@ $assert(($windowCollab['fallbackUsed'] ?? false) === true, '1b Finch uses determ
 $assert(str_contains((string) ($windowCollab['answer'] ?? ''), 'Luis Serrano') || str_contains((string) ($windowCollab['answer'] ?? ''), 'Finch'), '1b Finch fallback keeps project team');
 $assert(!str_contains((string) ($windowCollab['answer'] ?? ''), 'Farzeen Harunani — Professor of Computer Science'), '1b Finch fallback is not testimonials');
 
+// 1c) Multi-question batch under session-window limit still answers each question once
+$windowMulti = $run($windowLimiter, $sessionA, [
+    'question' => "What are Mark’s strongest skills?\nWhy should someone hire Mark?\nWhat are Mark’s strongest projects?",
+]);
+$assert(($windowMulti['errorCode'] ?? '') === 'session_window_limit', '1c multi batch keeps session_window_limit');
+$assert(($windowMulti['fallbackUsed'] ?? false) === true, '1c multi batch uses deterministic fallback');
+$assert(str_contains((string) ($windowMulti['answer'] ?? ''), '1. '), '1c multi batch numbered answers');
+$assert(str_contains((string) ($windowMulti['userNote'] ?? ''), 'minute') || str_contains((string) ($windowMulti['userNote'] ?? ''), 'tomorrow') || str_contains((string) ($windowMulti['userMessage'] ?? ''), 'short-term'), '1c multi keeps real limit note family');
+$assert(!str_contains((string) ($windowMulti['answer'] ?? ''), MarkAiUserFacingStatus::FALLBACK_NOTE), '1c limit note is not duplicated inside answer body');
+
 // 2) Daily session limit says try again tomorrow
 $dayDir = $makeTempDir();
 $sessionB = bin2hex(random_bytes(32));

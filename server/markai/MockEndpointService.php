@@ -15,6 +15,8 @@ require_once __DIR__ . '/FileUsageLimiter.php';
 require_once __DIR__ . '/UsageLimitResult.php';
 require_once __DIR__ . '/MarkAiUserFacingStatus.php';
 require_once __DIR__ . '/IntentUnderstanding.php';
+require_once __DIR__ . '/MultiQuestionService.php';
+require_once __DIR__ . '/ProviderOwnerDiagnostics.php';
 
 /**
  * Normalize visitor-facing punctuation dashes to spaced ASCII hyphens.
@@ -85,49 +87,101 @@ function handleMarkAiPreviewRequest(
     $service = $generatedAnswerService ?? new GeneratedAnswerService();
     $configuration = markai_load_provider_configuration($providerConfiguration);
     $validated = markai_mock_validate_payload($payload);
+    $split = markai_split_visitor_questions($validated['question']);
+    $isMulti = count($split['questions']) > 1;
+    $isGreetingOnly = ($split['greetingOnly'] ?? false) === true;
+    $isGreetingPlusOne = ($split['greetingLead'] ?? false) === true && count($split['questions']) === 1;
 
-    $privacy = $service->privacyPreFilter($validated['question']);
-    if ($privacy !== null && ($privacy['refuse'] ?? false) === true) {
-        $mode = 'general';
-        $built = buildMarkAiRequest(
-            $export,
-            $validated['question'],
-            $validated['history'],
-            [],
-            $mode
-        );
-        $allowedLinkIds = is_array($built['allowedLinkIds'] ?? null) ? $built['allowedLinkIds'] : [];
-        $links = markai_mock_resolve_links(
-            $export,
-            markai_mock_requested_link_ids('sensitive'),
-            $allowedLinkIds,
-            markai_mock_context_set('sensitive', $mode)
-        );
+    // Whole-message privacy pre-filter only for single-intent messages. Mixed
+    // batches classify each question independently so one private question does
+    // not refuse the safe ones.
+    if (!$isMulti && !$isGreetingOnly && !$isGreetingPlusOne) {
+        $privacy = $service->privacyPreFilter($validated['question']);
+        if ($privacy !== null && ($privacy['refuse'] ?? false) === true) {
+            $mode = 'general';
+            $built = buildMarkAiRequest(
+                $export,
+                $validated['question'],
+                $validated['history'],
+                [],
+                $mode
+            );
+            $allowedLinkIds = is_array($built['allowedLinkIds'] ?? null) ? $built['allowedLinkIds'] : [];
+            $links = markai_mock_resolve_links(
+                $export,
+                markai_mock_requested_link_ids('sensitive'),
+                $allowedLinkIds,
+                markai_mock_context_set('sensitive', $mode)
+            );
 
-        return MarkAiUserFacingStatus::attach([
-            'success' => true,
-            'answer' => markai_normalize_public_punctuation((string) $privacy['answer']),
-            'answerStatus' => 'refused',
-            'links' => $links,
-            'mode' => $mode,
-            'conversationId' => 'preview',
-            'preview' => true,
-            'error' => null,
-        ]);
+            return MarkAiUserFacingStatus::attach([
+                'success' => true,
+                'answer' => markai_normalize_public_punctuation((string) $privacy['answer']),
+                'answerStatus' => 'refused',
+                'links' => $links,
+                'mode' => $mode,
+                'conversationId' => 'preview',
+                'preview' => true,
+                'error' => null,
+            ]);
+        }
     }
 
-    $classified = markai_mock_classify($validated['question'], $validated['history']);
+    if ($isGreetingOnly) {
+        $classified = markai_mock_classify('hello', $validated['history']);
+    } elseif ($isMulti) {
+        $classified = markai_mock_classify_many(
+            $split['questions'],
+            $split['displayQuestions'],
+            $validated['history'],
+            ($split['greetingLead'] ?? false) === true,
+            ($split['truncated'] ?? false) === true
+        );
+    } elseif ($isGreetingPlusOne) {
+        $single = markai_mock_classify($split['questions'][0], $validated['history']);
+        $classified = [
+            'category' => $single['category'],
+            'mode' => $single['mode'],
+            'answer' => 'Hi — ' . ltrim((string) $single['answer']),
+            'answerStatus' => $single['answerStatus'],
+        ];
+    } else {
+        $questionForClassify = $split['questions'][0] ?? $validated['question'];
+        $classified = markai_mock_classify($questionForClassify, $validated['history']);
+    }
 
     $mode = $classified['mode'];
     if ($classified['category'] === 'sensitive') {
         $mode = 'general';
     } elseif ($validated['mode'] !== null && $classified['category'] !== 'sensitive') {
-        // Deterministic category mapping remains authoritative for preview answers.
         $mode = $classified['mode'];
     }
 
     $selectedRecordIds = markai_mock_select_record_ids($export, $classified['category']);
+    if ($classified['category'] === 'multiQuestion' && isset($classified['categories']) && is_array($classified['categories'])) {
+        $selectedRecordIds = [];
+        foreach ($classified['categories'] as $subCategory) {
+            foreach (markai_mock_select_record_ids($export, (string) $subCategory) as $recordId) {
+                $selectedRecordIds[] = $recordId;
+            }
+        }
+        $selectedRecordIds = array_values(array_unique($selectedRecordIds));
+        // PromptBuilder caps non-core selected records; keep multi-question prompts bounded.
+        if (count($selectedRecordIds) > 12) {
+            $selectedRecordIds = array_slice($selectedRecordIds, 0, 12);
+        }
+    }
+
     $requestedLinkIds = markai_mock_requested_link_ids($classified['category']);
+    if ($classified['category'] === 'multiQuestion' && isset($classified['categories']) && is_array($classified['categories'])) {
+        $requestedLinkIds = [];
+        foreach ($classified['categories'] as $subCategory) {
+            foreach (markai_mock_requested_link_ids((string) $subCategory) as $linkId) {
+                $requestedLinkIds[] = $linkId;
+            }
+        }
+        $requestedLinkIds = array_values(array_unique($requestedLinkIds));
+    }
 
     $built = buildMarkAiRequest(
         $export,
@@ -159,7 +213,12 @@ function handleMarkAiPreviewRequest(
     ]);
 
     // Privacy refusals never call the provider and never invent private facts.
-    if (($classified['answerStatus'] ?? '') === 'refused' || ($classified['category'] ?? '') === 'sensitive') {
+    // Multi-question batches may include mixed refused + answered parts and should
+    // still allow provider attempt when any part is safe.
+    if (
+        (($classified['answerStatus'] ?? '') === 'refused' || ($classified['category'] ?? '') === 'sensitive')
+        && ($classified['category'] ?? '') !== 'multiQuestion'
+    ) {
         return $deterministic;
     }
 
@@ -171,6 +230,8 @@ function handleMarkAiPreviewRequest(
         && $anonymousSessionId !== '';
 
     if ($shouldLimit) {
+        // One public visitor message = one usage slot, even when it contains
+        // multiple internal subquestions.
         $permit = $usageLimiter->acquireProviderPermit($anonymousSessionId);
         if (!$permit->isAllowed()) {
             $errorCode = MarkAiUserFacingStatus::fromUsageReason($permit->getReason());
@@ -216,8 +277,6 @@ function handleMarkAiPreviewRequest(
     $hasUsefulFallback = trim((string) ($deterministic['answer'] ?? '')) !== ''
         && ($deterministic['answerStatus'] ?? '') !== 'error';
 
-    // Provider disabled with no usable config is the normal local/preview path:
-    // return deterministic answers without an error note.
     if (
         $providerErrorCode === MarkAiUserFacingStatus::CODE_PROVIDER_DISABLED
         && !$providerUsable
@@ -225,7 +284,25 @@ function handleMarkAiPreviewRequest(
         return $deterministic;
     }
 
+    $ownerCategory = is_string($generated['ownerCategory'] ?? null)
+        ? (string) $generated['ownerCategory']
+        : 'unknown_transport_error';
+    $httpStatus = isset($generated['httpStatus']) && is_int($generated['httpStatus'])
+        ? $generated['httpStatus']
+        : null;
+
     if ($hasUsefulFallback) {
+        ProviderOwnerDiagnostics::record([
+            'event' => 'provider_fallback_served',
+            'category' => $ownerCategory,
+            'publicErrorCode' => $providerErrorCode,
+            'runtimeStatus' => $providerUsable ? 'ready' : 'not_usable',
+            'httpStatus' => $httpStatus,
+            'model' => (string) ($configuration['model'] ?? ''),
+            'provider' => (string) ($configuration['provider'] ?? ''),
+            'fallbackUsed' => true,
+        ]);
+
         return MarkAiUserFacingStatus::attach(
             $deterministic,
             $providerErrorCode,
@@ -235,6 +312,17 @@ function handleMarkAiPreviewRequest(
         );
     }
 
+    ProviderOwnerDiagnostics::record([
+        'event' => 'provider_fallback_served',
+        'category' => $ownerCategory,
+        'publicErrorCode' => $providerErrorCode,
+        'runtimeStatus' => $providerUsable ? 'ready' : 'not_usable',
+        'httpStatus' => $httpStatus,
+        'model' => (string) ($configuration['model'] ?? ''),
+        'provider' => (string) ($configuration['provider'] ?? ''),
+        'fallbackUsed' => false,
+    ]);
+
     return MarkAiUserFacingStatus::attach(
         $deterministic,
         $providerErrorCode,
@@ -242,6 +330,69 @@ function handleMarkAiPreviewRequest(
         false,
         true
     );
+}
+
+/**
+ * Classify several questions independently and combine grounded answers.
+ *
+ * @param list<string> $questions
+ * @param list<string> $displayQuestions
+ * @param list<array{role: string, content: string}> $history
+ * @return array{
+ *   category: string,
+ *   mode: string,
+ *   answer: string,
+ *   answerStatus: string,
+ *   categories?: list<string>
+ * }
+ */
+function markai_mock_classify_many(
+    array $questions,
+    array $displayQuestions,
+    array $history = [],
+    bool $greetingLead = false,
+    bool $truncated = false
+): array {
+    $parts = [];
+    $categories = [];
+    $mode = 'general';
+    $anyAnswered = false;
+    $anyRefused = false;
+
+    foreach ($questions as $index => $question) {
+        $classified = markai_mock_classify((string) $question, $history);
+        $categories[] = (string) ($classified['category'] ?? 'fallback');
+        $status = (string) ($classified['answerStatus'] ?? 'unavailable');
+        if ($status === 'refused' || ($classified['category'] ?? '') === 'sensitive') {
+            $anyRefused = true;
+        } else {
+            $anyAnswered = true;
+        }
+        if (($classified['mode'] ?? '') === 'technical' || ($classified['mode'] ?? '') === 'recruiter') {
+            $mode = (string) $classified['mode'];
+        }
+        $parts[] = [
+            'question' => (string) ($displayQuestions[$index] ?? markai_format_question_heading((string) $question)),
+            'answer' => (string) ($classified['answer'] ?? ''),
+            'category' => (string) ($classified['category'] ?? 'fallback'),
+            'answerStatus' => $status,
+        ];
+    }
+
+    $answerStatus = 'answered';
+    if (!$anyAnswered && $anyRefused) {
+        $answerStatus = 'refused';
+    } elseif (!$anyAnswered) {
+        $answerStatus = 'unavailable';
+    }
+
+    return [
+        'category' => 'multiQuestion',
+        'mode' => $mode,
+        'answer' => markai_format_multi_question_answer($parts, $greetingLead, $truncated),
+        'answerStatus' => $answerStatus,
+        'categories' => $categories,
+    ];
 }
 
 /**
@@ -380,10 +531,26 @@ function markai_mock_validate_payload(array $payload): array
 function markai_mock_classify(string $question, array $history = []): array
 {
     $answers = [
-        'profile' => 'Mark is from Chicago and graduated from Marquette University with a Bachelor of Science in Computer Science. He is seeking his first full-time technology role. His work includes a personal portfolio platform, senior design projects, systems coursework, robotics, data projects, and Unity projects.',
+        'profile' => 'Mark Yoingco is from Chicago and graduated from Marquette University with a B.S. in Computer Science. He builds software and technical projects through a personal portfolio platform with MarkAI, senior-design work such as Abacus and TA-Bot / MAAT, coursework projects like Finch, and related systems, data, and Unity work. He also has student-manager and campus leadership experience. He is seeking an entry-level technology role focused on practical software development and continued growth.',
         'abacus' => 'Abacus was a team senior-design project used for the Wisconsin-Dairyland Programming Competition. Mark’s verified work included Eagle messaging APIs, role-aware chat and inbox behavior, competition workflows, routing and persistence, frontend/backend integration, submission-system support, testing, and UI debugging. The April 15, 2026 event used the platform to support approximately 200 - 300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag.',
-        'technologies' => 'Mark has worked with technologies including JavaScript, TypeScript, Python, Java, R, SQL, C, C#, PHP, React, Vite, Flask, MySQL, Docker, Socket.IO, Linux/WSL, Unity, Figma, Cloudflare Workers AI, and REST-style APIs through coursework and projects.',
-        'individualTeam' => 'Mark built his portfolio platform as an individual project. Abacus, MAAT, Finch, Sleep Efficiency Analysis, and the basketball predictor were team or coursework projects, so their team context should remain clear.',
+        'technologies' => 'Mark’s strongest technical capabilities include full-stack application development, React frontend work, Python/Flask and PHP backend integration, MySQL/SQL database work, REST API and client-server integration, debugging and testing, Git/GitHub collaboration, and technical documentation. Project evidence includes the Portfolio Platform and MarkAI, Abacus, TA-Bot / MAAT, and Finch. Broader tools he has used include JavaScript, TypeScript, Python, Java, R, SQL, C, C#, PHP, React, Vite, Flask, MySQL, Docker, Socket.IO, Linux/WSL, Unity, Figma, and Cloudflare Workers AI.',
+        'strongestSkills' => 'Mark’s strongest technical skills are capability-first: React frontend development, full-stack application development, Python/Flask and PHP backend integration, MySQL and SQL database work, REST API and client-server integration, debugging, testing, and validation, Git/GitHub team workflows, and technical documentation. Evidence includes the Portfolio Platform and MarkAI, Abacus messaging and competition workflows, TA-Bot / MAAT grading and backend integration, and Finch frontend/controller work. Broader technologies he has used may be listed afterward when asked.',
+        'developerType' => 'Mark fits best as an entry-level software, full-stack, or frontend-leaning developer. His project experience also supports developer-tools work, data-oriented applications, QA/testing, and technical or application support roles with a path toward engineering. He is early-career and still growing, with practical project and team experience rather than senior-level depth.',
+        'qualifiedRoles' => 'Based on approved evidence, Mark is a fit for entry-level roles such as software developer, full-stack developer, frontend developer, junior web developer, developer-tools contributor, data-oriented application developer, QA/testing roles, and technical or application support roles with an engineering path. He does not claim internship-heavy or senior engineering experience.',
+        'readyFullTime' => 'Yes - Mark is ready for entry-level full-time software roles. Practical project work, senior-design collaboration, documentation, testing/debugging, and student-manager leadership support that conclusion. He is still early-career and continuing to grow, so MarkAI does not describe him as senior or highly experienced.',
+        'individualTeam' => 'Mark built the Personal Portfolio Platform and MarkAI by himself. Abacus, TA-Bot / MAAT, Finch, Sleep Efficiency Analysis, the basketball predictor, Unity coursework games, and Operating Systems C Projects were team or coursework projects, so their team context should remain clear.',
+        'strongestProjects' => "Mark’s strongest public projects are:\n\n1. Personal Portfolio Platform and MarkAI - independent ownership across design, frontend/backend integration, deployment, and continued iteration.\n2. Abacus - senior-design competition platform work with messaging, workflows, integration, testing, and UI debugging.\n3. TA-Bot / MAAT - senior-design grading, backend integration, database checks, Docker testing, and UI cleanup.\n4. Finch Web Controller - coursework frontend, documentation, and presentation contributions when robotics/UI work is relevant.",
+        'bestRepresents' => 'The Personal Portfolio Platform and MarkAI best represent Mark’s independent ownership because they combine design, React frontend work, backend integration, deployment, privacy-aware AI behavior, testing, iteration, and presentation. Abacus and TA-Bot / MAAT are his strongest team-based software projects and should not be described as solo work.',
+        'projectsByTech' => "By technology focus:\n\n- React / frontend: Personal Portfolio Platform, MarkAI UI, Finch controller screens, Abacus UI debugging.\n- Python / Flask: Finch Flask/Socket.IO flow; related coursework tooling.\n- PHP / MySQL: Portfolio contact backend and MarkAI PHP services; Abacus persistence/integration work.\n- Databases / SQL: Abacus and MAAT data/persistence checks; portfolio contact storage.\n- Testing / debugging: Abacus competition-day stability work, MAAT Docker Compose testing, and ongoing MarkAI validation.",
+        'projectsLeadership' => 'Supported leadership signals include documentation ownership, teammate and stakeholder communication, project planning contributions, student-manager experience, Finch documentation/presentation work, and independent ownership of the portfolio. On Abacus, Mark was Document Manager; Justin Hoffman and Angel Mora held Project Manager roles, and Jacob DunRoseman was Repo Manager. MarkAI does not claim Mark was Abacus project manager.',
+        'whatMakesDifferent' => 'What stands out is that Mark independently built a complete portfolio platform with MarkAI, contributed to two senior-design projects, pairs technical delivery with clear presentation, has student-manager leadership experience, and consistently documents, tests, debugs, and communicates. The pattern is disciplined long-term work rather than empty motivational claims.',
+        'whyHire' => 'Someone should hire Mark for entry-level technology work because he ships practical software projects, independently owns the portfolio platform and MarkAI, contributed to two senior-design projects (Abacus and TA-Bot / MAAT), and consistently invests in debugging, testing, documentation, communication, and teamwork. Student-manager leadership and a clear willingness and ability to learn strengthen the case. MarkAI does not claim internship experience, professional software-engineering employment, senior-level experience, or unsupported business impact.',
+        'workWith' => 'Mark is practical, collaborative, and growth-oriented. He communicates directly, follows through on ownership, documents and debugs carefully, and balances leading when prepared with listening when someone else should lead.',
+        'proudOf' => 'Mark is most proud of turning ideas into working results he can stand behind - especially the portfolio platform and MarkAI, plus meaningful senior-design contributions - and of building that progress through discipline, follow-through, and continued learning.',
+        'threeSentences' => 'Mark Yoingco is a Marquette Computer Science graduate building toward an entry-level technology career. He has shipped a solo portfolio platform with MarkAI and contributed to senior-design and coursework systems such as Abacus, TA-Bot / MAAT, and Finch. He works in a practical, collaborative way with clear communication, ownership, and disciplined follow-through.',
+        'careAboutMost' => 'Mark cares most about meaningful work, earned progress, discipline, usefulness, clear communication, and building things people can actually use. He values consistency, ownership, learning, and professional independence over empty claims.',
+        'greeting' => 'Hi — I’m MarkAI. Ask me about Mark’s projects, technical skills, experience, collaborators, goals, interests, testimonials, or résumé.',
+        'shorterSummary' => 'Mark is a Marquette Computer Science graduate seeking an entry-level technology role. He built a solo portfolio platform with MarkAI and contributed to senior-design and coursework projects such as Abacus, TA-Bot / MAAT, and Finch, with practical, collaborative follow-through.',
         'work' => 'Mark’s public experience includes AV Technician, Information Desk Specialist Manager, Assistant Building Manager, Hollister retail work, and Panda Express Chef/Person in Charge, along with approved campus leadership experience.',
         'contact' => 'The portfolio Contact page is the preferred method. LinkedIn, GitHub, the résumé, and VSCO may also be relevant depending on what a visitor is looking for.',
         'links' => 'Mark’s public portfolio links include his homepage, project contact section, GitHub, LinkedIn, résumé, and VSCO profile.',
@@ -434,7 +601,7 @@ function markai_mock_classify(string $question, array $history = []): array
         'favoriteShow' => 'MarkAI does not currently publish a verified list of Mark’s favorite shows or movie titles.',
         'careerGoals' => 'Mark is working toward a stable technology career built on continued technical growth, meaningful work, stronger software projects, greater independence, and continued discipline and creativity. He remains open to software development, full-stack applications, developer tools, data-oriented systems, technical support, and related entry-level technology paths.',
         'success' => 'For Mark, success means career stability, professional growth, independence, meaningful work, physical discipline, and pride in earned progress. A title alone is not enough; he wants to know he built something useful and followed through.',
-        'overview' => "Mark is a recent Computer Science graduate from Marquette University, from Chicago, seeking an entry-level technology role. His public work includes a personal portfolio platform with MarkAI, senior-design projects such as Abacus and TA-Bot / MAAT, Finch, systems coursework, robotics, data projects, and Unity games. He works in a practical, collaborative, growth-oriented way with quiet confidence, disciplined ambition, creativity, and controlled strength. Career interests include software development, full-stack applications, developer tools, data-oriented systems, and technical support or systems roles. Outside technology, approved interests include fitness and bodybuilding, travel and photography, hiking, reading, music, cities and architecture, museums, Greek mythology, cinematic visual design, and his dog Kobe. His favorite color is black.",
+        'overview' => "Public overview of Mark Yoingco:\n\n- Education: Computer Science graduate from Marquette University; from Chicago.\n- Experience: student-manager and campus leadership roles, plus public AV, information-desk, retail, and related work experience.\n- Strongest projects: Personal Portfolio Platform and MarkAI (solo); Abacus and TA-Bot / MAAT (senior design); Finch when UI/robotics context matters.\n- Technical skills: full-stack/React, Python/Flask and PHP integration, MySQL/SQL, REST APIs, debugging/testing, Git/GitHub, and documentation.\n- Work style: practical, collaborative, ownership-focused, clear communication, disciplined follow-through.\n- Career direction: entry-level software, full-stack, frontend, developer-tools, data-oriented, QA/testing, or technical-support paths.\n- Interests and personality: fitness/bodybuilding, travel/photography, music, museums/mythology, cinematic visual design, and his dog Kobe; quiet confidence with disciplined ambition.\n\nPrivate romantic, medical, and household details are out of scope. Portfolio, GitHub, LinkedIn, and résumé links are available when relevant.",
         'workLocation' => 'Mark is seeking entry-level technology roles and is drawn to city environments that support ambition, architecture, technology, and professional progress. He is from Chicago and remains open to Chicago opportunities and suitable roles as his search evolves. MarkAI does not share a precise current residence or private move logistics.',
         'travelAndWork' => 'Public travel places shown in Mark’s portfolio include Hawaii, Las Vegas, Chicago, California, Lake Louise in Canada, Manila in the Philippines, London, the Amalfi Coast in Italy, Rome in Italy, Milwaukee, and Nashville. For work, he is seeking entry-level technology roles, is drawn to city environments, is from Chicago, and remains open to Chicago opportunities and suitable roles. MarkAI does not share a precise current residence.',
         'funFacts' => "Here are several approved fun facts about Mark:\n\n- Bodybuilding is his strongest interest outside technology.\n- Favorite artists include Drake, Lil Baby, Tory Lanez, The Weeknd, Don Toliver, Travis Scott, and PARTYNEXTDOOR.\n- He likes photography and travel, plus museums and hiking.\n- He is interested in Greek mythology and classical statues and art.\n- His favorite color is black, and he prefers a dark cinematic visual style.\n- Outside work he also enjoys reading, music, and spending time with his dog Kobe.",
@@ -685,6 +852,252 @@ function markai_mock_classify(string $question, array $history = []): array
     }
 
     $text = markai_intent_rewrite_pronouns($text, $history);
+
+    if (markai_is_greeting_phrase($text)) {
+        return [
+            'category' => 'greeting',
+            'mode' => 'casual',
+            'answer' => $answers['greeting'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'shorter summary',
+                'shorter version',
+                'more concise',
+                'brief summary',
+                'tl;dr',
+                'tldr',
+                'summarize that',
+                'summarize this',
+                'give me a shorter summary',
+                'make it shorter',
+    ])) {
+        $prior = markai_last_assistant_answer($history);
+        return [
+            'category' => 'shorterSummary',
+            'mode' => 'general',
+            'answer' => markai_build_shorter_summary($prior, $answers['shorterSummary']),
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'what makes mark different',
+                'what makes him different',
+                'what sets mark apart',
+                'what sets him apart',
+    ])) {
+        return [
+            'category' => 'whatMakesDifferent',
+            'mode' => 'recruiter',
+            'answer' => $answers['whatMakesDifferent'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'why should someone hire mark',
+                'why hire mark',
+                'why should i hire mark',
+                'why hire him',
+                'why would a company hire him',
+                'why would a company hire mark',
+                'what value would mark bring',
+                'what value would he bring',
+                'what makes mark a strong candidate',
+                'what makes him a strong candidate',
+                'strong candidate',
+    ])) {
+        return [
+            'category' => 'whyHire',
+            'mode' => 'recruiter',
+            'answer' => $answers['whyHire'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'what is mark like to work with',
+                'like to work with',
+                'work with mark',
+                'work with him',
+    ])) {
+        return [
+            'category' => 'workWith',
+            'mode' => 'recruiter',
+            'answer' => $answers['workWith'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'most proud of',
+                'what is mark most proud',
+                'what is he most proud',
+    ])) {
+        return [
+            'category' => 'proudOf',
+            'mode' => 'casual',
+            'answer' => $answers['proudOf'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'describe mark in three sentences',
+                'three sentences',
+                'in 3 sentences',
+                'in three sentences',
+    ])) {
+        return [
+            'category' => 'threeSentences',
+            'mode' => 'general',
+            'answer' => $answers['threeSentences'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'what does mark care about most',
+                'care about most',
+                'what does he care about most',
+    ])) {
+        return [
+            'category' => 'careAboutMost',
+            'mode' => 'casual',
+            'answer' => $answers['careAboutMost'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'strongest technical skills',
+                'strongest skills',
+                'what are mark’s strongest',
+                "what are mark's strongest",
+                'what are his strongest skills',
+                'what are marks strongest',
+    ])) {
+        return [
+            'category' => 'strongestSkills',
+            'mode' => 'technical',
+            'answer' => $answers['strongestSkills'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'what type of developer',
+                'what kind of developer',
+                'type of developer is mark',
+                'kind of developer is mark',
+    ])) {
+        return [
+            'category' => 'developerType',
+            'mode' => 'recruiter',
+            'answer' => $answers['developerType'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'what roles is mark qualified',
+                'roles is mark qualified',
+                'qualified for',
+                'what jobs is mark',
+    ])) {
+        return [
+            'category' => 'qualifiedRoles',
+            'mode' => 'recruiter',
+            'answer' => $answers['qualifiedRoles'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'ready for a full-time',
+                'ready for full-time',
+                'ready for a software job',
+                'ready for a full time',
+                'is mark ready for a full-time',
+                'is mark ready for full-time',
+                'is he ready for a full-time',
+    ])) {
+        return [
+            'category' => 'readyFullTime',
+            'mode' => 'recruiter',
+            'answer' => $answers['readyFullTime'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'strongest projects',
+                'what are mark’s strongest projects',
+                "what are mark's strongest projects",
+                'what are his strongest projects',
+    ])) {
+        return [
+            'category' => 'strongestProjects',
+            'mode' => 'technical',
+            'answer' => $answers['strongestProjects'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'which project best represents',
+                'project best represents mark',
+                'best represents mark',
+                'which project represents him best',
+                'which project represents mark best',
+                'what is mark’s best project',
+                "what is mark's best project",
+                'what is marks best project',
+                'strongest project',
+                'best project',
+    ])) {
+        return [
+            'category' => 'bestRepresents',
+            'mode' => 'technical',
+            'answer' => $answers['bestRepresents'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'which projects used',
+                'projects used react',
+                'projects used python',
+                'projects used database',
+                'projects used testing',
+                'which projects show react',
+                'which projects show python',
+                'which projects show databases',
+                'which projects show testing',
+    ])) {
+        return [
+            'category' => 'projectsByTech',
+            'mode' => 'technical',
+            'answer' => $answers['projectsByTech'],
+            'answerStatus' => 'answered',
+        ];
+    }
+
+    if (markai_mock_includes_any($text, [
+                'which projects show leadership',
+                'projects show leadership',
+                'leadership in projects',
+    ])) {
+        return [
+            'category' => 'projectsLeadership',
+            'mode' => 'recruiter',
+            'answer' => $answers['projectsLeadership'],
+            'answerStatus' => 'answered',
+        ];
+    }
 
     $followUp = markai_mock_resolve_followup_from_history($text, $history, $answers);
     if ($followUp !== null) {
@@ -1367,7 +1780,6 @@ function markai_mock_classify(string $question, array $history = []): array
                 'what is marks mindset',
                 'mark’s mindset',
                 "mark's mindset",
-                'what makes mark different',
     ])) {
         return [
             'category' => 'vibe',
@@ -1848,6 +2260,15 @@ function markai_mock_classify(string $question, array $history = []): array
                 'for fun',
                 'outside of technology',
                 'outside technology',
+                'outside tech',
+                'outside of tech',
+                'outside work',
+                'outside of work',
+                'do outside work',
+                'does mark do outside',
+                'personality outside',
+                'outside software',
+                'hobbies and interests',
                 'not coding',
                 'free time',
                 'does mark cook',
@@ -1880,6 +2301,7 @@ function markai_mock_classify(string $question, array $history = []): array
                 "about mark's life",
                 'about marks life',
                 'like outside technology',
+                'like outside tech',
                 'what are mark’s interests',
                 "what are mark's interests",
                 'what are marks interests',
@@ -1912,11 +2334,18 @@ function markai_mock_classify(string $question, array $history = []): array
                 'skills',
                 'programming languages',
                 'tools',
+                'strongest technical skills',
+                'strongest skills',
     ])) {
+        $answer = $answers['technologies'];
+        if (markai_mock_includes_any($text, ['strongest'])) {
+            $answer = $answers['strongestSkills'];
+        }
+
         return [
-            'category' => 'technologies',
+            'category' => markai_mock_includes_any($text, ['strongest']) ? 'strongestSkills' : 'technologies',
             'mode' => 'technical',
-            'answer' => $answers['technologies'],
+            'answer' => $answer,
             'answerStatus' => 'answered',
         ];
     }
@@ -1925,6 +2354,7 @@ function markai_mock_classify(string $question, array $history = []): array
                 'built by himself',
                 'build by himself',
                 'build himself',
+                'what did mark build by himself',
                 'solo',
                 'individual project',
                 'team project',
@@ -2308,6 +2738,33 @@ function markai_mock_resolve_followup_from_history(string $text, array $history,
 
     if ($answers !== [] && markai_mock_is_testimonial_followup_context($text, $history)) {
         return markai_mock_resolve_testimonials_answer($text, $history, $answers);
+    }
+
+    if (
+        markai_mock_includes_any($text, [
+            'which project proves that',
+            'which project proves',
+            'what project proves that',
+            'project proves that',
+        ])
+    ) {
+        $context = markai_intent_history_context($history);
+        if (markai_mock_includes_any($context, ['skill', 'skills', 'technical', 'react', 'python', 'debugging', 'testing', 'full-stack', 'fullstack'])) {
+            return [
+                'category' => 'bestRepresents',
+                'mode' => 'technical',
+                'answer' => (string) ($answers['bestRepresents'] ?? $answers['strongestProjects'] ?? ''),
+                'answerStatus' => 'answered',
+            ];
+        }
+        if ($context !== '') {
+            return [
+                'category' => 'strongestProjects',
+                'mode' => 'technical',
+                'answer' => (string) ($answers['strongestProjects'] ?? ''),
+                'answerStatus' => 'answered',
+            ];
+        }
     }
 
     $normalized = trim($text, " \t\n\r\0\x0B?.!");
@@ -3080,6 +3537,14 @@ function markai_mock_select_record_ids(array $export, string $category): array
         ]);
 
         case 'overview':
+        case 'threeSentences':
+        case 'shorterSummary':
+        case 'whatMakesDifferent':
+        case 'whyHire':
+        case 'workWith':
+        case 'proudOf':
+        case 'careAboutMost':
+        case 'greeting':
         return $pick([
                 'profile-mark-yoingco',
                 'career-direction-first-full-time-tech-role',
@@ -3129,6 +3594,10 @@ function markai_mock_select_record_ids(array $export, string $category): array
         ]);
 
         case 'technologies':
+        case 'strongestSkills':
+        case 'developerType':
+        case 'qualifiedRoles':
+        case 'readyFullTime':
         return $pick([
                 'skill-javascript',
                 'skill-typescript',
@@ -3145,6 +3614,10 @@ function markai_mock_select_record_ids(array $export, string $category): array
         ]);
 
         case 'individualTeam':
+        case 'strongestProjects':
+        case 'bestRepresents':
+        case 'projectsByTech':
+        case 'projectsLeadership':
         return $pick([
                 'project-portfolio-platform',
                 'project-abacus',
@@ -3259,6 +3732,10 @@ function markai_mock_requested_link_ids(string $category): array
         case 'collaboratorsInventory':
         return ['link-portfolio-section'];
         case 'projectsInventory':
+        case 'strongestProjects':
+        case 'bestRepresents':
+        case 'projectsByTech':
+        case 'projectsLeadership':
         return ['link-portfolio-section'];
         case 'noPublicRepo':
         case 'merchSigma':
@@ -3268,10 +3745,18 @@ function markai_mock_requested_link_ids(string $category): array
         case 'individualTeam':
         return ['link-portfolio-section'];
         case 'careerGoals':
+        case 'whyHire':
+        case 'qualifiedRoles':
+        case 'readyFullTime':
+        case 'developerType':
+        case 'whatMakesDifferent':
+        case 'workWith':
         return ['link-resume-pdf', 'link-contact-section'];
         case 'funFacts':
         return ['link-travel-section', 'link-vsco', 'link-portfolio-section'];
         case 'capabilities':
+        case 'greeting':
+        case 'multiQuestion':
         return ['link-portfolio-section', 'link-contact-section'];
         case 'multiTopic':
         return ['link-portfolio-section', 'link-resume-pdf'];
@@ -3282,6 +3767,7 @@ function markai_mock_requested_link_ids(string $category): array
         case 'travelPlaces':
         return ['link-travel-section', 'link-vsco'];
         case 'technologies':
+        case 'strongestSkills':
         return ['link-github-profile'];
         case 'work':
         return ['link-resume-pdf', 'link-linkedin'];
@@ -3319,7 +3805,12 @@ function markai_mock_requested_link_ids(string $category): array
             'link-fmsc-libertyville',
         ];
         case 'profile':
-        return ['link-portfolio-home', 'link-resume-pdf'];
+        case 'overview':
+        case 'threeSentences':
+        case 'shorterSummary':
+        case 'proudOf':
+        case 'careAboutMost':
+        return ['link-portfolio-home', 'link-resume-pdf', 'link-github-profile'];
         case 'status':
         return ['link-portfolio-home'];
         default:
@@ -3349,8 +3840,17 @@ function markai_mock_context_set(string $category, string $mode): array
                 'merchSigma',
                 'fmsc',
                 'technologies',
+                'strongestSkills',
+                'developerType',
+                'qualifiedRoles',
+                'readyFullTime',
                 'individualTeam',
+                'strongestProjects',
+                'bestRepresents',
+                'projectsByTech',
+                'projectsLeadership',
                 'projectsInventory',
+                'multiQuestion',
                 'collaboratorsAbacus',
                 'collaboratorsMaat',
                 'collaboratorsSam',
@@ -3367,6 +3867,15 @@ function markai_mock_context_set(string $category, string $mode): array
                 'contact',
                 'work',
                 'profile',
+                'overview',
+                'greeting',
+                'shorterSummary',
+                'threeSentences',
+                'whatMakesDifferent',
+                'whyHire',
+                'workWith',
+                'proudOf',
+                'careAboutMost',
                 'links',
                 'careerGoals',
                 'familyGoals',

@@ -55,7 +55,20 @@
     "colr": "color",
     "coulour": "color",
     "githib": "github",
-    "reop": "repo"
+    "reop": "repo",
+    "stongest": "strongest",
+    "strongset": "strongest",
+    "rperesnts": "represents",
+    "rperesents": "represents",
+    "repesents": "represents",
+    "represnts": "represents",
+    "abacas": "abacus",
+    "abucus": "abacus",
+    "abacis": "abacus",
+    "techbnoclogy": "technology",
+    "technoclogy": "technology",
+    "tecnology": "technology",
+    "techology": "technology"
   },
   "topicTokens": [
     "goals",

@@ -10,6 +10,14 @@ import {
   matchIntentTopic,
   resolveTopicFollowup,
 } from "./intentUnderstanding.js";
+import {
+  splitVisitorQuestions,
+  formatMultiQuestionAnswer,
+  isGreetingPhrase,
+  buildShorterSummary,
+  lastAssistantAnswer,
+  formatQuestionHeading,
+} from "./multiQuestion.js";
 
 const MOCK_DELAY_MS = 400
 
@@ -25,13 +33,45 @@ export function normalizePublicPunctuation(answer) {
 
 const ANSWERS = {
   profile:
-    "Mark is from Chicago and graduated from Marquette University with a Bachelor of Science in Computer Science. He is seeking his first full-time technology role. His work includes a personal portfolio platform, senior design projects, systems coursework, robotics, data projects, and Unity projects.",
+    "Mark Yoingco is from Chicago and graduated from Marquette University with a B.S. in Computer Science. He builds software and technical projects through a personal portfolio platform with MarkAI, senior-design work such as Abacus and TA-Bot / MAAT, coursework projects like Finch, and related systems, data, and Unity work. He also has student-manager and campus leadership experience. He is seeking an entry-level technology role focused on practical software development and continued growth.",
   abacus:
     "Abacus was a team senior-design project used for the Wisconsin-Dairyland Programming Competition. Mark’s verified work included Eagle messaging APIs, role-aware chat and inbox behavior, competition workflows, routing and persistence, frontend/backend integration, submission-system support, testing, and UI debugging. The April 15, 2026 event used the platform to support approximately 200 - 300 high-school students, teachers, judges, and administrators and ran without major server crashes, platform failures, critical bugs, or major lag.",
   technologies:
-    "Mark has worked with technologies including JavaScript, TypeScript, Python, Java, R, SQL, C, C#, PHP, React, Vite, Flask, MySQL, Docker, Socket.IO, Linux/WSL, Unity, Figma, Cloudflare Workers AI, and REST-style APIs through coursework and projects.",
+    "Mark’s strongest technical capabilities include full-stack application development, React frontend work, Python/Flask and PHP backend integration, MySQL/SQL database work, REST API and client-server integration, debugging and testing, Git/GitHub collaboration, and technical documentation. Project evidence includes the Portfolio Platform and MarkAI, Abacus, TA-Bot / MAAT, and Finch. Broader tools he has used include JavaScript, TypeScript, Python, Java, R, SQL, C, C#, PHP, React, Vite, Flask, MySQL, Docker, Socket.IO, Linux/WSL, Unity, Figma, and Cloudflare Workers AI.",
+  strongestSkills:
+    "Mark’s strongest technical skills are capability-first: React frontend development, full-stack application development, Python/Flask and PHP backend integration, MySQL and SQL database work, REST API and client-server integration, debugging, testing, and validation, Git/GitHub team workflows, and technical documentation. Evidence includes the Portfolio Platform and MarkAI, Abacus messaging and competition workflows, TA-Bot / MAAT grading and backend integration, and Finch frontend/controller work. Broader technologies he has used may be listed afterward when asked.",
+  developerType:
+    "Mark fits best as an entry-level software, full-stack, or frontend-leaning developer. His project experience also supports developer-tools work, data-oriented applications, QA/testing, and technical or application support roles with a path toward engineering. He is early-career and still growing, with practical project and team experience rather than senior-level depth.",
+  qualifiedRoles:
+    "Based on approved evidence, Mark is a fit for entry-level roles such as software developer, full-stack developer, frontend developer, junior web developer, developer-tools contributor, data-oriented application developer, QA/testing roles, and technical or application support roles with an engineering path. He does not claim internship-heavy or senior engineering experience.",
+  readyFullTime:
+    "Yes - Mark is ready for entry-level full-time software roles. Practical project work, senior-design collaboration, documentation, testing/debugging, and student-manager leadership support that conclusion. He is still early-career and continuing to grow, so MarkAI does not describe him as senior or highly experienced.",
   individualTeam:
-    "Mark built his portfolio platform as an individual project. Abacus, MAAT, Finch, Sleep Efficiency Analysis, and the basketball predictor were team or coursework projects, so their team context should remain clear.",
+    "Mark built the Personal Portfolio Platform and MarkAI by himself. Abacus, TA-Bot / MAAT, Finch, Sleep Efficiency Analysis, the basketball predictor, Unity coursework games, and Operating Systems C Projects were team or coursework projects, so their team context should remain clear.",
+  strongestProjects:
+    "Mark’s strongest public projects are:\n\n1. Personal Portfolio Platform and MarkAI - independent ownership across design, frontend/backend integration, deployment, and continued iteration.\n2. Abacus - senior-design competition platform work with messaging, workflows, integration, testing, and UI debugging.\n3. TA-Bot / MAAT - senior-design grading, backend integration, database checks, Docker testing, and UI cleanup.\n4. Finch Web Controller - coursework frontend, documentation, and presentation contributions when robotics/UI work is relevant.",
+  bestRepresents:
+    "The Personal Portfolio Platform and MarkAI best represent Mark’s independent ownership because they combine design, React frontend work, backend integration, deployment, privacy-aware AI behavior, testing, iteration, and presentation. Abacus and TA-Bot / MAAT are his strongest team-based software projects and should not be described as solo work.",
+  projectsByTech:
+    "By technology focus:\n\n- React / frontend: Personal Portfolio Platform, MarkAI UI, Finch controller screens, Abacus UI debugging.\n- Python / Flask: Finch Flask/Socket.IO flow; related coursework tooling.\n- PHP / MySQL: Portfolio contact backend and MarkAI PHP services; Abacus persistence/integration work.\n- Databases / SQL: Abacus and MAAT data/persistence checks; portfolio contact storage.\n- Testing / debugging: Abacus competition-day stability work, MAAT Docker Compose testing, and ongoing MarkAI validation.",
+  projectsLeadership:
+    "Supported leadership signals include documentation ownership, teammate and stakeholder communication, project planning contributions, student-manager experience, Finch documentation/presentation work, and independent ownership of the portfolio. On Abacus, Mark was Document Manager; Justin Hoffman and Angel Mora held Project Manager roles, and Jacob DunRoseman was Repo Manager. MarkAI does not claim Mark was Abacus project manager.",
+  whatMakesDifferent:
+    "What stands out is that Mark independently built a complete portfolio platform with MarkAI, contributed to two senior-design projects, pairs technical delivery with clear presentation, has student-manager leadership experience, and consistently documents, tests, debugs, and communicates. The pattern is disciplined long-term work rather than empty motivational claims.",
+  whyHire:
+    "Someone should hire Mark for entry-level technology work because he ships practical software projects, independently owns the portfolio platform and MarkAI, contributed to two senior-design projects (Abacus and TA-Bot / MAAT), and consistently invests in debugging, testing, documentation, communication, and teamwork. Student-manager leadership and a clear willingness and ability to learn strengthen the case. MarkAI does not claim internship experience, professional software-engineering employment, senior-level experience, or unsupported business impact.",
+  workWith:
+    "Mark is practical, collaborative, and growth-oriented. He communicates directly, follows through on ownership, documents and debugs carefully, and balances leading when prepared with listening when someone else should lead.",
+  proudOf:
+    "Mark is most proud of turning ideas into working results he can stand behind - especially the portfolio platform and MarkAI, plus meaningful senior-design contributions - and of building that progress through discipline, follow-through, and continued learning.",
+  threeSentences:
+    "Mark Yoingco is a Marquette Computer Science graduate building toward an entry-level technology career. He has shipped a solo portfolio platform with MarkAI and contributed to senior-design and coursework systems such as Abacus, TA-Bot / MAAT, and Finch. He works in a practical, collaborative way with clear communication, ownership, and disciplined follow-through.",
+  careAboutMost:
+    "Mark cares most about meaningful work, earned progress, discipline, usefulness, clear communication, and building things people can actually use. He values consistency, ownership, learning, and professional independence over empty claims.",
+  greeting:
+    "Hi — I’m MarkAI. Ask me about Mark’s projects, technical skills, experience, collaborators, goals, interests, testimonials, or résumé.",
+  shorterSummary:
+    "Mark is a Marquette Computer Science graduate seeking an entry-level technology role. He built a solo portfolio platform with MarkAI and contributed to senior-design and coursework projects such as Abacus, TA-Bot / MAAT, and Finch, with practical, collaborative follow-through.",
   work: "Mark’s public experience includes AV Technician, Information Desk Specialist Manager, Assistant Building Manager, Hollister retail work, and Panda Express Chef/Person in Charge, along with approved campus leadership experience.",
   contact:
     "The portfolio Contact page is the preferred method. LinkedIn, GitHub, the résumé, and VSCO may also be relevant depending on what a visitor is looking for.",
@@ -130,7 +170,7 @@ const ANSWERS = {
   success:
     "For Mark, success means career stability, professional growth, independence, meaningful work, physical discipline, and pride in earned progress. A title alone is not enough; he wants to know he built something useful and followed through.",
   overview:
-    "Mark is a recent Computer Science graduate from Marquette University, from Chicago, seeking an entry-level technology role. His public work includes a personal portfolio platform with MarkAI, senior-design projects such as Abacus and TA-Bot / MAAT, Finch, systems coursework, robotics, data projects, and Unity games. He works in a practical, collaborative, growth-oriented way with quiet confidence, disciplined ambition, creativity, and controlled strength. Career interests include software development, full-stack applications, developer tools, data-oriented systems, and technical support or systems roles. Outside technology, approved interests include fitness and bodybuilding, travel and photography, hiking, reading, music, cities and architecture, museums, Greek mythology, cinematic visual design, and his dog Kobe. His favorite color is black.",
+    "Public overview of Mark Yoingco:\n\n- Education: Computer Science graduate from Marquette University; from Chicago.\n- Experience: student-manager and campus leadership roles, plus public AV, information-desk, retail, and related work experience.\n- Strongest projects: Personal Portfolio Platform and MarkAI (solo); Abacus and TA-Bot / MAAT (senior design); Finch when UI/robotics context matters.\n- Technical skills: full-stack/React, Python/Flask and PHP integration, MySQL/SQL, REST APIs, debugging/testing, Git/GitHub, and documentation.\n- Work style: practical, collaborative, ownership-focused, clear communication, disciplined follow-through.\n- Career direction: entry-level software, full-stack, frontend, developer-tools, data-oriented, QA/testing, or technical-support paths.\n- Interests and personality: fitness/bodybuilding, travel/photography, music, museums/mythology, cinematic visual design, and his dog Kobe; quiet confidence with disciplined ambition.\n\nPrivate romantic, medical, and household details are out of scope. Portfolio, GitHub, LinkedIn, and résumé links are available when relevant.",
   workLocation:
     "Mark is seeking entry-level technology roles and is drawn to city environments that support ambition, architecture, technology, and professional progress. He is from Chicago and remains open to Chicago opportunities and suitable roles as his search evolves. MarkAI does not share a precise current residence or private move logistics.",
   travelAndWork:
@@ -774,6 +814,281 @@ function classifyQuestion(rawQuestion, history = []) {
 
   text = rewriteIntentPronouns(text, history);
 
+  if (isGreetingPhrase(text)) {
+    return {
+      category: "greeting",
+      mode: "casual",
+      answer: ANSWERS.greeting,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "shorter summary",
+      "shorter version",
+      "more concise",
+      "brief summary",
+      "tl;dr",
+      "tldr",
+      "summarize that",
+      "summarize this",
+      "give me a shorter summary",
+      "make it shorter",
+    ])
+  ) {
+    return {
+      category: "shorterSummary",
+      mode: "general",
+      answer: buildShorterSummary(lastAssistantAnswer(history), ANSWERS.shorterSummary),
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "what makes mark different",
+      "what makes him different",
+      "what sets mark apart",
+      "what sets him apart",
+    ])
+  ) {
+    return {
+      category: "whatMakesDifferent",
+      mode: "recruiter",
+      answer: ANSWERS.whatMakesDifferent,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "why should someone hire mark",
+      "why hire mark",
+      "why should i hire mark",
+      "why hire him",
+      "why would a company hire him",
+      "why would a company hire mark",
+      "what value would mark bring",
+      "what value would he bring",
+      "what makes mark a strong candidate",
+      "what makes him a strong candidate",
+      "strong candidate",
+    ])
+  ) {
+    return {
+      category: "whyHire",
+      mode: "recruiter",
+      answer: ANSWERS.whyHire,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "what is mark like to work with",
+      "like to work with",
+      "work with mark",
+      "work with him",
+    ])
+  ) {
+    return {
+      category: "workWith",
+      mode: "recruiter",
+      answer: ANSWERS.workWith,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "most proud of",
+      "what is mark most proud",
+      "what is he most proud",
+    ])
+  ) {
+    return {
+      category: "proudOf",
+      mode: "casual",
+      answer: ANSWERS.proudOf,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "describe mark in three sentences",
+      "three sentences",
+      "in 3 sentences",
+      "in three sentences",
+    ])
+  ) {
+    return {
+      category: "threeSentences",
+      mode: "general",
+      answer: ANSWERS.threeSentences,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "what does mark care about most",
+      "care about most",
+      "what does he care about most",
+    ])
+  ) {
+    return {
+      category: "careAboutMost",
+      mode: "casual",
+      answer: ANSWERS.careAboutMost,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "strongest technical skills",
+      "strongest skills",
+      "what are mark’s strongest",
+      "what are mark's strongest",
+      "what are his strongest skills",
+      "what are marks strongest",
+    ])
+  ) {
+    return {
+      category: "strongestSkills",
+      mode: "technical",
+      answer: ANSWERS.strongestSkills,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "what type of developer",
+      "what kind of developer",
+      "type of developer is mark",
+      "kind of developer is mark",
+    ])
+  ) {
+    return {
+      category: "developerType",
+      mode: "recruiter",
+      answer: ANSWERS.developerType,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "what roles is mark qualified",
+      "roles is mark qualified",
+      "qualified for",
+      "what jobs is mark",
+    ])
+  ) {
+    return {
+      category: "qualifiedRoles",
+      mode: "recruiter",
+      answer: ANSWERS.qualifiedRoles,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "ready for a full-time",
+      "ready for full-time",
+      "ready for a software job",
+      "ready for a full time",
+      "is mark ready for a full-time",
+      "is mark ready for full-time",
+      "is he ready for a full-time",
+    ])
+  ) {
+    return {
+      category: "readyFullTime",
+      mode: "recruiter",
+      answer: ANSWERS.readyFullTime,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "strongest projects",
+      "what are mark’s strongest projects",
+      "what are mark's strongest projects",
+      "what are his strongest projects",
+    ])
+  ) {
+    return {
+      category: "strongestProjects",
+      mode: "technical",
+      answer: ANSWERS.strongestProjects,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "which project best represents",
+      "project best represents mark",
+      "best represents mark",
+      "which project represents him best",
+      "which project represents mark best",
+      "what is mark’s best project",
+      "what is mark's best project",
+      "what is marks best project",
+      "strongest project",
+      "best project",
+    ])
+  ) {
+    return {
+      category: "bestRepresents",
+      mode: "technical",
+      answer: ANSWERS.bestRepresents,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "which projects used",
+      "projects used react",
+      "projects used python",
+      "projects used database",
+      "projects used testing",
+      "which projects show react",
+      "which projects show python",
+      "which projects show databases",
+      "which projects show testing",
+    ])
+  ) {
+    return {
+      category: "projectsByTech",
+      mode: "technical",
+      answer: ANSWERS.projectsByTech,
+      answerStatus: "answered",
+    };
+  }
+
+  if (
+    includesAny(text, [
+      "which projects show leadership",
+      "projects show leadership",
+      "leadership in projects",
+    ])
+  ) {
+    return {
+      category: "projectsLeadership",
+      mode: "recruiter",
+      answer: ANSWERS.projectsLeadership,
+      answerStatus: "answered",
+    };
+  }
+
   const followUp = resolveFollowupFromHistory(text, history);
   if (followUp) return followUp;
 
@@ -1315,7 +1630,6 @@ function classifyQuestion(rawQuestion, history = []) {
       "what is marks mindset",
       "mark’s mindset",
       "mark's mindset",
-      "what makes mark different",
     ])
   ) {
     return {
@@ -1820,6 +2134,15 @@ function classifyQuestion(rawQuestion, history = []) {
       "for fun",
       "outside of technology",
       "outside technology",
+      "outside tech",
+      "outside of tech",
+      "outside work",
+      "outside of work",
+      "do outside work",
+      "does mark do outside",
+      "personality outside",
+      "outside software",
+      "hobbies and interests",
       "not coding",
       "free time",
       "does mark cook",
@@ -1852,6 +2175,7 @@ function classifyQuestion(rawQuestion, history = []) {
       "about mark's life",
       "about marks life",
       "like outside technology",
+      "like outside tech",
       "what are mark’s interests",
       "what are mark's interests",
       "what are marks interests",
@@ -2271,7 +2595,47 @@ function delay(ms, signal) {
  */
 export async function getMockMarkAiResponse(question, options = {}) {
   await delay(MOCK_DELAY_MS, options.signal);
-  const classified = classifyQuestion(question, options.history || []);
+  const history = options.history || [];
+  const split = splitVisitorQuestions(question);
+  let classified;
+
+  if (split.greetingOnly) {
+    classified = classifyQuestion("hello", history);
+  } else if (split.questions.length > 1) {
+    const parts = [];
+    let mode = "general";
+    let anyAnswered = false;
+    let anyRefused = false;
+    split.questions.forEach((q, index) => {
+      const item = classifyQuestion(q, history);
+      if (item.answerStatus === "refused" || item.category === "sensitive") {
+        anyRefused = true;
+      } else {
+        anyAnswered = true;
+      }
+      if (item.mode === "technical" || item.mode === "recruiter") mode = item.mode;
+      parts.push({
+        question: split.displayQuestions[index] || formatQuestionHeading(q),
+        answer: item.answer,
+        category: item.category,
+        answerStatus: item.answerStatus,
+      });
+    });
+    classified = {
+      category: "multiQuestion",
+      mode,
+      answer: formatMultiQuestionAnswer(parts, split.greetingLead, split.truncated),
+      answerStatus: !anyAnswered && anyRefused ? "refused" : anyAnswered ? "answered" : "unavailable",
+    };
+  } else if (split.greetingLead && split.questions.length === 1) {
+    const single = classifyQuestion(split.questions[0], history);
+    classified = {
+      ...single,
+      answer: `Hi — ${String(single.answer || "").trim()}`,
+    };
+  } else {
+    classified = classifyQuestion(split.questions[0] || question, history);
+  }
 
   return {
     success: true,
