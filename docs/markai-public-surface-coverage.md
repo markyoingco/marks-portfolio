@@ -204,7 +204,7 @@ Webpage/Terminal project maps: `src/PortfolioApp.jsx`, `src/terminalPortfolioPro
 | Contact section | `https://markyoingco.com` | `link-contact-section` | `open contact` | SPA screen (no hash) |
 | Testimonials section | `https://markyoingco.com` | `link-testimonials-section` | `open testimonials` | SPA screen (no hash) |
 | Travel section | `https://markyoingco.com` | `link-travel-section` | `open travel` | SPA screen (no hash) |
-| Resume PDF | `/documents/MarkPort_TechResume_2026.pdf` → absolutized in MarkAI responses | `link-resume-pdf` | `open resume` | Path matches `resumeDocument.js` |
+| Resume PDF | `/documents/Mark_Yoingco_MainTech_Resume_2026.pdf` → absolutized in MarkAI responses | `link-resume-pdf` | `open resume` | Path matches `resumeDocument.js` |
 | GitHub profile | `https://github.com/markyoingco` | `link-github-profile` | `open github` | Match |
 | LinkedIn | `https://www.linkedin.com/in/mark-yoingco` | `link-linkedin` | `open linkedin` | Match |
 | VSCO | `https://vsco.co/markyoingco/gallery` | `link-vsco` | `open vsco` / `open photography` | Match |
